@@ -35,6 +35,7 @@ html {
 body {
   font-family: 'Assistant', Arial, sans-serif;
   direction: rtl;
+  text-align: right;
   color: var(--text);
   background: var(--white);
   line-height: 1.7;
@@ -461,7 +462,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .about-badge-img {
   position: absolute;
   bottom: -1.5rem;
-  left: -1.5rem;
+  right: -1.5rem;
   background: var(--gold);
   border-radius: var(--radius-lg);
   padding: 1.2rem 1.6rem;
@@ -830,7 +831,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .whatsapp-float {
   position: fixed;
   bottom: 5.5rem;
-  left: 1.5rem;
+  right: 1.5rem;
   width: 56px;
   height: 56px;
   background: #25d366;
@@ -850,8 +851,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .whatsapp-icon { font-size: 1.8rem; color: var(--white); }
 .whatsapp-tooltip {
   position: absolute;
-  right: 100%;
-  margin-right: .7rem;
+  left: 100%;
+  margin-left: .7rem;
   background: var(--navy-dark);
   color: var(--white);
   padding: .35rem .75rem;
@@ -868,7 +869,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .back-to-top {
   position: fixed;
   bottom: 1.5rem;
-  left: 1.5rem;
+  right: 1.5rem;
   width: 44px;
   height: 44px;
   background: var(--navy);
@@ -910,7 +911,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
   .about-inner { grid-template-columns: 1fr; }
   .about-image-wrap { order: -1; }
-  .about-badge-img { bottom: -1rem; left: -0.5rem; }
+  .about-badge-img { bottom: -1rem; right: -0.5rem; }
   .about-content .section-title { text-align: center; }
   .about-content .section-label { display: block; text-align: center; }
 
@@ -930,8 +931,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .stat-item { padding: .5rem 1.5rem; }
   .stat-divider { display: none; }
 
-  .whatsapp-float { bottom: 4.5rem; left: 1rem; width: 48px; height: 48px; }
-  .back-to-top { bottom: 1rem; left: 1rem; width: 38px; height: 38px; }
+  .whatsapp-float { bottom: 4.5rem; right: 1rem; width: 48px; height: 48px; }
+  .back-to-top { bottom: 1rem; right: 1rem; width: 38px; height: 38px; }
 }
 
 @media (max-width: 480px) {
@@ -963,7 +964,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
 .fade-in-right {
   opacity: 0;
-  transform: translateX(30px);
+  transform: translateX(-30px);
   transition: opacity .6s ease, transform .6s ease;
 }
 .fade-in-right.visible { opacity: 1; transform: translateX(0); }
