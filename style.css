@@ -502,7 +502,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 /* Team cards */
 .team-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 1.25rem;
   margin-top: 3.5rem;
 }
@@ -515,6 +515,18 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   transition: var(--transition);
 }
 .team-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+
+/* כרטיס מוביל – טל גבאי */
+.team-card-lead {
+  grid-column: 1 / -1;
+  max-width: 280px;
+  margin-inline: auto;
+  background: var(--navy);
+  color: var(--white);
+}
+.team-card-lead .team-name { color: var(--white); font-size: 1.1rem; }
+.team-card-lead .team-role { color: var(--gold); font-weight: 600; font-size: .9rem; }
+
 .team-avatar {
   width: 80px;
   height: 80px;
@@ -524,9 +536,15 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgba(255,255,255,.5);
-  font-size: 1.8rem;
   overflow: hidden;
+}
+.team-card-lead .team-avatar { background: rgba(255,255,255,.15); border: 2px solid var(--gold); }
+.team-avatar-lead { width: 96px; height: 96px; }
+.avatar-initials {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--white);
+  letter-spacing: .02em;
 }
 .team-avatar img { width: 100%; height: 100%; object-fit: cover; }
 .team-name {
@@ -915,6 +933,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .about-content .section-label { display: block; text-align: center; }
 
   .team-grid { grid-template-columns: repeat(3, 1fr); gap: .75rem; }
+  .team-card-lead { max-width: 220px; }
 
   .contact-inner { grid-template-columns: 1fr; }
   .contact-info .section-title { text-align: center; }
