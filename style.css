@@ -152,22 +152,29 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 /* Logo */
 .logo {
   display: flex;
-  flex-direction: column;
-  line-height: 1.1;
+  flex-direction: row;
+  align-items: center;
+  gap: .5rem;
+  line-height: 1;
   flex-shrink: 0;
 }
 .logo-main {
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   font-weight: 800;
   color: var(--navy);
   letter-spacing: -.02em;
+  white-space: nowrap;
+}
+.logo-sep {
+  color: var(--gold);
+  font-weight: 300;
+  font-size: 1.2rem;
 }
 .logo-sub {
-  font-size: .72rem;
-  font-weight: 600;
+  font-size: .95rem;
+  font-weight: 700;
   color: var(--gold-dark);
-  letter-spacing: .06em;
-  text-transform: uppercase;
+  white-space: nowrap;
 }
 
 /* Nav */
