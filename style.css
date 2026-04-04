@@ -503,6 +503,14 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   gap: .75rem;
   margin-bottom: 2rem;
 }
+.about-highlights li {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+}
+.about-highlights .highlight-icon {
+  flex-shrink: 0;
+}
 .about-highlight {
   display: flex;
   align-items: flex-start;
