@@ -1058,42 +1058,40 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
 .partner-logo {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-width: 140px;
+  min-width: 160px;
   height: 80px;
   background: var(--white);
   border: 1.5px solid var(--light-gray);
   border-radius: var(--radius-lg);
-  padding: .75rem 1.25rem;
+  padding: .75rem 1.5rem;
   box-shadow: var(--shadow-sm);
   transition: var(--transition);
   cursor: default;
-  text-align: center;
+}
+.partner-logo img {
+  max-width: 130px;
+  max-height: 52px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  filter: grayscale(40%);
+  transition: filter .3s;
 }
 .partner-logo:hover {
   border-color: var(--gold);
   box-shadow: var(--shadow-md);
   transform: translateY(-3px);
 }
-.pl-name {
-  font-size: 1.1rem;
-  font-weight: 800;
-  color: var(--navy);
-  line-height: 1.1;
-}
-.pl-sub {
-  font-size: .72rem;
-  color: var(--mid-gray);
-  font-weight: 500;
-  margin-top: .2rem;
+.partner-logo:hover img {
+  filter: grayscale(0%);
 }
 
 @media (max-width: 768px) {
   .partners-track { animation-duration: 20s; }
-  .partner-logo { min-width: 110px; height: 68px; }
-  .pl-name { font-size: .95rem; }
+  .partner-logo { min-width: 120px; height: 64px; padding: .5rem 1rem; }
+  .partner-logo img { max-width: 100px; max-height: 42px; }
 }
 
 /* ── Hero touch word highlight ───────────────────────────── */
