@@ -1031,16 +1031,16 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .partners-track-wrap {
   overflow: hidden;
   position: relative;
-  /* fade edges */
-  -webkit-mask-image: linear-gradient(to left, transparent 0%, black 12%, black 88%, transparent 100%);
-  mask-image: linear-gradient(to left, transparent 0%, black 12%, black 88%, transparent 100%);
+  direction: ltr; /* force LTR so marquee works correctly regardless of page RTL */
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
 }
 
 .partners-track {
   display: flex;
   gap: 1.25rem;
   width: max-content;
-  animation: scrollPartners 28s linear infinite;
+  animation: scrollPartners 36s linear infinite;
 }
 .partners-track:hover { animation-play-state: paused; }
 
