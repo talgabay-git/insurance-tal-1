@@ -1121,6 +1121,94 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .partner-logo img { max-width: 150px; max-height: 63px; }
 }
 
+/* ── How We Work ─────────────────────────────────────────── */
+.how-we-work {
+  background: var(--navy-dark);
+  padding: 5rem 0;
+}
+.how-we-work .section-title,
+.how-we-work .section-subtitle {
+  color: var(--white);
+  text-align: center;
+}
+.how-we-work .section-subtitle { color: rgba(255,255,255,.7); margin-bottom: 3rem; }
+
+.how-steps {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0;
+  flex-wrap: nowrap;
+}
+
+.how-step {
+  flex: 1;
+  text-align: center;
+  max-width: 220px;
+  padding: 1rem .5rem;
+}
+.how-num {
+  font-family: 'Frank Ruhl Libre', serif;
+  font-size: 4rem;
+  font-weight: 900;
+  color: transparent;
+  -webkit-text-stroke: 2px var(--gold);
+  line-height: 1;
+  margin-bottom: .75rem;
+}
+.how-step-title {
+  font-family: 'Frank Ruhl Libre', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: .5rem;
+}
+.how-step-text {
+  font-size: .85rem;
+  color: rgba(255,255,255,.65);
+  line-height: 1.6;
+}
+
+/* Animated arrows */
+.how-arrows {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  gap: 2px;
+  padding-top: 1.8rem;
+  flex-shrink: 0;
+}
+.arr {
+  font-size: 1.8rem;
+  color: var(--gold);
+  opacity: 0;
+  animation: flowArr 1.2s ease-in-out infinite;
+}
+.arr-1 { animation-delay: 0s; }
+.arr-2 { animation-delay: 0.4s; }
+.arr-3 { animation-delay: 0.8s; }
+
+@keyframes flowArr {
+  0%   { opacity: 0; }
+  30%  { opacity: 1; }
+  60%  { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@media (max-width: 768px) {
+  .how-steps {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+  .how-arrows {
+    flex-direction: column;
+    padding-top: 0;
+    transform: rotate(90deg);
+  }
+  .how-step { max-width: 100%; }
+}
+
 /* ── Hero touch word highlight ───────────────────────────── */
 .hero-touch {
   font-family: 'Dancing Script', 'Brush Script MT', cursive;
