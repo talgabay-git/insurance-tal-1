@@ -1158,6 +1158,11 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   filter: grayscale(40%);
   transition: filter .3s;
 }
+.logo-analyst {
+  width: 300px;
+  height: 110px;
+  object-fit: contain;
+}
 .partner-logo:hover {
   border-color: var(--gold);
   box-shadow: var(--shadow-md);
