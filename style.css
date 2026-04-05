@@ -341,8 +341,10 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   color: var(--gold);
 }
 .hero-subtitle {
-  font-size: clamp(1rem, 2vw, 1.2rem);
-  color: rgba(255,255,255,.85);
+  font-family: 'Frank Ruhl Libre', serif;
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  font-weight: 700;
+  color: var(--white);
   margin-bottom: 2.2rem;
   max-width: 480px;
 }
