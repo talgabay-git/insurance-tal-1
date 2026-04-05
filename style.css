@@ -645,10 +645,14 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .why-us .section-title { color: var(--white); }
 .why-us .section-subtitle { color: rgba(255,255,255,.7); }
 .why-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  display: flex;
+  justify-content: center;
   gap: 1.5rem;
   margin-top: 3rem;
+  flex-wrap: wrap;
+}
+.why-card {
+  flex: 0 1 260px;
 }
 .why-card {
   background: rgba(255,255,255,.05);
