@@ -1065,10 +1065,12 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .partners-track-wrap {
   overflow: hidden;
   position: relative;
-  direction: ltr; /* force LTR so marquee works correctly regardless of page RTL */
+  direction: ltr;
+  margin-bottom: 1.25rem;
   -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
   mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
 }
+.partners-track-wrap:last-child { margin-bottom: 0; }
 
 .partners-track {
   display: flex;
@@ -1077,10 +1079,18 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   animation: scrollPartners 36s linear infinite;
 }
 .partners-track:hover { animation-play-state: paused; }
+.partners-track-reverse {
+  animation: scrollPartnersReverse 36s linear infinite;
+}
+.partners-track-reverse:hover { animation-play-state: paused; }
 
 @keyframes scrollPartners {
   0%   { transform: translateX(0); }
   100% { transform: translateX(-50%); }
+}
+@keyframes scrollPartnersReverse {
+  0%   { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
 }
 
 .partner-logo {
