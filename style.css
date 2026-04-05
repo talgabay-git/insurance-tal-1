@@ -128,7 +128,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   top: 0;
   z-index: 1000;
   height: var(--header-h);
-  background: var(--navy-dark);
+  background: #0d2137;
   box-shadow: 0 4px 24px rgba(0,0,0,.25);
   transition: box-shadow var(--transition);
 }
@@ -181,12 +181,13 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   justify-content: center;
 }
 .nav-link {
-  padding: .45rem .9rem;
-  border-radius: 50px;
-  font-weight: 600;
-  font-size: .95rem;
+  padding: .35rem .55rem;
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: .85rem;
   color: var(--navy);
   transition: var(--transition);
+  white-space: nowrap;
 }
 .nav-link:hover,
 .nav-link.active { background: var(--gold); color: var(--navy-dark); }
@@ -230,19 +231,20 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .header-email-icon:hover { color: var(--gold); }
 .btn-personal-area {
-  background: #2196f3;
+  background: transparent;
   color: var(--white);
-  font-weight: 700;
+  font-weight: 600;
   font-size: .9rem;
-  padding: .45rem 1.1rem;
-  border-radius: 50px;
+  padding: .4rem 1rem;
+  border-radius: 4px;
+  border: 1.5px solid var(--gold);
   display: flex;
   align-items: center;
   gap: .4rem;
   transition: var(--transition);
   white-space: nowrap;
 }
-.btn-personal-area:hover { background: #1976d2; }
+.btn-personal-area:hover { background: rgba(201,168,76,.15); }
 .header-whatsapp {
   color: #25d366;
   font-weight: 700;
