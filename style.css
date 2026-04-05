@@ -128,19 +128,14 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   top: 0;
   z-index: 1000;
   height: var(--header-h);
-  background: var(--white);
-  box-shadow: var(--shadow-sm);
-  transition: box-shadow var(--transition), background var(--transition);
-}
-.site-header.scrolled {
   background: var(--navy-dark);
   box-shadow: 0 4px 24px rgba(0,0,0,.25);
+  transition: box-shadow var(--transition);
 }
-.site-header.scrolled .nav-link,
-.site-header.scrolled .header-phone { color: var(--white); }
-.site-header.scrolled .logo-main { color: var(--white); }
-.site-header.scrolled .logo-sub  { color: var(--mid-gray); }
-.site-header.scrolled .hamburger-line { background: var(--white); }
+.site-header .nav-link { color: var(--white); }
+.site-header .logo-main { color: var(--white); }
+.site-header .logo-sub  { color: var(--gold); }
+.site-header .hamburger-line { background: var(--white); }
 
 .header-inner {
   display: flex;
@@ -212,6 +207,53 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   direction: ltr;
 }
 .header-phone:hover { background: var(--gold); color: var(--navy-dark); }
+
+/* Header new elements */
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  flex-shrink: 0;
+}
+.header-phone-num {
+  color: var(--white);
+  font-weight: 700;
+  font-size: .95rem;
+  direction: ltr;
+  display: inline-block;
+}
+.header-phone-num:hover { color: var(--gold); }
+.header-email-icon {
+  color: var(--white);
+  font-size: 1.1rem;
+  transition: var(--transition);
+}
+.header-email-icon:hover { color: var(--gold); }
+.btn-personal-area {
+  background: #2196f3;
+  color: var(--white);
+  font-weight: 700;
+  font-size: .9rem;
+  padding: .45rem 1.1rem;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+  transition: var(--transition);
+  white-space: nowrap;
+}
+.btn-personal-area:hover { background: #1976d2; }
+.header-whatsapp {
+  color: #25d366;
+  font-weight: 700;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+  transition: var(--transition);
+}
+.header-whatsapp i { font-size: 1.3rem; }
+.header-whatsapp:hover { color: #1faf54; }
 
 /* Hamburger */
 .hamburger {
