@@ -1222,11 +1222,11 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   width: max-content;
   animation: scrollPartners 36s linear infinite;
 }
-.partners-track:hover { animation-play-state: paused; }
+.partners-track:hover { animation-play-state: running; }
 .partners-track-reverse {
   animation: scrollPartnersReverse 36s linear infinite;
 }
-.partners-track-reverse:hover { animation-play-state: paused; }
+.partners-track-reverse:hover { animation-play-state: running; }
 
 @keyframes scrollPartners {
   0%   { transform: translateX(0); }
