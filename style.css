@@ -520,13 +520,18 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .about > * { position: relative; z-index: 2; }
 .about-inner {
-  display: grid;
-  grid-template-columns: 1fr;
-  max-width: 680px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  max-width: 600px;
   margin-inline: auto;
-  text-align: right;
+  text-align: center;
 }
-.about-image-wrap { display: none; }
+.about-image-wrap {
+  width: 100%;
+  max-width: 520px;
+}
 .about-photo {
   width: 100%;
   height: auto;
@@ -535,6 +540,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   object-fit: cover;
   box-shadow: var(--shadow-lg);
 }
+.about-inner .section-title { margin-bottom: 0; }
 .about-image-placeholder {
   aspect-ratio: 4/3;
   background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
