@@ -609,6 +609,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   font-weight: 700;
   color: var(--gold);
   margin-bottom: 1.5rem;
+  text-align: center;
 }
 .about-bio-heading {
   font-family: 'Heebo', sans-serif;
