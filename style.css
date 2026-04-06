@@ -167,7 +167,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   font-size: 1.2rem;
 }
 .logo-sub {
-  font-size: .95rem;
+  font-size: 1.6rem;
   font-weight: 700;
   color: var(--gold-dark);
   white-space: nowrap;
