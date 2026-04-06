@@ -505,8 +505,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .about::before {
   content: '';
   position: absolute;
-  inset: -10px; /* extra margin to hide blur edges */
-  background: url('tal.jpg.jpeg') center/cover no-repeat;
+  inset: -10px;
+  background: url('tal.jpg.jpeg') center/50% auto no-repeat;
   filter: saturate(0.55) contrast(0.6) brightness(1.45) blur(2px) sepia(0.12);
   z-index: 0;
 }
