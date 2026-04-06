@@ -530,7 +530,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .about-image-wrap {
   width: 100%;
-  max-width: 155px;
+  max-width: 520px;
 }
 .about-photo {
   width: 100%;
