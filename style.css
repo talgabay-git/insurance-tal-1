@@ -190,7 +190,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   white-space: nowrap;
 }
 .nav-link:hover,
-.nav-link.active { background: var(--gold); color: var(--navy-dark); }
+.nav-link.active { color: var(--gold); background: transparent; }
 
 /* Header Phone */
 .header-phone {
