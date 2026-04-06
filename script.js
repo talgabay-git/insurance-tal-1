@@ -152,12 +152,19 @@ if (form) {
 
     if (!valid) return;
 
-    /* Simulate form submission */
+    /* Submit to FormSubmit (sends to office@pf-invest.co.il + CC tal@pf-invest.co.il) */
     const submitBtn = document.getElementById('submit-btn');
     submitBtn.disabled = true;
     submitBtn.querySelector('.btn-text').textContent = 'שולח...';
 
-    setTimeout(() => {
+    const data = new FormData(form);
+    fetch('https://formsubmit.co/ajax/office@pf-invest.co.il', {
+      method: 'POST',
+      headers: { 'Accept': 'application/json' },
+      body: data
+    })
+    .then(res => res.json())
+    .then(res => {
       form.reset();
       submitBtn.disabled = false;
       submitBtn.querySelector('.btn-text').textContent = 'שלח הודעה';
@@ -165,7 +172,12 @@ if (form) {
         successMsg.removeAttribute('hidden');
         setTimeout(() => successMsg.setAttribute('hidden', ''), 5000);
       }
-    }, 1200);
+    })
+    .catch(() => {
+      submitBtn.disabled = false;
+      submitBtn.querySelector('.btn-text').textContent = 'שלח הודעה';
+      alert('אירעה שגיאה. אנא נסו שנית או צרו קשר ישירות.');
+    });
   });
 }
 
