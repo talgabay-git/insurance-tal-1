@@ -117,6 +117,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   color: var(--dark-gray);
   max-width: 600px;
   margin-inline: auto;
+  margin-top: 1.2rem;
 }
 .section-header { text-align: center; margin-bottom: 3rem; }
 
