@@ -475,8 +475,8 @@
 
         <form class="contact-form" id="contact-form" novalidate>
 
-          <!-- שורה 1: שם | טלפון | אימייל -->
-          <div class="form-row form-row-3">
+          <!-- שורה 1: שם | טלפון | אימייל | נושא -->
+          <div class="form-row form-row-4">
             <div class="form-group">
               <label for="name" class="form-label">שם מלא <span class="required" aria-hidden="true">*</span></label>
               <input type="text" id="name" name="name" class="form-input" placeholder="ישראל ישראלי" required autocomplete="name" />
@@ -492,10 +492,6 @@
               <input type="email" id="email" name="email" class="form-input" placeholder="example@email.com" autocomplete="email" />
               <span class="form-error" id="email-error" role="alert"></span>
             </div>
-          </div>
-
-          <!-- שורה 2: נושא | הודעה -->
-          <div class="form-row form-row-2">
             <div class="form-group">
               <label for="subject" class="form-label">נושא <span class="required" aria-hidden="true">*</span></label>
               <select id="subject" name="subject" class="form-input form-select" required>
@@ -515,21 +511,26 @@
               </select>
               <span class="form-error" id="subject-error" role="alert"></span>
             </div>
+          </div>
+
+          <!-- שורה 2: הודעה | כפתור -->
+          <div class="form-row form-row-msg">
             <div class="form-group">
               <label for="message" class="form-label">הודעה</label>
-              <textarea id="message" name="message" class="form-input form-textarea" placeholder="כיצד נוכל לעזור לך?" rows="4"></textarea>
+              <textarea id="message" name="message" class="form-input form-textarea" placeholder="כיצד נוכל לעזור לך?" rows="3"></textarea>
+            </div>
+            <div class="form-group form-group-btn">
+              <button type="submit" class="btn btn-gold btn-block" id="submit-btn">
+                <span class="btn-text">שלח הודעה</span>
+                <i class="fa-solid fa-paper-plane btn-icon"></i>
+              </button>
+              <div class="form-success" id="form-success" role="alert" aria-live="polite" hidden>
+                <i class="fa-solid fa-circle-check"></i>
+                <p>תודה! קיבלנו את פנייתך ונחזור אליך בהקדם.</p>
+              </div>
             </div>
           </div>
 
-          <button type="submit" class="btn btn-gold btn-block" id="submit-btn">
-            <span class="btn-text">שלח הודעה</span>
-            <i class="fa-solid fa-paper-plane btn-icon"></i>
-          </button>
-
-          <div class="form-success" id="form-success" role="alert" aria-live="polite" hidden>
-            <i class="fa-solid fa-circle-check"></i>
-            <p>תודה! קיבלנו את פנייתך ונחזור אליך בהקדם.</p>
-          </div>
         </form>
       </div><!-- /.contact-form-wrap -->
 
