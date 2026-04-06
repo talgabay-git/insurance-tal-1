@@ -808,10 +808,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
    ============================================================ */
 .contact { padding: 5rem 0; background: var(--white); }
 .contact-inner {
-  display: grid;
-  grid-template-columns: 1fr 1.2fr;
-  gap: 4rem;
-  align-items: start;
+  display: block;
 }
 
 /* Contact Info */
@@ -860,6 +857,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   border-radius: var(--radius-lg);
   padding: 2.5rem;
   box-shadow: var(--shadow-sm);
+  max-width: 100%;
 }
 .form-title {
   font-size: 1.3rem;
