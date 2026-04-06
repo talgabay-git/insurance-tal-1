@@ -1334,11 +1334,34 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   font-size: 2.25rem;
   color: var(--gold);
   opacity: 0;
-  animation: flowArr 1.2s ease-in-out infinite;
 }
-.arr-1 { animation-delay: 0s; }
-.arr-2 { animation-delay: 0.4s; }
-.arr-3 { animation-delay: 0.8s; }
+.arr-1 { animation: flowArr1 2.4s ease-in-out infinite; }
+.arr-2 { animation: flowArr2 2.4s ease-in-out infinite; }
+.arr-3 { animation: flowArr3 2.4s ease-in-out infinite; }
+
+@keyframes flowArr1 {
+  0%   { opacity: 0; }
+  5%   { opacity: 1; }
+  85%  { opacity: 1; }
+  92%  { opacity: 0; }
+  100% { opacity: 0; }
+}
+@keyframes flowArr2 {
+  0%   { opacity: 0; }
+  33%  { opacity: 0; }
+  38%  { opacity: 1; }
+  85%  { opacity: 1; }
+  92%  { opacity: 0; }
+  100% { opacity: 0; }
+}
+@keyframes flowArr3 {
+  0%   { opacity: 0; }
+  63%  { opacity: 0; }
+  68%  { opacity: 1; }
+  85%  { opacity: 1; }
+  92%  { opacity: 0; }
+  100% { opacity: 0; }
+}
 
 @keyframes flowArr {
   0%   { opacity: 0; }
