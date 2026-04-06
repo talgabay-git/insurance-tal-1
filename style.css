@@ -626,10 +626,14 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .about-bio-list li { line-height: 1.75; }
 .about-bio-closing {
   font-weight: 600;
+  font-size: 1.15rem;
   color: var(--navy);
   border-right: 3px solid var(--gold);
-  padding-right: 1rem;
+  border-left: 3px solid var(--gold);
+  padding-right: 1.2rem;
+  padding-left: 1.2rem;
   margin-top: 2rem;
+  text-align: center;
 }
 
 .about-highlight {
