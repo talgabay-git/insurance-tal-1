@@ -626,8 +626,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .about-bio-list li { line-height: 1.75; }
 .about-bio-closing {
-  font-weight: 600;
-  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+  font-weight: 400;
+  font-size: 1.15rem;
   color: var(--navy);
   border-right: 3px solid var(--gold);
   border-left: 3px solid var(--gold);
@@ -635,6 +635,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   padding-left: 1.2rem;
   margin-top: calc(2rem + 2cm);
   text-align: center;
+}
+.closing-gold {
+  color: var(--gold);
 }
 
 .about-highlight {
