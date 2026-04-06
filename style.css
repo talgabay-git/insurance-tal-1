@@ -541,7 +541,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   object-fit: cover;
   box-shadow: var(--shadow-lg);
 }
-.about-inner .section-title { margin-bottom: 0; text-align: center; }
+.about-inner .section-title { margin-bottom: 0; margin-top: 2cm; text-align: center; }
 .about-image-placeholder {
   aspect-ratio: 4/3;
   background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
