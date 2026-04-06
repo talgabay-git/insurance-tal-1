@@ -356,53 +356,24 @@
       <div class="section-header fade-in-up" style="margin-bottom: 2rem;">
         <h2 class="section-title">הצוות שלנו</h2>
       </div>
-      <div class="team-ovals">
+      <div class="team-orbit-scene">
 
-        <!-- Lead oval -->
-        <div class="team-ovals-lead-row">
-          <div class="team-oval team-oval-lead fade-in-up">
-            <span class="oval-name">טל גבאי</span>
-            <span class="oval-role">תכנון פיננסי לבכירים | מנכ"ל ובעלים</span>
-          </div>
+        <!-- Lead card — stays centered -->
+        <div class="team-oval team-oval-lead team-oval-lead-center">
+          <span class="oval-name" style="font-size:1.3rem;font-weight:900">טל גבאי</span>
+          <span class="oval-role">מתכנן פיננסי לבכירים | מנכ"ל ובעלים</span>
         </div>
 
-        <!-- Row 2: 4 members -->
-        <div class="team-ovals-row">
-          <div class="team-oval fade-in-up">
-            <span class="oval-name">מיטל גבאי</span>
-            <span class="oval-role">HR | מנהלת אדמיניסטרטיבית</span>
-          </div>
-          <div class="team-oval fade-in-up delay-1">
-            <span class="oval-name">אורלי ברמן</span>
-            <span class="oval-role">מנהלת משרד</span>
-          </div>
-          <div class="team-oval fade-in-up delay-2">
-            <span class="oval-name">ספיר רוזנטל</span>
-            <span class="oval-role">מנהלת קשרי לקוחות</span>
-          </div>
-          <div class="team-oval fade-in-up delay-3">
-            <span class="oval-name">ענבל קדרון</span>
-            <span class="oval-role">מנהלת קשרי לקוחות</span>
-          </div>
-        </div>
+        <!-- Orbit members -->
+        <div class="team-oval orbit-oval"><span class="oval-name">מיטל גבאי</span><span class="oval-role">HR | מנהלת אדמיניסטרטיבית</span></div>
+        <div class="team-oval orbit-oval"><span class="oval-name">אורלי ברמן</span><span class="oval-role">מנהלת משרד</span></div>
+        <div class="team-oval orbit-oval"><span class="oval-name">ספיר רוזנטל</span><span class="oval-role">מנהלת קשרי לקוחות</span></div>
+        <div class="team-oval orbit-oval"><span class="oval-name">ענבל קדרון</span><span class="oval-role">מנהלת קשרי לקוחות</span></div>
+        <div class="team-oval orbit-oval"><span class="oval-name">דנה לוי</span><span class="oval-role">מנהלת קשרי לקוחות</span></div>
+        <div class="team-oval orbit-oval"><span class="oval-name">חן לב</span><span class="oval-role">מנהלת קשרי לקוחות</span></div>
+        <div class="team-oval orbit-oval"><span class="oval-name">לאה מנחם</span><span class="oval-role">מנהלת קשרי לקוחות</span></div>
 
-        <!-- Row 3: 3 members centered -->
-        <div class="team-ovals-row">
-          <div class="team-oval fade-in-up">
-            <span class="oval-name">דנה לוי</span>
-            <span class="oval-role">מנהלת קשרי לקוחות</span>
-          </div>
-          <div class="team-oval fade-in-up delay-1">
-            <span class="oval-name">חן לב</span>
-            <span class="oval-role">מנהלת קשרי לקוחות</span>
-          </div>
-          <div class="team-oval fade-in-up delay-2">
-            <span class="oval-name">לאה מנחם</span>
-            <span class="oval-role">מנהלת קשרי לקוחות</span>
-          </div>
-        </div>
-
-      </div><!-- /.team-ovals -->
+      </div><!-- /.team-orbit-scene -->
     </div><!-- /.container -->
   </section>
 
@@ -689,6 +660,49 @@
     wrap.addEventListener('mouseleave', onEnd);
     wrap.style.cursor = 'grab';
   });
+  </script>
+
+  <script>
+  /* ── Team orbit animation ── */
+  (function() {
+    const scene = document.querySelector('.team-orbit-scene');
+    const members = Array.from(document.querySelectorAll('.orbit-oval'));
+    if (!scene || !members.length) return;
+    const DURATION = 22000;
+    let startTime = null;
+    let paused = false;
+    let pauseStart = 0, pausedTotal = 0;
+
+    function getAxes() {
+      const w = scene.offsetWidth;
+      const a = Math.min(Math.round(w * 0.42), 380);
+      const b = Math.round(a * 0.42);
+      return { a, b };
+    }
+
+    function step(ts) {
+      if (!startTime) startTime = ts;
+      if (!paused) {
+        const { a, b } = getAxes();
+        const elapsed = ts - startTime - pausedTotal;
+        const baseAngle = (elapsed / DURATION) * 2 * Math.PI;
+        members.forEach((el, i) => {
+          const theta = baseAngle + (i / members.length) * 2 * Math.PI;
+          const x = a * Math.cos(theta);
+          const y = b * Math.sin(theta);
+          el.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`;
+        });
+      }
+      requestAnimationFrame(step);
+    }
+
+    members.forEach(el => {
+      el.addEventListener('mouseenter', () => { paused = true; pauseStart = performance.now(); });
+      el.addEventListener('mouseleave', () => { pausedTotal += performance.now() - pauseStart; paused = false; });
+    });
+
+    requestAnimationFrame(step);
+  })();
   </script>
 </body>
 </html>

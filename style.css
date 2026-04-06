@@ -684,6 +684,32 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   transition: var(--transition);
 }
 .team-oval:hover { transform: translateY(-3px); box-shadow: 0 6px 18px rgba(13,30,53,.13); border-color: var(--gold); }
+.orbit-oval:hover { border-color: var(--gold); box-shadow: 0 6px 18px rgba(13,30,53,.13); }
+
+/* Orbit scene */
+.team-orbit-scene {
+  position: relative;
+  height: 480px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.team-oval-lead-center {
+  position: relative;
+  z-index: 10;
+  flex-shrink: 0;
+}
+.orbit-oval {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 5;
+  cursor: default;
+}
+@media (max-width: 768px) {
+  .team-orbit-scene { height: 340px; }
+}
 
 .team-oval-lead {
   background: var(--navy);
