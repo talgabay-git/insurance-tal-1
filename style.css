@@ -655,12 +655,16 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 
 .team-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 1.25rem;
   margin-top: 3.5rem;
 }
 .team-card {
+  flex: 0 0 calc(25% - 1rem);
+  min-width: 180px;
+  max-width: 240px;
   background: var(--off-white);
   border-radius: var(--radius-lg);
   padding: 1.5rem 1rem;
@@ -672,7 +676,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
 /* כרטיס מוביל – טל גבאי */
 .team-card-lead {
-  grid-column: 1 / -1;
+  flex: 0 0 100%;
   max-width: 280px;
   margin-inline: auto;
   background: var(--navy);
