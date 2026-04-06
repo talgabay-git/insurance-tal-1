@@ -823,8 +823,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .contact-info-item {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 1rem;
+  text-align: right;
 }
 .contact-info-icon-wrap {
   width: 46px;
