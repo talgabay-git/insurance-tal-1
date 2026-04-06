@@ -506,7 +506,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   content: '';
   position: absolute;
   inset: -10px;
-  background: url('tal.jpg.jpeg') center/30% auto no-repeat;
+  background: url('tal.jpg.jpeg') center top/30% auto no-repeat;
   filter: saturate(0.55) contrast(0.6) brightness(1.45) blur(2px) sepia(0.12);
   z-index: 0;
 }
