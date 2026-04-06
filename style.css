@@ -878,6 +878,10 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
 }
+.form-row-3 { grid-template-columns: 1fr 1fr 1fr; }
+.form-row-2 { grid-template-columns: 1fr 1fr; }
+.form-row-2 .form-textarea { height: 100%; min-height: 100px; }
+}
 .form-group { display: flex; flex-direction: column; gap: .35rem; }
 .form-label {
   font-size: .85rem;
