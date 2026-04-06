@@ -1178,10 +1178,12 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   transition: filter .3s;
 }
 .logo-analyst {
-  max-width: 195px;
-  max-height: 78px;
+  width: 195px;
+  height: 78px;
   object-fit: contain;
   transform: scale(1.8);
+  transform-origin: center;
+  transition: none !important;
 }
 .partner-logo:hover {
   border-color: var(--gold);
