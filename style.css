@@ -596,8 +596,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 /* About bio */
 .about-bio {
   max-width: 860px;
-  margin-top: 1.5rem;
-  padding-top: 2.5rem;
+  margin-top: 0.25rem;
+  padding-top: 0.5rem;
   border-top: 1px solid var(--light-gray);
   line-height: 1.85;
   color: var(--dark-gray);
@@ -606,8 +606,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .about-bio p { margin-bottom: 1.25rem; }
 .about-bio-intro {
   font-size: 1.1rem;
-  font-weight: 500;
-  color: var(--navy);
+  font-weight: 700;
+  color: var(--gold);
   margin-bottom: 1.5rem;
 }
 .about-bio-heading {
