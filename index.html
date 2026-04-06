@@ -630,5 +630,58 @@
 
   <!-- Main Script -->
   <script src="script.js"></script>
+
+  <script>
+  /* ── Partners carousel drag-to-scroll ── */
+  document.querySelectorAll('.partners-track-wrap').forEach(wrap => {
+    const track = wrap.querySelector('.partners-track');
+    const isReverse = track.classList.contains('partners-track-reverse');
+    const DURATION = 36000; // ms — matches CSS
+
+    let dragging = false, startX = 0, startAnimX = 0;
+
+    function getCurrentX() {
+      return new DOMMatrix(getComputedStyle(track).transform).m41;
+    }
+    function clientX(e) {
+      return e.touches ? e.touches[0].clientX : e.clientX;
+    }
+
+    function onStart(e) {
+      dragging = true;
+      track.style.animationPlayState = 'paused';
+      startX    = clientX(e);
+      startAnimX = getCurrentX();
+      if (!e.touches) e.preventDefault();
+    }
+
+    function onMove(e) {
+      if (!dragging) return;
+      const dx = clientX(e) - startX;
+      track.style.transform = `translateX(${startAnimX + dx}px)`;
+    }
+
+    function onEnd() {
+      if (!dragging) return;
+      dragging = false;
+      const cur      = getCurrentX();
+      const halfW    = track.scrollWidth / 2;
+      const progress = ((Math.abs(cur) % halfW) / halfW);
+      const delay    = isReverse ? -(( 1 - progress) * DURATION) : -(progress * DURATION);
+      track.style.transform      = '';
+      track.style.animationDelay = `${delay}ms`;
+      track.style.animationPlayState = 'running';
+    }
+
+    wrap.addEventListener('touchstart', onStart, { passive: true });
+    wrap.addEventListener('touchmove',  onMove,  { passive: true });
+    wrap.addEventListener('touchend',   onEnd);
+    wrap.addEventListener('mousedown',  onStart);
+    wrap.addEventListener('mousemove',  onMove);
+    wrap.addEventListener('mouseup',    onEnd);
+    wrap.addEventListener('mouseleave', onEnd);
+    wrap.style.cursor = 'grab';
+  });
+  </script>
 </body>
 </html>
