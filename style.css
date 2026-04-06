@@ -561,6 +561,46 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .about-highlights .highlight-icon {
   flex-shrink: 0;
 }
+/* About bio */
+.about-bio {
+  max-width: 860px;
+  margin-top: 3rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--light-gray);
+  line-height: 1.85;
+  color: var(--dark-gray);
+  font-size: 1rem;
+}
+.about-bio p { margin-bottom: 1.25rem; }
+.about-bio-intro {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--navy);
+  margin-bottom: 1.5rem;
+}
+.about-bio-heading {
+  font-family: 'Heebo', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--navy);
+  margin: 2rem 0 .75rem;
+}
+.about-bio-list {
+  display: flex;
+  flex-direction: column;
+  gap: .9rem;
+  margin-bottom: 1.5rem;
+  padding-right: 1.2rem;
+}
+.about-bio-list li { line-height: 1.75; }
+.about-bio-closing {
+  font-weight: 600;
+  color: var(--navy);
+  border-right: 3px solid var(--gold);
+  padding-right: 1rem;
+  margin-top: 2rem;
+}
+
 .about-highlight {
   display: flex;
   align-items: flex-start;
