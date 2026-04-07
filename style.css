@@ -310,6 +310,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   min-height: calc(100vh - var(--header-h));
   display: flex;
   align-items: center;
+  justify-content: center;
   background:
     linear-gradient(180deg, rgba(60,90,120,.65) 0%, rgba(60,90,120,.60) 100%),
     url('https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=1600&q=80') center/cover no-repeat;
@@ -329,8 +330,10 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   justify-content: center;
   gap: 3rem;
   padding-block: 5rem;
+  width: 100%;
 }
-.hero-text { max-width: 900px; text-align: center; width: 100%; margin: 0 auto; }
+.hero-text { max-width: 100%; text-align: center; width: 100%; margin: 0 auto; }
+.hero-text h1, .hero-text p { text-align: center; width: 100%; }
 .hero-title {
   font-family: 'Heebo', sans-serif;
   font-size: clamp(2.07rem, 4.37vw, 4.14rem);
