@@ -333,12 +333,12 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .hero-text { max-width: 900px; text-align: center; width: 100%; }
 .hero-title {
   font-family: 'Heebo', sans-serif;
-  font-size: clamp(2.5rem, 4.5vw, 4.2rem);
+  font-size: clamp(1.8rem, 3.8vw, 3.6rem);
   font-weight: 900;
   color: var(--white);
   line-height: 1.2;
   margin-bottom: 1.2rem;
-  white-space: normal;
+  white-space: nowrap;
   text-align: center;
 }
 .hero-title em {
@@ -1153,7 +1153,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
   .hero-content { flex-direction: column; text-align: center; padding-block: 3.5rem; }
   .hero-text { max-width: 100%; }
-  .hero-title { font-size: clamp(1.8rem, 7vw, 2.8rem); }
+  .hero-title { font-size: clamp(1.4rem, 5vw, 2rem); white-space: normal; }
   .hero-subtitle { margin-inline: auto; font-size: clamp(1.1rem, 4vw, 1.5rem); }
 
   .about-inner { grid-template-columns: 1fr; padding-top: calc(56vw + 1rem); }
