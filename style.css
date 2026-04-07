@@ -1436,6 +1436,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .how-arrows {
     flex-direction: row;
     justify-content: center;
+    gap: 1rem;
     padding-top: 0;
     transform: none;
   }
