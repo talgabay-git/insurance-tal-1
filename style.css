@@ -330,7 +330,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   gap: 3rem;
   padding-block: 5rem;
 }
-.hero-text { max-width: 900px; text-align: center; width: 100%; }
+.hero-text { max-width: 900px; text-align: center; width: 100%; margin: 0 auto; }
 .hero-title {
   font-family: 'Heebo', sans-serif;
   font-size: clamp(2.07rem, 4.37vw, 4.14rem);
