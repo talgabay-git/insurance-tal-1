@@ -1436,7 +1436,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .how-arrows {
     flex-direction: column;
     padding-top: 0;
-    transform: rotate(90deg);
+    transform: rotate(-90deg);
   }
   .how-step { max-width: 100%; }
 }
