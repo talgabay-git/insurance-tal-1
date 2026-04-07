@@ -1265,8 +1265,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .partners .section-header { margin-bottom: 2.5rem; }
 .partners-tagline {
   font-family: 'Heebo', sans-serif;
-  font-size: clamp(1rem, 2.2vw, 1.3rem);
-  font-weight: 700;
+  font-size: clamp(1.1rem, 2.4vw, 1.45rem);
+  font-weight: 900;
   color: var(--gold);
   letter-spacing: 0.06em;
   margin-top: 0.4rem;
