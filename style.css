@@ -708,10 +708,28 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   cursor: default;
 }
 @media (max-width: 768px) {
-  .team-orbit-scene { height: 340px; }
-}
-@media (max-width: 480px) {
-  .team-orbit-scene { height: 280px; }
+  .team-orbit-scene {
+    height: auto !important;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: .75rem;
+    padding: 1rem 0;
+    overflow: visible;
+  }
+  .team-oval-lead-center {
+    width: 100%;
+    max-width: 260px;
+    order: -1;
+  }
+  .orbit-oval {
+    position: static !important;
+    transform: none !important;
+    top: auto !important;
+    left: auto !important;
+    width: calc(50% - .75rem);
+    max-width: 180px;
+  }
 }
 
 .team-oval-lead {

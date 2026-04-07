@@ -688,6 +688,11 @@
     }
 
     function step(ts) {
+      if (window.innerWidth <= 768) {
+        members.forEach(el => { el.style.transform = ''; el.style.top = ''; el.style.left = ''; });
+        requestAnimationFrame(step);
+        return;
+      }
       if (!startTime) startTime = ts;
       if (!paused) {
         const { a, b } = getAxes();
