@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>טל גבאי | צ'ק אפ פיננסי</title>
+  <meta name="description" content="צ'ק אפ פיננסי - תמונת מצב הוליסטית של כלל נכסיך והתחייבויותיך. טל גבאי תכנון פיננסי." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700;800&family=Heebo:wght@400;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ── Page Hero ── */
+    .checkup-hero {
+      background: var(--navy);
+      padding: 5rem 0 4rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .checkup-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 60% 40%, rgba(201,168,76,.12) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .checkup-hero .section-label { margin-bottom: 1.2rem; }
+    .checkup-hero h1 {
+      font-family: 'Heebo', sans-serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 900;
+      color: var(--white);
+      margin-bottom: 1rem;
+      border: 2px solid var(--gold);
+      display: inline-block;
+      padding: .5rem 2rem;
+      border-radius: 10px;
+      color: var(--gold);
+    }
+    .checkup-hero .hero-tagline {
+      font-size: clamp(1rem, 2.5vw, 1.3rem);
+      color: rgba(255,255,255,.8);
+      max-width: 620px;
+      margin: 1rem auto 0;
+      line-height: 1.7;
+    }
+
+    /* ── Content ── */
+    .checkup-content {
+      padding: 5rem 0;
+      background: var(--off-white);
+    }
+
+    .checkup-intro {
+      max-width: 820px;
+      margin: 0 auto 4rem;
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem 3rem;
+      box-shadow: var(--shadow-md);
+      border-right: 5px solid var(--gold);
+    }
+    .checkup-intro p {
+      font-size: 1.08rem;
+      line-height: 1.9;
+      color: var(--text);
+      margin-bottom: 1.4rem;
+    }
+    .checkup-intro p:last-child { margin-bottom: 0; }
+
+    /* ── Benefits grid ── */
+    .checkup-benefits {
+      max-width: 900px;
+      margin: 0 auto 4rem;
+    }
+    .checkup-benefits h2 {
+      font-family: 'Heebo', sans-serif;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 900;
+      color: var(--navy);
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+    .benefit-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem 1.5rem;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      transition: transform .25s, box-shadow .25s;
+      border-top: 3px solid transparent;
+    }
+    .benefit-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+      border-top-color: var(--gold);
+    }
+    .benefit-icon {
+      font-size: 2.2rem;
+      color: var(--gold);
+      margin-bottom: .9rem;
+    }
+    .benefit-title {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: .5rem;
+    }
+    .benefit-desc {
+      font-size: .85rem;
+      color: var(--dark-gray);
+      line-height: 1.65;
+    }
+
+    /* ── CTA ── */
+    .checkup-cta {
+      background: var(--navy);
+      padding: 4rem 0;
+      text-align: center;
+    }
+    .checkup-cta h2 {
+      font-family: 'Heebo', sans-serif;
+      font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+      font-weight: 900;
+      color: var(--white);
+      margin-bottom: .75rem;
+    }
+    .checkup-cta p {
+      color: rgba(255,255,255,.75);
+      font-size: 1.05rem;
+      margin-bottom: 2rem;
+    }
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn-white {
+      background: var(--white);
+      color: var(--navy);
+      font-weight: 800;
+    }
+    .btn-white:hover { background: var(--off-white); }
+
+    @media (max-width: 768px) {
+      .checkup-hero { padding: 3rem 0 2.5rem; }
+      .checkup-intro { padding: 1.75rem 1.25rem; border-right-width: 4px; }
+      .checkup-intro p { font-size: 1rem; }
+      .benefits-grid { grid-template-columns: 1fr 1fr; }
+      .checkup-cta { padding: 3rem 0; }
+    }
+    @media (max-width: 480px) {
+      .benefits-grid { grid-template-columns: 1fr; }
+      .checkup-hero h1 { font-size: 1.6rem; padding: .4rem 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== HEADER ========== -->
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+      <nav class="main-nav" aria-label="ניווט ראשי">
+        <ul class="nav-list">
+          <li><a href="index.html#about" class="nav-link">אודות</a></li>
+          <li><a href="index.html#services" class="nav-link">תכנון פיננסי</a></li>
+          <li><a href="index.html#services" class="nav-link">תכנון פרישה</a></li>
+          <li><a href="index.html#" class="nav-link">ניהול סיכונים וביטוח</a></li>
+          <li><a href="index.html#" class="nav-link">Family Office</a></li>
+          <li><a href="index.html#testimonials" class="nav-link">המלצות</a></li>
+          <li><a href="checkup.html" class="nav-link" style="color:var(--gold);font-weight:700">צ'ק אפ פיננסי</a></li>
+          <li><a href="index.html#contact" class="nav-link">צור קשר</a></li>
+        </ul>
+      </nav>
+      <div class="header-left">
+        <a href="https://talgabay-git.github.io/insurance-tal-1/#" class="btn-personal-area" target="_blank" rel="noopener"><i class="fa-solid fa-key"></i> כניסה לאיזור אישי</a>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="פתח תפריט" aria-expanded="false">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+    </div>
+    <nav class="mobile-menu" id="mobile-menu" aria-label="תפריט נייד" aria-hidden="true">
+      <ul class="mobile-nav-list">
+        <li><a href="index.html" class="mobile-nav-link">דף הבית</a></li>
+        <li><a href="index.html#about" class="mobile-nav-link">אודות</a></li>
+        <li><a href="index.html#services" class="mobile-nav-link">השירותים שלנו</a></li>
+        <li><a href="checkup.html" class="mobile-nav-link" style="color:var(--gold);font-weight:700">צ'ק אפ פיננסי</a></li>
+        <li><a href="index.html#contact" class="mobile-nav-link">צור קשר</a></li>
+        <li><a href="tel:052-8000556" class="mobile-nav-link mobile-phone"><i class="fa-solid fa-phone"></i> 052-8000556</a></li>
+        <li><a href="https://wa.me/9720528000556" class="mobile-nav-link"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ========== HERO ========== -->
+  <section class="checkup-hero">
+    <div class="container">
+      <span class="section-label">שירות מקצועי</span>
+      <h1>צ'ק אפ פיננסי</h1>
+      <p class="hero-tagline">תמונת מצב הוליסטית (360°) של כלל נכסיך והתחייבויותיך —<br>הבסיס לתכנון פיננסי אופטימלי</p>
+    </div>
+  </section>
+
+  <!-- ========== CONTENT ========== -->
+  <section class="checkup-content">
+    <div class="container">
+
+      <!-- הסבר מלא -->
+      <div class="checkup-intro fade-in-up">
+        <p>
+          <strong>צ'ק אפ פיננסי</strong> הינו תהליך המספק תמונת מצב הוליסטית (360 מעלות) של כלל נכסי והתחייבויות: החל מתיקי השקעות ונדל"ן, דרך חיסכון פנסיוני, אפיקי הון סיכון, והכיסויים הביטוחיים.
+        </p>
+        <p>
+          הבחינה המעמיקה מאפשרת לשפר בין אפיקי ההשקעה השונים ולשפר משמעותית את עמדת המיקוח מול המוסדות הפיננסיים.
+        </p>
+        <p>
+          הצ'ק אפ הפיננסי מוביל ל<strong>התייעלות כלכלית</strong>: צמצום עלויות דמי ניהול ועמלות, ביטול כפל ביטוחי ואופטימיזציה של הטבות מס. חשוב מכך, התהליך מאפשר סנכרון מדויק בין הרכב התיק לבין היעדים האסטרטגיים ורמת הסיכון המבוקשת, ובכך מתווה את <strong>מפת הדרכים הפיננסית</strong> להבטחת העתיד הכלכלי.
+        </p>
+      </div>
+
+      <!-- יתרונות -->
+      <div class="checkup-benefits">
+        <h2>מה כולל התהליך?</h2>
+        <div class="benefits-grid">
+
+          <div class="benefit-card fade-in-up">
+            <div class="benefit-icon"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+            <div class="benefit-title">תיקי השקעות ונדל"ן</div>
+            <div class="benefit-desc">סקירה מקיפה של כלל הנכסים הפיננסיים והנדל"ניים שברשותך</div>
+          </div>
+
+          <div class="benefit-card fade-in-up">
+            <div class="benefit-icon"><i class="fa-solid fa-piggy-bank"></i></div>
+            <div class="benefit-title">חיסכון פנסיוני</div>
+            <div class="benefit-desc">בדיקת קרנות הפנסיה, קופות הגמל וביטוחי המנהלים — ייעול ושדרוג</div>
+          </div>
+
+          <div class="benefit-card fade-in-up">
+            <div class="benefit-icon"><i class="fa-solid fa-shield-halved"></i></div>
+            <div class="benefit-title">כיסויים ביטוחיים</div>
+            <div class="benefit-desc">איתור כפל ביטוחי, פערי כיסוי וייעול דמי הביטוח</div>
+          </div>
+
+          <div class="benefit-card fade-in-up">
+            <div class="benefit-icon"><i class="fa-solid fa-percent"></i></div>
+            <div class="benefit-title">אופטימיזציית מס</div>
+            <div class="benefit-desc">מיצוי הטבות מס, ניצול פטורים וצמצום חבות המס הכוללת</div>
+          </div>
+
+          <div class="benefit-card fade-in-up">
+            <div class="benefit-icon"><i class="fa-solid fa-handshake"></i></div>
+            <div class="benefit-title">עמדת מיקוח</div>
+            <div class="benefit-desc">שיפור משמעותי בתנאים מול הבנקים, חברות הביטוח ובתי ההשקעות</div>
+          </div>
+
+          <div class="benefit-card fade-in-up">
+            <div class="benefit-icon"><i class="fa-solid fa-map-location-dot"></i></div>
+            <div class="benefit-title">מפת דרכים פיננסית</div>
+            <div class="benefit-desc">תוכנית פעולה ברורה לטווח קצר, בינוני וארוך — בהתאם ליעדיך</div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========== CTA ========== -->
+  <section class="checkup-cta">
+    <div class="container">
+      <h2>מוכנים לצ'ק אפ פיננסי?</h2>
+      <p>השאירו פרטים ונחזור אליכם לתיאום פגישת היכרות ללא עלות</p>
+      <div class="cta-buttons">
+        <a href="index.html#contact" class="btn btn-gold btn-lg">
+          <i class="fa-solid fa-calendar-check"></i> קביעת פגישה
+        </a>
+        <a href="tel:052-8000556" class="btn btn-white btn-lg">
+          <i class="fa-solid fa-phone"></i> 052-8000556
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="site-footer">
+    <div class="footer-top">
+      <div class="container footer-top-inner">
+        <div class="footer-col footer-brand">
+          <a href="index.html" class="footer-logo">
+            <span class="logo-main">טל גבאי</span>
+            <span class="logo-sep">|</span>
+            <span class="logo-sub">תכנון פיננסי</span>
+          </a>
+          <p class="footer-tagline">ליווי אישי וממוקד לבכירים ממגוון חברות מובילות במשק.</p>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-col-title">קישורים מהירים</h4>
+          <ul class="footer-links">
+            <li><a href="index.html" class="footer-link"><i class="fa-solid fa-chevron-left"></i> דף הבית</a></li>
+            <li><a href="index.html#about" class="footer-link"><i class="fa-solid fa-chevron-left"></i> אודותנו</a></li>
+            <li><a href="index.html#services" class="footer-link"><i class="fa-solid fa-chevron-left"></i> שירותים</a></li>
+            <li><a href="checkup.html" class="footer-link"><i class="fa-solid fa-chevron-left"></i> צ'ק אפ פיננסי</a></li>
+            <li><a href="index.html#contact" class="footer-link"><i class="fa-solid fa-chevron-left"></i> צור קשר</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-col-title">פרטי התקשרות</h4>
+          <ul class="footer-contact-list">
+            <li><i class="fa-solid fa-location-dot footer-contact-icon"></i><span>היצירה 19, רחובות</span></li>
+            <li><i class="fa-solid fa-phone footer-contact-icon"></i><span><a href="tel:074-7019277" class="footer-contact-link">074-7019277</a><br><a href="tel:052-8000556" class="footer-contact-link">052-8000556</a></span></li>
+            <li><i class="fa-solid fa-envelope footer-contact-icon"></i><span><a href="mailto:office@pf-invest.co.il" class="footer-contact-link">office@pf-invest.co.il</a></span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <p class="footer-copy">&copy; 2026 טל גבאי - תכנון פיננסי מתקדם לבכירים. כל הזכויות שמורות.</p>
+        <p class="footer-legal">מורשה על ידי רשות שוק ההון, ביטוח וחיסכון</p>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/972528000556" target="_blank" rel="noopener noreferrer" class="whatsapp-float" aria-label="WhatsApp">
+    <i class="fa-brands fa-whatsapp whatsapp-icon"></i>
+  </a>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    hamburger.addEventListener('click', () => {
+      const open = mobileMenu.classList.toggle('open');
+      hamburger.setAttribute('aria-expanded', open);
+      mobileMenu.setAttribute('aria-hidden', !open);
+    });
+
+    /* Scroll animations */
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
