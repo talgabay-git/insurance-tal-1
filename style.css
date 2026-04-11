@@ -653,6 +653,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   font-size: 1.1rem;
   font-weight: 700;
   color: var(--gold);
+  margin-top: 0.5cm;
   margin-bottom: calc(1.5rem + 0.5cm);
   text-align: center;
 }
