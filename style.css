@@ -183,9 +183,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   flex-shrink: 0;
   line-height: 1;
 }
-.header-logo .logo-main { font-size: 1.1rem; font-weight: 800; color: var(--white); }
+.header-logo .logo-main { font-size: 1.27rem; font-weight: 800; color: var(--white); }
 .header-logo .logo-sep  { color: var(--gold); font-size: 1rem; font-weight: 300; margin: 0 .35rem; }
-.header-logo .logo-sub  { font-size: 1rem; font-weight: 700; color: var(--gold); white-space: nowrap; }
+.header-logo .logo-sub  { font-size: 1.15rem; font-weight: 700; color: var(--gold); white-space: nowrap; }
 @media (max-width: 900px) { .header-logo { display: none; } }
 
 /* Nav */
