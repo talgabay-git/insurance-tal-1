@@ -655,12 +655,12 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   font-weight: 400;
   font-size: 1.15rem;
   color: var(--navy);
-  border-right: 3px solid var(--gold);
-  border-left: 3px solid var(--gold);
-  padding-right: 1.2rem;
-  padding-left: 1.2rem;
+  border: 3px solid var(--gold);
+  border-radius: 8px;
+  padding: 1rem 1.8rem;
   margin-top: calc(2rem + 2cm);
   text-align: center;
+  display: inline-block;
 }
 .closing-gold {
   color: var(--gold);
