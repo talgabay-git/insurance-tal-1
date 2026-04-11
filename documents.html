@@ -87,12 +87,30 @@
       border-radius: var(--radius);
       padding: 1.2rem 1rem;
       text-align: center;
-      cursor: pointer;
+      cursor: not-allowed;
       transition: border-color .2s, background .2s;
       position: relative;
       background: var(--off-white);
+      opacity: .55;
+      pointer-events: none;
     }
-    .upload-box:hover { border-color: var(--gold); background: rgba(201,168,76,.05); }
+    .upload-box:hover { border-color: var(--light-gray); background: var(--off-white); }
+    .upload-area-disabled-notice {
+      background: #fff8e6;
+      border: 1.5px solid var(--gold);
+      border-radius: var(--radius);
+      padding: 1rem 1.25rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: flex-start;
+      gap: .75rem;
+      font-size: .92rem;
+      color: var(--navy);
+      line-height: 1.6;
+    }
+    .upload-area-disabled-notice i { color: var(--gold); font-size: 1.2rem; margin-top: .1rem; flex-shrink: 0; }
+    .upload-area-disabled-notice a { color: var(--gold); font-weight: 700; text-decoration: none; }
+    .upload-area-disabled-notice a:hover { text-decoration: underline; }
     .upload-box input[type="file"] {
       position: absolute;
       inset: 0;
@@ -284,6 +302,11 @@
             </div>
 
             <!-- העלאת קבצים -->
+            <div class="upload-area-disabled-notice">
+              <i class="fa-solid fa-lock"></i>
+              <span>העלאת מסמכים תהיה זמינה בקרוב בצורה מאובטחת.<br>
+              לשליחת מסמכים כעת — <a href="https://wa.me/972528000556" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> פנו אלינו בווטסאפ</a></span>
+            </div>
             <div class="upload-area">
 
               <div class="upload-field">
@@ -292,7 +315,7 @@
                   תעודת זהות — צד קדמי <span class="required">*</span>
                 </label>
                 <div class="upload-box" id="box-id-front">
-                  <input type="file" id="id-front" name="תעודת זהות צד קדמי" accept="image/*,.pdf" required />
+                  <input type="file" id="id-front" name="תעודת זהות צד קדמי" accept="image/*,.pdf" disabled />
                   <div class="upload-box-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
                   <div class="upload-box-text">לחצו להעלאה או גררו קובץ</div>
                   <div class="upload-box-hint">JPG / PNG / PDF — עד 10MB</div>
@@ -305,7 +328,7 @@
                   תעודת זהות — צד אחורי <span class="required">*</span>
                 </label>
                 <div class="upload-box" id="box-id-back">
-                  <input type="file" id="id-back" name="תעודת זהות צד אחורי" accept="image/*,.pdf" required />
+                  <input type="file" id="id-back" name="תעודת זהות צד אחורי" accept="image/*,.pdf" disabled />
                   <div class="upload-box-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
                   <div class="upload-box-text">לחצו להעלאה או גררו קובץ</div>
                   <div class="upload-box-hint">JPG / PNG / PDF — עד 10MB</div>
@@ -318,7 +341,7 @@
                   ספח תעודת זהות (ת.ז.ב) <span class="required">*</span>
                 </label>
                 <div class="upload-box" id="box-spouse">
-                  <input type="file" id="spouse" name="ספח תעודת זהות" accept="image/*,.pdf" required />
+                  <input type="file" id="spouse" name="ספח תעודת זהות" accept="image/*,.pdf" disabled />
                   <div class="upload-box-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
                   <div class="upload-box-text">לחצו להעלאה או גררו קובץ</div>
                   <div class="upload-box-hint">JPG / PNG / PDF — עד 10MB</div>
