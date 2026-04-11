@@ -963,7 +963,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .form-row-4 { grid-template-columns: repeat(4, 1fr); }
 .form-row-msg { grid-template-columns: 1fr auto; align-items: end; gap: 1rem; }
 .form-group-btn { display: flex; flex-direction: column; justify-content: flex-end; min-width: 160px; }
-.form-row-msg .form-textarea { min-height: 80px; }
+.form-row-msg .form-textarea { min-height: unset; }
 }
 .form-group { display: flex; flex-direction: column; gap: .35rem; }
 .form-label {
@@ -997,7 +997,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .form-select.error,
 .form-textarea.error { border-color: #e53e3e; }
 .form-error-msg { font-size: .78rem; color: #e53e3e; min-height: 1rem; }
-.form-textarea { resize: vertical; min-height: 110px; }
+.form-textarea { resize: none; min-height: unset; }
 .form-submit { margin-top: .5rem; }
 .btn-submit {
   width: 100%;
