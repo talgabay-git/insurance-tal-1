@@ -658,9 +658,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   border: 3px solid var(--gold);
   border-radius: 8px;
   padding: 1rem 1.8rem;
-  margin-top: calc(2rem + 2cm);
+  margin: 1.5rem auto;
   text-align: center;
-  display: inline-block;
+  display: table;
 }
 .closing-gold {
   color: var(--gold);
