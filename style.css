@@ -534,18 +534,13 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   overflow: hidden;
 }
 /* Watercolor background */
-/* UNDO point: inset:-10px; no transform */
-/* UNDO-2: inset:-10px -9% -20% -9%; scale(0.85) */
-/* UNDO-3: inset:-10px -20% -40% -20%; scale(0.7225) */
-/* UNDO-4: inset:-10px -43% -85% -43%; scale(0.542) */
+/* UNDO point: background-size:100% auto; inset:-10px */
 .about::before {
   content: '';
   position: absolute;
-  inset: -10px -104% -210% -104%;
-  background: url('tal.jpg.jpeg') center top/100% auto no-repeat;
+  inset: -10px;
+  background: url('tal.jpg.jpeg') center top/45% auto no-repeat;
   filter: saturate(0.85) contrast(0.9) brightness(1.1) blur(0.5px) sepia(0.05);
-  transform: scale(0.325);
-  transform-origin: top center;
   z-index: 0;
 }
 /* White overlay for readability */
