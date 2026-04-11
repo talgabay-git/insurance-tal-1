@@ -1497,3 +1497,67 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   transform: rotate(-2deg);
   text-shadow: 0 2px 8px rgba(245,166,35,.35);
 }
+
+/* ── Accessibility: Skip to content ─────────────────────────── */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  right: 0;
+  background: var(--gold);
+  color: var(--navy);
+  font-weight: 800;
+  font-size: 1rem;
+  padding: .75rem 1.5rem;
+  border-radius: 0 0 8px 8px;
+  text-decoration: none;
+  z-index: 99999;
+  transition: top .2s;
+}
+.skip-link:focus { top: 0; outline: 3px solid var(--navy); }
+
+/* ── Accessibility: visible focus indicator ──────────────────── */
+:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+/* ── Footer disclaimer ───────────────────────────────────────── */
+.footer-disclaimer {
+  font-size: .78rem;
+  color: rgba(255,255,255,.55);
+  text-align: center;
+  max-width: 780px;
+  margin: .6rem auto 0;
+  line-height: 1.7;
+}
+.footer-links-legal {
+  text-align: center;
+  margin-top: .5rem;
+  font-size: .82rem;
+}
+.footer-legal-link {
+  color: var(--gold);
+  text-decoration: none;
+  font-weight: 600;
+}
+.footer-legal-link:hover { text-decoration: underline; }
+.footer-sep { color: rgba(255,255,255,.35); margin: 0 .5rem; }
+
+/* ── Market status: legal warning box ───────────────────────── */
+.market-legal-notice {
+  max-width: 820px;
+  margin: 0 auto 2rem;
+  background: #fff8e6;
+  border: 2px solid var(--gold);
+  border-radius: var(--radius-lg);
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: flex-start;
+  gap: .85rem;
+  font-size: .93rem;
+  color: #5a4200;
+  line-height: 1.7;
+}
+.market-legal-notice i { color: var(--gold); font-size: 1.2rem; margin-top: .15rem; flex-shrink: 0; }
+.market-legal-notice strong { font-weight: 800; }
