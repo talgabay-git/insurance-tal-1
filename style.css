@@ -1031,7 +1031,10 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
 .footer-logo .logo-main { color: var(--white); }
 .footer-logo .logo-sub  { color: var(--mid-gray); }
+.footer-logo .logo-sep  { color: var(--gold); margin: 0 .35rem; }
 .footer-tagline { font-size: .88rem; color: rgba(255,255,255,.55); margin-top: .75rem; line-height: 1.6; }
+.footer-brand { text-align: center; }
+.footer-logo { display: flex; justify-content: center; align-items: center; }
 .footer-social { display: flex; gap: .6rem; margin-top: 1.2rem; }
 .social-link {
   width: 38px;
