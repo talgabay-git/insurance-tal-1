@@ -551,6 +551,15 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   z-index: 1;
 }
 .about > * { position: relative; z-index: 2; }
+.about-photo-sep {
+  position: absolute;
+  top: calc(56vw - 2rem);
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(to left, transparent 0%, var(--gold) 18%, var(--gold) 82%, transparent 100%);
+  z-index: 3;
+}
 .about-inner {
   display: flex;
   flex-direction: column;
