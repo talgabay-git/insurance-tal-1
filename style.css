@@ -573,7 +573,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   max-width: 600px;
   margin-inline: auto;
   text-align: center;
-  padding-top: calc(56vw - 1.5cm);
+  padding-top: calc(56vw - 2rem);
 }
 .about-image-wrap {
   width: 100%;
@@ -653,7 +653,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   font-size: 1.1rem;
   font-weight: 700;
   color: var(--gold);
-  margin-bottom: 1.5rem;
+  margin-bottom: calc(1.5rem + 0.5cm);
   text-align: center;
 }
 .about-bio-heading {
