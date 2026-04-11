@@ -554,7 +554,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .section-sep-gold {
   width: 100%;
   height: 2px;
-  background: linear-gradient(to left, #0d1e35 0%, #c9a84c 18%, #c9a84c 82%, #0d1e35 100%);
+  background: linear-gradient(to left, #0d1e35 0%, #c9a84c 28%, #c9a84c 72%, #0d1e35 100%);
 }
 .about-photo-sep {
   position: absolute;
@@ -562,7 +562,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   left: 0;
   right: 0;
   height: 2px;
-  background: linear-gradient(to left, #ffffff 0%, #c9a84c 18%, #c9a84c 82%, #ffffff 100%);
+  background: linear-gradient(to left, #ffffff 0%, #c9a84c 28%, #c9a84c 72%, #ffffff 100%);
   z-index: 3;
 }
 .about-inner {
