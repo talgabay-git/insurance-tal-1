@@ -184,9 +184,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   flex-shrink: 0;
   line-height: 1;
 }
-.header-logo .logo-main { font-size: 1.46rem; font-weight: 800; color: var(--white); }
+.header-logo .logo-main { font-size: 1.68rem; font-weight: 800; color: var(--white); }
 .header-logo .logo-sep  { color: var(--gold); font-size: 1rem; font-weight: 300; margin: 0 .35rem; }
-.header-logo .logo-sub  { font-size: 1.32rem; font-weight: 700; color: var(--gold); white-space: nowrap; }
+.header-logo .logo-sub  { font-size: 1.52rem; font-weight: 700; color: var(--gold); white-space: nowrap; }
 @media (max-width: 900px) {
   .header-logo { display: flex; }
   .header-inner { justify-content: space-between; position: relative; }
@@ -211,7 +211,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   padding: .3rem .4rem;
   border-radius: 4px;
   font-weight: 500;
-  font-size: .73rem;
+  font-size: .84rem;
   color: var(--navy);
   transition: var(--transition);
   white-space: nowrap;
@@ -263,7 +263,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   background: transparent;
   color: var(--white);
   font-weight: 600;
-  font-size: .9rem;
+  font-size: 1.04rem;
   padding: .4rem 1rem;
   border-radius: 4px;
   border: 1.5px solid var(--gold);
