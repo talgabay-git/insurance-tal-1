@@ -534,12 +534,11 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   overflow: hidden;
 }
 /* Watercolor background */
-/* UNDO point: background-size:100% auto; inset:-10px */
 .about::before {
   content: '';
   position: absolute;
   inset: -10px;
-  background: url('tal.jpg.jpeg') center top/45% auto no-repeat;
+  background: url('tal.jpg.jpeg') center top/100% auto no-repeat;
   filter: saturate(0.85) contrast(0.9) brightness(1.1) blur(0.5px) sepia(0.05);
   z-index: 0;
 }
