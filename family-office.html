@@ -320,5 +320,48 @@
     }, { threshold: 0.1 });
     document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
   </script>
+
+  <!-- ========== ACCESSIBILITY WIDGET ========== -->
+  <div class="a11y-widget" id="a11y-widget">
+    <button class="a11y-toggle" id="a11y-toggle" aria-label="אפשרויות נגישות" aria-expanded="false">
+      <i class="fa-solid fa-universal-access"></i>
+    </button>
+    <div class="a11y-panel" id="a11y-panel" role="dialog" aria-label="תפריט נגישות" aria-hidden="true">
+      <div class="a11y-panel-title">נגישות</div>
+      <button class="a11y-btn" id="a11y-font-up" aria-label="הגדל גופן"><i class="fa-solid fa-plus"></i> הגדל טקסט</button>
+      <button class="a11y-btn" id="a11y-font-down" aria-label="הקטן גופן"><i class="fa-solid fa-minus"></i> הקטן טקסט</button>
+      <button class="a11y-btn" id="a11y-contrast" aria-label="ניגודיות גבוהה"><i class="fa-solid fa-circle-half-stroke"></i> ניגודיות גבוהה</button>
+      <button class="a11y-btn" id="a11y-animations" aria-label="עצור אנימציות"><i class="fa-solid fa-pause"></i> עצור אנימציות</button>
+      <button class="a11y-btn a11y-reset" id="a11y-reset" aria-label="איפוס הגדרות"><i class="fa-solid fa-rotate-left"></i> איפוס</button>
+    </div>
+  </div>
+  <script>
+  (function(){
+    var t=document.getElementById('a11y-toggle'),p=document.getElementById('a11y-panel');
+    var fs=parseInt(localStorage.getItem('a11y-fs')||'16');
+    var hc=localStorage.getItem('a11y-hc')==='1';
+    var na=localStorage.getItem('a11y-na')==='1';
+    function apply(){
+      document.documentElement.style.fontSize=fs+'px';
+      document.body.classList.toggle('high-contrast',hc);
+      document.body.classList.toggle('no-animations',na);
+      document.getElementById('a11y-contrast').classList.toggle('active',hc);
+      document.getElementById('a11y-animations').classList.toggle('active',na);
+    }
+    apply();
+    t.addEventListener('click',function(){
+      var o=p.classList.toggle('open');
+      t.setAttribute('aria-expanded',o);
+      p.setAttribute('aria-hidden',!o);
+    });
+    document.getElementById('a11y-font-up').addEventListener('click',function(){if(fs<22){fs+=2;localStorage.setItem('a11y-fs',fs);apply();}});
+    document.getElementById('a11y-font-down').addEventListener('click',function(){if(fs>12){fs-=2;localStorage.setItem('a11y-fs',fs);apply();}});
+    document.getElementById('a11y-contrast').addEventListener('click',function(){hc=!hc;localStorage.setItem('a11y-hc',hc?'1':'0');apply();});
+    document.getElementById('a11y-animations').addEventListener('click',function(){na=!na;localStorage.setItem('a11y-na',na?'1':'0');apply();});
+    document.getElementById('a11y-reset').addEventListener('click',function(){fs=16;hc=false;na=false;localStorage.removeItem('a11y-fs');localStorage.removeItem('a11y-hc');localStorage.removeItem('a11y-na');apply();});
+    document.addEventListener('click',function(e){if(!document.getElementById('a11y-widget').contains(e.target)){p.classList.remove('open');t.setAttribute('aria-expanded','false');p.setAttribute('aria-hidden','true');}});
+  })();
+  </script>
+
 </body>
 </html>
