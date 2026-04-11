@@ -780,5 +780,37 @@
   })();
   </script>
 
+  <!-- Photo Modal -->
+  <div class="photo-modal" id="photo-modal" role="dialog" aria-modal="true" aria-label="תמונת טל גבאי">
+    <span class="photo-modal-close" id="photo-modal-close" aria-label="סגור">&times;</span>
+    <img src="tal.jpg.jpeg" alt="טל גבאי — מתכנן פיננסי לבכירים" />
+  </div>
+  <script>
+  (function(){
+    var m=document.getElementById('photo-modal');
+    if(!m) return;
+    document.querySelectorAll('.header-logo').forEach(function(el){
+      el.addEventListener('click',function(e){
+        e.preventDefault();
+        m.classList.add('open');
+        document.body.style.overflow='hidden';
+      });
+    });
+    document.getElementById('photo-modal-close').addEventListener('click',function(e){
+      e.stopPropagation();
+      m.classList.remove('open');
+      document.body.style.overflow='';
+    });
+    m.addEventListener('click',function(){
+      m.classList.remove('open');
+      document.body.style.overflow='';
+    });
+    m.querySelector('img').addEventListener('click',function(e){e.stopPropagation();});
+    document.addEventListener('keydown',function(e){
+      if(e.key==='Escape'){m.classList.remove('open');document.body.style.overflow='';}
+    });
+  })();
+  </script>
+
 </body>
 </html>

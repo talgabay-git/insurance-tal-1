@@ -1665,3 +1665,35 @@ body.no-animations *::after {
   .a11y-widget { bottom: 5.5rem; left: 1rem; }
   .a11y-toggle { width: 44px; height: 44px; font-size: 1.2rem; }
 }
+
+/* ── Photo Lightbox ──────────────────────────────────────────── */
+.photo-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(7,15,28,.88);
+  z-index: 99999;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.photo-modal.open { display: flex; }
+.photo-modal img {
+  max-width: min(720px, 92vw);
+  max-height: 88vh;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 20px 60px rgba(0,0,0,.6);
+  object-fit: contain;
+  cursor: default;
+}
+.photo-modal-close {
+  position: absolute;
+  top: 1.2rem;
+  left: 1.5rem;
+  color: var(--gold);
+  font-size: 2rem;
+  cursor: pointer;
+  line-height: 1;
+  transition: var(--transition);
+}
+.photo-modal-close:hover { color: var(--white); }
