@@ -21,7 +21,12 @@
     <div class="container header-inner">
 
       <!-- Desktop Nav -->
-      <nav class="main-nav" aria-label="ניווט ראשי">
+      <a href="index.html" class="logo header-logo" aria-label="עמוד הבית">
+        <span class="logo-main">טל גבאי</span>
+        <span class="logo-sep">|</span>
+        <span class="logo-sub">תכנון פיננסי</span>
+      </a>
+            <nav class="main-nav" aria-label="ניווט ראשי">
         <ul class="nav-list">
           <li><a href="#about-heading" class="nav-link">אודות</a></li>
           <li><a href="financial-planning.html" class="nav-link">תכנון פיננסי</a></li>
@@ -29,7 +34,7 @@
           <li><a href="early-retirement.html" class="nav-link">תכנון פרישה מוקדמת</a></li>
           <li><a href="risk-management.html" class="nav-link">ניהול סיכונים וביטוח</a></li>
           <li><a href="family-office.html" class="nav-link">Family Office</a></li>
-          <li><a href="#" class="nav-link">תמונת מצב לשווקים</a></li>
+          <li><a href="market-status.html" class="nav-link">תמונת מצב לשווקים</a></li>
           <li><a href="#testimonials" class="nav-link">המלצות</a></li>
           <li><a href="checkup.html" class="nav-link" style="color:var(--gold);font-weight:700">צ'ק אפ פיננסי</a></li>
           <li><a href="#contact" class="nav-link">צור קשר</a></li>
@@ -490,17 +495,22 @@
               <label for="subject" class="form-label">נושא <span class="required" aria-hidden="true">*</span></label>
               <select id="subject" name="subject" class="form-input form-select" required>
                 <option value="" disabled selected>בחר נושא פנייה</option>
-                <option value="life-health">ביטוח חיים ובריאות</option>
+                <option value="checkup">צ'ק אפ פיננסי</option>
+                <option value="investment">השקעה של כסף פנוי</option>
+                <option value="savings-policy">פוליסת חיסכון פיננסי</option>
+                <option value="koupat-gemel">קופת גמל להשקעה</option>
+                <option value="financial-report">הכנת דוח פיננסי</option>
+                <option value="retirement-advice">ייעוץ פרישה</option>
+                <option value="find-funds">איתור כספים</option>
+                <option value="bank-portfolio">בדיקת התיק הבנקאי</option>
+                <option value="annual-reports">בקשת הדוחות השנתיים</option>
                 <option value="mortgage-ins">ביטוח משכנתא</option>
-                <option value="managers">ביטוח מנהלים</option>
-                <option value="pension">ייעוץ פנסיוני</option>
-                <option value="business">ביטוח עסקי</option>
-                <option value="investments">השקעות וייעוץ פיננסי</option>
-                <option value="general">ביטוח כללי</option>
                 <option value="travel">ביטוח נסיעות לחו"ל</option>
                 <option value="mortgage-advice">ייעוץ משכנתאות</option>
                 <option value="tax-advice">ייעוץ מס</option>
                 <option value="tax-return">החזרי מס</option>
+                <option value="referral">הפניה למשפחה וחברים</option>
+                <option value="inquiry">בירור אחר</option>
                 <option value="other">אחר</option>
               </select>
               <span class="form-error" id="subject-error" role="alert"></span>
