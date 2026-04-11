@@ -187,7 +187,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .header-logo .logo-main { font-size: 1.46rem; font-weight: 800; color: var(--white); }
 .header-logo .logo-sep  { color: var(--gold); font-size: 1rem; font-weight: 300; margin: 0 .35rem; }
 .header-logo .logo-sub  { font-size: 1.32rem; font-weight: 700; color: var(--gold); white-space: nowrap; }
-@media (max-width: 900px) { .header-logo { display: none; } }
+@media (max-width: 900px) { .header-logo { display: flex; } }
 
 /* Nav */
 .main-nav { flex: 1; }
