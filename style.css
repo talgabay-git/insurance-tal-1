@@ -1372,6 +1372,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 @media (max-width: 768px) {
   .partners-track { animation-duration: 20s; }
   .partner-logo { min-width: 120px; height: 100px; padding: .5rem 1rem; }
+  .logo-analyst { transform: scale(1.1); }
   .partner-logo img { max-width: 150px; max-height: 63px; }
 }
 
