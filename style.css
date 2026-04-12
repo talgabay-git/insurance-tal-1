@@ -564,7 +564,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   max-width: 600px;
   margin-inline: auto;
   text-align: center;
-  padding-top: calc(48vw + 2rem);
+  padding-top: calc(47vw - 3rem);
 }
 .about-image-wrap {
   width: 100%;
