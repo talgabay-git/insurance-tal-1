@@ -18,6 +18,7 @@
     .footer-links li a { flex-direction: row; }
     .fa-chevron-left { transform: rotate(180deg); display: inline-block; }
     .hero-title, .hero-subtitle, .hero-text { text-align: center; }
+    .hero-title { white-space: normal; font-size: clamp(1.6rem, 3.2vw, 3rem); }
     .section-title { text-align: center; }
     .lang-flag { font-size: 1.5rem; text-decoration: none; margin: 0 0.3rem; line-height: 1; }
     .lang-flags { display: flex; align-items: center; gap: 0.3rem; }
@@ -547,6 +548,58 @@
     wrap.addEventListener('mousedown',onStart); wrap.addEventListener('mousemove',onMove); wrap.addEventListener('mouseup',onEnd); wrap.addEventListener('mouseleave',onEnd);
     wrap.style.cursor='grab';
   });
+  </script>
+
+  <!-- ========== ACCESSIBILITY WIDGET ========== -->
+  <div class="a11y-widget" id="a11y-widget">
+    <button class="a11y-toggle" id="a11y-toggle" aria-label="Accessibility options" aria-expanded="false">
+      <i class="fa-solid fa-universal-access"></i>
+    </button>
+    <div class="a11y-panel" id="a11y-panel" role="dialog" aria-label="Accessibility menu" aria-hidden="true">
+      <div class="a11y-panel-title">Accessibility</div>
+      <button class="a11y-btn" id="a11y-font-up" aria-label="Increase font size"><i class="fa-solid fa-plus"></i> Larger Text</button>
+      <button class="a11y-btn" id="a11y-font-down" aria-label="Decrease font size"><i class="fa-solid fa-minus"></i> Smaller Text</button>
+      <button class="a11y-btn" id="a11y-contrast" aria-label="High contrast"><i class="fa-solid fa-circle-half-stroke"></i> High Contrast</button>
+      <button class="a11y-btn" id="a11y-animations" aria-label="Stop animations"><i class="fa-solid fa-pause"></i> Stop Animations</button>
+      <button class="a11y-btn" id="a11y-links" aria-label="Highlight links"><i class="fa-solid fa-link"></i> Highlight Links</button>
+      <button class="a11y-btn" id="a11y-spacing" aria-label="Text spacing"><i class="fa-solid fa-text-width"></i> Text Spacing</button>
+      <button class="a11y-btn a11y-reset" id="a11y-reset" aria-label="Reset settings"><i class="fa-solid fa-rotate-left"></i> Reset</button>
+    </div>
+  </div>
+  <script>
+  (function(){
+    var t=document.getElementById('a11y-toggle'),p=document.getElementById('a11y-panel');
+    var fs=parseInt(localStorage.getItem('a11y-fs')||'16');
+    var hc=localStorage.getItem('a11y-hc')==='1';
+    var na=localStorage.getItem('a11y-na')==='1';
+    var hl=localStorage.getItem('a11y-hl')==='1';
+    var ts=localStorage.getItem('a11y-ts')==='1';
+    function apply(){
+      document.documentElement.style.fontSize=fs+'px';
+      document.body.classList.toggle('high-contrast',hc);
+      document.body.classList.toggle('no-animations',na);
+      document.body.classList.toggle('highlight-links',hl);
+      document.body.classList.toggle('text-spacing',ts);
+      document.getElementById('a11y-contrast').classList.toggle('active',hc);
+      document.getElementById('a11y-animations').classList.toggle('active',na);
+      document.getElementById('a11y-links').classList.toggle('active',hl);
+      document.getElementById('a11y-spacing').classList.toggle('active',ts);
+    }
+    apply();
+    t.addEventListener('click',function(){
+      var o=p.classList.toggle('open');
+      t.setAttribute('aria-expanded',o);
+      p.setAttribute('aria-hidden',!o);
+    });
+    document.getElementById('a11y-font-up').addEventListener('click',function(){if(fs<22){fs+=2;localStorage.setItem('a11y-fs',fs);apply();}});
+    document.getElementById('a11y-font-down').addEventListener('click',function(){if(fs>12){fs-=2;localStorage.setItem('a11y-fs',fs);apply();}});
+    document.getElementById('a11y-contrast').addEventListener('click',function(){hc=!hc;localStorage.setItem('a11y-hc',hc?'1':'0');apply();});
+    document.getElementById('a11y-animations').addEventListener('click',function(){na=!na;localStorage.setItem('a11y-na',na?'1':'0');apply();});
+    document.getElementById('a11y-links').addEventListener('click',function(){hl=!hl;localStorage.setItem('a11y-hl',hl?'1':'0');apply();});
+    document.getElementById('a11y-spacing').addEventListener('click',function(){ts=!ts;localStorage.setItem('a11y-ts',ts?'1':'0');apply();});
+    document.getElementById('a11y-reset').addEventListener('click',function(){fs=16;hc=false;na=false;hl=false;ts=false;localStorage.removeItem('a11y-fs');localStorage.removeItem('a11y-hc');localStorage.removeItem('a11y-na');localStorage.removeItem('a11y-hl');localStorage.removeItem('a11y-ts');apply();});
+    document.addEventListener('click',function(e){if(!document.getElementById('a11y-widget').contains(e.target)){p.classList.remove('open');t.setAttribute('aria-expanded','false');p.setAttribute('aria-hidden','true');}});
+  })();
   </script>
 </body>
 </html>
