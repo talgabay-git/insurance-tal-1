@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tal Gabay | Financial Planning</title>
+  <meta name="description" content="Tal Gabay - Advanced financial planning for executives. Personal and focused guidance." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700;800&family=Heebo:wght@400;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    /* LTR overrides */
+    body { direction: ltr; text-align: left; }
+    .nav-list { flex-direction: row; }
+    .header-inner { flex-direction: row-reverse; }
+    .footer-links li a { flex-direction: row; }
+    .fa-chevron-left { transform: rotate(180deg); display: inline-block; }
+    .hero-title, .hero-subtitle, .hero-text { text-align: center; }
+    .section-title { text-align: center; }
+    .lang-flag { font-size: 1.5rem; text-decoration: none; margin: 0 0.3rem; line-height: 1; }
+    .lang-flags { display: flex; align-items: center; gap: 0.3rem; }
+  </style>
+</head>
+<body>
+  <a href="#content-start" class="skip-link">Skip to main content</a>
+
+  <!-- HEADER -->
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+
+      <a href="index.html" class="logo header-logo" aria-label="Home">
+        <span class="logo-main">Tal Gabay</span>
+        <span class="logo-sep">|</span>
+        <span class="logo-sub">Financial Planning</span>
+      </a>
+
+      <nav class="main-nav" aria-label="Main navigation">
+        <ul class="nav-list">
+          <li><a href="#about-heading" class="nav-link">About</a></li>
+          <li><a href="#services" class="nav-link">Services</a></li>
+          <li><a href="#how" class="nav-link">Our Process</a></li>
+          <li><a href="#testimonials" class="nav-link">Testimonials</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-left" style="display:flex;align-items:center;gap:.6rem;">
+        <div class="lang-flags">
+          <a href="../index.html" class="lang-flag" title="עברית" aria-label="Switch to Hebrew">🇮🇱</a>
+        </div>
+        <a href="https://portal.roeto.co.il/pfinvest/login" class="btn-personal-area" target="_blank" rel="noopener"><i class="fa-solid fa-key"></i> Client Portal</a>
+      </div>
+
+      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+    </div>
+
+    <nav class="mobile-menu" id="mobile-menu" aria-label="Mobile menu" aria-hidden="true">
+      <ul class="mobile-nav-list">
+        <li><a href="index.html" class="mobile-nav-link">Home</a></li>
+        <li><a href="#about-heading" class="mobile-nav-link">About</a></li>
+        <li><a href="#services" class="mobile-nav-link">Services</a></li>
+        <li><a href="#contact" class="mobile-nav-link">Contact</a></li>
+        <li><a href="../index.html" class="mobile-nav-link">🇮🇱 עברית</a></li>
+        <li><a href="tel:052-8000556" class="mobile-nav-link mobile-phone"><i class="fa-solid fa-phone"></i> 052-8000556</a></li>
+        <li><a href="https://wa.me/972528000556" class="mobile-nav-link"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a></li>
+      </ul>
+    </nav>
+  </header>
+  <div id="content-start" tabindex="-1"></div>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-overlay"></div>
+    <div class="container hero-content">
+      <div class="hero-text fade-in-up">
+        <h1 class="hero-title">Financial Planning · Wealth Management · Retirement Planning</h1>
+        <p class="hero-subtitle">Safe navigation of your family wealth — with peace of mind</p>
+      </div>
+    </div>
+    <div class="hero-scroll-indicator" aria-hidden="true"><span></span></div>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats-bar" aria-label="Key figures">
+    <div class="container stats-inner">
+      <div class="stat-item fade-in-up delay-2">
+        <span class="stat-number">10</span>
+        <span class="stat-label">Service Areas</span>
+      </div>
+      <div class="stat-divider" aria-hidden="true"></div>
+      <div class="stat-item fade-in-up">
+        <span class="stat-number">20<span class="stat-plus">+</span></span>
+        <span class="stat-label">Years of Experience</span>
+      </div>
+      <div class="stat-divider" aria-hidden="true"></div>
+      <div class="stat-item fade-in-up delay-3">
+        <span class="stat-number">24/7</span>
+        <span class="stat-label">Availability</span>
+      </div>
+      <div class="stat-divider" aria-hidden="true"></div>
+      <div class="stat-item fade-in-up delay-4">
+        <span class="stat-number">100s</span>
+        <span class="stat-label">Families Managed</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARTNERS -->
+  <section class="partners" id="partners" aria-label="Companies we work with">
+    <div class="container">
+      <div class="section-header fade-in-up">
+        <h2 class="section-title">Active & Objective Management with Israel's Leading Firms</h2>
+        <p class="partners-tagline"><strong>Creating the winning combination</strong></p>
+      </div>
+      <div class="partners-track-wrap">
+        <div class="partners-track">
+          <div class="partner-logo"><img src="../logos/ibi.png.webp" alt="IBI"></div>
+          <div class="partner-logo"><img src="../logos/more.png.webp" alt="MORE" style="max-width:244px;max-height:98px;"></div>
+          <div class="partner-logo"><img src="../logos/ayalon.png.webp" alt="Ayalon"></div>
+          <div class="partner-logo"><img src="../logos/altsuler.png.webp" alt="Altshuler Shaham" style="max-width:244px;max-height:98px;"></div>
+          <div class="partner-logo"><img src="../logos/analyst.png.webp" alt="Analyst" class="logo-analyst" width="195" height="78"></div>
+          <div class="partner-logo"><img src="../logos/meitav.png.webp" alt="Meitav"></div>
+          <div class="partner-logo"><img src="../logos/phoenix.png.webp" alt="Phoenix" style="max-width:244px;max-height:98px;"></div>
+          <div class="partner-logo" aria-hidden="true"><img src="../logos/ibi.png.webp" alt=""></div>
+          <div class="partner-logo" aria-hidden="true"><img src="../logos/more.png.webp" alt=""></div>
+          <div class="partner-logo" aria-hidden="true"><img src="../logos/ayalon.png.webp" alt=""></div>
+          <div class="partner-logo" aria-hidden="true"><img src="../logos/analyst.png.webp" alt="" class="logo-analyst" width="195" height="78"></div>
+          <div class="partner-logo" aria-hidden="true"><img src="../logos/meitav.png.webp" alt=""></div>
+          <div class="partner-logo" aria-hidden="true"><img src="../logos/phoenix.png.webp" alt=""></div>
+        </div>
+      </div>
+      <div class="partners-track-wrap">
+        <div class="partners-track partners-track-reverse">
+          <div class="partner-logo"><img src="../logos/yalin.png.webp" alt="Yalin Lapidot" style="max-width:244px;max-height:98px;"></div>
+          <div class="partner-logo"><img src="../logos/harel.png.webp" alt="Harel"></div>
+          <div class="partner-logo"><img src="../logos/Hachshara.png.webp" alt="Hachshara"></div>
+          <div class="partner-logo"><img src="../logos/menora.png.webp" alt="Menora Mivtachim"></div>
+          <div class="partner-logo"><img src="../logos/clal.png.webp" alt="Clal Insurance" style="max-width:283px;max-height:113px;"></div>
+          <div class="partner-logo"><img src="../logos/migdal.png.webp" alt="Migdal"></div>
+          <div class="partner-logo" aria-hidden="true"><img src="../logos/yalin.png.webp" alt=""></div>
+          <div class="partner-logo" aria-hidden="true"><img src="../logos/harel.png.webp" alt=""></div>
+          <div class="partner-logo" aria-hidden="true"><img src="../logos/menora.png.webp" alt=""></div>
+          <div class="partner-logo" aria-hidden="true"><img src="../logos/clal.png.webp" alt=""></div>
+          <div class="partner-logo" aria-hidden="true"><img src="../logos/migdal.png.webp" alt=""></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <div class="container">
+      <div class="section-header fade-in-up">
+        <h2 class="section-title">Our Services</h2>
+        <p class="partners-tagline">Everything under one roof &mdash; ONE STOP SHOP</p>
+        <p class="section-subtitle" style="font-size:1.25rem;font-weight:800;color:var(--navy)"><strong>Advanced Financial Planning for Every Stage of Life</strong></p>
+      </div>
+      <div class="services-grid">
+        <article class="service-card fade-in-up">
+          <div class="service-icon-wrap"><i class="fa-solid fa-tree service-icon"></i></div>
+          <h3 class="service-title">Pension Planning</h3>
+          <p class="service-desc">Building a personal, tailored pension plan — because your future starts today</p>
+          <a href="../retirement-planning.html" class="service-link">Learn more <i class="fa-solid fa-arrow-right"></i></a>
+        </article>
+        <article class="service-card fade-in-up delay-1">
+          <div class="service-icon-wrap"><i class="fa-solid fa-chart-line service-icon"></i></div>
+          <h3 class="service-title">Investments & Finance</h3>
+          <p class="service-desc">Smart, diversified portfolio management — long-term wealth growth</p>
+          <a href="../financial-planning.html" class="service-link">Learn more <i class="fa-solid fa-arrow-right"></i></a>
+        </article>
+        <article class="service-card fade-in-up delay-2">
+          <div class="service-icon-wrap"><i class="fa-solid fa-sailboat service-icon"></i></div>
+          <h3 class="service-title">Early Retirement Planning</h3>
+          <p class="service-desc">A tailored path to retire young — live the dream as early as possible</p>
+          <a href="../early-retirement.html" class="service-link">Learn more <i class="fa-solid fa-arrow-right"></i></a>
+        </article>
+        <article class="service-card fade-in-up">
+          <div class="service-icon-wrap"><i class="fa-solid fa-file-contract service-icon"></i></div>
+          <h3 class="service-title">Insurance Portfolio Review</h3>
+          <p class="service-desc">Reviewing your insurance portfolio — ensuring full coverage at optimal cost</p>
+          <a href="../checkup.html" class="service-link">Learn more <i class="fa-solid fa-arrow-right"></i></a>
+        </article>
+        <article class="service-card fade-in-up">
+          <div class="service-icon-wrap"><i class="fa-solid fa-shield-halved service-icon"></i></div>
+          <h3 class="service-title">Risk Management</h3>
+          <p class="service-desc">Identifying, analyzing and managing financial risks — smart protection of your wealth</p>
+          <a href="../risk-management.html" class="service-link">Learn more <i class="fa-solid fa-arrow-right"></i></a>
+        </article>
+        <article class="service-card fade-in-up delay-1">
+          <div class="service-icon-wrap"><i class="fa-solid fa-person-walking-arrow-right service-icon"></i></div>
+          <h3 class="service-title">Retirement Planning</h3>
+          <p class="service-desc">Professional guidance for your ideal retirement — securing your quality of life</p>
+          <a href="../retirement-planning.html" class="service-link">Learn more <i class="fa-solid fa-arrow-right"></i></a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="container about-inner">
+      <div class="about-text fade-in-up" id="about-heading">
+        <h2 class="section-title">About</h2>
+      </div>
+    </div>
+    <div class="container about-bio fade-in-up">
+      <p class="about-bio-intro"><strong>Tal Gabay</strong>, Senior Financial Planner, Retirement Planner<br>M.B.A — Business Administration</p>
+      <p>My professional journey in the world of finance began at the heart of Israel's financial industry. In 2006, I served as a manager at Excellence Investment House, where I gained deep and unique insight into how capital markets operate "behind the scenes." The experience I accumulated in managing complex investment systems gave me the tools to analyze every financial opportunity in depth and act from a broad strategic perspective.</p>
+      <p>Driven by a desire to bring the high standards of the institutional capital market directly to our clients, we founded the firm in 2011. Today, we responsibly and professionally manage the financial future of hundreds of families across Israel.</p>
+      <h3 class="about-bio-heading">Professional Guidance at Life's Key Crossroads</h3>
+      <ul class="about-bio-list">
+        <li><strong>Financial & Pension Planning:</strong> Creating a comprehensive strategy for long-term wealth and savings management. We ensure your financial and pension assets are synchronized, management fees are optimized, and investment tracks are precisely aligned with your risk level and personal goals.</li>
+        <li><strong>Smart Retirement Planning:</strong> Reaching retirement age is one of the most complex financial crossroads. We guide you through building a comprehensive retirement strategy — from maximizing tax benefits to optimizing pensions and savings, through to creating financial peace of mind for years ahead.</li>
+        <li><strong>Risk Management & Insurance:</strong> Protecting what you have is the foundation of any financial plan. We review your family's insurance portfolio, eliminate duplications, update and reduce costs — so when the moment of truth arrives, you are truly protected.</li>
+        <li><strong>Wealth Management & Intergenerational Transfer:</strong> A carefully orchestrated strategic process combining financial, legal and tax planning for the transfer of capital and assets — preserving their value over time and preventing disputes among heirs.</li>
+      </ul>
+      <h3 class="about-bio-heading">Why Choose Us?</h3>
+      <p><strong>The combination of broad academic education (M.B.A) and over 2 decades of field experience enables us to offer you:</strong></p>
+      <ul class="about-bio-list">
+        <li><strong>Holistic Systemic View:</strong> Deep understanding of financial, pension and tax products, connecting them into one complete family picture.</li>
+        <li><strong>Full Objectivity:</strong> Absolute commitment to your interests — not owned by any insurance company or investment house.</li>
+        <li><strong>High-Standard Personal Service:</strong> Boutique-level portfolio management, where you are always at the center and receive professional, transparent and consistent service.</li>
+      </ul>
+      <p class="about-bio-closing"><strong>Our goal is to maximize the potential of your money and lift your worries</strong><br><strong class="closing-gold">So you can focus on what truly matters in life</strong></p>
+    </div>
+  </section>
+
+  <!-- HOW WE WORK -->
+  <section class="how-we-work" id="how">
+    <div class="container">
+      <div class="section-header fade-in-up">
+        <h2 class="section-title how-title">Our Financial Planning Process</h2>
+      </div>
+      <div class="how-steps">
+        <div class="how-step fade-in-up">
+          <div class="how-num">01</div>
+          <h3 class="how-step-title">Current Situation Analysis</h3>
+          <p class="how-step-text">Preparing a <u>pension clearinghouse report</u> and insurance overview. Mapping income, assets vs. liabilities.</p>
+        </div>
+        <div class="how-arrows" aria-hidden="true">
+          <span class="arr arr-1">&#10094;</span><span class="arr arr-2">&#10094;</span><span class="arr arr-3">&#10094;</span>
+        </div>
+        <div class="how-step fade-in-up">
+          <div class="how-num">02</div>
+          <h3 class="how-step-title">Strategy Development</h3>
+          <p class="how-step-text">Building a <u>personalized plan</u> integrating investments, insurance and tax planning — defining goals and matching risk profile.</p>
+        </div>
+        <div class="how-arrows" aria-hidden="true">
+          <span class="arr arr-1">&#10094;</span><span class="arr arr-2">&#10094;</span><span class="arr arr-3">&#10094;</span>
+        </div>
+        <div class="how-step fade-in-up">
+          <div class="how-num">03</div>
+          <h3 class="how-step-title">Implementation</h3>
+          <p class="how-step-text"><u>Restructuring</u> the portfolio and aligning it with the financial plan's objectives.</p>
+        </div>
+        <div class="how-arrows" aria-hidden="true">
+          <span class="arr arr-1">&#10094;</span><span class="arr arr-2">&#10094;</span><span class="arr arr-3">&#10094;</span>
+        </div>
+        <div class="how-step fade-in-up">
+          <div class="how-num">04</div>
+          <h3 class="how-step-title">Monitoring & Review</h3>
+          <p class="how-step-text"><u>Periodic review</u> of the portfolio and adapting it to evolving needs and market changes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-sep-gold" aria-hidden="true"></div>
+
+  <!-- CHECKUP -->
+  <section class="why-us" id="checkup">
+    <div class="container">
+      <div class="section-header fade-in-up">
+        <h2 class="section-title" style="color:var(--gold);border:2px solid var(--gold);display:inline-block;padding:.4rem 1.8rem;border-radius:8px">Financial Check-Up</h2>
+        <p class="section-subtitle" style="color:var(--white);font-weight:700"><strong>Full holistic optimization of your financial, pension and insurance portfolio</strong><br><strong style="color:var(--gold);display:block;margin-top:.6rem">Professional financial management at the highest standard!</strong></p>
+      </div>
+      <div class="why-grid">
+        <div class="why-card fade-in-up">
+          <div class="why-icon-wrap"><i class="fa-solid fa-trophy why-icon"></i></div>
+          <h3 class="why-title">Rich Experience</h3>
+          <p class="why-desc">Over 20 years of experience in finance and insurance</p>
+        </div>
+        <div class="why-card fade-in-up delay-2">
+          <div class="why-icon-wrap"><i class="fa-solid fa-clock why-icon"></i></div>
+          <h3 class="why-title">High Availability</h3>
+          <p class="why-desc">Always available during business hours and beyond when needed</p>
+        </div>
+        <div class="why-card fade-in-up delay-3">
+          <div class="why-icon-wrap"><i class="fa-solid fa-handshake why-icon"></i></div>
+          <h3 class="why-title">Personal Service</h3>
+          <p class="why-desc">Fast, professional response with personalized attention</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section class="team-section-wrap" style="padding:4rem 0;background:var(--off-white);">
+    <div class="container team-section">
+      <div class="section-header fade-in-up" style="margin-bottom:2rem;">
+        <h2 class="section-title">Our Team</h2>
+        <p class="section-subtitle" style="color:var(--gold);font-weight:700"><strong>Experience and service at the highest standard — that's what makes the difference</strong></p>
+      </div>
+      <div class="team-orbit-scene">
+        <div class="team-oval team-oval-lead team-oval-lead-center">
+          <span class="oval-name" style="font-size:1.3rem;font-weight:900">Tal Gabay</span>
+          <span class="oval-role">Senior Financial Planner | CEO & Owner</span>
+        </div>
+        <div class="team-oval orbit-oval"><span class="oval-name">Mital Gabay</span><span class="oval-role">Partner & Office Manager</span></div>
+        <div class="team-oval orbit-oval"><span class="oval-name">Orly Berman</span><span class="oval-role">Professional Manager</span></div>
+        <div class="team-oval orbit-oval"><span class="oval-name">Sapir Rozental</span><span class="oval-role">Client Relations Manager</span></div>
+        <div class="team-oval orbit-oval"><span class="oval-name">Inbal Kadron</span><span class="oval-role">Client Relations Manager</span></div>
+        <div class="team-oval orbit-oval"><span class="oval-name">Dana Levi</span><span class="oval-role">Client Relations Manager</span></div>
+        <div class="team-oval orbit-oval"><span class="oval-name">Chen Lev</span><span class="oval-role">Client Relations Manager</span></div>
+        <div class="team-oval orbit-oval"><span class="oval-name">Lea Menachem</span><span class="oval-role">Client Relations Manager</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials" id="testimonials">
+    <div class="container">
+      <div class="section-header fade-in-up">
+        <h2 class="section-title">Happy Clients</h2>
+        <p class="section-subtitle" style="color:var(--gold);font-weight:700"><strong>Your trust is our success</strong></p>
+      </div>
+      <div class="testimonials-grid">
+        <blockquote class="testimonial-card fade-in-up">
+          <div class="testimonial-stars" aria-label="5-star rating">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          </div>
+          <p class="testimonial-text">"PLACEHOLDER_TESTIMONIAL_1"</p>
+          <footer class="testimonial-footer">
+            <div class="testimonial-avatar" aria-hidden="true"><i class="fa-solid fa-user"></i></div>
+            <cite class="testimonial-name">PLACEHOLDER_CLIENT_NAME_1</cite>
+          </footer>
+        </blockquote>
+        <blockquote class="testimonial-card fade-in-up delay-1">
+          <div class="testimonial-stars" aria-label="5-star rating">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          </div>
+          <p class="testimonial-text">"PLACEHOLDER_TESTIMONIAL_2"</p>
+          <footer class="testimonial-footer">
+            <div class="testimonial-avatar" aria-hidden="true"><i class="fa-solid fa-user"></i></div>
+            <cite class="testimonial-name">PLACEHOLDER_CLIENT_NAME_2</cite>
+          </footer>
+        </blockquote>
+        <blockquote class="testimonial-card fade-in-up delay-2">
+          <div class="testimonial-stars" aria-label="5-star rating">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          </div>
+          <p class="testimonial-text">"PLACEHOLDER_TESTIMONIAL_3"</p>
+          <footer class="testimonial-footer">
+            <div class="testimonial-avatar" aria-hidden="true"><i class="fa-solid fa-user"></i></div>
+            <cite class="testimonial-name">PLACEHOLDER_CLIENT_NAME_3</cite>
+          </footer>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="container contact-inner">
+      <div class="contact-form-wrap fade-in-right">
+        <h2 class="section-title" style="text-align:center">Contact Us</h2>
+        <p class="contact-intro" style="text-align:center">Leave your details and we'll get back to you as soon as possible</p>
+        <form class="contact-form" id="contact-form" action="https://formsubmit.co/46a78b2912ae02480fc004a16a738c8a" method="POST" novalidate>
+          <input type="hidden" name="_cc" value="tal@pf-invest.co.il">
+          <input type="hidden" name="_subject" value="New enquiry from website (EN) - Tal Gabay Finance">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_template" value="table">
+          <div class="form-row form-row-4">
+            <div class="form-group">
+              <label for="name" class="form-label">Full Name <span class="required" aria-hidden="true">*</span></label>
+              <input type="text" id="name" name="name" class="form-input" placeholder="John Smith" required autocomplete="name" />
+            </div>
+            <div class="form-group">
+              <label for="phone" class="form-label">Phone <span class="required" aria-hidden="true">*</span></label>
+              <input type="tel" id="phone" name="phone" class="form-input" placeholder="+972-5X-XXXXXXX" required autocomplete="tel" />
+            </div>
+            <div class="form-group">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" id="email" name="email" class="form-input" placeholder="example@email.com" autocomplete="email" />
+            </div>
+            <div class="form-group">
+              <label for="subject" class="form-label">Subject <span class="required" aria-hidden="true">*</span></label>
+              <select id="subject" name="subject" class="form-input form-select" required>
+                <option value="" disabled selected>Select a subject</option>
+                <option value="checkup">Financial Check-Up</option>
+                <option value="investment">Investment Consultation</option>
+                <option value="retirement">Retirement Planning</option>
+                <option value="insurance">Insurance Review</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row form-row-msg">
+            <div class="form-group">
+              <label for="message" class="form-label">Message</label>
+              <textarea id="message" name="message" class="form-input form-textarea" placeholder="How can we help you?" rows="1"></textarea>
+            </div>
+            <div class="form-group form-group-btn">
+              <button type="submit" class="btn btn-gold btn-block">
+                <span class="btn-text">Send Message</span>
+                <i class="fa-solid fa-paper-plane btn-icon"></i>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-top">
+      <div class="container footer-top-inner">
+        <div class="footer-col footer-brand">
+          <a href="#home" class="footer-logo" aria-label="Tal Gabay - Financial Planning">
+            <span class="logo-main">Tal Gabay</span>
+            <span class="logo-sep">|</span>
+            <span class="logo-sub">Financial Planning</span>
+          </a>
+          <p class="footer-tagline">Personal, focused guidance for executives</p>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-col-title">Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="#home" class="footer-link"><i class="fa-solid fa-chevron-right"></i> Home</a></li>
+            <li><a href="#about" class="footer-link"><i class="fa-solid fa-chevron-right"></i> About</a></li>
+            <li><a href="#services" class="footer-link"><i class="fa-solid fa-chevron-right"></i> Services</a></li>
+            <li><a href="#testimonials" class="footer-link"><i class="fa-solid fa-chevron-right"></i> Testimonials</a></li>
+            <li><a href="#contact" class="footer-link"><i class="fa-solid fa-chevron-right"></i> Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-col-title">Our Services</h4>
+          <ul class="footer-links">
+            <li><a href="#services" class="footer-link"><i class="fa-solid fa-chevron-right"></i> Life & Health Insurance</a></li>
+            <li><a href="#services" class="footer-link"><i class="fa-solid fa-chevron-right"></i> Pension Consulting</a></li>
+            <li><a href="#services" class="footer-link"><i class="fa-solid fa-chevron-right"></i> Wealth Management</a></li>
+            <li><a href="#services" class="footer-link"><i class="fa-solid fa-chevron-right"></i> Retirement Planning</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-col-title">Contact Details</h4>
+          <ul class="footer-contact-list">
+            <li><i class="fa-solid fa-phone footer-contact-icon"></i>
+              <span><a href="tel:074-7019277" class="footer-contact-link">074-7019277</a><br><a href="tel:052-8000556" class="footer-contact-link">052-8000556</a></span>
+            </li>
+            <li><i class="fa-solid fa-envelope footer-contact-icon"></i>
+              <span><a href="mailto:office@pf-invest.co.il" class="footer-contact-link">office@pf-invest.co.il</a></span>
+            </li>
+            <li><i class="fa-solid fa-location-dot footer-contact-icon"></i>
+              <span>19 HaYetzira St., Rehovot, Israel</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <p class="footer-copy">&copy; 2026 Tal Gabay — Advanced Financial Planning. All rights reserved.</p>
+        <p class="footer-legal">Licensed by the Israeli Capital Market, Insurance and Savings Authority</p>
+        <p class="footer-disclaimer">The information on this website is for general information purposes only and does not constitute investment advice, pension advice, tax advice or any recommendation. Do not rely on it without obtaining professional advice tailored to your personal circumstances.</p>
+        <p class="footer-links-legal"><a href="../accessibility.html" class="footer-legal-link">Accessibility Statement</a><span class="footer-sep"> | </span><a href="../privacy-policy.html" class="footer-legal-link">Privacy Policy</a><span class="footer-sep"> | </span><a href="../index.html" class="footer-legal-link">🇮🇱 עברית</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/972528000556" target="_blank" rel="noopener noreferrer" class="whatsapp-float" aria-label="Send WhatsApp message">
+    <i class="fa-brands fa-whatsapp whatsapp-icon"></i>
+    <span class="whatsapp-tooltip">Send message</span>
+  </a>
+
+  <button class="back-to-top" id="back-to-top" aria-label="Back to top">
+    <i class="fa-solid fa-chevron-up"></i>
+  </button>
+
+  <script src="../script.js"></script>
+  <script>
+  document.querySelectorAll('.partners-track-wrap').forEach(wrap => {
+    const track = wrap.querySelector('.partners-track');
+    const isReverse = track.classList.contains('partners-track-reverse');
+    const DURATION = 36000;
+    let dragging = false, startX = 0, startAnimX = 0;
+    function getCurrentX() { return new DOMMatrix(getComputedStyle(track).transform).m41; }
+    function clientX(e) { return e.touches ? e.touches[0].clientX : e.clientX; }
+    function onStart(e) { dragging=true; track.style.animationPlayState='paused'; startX=clientX(e); startAnimX=getCurrentX(); if(!e.touches)e.preventDefault(); }
+    function onMove(e) { if(!dragging)return; track.style.transform=`translateX(${startAnimX+(clientX(e)-startX)}px)`; }
+    function onEnd() { if(!dragging)return; dragging=false; const cur=getCurrentX(),halfW=track.scrollWidth/2,progress=(Math.abs(cur)%halfW)/halfW,delay=isReverse?-((1-progress)*DURATION):-(progress*DURATION); track.style.transform=''; track.style.animationDelay=`${delay}ms`; track.style.animationPlayState='running'; }
+    wrap.addEventListener('touchstart',onStart,{passive:true}); wrap.addEventListener('touchmove',onMove,{passive:true}); wrap.addEventListener('touchend',onEnd);
+    wrap.addEventListener('mousedown',onStart); wrap.addEventListener('mousemove',onMove); wrap.addEventListener('mouseup',onEnd); wrap.addEventListener('mouseleave',onEnd);
+    wrap.style.cursor='grab';
+  });
+  </script>
+</body>
+</html>
