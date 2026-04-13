@@ -1667,6 +1667,25 @@ body.no-animations *::after {
   animation-duration: 0s !important;
   transition-duration: 0s !important;
 }
+/* Highlight links mode */
+body.highlight-links a:not(.btn):not(.btn-gold):not(.btn-personal-area):not(.nav-link):not(.whatsapp-float):not(.back-to-top) {
+  outline: 2px solid var(--gold) !important;
+  outline-offset: 2px !important;
+  text-decoration: underline !important;
+  text-underline-offset: 3px !important;
+}
+/* Text spacing mode */
+body.text-spacing p,
+body.text-spacing li,
+body.text-spacing span,
+body.text-spacing a,
+body.text-spacing label,
+body.text-spacing td,
+body.text-spacing th {
+  letter-spacing: 0.1em !important;
+  word-spacing: 0.15em !important;
+  line-height: 1.9 !important;
+}
 @media (max-width: 768px) {
   .a11y-widget { bottom: 5.5rem; left: 1rem; }
   .a11y-toggle { width: 44px; height: 44px; font-size: 1.2rem; }

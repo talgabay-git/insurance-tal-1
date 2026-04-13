@@ -229,6 +229,8 @@
       <button class="a11y-btn" id="a11y-font-down" aria-label="הקטן גופן"><i class="fa-solid fa-minus"></i> הקטן טקסט</button>
       <button class="a11y-btn" id="a11y-contrast" aria-label="ניגודיות גבוהה"><i class="fa-solid fa-circle-half-stroke"></i> ניגודיות גבוהה</button>
       <button class="a11y-btn" id="a11y-animations" aria-label="עצור אנימציות"><i class="fa-solid fa-pause"></i> עצור אנימציות</button>
+      <button class="a11y-btn" id="a11y-links" aria-label="הדגש קישורים"><i class="fa-solid fa-link"></i> הדגש קישורים</button>
+      <button class="a11y-btn" id="a11y-spacing" aria-label="ריווח טקסט"><i class="fa-solid fa-text-width"></i> ריווח טקסט</button>
       <button class="a11y-btn a11y-reset" id="a11y-reset" aria-label="איפוס הגדרות"><i class="fa-solid fa-rotate-left"></i> איפוס</button>
     </div>
   </div>
@@ -238,12 +240,18 @@
     var fs=parseInt(localStorage.getItem('a11y-fs')||'16');
     var hc=localStorage.getItem('a11y-hc')==='1';
     var na=localStorage.getItem('a11y-na')==='1';
+    var hl=localStorage.getItem('a11y-hl')==='1';
+    var ts=localStorage.getItem('a11y-ts')==='1';
     function apply(){
       document.documentElement.style.fontSize=fs+'px';
       document.body.classList.toggle('high-contrast',hc);
       document.body.classList.toggle('no-animations',na);
+      document.body.classList.toggle('highlight-links',hl);
+      document.body.classList.toggle('text-spacing',ts);
       document.getElementById('a11y-contrast').classList.toggle('active',hc);
       document.getElementById('a11y-animations').classList.toggle('active',na);
+      document.getElementById('a11y-links').classList.toggle('active',hl);
+      document.getElementById('a11y-spacing').classList.toggle('active',ts);
     }
     apply();
     t.addEventListener('click',function(){
@@ -255,7 +263,9 @@
     document.getElementById('a11y-font-down').addEventListener('click',function(){if(fs>12){fs-=2;localStorage.setItem('a11y-fs',fs);apply();}});
     document.getElementById('a11y-contrast').addEventListener('click',function(){hc=!hc;localStorage.setItem('a11y-hc',hc?'1':'0');apply();});
     document.getElementById('a11y-animations').addEventListener('click',function(){na=!na;localStorage.setItem('a11y-na',na?'1':'0');apply();});
-    document.getElementById('a11y-reset').addEventListener('click',function(){fs=16;hc=false;na=false;localStorage.removeItem('a11y-fs');localStorage.removeItem('a11y-hc');localStorage.removeItem('a11y-na');apply();});
+    document.getElementById('a11y-links').addEventListener('click',function(){hl=!hl;localStorage.setItem('a11y-hl',hl?'1':'0');apply();});
+    document.getElementById('a11y-spacing').addEventListener('click',function(){ts=!ts;localStorage.setItem('a11y-ts',ts?'1':'0');apply();});
+    document.getElementById('a11y-reset').addEventListener('click',function(){fs=16;hc=false;na=false;hl=false;ts=false;localStorage.removeItem('a11y-fs');localStorage.removeItem('a11y-hc');localStorage.removeItem('a11y-na');localStorage.removeItem('a11y-hl');localStorage.removeItem('a11y-ts');apply();});
     document.addEventListener('click',function(e){if(!document.getElementById('a11y-widget').contains(e.target)){p.classList.remove('open');t.setAttribute('aria-expanded','false');p.setAttribute('aria-hidden','true');}});
   })();
   </script>
