@@ -36,6 +36,14 @@
   <meta name="twitter:title" content="Tal Gabay | Financial Planning for Executives" />
   <meta name="twitter:description" content="Advanced financial planning for executives — wealth management, retirement planning, insurance and risk management. Personal and focused guidance." />
   <meta name="twitter:image" content="https://talgabay-git.github.io/insurance-tal-1/tal.jpg" />
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5F91Q1DPZV"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-5F91Q1DPZV', { 'anonymize_ip': true });
+  </script>
 </head>
 <body>
   <a href="#content-start" class="skip-link">Skip to main content</a>
@@ -612,6 +620,34 @@
     document.getElementById('a11y-spacing').addEventListener('click',function(){ts=!ts;localStorage.setItem('a11y-ts',ts?'1':'0');apply();});
     document.getElementById('a11y-reset').addEventListener('click',function(){fs=16;hc=false;na=false;hl=false;ts=false;localStorage.removeItem('a11y-fs');localStorage.removeItem('a11y-hc');localStorage.removeItem('a11y-na');localStorage.removeItem('a11y-hl');localStorage.removeItem('a11y-ts');apply();});
     document.addEventListener('click',function(e){if(!document.getElementById('a11y-widget').contains(e.target)){p.classList.remove('open');t.setAttribute('aria-expanded','false');p.setAttribute('aria-hidden','true');}});
+  })();
+  </script>
+
+  <!-- ===== COOKIE CONSENT BANNER ===== -->
+  <div id="cookie-banner" role="dialog" aria-label="Cookie consent" aria-live="polite" style="display:none;position:fixed;bottom:0;right:0;left:0;z-index:99999;background:#0d1e35;color:#fff;padding:1rem 1.5rem;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.75rem;box-shadow:0 -2px 12px rgba(0,0,0,.35);font-family:'Heebo',sans-serif;font-size:.92rem;line-height:1.5;">
+    <p style="margin:0;flex:1 1 260px;">This site uses <strong>Google Analytics</strong> for visitor traffic analysis only. No personally identifiable information is collected. <a href="../privacy-policy.html" style="color:#c9a84c;text-decoration:underline;">Privacy Policy</a></p>
+    <div style="display:flex;gap:.6rem;flex-shrink:0;">
+      <button id="cookie-accept" style="background:#c9a84c;color:#0d1e35;border:none;border-radius:6px;padding:.45rem 1.1rem;font-weight:700;cursor:pointer;font-size:.9rem;">Accept</button>
+      <button id="cookie-decline" style="background:transparent;color:rgba(255,255,255,.65);border:1px solid rgba(255,255,255,.3);border-radius:6px;padding:.45rem 1.1rem;cursor:pointer;font-size:.9rem;">Decline</button>
+    </div>
+  </div>
+  <script>
+  (function(){
+    var b=document.getElementById('cookie-banner');
+    var consent=localStorage.getItem('cookie-consent');
+    if(!consent) b.style.display='flex';
+    document.getElementById('cookie-accept').addEventListener('click',function(){
+      localStorage.setItem('cookie-consent','accepted');
+      b.style.display='none';
+    });
+    document.getElementById('cookie-decline').addEventListener('click',function(){
+      localStorage.setItem('cookie-consent','declined');
+      b.style.display='none';
+      // disable GA
+      window['ga-disable-G-5F91Q1DPZV']=true;
+    });
+    // if previously declined, disable GA
+    if(consent==='declined') window['ga-disable-G-5F91Q1DPZV']=true;
   })();
   </script>
 </body>
