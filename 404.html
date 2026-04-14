@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>עמוד לא נמצא | טל גבאי תכנון פיננסי</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .error-page {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--navy);
+      text-align: center;
+      padding: 2rem;
+    }
+    .error-inner { max-width: 500px; }
+    .error-code {
+      font-size: clamp(5rem, 20vw, 10rem);
+      font-weight: 900;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+    .error-title {
+      font-size: clamp(1.4rem, 4vw, 2rem);
+      color: var(--white);
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .error-text {
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 2.5rem;
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+    .error-logo {
+      margin-bottom: 3rem;
+      color: var(--white);
+      font-size: 1.1rem;
+      font-weight: 700;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+    }
+    .error-logo span { color: var(--gold); }
+  </style>
+</head>
+<body>
+  <div class="error-page">
+    <div class="error-inner">
+      <a href="index.html" class="error-logo">
+        <strong>טל גבאי</strong> <span>|</span> תכנון פיננסי
+      </a>
+      <div class="error-code">404</div>
+      <h1 class="error-title">העמוד לא נמצא</h1>
+      <p class="error-text">
+        העמוד שחיפשת אינו קיים או הועבר למיקום אחר.<br>
+        ניתן לחזור לדף הבית ולמצוא את המידע שאתה מחפש.
+      </p>
+      <a href="index.html" class="btn btn-gold btn-lg">
+        <i class="fa-solid fa-house"></i> חזרה לדף הבית
+      </a>
+    </div>
+  </div>
+</body>
+</html>

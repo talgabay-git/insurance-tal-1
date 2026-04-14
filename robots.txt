@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://talgabay-git.github.io/insurance-tal-1/sitemap.xml
