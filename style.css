@@ -862,7 +862,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 /* ============================================================
    TESTIMONIALS
    ============================================================ */
-.testimonials { padding: 5rem 0; background: var(--off-white); }
+.testimonials { padding: 5rem 0; background: var(--white); }
 .testimonials-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
