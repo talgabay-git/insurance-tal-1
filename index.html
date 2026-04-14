@@ -3,58 +3,210 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>טל גבאי | תכנון פיננסי</title>
-  <meta name="description" content="טל גבאי - תכנון פיננסי מתקדם לבכירים. ליווי אישי וממוקד לבכירים" />
-  <!-- Google Fonts -->
+  <title>טל גבאי | מסלקה פנסיונית</title>
+  <meta name="description" content="מסלקה פנסיונית - העברת מסמכים מאובטחת - טל גבאי תכנון פיננסי" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700;800&family=Frank+Ruhl+Libre:wght@400;500;700;900&family=Heebo:wght@400;700;900&family=Dancing+Script:wght@700&display=swap" rel="stylesheet" />
-  <!-- Font Awesome 6 -->
+  <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700;800&family=Heebo:wght@400;700;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <!-- Main Stylesheet -->
   <link rel="stylesheet" href="style.css" />
+  <style>
+    .docs-hero {
+      background: var(--navy);
+      padding: 4rem 0 3rem;
+      text-align: center;
+    }
+    .docs-hero .section-label { margin-bottom: 1rem; }
+    .docs-hero h1 {
+      font-family: 'Heebo', sans-serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 900;
+      color: var(--white);
+      margin-bottom: .75rem;
+    }
+    .docs-hero p {
+      color: rgba(255,255,255,.75);
+      font-size: 1.05rem;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    .docs-section {
+      padding: 4rem 0 5rem;
+      background: var(--off-white);
+    }
+
+    .docs-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      box-shadow: var(--shadow-md);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .docs-card .form-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: .4rem;
+      text-align: center;
+    }
+    .docs-card .form-intro {
+      font-size: .9rem;
+      color: var(--dark-gray);
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .upload-area {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .upload-field {
+      display: flex;
+      flex-direction: column;
+      gap: .4rem;
+    }
+    .upload-label {
+      font-size: .9rem;
+      font-weight: 700;
+      color: var(--navy);
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+    .upload-label i { color: var(--gold); font-size: 1rem; }
+    .upload-label .required { color: #e53e3e; margin-right: .1rem; }
+
+    .upload-box {
+      border: 2px dashed var(--light-gray);
+      border-radius: var(--radius);
+      padding: 1.2rem 1rem;
+      text-align: center;
+      cursor: not-allowed;
+      transition: border-color .2s, background .2s;
+      position: relative;
+      background: var(--off-white);
+      opacity: .55;
+      pointer-events: none;
+    }
+    .upload-box:hover { border-color: var(--light-gray); background: var(--off-white); }
+    .upload-area-disabled-notice {
+      background: #fff8e6;
+      border: 1.5px solid var(--gold);
+      border-radius: var(--radius);
+      padding: 1rem 1.25rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: flex-start;
+      gap: .75rem;
+      font-size: .92rem;
+      color: var(--navy);
+      line-height: 1.6;
+    }
+    .upload-area-disabled-notice i { color: var(--gold); font-size: 1.2rem; margin-top: .1rem; flex-shrink: 0; }
+    .upload-area-disabled-notice a { color: var(--gold); font-weight: 700; text-decoration: none; }
+    .upload-area-disabled-notice a:hover { text-decoration: underline; }
+    .upload-box input[type="file"] {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      cursor: pointer;
+      width: 100%;
+      height: 100%;
+    }
+    .upload-box-icon { font-size: 1.6rem; color: var(--mid-gray); margin-bottom: .35rem; }
+    .upload-box-text { font-size: .82rem; color: var(--dark-gray); }
+    .upload-box-hint { font-size: .75rem; color: var(--mid-gray); margin-top: .2rem; }
+    .upload-box.has-file { border-color: #48bb78; background: #f0fff4; }
+    .upload-box.has-file .upload-box-icon { color: #48bb78; }
+
+    .security-note {
+      display: flex;
+      align-items: flex-start;
+      gap: .75rem;
+      background: rgba(13,30,53,.05);
+      border: 1px solid rgba(13,30,53,.1);
+      border-radius: var(--radius);
+      padding: 1rem 1.2rem;
+      margin-bottom: 1.75rem;
+      font-size: .82rem;
+      color: var(--dark-gray);
+      line-height: 1.6;
+    }
+    .security-note i { color: var(--gold); font-size: 1.1rem; flex-shrink: 0; margin-top: .1rem; }
+
+    .docs-form-fields {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .docs-form-fields .full-width { grid-column: 1 / -1; }
+
+    .docs-submit-btn {
+      width: 100%;
+      padding: 1rem;
+      font-size: 1.05rem;
+      font-weight: 800;
+      border-radius: var(--radius);
+      background: var(--navy);
+      color: var(--white);
+      border: none;
+      cursor: pointer;
+      transition: background .2s, transform .15s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .6rem;
+    }
+    .docs-submit-btn:hover { background: var(--navy-mid); transform: translateY(-1px); }
+
+    .form-success-docs {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      padding: 2.5rem 1rem;
+      text-align: center;
+    }
+    .form-success-docs i { font-size: 3rem; color: #48bb78; }
+    .form-success-docs h3 { font-size: 1.4rem; font-weight: 800; color: var(--navy); }
+    .form-success-docs p { color: var(--dark-gray); font-size: .95rem; }
+
+    @media (max-width: 768px) {
+      .docs-hero { padding: 2.5rem 0 2rem; }
+      .docs-hero h1 { font-size: clamp(1.5rem, 6vw, 2rem); }
+      .docs-section { padding: 2rem 0 3rem; }
+      .docs-card { padding: 1.5rem 1rem; }
+      .docs-form-fields { grid-template-columns: 1fr; }
+      .upload-box { padding: 1.5rem 1rem; }
+      .upload-box-icon { font-size: 2rem; }
+      .upload-box-text { font-size: .88rem; }
+      .security-note { font-size: .8rem; }
+      .docs-submit-btn { font-size: 1rem; padding: .9rem; }
+    }
+    @media (max-width: 480px) {
+      .upload-label { font-size: .85rem; }
+    }
+  </style>
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="טל גבאי תכנון פיננסי" />
-  <meta property="og:title" content="טל גבאי | תכנון פיננסי לבכירים" />
-  <meta property="og:description" content="תכנון פיננסי מתקדם לבכירים — ניהול הון, תכנון פרישה, ביטוח וניהול סיכונים. ליווי אישי וממוקד." />
-  <meta property="og:url" content="https://talgabay-git.github.io/insurance-tal-1/" />
+  <meta property="og:title" content="מסלקה פנסיונית | טל גבאי" />
+  <meta property="og:description" content="מסלקה פנסיונית — העברת מסמכים מאובטחת. טל גבאי תכנון פיננסי." />
+  <meta property="og:url" content="https://talgabay-git.github.io/insurance-tal-1/documents.html" />
   <meta property="og:image" content="https://talgabay-git.github.io/insurance-tal-1/tal.jpg" />
   <meta property="og:locale" content="he_IL" />
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="טל גבאי | תכנון פיננסי לבכירים" />
-  <meta name="twitter:description" content="תכנון פיננסי מתקדם לבכירים — ניהול הון, תכנון פרישה, ביטוח וניהול סיכונים. ליווי אישי וממוקד." />
+  <meta name="twitter:title" content="מסלקה פנסיונית | טל גבאי" />
+  <meta name="twitter:description" content="מסלקה פנסיונית — העברת מסמכים מאובטחת. טל גבאי תכנון פיננסי." />
   <meta name="twitter:image" content="https://talgabay-git.github.io/insurance-tal-1/tal.jpg" />
-  <!-- Schema.org Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": ["FinancialService", "LocalBusiness"],
-    "name": "טל גבאי תכנון פיננסי",
-    "url": "https://talgabay-git.github.io/insurance-tal-1/",
-    "logo": "https://talgabay-git.github.io/insurance-tal-1/tal.jpg",
-    "image": "https://talgabay-git.github.io/insurance-tal-1/tal.jpg",
-    "description": "תכנון פיננסי מתקדם לבכירים — ניהול הון, תכנון פרישה, ביטוח וניהול סיכונים",
-    "telephone": ["+972528000556", "+97247019277"],
-    "email": "office@pf-invest.co.il",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "היצירה 19",
-      "addressLocality": "רחובות",
-      "addressCountry": "IL"
-    },
-    "founder": {
-      "@type": "Person",
-      "name": "טל גבאי",
-      "jobTitle": "מתכנן פיננסי בכיר"
-    },
-    "areaServed": "IL",
-    "currenciesAccepted": "ILS",
-    "priceRange": "$$$$",
-    "serviceType": ["תכנון פיננסי", "תכנון פרישה", "ניהול סיכונים", "ניהול הון", "Family Office"]
-  }
-  </script>
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-5F91Q1DPZV"></script>
   <script>
@@ -67,11 +219,9 @@
 <body>
   <a href="#content-start" class="skip-link">דלג לתוכן הראשי</a>
 
-  <!-- ========== HEADER / NAVIGATION ========== -->
+  <!-- ========== HEADER ========== -->
   <header class="site-header" id="site-header">
     <div class="container header-inner">
-
-      <!-- Desktop Nav -->
       <a href="index.html" class="logo header-logo" aria-label="עמוד הבית">
         <span class="logo-main">טל גבאי</span>
         <span class="logo-sep">|</span>
@@ -79,44 +229,35 @@
       </a>
             <nav class="main-nav" aria-label="ניווט ראשי">
         <ul class="nav-list">
-          <li><a href="#about-heading" class="nav-link">אודות</a></li>
+          <li><a href="index.html#about-heading" class="nav-link">אודות</a></li>
           <li><a href="financial-planning.html" class="nav-link">תכנון פיננסי</a></li>
           <li><a href="retirement-planning.html" class="nav-link">תכנון פרישה</a></li>
           <li><a href="early-retirement.html" class="nav-link">תכנון פרישה מוקדמת</a></li>
           <li><a href="family-office.html" class="nav-link">Family Office</a></li>
           <li><a href="market-status.html" class="nav-link">תמונת מצב לשווקים</a></li>
-          <li><a href="#testimonials" class="nav-link">המלצות</a></li>
+          <li><a href="index.html#testimonials" class="nav-link">המלצות</a></li>
           <li><a href="checkup.html" class="nav-link" style="color:var(--gold);font-weight:700">צ'ק אפ פיננסי</a></li>
-          <li><a href="#contact" class="nav-link">צור קשר</a></li>
           <li><a href="documents.html" class="nav-link">מסלקה פנסיונית</a></li>
         </ul>
       </nav>
-
-      <!-- Left: כניסה לאיזור אישי + שפה -->
-      <div class="header-left" style="display:flex;align-items:center;gap:.6rem;">
-        <a href="en/index.html" title="English" aria-label="Switch to English" style="font-size:1.725rem;text-decoration:none;line-height:1;color:#c9a84c;font-weight:700;letter-spacing:.03em;">EN</a>
+      <div class="header-left">
         <a href="https://portal.roeto.co.il/pfinvest/login" class="btn-personal-area" target="_blank" rel="noopener"><i class="fa-solid fa-key"></i> כניסה לאיזור אישי</a>
       </div>
-
-      <!-- Hamburger (mobile) -->
-      <button class="hamburger" id="hamburger" aria-label="פתח תפריט" aria-expanded="false" aria-controls="mobile-menu">
+      <button class="hamburger" id="hamburger" aria-label="פתח תפריט" aria-expanded="false">
         <span class="hamburger-line"></span>
         <span class="hamburger-line"></span>
         <span class="hamburger-line"></span>
       </button>
     </div>
-
-    <!-- Mobile Menu -->
     <nav class="mobile-menu" id="mobile-menu" aria-label="תפריט נייד" aria-hidden="true">
       <ul class="mobile-nav-list">
         <li><a href="index.html" class="mobile-nav-link">דף הבית</a></li>
-        <li><a href="#about-heading" class="mobile-nav-link">אודות</a></li>
+        <li><a href="index.html#about-heading" class="mobile-nav-link">אודות</a></li>
         <li><a href="financial-planning.html" class="mobile-nav-link">תכנון פיננסי</a></li>
         <li><a href="retirement-planning.html" class="mobile-nav-link">תכנון פרישה</a></li>
         <li><a href="family-office.html" class="mobile-nav-link">Family Office</a></li>
         <li><a href="checkup.html" class="mobile-nav-link" style="color:var(--gold);font-weight:700">צ'ק אפ פיננסי</a></li>
         <li><a href="documents.html" class="mobile-nav-link">מסלקה פנסיונית</a></li>
-        <li><a href="#contact" class="mobile-nav-link">צור קשר</a></li>
         <li><a href="tel:052-8000556" class="mobile-nav-link mobile-phone"><i class="fa-solid fa-phone"></i> 052-8000556</a></li>
         <li><a href="https://wa.me/9720528000556" class="mobile-nav-link"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a></li>
       </ul>
@@ -124,671 +265,223 @@
   </header>
   <div id="content-start" tabindex="-1"></div>
 
-  <!-- ========== HERO SECTION ========== -->
-  <section class="hero" id="home">
-    <div class="hero-overlay"></div>
-    <div class="container hero-content">
-      <div class="hero-text fade-in-up">
-        <h1 class="hero-title">תכנון פיננסי · ניהול הון · תכנון פרישה</h1>
-        <p class="hero-subtitle">ניווט בטוח של ההון המשפחתי בראש שקט</p>
-      </div>
-    </div>
-    <div class="hero-scroll-indicator" aria-hidden="true">
-      <span></span>
+  <!-- ========== PAGE HERO ========== -->
+  <section class="docs-hero">
+    <div class="container">
+      <span class="section-label" style="background:none;border:2px solid var(--gold);color:var(--gold);font-weight:800">מאובטח ומוצפן</span>
+      <h1>מסלקה פנסיונית</h1>
+      <p><strong style="color:var(--gold)">נא למלא את הפרטים ולצרף מסמכים לטובת הכנת המסלקה הפנסיונית</strong><br><strong style="color:var(--white)">ונחזור אליכם בהקדם</strong></p>
     </div>
   </section>
 
-  <!-- ========== QUICK STATS BAR ========== -->
-  <section class="stats-bar" aria-label="נתונים בולטים">
-    <div class="container stats-inner">
-      <div class="stat-item fade-in-up delay-2">
-        <span class="stat-number">10</span>
-        <span class="stat-label">תחומי שירות</span>
-      </div>
-      <div class="stat-divider" aria-hidden="true"></div>
-      <div class="stat-item fade-in-up">
-        <span class="stat-number">20<span class="stat-plus">+</span></span>
-        <span class="stat-label">שנות ניסיון</span>
-      </div>
-      <div class="stat-divider" aria-hidden="true"></div>
-      <div class="stat-item fade-in-up delay-3">
-        <span class="stat-number">24/7</span>
-        <span class="stat-label">זמינות</span>
-      </div>
-      <div class="stat-divider" aria-hidden="true"></div>
-      <div class="stat-item fade-in-up delay-4">
-        <span class="stat-number">מאות</span>
-        <span class="stat-label">משפחות מנוהלות</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== PARTNERS / COMPANIES ========== -->
-  <section class="partners" id="partners" aria-label="חברות שאנו עובדים איתן">
+  <!-- ========== FORM SECTION ========== -->
+  <section class="docs-section">
     <div class="container">
-      <div class="section-header fade-in-up">
-        <h2 class="section-title">ניהול אקטיבי ואובייקטיבי בחברות המובילות</h2>
-        <p class="partners-tagline"><strong>ליצירת השילוב המנצח</strong></p>
-      </div>
-      <!-- שורה עליונה: ימין לשמאל -->
-      <div class="partners-track-wrap">
-        <div class="partners-track">
-          <div class="partner-logo"><img src="logos/ibi.png.webp" alt="IBI"></div>
-          <div class="partner-logo"><img src="logos/more.png.webp" alt="MORE" style="max-width:244px;max-height:98px;"></div>
-          <div class="partner-logo"><img src="logos/ayalon.png.webp" alt="איילון"></div>
-          <div class="partner-logo"><img src="logos/altsuler.png.webp" alt="אלטשולר שחם" style="max-width:244px;max-height:98px;"></div>
-          <div class="partner-logo"><img src="logos/analyst.png.webp" alt="אנליסט" class="logo-analyst" width="195" height="78"></div>
-          <div class="partner-logo"><img src="logos/meitav.png.webp" alt="מיטב"></div>
-          <div class="partner-logo"><img src="logos/phoenix.png.webp" alt="הפניקס" style="max-width:244px;max-height:98px;"></div>
-          <div class="partner-logo" aria-hidden="true"><img src="logos/ibi.png.webp" alt=""></div>
-          <div class="partner-logo" aria-hidden="true"><img src="logos/more.png.webp" alt=""></div>
-          <div class="partner-logo" aria-hidden="true"><img src="logos/ayalon.png.webp" alt=""></div>
-          <div class="partner-logo" aria-hidden="true"><img src="logos/altsuler.png.webp" alt=""></div>
-          <div class="partner-logo" aria-hidden="true"><img src="logos/analyst.png.webp" alt="" class="logo-analyst" width="195" height="78"></div>
-          <div class="partner-logo" aria-hidden="true"><img src="logos/meitav.png.webp" alt=""></div>
-          <div class="partner-logo" aria-hidden="true"><img src="logos/phoenix.png.webp" alt=""></div>
-        </div>
-      </div>
-      <!-- שורה תחתונה: שמאל לימין -->
-      <div class="partners-track-wrap">
-        <div class="partners-track partners-track-reverse">
-          <div class="partner-logo"><img src="logos/yalin.png.webp" alt="ילין לפידות" style="max-width:244px;max-height:98px;"></div>
-          <div class="partner-logo"><img src="logos/harel.png.webp" alt="הראל"></div>
-          <div class="partner-logo"><img src="logos/Hachshara.png.webp" alt="הכשרה"></div>
-          <div class="partner-logo"><img src="logos/menora.png.webp" alt="מנורה מבטחים"></div>
-          <div class="partner-logo"><img src="logos/clal.png.webp" alt="כלל ביטוח" style="max-width:283px;max-height:113px;"></div>
-          <div class="partner-logo"><img src="logos/migdal.png.webp" alt="מגדל"></div>
-          <div class="partner-logo" aria-hidden="true"><img src="logos/yalin.png.webp" alt=""></div>
-          <div class="partner-logo" aria-hidden="true"><img src="logos/harel.png.webp" alt=""></div>
-          <div class="partner-logo" aria-hidden="true"><img src="logos/Hachshara.png.webp" alt=""></div>
-          <div class="partner-logo" aria-hidden="true"><img src="logos/menora.png.webp" alt=""></div>
-          <div class="partner-logo" aria-hidden="true"><img src="logos/clal.png.webp" alt=""></div>
-          <div class="partner-logo" aria-hidden="true"><img src="logos/migdal.png.webp" alt=""></div>
-        </div>
-      </div>
-    </div>
-  </section>
+      <div class="docs-card">
 
-  <!-- ========== SERVICES SECTION ========== -->
-  <section class="services" id="services">
-    <div class="container">
-      <div class="section-header fade-in-up">
-        <h2 class="section-title">השירותים שלנו</h2>
-        <p class="partners-tagline">הכל תחת קורת גג אחת &mdash; ONE STOP SHOP</p>
-        <p class="section-subtitle" style="font-size:1.25rem;font-weight:800;color:var(--navy)"><strong>תכנון פיננסי מתקדם לכל שלב בחיים</strong></p>
-      </div>
-
-      <div class="services-grid">
-
-        <article class="service-card fade-in-up">
-          <div class="service-icon-wrap">
-            <i class="fa-solid fa-tree service-icon"></i>
-          </div>
-          <h3 class="service-title">תכנון פנסיוני</h3>
-          <p class="service-desc">בניית תוכנית פנסיה אישית ומותאמת - כי העתיד שלך מתחיל היום</p>
-          <a href="retirement-planning.html" class="service-link">לפרטים נוספים <i class="fa-solid fa-arrow-left"></i></a>
-        </article>
-
-        <article class="service-card fade-in-up delay-1">
-          <div class="service-icon-wrap">
-            <i class="fa-solid fa-chart-line service-icon"></i>
-          </div>
-          <h3 class="service-title">השקעות ופיננסים</h3>
-          <p class="service-desc">ניהול תיק השקעות חכם ומגוון - גידול הון לטווח ארוך</p>
-          <a href="financial-planning.html" class="service-link">לפרטים נוספים <i class="fa-solid fa-arrow-left"></i></a>
-        </article>
-
-        <article class="service-card fade-in-up delay-2">
-          <div class="service-icon-wrap">
-            <i class="fa-solid fa-sailboat service-icon"></i>
-          </div>
-          <h3 class="service-title">תכנון פרישה מוקדמת</h3>
-          <p class="service-desc">מסלול מותאם לפרישה בגיל צעיר - חיים את החלום כמה שיותר מוקדם</p>
-          <a href="early-retirement.html" class="service-link">לפרטים נוספים <i class="fa-solid fa-arrow-left"></i></a>
-        </article>
-
-        <article class="service-card fade-in-up">
-          <div class="service-icon-wrap">
-            <i class="fa-solid fa-file-contract service-icon"></i>
-          </div>
-          <h3 class="service-title">בדיקת תיק ביטוח</h3>
-          <p class="service-desc">סקירת תיק הביטוח - ווידוא שהכיסויים מקיפים ובדיקת העלויות</p>
-          <a href="checkup.html" class="service-link">לפרטים נוספים <i class="fa-solid fa-arrow-left"></i></a>
-        </article>
-
-        <article class="service-card fade-in-up">
-          <div class="service-icon-wrap">
-            <i class="fa-solid fa-shield-halved service-icon"></i>
-          </div>
-          <h3 class="service-title">ניהול סיכונים</h3>
-          <p class="service-desc">זיהוי, ניתוח וניהול סיכונים פיננסיים - הגנה מושכלת על ההון שלך</p>
-          <a href="risk-management.html" class="service-link">לפרטים נוספים <i class="fa-solid fa-arrow-left"></i></a>
-        </article>
-
-        <article class="service-card fade-in-up delay-1">
-          <div class="service-icon-wrap">
-            <i class="fa-solid fa-person-walking-arrow-right service-icon"></i>
-          </div>
-          <h3 class="service-title">תכנון פרישה</h3>
-          <p class="service-desc">ליווי מקצועי לתכנון הפרישה האידיאלית - שיבטיח את רמת חייך</p>
-          <a href="retirement-planning.html" class="service-link">לפרטים נוספים <i class="fa-solid fa-arrow-left"></i></a>
-        </article>
-
-      </div><!-- /.services-grid -->
-    </div><!-- /.container -->
-  </section>
-
-  <!-- ========== ABOUT SECTION ========== -->
-  <section class="about" id="about">
-<div class="container about-inner">
-
-      <!-- Title -->
-      <div class="about-text fade-in-up" id="about-heading">
-        <h2 class="section-title">אודות</h2>
-      </div>
-
-    </div><!-- /.about-inner -->
-
-    <!-- Full Bio -->
-    <div class="container about-bio fade-in-up">
-
-      <p class="about-bio-intro"><strong>טל גבאי</strong>, מתכנן פיננסי בכיר, מתכנן פרישה<br>בעל תואר שני M.B.A במנהל עסקים</p>
-
-      <p>המסע המקצועי שלי בעולמות הכסף התחיל בלב העשייה הפיננסית בישראל. בשנת 2006 כיהנתי כמנהל בבית ההשקעות אקסלנס, שם רכשתי הבנה מעמיקה וייחודית על הדרך שבה שוק ההון פועל "מאחורי הקלעים". הניסיון שצברתי בניהול מערכות השקעה מורכבות העניק לי את הכלים לנתח לעומק כל הזדמנות פיננסית ולפעול מתוך ראייה אסטרטגית רחבה.</p>
-
-      <p>מתוך רצון להביא את הסטנדרטים הגבוהים של שוק ההון המוסדי לבית הלקוח, הקמנו בשנת 2011, את המשרד שמנהל כיום באחריות ובמקצועיות את עתידם הפיננסי של מאות משפחות בישראל.</p>
-
-      <h3 class="about-bio-heading">מעטפת מקצועית לצמתי החיים המרכזיים</h3>
-
-      <ul class="about-bio-list">
-        <li><strong>תכנון פיננסי ופנסיוני:</strong> יצירת אסטרטגיה כוללת לניהול ההון והחיסכון ארוך הטווח. נוודא שהנכסים הפיננסיים והפנסיוניים מסונכרנים, דמי הניהול אופטימליים, ומסלולי ההשקעה מותאמים בדיוק לרמת הסיכון והיעדים האישיים שלכם.</li>
-        <li><strong>תכנון פרישה חכם:</strong> הגעה לגיל פרישה היא אחד הצמתים הכלכליים המורכבים ביותר. נלווה בבניית אסטרטגיית פרישה מקיפה – החל מניצול מקסימלי של הטבות מס, דרך אופטימיזציה של הקצבאות והחסכונות, ועד ליצירת שקט נפשי וביטחון כלכלי לשנים קדימה.</li>
-        <li><strong>ניהול סיכונים וביטוח:</strong> הגנה על הקיים היא בסיס התוכנית כלכלית. בחינת מערך הביטוחים המשפחתי, ביטול כפילויות, עדכון והוזלת המחירים, כך שברגע האמת – תהיו מוגנים באמת.</li>
-        <li><strong>ניהול עושר והעברה בין-דורית:</strong> הוא תהליך אסטרטגי מוקפד המשלב תכנון פיננסי, משפטי ומיסויי להעברת הון ונכסים, במטרה לשמר את ערכם לאורך זמן, ולמנוע סכסוכים בין יורשים.</li>
-      </ul>
-
-      <h3 class="about-bio-heading">למה לבחור בליווי שלנו?</h3>
-      <p><strong>השילוב בין השכלה אקדמית רחבה (M.B.A) לבין ניסיון שטח של מעל 2 עשורים, מאפשר לי להעניק לכם:</strong></p>
-
-      <ul class="about-bio-list">
-        <li><strong>מבט מערכתי הוליסטי:</strong> הבנה מעמיקה במוצרים פיננסיים, פנסיוניים ומיסויים, וחיבורם לתמונה משפחתית אחת שלמה.</li>
-        <li><strong>אובייקטיביות מלאה:</strong> מחויבות מוחלטת לאינטרסים שלך, הסוכנות בבעלות של חברת ביטוח או בית השקעות</li>
-        <li><strong>ליווי אישי בסטנדרט גבוה:</strong> ניהול תיק בסטנדרט של "בוטיק", שבו אתם תמיד במרכז וזוכים למענה מקצועי, שקוף ויציב.</li>
-      </ul>
-
-      <p class="about-bio-closing"><strong>היעד שלנו הוא למקסם את פוטנציאל הכסף שלכם ולהוריד מכם את הדאגות</strong><br><strong class="closing-gold">בכדי שתוכלו להתפנות למה שבאמת חשוב בחיים</strong></p>
-
-    </div><!-- /.about-bio -->
-
-  </section>
-
-  <!-- ========== HOW WE WORK ========== -->
-  <section class="how-we-work" id="how">
-    <div class="container">
-      <div class="section-header fade-in-up">
-        <h2 class="section-title how-title">שלבי התכנון הפיננסי</h2>
-      </div>
-      <div class="how-steps">
-
-        <div class="how-step fade-in-up">
-          <div class="how-num">01</div>
-          <h3 class="how-step-title">מיפוי המצב הקיים</h3>
-          <p class="how-step-text">הכנת <u>מסלקה פנסיונית</u> והר הביטוח. בירור מאזן ההכנסות, הנכסים מול ההתחייבויות.</p>
+        <div class="form-success-docs" id="docs-success">
+          <i class="fa-solid fa-circle-check"></i>
+          <h3>המסמכים נשלחו בהצלחה!</h3>
+          <p>קיבלנו את הטופס והמסמכים שלכם.<br>נחזור אליכם בהקדם האפשרי.</p>
+          <a href="index.html" class="btn btn-gold" style="margin-top:.5rem">חזרה לדף הבית</a>
         </div>
 
-        <div class="how-arrows" aria-hidden="true">
-          <span class="arr arr-1">&#10095;</span>
-          <span class="arr arr-2">&#10095;</span>
-          <span class="arr arr-3">&#10095;</span>
-        </div>
+        <div id="docs-form-wrap">
+          <h2 class="form-title">מסלקה פנסיונית</h2>
+          <p class="form-intro">כל השדות המסומנים ב-<span style="color:#e53e3e">*</span> הם חובה</p>
 
-        <div class="how-step fade-in-up">
-          <div class="how-num">02</div>
-          <h3 class="how-step-title">בניית אסטרטגיה</h3>
-          <p class="how-step-text">בניית <u>תוכנית מותאמת</u> אישית לשילוב השקעות, ביטוח ומיסוי,<br>הגדרת היעדים והתאמת פרופיל: סיכון, טווח השקעה וטעם אישי</p>
-        </div>
-
-        <div class="how-arrows" aria-hidden="true">
-          <span class="arr arr-1">&#10095;</span>
-          <span class="arr arr-2">&#10095;</span>
-          <span class="arr arr-3">&#10095;</span>
-        </div>
-
-        <div class="how-step fade-in-up">
-          <div class="how-num">03</div>
-          <h3 class="how-step-title">יישום תוכנית העבודה</h3>
-          <p class="how-step-text">ביצוע <u>ארגון מחדש</u> של התיק והתאמתו ליעדי התוכנית הפיננסית האופטימאלית.</p>
-        </div>
-
-        <div class="how-arrows" aria-hidden="true">
-          <span class="arr arr-1">&#10095;</span>
-          <span class="arr arr-2">&#10095;</span>
-          <span class="arr arr-3">&#10095;</span>
-        </div>
-
-        <div class="how-step fade-in-up">
-          <div class="how-num">04</div>
-          <h3 class="how-step-title">ניטור ובקרה</h3>
-          <p class="how-step-text"><u>בחינה תקופתית</u> של התיק והתאמתו לצרכים, לשינויים בשוק ההון ובבתי ההשקעות.</p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <div class="section-sep-gold" aria-hidden="true"></div>
-
-  <!-- ========== WHY CHOOSE US ========== -->
-  <section class="why-us" id="checkup">
-    <div class="container">
-      <div class="section-header fade-in-up">
-        <h2 class="section-title" style="color:var(--gold);border:2px solid var(--gold);display:inline-block;padding:.4rem 1.8rem;border-radius:8px">צ'ק אפ פיננסי</h2>
-        <p class="section-subtitle" style="color:var(--white);font-weight:700"><strong>אופטימיזציה הוליסטית מלאה של התיק הפיננסי והפנסיוני והביטוחי</strong><br><strong style="color:var(--gold);display:block;margin-top:.6rem">ניהול פיננסי מקצועי ברמה הגבוהה ביותר!</strong></p>
-      </div>
-
-      <div class="why-grid">
-
-        <div class="why-card fade-in-up">
-          <div class="why-icon-wrap">
-            <i class="fa-solid fa-trophy why-icon"></i>
-          </div>
-          <h3 class="why-title">ניסיון עשיר</h3>
-          <p class="why-desc">מעל 20 שנות ניסיון בתחום<br>הפיננסים והביטוח</p>
-        </div>
-
-
-        <div class="why-card fade-in-up delay-2">
-          <div class="why-icon-wrap">
-            <i class="fa-solid fa-clock why-icon"></i>
-          </div>
-          <h3 class="why-title">זמינות גבוהה</h3>
-          <p class="why-desc">זמינות גבוהה של המשרד בשעות העבודה ובעת הצורך גם מחוץ להן</p>
-        </div>
-
-        <div class="why-card fade-in-up delay-3">
-          <div class="why-icon-wrap">
-            <i class="fa-solid fa-handshake why-icon"></i>
-          </div>
-          <h3 class="why-title">שירות אישי</h3>
-          <p class="why-desc">מענה מהיר ומקצועי<br>יחס אישי ומותאם</p>
-        </div>
-
-      </div><!-- /.why-grid -->
-    </div><!-- /.container -->
-  </section>
-
-  <!-- ========== TEAM SECTION ========== -->
-  <section class="team-section-wrap" style="padding: 4rem 0; background: var(--off-white);">
-    <div class="container team-section">
-      <div class="section-header fade-in-up" style="margin-bottom: 2rem;">
-        <h2 class="section-title">הצוות שלנו</h2>
-        <p class="section-subtitle" style="color:var(--gold);font-weight:700"><strong>ניסיון ושירות בסטנדרט גבוה, זה מה שעושה את ההבדל</strong></p>
-      </div>
-      <div class="team-orbit-scene">
-
-        <!-- Lead card — stays centered -->
-        <div class="team-oval team-oval-lead team-oval-lead-center">
-          <span class="oval-name" style="font-size:1.3rem;font-weight:900">טל גבאי</span>
-          <span class="oval-role">מתכנן פיננסי לבכירים | מנכ"ל ובעלים</span>
-        </div>
-
-        <!-- Orbit members -->
-        <div class="team-oval orbit-oval"><span class="oval-name">מיטל גבאי</span><span class="oval-role">שותפה ומנהלת המשרד</span></div>
-        <div class="team-oval orbit-oval"><span class="oval-name">אורלי ברמן</span><span class="oval-role">מנהלת מקצועית</span></div>
-        <div class="team-oval orbit-oval"><span class="oval-name">ספיר רוזנטל</span><span class="oval-role">מנהלת קשרי לקוחות</span></div>
-        <div class="team-oval orbit-oval"><span class="oval-name">ענבל קדרון</span><span class="oval-role">מנהלת קשרי לקוחות</span></div>
-        <div class="team-oval orbit-oval"><span class="oval-name">דנה לוי</span><span class="oval-role">מנהלת קשרי לקוחות</span></div>
-        <div class="team-oval orbit-oval"><span class="oval-name">חן לב</span><span class="oval-role">מנהלת קשרי לקוחות</span></div>
-        <div class="team-oval orbit-oval"><span class="oval-name">לאה מנחם</span><span class="oval-role">מנהלת קשרי לקוחות</span></div>
-
-      </div><!-- /.team-orbit-scene -->
-    </div><!-- /.container -->
-  </section>
-
-  <!-- ========== TESTIMONIALS SECTION ========== -->
-  <section class="testimonials" id="testimonials">
-    <div class="container">
-      <div class="section-header fade-in-up">
-        <h2 class="section-title">לקוחות מרוצים</h2>
-        <p class="section-subtitle" style="color:var(--gold);font-weight:700"><strong>האמון שלכם הוא ההצלחה שלנו</strong></p>
-      </div>
-
-      <div class="testimonials-grid">
-
-        <blockquote class="testimonial-card fade-in-up">
-          <div class="testimonial-stars" aria-label="דירוג 5 כוכבים">
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-          </div>
-          <p class="testimonial-text">"PLACEHOLDER_TESTIMONIAL_1"</p>
-          <footer class="testimonial-footer">
-            <div class="testimonial-avatar" aria-hidden="true">
-              <i class="fa-solid fa-user"></i>
-            </div>
-            <cite class="testimonial-name">PLACEHOLDER_CLIENT_NAME_1</cite>
-          </footer>
-        </blockquote>
-
-        <blockquote class="testimonial-card fade-in-up delay-1">
-          <div class="testimonial-stars" aria-label="דירוג 5 כוכבים">
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-          </div>
-          <p class="testimonial-text">"PLACEHOLDER_TESTIMONIAL_2"</p>
-          <footer class="testimonial-footer">
-            <div class="testimonial-avatar" aria-hidden="true">
-              <i class="fa-solid fa-user"></i>
-            </div>
-            <cite class="testimonial-name">PLACEHOLDER_CLIENT_NAME_2</cite>
-          </footer>
-        </blockquote>
-
-        <blockquote class="testimonial-card fade-in-up delay-2">
-          <div class="testimonial-stars" aria-label="דירוג 5 כוכבים">
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-          </div>
-          <p class="testimonial-text">"PLACEHOLDER_TESTIMONIAL_3"</p>
-          <footer class="testimonial-footer">
-            <div class="testimonial-avatar" aria-hidden="true">
-              <i class="fa-solid fa-user"></i>
-            </div>
-            <cite class="testimonial-name">PLACEHOLDER_CLIENT_NAME_3</cite>
-          </footer>
-        </blockquote>
-
-      </div><!-- /.testimonials-grid -->
-    </div><!-- /.container -->
-  </section>
-
-  <!-- ========== CONTACT SECTION ========== -->
-  <section class="contact" id="contact">
-    <div class="container contact-inner">
-
-      <!-- Contact Form -->
-      <div class="contact-form-wrap fade-in-right">
-        <h2 class="section-title" style="text-align:center">צור קשר</h2>
-        <p class="contact-intro" style="text-align:center">השאירו פרטים ונחזור אליכם בהקדם האפשרי</p>
-
-        <form class="contact-form" id="contact-form" novalidate>
-
-          <!-- FormSubmit configuration -->
-          <input type="hidden" name="_cc" value="tal@pf-invest.co.il">
-          <input type="hidden" name="_subject" value="פנייה חדשה מהאתר - טל גבאי פיננסים">
-          <input type="hidden" name="_captcha" value="false">
-          <input type="hidden" name="_template" value="table">
-
-          <!-- שורה 1: שם | טלפון | אימייל | נושא -->
-          <div class="form-row form-row-4">
-            <div class="form-group">
-              <label for="name" class="form-label">שם מלא <span class="required" aria-hidden="true">*</span></label>
-              <input type="text" id="name" name="name" class="form-input" placeholder="ישראל ישראלי" required autocomplete="name" />
-              <span class="form-error" id="name-error" role="alert"></span>
-            </div>
-            <div class="form-group">
-              <label for="phone" class="form-label">טלפון <span class="required" aria-hidden="true">*</span></label>
-              <input type="tel" id="phone" name="phone" class="form-input" placeholder="05X-XXXXXXX" required autocomplete="tel" />
-              <span class="form-error" id="phone-error" role="alert"></span>
-            </div>
-            <div class="form-group">
-              <label for="email" class="form-label">אימייל</label>
-              <input type="email" id="email" name="email" class="form-input" placeholder="example@email.com" autocomplete="email" />
-              <span class="form-error" id="email-error" role="alert"></span>
-            </div>
-            <div class="form-group">
-              <label for="subject" class="form-label">נושא <span class="required" aria-hidden="true">*</span></label>
-              <select id="subject" name="subject" class="form-input form-select" required>
-                <option value="" disabled selected>בחר נושא פנייה</option>
-                <option value="checkup">צ'ק אפ פיננסי</option>
-                <option value="investment">השקעה של כסף פנוי</option>
-                <option value="savings-policy">פוליסת חיסכון פיננסי</option>
-                <option value="koupat-gemel">קופת גמל להשקעה</option>
-                <option value="financial-report">הכנת דוח פיננסי</option>
-                <option value="retirement-advice">ייעוץ פרישה</option>
-                <option value="find-funds">איתור כספים</option>
-                <option value="bank-portfolio">בדיקת התיק הבנקאי</option>
-                <option value="annual-reports">בקשת הדוחות השנתיים</option>
-                <option value="mortgage-ins">ביטוח משכנתא</option>
-                <option value="travel">ביטוח נסיעות לחו"ל</option>
-                <option value="mortgage-advice">ייעוץ משכנתאות</option>
-                <option value="tax-advice">ייעוץ מס</option>
-                <option value="tax-return">החזרי מס</option>
-                <option value="referral">הפניה למשפחה וחברים</option>
-                <option value="inquiry">בירור אחר</option>
-                <option value="other">אחר</option>
-              </select>
-              <span class="form-error" id="subject-error" role="alert"></span>
-            </div>
+          <div class="security-note">
+            <i class="fa-solid fa-shield-halved"></i>
+            <span>המידע מועבר בצורה מאובטחת ומוצפנת (HTTPS) ומשמש לצורך הליך הצטרפות בלבד. פרטיכם לא יועברו לצד שלישי ללא אישורכם.</span>
           </div>
 
-          <!-- שורה 2: הודעה | כפתור -->
-          <div class="form-row form-row-msg">
-            <div class="form-group">
-              <label for="message" class="form-label">הודעה</label>
-              <textarea id="message" name="message" class="form-input form-textarea" placeholder="כיצד נוכל לעזור לך?" rows="1"></textarea>
-            </div>
-            <div class="form-group form-group-btn">
-              <button type="submit" class="btn btn-gold btn-block" id="submit-btn">
-                <span class="btn-text">שלח הודעה</span>
-                <i class="fa-solid fa-paper-plane btn-icon"></i>
-              </button>
-              <div class="form-success" id="form-success" role="alert" aria-live="polite" hidden>
-                <i class="fa-solid fa-circle-check"></i>
-                <p>תודה! קיבלנו את פנייתך ונחזור אליך בהקדם.</p>
+          <form id="docs-form" enctype="multipart/form-data">
+            <!-- פרטים אישיים -->
+            <div class="docs-form-fields">
+              <div class="form-group">
+                <label class="form-label" for="doc-name">שם מלא <span class="required">*</span></label>
+                <input type="text" id="doc-name" name="שם מלא" class="form-input" required placeholder="ישראל ישראלי" />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="doc-id">מספר תעודת זהות <span class="required">*</span></label>
+                <input type="text" id="doc-id" name="מספר תעודת זהות" class="form-input" required placeholder="000000000" maxlength="9" inputmode="numeric" />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="doc-phone">פלאפון <span class="required">*</span></label>
+                <input type="tel" id="doc-phone" name="פלאפון" class="form-input" required placeholder="050-0000000" />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="doc-email">אימייל <span class="required">*</span></label>
+                <input type="email" id="doc-email" name="אימייל" class="form-input" required placeholder="example@email.com" />
+              </div>
+              <div class="form-group full-width">
+                <label class="form-label" for="doc-notes">הערות (אופציונלי)</label>
+                <textarea id="doc-notes" name="הערות" class="form-textarea" rows="2" placeholder="הערות נוספות..."></textarea>
               </div>
             </div>
-          </div>
 
-        </form>
-      </div><!-- /.contact-form-wrap -->
+            <!-- העלאת קבצים -->
+            <div class="upload-area-disabled-notice">
+              <i class="fa-solid fa-lock"></i>
+              <span>העלאת מסמכים תהיה זמינה בקרוב בצורה מאובטחת.<br>
+              לשליחת מסמכים כעת — <a href="https://wa.me/972528000556" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> פנו אלינו בווטסאפ</a></span>
+            </div>
+            <div class="upload-area">
 
+              <div class="upload-field">
+                <label class="upload-label">
+                  <i class="fa-solid fa-id-card"></i>
+                  תעודת זהות — צד קדמי <span class="required">*</span>
+                </label>
+                <div class="upload-box" id="box-id-front">
+                  <input type="file" id="id-front" name="תעודת זהות צד קדמי" accept="image/*,.pdf" disabled />
+                  <div class="upload-box-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+                  <div class="upload-box-text">לחצו להעלאה או גררו קובץ</div>
+                  <div class="upload-box-hint">JPG / PNG / PDF — עד 10MB</div>
+                </div>
+              </div>
 
-    </div><!-- /.contact-inner -->
+              <div class="upload-field">
+                <label class="upload-label">
+                  <i class="fa-regular fa-id-card"></i>
+                  תעודת זהות — צד אחורי <span class="required">*</span>
+                </label>
+                <div class="upload-box" id="box-id-back">
+                  <input type="file" id="id-back" name="תעודת זהות צד אחורי" accept="image/*,.pdf" disabled />
+                  <div class="upload-box-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+                  <div class="upload-box-text">לחצו להעלאה או גררו קובץ</div>
+                  <div class="upload-box-hint">JPG / PNG / PDF — עד 10MB</div>
+                </div>
+              </div>
+
+              <div class="upload-field">
+                <label class="upload-label">
+                  <i class="fa-solid fa-users"></i>
+                  ספח תעודת זהות (ת.ז.ב) <span class="required">*</span>
+                </label>
+                <div class="upload-box" id="box-spouse">
+                  <input type="file" id="spouse" name="ספח תעודת זהות" accept="image/*,.pdf" disabled />
+                  <div class="upload-box-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+                  <div class="upload-box-text">לחצו להעלאה או גררו קובץ</div>
+                  <div class="upload-box-hint">JPG / PNG / PDF — עד 10MB</div>
+                </div>
+              </div>
+
+            </div>
+
+            <button type="submit" class="docs-submit-btn">
+              <i class="fa-solid fa-paper-plane"></i>
+              שליחת הטופס והמסמכים
+            </button>
+            <p style="text-align:center;margin-top:.9rem;font-weight:800;color:var(--gold);font-size:1rem;">
+              <a href="https://wa.me/972528000556" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:none;">
+                <i class="fa-brands fa-whatsapp"></i> ניתן להשאיר פרטים בקלות גם בווטסאפ
+              </a>
+            </p>
+          </form>
+        </div>
+
+      </div>
+    </div>
   </section>
 
   <!-- ========== FOOTER ========== -->
   <footer class="site-footer">
     <div class="footer-top">
       <div class="container footer-top-inner">
-
-        <!-- Footer Brand -->
         <div class="footer-col footer-brand">
-          <a href="#home" class="footer-logo" aria-label="טל גבאי - מתכנן פיננסי לבכירים">
+          <a href="index.html" class="footer-logo">
             <span class="logo-main">טל גבאי</span>
             <span class="logo-sep">|</span>
             <span class="logo-sub">תכנון פיננסי</span>
           </a>
           <p class="footer-tagline">ליווי אישי וממוקד לבכירים</p>
         </div>
-
-        <!-- Quick Links -->
         <div class="footer-col">
           <h4 class="footer-col-title">קישורים מהירים</h4>
           <ul class="footer-links">
-            <li><a href="#home" class="footer-link"><i class="fa-solid fa-chevron-left"></i> דף הבית</a></li>
-            <li><a href="#about" class="footer-link"><i class="fa-solid fa-chevron-left"></i> אודותנו</a></li>
-            <li><a href="#services" class="footer-link"><i class="fa-solid fa-chevron-left"></i> שירותים</a></li>
-            <li><a href="#testimonials" class="footer-link"><i class="fa-solid fa-chevron-left"></i> המלצות</a></li>
-            <li><a href="#contact" class="footer-link"><i class="fa-solid fa-chevron-left"></i> צור קשר</a></li>
+            <li><a href="index.html" class="footer-link"><i class="fa-solid fa-chevron-left"></i> דף הבית</a></li>
+            <li><a href="index.html#about" class="footer-link"><i class="fa-solid fa-chevron-left"></i> אודותנו</a></li>
+            <li><a href="index.html#services" class="footer-link"><i class="fa-solid fa-chevron-left"></i> שירותים</a></li>
+            <li><a href="index.html#contact" class="footer-link"><i class="fa-solid fa-chevron-left"></i> צור קשר</a></li>
           </ul>
         </div>
-
-        <!-- Services Links -->
-        <div class="footer-col">
-          <h4 class="footer-col-title">השירותים שלנו</h4>
-          <ul class="footer-links">
-            <li><a href="#services" class="footer-link"><i class="fa-solid fa-chevron-left"></i> ביטוח חיים ובריאות</a></li>
-            <li><a href="#services" class="footer-link"><i class="fa-solid fa-chevron-left"></i> ביטוח משכנתא</a></li>
-            <li><a href="#services" class="footer-link"><i class="fa-solid fa-chevron-left"></i> ייעוץ פנסיוני</a></li>
-            <li><a href="#services" class="footer-link"><i class="fa-solid fa-chevron-left"></i> ביטוח מנהלים</a></li>
-            <li><a href="#services" class="footer-link"><i class="fa-solid fa-chevron-left"></i> ביטוח כללי</a></li>
-          </ul>
-        </div>
-
-        <!-- Footer Contact -->
         <div class="footer-col">
           <h4 class="footer-col-title">פרטי התקשרות</h4>
           <ul class="footer-contact-list">
-            <li>
-              <i class="fa-solid fa-phone footer-contact-icon"></i>
-              <span><a href="tel:074-7019277" class="footer-contact-link">074-7019277</a><br><a href="tel:052-8000556" class="footer-contact-link">052-8000556</a></span>
-            </li>
-            <li>
-              <i class="fa-solid fa-envelope footer-contact-icon"></i>
-              <span><a href="mailto:office@pf-invest.co.il" class="footer-contact-link">office@pf-invest.co.il</a><br><a href="mailto:tal@pf-invest.co.il" class="footer-contact-link">tal@pf-invest.co.il</a></span>
-            </li>
-            <li>
-              <i class="fa-solid fa-location-dot footer-contact-icon"></i>
-              <span>היצירה 19, רחובות</span>
-            </li>
+            <li><i class="fa-solid fa-location-dot footer-contact-icon"></i><span>היצירה 19, רחובות</span></li>
+            <li><i class="fa-solid fa-phone footer-contact-icon"></i><span><a href="tel:074-7019277" class="footer-contact-link">074-7019277</a></span></li>
+            <li><i class="fa-solid fa-envelope footer-contact-icon"></i><span><a href="mailto:office@pf-invest.co.il" class="footer-contact-link">office@pf-invest.co.il</a></span></li>
           </ul>
         </div>
-
-      </div><!-- /.footer-top-inner -->
-    </div><!-- /.footer-top -->
-
+      </div>
+    </div>
     <div class="footer-bottom">
       <div class="container footer-bottom-inner">
-        <p class="footer-copy">
-          &copy; 2026 טל גבאי - תכנון פיננסי מתקדם לבכירים. כל הזכויות שמורות.
-        </p>
-        <p class="footer-legal">
-          מורשה על ידי רשות שוק ההון, ביטוח וחיסכון
-        </p>
+        <p class="footer-copy">&copy; 2026 טל גבאי - תכנון פיננסי מתקדם לבכירים. כל הזכויות שמורות.</p>
+        <p class="footer-legal">מורשה על ידי רשות שוק ההון, ביטוח וחיסכון</p>
               <p class="footer-disclaimer">המידע באתר זה הינו למטרות הכרות כללית בלבד ואינו מהווה ייעוץ השקעות, ייעוץ פנסיוני, ייעוץ מס או המלצה כלשהי. אין להסתמך עליו ללא קבלת ייעוץ מקצועי המותאם לנסיבות האישיות.</p>
         <p class="footer-links-legal"><a href="accessibility.html" class="footer-legal-link">הצהרת נגישות</a><span class="footer-sep"> | </span><a href="privacy-policy.html" class="footer-legal-link">מדיניות פרטיות</a></p>
 </div>
     </div>
   </footer>
 
-  <!-- ========== WHATSAPP FLOATING BUTTON ========== -->
-  <a
-    href="https://wa.me/972528000556"
-    target="_blank"
-    rel="noopener noreferrer"
-    class="whatsapp-float"
-    aria-label="שלח הודעה בוואטסאפ"
-  >
+  <a href="https://wa.me/972528000556" target="_blank" rel="noopener noreferrer" class="whatsapp-float" aria-label="WhatsApp">
     <i class="fa-brands fa-whatsapp whatsapp-icon"></i>
-    <span class="whatsapp-tooltip">שלח הודעה</span>
   </a>
 
-  <!-- ========== BACK TO TOP ========== -->
-  <button class="back-to-top" id="back-to-top" aria-label="חזור לראש הדף">
-    <i class="fa-solid fa-chevron-up"></i>
-  </button>
-
-  <!-- Main Script -->
-  <script src="script.js"></script>
-
   <script>
-  /* ── Partners carousel drag-to-scroll ── */
-  document.querySelectorAll('.partners-track-wrap').forEach(wrap => {
-    const track = wrap.querySelector('.partners-track');
-    const isReverse = track.classList.contains('partners-track-reverse');
-    const DURATION = 36000; // ms — matches CSS
-
-    let dragging = false, startX = 0, startAnimX = 0;
-
-    function getCurrentX() {
-      return new DOMMatrix(getComputedStyle(track).transform).m41;
-    }
-    function clientX(e) {
-      return e.touches ? e.touches[0].clientX : e.clientX;
-    }
-
-    function onStart(e) {
-      dragging = true;
-      track.style.animationPlayState = 'paused';
-      startX    = clientX(e);
-      startAnimX = getCurrentX();
-      if (!e.touches) e.preventDefault();
-    }
-
-    function onMove(e) {
-      if (!dragging) return;
-      const dx = clientX(e) - startX;
-      track.style.transform = `translateX(${startAnimX + dx}px)`;
-    }
-
-    function onEnd() {
-      if (!dragging) return;
-      dragging = false;
-      const cur      = getCurrentX();
-      const halfW    = track.scrollWidth / 2;
-      const progress = ((Math.abs(cur) % halfW) / halfW);
-      const delay    = isReverse ? -(( 1 - progress) * DURATION) : -(progress * DURATION);
-      track.style.transform      = '';
-      track.style.animationDelay = `${delay}ms`;
-      track.style.animationPlayState = 'running';
-    }
-
-    wrap.addEventListener('touchstart', onStart, { passive: true });
-    wrap.addEventListener('touchmove',  onMove,  { passive: true });
-    wrap.addEventListener('touchend',   onEnd);
-    wrap.addEventListener('mousedown',  onStart);
-    wrap.addEventListener('mousemove',  onMove);
-    wrap.addEventListener('mouseup',    onEnd);
-    wrap.addEventListener('mouseleave', onEnd);
-    wrap.style.cursor = 'grab';
-  });
-  </script>
-
-  <script>
-  /* ── Team orbit animation ── */
-  (function() {
-    const scene = document.querySelector('.team-orbit-scene');
-    const members = Array.from(document.querySelectorAll('.orbit-oval'));
-    if (!scene || !members.length) return;
-    const DURATION = 33000;
-    let startTime = null;
-    let paused = false;
-    let pauseStart = 0, pausedTotal = 0;
-
-    function getAxes() {
-      const w = scene.offsetWidth;
-      const a = Math.min(Math.round(w * 0.42), 380);
-      const b = Math.round(a * 0.42);
-      return { a, b };
-    }
-
-    function step(ts) {
-      if (window.innerWidth <= 768) {
-        members.forEach(el => { el.style.transform = ''; el.style.top = ''; el.style.left = ''; });
-        requestAnimationFrame(step);
-        return;
-      }
-      if (!startTime) startTime = ts;
-      if (!paused) {
-        const { a, b } = getAxes();
-        const elapsed = ts - startTime - pausedTotal;
-        const baseAngle = (elapsed / DURATION) * 2 * Math.PI;
-        members.forEach((el, i) => {
-          const theta = baseAngle + (i / members.length) * 2 * Math.PI;
-          const x = a * Math.cos(theta);
-          const y = b * Math.sin(theta);
-          el.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`;
-        });
-      }
-      requestAnimationFrame(step);
-    }
-
-    members.forEach(el => {
-      el.addEventListener('mouseenter', () => { paused = true; pauseStart = performance.now(); });
-      el.addEventListener('mouseleave', () => { pausedTotal += performance.now() - pauseStart; paused = false; });
+    /* Hamburger */
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    hamburger.addEventListener('click', () => {
+      const open = mobileMenu.classList.toggle('open');
+      hamburger.setAttribute('aria-expanded', open);
+      mobileMenu.setAttribute('aria-hidden', !open);
     });
 
-    requestAnimationFrame(step);
-  })();
+    /* Upload box visual feedback */
+    document.querySelectorAll('.upload-box').forEach(box => {
+      const input = box.querySelector('input[type="file"]');
+      input.addEventListener('change', () => {
+        if (input.files && input.files[0]) {
+          box.classList.add('has-file');
+          box.querySelector('.upload-box-text').textContent = input.files[0].name;
+          box.querySelector('.upload-box-icon i').className = 'fa-solid fa-circle-check';
+        }
+      });
+    });
+
+    /* Form submit via FormSubmit */
+    document.getElementById('docs-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const btn = this.querySelector('.docs-submit-btn');
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> שולח...';
+
+      const formData = new FormData(this);
+      formData.append('_cc', 'tal@pf-invest.co.il');
+      formData.append('_subject', 'מסמכים חדשים התקבלו - טל גבאי פיננסים');
+      formData.append('_captcha', 'false');
+
+      try {
+        const res = await fetch('https://formsubmit.co/ajax/office@pf-invest.co.il', {
+          method: 'POST',
+          body: formData
+        });
+        if (res.ok) {
+          document.getElementById('docs-form-wrap').style.display = 'none';
+          const success = document.getElementById('docs-success');
+          success.style.display = 'flex';
+        } else {
+          throw new Error();
+        }
+      } catch {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> שליחת הטופס והמסמכים';
+        alert('אירעה שגיאה בשליחה. נסו שוב או פנו אלינו ישירות.');
+      }
+    });
   </script>
 
   <!-- ========== ACCESSIBILITY WIDGET ========== -->
