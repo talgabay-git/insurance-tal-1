@@ -30,6 +30,7 @@
 html {
   scroll-behavior: smooth;
   font-size: 16px;
+  overflow-x: hidden;
 }
 
 body {
@@ -215,6 +216,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   }
   .hero-content { flex-direction: column; text-align: center; padding-block: 3.5rem; }
   .hero-badge { display: none; }
+  .hero-title { white-space: normal; font-size: clamp(1.4rem, 5vw, 2.2rem); }
 }
 
 /* Nav */
@@ -364,8 +366,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     url('https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=1600&q=80') center/cover no-repeat;
   background-attachment: scroll;
   overflow: hidden;
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
 }
 .hero-overlay {
   position: absolute;
