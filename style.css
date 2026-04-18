@@ -328,6 +328,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .mobile-nav-link:last-child { border-bottom: none; }
 .mobile-nav-link:hover { color: var(--gold); }
+.mobile-nav-list li:nth-child(odd) > .mobile-nav-link { color: var(--gold); }
+.mobile-nav-list li:nth-child(even) > .mobile-nav-link { color: var(--white); }
 .mobile-phone { color: var(--gold) !important; direction: ltr; justify-content: flex-end; }
 
 /* ============================================================
