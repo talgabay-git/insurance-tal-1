@@ -210,6 +210,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     left: 50%;
     transform: translateX(-50%);
   }
+  .hero { background-attachment: scroll; }
+  .hero-content { flex-direction: column; text-align: center; padding-block: 3.5rem; }
+  .hero-badge { display: none; }
 }
 
 /* Nav */
