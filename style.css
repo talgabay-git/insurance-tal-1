@@ -1346,9 +1346,13 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   width: max-content;
   animation: scrollPartners 36s linear infinite;
   pointer-events: none;
+  will-change: transform;
+  backface-visibility: hidden;
 }
 .partners-track-reverse {
   animation: scrollPartnersReverse 36s linear infinite;
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
 @keyframes scrollPartners {
