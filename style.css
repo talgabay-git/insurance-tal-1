@@ -1204,8 +1204,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .hero-title { font-size: clamp(1.4rem, 5vw, 2rem); white-space: normal; }
   .hero-subtitle { margin-inline: auto; font-size: clamp(1.1rem, 4vw, 1.5rem); }
 
-  .about { padding-top: 2.5rem; }
-  .about-inner { grid-template-columns: 1fr; padding-top: calc(24vw + 1rem); }
+  .about { padding-top: 3.75rem; }
+  .about-inner { grid-template-columns: 1fr; padding-top: calc(36vw + 1.5rem); }
   .about-image-wrap { order: -1; }
   .about-badge-img { bottom: -1rem; left: -0.5rem; }
   .about-content .section-title { text-align: center; }
