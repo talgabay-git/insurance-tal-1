@@ -885,15 +885,34 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
    TESTIMONIALS
    ============================================================ */
 .testimonials { padding: 5rem 0; background: var(--white); }
-.testimonials-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+.testimonials-carousel-wrap {
+  overflow: hidden;
+  direction: ltr;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  pointer-events: none;
+  user-select: none;
+}
+.testimonials-track {
+  display: flex;
   gap: 1.5rem;
+  width: max-content;
+  animation: scrollTestimonials 45s linear infinite;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+@keyframes scrollTestimonials {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 .testimonial-card {
   background: var(--white);
   border-radius: var(--radius-lg);
   padding: 2rem;
+  min-width: 340px;
+  max-width: 340px;
+  direction: rtl;
+  flex-shrink: 0;
   box-shadow: var(--shadow-sm);
   position: relative;
   transition: var(--transition);
@@ -1260,7 +1279,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 @media (max-width: 480px) {
   .services-grid { grid-template-columns: 1fr; }
   .form-row-4 { grid-template-columns: 1fr; }
-  .testimonials-grid { grid-template-columns: 1fr; }
+  .testimonials-track .testimonial-card { min-width: 290px; max-width: 290px; }
   .team-grid { grid-template-columns: 1fr; max-width: 240px; margin-inline: auto; }
   .hero-badge { display: none; }
   .hero-title { font-size: clamp(1.6rem, 8vw, 2.2rem); }
