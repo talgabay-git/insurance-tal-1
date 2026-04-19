@@ -542,6 +542,16 @@
 
         </div>
       </div><!-- /.testimonials-carousel-wrap -->
+      <script>
+      (function(){
+        var wrap = document.querySelector('.testimonials-carousel-wrap');
+        var track = document.querySelector('.testimonials-track');
+        if(!wrap || !track) return;
+        wrap.addEventListener('touchstart', function(){ track.style.animationDuration = '110s'; }, {passive:true});
+        wrap.addEventListener('touchend',   function(){ track.style.animationDuration = ''; }, {passive:true});
+        wrap.addEventListener('touchcancel',function(){ track.style.animationDuration = ''; }, {passive:true});
+      })();
+      </script>
     </div><!-- /.container -->
   </section>
 
