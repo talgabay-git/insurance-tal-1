@@ -624,7 +624,7 @@
           if (!lastTs) lastTs = ts;
           var dt = Math.min((ts - lastTs) / 1000, 0.1);
           lastTs = ts;
-          pos -= pxPerSec() * (touching ? 0.5 : 1) * dt;
+          pos -= pxPerSec() * (touching ? 0.4 : 1) * dt;
           if (halfWidth > 0 && pos <= -halfWidth) pos += halfWidth;
           track.style.transform = 'translateX(' + pos + 'px)';
           requestAnimationFrame(tick);
