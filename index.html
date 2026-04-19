@@ -82,7 +82,7 @@
           <li><a href="financial-planning.html" class="nav-link" style="font-weight:700;color:var(--white)">תכנון פיננסי</a></li>
           <li><a href="retirement-planning.html" class="nav-link" style="color:var(--gold);font-weight:700">תכנון פרישה</a></li>
           <li><a href="early-retirement.html" class="nav-link">פרישה מוקדמת</a></li>
-          <li><a href="family-office.html" class="nav-link" style="font-weight:700;color:var(--gold)">Family Office</a></li>
+          <li><a href="family-office.html" class="nav-link" style="font-weight:700;color:var(--gold)"><span lang="en">Family Office</span></a></li>
           <li><a href="market-status.html" class="nav-link">תמונת מצב לשווקים</a></li>
           <li><a href="checkup.html" class="nav-link" style="color:var(--gold);font-weight:700">צ'ק אפ פיננסי</a></li>
           <li><a href="documents.html" class="nav-link">מסלקה פנסיונית</a></li>
@@ -91,7 +91,7 @@
 
       <!-- Left: כניסה לאיזור אישי + שפה -->
       <div class="header-left" style="display:flex;align-items:center;gap:.6rem;">
-        <a href="en/index.html" title="English" aria-label="Switch to English" style="font-size:1.47rem;text-decoration:none;line-height:1;color:var(--gold);font-weight:700;letter-spacing:.03em;">EN</a>
+        <a href="en/index.html" title="English" aria-label="Switch to English" lang="en" style="font-size:1.47rem;text-decoration:none;line-height:1;color:var(--gold);font-weight:700;letter-spacing:.03em;">EN</a>
         <a href="https://portal.roeto.co.il/pfinvest/login" class="btn-personal-area" target="_blank" rel="noopener"><i class="fa-solid fa-key"></i> כניסה לאיזור אישי</a>
       </div>
 
@@ -109,11 +109,11 @@
         <li><a href="index.html" class="mobile-nav-link">דף הבית</a></li>
         <li><a href="financial-planning.html" class="mobile-nav-link">תכנון פיננסי</a></li>
         <li><a href="retirement-planning.html" class="mobile-nav-link">תכנון פרישה</a></li>
-        <li><a href="family-office.html" class="mobile-nav-link" style="font-weight:700">Family Office</a></li>
+        <li><a href="family-office.html" class="mobile-nav-link" style="font-weight:700"><span lang="en">Family Office</span></a></li>
         <li><a href="checkup.html" class="mobile-nav-link" style="font-weight:700">צ'ק אפ פיננסי</a></li>
         <li><a href="documents.html" class="mobile-nav-link">מסלקה פנסיונית</a></li>
         <li><a href="tel:052-8000556" class="mobile-nav-link mobile-phone"><i class="fa-solid fa-phone"></i> 052-8000556</a></li>
-        <li><a href="https://wa.me/9720528000556" class="mobile-nav-link"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a></li>
+        <li><a href="https://wa.me/9720528000556" class="mobile-nav-link"><i class="fa-brands fa-whatsapp"></i> <span lang="en">WhatsApp</span></a></li>
       </ul>
     </nav>
   </header>
@@ -287,7 +287,7 @@
     <!-- Full Bio -->
     <div class="container about-bio fade-in-up">
 
-      <p class="about-bio-intro"><strong>טל גבאי</strong>, מתכנן פיננסי בכיר, מתכנן פרישה<br>בעל תואר שני M.B.A במנהל עסקים</p>
+      <p class="about-bio-intro"><strong>טל גבאי</strong>, מתכנן פיננסי בכיר, מתכנן פרישה<br>בעל תואר שני <span lang="en">M.B.A</span> במנהל עסקים</p>
 
       <p>המסע המקצועי שלי בעולמות הכסף התחיל בלב העשייה הפיננסית בישראל. בשנת 2006 כיהנתי כמנהל בבית ההשקעות אקסלנס, שם רכשתי הבנה מעמיקה וייחודית על הדרך שבה שוק ההון פועל "מאחורי הקלעים". הניסיון שצברתי בניהול מערכות השקעה מורכבות העניק לי את הכלים לנתח לעומק כל הזדמנות פיננסית ולפעול מתוך ראייה אסטרטגית רחבה.</p>
 
@@ -303,7 +303,7 @@
       </ul>
 
       <h3 class="about-bio-heading">למה לבחור בליווי שלנו?</h3>
-      <p><strong>השילוב בין השכלה אקדמית רחבה (M.B.A) לבין ניסיון שטח של מעל 2 עשורים, מאפשר לי להעניק לכם:</strong></p>
+      <p><strong>השילוב בין השכלה אקדמית רחבה (<span lang="en">M.B.A</span>) לבין ניסיון שטח של מעל 2 עשורים, מאפשר לי להעניק לכם:</strong></p>
 
       <ul class="about-bio-list">
         <li><strong>מבט מערכתי הוליסטי:</strong> הבנה מעמיקה במוצרים פיננסיים, פנסיוניים ומיסויים, וחיבורם לתמונה משפחתית אחת שלמה.</li>
@@ -526,12 +526,12 @@
           <div class="form-row form-row-4">
             <div class="form-group">
               <label for="name" class="form-label">שם מלא <span class="required" aria-hidden="true">*</span></label>
-              <input type="text" id="name" name="name" class="form-input" placeholder="ישראל ישראלי" required autocomplete="name" />
+              <input type="text" id="name" name="name" class="form-input" placeholder="ישראל ישראלי" required aria-required="true" autocomplete="name" />
               <span class="form-error" id="name-error" role="alert"></span>
             </div>
             <div class="form-group">
               <label for="phone" class="form-label">טלפון <span class="required" aria-hidden="true">*</span></label>
-              <input type="tel" id="phone" name="phone" class="form-input" placeholder="05X-XXXXXXX" required autocomplete="tel" />
+              <input type="tel" id="phone" name="phone" class="form-input" placeholder="05X-XXXXXXX" required aria-required="true" autocomplete="tel" />
               <span class="form-error" id="phone-error" role="alert"></span>
             </div>
             <div class="form-group">
@@ -541,7 +541,7 @@
             </div>
             <div class="form-group">
               <label for="subject" class="form-label">נושא <span class="required" aria-hidden="true">*</span></label>
-              <select id="subject" name="subject" class="form-input form-select" required>
+              <select id="subject" name="subject" class="form-input form-select" required aria-required="true">
                 <option value="" disabled selected>בחר נושא פנייה</option>
                 <option value="checkup">צ'ק אפ פיננסי</option>
                 <option value="investment">השקעה של כסף פנוי</option>
@@ -788,7 +788,7 @@
 
   <!-- Photo Modal -->
   <div class="photo-modal" id="photo-modal" role="dialog" aria-modal="true" aria-label="תמונת טל גבאי">
-    <span class="photo-modal-close" id="photo-modal-close" aria-label="סגור">&times;</span>
+    <button class="photo-modal-close" id="photo-modal-close" aria-label="סגור" type="button">&times;</button>
     <img src="tal.jpg" alt="טל גבאי — מתכנן פיננסי לבכירים" />
   </div>
   <script>
@@ -820,7 +820,7 @@
 
 
   <!-- ===== COOKIE CONSENT BANNER ===== -->
-  <div id="cookie-banner" role="dialog" aria-label="הסכמה לעוגיות" aria-live="polite" style="display:none;position:fixed;bottom:0;right:0;left:0;z-index:99999;background:#0d1e35;color:#fff;padding:1rem 1.5rem;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.75rem;box-shadow:0 -2px 12px rgba(0,0,0,.35);font-family:'Heebo',sans-serif;font-size:.92rem;line-height:1.5;">
+  <div id="cookie-banner" role="dialog" aria-label="הסכמה לעוגיות" aria-live="polite" style="display:none;position:fixed;bottom:0;right:0;left:0;z-index:99999;background:#0d1e35;color:#fff;padding:1rem 1.5rem;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.75rem;box-shadow:0 -2px 12px rgba(0,0,0,.35);font-family:'Heebo',sans-serif;font-size:.92rem;line-height:1.5;">
     <p style="margin:0;flex:1 1 260px;">אתר זה משתמש ב<strong>Google Analytics</strong> לצורך ניתוח תנועת גולשים בלבד. לא נאסף מידע אישי מזהה. <a href="privacy-policy.html" style="color:#c9a84c;text-decoration:underline;">מדיניות פרטיות</a></p>
     <div style="display:flex;gap:.6rem;flex-shrink:0;">
       <button id="cookie-accept" style="background:#c9a84c;color:#0d1e35;border:none;border-radius:6px;padding:.45rem 1.1rem;font-weight:700;cursor:pointer;font-size:.9rem;">אני מסכים</button>

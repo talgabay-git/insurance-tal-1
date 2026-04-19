@@ -1742,5 +1742,8 @@ body.text-spacing th {
   cursor: pointer;
   line-height: 1;
   transition: var(--transition);
+  background: none;
+  border: none;
+  padding: 0;
 }
 .photo-modal-close:hover { color: var(--white); }
