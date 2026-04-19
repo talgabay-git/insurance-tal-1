@@ -1279,7 +1279,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .services-grid { grid-template-columns: 1fr; }
   .form-row-4 { grid-template-columns: 1fr; }
   .testimonials-track .testimonial-card { min-width: 290px; max-width: 290px; }
-  .testimonials-track { animation-duration: 22s; }
+  .testimonials-track { animation-duration: 23s; }
   .team-grid { grid-template-columns: 1fr; max-width: 240px; margin-inline: auto; }
   .hero-badge { display: none; }
   .hero-title { font-size: clamp(1.6rem, 8vw, 2.2rem); }

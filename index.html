@@ -591,9 +591,18 @@
         var wrap = document.querySelector('.testimonials-carousel-wrap');
         var track = document.querySelector('.testimonials-track');
         if(!wrap || !track) return;
-        wrap.addEventListener('touchstart', function(){ track.style.animationDuration = '110s'; }, {passive:true});
-        wrap.addEventListener('touchend',   function(){ track.style.animationDuration = ''; }, {passive:true});
-        wrap.addEventListener('touchcancel',function(){ track.style.animationDuration = ''; }, {passive:true});
+        var NORMAL = 23, SLOW = 46; // seconds
+        function applyDuration(dur) {
+          var matrix = new DOMMatrix(window.getComputedStyle(track).transform);
+          var tx = matrix.m41;
+          var range = track.getBoundingClientRect().width * 0.5;
+          var frac = range > 0 ? Math.min(1, Math.max(0, Math.abs(tx) / range)) : 0;
+          track.style.animationDelay = -(frac * dur) + 's';
+          track.style.animationDuration = dur + 's';
+        }
+        wrap.addEventListener('touchstart',  function(){ applyDuration(SLOW);   }, {passive:true});
+        wrap.addEventListener('touchend',    function(){ applyDuration(NORMAL); }, {passive:true});
+        wrap.addEventListener('touchcancel', function(){ applyDuration(NORMAL); }, {passive:true});
       })();
       </script>
     </div><!-- /.container -->
