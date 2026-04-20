@@ -834,7 +834,7 @@
         var track = document.querySelector('.testimonials-track');
         if (!wrap || !track) return;
 
-        var pos = 0, halfWidth = 0, touching = false, lastTs = null;
+        var pos = 0, halfWidth = 0, touching = false, hovering = false, lastTs = null;
 
         function pxPerSec() {
           return halfWidth / (window.innerWidth <= 768 ? 23 : 77.8);
@@ -844,7 +844,8 @@
           if (!lastTs) lastTs = ts;
           var dt = Math.min((ts - lastTs) / 1000, 0.1);
           lastTs = ts;
-          pos -= pxPerSec() * (touching ? 0.4 : 1) * dt;
+          var factor = touching ? 0.4 : (hovering ? 0.5 : 1);
+          pos -= pxPerSec() * factor * dt;
           if (halfWidth > 0 && pos <= -halfWidth) pos += halfWidth;
           track.style.transform = 'translateX(' + pos + 'px)';
           requestAnimationFrame(tick);
@@ -865,6 +866,9 @@
         wrap.addEventListener('touchstart',  function() { touching = true;  }, {passive: true});
         wrap.addEventListener('touchend',    function() { touching = false; }, {passive: true});
         wrap.addEventListener('touchcancel', function() { touching = false; }, {passive: true});
+
+        wrap.addEventListener('mouseenter', function() { hovering = true;  });
+        wrap.addEventListener('mouseleave', function() { hovering = false; });
 
         if (document.readyState === 'complete') { start(); }
         else { window.addEventListener('load', start); }
