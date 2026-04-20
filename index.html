@@ -835,18 +835,28 @@
         if (!wrap || !track) return;
 
         var pos = 0, halfWidth = 0, touching = false, hovering = false, lastTs = null;
+        var dragging = false, dragStartX = 0, dragStartPos = 0;
 
         function pxPerSec() {
           return halfWidth / (window.innerWidth <= 768 ? 23 : 77.8);
+        }
+
+        function wrapPos(p) {
+          if (!halfWidth) return p;
+          while (p <= -halfWidth) p += halfWidth;
+          while (p > 0) p -= halfWidth;
+          return p;
         }
 
         function tick(ts) {
           if (!lastTs) lastTs = ts;
           var dt = Math.min((ts - lastTs) / 1000, 0.1);
           lastTs = ts;
-          var factor = touching ? 0.4 : (hovering ? 0.5 : 1);
-          pos -= pxPerSec() * factor * dt;
-          if (halfWidth > 0 && pos <= -halfWidth) pos += halfWidth;
+          if (!dragging) {
+            var factor = touching ? 0.4 : (hovering ? 0.5 : 1);
+            pos -= pxPerSec() * factor * dt;
+            pos = wrapPos(pos);
+          }
           track.style.transform = 'translateX(' + pos + 'px)';
           requestAnimationFrame(tick);
         }
@@ -854,6 +864,7 @@
         function start() {
           halfWidth = track.offsetWidth / 2;
           track.style.animation = 'none';
+          wrap.style.cursor = 'grab';
           requestAnimationFrame(tick);
         }
 
@@ -867,8 +878,26 @@
         wrap.addEventListener('touchend',    function() { touching = false; }, {passive: true});
         wrap.addEventListener('touchcancel', function() { touching = false; }, {passive: true});
 
-        wrap.addEventListener('mouseenter', function() { hovering = true;  });
+        wrap.addEventListener('mouseenter', function() { if (!dragging) hovering = true;  });
         wrap.addEventListener('mouseleave', function() { hovering = false; });
+
+        wrap.addEventListener('mousedown', function(e) {
+          dragging = true;
+          dragStartX = e.clientX;
+          dragStartPos = pos;
+          wrap.style.cursor = 'grabbing';
+          e.preventDefault();
+        });
+        document.addEventListener('mousemove', function(e) {
+          if (!dragging) return;
+          pos = wrapPos(dragStartPos + (e.clientX - dragStartX));
+        });
+        document.addEventListener('mouseup', function() {
+          if (!dragging) return;
+          dragging = false;
+          hovering = false;
+          wrap.style.cursor = 'grab';
+        });
 
         if (document.readyState === 'complete') { start(); }
         else { window.addEventListener('load', start); }
