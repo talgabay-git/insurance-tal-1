@@ -835,7 +835,7 @@
         if (!wrap || !track) return;
 
         var pos = 0, halfWidth = 0, touching = false, hovering = false, lastTs = null;
-        var dragging = false, dragStartX = 0, dragStartPos = 0;
+        var dragging = false, dragLastX = 0;
 
         function pxPerSec() {
           return halfWidth / (window.innerWidth <= 768 ? 23 : 77.8);
@@ -883,14 +883,20 @@
 
         wrap.addEventListener('mousedown', function(e) {
           dragging = true;
-          dragStartX = e.clientX;
-          dragStartPos = pos;
+          dragLastX = e.clientX;
           wrap.style.cursor = 'grabbing';
           e.preventDefault();
         });
         document.addEventListener('mousemove', function(e) {
           if (!dragging) return;
-          pos = wrapPos(dragStartPos + (e.clientX - dragStartX));
+          var dx = e.clientX - dragLastX;
+          dragLastX = e.clientX;
+          pos += dx;
+          // seamless infinite wrap: shift pos without visual jump
+          if (halfWidth > 0) {
+            if (pos > 0)          pos -= halfWidth;
+            else if (pos <= -halfWidth) pos += halfWidth;
+          }
         });
         document.addEventListener('mouseup', function() {
           if (!dragging) return;
