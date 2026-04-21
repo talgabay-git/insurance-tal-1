@@ -393,7 +393,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   margin-bottom: 1.2rem;
   white-space: nowrap;
   text-align: center;
+  transition: color 0.3s ease;
 }
+.hero-title:hover { color: var(--gold); }
 .hero-title em {
   font-style: normal;
   color: var(--gold);
@@ -405,7 +407,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   color: var(--white);
   margin-bottom: 2.2rem;
   text-align: center;
+  transition: color 0.3s ease;
 }
+.hero-subtitle:hover { color: var(--gold); }
 .hero-badge {
   flex-shrink: 0;
 }
