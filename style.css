@@ -1253,6 +1253,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .hero-subtitle { margin-inline: auto; font-size: clamp(1.1rem, 4vw, 1.5rem); }
 
   .about { padding-top: 4.5rem; }
+  .about::before { background-position: center top; }
   .about-inner { grid-template-columns: 1fr; padding-top: calc(42vw + 1.75rem); }
   .about-bio-intro + p { margin-top: 1rem; }
   .about-image-wrap { order: -1; }
