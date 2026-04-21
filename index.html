@@ -875,6 +875,7 @@
 
         var pos = 0, halfWidth = 0, touching = false, hovering = false, lastTs = null;
         var dragging = false, dragLastX = 0;
+        var touchDragging = false, touchLastX = 0;
 
         function pxPerSec() {
           return halfWidth / (window.innerWidth <= 768 ? 23 : 77.8);
@@ -891,7 +892,7 @@
           if (!lastTs) lastTs = ts;
           var dt = Math.min((ts - lastTs) / 1000, 0.1);
           lastTs = ts;
-          if (!dragging) {
+          if (!dragging && !touchDragging) {
             var factor = touching ? 0.4 : (hovering ? 0.5 : 1);
             pos -= pxPerSec() * factor * dt;
             pos = wrapPos(pos);
@@ -913,9 +914,23 @@
           halfWidth = h;
         });
 
-        wrap.addEventListener('touchstart',  function() { touching = true;  }, {passive: true});
-        wrap.addEventListener('touchend',    function() { touching = false; }, {passive: true});
-        wrap.addEventListener('touchcancel', function() { touching = false; }, {passive: true});
+        wrap.addEventListener('touchstart', function(e) {
+          touching = true;
+          touchDragging = true;
+          touchLastX = e.touches[0].clientX;
+        }, {passive: true});
+        wrap.addEventListener('touchmove', function(e) {
+          if (!touchDragging) return;
+          var dx = e.touches[0].clientX - touchLastX;
+          touchLastX = e.touches[0].clientX;
+          pos += dx;
+          if (halfWidth > 0) {
+            if (pos > 0)               pos -= halfWidth;
+            else if (pos <= -halfWidth) pos += halfWidth;
+          }
+        }, {passive: true});
+        wrap.addEventListener('touchend',    function() { touchDragging = false; touching = false; }, {passive: true});
+        wrap.addEventListener('touchcancel', function() { touchDragging = false; touching = false; }, {passive: true});
 
         wrap.addEventListener('mouseenter', function() { if (!dragging) hovering = true;  });
         wrap.addEventListener('mouseleave', function() { hovering = false; });
