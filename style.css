@@ -1363,12 +1363,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   overflow: hidden;
 }
 .partners .section-header { margin-bottom: 2.5rem; }
-.partners .section-title {
-  display: inline-block;
-  transition: transform 0.3s ease;
-  cursor: default;
-}
-.partners .section-title:hover { transform: scale(1.5); }
 .partners-tagline {
   font-family: 'Heebo', sans-serif;
   font-size: clamp(1.1rem, 2.4vw, 1.45rem);
@@ -1377,11 +1371,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   letter-spacing: 0.06em;
   margin-top: 0.4rem;
   text-align: center;
-  display: inline-block;
-  transition: transform 0.3s ease;
-  cursor: default;
 }
-.partners-tagline:hover { transform: scale(1.5); }
 
 .partners-track-wrap {
   overflow: hidden;
