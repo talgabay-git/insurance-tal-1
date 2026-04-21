@@ -485,17 +485,17 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   font-weight: 800;
   color: var(--gold);
   line-height: 1;
-  transition: color 0.3s ease;
+  transition: color 0.3s ease, font-size 0.3s ease;
 }
-.stat-item:hover .stat-number { color: var(--white); }
+.stat-item:hover .stat-number { color: var(--white); font-size: 3rem; }
 .stat-plus { font-size: 1.3rem; }
 .stat-label {
   font-size: .88rem;
   color: rgba(255,255,255,.75);
   font-weight: 500;
-  transition: color 0.3s ease;
+  transition: color 0.3s ease, font-size 0.3s ease;
 }
-.stat-item:hover .stat-label { color: var(--white); }
+.stat-item:hover .stat-label { color: var(--white); font-size: 1.32rem; }
 .stat-divider {
   width: 1px;
   height: 40px;
