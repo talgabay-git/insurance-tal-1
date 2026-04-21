@@ -667,7 +667,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   font-size: 1rem;
 }
 .about-bio p { margin-bottom: 1.25rem; text-align: center; }
-.about-bio-intro + p { margin-top: 0.5cm; }
+.about-bio-intro + p { margin-top: 0.7cm; }
 .about-bio-intro {
   font-size: 1.1rem;
   font-weight: 700;
