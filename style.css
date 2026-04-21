@@ -705,6 +705,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   padding-right: 0;
 }
 .about-bio-list li { line-height: 1.75; }
+br.mobile-br { display: none; }
 .about-bio-closing {
   font-weight: 400;
   font-size: 1.15rem;
@@ -1256,6 +1257,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .about::before { background-position: center top; }
   .about-inner { grid-template-columns: 1fr; padding-top: calc(42vw + 1.75rem - 1cm); }
   .about-bio-intro + p { margin-top: 1rem; }
+  br.mobile-br { display: inline; }
   .about-image-wrap { order: -1; }
   .about-badge-img { bottom: -1rem; left: -0.5rem; }
   .about-content .section-title { text-align: center; }
