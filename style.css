@@ -591,7 +591,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   max-width: 600px;
   margin-inline: auto;
   text-align: center;
-  padding-top: 3rem;
+  padding-top: 30vw;
 }
 .about-image-wrap {
   width: 100%;
