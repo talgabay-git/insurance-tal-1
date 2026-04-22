@@ -196,7 +196,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   flex-shrink: 0;
   line-height: 1;
 }
-.header-logo .logo-main { font-size: 1.68rem; font-weight: 800; color: var(--white); }
+.header-logo .logo-main { font-size: 1.68rem; font-weight: 800; color: var(--white); cursor: pointer; }
+.header-logo .logo-main:hover { color: var(--gold); }
 .header-logo .logo-sep  { color: var(--gold); font-size: 1rem; font-weight: 300; margin: 0 .35rem; }
 .header-logo .logo-sub  { font-size: 1.52rem; font-weight: 700; color: var(--gold); white-space: nowrap; }
 @media (max-width: 900px) {
@@ -1777,13 +1778,31 @@ body.text-spacing th {
   cursor: pointer;
 }
 .photo-modal.open { display: flex; }
-.photo-modal img {
-  max-width: min(720px, 92vw);
-  max-height: 88vh;
+.tal-card {
+  background: #0d1e35;
+  border: 2px solid var(--gold);
   border-radius: var(--radius-lg);
-  box-shadow: 0 20px 60px rgba(0,0,0,.6);
-  object-fit: contain;
+  padding: 3rem 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.1rem;
   cursor: default;
+  box-shadow: 0 20px 60px rgba(0,0,0,.6);
+  min-width: 340px;
+}
+.tal-card-name {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: .04em;
+}
+.tal-card-title {
+  font-size: clamp(1rem, 2.5vw, 1.3rem);
+  color: var(--gold);
+  font-weight: 400;
+  text-align: center;
+  line-height: 1.5;
 }
 .photo-modal-close {
   position: absolute;
