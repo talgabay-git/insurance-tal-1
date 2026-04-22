@@ -1783,9 +1783,9 @@ body.text-spacing th {
 .team-oval-lead-center { position: relative; cursor: pointer; }
 .tal-popup {
   position: absolute;
-  bottom: calc(100% + 14px);
+  top: calc(100% + 14px);
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%) translateY(-6px);
   width: 190px;
   border-radius: 12px;
   overflow: hidden;
@@ -1793,7 +1793,6 @@ body.text-spacing th {
   opacity: 0;
   pointer-events: none;
   transition: opacity .22s ease, transform .22s ease;
-  transform: translateX(-50%) translateY(6px);
   z-index: 500;
 }
 .team-oval-lead-center:hover .tal-popup,
