@@ -459,14 +459,18 @@
   <script>
   (function(){
     var btn = document.querySelector('.page-cta .btn-gold');
-    var timer;
     if (!btn) return;
+    var opened = false;
     btn.addEventListener('mouseenter', function() {
-      timer = setTimeout(function() {
+      if (opened) return;
+      setTimeout(function() {
+        opened = true;
         document.getElementById('meeting-modal').classList.add('open');
-      }, 1000);
+      }, 400);
     });
-    btn.addEventListener('mouseleave', function() { clearTimeout(timer); });
+    document.getElementById('meeting-modal').addEventListener('click', function(e) {
+      if (e.target === this) { this.classList.remove('open'); opened = false; }
+    });
   })();
   </script>
 </body>
