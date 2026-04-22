@@ -161,7 +161,8 @@
       justify-content: center;
       padding: 1rem;
     }
-    .modal-overlay.open { opacity: 1; visibility: visible; pointer-events: auto; transition: opacity .75s ease, visibility 0s; }
+    .modal-overlay.open { display: flex; animation: modalFadeIn .75s ease; }
+    @keyframes modalFadeIn { from { opacity:0; } to { opacity:1; } }
     .modal-box {
       background: var(--white);
       border-radius: var(--radius-lg);
