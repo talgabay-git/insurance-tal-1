@@ -32,9 +32,10 @@
     .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
     .btn-white { background: var(--white); color: var(--navy); font-weight: 800; }
     .btn-white:hover { background: var(--off-white); }
-    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.6); z-index: 2000; align-items: center; justify-content: center; padding: 1rem; }
-    .modal-overlay.open { display: flex; }
-    .modal-box { background: var(--white); border-radius: var(--radius-lg); padding: 2.2rem 2rem; width: 100%; max-width: 500px; max-height: 90vh; overflow-y: auto; position: relative; box-shadow: var(--shadow-lg); }
+    .modal-overlay { display: flex; opacity: 0; visibility: hidden; pointer-events: none; transition: opacity .75s ease, visibility 0s .75s; position: fixed; inset: 0; background: rgba(0,0,0,.6); z-index: 2000; align-items: center; justify-content: center; padding: 1rem; }
+    .modal-overlay.open { opacity: 1; visibility: visible; pointer-events: auto; transition: opacity .75s ease, visibility 0s; }
+    .modal-box { background: var(--white); border-radius: var(--radius-lg); padding: 2.2rem 2rem; width: 100%; max-width: 500px; max-height: 90vh; overflow-y: auto; position: relative; box-shadow: var(--shadow-lg); transform: scale(0.88); transition: transform .75s ease; }
+    .modal-overlay.open .modal-box { transform: scale(1); }
     .modal-close { position: absolute; top: 1rem; left: 1rem; background: none; border: none; font-size: 1.4rem; color: var(--mid-gray); cursor: pointer; }
     .modal-close:hover { color: var(--navy); }
     .modal-title { font-family: 'Heebo', sans-serif; font-size: 1.3rem; font-weight: 900; color: var(--navy); text-align: center; margin-bottom: .3rem; }
@@ -184,7 +185,7 @@
       <h2>רוצים לשמוע יותר על שירות Family Office?</h2>
       <p style="font-weight:800;color:var(--gold)">השאירו פרטים ונחזור אליכם לתיאום שיחת היכרות ללא עלות</p>
       <div class="cta-buttons">
-        <button onclick="document.getElementById('meeting-modal').classList.add('open')" onmouseenter="document.getElementById('meeting-modal').classList.add('open')" class="btn btn-gold btn-lg">
+        <button onclick="document.getElementById('meeting-modal').classList.add('open')" class="btn btn-gold btn-lg">
           <i class="fa-solid fa-calendar-check"></i> קביעת פגישה
         </button>
         <a href="tel:052-8000556" class="btn btn-white btn-lg">
@@ -447,6 +448,19 @@
     });
     // if previously declined, disable GA
     if(consent==='declined') window['ga-disable-G-5F91Q1DPZV']=true;
+  })();
+  </script>
+  <script>
+  (function(){
+    var btn = document.querySelector('.page-cta .btn-gold');
+    var timer;
+    if (!btn) return;
+    btn.addEventListener('mouseenter', function() {
+      timer = setTimeout(function() {
+        document.getElementById('meeting-modal').classList.add('open');
+      }, 1000);
+    });
+    btn.addEventListener('mouseleave', function() { clearTimeout(timer); });
   })();
   </script>
 </body>
