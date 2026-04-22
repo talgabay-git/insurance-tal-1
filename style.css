@@ -1778,27 +1778,45 @@ body.text-spacing th {
   cursor: pointer;
 }
 .photo-modal.open { display: flex; }
-.tal-card {
-  background: #0d1e35;
-  border: 2px solid var(--gold);
-  border-radius: var(--radius-lg);
-  padding: 3rem 4rem;
+.tal-profile-card {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.1rem;
   cursor: default;
+  max-width: min(680px, 92vw);
   box-shadow: 0 20px 60px rgba(0,0,0,.6);
-  min-width: 340px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.tal-profile-card img {
+  width: 100%;
+  max-height: 65vh;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  cursor: default;
+}
+.tal-card {
+  background: #0d1e35;
+  border: 2px solid var(--gold);
+  border-top: none;
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+  padding: 1.4rem 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .6rem;
+  width: 100%;
+  box-sizing: border-box;
 }
 .tal-card-name {
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: clamp(1.5rem, 3.5vw, 2.2rem);
   font-weight: 700;
   color: var(--white);
   letter-spacing: .04em;
 }
 .tal-card-title {
-  font-size: clamp(1rem, 2.5vw, 1.3rem);
+  font-size: clamp(.9rem, 2vw, 1.1rem);
   color: var(--gold);
   font-weight: 400;
   text-align: center;
