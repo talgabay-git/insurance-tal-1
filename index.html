@@ -1270,6 +1270,19 @@
         document.body.style.overflow='hidden';
       });
     });
+    var lead=document.querySelector('.team-oval-lead-center');
+    if(lead){
+      lead.style.cursor='pointer';
+      lead.addEventListener('mouseenter',function(){
+        m.classList.add('open');
+        document.body.style.overflow='hidden';
+      });
+      lead.addEventListener('touchend',function(e){
+        e.preventDefault();
+        m.classList.add('open');
+        document.body.style.overflow='hidden';
+      });
+    }
     document.getElementById('photo-modal-close').addEventListener('click',function(e){
       e.stopPropagation();
       m.classList.remove('open');
