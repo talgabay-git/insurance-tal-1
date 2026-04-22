@@ -420,6 +420,13 @@
         <div class="team-oval team-oval-lead team-oval-lead-center">
           <span class="oval-name" style="font-size:1.3rem;font-weight:900">טל גבאי</span>
           <span class="oval-role">מתכנן פיננסי לבכירים | מנכ"ל ובעלים</span>
+          <div class="tal-popup" aria-hidden="true">
+            <img src="tal.jpg" alt="טל גבאי" />
+            <div class="tal-popup-card">
+              <span class="tal-popup-name">טל גבאי</span>
+              <span class="tal-popup-title">מתכנן פיננסי לבכירים | מנכ"ל ובעלים</span>
+            </div>
+          </div>
         </div>
 
         <!-- Orbit members -->
@@ -1272,15 +1279,12 @@
     });
     var lead=document.querySelector('.team-oval-lead-center');
     if(lead){
-      lead.style.cursor='pointer';
-      lead.addEventListener('mouseenter',function(){
-        m.classList.add('open');
-        document.body.style.overflow='hidden';
-      });
       lead.addEventListener('touchend',function(e){
         e.preventDefault();
-        m.classList.add('open');
-        document.body.style.overflow='hidden';
+        lead.classList.toggle('popup-open');
+      });
+      document.addEventListener('touchstart',function(e){
+        if(!lead.contains(e.target)) lead.classList.remove('popup-open');
       });
     }
     document.getElementById('photo-modal-close').addEventListener('click',function(e){

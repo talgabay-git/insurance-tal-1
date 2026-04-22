@@ -1778,6 +1778,57 @@ body.text-spacing th {
   cursor: pointer;
 }
 .photo-modal.open { display: flex; }
+
+/* Popup tooltip on lead card */
+.team-oval-lead-center { position: relative; cursor: pointer; }
+.tal-popup {
+  position: absolute;
+  bottom: calc(100% + 14px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 190px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0,0,0,.45);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .22s ease, transform .22s ease;
+  transform: translateX(-50%) translateY(6px);
+  z-index: 500;
+}
+.team-oval-lead-center:hover .tal-popup,
+.team-oval-lead-center.popup-open .tal-popup {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+.tal-popup img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center top;
+  height: 155px;
+}
+.tal-popup-card {
+  background: #0d1e35;
+  border: 2px solid var(--gold);
+  border-top: none;
+  padding: .55rem .9rem;
+  text-align: center;
+}
+.tal-popup-name {
+  display: block;
+  font-size: .88rem;
+  font-weight: 700;
+  color: #fff;
+}
+.tal-popup-title {
+  display: block;
+  font-size: .65rem;
+  color: var(--gold);
+  margin-top: .25rem;
+  line-height: 1.4;
+}
 .tal-profile-card {
   display: flex;
   flex-direction: column;
