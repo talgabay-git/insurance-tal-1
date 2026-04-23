@@ -147,11 +147,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .site-header .nav-link { color: var(--white); }
 .site-header .nav-link:visited { color: var(--white) !important; }
-.site-header .nav-link:active  { color: var(--white); }
-.site-header .nav-link.nav-gold,
-.site-header .nav-link.nav-gold:visited,
-.site-header .nav-link.nav-gold:active { color: var(--gold) !important; font-weight: 700 !important; }
-.site-header .logo-main { color: var(--white); }
+.site-header .nav-link:active  { color: var(--white); }.site-header .logo-main { color: var(--white); }
 .site-header .logo-sub  { color: var(--gold); }
 .site-header .hamburger-line { background: var(--white); }
 
