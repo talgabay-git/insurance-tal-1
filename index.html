@@ -1185,54 +1185,6 @@
   <script src="script.js"></script>
 
 
-  <script>
-  /* ── Team orbit animation ── */
-  (function() {
-    const scene = document.querySelector('.team-orbit-scene');
-    const members = Array.from(document.querySelectorAll('.orbit-oval'));
-    if (!scene || !members.length) return;
-    const DURATION = 33000;
-    let startTime = null;
-    let paused = false;
-    let pauseStart = 0, pausedTotal = 0;
-
-    function getAxes() {
-      const w = scene.offsetWidth;
-      const a = Math.min(Math.round(w * 0.42), 380);
-      const b = Math.round(a * 0.42);
-      return { a, b };
-    }
-
-    function step(ts) {
-      if (window.innerWidth <= 768) {
-        members.forEach(el => { el.style.transform = ''; el.style.top = ''; el.style.left = ''; });
-        requestAnimationFrame(step);
-        return;
-      }
-      if (!startTime) startTime = ts;
-      if (!paused) {
-        const { a, b } = getAxes();
-        const elapsed = ts - startTime - pausedTotal;
-        const baseAngle = (elapsed / DURATION) * 2 * Math.PI;
-        members.forEach((el, i) => {
-          const theta = baseAngle + (i / members.length) * 2 * Math.PI;
-          const x = a * Math.cos(theta);
-          const y = b * Math.sin(theta);
-          el.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`;
-        });
-      }
-      requestAnimationFrame(step);
-    }
-
-    members.forEach(el => {
-      el.addEventListener('mouseenter', () => { paused = true; pauseStart = performance.now(); });
-      el.addEventListener('mouseleave', () => { pausedTotal += performance.now() - pauseStart; paused = false; });
-    });
-
-    requestAnimationFrame(step);
-  })();
-  </script>
-
   <!-- ========== ACCESSIBILITY WIDGET ========== -->
   <div class="a11y-widget" id="a11y-widget">
     <button class="a11y-toggle" id="a11y-toggle" aria-label="אפשרויות נגישות" aria-expanded="false">
