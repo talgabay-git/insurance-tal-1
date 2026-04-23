@@ -795,10 +795,10 @@ br.mobile-br { display: none; }
   justify-content: center;
 }
 .team-members-row {
-  display: grid;
-  grid-template-columns: repeat(4, auto);
+  display: flex;
+  flex-wrap: nowrap;
   justify-content: center;
-  gap: 1rem;
+  gap: .75rem;
 }
 .team-oval-lead-center {
   position: relative;
