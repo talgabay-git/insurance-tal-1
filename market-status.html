@@ -295,8 +295,9 @@
   (function(){
     var m=document.getElementById('photo-modal');
     if(!m) return;
-    document.querySelectorAll('.header-logo').forEach(function(el){
+    document.querySelectorAll('.logo-main').forEach(function(el){
       el.addEventListener('click',function(e){
+        e.stopPropagation();
         e.preventDefault();
         m.classList.add('open');
         document.body.style.overflow='hidden';
