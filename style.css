@@ -1849,7 +1849,17 @@ body.text-spacing th {
   transition: opacity .2s ease;
   z-index: 400;
 }
-.orbit-oval:hover .member-popup {
+/* bridge the gap so hovering over the popup keeps it visible */
+.member-popup::after {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  left: 0;
+  right: 0;
+  height: 12px;
+}
+.orbit-oval:hover .member-popup,
+.member-popup:hover {
   opacity: 1;
   pointer-events: auto;
 }
@@ -1860,7 +1870,7 @@ body.text-spacing th {
   display: block;
   text-align: center;
 }
-.member-popup a[href^="tel"] { color: var(--gold); font-weight: 600; }
+.member-popup a[href^="https://wa.me"] { color: var(--gold); font-weight: 600; }
 .member-popup a:hover { text-decoration: underline; }
 .tal-profile-card {
   display: flex;
