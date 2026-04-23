@@ -808,6 +808,56 @@ br.mobile-br { display: none; }
   position: static;
   cursor: default;
 }
+
+/* ── Team oval animations ── */
+@keyframes ovalPulse {
+  0%,100% { transform:scale(1);    box-shadow:0 2px 8px rgba(13,30,53,.07); }
+  50%     { transform:scale(1.07); box-shadow:0 6px 26px rgba(201,168,76,.85),0 0 18px rgba(201,168,76,.5); }
+}
+@keyframes ovalBorderGlow {
+  0%,100% { border-color:#e2e8f0; box-shadow:0 2px 8px rgba(13,30,53,.07); }
+  50%     { border-color:var(--gold); box-shadow:0 0 22px rgba(201,168,76,.75); }
+}
+@keyframes ovalFloat {
+  0%,100% { transform:translateY(0); }
+  50%     { transform:translateY(-9px); }
+}
+@keyframes ovalShimmer {
+  0%   { background-position:200% center; }
+  100% { background-position:-200% center; }
+}
+@keyframes ovalHeartbeat {
+  0%  { transform:scale(1); }
+  12% { transform:scale(1.08); }
+  24% { transform:scale(1); }
+  36% { transform:scale(1.05); }
+  68%,100% { transform:scale(1); }
+}
+@keyframes ovalRipple {
+  0%   { box-shadow:0 0 0 0 rgba(201,168,76,.55),0 2px 8px rgba(13,30,53,.07); }
+  70%  { box-shadow:0 0 0 16px rgba(201,168,76,0),0 2px 8px rgba(13,30,53,.07); }
+  100% { box-shadow:0 0 0 0 rgba(201,168,76,0),0 2px 8px rgba(13,30,53,.07); }
+}
+@keyframes ovalColorFill {
+  0%,100% { background:#fff; border-color:#e2e8f0; }
+  50%     { background:rgba(201,168,76,.14); border-color:var(--gold); }
+}
+
+.anim-pulse      { animation:ovalPulse      1.9s ease-in-out infinite; }
+.anim-glow       { animation:ovalBorderGlow 2.2s ease-in-out infinite; }
+.anim-float      { animation:ovalFloat      2.6s ease-in-out infinite; }
+.anim-shimmer    {
+  background:linear-gradient(110deg,#fff 30%,rgba(201,168,76,.35) 50%,#fff 70%);
+  background-size:250% auto;
+  animation:ovalShimmer 2.2s linear infinite;
+}
+.anim-heartbeat  { animation:ovalHeartbeat  1.8s ease-in-out infinite; }
+.anim-ripple     { animation:ovalRipple     2s ease-out infinite; }
+.anim-colorfill  { animation:ovalColorFill  2.8s ease-in-out infinite; }
+
+.anim-pulse:hover, .anim-glow:hover, .anim-float:hover,
+.anim-shimmer:hover, .anim-heartbeat:hover, .anim-ripple:hover,
+.anim-colorfill:hover { animation-play-state:paused; }
 @media (max-width: 768px) {
   .team-members-row {
     grid-template-columns: repeat(2, 1fr);
