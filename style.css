@@ -785,45 +785,33 @@ br.mobile-br { display: none; }
 
 /* Orbit scene */
 .team-orbit-scene {
-  position: relative;
-  height: 480px;
   display: flex;
+  flex-direction: column;
   align-items: center;
+  gap: 1.5rem;
+}
+.team-lead-row {
+  display: flex;
   justify-content: center;
-  overflow: hidden;
+}
+.team-members-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
 }
 .team-oval-lead-center {
   position: relative;
-  z-index: 10;
-  flex-shrink: 0;
 }
 .orbit-oval {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  z-index: 5;
+  position: static;
   cursor: default;
 }
 @media (max-width: 768px) {
-  .team-orbit-scene {
-    height: auto !important;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+  .team-members-row {
     gap: .75rem;
-    padding: 1rem 0;
-    overflow: visible;
-  }
-  .team-oval-lead-center {
-    width: 100%;
-    max-width: 260px;
-    order: -1;
   }
   .orbit-oval {
-    position: static !important;
-    transform: none !important;
-    top: auto !important;
-    left: auto !important;
     width: calc(50% - .75rem);
     max-width: 180px;
   }
