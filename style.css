@@ -197,8 +197,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   flex-shrink: 0;
   line-height: 1;
 }
-.header-logo .logo-main { font-size: 1.68rem; font-weight: 800; color: var(--white); cursor: pointer; }
-.header-logo .logo-main:hover { color: var(--gold); }
+.header-logo .logo-main { font-size: 1.68rem; font-weight: 800; color: var(--white); }
 .header-logo .logo-sep  { color: var(--gold); font-size: 1rem; font-weight: 300; margin: 0 .35rem; }
 .header-logo .logo-sub  { font-size: 1.52rem; font-weight: 700; color: var(--gold); white-space: nowrap; transition: color .2s; }
 .header-logo .logo-sub:hover { color: var(--white); }
