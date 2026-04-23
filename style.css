@@ -146,7 +146,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   transition: box-shadow var(--transition);
 }
 .site-header .nav-link { color: var(--white); }
-.site-header .nav-link:visited { color: var(--white); }
+.site-header .nav-link:visited { color: var(--white) !important; }
+.site-header .nav-link:active  { color: var(--white); }
 .site-header .logo-main { color: var(--white); }
 .site-header .logo-sub  { color: var(--gold); }
 .site-header .hamburger-line { background: var(--white); }
