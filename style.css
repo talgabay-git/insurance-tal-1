@@ -24,7 +24,7 @@
   --radius:     10px;
   --radius-lg:  18px;
   --transition: .3s ease;
-  --header-h:   72px;
+  --header-h:   83px;
 }
 
 html {
@@ -196,9 +196,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   flex-shrink: 0;
   line-height: 1;
 }
-.header-logo .logo-main { font-size: 1.68rem; font-weight: 800; color: var(--white); }
-.header-logo .logo-sep  { color: var(--gold); font-size: 1rem; font-weight: 300; margin: 0 .35rem; }
-.header-logo .logo-sub  { font-size: 1.52rem; font-weight: 700; color: var(--gold); white-space: nowrap; transition: color .2s; }
+.header-logo .logo-main { font-size: 1.93rem; font-weight: 800; color: var(--white); }
+.header-logo .logo-sep  { color: var(--gold); font-size: 1.15rem; font-weight: 300; margin: 0 .35rem; }
+.header-logo .logo-sub  { font-size: 1.75rem; font-weight: 700; color: var(--gold); white-space: nowrap; transition: color .2s; }
 .header-logo .logo-sub:hover { color: var(--white); }
 @media (max-width: 900px) {
   .header-logo { display: flex; }
@@ -208,8 +208,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     left: 50%;
     transform: translateX(-50%);
   }
-  .header-logo .logo-main { font-size: 1.65rem; }
-  .header-logo .logo-sub  { font-size: 1.5rem; }
+  .header-logo .logo-main { font-size: 1.90rem; }
+  .header-logo .logo-sub  { font-size: 1.73rem; }
 }
 @media (min-width: 1101px) {
   .hero { background-attachment: fixed; }
@@ -242,7 +242,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   padding: .3rem .4rem;
   border-radius: 4px;
   font-weight: 700;
-  font-size: .84rem;
+  font-size: .97rem;
   color: var(--navy);
   transition: var(--transition);
   white-space: nowrap;
@@ -1259,7 +1259,7 @@ br.mobile-br { display: none; }
 }
 
 @media (max-width: 768px) {
-  :root { --header-h: 60px; }
+  :root { --header-h: 69px; }
 
   .main-nav  { display: none; }
   .header-phone { display: none; }
