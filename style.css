@@ -795,8 +795,8 @@ br.mobile-br { display: none; }
   justify-content: center;
 }
 .team-members-row {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(4, auto);
   justify-content: center;
   gap: 1rem;
 }
@@ -809,10 +809,10 @@ br.mobile-br { display: none; }
 }
 @media (max-width: 768px) {
   .team-members-row {
+    grid-template-columns: repeat(2, 1fr);
     gap: .75rem;
   }
   .orbit-oval {
-    width: calc(50% - .75rem);
     max-width: 180px;
   }
 }
