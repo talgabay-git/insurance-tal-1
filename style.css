@@ -694,13 +694,13 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   font-size: 1rem;
 }
 .about-bio p { margin-bottom: 1.25rem; text-align: center; }
-.about-bio-intro + p { margin-top: calc(17vw - 12.5rem + 1cm); }
+.about-bio-intro + p { margin-top: calc(17vw - 12.5rem); }
 .year-num { font-size: 1.15em; font-weight: 700; }
 .about-bio-intro {
   font-size: 1.21rem;
   font-weight: 700;
   color: var(--gold);
-  margin-top: 0.5cm;
+  margin-top: -0.5cm;
   margin-bottom: calc(1.5rem + 0.5cm);
   text-align: center;
 }
