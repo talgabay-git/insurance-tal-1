@@ -540,6 +540,10 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   box-shadow: var(--shadow-lg);
   border-color: var(--gold);
 }
+.service-card.seq-glow {
+  border-color: var(--gold);
+  box-shadow: 0 0 18px rgba(201,168,76,0.32), 0 4px 16px rgba(13,30,53,0.1);
+}
 /* Makes entire card clickable via the service-link */
 .service-card .service-link::before {
   content: '';

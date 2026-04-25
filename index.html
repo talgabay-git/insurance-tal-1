@@ -1337,5 +1337,18 @@
     if(consent==='declined') window['ga-disable-G-5F91Q1DPZV']=true;
   })();
   </script>
+  <script>
+  (function(){
+    var cards = Array.from(document.querySelectorAll('.services-grid .service-card'));
+    if(!cards.length) return;
+    var idx = 0;
+    cards[idx].classList.add('seq-glow');
+    setInterval(function(){
+      cards[idx].classList.remove('seq-glow');
+      idx = (idx + 1) % cards.length;
+      cards[idx].classList.add('seq-glow');
+    }, 1500);
+  })();
+  </script>
 </body>
 </html>
