@@ -565,6 +565,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold) 100%);
 }
 .service-icon { font-size: 1.5rem; color: var(--white); }
+.dual-service-icon { display: flex; align-items: flex-end; gap: 5px; color: var(--white); }
+.dual-service-icon .fa-car { font-size: 1.05rem; }
+.dual-service-icon .fa-house { font-size: 1.2rem; }
 .service-title {
   font-size: 1rem;
   font-weight: 700;
