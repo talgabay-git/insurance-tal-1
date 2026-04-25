@@ -90,10 +90,12 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   0%, 100% { transform: scale(1);    box-shadow: 0 4px 14px rgba(201,168,76,.45); }
   50%       { transform: scale(1.07); box-shadow: 0 6px 30px rgba(201,168,76,.9), 0 0 22px rgba(201,168,76,.55); }
 }
-.page-cta .btn-gold {
+.page-cta .btn-gold,
+.checkup-cta .btn-gold {
   animation: ctaPulse 1.9s ease-in-out infinite;
 }
-.page-cta .btn-gold:hover {
+.page-cta .btn-gold:hover,
+.checkup-cta .btn-gold:hover {
   animation-play-state: paused;
 }
 .btn-lg { padding: 1rem 2.2rem; font-size: 1.1rem; }
