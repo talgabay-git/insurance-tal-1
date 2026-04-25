@@ -272,7 +272,7 @@
           <li><a href="retirement-planning.html" class="nav-link">תכנון פרישה</a></li>
           <li><a href="early-retirement.html" class="nav-link">פרישה מוקדמת</a></li>
           <li><a href="family-office.html" class="nav-link"><span lang="en">Family Office</span></a></li>
-          <li><a href="market-status.html" class="nav-link">תמונת מצב לשווקים</a></li>
+          <li><a href="market-status.html" class="nav-link">תמונת מצב בשווקים</a></li>
           <li><a href="holistic-checkup.html" class="nav-link">צ'ק אפ הוליסטי</a></li>
           <li><a href="documents.html" class="nav-link">מסלקה פנסיונית</a></li>
         </ul>
@@ -371,7 +371,7 @@
       <h2>רוצים לקבל תמונת מצב פיננסית מלאה?</h2>
       <p style="font-weight:800;color:var(--gold)">השאירו פרטים ונחזור אליכם לתיאום<br>שיחת היכרות ללא עלות</p>
       <div class="cta-buttons">
-        <button onclick="document.getElementById('meeting-modal').classList.add('open')" class="btn btn-gold btn-lg">
+        <button id="cta-meeting-btn" onclick="document.getElementById('meeting-modal').classList.add('open')" class="btn btn-gold btn-lg" style="animation:ctaPulse 1.9s ease-in-out infinite">
           <i class="fa-solid fa-calendar-check"></i> קביעת פגישה
         </button>
         <a href="tel:052-8000556" class="btn btn-white btn-lg">
@@ -659,7 +659,7 @@
   </script>
   <script>
   (function(){
-    var btn = document.querySelector('.checkup-cta .btn-gold');
+    var btn = document.getElementById('cta-meeting-btn');
     if (!btn) return;
     var opened = false;
     btn.addEventListener('mouseenter', function() {
