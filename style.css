@@ -568,6 +568,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .dual-service-icon { display: flex; align-items: flex-end; gap: 5px; color: var(--white); }
 .dual-service-icon .fa-car { font-size: 1.05rem; }
 .dual-service-icon .fa-house { font-size: 1.2rem; }
+.shield-heart-icon { font-size: 1.1rem; color: var(--white); }
+.shield-heart-icon .fa-inverse { color: var(--navy); font-size: 0.6em; }
 .service-title {
   font-size: 1rem;
   font-weight: 700;
