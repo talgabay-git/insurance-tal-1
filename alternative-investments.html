@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>טל גבאי | השקעות אלטרנטיביות</title>
+  <meta name="description" content="השקעות אלטרנטיביות — גיוון תיק ההשקעות עם נדל"ן, קרנות גידור וחברות פרטיות. טל גבאי תכנון פיננסי." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700;800&family=Heebo:wght@400;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ── Page Hero ── */
+    .checkup-hero {
+      background: var(--navy);
+      padding: 5rem 0 4rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .checkup-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 60% 40%, rgba(201,168,76,.12) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .checkup-hero .section-label { margin-bottom: 1.2rem; }
+    .checkup-hero h1 {
+      font-family: 'Heebo', sans-serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 900;
+      color: var(--white);
+      margin-bottom: 1rem;
+      border: 2px solid var(--gold);
+      display: inline-block;
+      padding: .5rem 2rem;
+      border-radius: 10px;
+      color: var(--gold);
+    }
+    .checkup-hero .hero-tagline {
+      font-size: clamp(1rem, 2.5vw, 1.3rem);
+      color: rgba(255,255,255,.8);
+      max-width: 620px;
+      margin: 1rem auto 0;
+      line-height: 1.7;
+    }
+
+    /* ── Content ── */
+    .checkup-content {
+      padding: 5rem 0;
+      background: var(--off-white);
+    }
+
+    .checkup-intro {
+      max-width: 820px;
+      margin: 0 auto 4rem;
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem 3rem;
+      box-shadow: var(--shadow-md);
+      border-right: 5px solid var(--gold);
+    }
+    .checkup-intro p {
+      font-size: 1.08rem;
+      line-height: 1.9;
+      color: var(--text);
+      margin-bottom: 1.4rem;
+    }
+    .checkup-intro p:last-child { margin-bottom: 0; }
+
+    /* ── Benefits grid ── */
+    .checkup-benefits {
+      max-width: 900px;
+      margin: 0 auto 4rem;
+    }
+    .checkup-benefits h2 {
+      font-family: 'Heebo', sans-serif;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 900;
+      color: var(--navy);
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+    .benefit-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem 1.5rem;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      transition: transform .25s, box-shadow .25s;
+      border-top: 3px solid transparent;
+    }
+    .benefit-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+      border-top-color: var(--gold);
+    }
+    .benefit-icon {
+      font-size: 2.2rem;
+      color: var(--gold);
+      margin-bottom: .9rem;
+    }
+    .benefit-title {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: .5rem;
+    }
+    .benefit-desc {
+      font-size: .85rem;
+      color: var(--dark-gray);
+      line-height: 1.65;
+    }
+
+    /* ── CTA ── */
+    .checkup-cta {
+      background: var(--navy);
+      padding: 4rem 0;
+      text-align: center;
+    }
+    .checkup-cta h2 {
+      font-family: 'Heebo', sans-serif;
+      font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+      font-weight: 900;
+      color: var(--white);
+      margin-bottom: .75rem;
+    }
+    .checkup-cta p {
+      color: rgba(255,255,255,.75);
+      font-size: 1.05rem;
+      margin-bottom: 2rem;
+    }
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn-white {
+      background: var(--white);
+      color: var(--navy);
+      font-weight: 800;
+    }
+    .btn-white:hover { background: var(--off-white); }
+
+    /* ── Modal ── */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.6);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+    .modal-overlay.open { display: flex; animation: modalFadeIn .75s ease; }
+    @keyframes modalFadeIn { from { opacity:0; } to { opacity:1; } }
+    .modal-box {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 2.2rem 2rem;
+      width: 100%;
+      max-width: 500px;
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+      box-shadow: var(--shadow-lg);
+    }
+    .modal-close {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      background: none;
+      border: none;
+      font-size: 1.4rem;
+      color: var(--mid-gray);
+      cursor: pointer;
+      line-height: 1;
+      padding: .2rem .5rem;
+    }
+    .modal-close:hover { color: var(--navy); }
+    .modal-title {
+      font-family: 'Heebo', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 900;
+      color: var(--navy);
+      text-align: center;
+      margin-bottom: .3rem;
+    }
+    .modal-subtitle {
+      font-size: .88rem;
+      color: var(--dark-gray);
+      text-align: center;
+      margin-bottom: 1.75rem;
+    }
+    .modal-form { display: flex; flex-direction: column; gap: .9rem; }
+    .modal-row { display: grid; grid-template-columns: 1fr 1fr; gap: .9rem; }
+    .modal-success {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: .75rem;
+      padding: 2rem 0;
+      text-align: center;
+    }
+    .modal-success i { font-size: 2.8rem; color: #48bb78; }
+    .modal-success h3 { font-size: 1.2rem; font-weight: 800; color: var(--navy); }
+    .modal-success p { font-size: .9rem; color: var(--dark-gray); }
+
+    @media (max-width: 768px) {
+      .modal-row { grid-template-columns: 1fr; }
+      .modal-box { padding: 1.75rem 1.25rem; }
+    }
+    /* ── end modal ── */
+
+    @media (max-width: 768px) {
+      .checkup-hero { padding: 3rem 0 2.5rem; }
+      .checkup-intro { padding: 1.75rem 1.25rem; border-right-width: 4px; }
+      .checkup-intro p { font-size: 1rem; }
+      .benefits-grid { grid-template-columns: 1fr 1fr; }
+      .checkup-cta { padding: 3rem 0; }
+    }
+    @media (max-width: 480px) {
+      .benefits-grid { grid-template-columns: 1fr; }
+      .checkup-hero h1 { font-size: 1.6rem; padding: .4rem 1.2rem; }
+    }
+  </style>
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="טל גבאי תכנון פיננסי" />
+  <meta property="og:title" content="השקעות אלטרנטיביות | טל גבאי" />
+  <meta property="og:description" content="השקעות אלטרנטיביות — גיוון תיק ההשקעות עם נדל&quot;ן, קרנות גידור וחברות פרטיות. טל גבאי תכנון פיננסי." />
+  <meta property="og:url" content="https://talgabay-git.github.io/insurance-tal-1/alternative-investments.html" />
+  <meta property="og:image" content="https://talgabay-git.github.io/insurance-tal-1/tal.jpg" />
+  <meta property="og:locale" content="he_IL" />
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="השקעות אלטרנטיביות | טל גבאי" />
+  <meta name="twitter:description" content="השקעות אלטרנטיביות — גיוון תיק ההשקעות עם נדל&quot;ן, קרנות גידור וחברות פרטיות. טל גבאי תכנון פיננסי." />
+  <meta name="twitter:image" content="https://talgabay-git.github.io/insurance-tal-1/tal.jpg" />
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5F91Q1DPZV"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-5F91Q1DPZV', { 'anonymize_ip': true });
+  </script>
+</head>
+<body>
+  <a href="#content-start" class="skip-link">דלג לתוכן הראשי</a>
+
+  <!-- ========== HEADER ========== -->
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo header-logo" aria-label="עמוד הבית">
+        <span class="logo-main">טל גבאי</span>
+        <span class="logo-sep">|</span>
+        <span class="logo-sub">תכנון פיננסי</span>
+      </a>
+            <nav class="main-nav" aria-label="ניווט ראשי">
+        <ul class="nav-list">
+          <li><a href="financial-planning.html" class="nav-link" style="font-weight:700;color:var(--white)">תכנון פיננסי</a></li>
+          <li><a href="retirement-planning.html" class="nav-link">תכנון פרישה</a></li>
+          <li><a href="early-retirement.html" class="nav-link">פרישה מוקדמת</a></li>
+          <li><a href="family-office.html" class="nav-link"><span lang="en">Family Office</span></a></li>
+          <li><a href="market-status.html" class="nav-link">תמונת מצב בשווקים</a></li>
+          <li><a href="holistic-checkup.html" class="nav-link">צ'ק אפ הוליסטי</a></li>
+          <li><a href="documents.html" class="nav-link">מסלקה פנסיונית</a></li>
+        </ul>
+      </nav>
+      <div class="header-left">
+        <a href="https://portal.roeto.co.il/pfinvest/login" class="btn-personal-area" target="_blank" rel="noopener"><i class="fa-solid fa-key"></i> כניסה לאיזור אישי</a>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="פתח תפריט" aria-expanded="false">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+    </div>
+    <nav class="mobile-menu" id="mobile-menu" aria-label="תפריט נייד" aria-hidden="true">
+      <ul class="mobile-nav-list">
+        <li><a href="index.html" class="mobile-nav-link">דף הבית</a></li>
+        <li><a href="index.html#services" class="mobile-nav-link">השירותים שלנו</a></li>
+        <li><a href="holistic-checkup.html" class="mobile-nav-link" style="font-weight:700">צ'ק אפ הוליסטי</a></li>
+        <li><a href="tel:052-8000556" class="mobile-nav-link mobile-phone"><i class="fa-solid fa-phone"></i> 052-8000556</a></li>
+        <li><a href="https://wa.me/9720528000556" class="mobile-nav-link"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a></li>
+      </ul>
+    </nav>
+  </header>
+  <div id="content-start" tabindex="-1"></div>
+
+  <!-- ========== HERO ========== -->
+  <section class="checkup-hero">
+    <div class="container">
+      <h1>השקעות אלטרנטיביות</h1>
+      <p class="hero-tagline"><strong style="color:var(--white)">גיוון תיק ההשקעות מעבר לשוק ההון — נדל"ן, קרנות פרטיות וכלים ייחודיים לתשואה יציבה</strong></p>
+    </div>
+  </section>
+
+  <!-- ========== CONTENT ========== -->
+  <section class="checkup-content">
+    <div class="container">
+
+      <div class="checkup-intro fade-in-up">
+        <p>
+          השקעות אלטרנטיביות הן שם כולל למגוון רחב של אפיקי השקעה שאינם נסחרים בבורסה באופן שוטף, בניגוד למניות או איגרות חוב מסורתיות. בעוד ששוק ההון חשוף לתנודות יומיומיות המושפעות מאירועים גלובליים, נכסים אלטרנטיביים מתנהגים באופן עצמאי יחסית.
+        </p>
+        <p>
+          הם מאפשרים למשקיעים להצטרף למיזמים וקרנות שבעבר היו פתוחים רק לגופים מוסדיים גדולים או למשקיעים בעלי הון גבוה — כמו קרנות גידור, השקעה ישירה בנדל"ן וחברות טכנולוגיה פרטיות.
+        </p>
+      </div>
+
+      <div class="checkup-benefits">
+        <h2>למה כדאי לשלב אותן בתיק שלכם?</h2>
+        <div class="benefits-grid">
+
+          <div class="benefit-card fade-in-up">
+            <div class="benefit-icon"><i class="fa-solid fa-building"></i></div>
+            <div class="benefit-title">נדל"ן מניב</div>
+            <div class="benefit-desc">השקעה בנכסים מניבים בארץ ובחו"ל — תזרים יציב וצמיחת ערך לאורך זמן</div>
+          </div>
+
+          <div class="benefit-card fade-in-up">
+            <div class="benefit-icon"><i class="fa-solid fa-hand-holding-dollar"></i></div>
+            <div class="benefit-title">קרנות חוב פרטי</div>
+            <div class="benefit-desc">הלוואות לחברות פרטיות בריבית גבוהה — תשואה עדיפה על אג"ח סחיר עם סיכון מנוהל</div>
+          </div>
+
+          <div class="benefit-card fade-in-up">
+            <div class="benefit-icon"><i class="fa-solid fa-bolt"></i></div>
+            <div class="benefit-title">תשתיות ואנרגיה</div>
+            <div class="benefit-desc">השקעה בפרויקטים של אנרגיה מתחדשת ותשתיות — תזרים צפוי ומוגן מפני אינפלציה</div>
+          </div>
+
+          <div class="benefit-card fade-in-up">
+            <div class="benefit-icon"><i class="fa-solid fa-chart-pie"></i></div>
+            <div class="benefit-title">גיוון אמיתי</div>
+            <div class="benefit-desc">מתאם נמוך לשוק ההון — ירידות בבורסה לא בהכרח משפיעות על נכסים אלטרנטיביים</div>
+          </div>
+
+          <div class="benefit-card fade-in-up">
+            <div class="benefit-icon"><i class="fa-solid fa-shield-halved"></i></div>
+            <div class="benefit-title">הגנה מתנודתיות</div>
+            <div class="benefit-desc">הנכסים משמשים "בולם זעזועים" ומפחיתים את הסיכון הכולל בתיק בתקופות משבר</div>
+          </div>
+
+          <div class="benefit-card fade-in-up">
+            <div class="benefit-icon"><i class="fa-solid fa-rocket"></i></div>
+            <div class="benefit-title">פוטנציאל תשואה</div>
+            <div class="benefit-desc">גישה להזדמנויות צמיחה ייחודיות שאינן זמינות לציבור הרחב — עם פוטנציאל לתשואות גבוהות</div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- הסבר נוסף -->
+      <div style="max-width:820px;margin:0 auto 1rem;background:var(--white);border-radius:var(--radius-lg);padding:2rem 2.5rem;box-shadow:var(--shadow-md);border-right:5px solid var(--gold)">
+        <h2 style="font-family:'Heebo',sans-serif;font-size:1.2rem;font-weight:900;color:var(--navy);margin-bottom:1rem">למי מתאים?</h2>
+        <p style="font-size:1rem;line-height:1.9;color:var(--text);margin-bottom:1rem">השקעות אלטרנטיביות מתאימות למשקיעים המחפשים גיוון מעבר למניות ואג"ח, עם אופק השקעה של 3–7 שנים ומעלה. הן מתאימות במיוחד לבעלי הון שצברו תיק השקעות סולידי ומעוניינים להוסיף שכבת תשואה שאינה תלויה בתנודות הבורסה.</p>
+        <p style="font-size:.95rem;color:var(--dark-gray);border-top:1px solid var(--light-gray);padding-top:.9rem;margin-bottom:0">⚠️ <strong>לתשומת לבכם:</strong> השקעות אלטרנטיביות כרוכות בסיכון ואינן מתאימות לכל משקיע. חשוב לבצע בדיקת נאותות מקיפה לפני כל השקעה. המידע כאן הוא למטרת היכרות בלבד ואינו מהווה ייעוץ השקעות.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========== CTA ========== -->
+  <section class="checkup-cta">
+    <div class="container">
+      <h2>רוצים לבחון הזדמנויות השקעה אלטרנטיביות?</h2>
+      <p style="font-weight:800;color:var(--gold)">השאירו פרטים ונחזור אליכם לתיאום<br>שיחת היכרות ללא עלות</p>
+      <div class="cta-buttons">
+        <button id="cta-meeting-btn" onclick="document.getElementById('meeting-modal').classList.add('open')" class="btn btn-gold btn-lg" style="animation:ctaPulse 1.9s ease-in-out infinite">
+          <i class="fa-solid fa-calendar-check"></i> קביעת פגישה
+        </button>
+        <a href="tel:052-8000556" class="btn btn-white btn-lg">
+          <i class="fa-solid fa-phone"></i> 052-8000556
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== MEETING MODAL ========== -->
+  <div class="modal-overlay" id="meeting-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-box">
+      <button class="modal-close" onclick="document.getElementById('meeting-modal').classList.remove('open')" aria-label="סגור">&times;</button>
+
+      <div id="modal-form-wrap">
+        <p class="modal-title" id="modal-title"><i class="fa-solid fa-calendar-check" style="color:var(--gold);margin-left:.4rem"></i> קביעת פגישה</p>
+        <p class="modal-subtitle">בחרו תאריך ושעה מועדפים — נאשר בהקדם</p>
+
+        <form class="modal-form" id="meeting-form">
+          <div class="modal-row">
+            <div class="form-group">
+              <label class="form-label" for="meet-name">שם מלא <span class="required" style="color:#e53e3e">*</span></label>
+              <input type="text" id="meet-name" name="שם מלא" class="form-input" required aria-required="true" placeholder="ישראל ישראלי" />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="meet-phone">פלאפון <span class="required" style="color:#e53e3e">*</span></label>
+              <input type="tel" id="meet-phone" name="פלאפון" class="form-input" required aria-required="true" placeholder="050-0000000" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="meet-email">אימייל <span class="required" style="color:#e53e3e">*</span></label>
+            <input type="email" id="meet-email" name="אימייל" class="form-input" required aria-required="true" placeholder="example@email.com" />
+          </div>
+          <div class="modal-row">
+            <div class="form-group">
+              <label class="form-label" for="meet-date">תאריך מועדף <span class="required" style="color:#e53e3e">*</span></label>
+              <input type="date" id="meet-date" name="תאריך מועדף" class="form-input" required aria-required="true" />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="meet-time">שעה מועדפת <span class="required" style="color:#e53e3e">*</span></label>
+              <select id="meet-time" name="שעה מועדפת" class="form-select" required aria-required="true">
+                <option value="">בחרו שעה</option>
+                <option>08:00</option><option>08:30</option>
+                <option>09:00</option><option>09:30</option>
+                <option>10:00</option><option>10:30</option>
+                <option>11:00</option><option>11:30</option>
+                <option>12:00</option><option>12:30</option>
+                <option>13:00</option><option>13:30</option>
+                <option>14:00</option><option>14:30</option>
+                <option>15:00</option><option>15:30</option>
+                <option>16:00</option><option>16:30</option>
+                <option>17:00</option><option>17:30</option>
+                <option>18:00</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="meet-notes">הערות (אופציונלי)</label>
+            <textarea id="meet-notes" name="הערות" class="form-textarea" rows="2" placeholder="נושא הפגישה, בקשות מיוחדות..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-gold" style="width:100%;justify-content:center;padding:.85rem;font-size:1rem;border-radius:var(--radius)">
+            <i class="fa-solid fa-paper-plane"></i> שליחת בקשת הפגישה
+          </button>
+        </form>
+      </div>
+
+      <div class="modal-success" id="modal-success">
+        <i class="fa-solid fa-circle-check"></i>
+        <h3>בקשתכם התקבלה!</h3>
+        <p>נחזור אליכם לאישור מועד הפגישה בהקדם האפשרי.</p>
+        <button onclick="document.getElementById('meeting-modal').classList.remove('open')" class="btn btn-gold" style="margin-top:.5rem">סגירה</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="site-footer">
+    <div class="footer-top">
+      <div class="container footer-top-inner">
+        <div class="footer-col footer-brand">
+          <a href="index.html" class="footer-logo">
+            <span class="logo-main">טל גבאי</span>
+            <span class="logo-sep">|</span>
+            <span class="logo-sub">תכנון פיננסי</span>
+          </a>
+          <p class="footer-tagline">ליווי אישי וממוקד לבכירים</p>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-col-title">קישורים מהירים</h4>
+          <ul class="footer-links">
+            <li><a href="index.html" class="footer-link"><i class="fa-solid fa-chevron-left"></i> דף הבית</a></li>
+            <li><a href="index.html#about" class="footer-link"><i class="fa-solid fa-chevron-left"></i> אודותנו</a></li>
+            <li><a href="index.html#services" class="footer-link"><i class="fa-solid fa-chevron-left"></i> שירותים</a></li>
+            <li><a href="holistic-checkup.html" class="footer-link"><i class="fa-solid fa-chevron-left"></i> צ'ק אפ הוליסטי</a></li>
+            <li><a href="index.html#contact" class="footer-link"><i class="fa-solid fa-chevron-left"></i> צור קשר</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-col-title">פרטי התקשרות</h4>
+          <ul class="footer-contact-list">
+            <li><i class="fa-solid fa-location-dot footer-contact-icon"></i><span>היצירה 19, רחובות</span></li>
+            <li><i class="fa-solid fa-phone footer-contact-icon"></i><span><a href="tel:074-7019277" class="footer-contact-link">074-7019277</a><br><a href="tel:052-8000556" class="footer-contact-link">052-8000556</a></span></li>
+            <li><i class="fa-solid fa-envelope footer-contact-icon"></i><span><a href="mailto:office@pf-invest.co.il" class="footer-contact-link">office@pf-invest.co.il</a></span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <p class="footer-copy">&copy; 2026 טל גבאי - תכנון פיננסי מתקדם לבכירים. כל הזכויות שמורות.</p>
+        <p class="footer-legal">מורשה על ידי רשות שוק ההון, ביטוח וחיסכון</p>
+              <p class="footer-disclaimer">המידע באתר זה הינו למטרות הכרות כללית בלבד ואינו מהווה ייעוץ השקעות, ייעוץ פנסיוני, ייעוץ מס או המלצה כלשהי. אין להסתמך עליו ללא קבלת ייעוץ מקצועי המותאם לנסיבות האישיות.</p>
+        <p class="footer-links-legal"><a href="accessibility.html" class="footer-legal-link">הצהרת נגישות</a><span class="footer-sep"> | </span><a href="privacy-policy.html" class="footer-legal-link">מדיניות פרטיות</a></p>
+</div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/972528000556" target="_blank" rel="noopener noreferrer" class="whatsapp-float" aria-label="WhatsApp">
+    <i class="fa-brands fa-whatsapp whatsapp-icon"></i>
+  </a>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    hamburger.addEventListener('click', () => {
+      const open = mobileMenu.classList.toggle('open');
+      hamburger.setAttribute('aria-expanded', open);
+      mobileMenu.setAttribute('aria-hidden', !open);
+    });
+
+    /* Set min date to today */
+    const dateInput = document.getElementById('meet-date');
+    if (dateInput) {
+      const today = new Date().toISOString().split('T')[0];
+      dateInput.min = today;
+    }
+
+    /* Close modal on overlay click */
+    document.getElementById('meeting-modal').addEventListener('click', function(e) {
+      if (e.target === this) this.classList.remove('open');
+    });
+
+    /* Meeting form submit */
+    document.getElementById('meeting-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const btn = this.querySelector('button[type="submit"]');
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> שולח...';
+
+      const data = new FormData(this);
+      data.append('_cc', 'tal@pf-invest.co.il');
+      data.append('_subject', 'בקשת פגישה חדשה - צ\'ק אפ פיננסי');
+      data.append('_captcha', 'false');
+      data.append('_template', 'table');
+
+      try {
+        const res = await fetch('https://formsubmit.co/ajax/office@pf-invest.co.il', {
+          method: 'POST',
+          headers: { 'Accept': 'application/json' },
+          body: data
+        });
+        if (res.ok) {
+          document.getElementById('modal-form-wrap').style.display = 'none';
+          document.getElementById('modal-success').style.display = 'flex';
+        } else { throw new Error(); }
+      } catch {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> שליחת בקשת הפגישה';
+        alert('אירעה שגיאה. נסו שוב או התקשרו אלינו ישירות.');
+      }
+    });
+
+    /* Scroll animations */
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
+  </script>
+
+  <!-- ========== ACCESSIBILITY WIDGET ========== -->
+  <div class="a11y-widget" id="a11y-widget">
+    <button class="a11y-toggle" id="a11y-toggle" aria-label="אפשרויות נגישות" aria-expanded="false">
+      <i class="fa-solid fa-universal-access"></i>
+    </button>
+    <div class="a11y-panel" id="a11y-panel" role="dialog" aria-label="תפריט נגישות" aria-hidden="true">
+      <div class="a11y-panel-title">נגישות</div>
+      <button class="a11y-btn" id="a11y-font-up" aria-label="הגדל גופן"><i class="fa-solid fa-plus"></i> הגדל טקסט</button>
+      <button class="a11y-btn" id="a11y-font-down" aria-label="הקטן גופן"><i class="fa-solid fa-minus"></i> הקטן טקסט</button>
+      <button class="a11y-btn" id="a11y-contrast" aria-label="ניגודיות גבוהה"><i class="fa-solid fa-circle-half-stroke"></i> ניגודיות גבוהה</button>
+      <button class="a11y-btn" id="a11y-animations" aria-label="עצור אנימציות"><i class="fa-solid fa-pause"></i> עצור אנימציות</button>
+      <button class="a11y-btn" id="a11y-links" aria-label="הדגש קישורים"><i class="fa-solid fa-link"></i> הדגש קישורים</button>
+      <button class="a11y-btn" id="a11y-spacing" aria-label="ריווח טקסט"><i class="fa-solid fa-text-width"></i> ריווח טקסט</button>
+      <button class="a11y-btn a11y-reset" id="a11y-reset" aria-label="איפוס הגדרות"><i class="fa-solid fa-rotate-left"></i> איפוס</button>
+    </div>
+  </div>
+  <script>
+  (function(){
+    var t=document.getElementById('a11y-toggle'),p=document.getElementById('a11y-panel');
+    var fs=parseInt(localStorage.getItem('a11y-fs')||'16');
+    var hc=localStorage.getItem('a11y-hc')==='1';
+    var na=localStorage.getItem('a11y-na')==='1';
+    var hl=localStorage.getItem('a11y-hl')==='1';
+    var ts=localStorage.getItem('a11y-ts')==='1';
+    function apply(){
+      document.documentElement.style.fontSize=fs+'px';
+      document.body.classList.toggle('high-contrast',hc);
+      document.body.classList.toggle('no-animations',na);
+      document.body.classList.toggle('highlight-links',hl);
+      document.body.classList.toggle('text-spacing',ts);
+      document.getElementById('a11y-contrast').classList.toggle('active',hc);
+      document.getElementById('a11y-animations').classList.toggle('active',na);
+      document.getElementById('a11y-links').classList.toggle('active',hl);
+      document.getElementById('a11y-spacing').classList.toggle('active',ts);
+    }
+    apply();
+    t.addEventListener('click',function(){
+      var o=p.classList.toggle('open');
+      t.setAttribute('aria-expanded',o);
+      p.setAttribute('aria-hidden',!o);
+    });
+    document.getElementById('a11y-font-up').addEventListener('click',function(){if(fs<22){fs+=2;localStorage.setItem('a11y-fs',fs);apply();}});
+    document.getElementById('a11y-font-down').addEventListener('click',function(){if(fs>12){fs-=2;localStorage.setItem('a11y-fs',fs);apply();}});
+    document.getElementById('a11y-contrast').addEventListener('click',function(){hc=!hc;localStorage.setItem('a11y-hc',hc?'1':'0');apply();});
+    document.getElementById('a11y-animations').addEventListener('click',function(){na=!na;localStorage.setItem('a11y-na',na?'1':'0');apply();});
+    document.getElementById('a11y-links').addEventListener('click',function(){hl=!hl;localStorage.setItem('a11y-hl',hl?'1':'0');apply();});
+    document.getElementById('a11y-spacing').addEventListener('click',function(){ts=!ts;localStorage.setItem('a11y-ts',ts?'1':'0');apply();});
+    document.getElementById('a11y-reset').addEventListener('click',function(){fs=16;hc=false;na=false;hl=false;ts=false;localStorage.removeItem('a11y-fs');localStorage.removeItem('a11y-hc');localStorage.removeItem('a11y-na');localStorage.removeItem('a11y-hl');localStorage.removeItem('a11y-ts');apply();});
+    document.addEventListener('click',function(e){if(!document.getElementById('a11y-widget').contains(e.target)){p.classList.remove('open');t.setAttribute('aria-expanded','false');p.setAttribute('aria-hidden','true');}});
+  })();
+  </script>
+
+  <!-- Photo Modal -->
+  <div class="photo-modal" id="photo-modal" role="dialog" aria-modal="true" aria-label="תמונת טל גבאי">
+    <button class="photo-modal-close" id="photo-modal-close" aria-label="סגור" type="button">&times;</button>
+    <img src="tal.jpg" alt="טל גבאי — מתכנן פיננסי לבכירים" />
+  </div>
+  <script>
+  (function(){
+    var m=document.getElementById('photo-modal');
+    if(!m) return;
+    
+    document.getElementById('photo-modal-close').addEventListener('click',function(e){
+      e.stopPropagation();
+      m.classList.remove('open');
+      document.body.style.overflow='';
+    });
+    m.addEventListener('click',function(){
+      m.classList.remove('open');
+      document.body.style.overflow='';
+    });
+    m.querySelector('img').addEventListener('click',function(e){e.stopPropagation();});
+    document.addEventListener('keydown',function(e){
+      if(e.key==='Escape'){m.classList.remove('open');document.body.style.overflow='';}
+    });
+  })();
+  </script>
+
+
+  <!-- ===== COOKIE CONSENT BANNER ===== -->
+  <div id="cookie-banner" role="dialog" aria-label="הסכמה לעוגיות" aria-live="polite" style="display:none;position:fixed;bottom:0;right:0;left:0;z-index:99999;background:#0d1e35;color:#fff;padding:1rem 1.5rem;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.75rem;box-shadow:0 -2px 12px rgba(0,0,0,.35);font-family:'Heebo',sans-serif;font-size:.92rem;line-height:1.5;">
+    <p style="margin:0;flex:1 1 260px;">אתר זה משתמש ב<strong>Google Analytics</strong> לצורך ניתוח תנועת גולשים בלבד. לא נאסף מידע אישי מזהה. <a href="privacy-policy.html" style="color:#c9a84c;text-decoration:underline;">מדיניות פרטיות</a></p>
+    <div style="display:flex;gap:.6rem;flex-shrink:0;">
+      <button id="cookie-accept" style="background:#c9a84c;color:#0d1e35;border:none;border-radius:6px;padding:.45rem 1.1rem;font-weight:700;cursor:pointer;font-size:.9rem;">אני מסכים</button>
+      <button id="cookie-decline" style="background:transparent;color:rgba(255,255,255,.65);border:1px solid rgba(255,255,255,.3);border-radius:6px;padding:.45rem 1.1rem;cursor:pointer;font-size:.9rem;">דחה</button>
+    </div>
+  </div>
+  <script>
+  (function(){
+    var b=document.getElementById('cookie-banner');
+    var consent=localStorage.getItem('cookie-consent');
+    if(!consent) b.style.display='flex';
+    document.getElementById('cookie-accept').addEventListener('click',function(){
+      localStorage.setItem('cookie-consent','accepted');
+      b.style.display='none';
+    });
+    document.getElementById('cookie-decline').addEventListener('click',function(){
+      localStorage.setItem('cookie-consent','declined');
+      b.style.display='none';
+      // disable GA
+      window['ga-disable-G-5F91Q1DPZV']=true;
+    });
+    // if previously declined, disable GA
+    if(consent==='declined') window['ga-disable-G-5F91Q1DPZV']=true;
+  })();
+  </script>
+  <script>
+  (function(){
+    var btn = document.getElementById('cta-meeting-btn');
+    if (!btn) return;
+    var opened = false;
+    btn.addEventListener('mouseenter', function() {
+      if (opened) return;
+      setTimeout(function() {
+        opened = true;
+        document.getElementById('meeting-modal').classList.add('open');
+      }, 400);
+    });
+    document.getElementById('meeting-modal').addEventListener('click', function(e) {
+      if (e.target === this) { this.classList.remove('open'); opened = false; }
+    });
+  })();
+  </script>
+</body>
+</html>
