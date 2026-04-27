@@ -1346,6 +1346,20 @@ br.mobile-br { display: none; }
 
   .services-grid { grid-template-columns: 1fr 1fr; }
 
+  /* Reset full-width alt card to normal card on mobile */
+  .alt-invest-card {
+    grid-column: auto !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    padding: 2rem 1.5rem !important;
+    gap: 0 !important;
+    text-align: center;
+  }
+  .alt-invest-icon { margin-bottom: 1rem !important; flex-shrink: unset !important; }
+  .alt-invest-card .service-title { margin-bottom: .5rem !important; }
+  .alt-invest-card .service-desc { margin-bottom: 1rem !important; }
+  .alt-invest-link { margin-top: auto !important; flex-shrink: unset !important; }
+
   .team-grid { grid-template-columns: repeat(3, 1fr); gap: .75rem; }
   .team-card-lead { max-width: 220px; }
 
