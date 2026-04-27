@@ -1330,6 +1330,13 @@ br.mobile-br { display: none; }
   .hamburger { display: flex; }
   .mobile-menu { display: block; }
 
+  /* Shrink logo on mobile so it doesn't overflow into EN/IL button */
+  .header-logo .logo-main { font-size: 1.25rem; }
+  .header-logo .logo-sep  { font-size: .9rem; margin: 0 .2rem; }
+  .header-logo .logo-sub  { font-size: 1.15rem; }
+  /* Ensure EN/IL stays above the centered logo */
+  .header-left { position: relative; z-index: 2; }
+
   .hero-content { flex-direction: column; text-align: center; padding-block: 3.5rem; }
   .hero-text { max-width: 100%; }
   .hero-title { font-size: clamp(1.4rem, 5vw, 2rem); white-space: normal; }
