@@ -253,6 +253,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .nav-link:hover,
 .nav-link.active { color: var(--gold); background: transparent; }
+.mobile-nav-link.active { color: var(--gold); font-weight: 700; }
 
 /* Header Phone */
 .header-phone {

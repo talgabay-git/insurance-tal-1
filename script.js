@@ -2,6 +2,16 @@
    TRIO - Insurance & Finance | script.js
    ============================================================ */
 
+/* ── Active nav link based on current page ─────────────── */
+(function() {
+  var page = window.location.pathname.split('/').pop() || 'index.html';
+  document.querySelectorAll('.nav-link, .mobile-nav-link').forEach(function(a) {
+    if (a.getAttribute('href') === page) {
+      a.classList.add('active');
+    }
+  });
+})();
+
 /* ── Sticky header ─────────────────────────────────────── */
 const header = document.getElementById('site-header');
 window.addEventListener('scroll', () => {
