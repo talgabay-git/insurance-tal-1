@@ -24,6 +24,10 @@
     .lang-flags { display: flex; align-items: center; gap: 0.3rem; }
     .nav-link { font-size: 1.11rem; font-weight: 700; }
     .site-header .nav-link { color: var(--gold); }
+    .testimonial-card { direction: ltr !important; text-align: left; }
+    .testimonials-track { animation: none !important; }
+    .testimonials-carousel-wrap { cursor: grab; }
+    .testimonials-carousel-wrap:active { cursor: grabbing; }
   </style>
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
@@ -544,15 +548,15 @@
           if (!lastTs) lastTs = ts;
           var dt = Math.min((ts - lastTs) / 1000, 0.1);
           lastTs = ts;
-          if (!dragging && !touchDragging) {
-            var factor = touching ? 0.4 : (hovering ? 0.5 : 1);
-            pos -= pxPerSec() * factor * dt;
+          if (!dragging && !touchDragging && !hovering && !touching) {
+            pos -= pxPerSec() * dt;
             pos = wrapPos(pos);
           }
           track.style.transform = 'translateX(' + pos + 'px)';
           requestAnimationFrame(tick);
         }
         function start() {
+          track.style.animation = 'none';
           halfWidth = track.scrollWidth / 2;
           requestAnimationFrame(tick);
         }
