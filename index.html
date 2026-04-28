@@ -454,7 +454,7 @@
     <div class="container team-section">
       <div class="section-header fade-in-up" style="margin-bottom: calc(2rem + 0.5cm);">
         <h2 class="section-title" style="margin-bottom:0.5cm">הצוות שלנו</h2>
-        <p id="team-pyro-line" class="section-subtitle" style="color:var(--gold);font-weight:700;margin-bottom:0.5cm;cursor:default"><strong>ניסיון עשיר ושירות בסטנדרטים הכי גבוהים<br>זה מה שעושה את ההבדל</strong></p>
+        <p class="section-subtitle" style="color:var(--gold);font-weight:700;margin-bottom:0.5cm"><strong>ניסיון עשיר ושירות בסטנדרטים הכי גבוהים<br>זה מה שעושה את ההבדל</strong></p>
       </div>
       <div class="team-orbit-scene">
 
@@ -1423,42 +1423,5 @@
   })();
   </script>
 
-  <style>
-  @keyframes pyroFly{0%{transform:translate(0,0) scale(1) rotate(0deg);opacity:1}100%{transform:translate(var(--pdx),var(--pdy)) scale(0) rotate(var(--prot));opacity:0}}
-  .pyro-p{position:fixed;pointer-events:none;z-index:99999;animation:pyroFly var(--pdur) ease-out forwards;border-radius:var(--pbr)}
-  </style>
-  <script>
-  (function(){
-    var el=document.getElementById('team-pyro-line');
-    if(!el) return;
-    var colors=['#c9a84c','#f5d78e','#ffffff','#ffd700','#e8a900','#ffe066','#fff4b2'];
-    var shapes=['50%','2px','3px'];
-    var cooldown=false;
-    el.addEventListener('mouseenter',function(){
-      if(cooldown) return;
-      cooldown=true; setTimeout(function(){cooldown=false;},900);
-      var rect=el.getBoundingClientRect();
-      var cx=rect.left+rect.width/2, cy=rect.top+rect.height/2;
-      for(var i=0;i<32;i++){
-        (function(){
-          var p=document.createElement('span');
-          p.className='pyro-p';
-          var angle=Math.random()*Math.PI*2;
-          var dist=70+Math.random()*130;
-          var dx=Math.cos(angle)*dist, dy=Math.sin(angle)*dist-40;
-          var size=3+Math.random()*7;
-          var dur=(0.55+Math.random()*0.55).toFixed(2)+'s';
-          var delay=(Math.random()*0.12).toFixed(2)+'s';
-          var br=shapes[Math.floor(Math.random()*shapes.length)];
-          var col=colors[Math.floor(Math.random()*colors.length)];
-          var rot=(Math.random()*360).toFixed(0)+'deg';
-          p.style.cssText='left:'+cx+'px;top:'+cy+'px;width:'+size+'px;height:'+size+'px;background:'+col+';--pdx:'+dx+'px;--pdy:'+dy+'px;--pdur:'+dur+';--pbr:'+br+';--prot:'+rot+';animation-delay:'+delay;
-          document.body.appendChild(p);
-          p.addEventListener('animationend',function(){p.remove();});
-        })();
-      }
-    });
-  })();
-  </script>
 </body>
 </html>
