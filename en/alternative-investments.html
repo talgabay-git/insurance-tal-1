@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tal Gabay | Alternative Investments</title>
+  <meta name="description" content="Portfolio diversification beyond the stock market — real estate, private funds and unique tools for stable returns. Tal Gabay Financial Planning." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700;800&family=Heebo:wght@400;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    body{direction:ltr;text-align:left}
+    .checkup-hero{background:var(--navy);padding:5rem 0 4rem;text-align:center;position:relative;overflow:hidden}
+    .checkup-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 60% 40%,rgba(201,168,76,.12) 0%,transparent 65%);pointer-events:none}
+    .checkup-hero h1{font-family:'Heebo',sans-serif;font-size:clamp(2rem,5vw,3.2rem);font-weight:900;color:var(--gold);margin-bottom:1rem;border:2px solid var(--gold);display:inline-block;padding:.5rem 2rem;border-radius:10px}
+    .checkup-hero .hero-tagline{font-size:clamp(1rem,2.5vw,1.3rem);color:rgba(255,255,255,.8);max-width:680px;margin:1rem auto 0;line-height:1.7}
+    .checkup-content{padding:5rem 0;background:var(--off-white)}
+    .checkup-intro{max-width:820px;margin:0 auto 3rem;background:var(--white);border-radius:var(--radius-lg);padding:2.5rem 3rem;box-shadow:var(--shadow-md);border-left:5px solid var(--gold)}
+    .checkup-intro p{font-size:1.08rem;line-height:1.9;color:var(--text);margin-bottom:1.4rem}
+    .checkup-intro p:last-child{margin-bottom:0}
+    .checkup-benefits{max-width:900px;margin:0 auto 3rem}
+    .checkup-benefits h2{font-family:'Heebo',sans-serif;font-size:clamp(1.5rem,3vw,2rem);font-weight:900;color:var(--navy);text-align:center;margin-bottom:2rem}
+    .benefits-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+    .benefit-card{background:var(--white);border-radius:var(--radius-lg);padding:1.75rem 1.5rem;text-align:center;box-shadow:var(--shadow-sm);transition:transform .25s,box-shadow .25s;border-top:3px solid transparent}
+    .benefit-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);border-top-color:var(--gold)}
+    .benefit-icon{font-size:2.2rem;color:var(--gold);margin-bottom:.9rem}
+    .benefit-title{font-size:1rem;font-weight:800;color:var(--navy);margin-bottom:.5rem}
+    .benefit-desc{font-size:.85rem;color:var(--dark-gray);line-height:1.65}
+    .who-box{max-width:820px;margin:0 auto 1.5rem;background:var(--white);border-radius:var(--radius-lg);padding:2rem 2.5rem;box-shadow:var(--shadow-md);border-left:5px solid var(--gold)}
+    .who-box h2{font-family:'Heebo',sans-serif;font-size:1.2rem;font-weight:900;color:var(--navy);margin-bottom:1rem}
+    .who-box p{font-size:1rem;line-height:1.9;color:var(--text);margin-bottom:1rem}
+    .warning-note{max-width:820px;margin:0 auto 3rem;font-size:.95rem;color:var(--dark-gray);border-top:1px solid var(--light-gray);padding-top:.9rem}
+    .checkup-cta{background:var(--navy);padding:4rem 0;text-align:center}
+    .checkup-cta h2{font-family:'Heebo',sans-serif;font-size:clamp(1.5rem,3.5vw,2.2rem);font-weight:900;color:var(--white);margin-bottom:.75rem}
+    .checkup-cta p{color:rgba(255,255,255,.75);font-size:1.05rem;margin-bottom:2rem}
+    .cta-buttons{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+    .btn-white{background:var(--white);color:var(--navy);font-weight:800}
+    .btn-white:hover{background:var(--off-white)}
+    .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:2000;align-items:center;justify-content:center;padding:1rem}
+    .modal-overlay.open{display:flex;animation:modalFadeIn .75s ease}
+    @keyframes modalFadeIn{from{opacity:0}to{opacity:1}}
+    .modal-box{background:var(--white);border-radius:var(--radius-lg);padding:2.2rem 2rem;width:100%;max-width:500px;max-height:90vh;overflow-y:auto;position:relative;box-shadow:var(--shadow-lg)}
+    .modal-close{position:absolute;top:1rem;right:1rem;background:none;border:none;font-size:1.4rem;color:var(--mid-gray);cursor:pointer}
+    .modal-close:hover{color:var(--navy)}
+    .modal-title{font-family:'Heebo',sans-serif;font-size:1.3rem;font-weight:900;color:var(--navy);text-align:center;margin-bottom:.3rem}
+    .modal-subtitle{font-size:.88rem;color:var(--dark-gray);text-align:center;margin-bottom:1.75rem}
+    .modal-form{display:flex;flex-direction:column;gap:.9rem}
+    .modal-row{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
+    .modal-success{display:none;flex-direction:column;align-items:center;gap:.75rem;padding:2rem 0;text-align:center}
+    .modal-success i{font-size:2.8rem;color:#48bb78}
+    .modal-success h3{font-size:1.2rem;font-weight:800;color:var(--navy)}
+    .modal-success p{font-size:.9rem;color:var(--dark-gray)}
+    @media(max-width:768px){.checkup-hero{padding:3rem 0 2.5rem}.checkup-intro{padding:1.75rem 1.25rem;border-left-width:4px}.who-box{padding:1.5rem 1.25rem;border-left-width:4px}.benefits-grid{grid-template-columns:1fr 1fr}.checkup-cta{padding:3rem 0}.modal-row{grid-template-columns:1fr}.modal-box{padding:1.75rem 1.25rem}}
+    @media(max-width:480px){.benefits-grid{grid-template-columns:1fr}.checkup-hero h1{font-size:1.6rem;padding:.4rem 1.2rem}}
+  </style>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5F91Q1DPZV"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-5F91Q1DPZV',{'anonymize_ip':true});</script>
+</head>
+<body>
+  <a href="#content-start" class="skip-link">Skip to main content</a>
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo header-logo" aria-label="Home">
+        <span class="logo-main">Tal Gabay</span><span class="logo-sep">|</span><span class="logo-sub">Financial Planning</span>
+      </a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <ul class="nav-list">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="index.html#about" class="nav-link">About</a></li>
+          <li><a href="index.html#services" class="nav-link">Services</a></li>
+          <li><a href="index.html#testimonials" class="nav-link">Testimonials</a></li>
+          <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="header-left" style="display:flex;align-items:center;gap:.6rem;">
+        <a href="https://portal.roeto.co.il/pfinvest/login" class="btn-personal-area" target="_blank" rel="noopener"><i class="fa-solid fa-key"></i> Client Portal</a>
+        <div class="lang-flags">
+          <a href="../alternative-investments.html" class="lang-flag" title="עברית" style="font-weight:700;font-size:.85rem;color:rgba(255,255,255,.85);text-decoration:none;padding:.2rem .45rem;border:1px solid rgba(255,255,255,.3);border-radius:4px;transition:all .2s;white-space:nowrap">IL</a>
+        </div>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+        <span class="hamburger-line"></span><span class="hamburger-line"></span><span class="hamburger-line"></span>
+      </button>
+    </div>
+    <nav class="mobile-menu" id="mobile-menu" aria-label="Mobile menu" aria-hidden="true">
+      <ul class="mobile-nav-list">
+        <li><a href="index.html" class="mobile-nav-link">Home</a></li>
+        <li><a href="index.html#about" class="mobile-nav-link">About</a></li>
+        <li><a href="index.html#services" class="mobile-nav-link">Services</a></li>
+        <li><a href="index.html#contact" class="mobile-nav-link">Contact</a></li>
+        <li><a href="tel:052-8000556" class="mobile-nav-link mobile-phone"><i class="fa-solid fa-phone"></i> 052-8000556</a></li>
+        <li><a href="https://wa.me/972528000556" class="mobile-nav-link"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a></li>
+      </ul>
+    </nav>
+  </header>
+  <div id="content-start" tabindex="-1"></div>
+
+  <section class="checkup-hero">
+    <div class="container">
+      <h1>Alternative Investments</h1>
+      <p class="hero-tagline"><strong style="color:var(--white)">Portfolio diversification beyond the stock market — real estate, private funds and unique tools for stable returns</strong></p>
+    </div>
+  </section>
+
+  <section class="checkup-content">
+    <div class="container">
+
+      <div class="checkup-intro fade-in-up">
+        <p>Alternative investments is an umbrella term for a wide range of asset classes not regularly traded on a stock exchange — unlike traditional equities or bonds. While public markets are exposed to daily volatility driven by global events, alternative assets behave relatively independently.</p>
+        <p>They allow investors to join ventures and funds previously accessible only to large institutional bodies or high-net-worth individuals — such as hedge funds, direct real estate investments and private technology companies.</p>
+      </div>
+
+      <div class="checkup-benefits">
+        <h2>Investment categories</h2>
+        <div class="benefits-grid">
+          <div class="benefit-card fade-in-up">
+            <div class="benefit-icon"><i class="fa-solid fa-building"></i></div>
+            <div class="benefit-title">Income-Producing Real Estate</div>
+            <div class="benefit-desc">Investment in income-generating properties locally and abroad — stable cash flow and long-term capital growth.</div>
+          </div>
+          <div class="benefit-card fade-in-up">
+            <div class="benefit-icon"><i class="fa-solid fa-hand-holding-dollar"></i></div>
+            <div class="benefit-title">Private Debt Funds</div>
+            <div class="benefit-desc">Loans to private companies at high interest — returns superior to traded bonds with managed risk.</div>
+          </div>
+          <div class="benefit-card fade-in-up">
+            <div class="benefit-icon"><i class="fa-solid fa-bolt"></i></div>
+            <div class="benefit-title">Infrastructure &amp; Energy</div>
+            <div class="benefit-desc">Investment in renewable energy and infrastructure projects — predictable cash flow protected from inflation.</div>
+          </div>
+          <div class="benefit-card fade-in-up">
+            <div class="benefit-icon"><i class="fa-solid fa-chart-pie"></i></div>
+            <div class="benefit-title">True Diversification</div>
+            <div class="benefit-desc">Low correlation with public markets — stock market downturns do not necessarily affect alternative assets.</div>
+          </div>
+          <div class="benefit-card fade-in-up">
+            <div class="benefit-icon"><i class="fa-solid fa-shield-halved"></i></div>
+            <div class="benefit-title">Volatility Protection</div>
+            <div class="benefit-desc">These assets act as a "shock absorber" — reducing overall portfolio risk during periods of crisis.</div>
+          </div>
+          <div class="benefit-card fade-in-up">
+            <div class="benefit-icon"><i class="fa-solid fa-rocket"></i></div>
+            <div class="benefit-title">Return Potential</div>
+            <div class="benefit-desc">Access to unique growth opportunities unavailable to the general public — with the potential for superior returns.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="who-box fade-in-up">
+        <h2>Who is it for?</h2>
+        <p>Alternative investments suit investors seeking diversification beyond equities and bonds, with an investment horizon of 3–7 years or more. They are particularly suited to investors who have built a solid portfolio and wish to add a layer of returns uncorrelated with stock market movements.</p>
+        <p class="warning-note">⚠️ <strong>Please note:</strong> Alternative investments carry risk and are not suitable for all investors. Thorough due diligence must be conducted before any investment. The information here is for general awareness only and does not constitute investment advice.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="checkup-cta">
+    <div class="container">
+      <h2>Want to explore alternative investment opportunities?</h2>
+      <p style="font-weight:800;color:var(--gold)">Leave your details and we'll get back to you<br>to schedule a free introductory call</p>
+      <div class="cta-buttons">
+        <button onclick="document.getElementById('meeting-modal').classList.add('open')" class="btn btn-gold btn-lg">
+          <i class="fa-solid fa-calendar-check"></i> Schedule a Meeting
+        </button>
+        <a href="tel:052-8000556" class="btn btn-white btn-lg"><i class="fa-solid fa-phone"></i> 052-8000556</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="modal-overlay" id="meeting-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-box">
+      <button class="modal-close" onclick="document.getElementById('meeting-modal').classList.remove('open')" aria-label="Close">&times;</button>
+      <div id="modal-form-wrap">
+        <p class="modal-title" id="modal-title"><i class="fa-solid fa-calendar-check" style="color:var(--gold);margin-right:.4rem"></i> Schedule a Meeting</p>
+        <p class="modal-subtitle">Choose your preferred date and time — we'll confirm shortly</p>
+        <form class="modal-form" id="meeting-form">
+          <div class="modal-row">
+            <div class="form-group"><label class="form-label" for="meet-name">Full Name <span style="color:#e53e3e">*</span></label><input type="text" id="meet-name" name="Full Name" class="form-input" required placeholder="John Smith" /></div>
+            <div class="form-group"><label class="form-label" for="meet-phone">Phone <span style="color:#e53e3e">*</span></label><input type="tel" id="meet-phone" name="Phone" class="form-input" required placeholder="050-0000000" /></div>
+          </div>
+          <div class="form-group"><label class="form-label" for="meet-email">Email <span style="color:#e53e3e">*</span></label><input type="email" id="meet-email" name="Email" class="form-input" required placeholder="example@email.com" /></div>
+          <div class="modal-row">
+            <div class="form-group"><label class="form-label" for="meet-date">Preferred Date <span style="color:#e53e3e">*</span></label><input type="date" id="meet-date" name="Preferred Date" class="form-input" required /></div>
+            <div class="form-group"><label class="form-label" for="meet-time">Preferred Time <span style="color:#e53e3e">*</span></label>
+              <select id="meet-time" name="Preferred Time" class="form-select" required>
+                <option value="">Select time</option>
+                <option>08:00</option><option>08:30</option><option>09:00</option><option>09:30</option>
+                <option>10:00</option><option>10:30</option><option>11:00</option><option>11:30</option>
+                <option>12:00</option><option>12:30</option><option>13:00</option><option>13:30</option>
+                <option>14:00</option><option>14:30</option><option>15:00</option><option>15:30</option>
+                <option>16:00</option><option>16:30</option><option>17:00</option><option>17:30</option>
+                <option>18:00</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group"><label class="form-label" for="meet-notes">Notes (optional)</label><textarea id="meet-notes" name="Notes" class="form-textarea" rows="2" placeholder="Meeting topic, special requests..."></textarea></div>
+          <button type="submit" class="btn btn-gold" style="width:100%;justify-content:center;padding:.85rem;font-size:1rem;border-radius:var(--radius)"><i class="fa-solid fa-paper-plane"></i> Send Meeting Request</button>
+        </form>
+      </div>
+      <div class="modal-success" id="modal-success">
+        <i class="fa-solid fa-circle-check"></i><h3>Request Received!</h3>
+        <p>We'll get back to you shortly to confirm your meeting.</p>
+        <button onclick="document.getElementById('meeting-modal').classList.remove('open')" class="btn btn-gold" style="margin-top:.5rem">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-top">
+      <div class="container footer-top-inner">
+        <div class="footer-col footer-brand">
+          <a href="index.html" class="footer-logo"><span class="logo-main">Tal Gabay</span><span class="logo-sep">|</span><span class="logo-sub">Financial Planning</span></a>
+          <p class="footer-tagline">Personalized guidance for executives</p>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-col-title">Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="index.html" class="footer-link"><i class="fa-solid fa-chevron-right"></i> Home</a></li>
+            <li><a href="index.html#about" class="footer-link"><i class="fa-solid fa-chevron-right"></i> About</a></li>
+            <li><a href="index.html#services" class="footer-link"><i class="fa-solid fa-chevron-right"></i> Services</a></li>
+            <li><a href="index.html#contact" class="footer-link"><i class="fa-solid fa-chevron-right"></i> Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-col-title">Contact</h4>
+          <ul class="footer-contact-list">
+            <li><i class="fa-solid fa-location-dot footer-contact-icon"></i><span>19 HaYetzira St., Rehovot</span></li>
+            <li><i class="fa-solid fa-phone footer-contact-icon"></i><span><a href="tel:074-7019277" class="footer-contact-link">074-7019277</a><br><a href="tel:052-8000556" class="footer-contact-link">052-8000556</a></span></li>
+            <li><i class="fa-solid fa-envelope footer-contact-icon"></i><span><a href="mailto:office@pf-invest.co.il" class="footer-contact-link">office@pf-invest.co.il</a></span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <p class="footer-copy">&copy; 2026 Tal Gabay Financial Planning. All rights reserved.</p>
+        <p class="footer-legal">Licensed by the Capital Market, Insurance and Savings Authority</p>
+        <p class="footer-disclaimer">The information on this site is for general informational purposes only and does not constitute investment advice, pension advice, tax advice, or any recommendation. Do not rely on it without professional advice tailored to your personal circumstances.</p>
+        <p class="footer-links-legal"><a href="../accessibility.html" class="footer-legal-link">Accessibility</a><span class="footer-sep"> | </span><a href="../privacy-policy.html" class="footer-legal-link">Privacy Policy</a><span class="footer-sep"> | </span><a href="../alternative-investments.html" class="footer-legal-link">&#x1F1EE;&#x1F1F1; עברית</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/972528000556" target="_blank" rel="noopener noreferrer" class="whatsapp-float" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp whatsapp-icon"></i></a>
+
+  <script>
+    const hamburger=document.getElementById('hamburger'),mobileMenu=document.getElementById('mobile-menu');
+    hamburger.addEventListener('click',()=>{const open=mobileMenu.classList.toggle('open');hamburger.setAttribute('aria-expanded',open);mobileMenu.setAttribute('aria-hidden',!open);});
+    const dateInput=document.getElementById('meet-date');if(dateInput)dateInput.min=new Date().toISOString().split('T')[0];
+    document.getElementById('meeting-modal').addEventListener('click',function(e){if(e.target===this)this.classList.remove('open');});
+    document.getElementById('meeting-form').addEventListener('submit',async function(e){
+      e.preventDefault();const btn=this.querySelector('button[type="submit"]');btn.disabled=true;btn.innerHTML='<i class="fa-solid fa-spinner fa-spin"></i> Sending...';
+      const data=new FormData(this);data.append('_cc','tal@pf-invest.co.il');data.append('_subject','Meeting Request - Alternative Investments');data.append('_captcha','false');data.append('_template','table');
+      try{const res=await fetch('https://formsubmit.co/ajax/office@pf-invest.co.il',{method:'POST',headers:{'Accept':'application/json'},body:data});if(res.ok){document.getElementById('modal-form-wrap').style.display='none';document.getElementById('modal-success').style.display='flex';}else{throw new Error();}}
+      catch{btn.disabled=false;btn.innerHTML='<i class="fa-solid fa-paper-plane"></i> Send Meeting Request';alert('An error occurred. Please try again or call us directly.');}
+    });
+    const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target);}});},{threshold:0.1});
+    document.querySelectorAll('.fade-in-up').forEach(el=>observer.observe(el));
+  </script>
+  <div class="a11y-widget" id="a11y-widget">
+    <button class="a11y-toggle" id="a11y-toggle" aria-label="Accessibility options" aria-expanded="false"><i class="fa-solid fa-universal-access"></i></button>
+    <div class="a11y-panel" id="a11y-panel" role="dialog" aria-label="Accessibility menu" aria-hidden="true">
+      <div class="a11y-panel-title">Accessibility</div>
+      <button class="a11y-btn" id="a11y-font-up"><i class="fa-solid fa-plus"></i> Larger Text</button>
+      <button class="a11y-btn" id="a11y-font-down"><i class="fa-solid fa-minus"></i> Smaller Text</button>
+      <button class="a11y-btn" id="a11y-contrast"><i class="fa-solid fa-circle-half-stroke"></i> High Contrast</button>
+      <button class="a11y-btn" id="a11y-animations"><i class="fa-solid fa-pause"></i> Stop Animations</button>
+      <button class="a11y-btn" id="a11y-links"><i class="fa-solid fa-link"></i> Highlight Links</button>
+      <button class="a11y-btn" id="a11y-spacing"><i class="fa-solid fa-text-width"></i> Text Spacing</button>
+      <button class="a11y-btn a11y-reset" id="a11y-reset"><i class="fa-solid fa-rotate-left"></i> Reset</button>
+    </div>
+  </div>
+  <script>(function(){var t=document.getElementById('a11y-toggle'),p=document.getElementById('a11y-panel');var fs=parseInt(localStorage.getItem('a11y-fs')||'16'),hc=localStorage.getItem('a11y-hc')==='1',na=localStorage.getItem('a11y-na')==='1',hl=localStorage.getItem('a11y-hl')==='1',ts=localStorage.getItem('a11y-ts')==='1';function apply(){document.documentElement.style.fontSize=fs+'px';document.body.classList.toggle('high-contrast',hc);document.body.classList.toggle('no-animations',na);document.body.classList.toggle('highlight-links',hl);document.body.classList.toggle('text-spacing',ts);document.getElementById('a11y-contrast').classList.toggle('active',hc);document.getElementById('a11y-animations').classList.toggle('active',na);document.getElementById('a11y-links').classList.toggle('active',hl);document.getElementById('a11y-spacing').classList.toggle('active',ts);}apply();t.addEventListener('click',function(){var o=p.classList.toggle('open');t.setAttribute('aria-expanded',o);p.setAttribute('aria-hidden',!o);});document.getElementById('a11y-font-up').addEventListener('click',function(){if(fs<22){fs+=2;localStorage.setItem('a11y-fs',fs);apply();}});document.getElementById('a11y-font-down').addEventListener('click',function(){if(fs>12){fs-=2;localStorage.setItem('a11y-fs',fs);apply();}});document.getElementById('a11y-contrast').addEventListener('click',function(){hc=!hc;localStorage.setItem('a11y-hc',hc?'1':'0');apply();});document.getElementById('a11y-animations').addEventListener('click',function(){na=!na;localStorage.setItem('a11y-na',na?'1':'0');apply();});document.getElementById('a11y-links').addEventListener('click',function(){hl=!hl;localStorage.setItem('a11y-hl',hl?'1':'0');apply();});document.getElementById('a11y-spacing').addEventListener('click',function(){ts=!ts;localStorage.setItem('a11y-ts',ts?'1':'0');apply();});document.getElementById('a11y-reset').addEventListener('click',function(){fs=16;hc=false;na=false;hl=false;ts=false;['a11y-fs','a11y-hc','a11y-na','a11y-hl','a11y-ts'].forEach(function(k){localStorage.removeItem(k);});apply();});document.addEventListener('click',function(e){if(!document.getElementById('a11y-widget').contains(e.target)){p.classList.remove('open');t.setAttribute('aria-expanded','false');p.setAttribute('aria-hidden','true');}});})();</script>
+  <div id="cookie-banner" role="dialog" aria-label="Cookie consent" aria-live="polite" style="display:none;position:fixed;bottom:0;right:0;left:0;z-index:99999;background:#0d1e35;color:#fff;padding:1rem 1.5rem;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.75rem;box-shadow:0 -2px 12px rgba(0,0,0,.35);font-family:'Assistant',sans-serif;font-size:.92rem;line-height:1.5;">
+    <p style="margin:0;flex:1 1 260px;">This site uses <strong>Google Analytics</strong> for visitor analytics only. No personally identifiable information is collected. <a href="../privacy-policy.html" style="color:#c9a84c;text-decoration:underline;">Privacy Policy</a></p>
+    <div style="display:flex;gap:.6rem;flex-shrink:0;"><button id="cookie-accept" style="background:#c9a84c;color:#0d1e35;border:none;border-radius:6px;padding:.45rem 1.1rem;font-weight:700;cursor:pointer;font-size:.9rem;">Accept</button><button id="cookie-decline" style="background:transparent;color:rgba(255,255,255,.65);border:1px solid rgba(255,255,255,.3);border-radius:6px;padding:.45rem 1.1rem;cursor:pointer;font-size:.9rem;">Decline</button></div>
+  </div>
+  <script>(function(){var b=document.getElementById('cookie-banner'),consent=localStorage.getItem('cookie-consent');if(!consent)b.style.display='flex';document.getElementById('cookie-accept').addEventListener('click',function(){localStorage.setItem('cookie-consent','accepted');b.style.display='none';});document.getElementById('cookie-decline').addEventListener('click',function(){localStorage.setItem('cookie-consent','declined');b.style.display='none';window['ga-disable-G-5F91Q1DPZV']=true;});if(consent==='declined')window['ga-disable-G-5F91Q1DPZV']=true;})();</script>
+</body>
+</html>
