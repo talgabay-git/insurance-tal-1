@@ -708,7 +708,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .about-bio-intro + p { margin-top: calc(17vw - 12.5rem + 0.5cm); }
 .year-num { font-size: 1.15em; font-weight: 700; }
 .about-bio-intro {
-  font-size: 1.21rem;
+  font-size: 1.39rem;
   font-weight: 700;
   color: var(--gold);
   margin-top: -0.5cm;
