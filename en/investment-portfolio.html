@@ -342,7 +342,7 @@
     document.getElementById('meeting-modal').addEventListener('click', function(e) {
       if (e.target === this) this.classList.remove('open');
     });
-    var _ctaSec=document.querySelector('.checkup-cta,.page-cta');if(_ctaSec)_ctaSec.addEventListener('mouseenter',function(){document.getElementById('meeting-modal').classList.add('open');});
+    var _ctaBtn=document.querySelector('.checkup-cta .btn-gold,.page-cta .btn-gold');if(_ctaBtn)_ctaBtn.addEventListener('mouseenter',function(){document.getElementById('meeting-modal').classList.add('open');});
     document.getElementById('meeting-form').addEventListener('submit', async function(e) {
       e.preventDefault();
       const btn = this.querySelector('button[type="submit"]');

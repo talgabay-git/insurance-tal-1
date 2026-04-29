@@ -279,7 +279,7 @@
     const dateInput=document.getElementById('meet-date');
     if(dateInput) dateInput.min=new Date().toISOString().split('T')[0];
     document.getElementById('meeting-modal').addEventListener('click',function(e){if(e.target===this)this.classList.remove('open');});
-    var _ctaSec=document.querySelector('.checkup-cta,.page-cta');if(_ctaSec)_ctaSec.addEventListener('mouseenter',function(){document.getElementById('meeting-modal').classList.add('open');});
+    var _ctaBtn=document.querySelector('.checkup-cta .btn-gold,.page-cta .btn-gold');if(_ctaBtn)_ctaBtn.addEventListener('mouseenter',function(){document.getElementById('meeting-modal').classList.add('open');});
     document.getElementById('meeting-form').addEventListener('submit',async function(e){
       e.preventDefault();const btn=this.querySelector('button[type="submit"]');btn.disabled=true;btn.innerHTML='<i class="fa-solid fa-spinner fa-spin"></i> Sending...';
       const data=new FormData(this);data.append('_cc','tal@pf-invest.co.il');data.append('_subject','Meeting Request - Insurance Portfolio Review');data.append('_captcha','false');data.append('_template','table');
