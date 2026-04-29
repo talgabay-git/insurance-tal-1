@@ -373,6 +373,13 @@
           <div class="team-oval team-oval-lead team-oval-lead-center">
             <span class="oval-name" style="font-size:1.3rem;font-weight:900">Tal Gabay</span>
             <span class="oval-role" style="font-weight:700">Senior Financial Planner | CEO & Owner</span>
+            <div class="tal-popup" aria-hidden="true">
+              <img src="../tal.jpg" alt="Tal Gabay" />
+              <div class="tal-popup-card">
+                <span class="tal-popup-contact"><a href="https://wa.me/972528000556" target="_blank" rel="noopener">052-8000556</a></span>
+                <span class="tal-popup-contact"><a href="mailto:tal@pf-invest.co.il">tal@pf-invest.co.il</a></span>
+              </div>
+            </div>
           </div>
         </div>
         <div class="team-members-row">
@@ -907,6 +914,16 @@
     document.addEventListener('click', function(e){
       if(!e.target.closest('.orbit-oval')) document.querySelectorAll('.orbit-oval').forEach(function(o){ o.classList.remove('popup-open'); });
     });
+    var lead = document.querySelector('.team-oval-lead-center');
+    if(lead){
+      lead.addEventListener('touchend', function(e){
+        e.preventDefault();
+        lead.classList.toggle('popup-open');
+      });
+      document.addEventListener('touchstart', function(e){
+        if(!lead.contains(e.target)) lead.classList.remove('popup-open');
+      });
+    }
   })();
   </script>
 </body>
