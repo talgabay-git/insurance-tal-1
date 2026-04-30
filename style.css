@@ -735,10 +735,10 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .about-bio-list li { line-height: 1.75; }
 br.mobile-br { display: none; }
-.about-mobile-order { display: none; }
+.about-mobile-order { display: none !important; }
 @media (max-width: 768px) {
-  .about-desktop-order { display: none; }
-  .about-mobile-order { display: inline; }
+  .about-desktop-order { display: none !important; }
+  .about-mobile-order { display: inline !important; }
 }
 .about-bio-closing {
   font-weight: 400;
