@@ -2040,3 +2040,10 @@ body.text-spacing th {
     font-size: .78rem !important;
   }
 }
+
+/* ---- Advisor cards grid — 1 column on mobile ---- */
+@media (max-width: 640px) {
+  .advisor-cards-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
