@@ -2031,3 +2031,12 @@ body.text-spacing th {
   padding: 0;
 }
 .photo-modal-close:hover { color: var(--white); }
+
+/* ---- Advisor Value Table — mobile ---- */
+@media (max-width: 640px) {
+  .advisor-table th,
+  .advisor-table td {
+    padding: .55rem .6rem !important;
+    font-size: .78rem !important;
+  }
+}
