@@ -2068,3 +2068,10 @@ body.text-spacing th {
   border-radius: 2px;
   animation: underline-fade 2.4s ease-in-out infinite;
 }
+
+/* ---- Advisor subtitle — wrap on mobile ---- */
+@media (max-width: 640px) {
+  .advisor-subtitle-nowrap {
+    white-space: normal !important;
+  }
+}
