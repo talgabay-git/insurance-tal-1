@@ -2047,3 +2047,24 @@ body.text-spacing th {
     grid-template-columns: 1fr !important;
   }
 }
+
+/* ---- Animated underline pulse ---- */
+@keyframes underline-fade {
+  0%, 100% { opacity: 0; }
+  50%       { opacity: 1; }
+}
+.underline-pulse {
+  position: relative;
+  display: inline;
+}
+.underline-pulse::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--gold);
+  border-radius: 2px;
+  animation: underline-fade 2.4s ease-in-out infinite;
+}
