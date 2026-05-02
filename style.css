@@ -2075,3 +2075,30 @@ body.text-spacing th {
     white-space: normal !important;
   }
 }
+
+/* ---- Header nav hover — white→gold, gold→white ---- */
+.site-header .nav-link {
+  transition: color .3s ease;
+}
+.site-header .nav-link:hover {
+  color: var(--gold) !important;
+  background: transparent;
+}
+.lang-switch-btn {
+  transition: color .3s ease;
+}
+.lang-switch-btn:hover {
+  color: var(--white) !important;
+}
+.header-logo .logo-main {
+  transition: color .3s ease;
+}
+.header-logo:hover .logo-main {
+  color: var(--gold);
+}
+.header-logo .logo-sub {
+  transition: color .3s ease;
+}
+.header-logo:hover .logo-sub {
+  color: var(--white);
+}
