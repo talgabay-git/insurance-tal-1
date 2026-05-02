@@ -2055,6 +2055,13 @@ body.text-spacing th {
   0%, 100% { opacity: 0; }
   50%       { opacity: 1; }
 }
+@keyframes white-to-gold {
+  0%, 100% { color: #ffffff; }
+  50%       { color: var(--gold); }
+}
+.blink-white-gold {
+  animation: white-to-gold 3s ease-in-out infinite;
+}
 .underline-pulse {
   position: relative;
   display: inline;
