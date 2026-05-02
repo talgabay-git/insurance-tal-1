@@ -1564,5 +1564,31 @@
   })();
   </script>
 
+  <script>
+  (function() {
+    var items = document.querySelectorAll('.stats-bar .stat-item');
+    if (items.length < 3) return;
+    // RTL: index 0 = rightmost, 1 = middle, 2 = leftmost
+    var order = [0, 1, 2];
+    var current = 0;
+    var activeDuration = 600; // ms the animation stays on
+    var pauseDuration = 2000; // ms between activations
+
+    function pulse(idx) {
+      items[idx].classList.add('stat-auto-active');
+      setTimeout(function() {
+        items[idx].classList.remove('stat-auto-active');
+      }, activeDuration);
+    }
+
+    function cycle() {
+      pulse(order[current]);
+      current = (current + 1) % order.length;
+    }
+
+    setInterval(cycle, pauseDuration);
+  })();
+  </script>
+
 </body>
 </html>
