@@ -499,7 +499,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   line-height: 1;
   transition: color 0.3s ease, transform 0.3s ease;
 }
-.stat-item:hover .stat-number { color: var(--white); transform: scale(1.5); }
+.stat-item:hover .stat-number,
+.stat-item.stat-auto-active .stat-number { color: var(--white); transform: scale(1.5); }
 .stat-plus { font-size: 1.3rem; }
 .stat-label {
   font-size: .88rem;
@@ -507,7 +508,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   font-weight: 500;
   transition: color 0.3s ease, transform 0.3s ease;
 }
-.stat-item:hover .stat-label { color: var(--white); transform: scale(1.5); }
+.stat-item:hover .stat-label,
+.stat-item.stat-auto-active .stat-label { color: var(--white); transform: scale(1.5); }
 .stat-divider {
   width: 1px;
   height: 40px;
