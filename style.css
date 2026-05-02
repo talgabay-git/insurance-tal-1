@@ -2060,7 +2060,7 @@ body.text-spacing th {
   50%       { color: var(--gold); }
 }
 .blink-white-gold {
-  animation: white-to-gold 3s ease-in-out infinite;
+  animation: white-to-gold 5s ease-in-out infinite;
 }
 .underline-pulse {
   position: relative;
