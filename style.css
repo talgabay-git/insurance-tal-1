@@ -609,7 +609,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(255,255,255,0.72);
+  background: rgba(255,255,255,0.54);
   z-index: 1;
 }
 .about > * { position: relative; z-index: 2; }
