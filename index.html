@@ -1429,6 +1429,60 @@
     </div><!-- /.container -->
   </section>
 
+  <!-- ========== WHATSAPP TESTIMONIALS ========== -->
+  <section style="padding:4rem 0;background:var(--off-white);" id="whatsapp-testimonials" aria-labelledby="wa-heading">
+    <div class="container">
+      <h2 class="section-title" id="wa-heading">לקוחות כותבים</h2>
+      <p class="section-subtitle" style="margin-bottom:2.5rem;">עדויות אמיתיות מתוך שיחות וואטסאפ</p>
+      <div id="wa-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.25rem;"></div>
+      <p id="wa-empty" style="text-align:center;color:var(--dark-gray);display:none;font-size:.95rem;">עדויות בקרוב</p>
+    </div>
+    <!-- lightbox -->
+    <div id="wa-lb" onclick="waLbClose()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:9999;cursor:zoom-out;align-items:center;justify-content:center;">
+      <img id="wa-lb-img" src="" alt="" style="max-width:92vw;max-height:92vh;border-radius:10px;box-shadow:0 8px 40px rgba(0,0,0,.6);">
+    </div>
+    <script>
+    (function(){
+      var BASE = window.location.origin + (window.location.pathname.replace(/\/[^/]*$/, '') || '');
+      var LIST = BASE + '/whatsapp-screenshots/list.txt?v=' + Date.now();
+      fetch(LIST)
+        .then(function(r){ return r.ok ? r.text() : ''; })
+        .then(function(txt){
+          var names = txt.split('\n').map(function(s){ return s.trim(); }).filter(Boolean);
+          var grid  = document.getElementById('wa-grid');
+          var empty = document.getElementById('wa-empty');
+          if (!names.length){ empty.style.display = 'block'; return; }
+          names.forEach(function(name){
+            var src = BASE + '/whatsapp-screenshots/' + name;
+            var a   = document.createElement('a');
+            a.href  = 'javascript:void(0)';
+            a.onclick = function(){ waLbOpen(src); };
+            a.style.cssText = 'display:block;border-radius:12px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.1);transition:transform .2s;cursor:zoom-in;';
+            a.onmouseover = function(){ this.style.transform='scale(1.02)'; };
+            a.onmouseout  = function(){ this.style.transform='scale(1)'; };
+            var img = document.createElement('img');
+            img.src = src; img.alt = 'עדות לקוח'; img.loading = 'lazy';
+            img.style.cssText = 'width:100%;display:block;';
+            a.appendChild(img); grid.appendChild(a);
+          });
+        })
+        .catch(function(){ document.getElementById('wa-empty').style.display='block'; });
+    })();
+    function waLbOpen(src){
+      var lb = document.getElementById('wa-lb');
+      document.getElementById('wa-lb-img').src = src;
+      lb.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+    function waLbClose(){
+      document.getElementById('wa-lb').style.display = 'none';
+      document.getElementById('wa-lb-img').src = '';
+      document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', function(e){ if(e.key==='Escape') waLbClose(); });
+    </script>
+  </section>
+
   <!-- ========== CONTACT SECTION ========== -->
   <section class="contact" id="contact">
     <div class="container contact-inner">

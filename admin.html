@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ניהול עדויות | טל גבאי</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --navy:#0d1e35; --gold:#c9a84c; --white:#fff; }
+    *{ box-sizing:border-box; margin:0; padding:0; }
+    body{
+      font-family:'Heebo',sans-serif;
+      background:var(--navy);
+      color:var(--white);
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:2rem;
+    }
+    .card{
+      background:rgba(255,255,255,.07);
+      border:1px solid rgba(201,168,76,.3);
+      border-radius:16px;
+      padding:2.5rem;
+      width:100%;
+      max-width:480px;
+    }
+    h1{ color:var(--gold); font-size:1.5rem; margin-bottom:.4rem; }
+    .sub{ color:rgba(255,255,255,.6); font-size:.88rem; margin-bottom:2rem; line-height:1.6; }
+    label{ display:block; font-size:.85rem; color:rgba(255,255,255,.65); margin-bottom:.35rem; }
+    input[type=password]{
+      width:100%; padding:.75rem 1rem;
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.2);
+      border-radius:8px; color:var(--white);
+      font-family:'Heebo',sans-serif; font-size:.95rem;
+      margin-bottom:1.2rem; direction:ltr;
+    }
+    input:focus{ outline:none; border-color:var(--gold); }
+    .btn{
+      width:100%; padding:.85rem;
+      background:var(--gold); color:var(--navy);
+      border:none; border-radius:8px;
+      font-family:'Heebo',sans-serif; font-size:1rem; font-weight:700;
+      cursor:pointer; transition:opacity .2s;
+    }
+    .btn:hover{ opacity:.85; }
+    .btn:disabled{ opacity:.35; cursor:not-allowed; }
+    .dropzone{
+      border:2px dashed rgba(201,168,76,.45);
+      border-radius:12px; padding:2.5rem 1.5rem;
+      text-align:center; cursor:pointer;
+      transition:border-color .2s, background .2s;
+      margin-bottom:1.2rem; position:relative;
+    }
+    .dropzone.drag-over{ border-color:var(--gold); background:rgba(201,168,76,.08); }
+    .dropzone input[type=file]{
+      position:absolute; inset:0; opacity:0; cursor:pointer; width:100%; height:100%;
+    }
+    .dz-icon{ font-size:2.5rem; margin-bottom:.6rem; }
+    .dz-text{ color:rgba(255,255,255,.55); font-size:.9rem; line-height:1.6; }
+    .dz-text strong{ color:var(--gold); }
+    #preview-wrap{ margin-bottom:1.2rem; display:none; }
+    #preview-wrap img{ width:100%; border-radius:8px; max-height:280px; object-fit:contain; }
+    .status{ margin-top:.9rem; text-align:center; font-size:.9rem; min-height:1.4rem; }
+    .status.ok{ color:#66bb6a; }
+    .status.err{ color:#ef5350; }
+    .help-link{
+      color:var(--gold); font-size:.8rem; text-decoration:none;
+      display:block; margin-bottom:1.2rem;
+    }
+    .help-link:hover{ text-decoration:underline; }
+    #screen-login,#screen-upload{ display:none; }
+    #screen-login.on,#screen-upload.on{ display:block; }
+    .logout{ background:none; border:none; color:rgba(255,255,255,.35);
+      font-size:.8rem; cursor:pointer; margin-top:1rem; width:100%; text-align:center; }
+    .logout:hover{ color:var(--white); }
+    .step-title{ color:var(--gold); font-size:.8rem; font-weight:700;
+      text-transform:uppercase; letter-spacing:.05em; margin-bottom:1rem; }
+  </style>
+</head>
+<body>
+<div class="card">
+  <h1>📱 ניהול עדויות וואטסאפ</h1>
+
+  <!-- ─── LOGIN ─── -->
+  <div id="screen-login">
+    <p class="sub">
+      הכנס את ה-GitHub Token שלך להתחברות.<br>
+      אין לך? לחץ על הקישור למטה ליצירת אחד.
+    </p>
+    <label>GitHub Personal Access Token</label>
+    <input type="password" id="token-input" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" autocomplete="off">
+    <a class="help-link"
+       href="https://github.com/settings/tokens/new?scopes=repo&description=tal-gabay-admin"
+       target="_blank" rel="noopener">
+      ← לחץ כאן ליצירת Token חדש בגיטהאב
+    </a>
+    <button class="btn" id="login-btn" onclick="doLogin()">כניסה</button>
+    <div class="status" id="login-status"></div>
+  </div>
+
+  <!-- ─── UPLOAD ─── -->
+  <div id="screen-upload">
+    <p class="sub">גרור צילום מסך לאזור הכחול, או לחץ לבחירת קובץ מהמכשיר</p>
+    <div class="dropzone" id="dropzone">
+      <input type="file" id="file-input" accept="image/*" onchange="onFile(this.files[0])">
+      <div class="dz-icon">📲</div>
+      <p class="dz-text"><strong>גרור תמונה לכאן</strong><br>או לחץ לבחירה</p>
+    </div>
+    <div id="preview-wrap">
+      <img id="preview-img" src="" alt="תצוגה מקדימה">
+    </div>
+    <button class="btn" id="pub-btn" onclick="doUpload()" disabled>פרסם באתר ✓</button>
+    <div class="status" id="upload-status"></div>
+    <button class="logout" onclick="doLogout()">התנתק</button>
+  </div>
+</div>
+
+<script>
+const REPO   = 'talgabay-git/insurance-tal-1';
+const BRANCH = 'gh-pages';
+const FOLDER = 'whatsapp-screenshots';
+
+let pickedFile = null;
+
+function show(id) {
+  ['screen-login','screen-upload'].forEach(s =>
+    document.getElementById(s).classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+}
+
+window.addEventListener('load', () => {
+  if (sessionStorage.getItem('gh_token')) show('screen-upload');
+  else show('screen-login');
+
+  const dz = document.getElementById('dropzone');
+  dz.addEventListener('dragover', e => { e.preventDefault(); dz.classList.add('drag-over'); });
+  dz.addEventListener('dragleave', () => dz.classList.remove('drag-over'));
+  dz.addEventListener('drop', e => {
+    e.preventDefault(); dz.classList.remove('drag-over');
+    const f = e.dataTransfer.files[0];
+    if (f && f.type.startsWith('image/')) onFile(f);
+  });
+});
+
+async function doLogin() {
+  const token = document.getElementById('token-input').value.trim();
+  const st    = document.getElementById('login-status');
+  const btn   = document.getElementById('login-btn');
+  if (!token) { st.textContent = 'נא להכניס Token'; st.className = 'status err'; return; }
+  btn.disabled = true; st.className = 'status'; st.textContent = 'מתחבר...';
+  try {
+    const r = await fetch(`https://api.github.com/repos/${REPO}`,
+      { headers: { Authorization: `token ${token}` } });
+    if (r.ok) {
+      sessionStorage.setItem('gh_token', token);
+      st.textContent = ''; show('screen-upload');
+    } else {
+      st.textContent = 'Token שגוי — בדוק שיש הרשאת repo'; st.className = 'status err';
+    }
+  } catch { st.textContent = 'שגיאת רשת'; st.className = 'status err'; }
+  btn.disabled = false;
+}
+
+function onFile(file) {
+  if (!file) return;
+  pickedFile = file;
+  const reader = new FileReader();
+  reader.onload = e => {
+    document.getElementById('preview-img').src = e.target.result;
+    document.getElementById('preview-wrap').style.display = 'block';
+  };
+  reader.readAsDataURL(file);
+  document.getElementById('pub-btn').disabled = false;
+  document.getElementById('upload-status').textContent = '';
+}
+
+function readBase64(file) {
+  return new Promise((res, rej) => {
+    const r = new FileReader();
+    r.onload = e => res(e.target.result.split(',')[1]);
+    r.onerror = rej;
+    r.readAsDataURL(file);
+  });
+}
+
+async function doUpload() {
+  const token = sessionStorage.getItem('gh_token');
+  const st    = document.getElementById('upload-status');
+  const btn   = document.getElementById('pub-btn');
+  if (!pickedFile || !token) return;
+  btn.disabled = true; st.className = 'status'; st.textContent = 'מעלה תמונה...';
+
+  try {
+    const ext      = (pickedFile.name.split('.').pop() || 'jpg').toLowerCase();
+    const filename = `wa-${Date.now()}.${ext}`;
+    const b64      = await readBase64(pickedFile);
+
+    const up = await fetch(
+      `https://api.github.com/repos/${REPO}/contents/${FOLDER}/${filename}`, {
+      method: 'PUT',
+      headers: { Authorization: `token ${token}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: `Add screenshot ${filename}`, content: b64, branch: BRANCH })
+    });
+    if (!up.ok) throw new Error('שגיאה בהעלאת תמונה (' + up.status + ')');
+
+    st.textContent = 'מעדכן רשימה...';
+    await updateList(token, filename);
+
+    st.textContent = '✅ פורסם! יופיע באתר תוך כדקה.';
+    st.className = 'status ok';
+    pickedFile = null;
+    document.getElementById('preview-wrap').style.display = 'none';
+    document.getElementById('preview-img').src = '';
+    document.getElementById('file-input').value = '';
+    btn.disabled = true;
+  } catch (err) {
+    st.textContent = '❌ ' + err.message; st.className = 'status err';
+    btn.disabled = false;
+  }
+}
+
+async function updateList(token, filename) {
+  const url = `https://api.github.com/repos/${REPO}/contents/${FOLDER}/list.txt`;
+  const get = await fetch(`${url}?ref=${BRANCH}`,
+    { headers: { Authorization: `token ${token}` } });
+
+  let sha = null, current = '';
+  if (get.ok) {
+    const d = await get.json();
+    sha = d.sha;
+    try { current = decodeURIComponent(escape(atob(d.content.replace(/\s/g,'')))); } catch {}
+  }
+
+  const updated = (current.trim() ? current.trim() + '\n' : '') + filename + '\n';
+  const encoded = btoa(unescape(encodeURIComponent(updated)));
+  const body    = { message: `List: add ${filename}`, content: encoded, branch: BRANCH };
+  if (sha) body.sha = sha;
+
+  const put = await fetch(url, {
+    method: 'PUT',
+    headers: { Authorization: `token ${token}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify(body)
+  });
+  if (!put.ok) throw new Error('שגיאה בעדכון רשימה (' + put.status + ')');
+}
+
+function doLogout() {
+  sessionStorage.removeItem('gh_token');
+  show('screen-login');
+}
+</script>
+</body>
+</html>
