@@ -55,3 +55,24 @@
 - nav: 11 פריטים, font-size .73rem, padding .35rem (כדי שיכנס בשורה)
 - העלאת מסמכים נוטרלה (CSS pointer-events:none + disabled) — אין גישה לת.ז ומסמכים רגישים
 - גיבוי מקומי: /home/user/insurance-tal-1-backup.zip
+- יש גרסה אנגלית: en/index.html (מקביל ל-index.html)
+
+## היסטוריית עבודה
+
+### 21.05.2026
+- הוספת **סקשן המלצות מוואטסאפ** ב-index.html + en/index.html (screenshots מלקוחות)
+- הוספת **admin.html** — עמוד ניהול עצמי להוספת המלצות חדשות
+- יצירת תיקיית whatsapp-screenshots/ לאחסון תמונות
+
+### 15.05.2026
+- הוספת **9 המלצות לקוחות** (עברית + אנגלית):
+  Santi Ben Naim, Eyal Biran, Ilan Ginosar, Dr. Uri Brener, Yaakov Avishar,
+  Shahar Rivel, Yuval Peled, Michael Weiner, Yair Ram,
+  Varda & Yaakov Nagranu, עו"ד אסף פריאל
+- הפחתת אטימות overlay בסקשן "אודות" (0.72 → 0.54)
+
+### 02.05.2026
+- אנימציית blink זהב על טקסט "הוליסטי" (5s)
+- אנימציית auto-cycle על stats bar
+- שינויי כותרות עברית/אנגלית
+- הסרת badges ממספרים בכרטיסי יועצים
