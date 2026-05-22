@@ -7,17 +7,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    :root { --navy:#0d1e35; --gold:#c9a84c; --white:#fff; }
+    :root { --navy:#0d1e35; --gold:#c9a84c; --white:#fff; --red:#ef5350; --green:#66bb6a; }
     *{ box-sizing:border-box; margin:0; padding:0; }
     body{
       font-family:'Heebo',sans-serif;
       background:var(--navy);
       color:var(--white);
       min-height:100vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:2rem;
+      padding:2rem 1rem;
     }
     .card{
       background:rgba(255,255,255,.07);
@@ -25,7 +22,8 @@
       border-radius:16px;
       padding:2.5rem;
       width:100%;
-      max-width:480px;
+      max-width:560px;
+      margin:0 auto;
     }
     h1{ color:var(--gold); font-size:1.5rem; margin-bottom:.4rem; }
     .sub{ color:rgba(255,255,255,.6); font-size:.88rem; margin-bottom:2rem; line-height:1.6; }
@@ -39,6 +37,18 @@
       margin-bottom:1.2rem; direction:ltr;
     }
     input:focus{ outline:none; border-color:var(--gold); }
+
+    /* Tabs */
+    .tabs{ display:flex; gap:.5rem; margin-bottom:1.8rem; }
+    .tab{
+      flex:1; padding:.65rem; border:1px solid rgba(201,168,76,.35);
+      border-radius:8px; background:transparent; color:rgba(255,255,255,.55);
+      font-family:'Heebo',sans-serif; font-size:.9rem; cursor:pointer; transition:.2s;
+    }
+    .tab.active{ background:var(--gold); color:var(--navy); font-weight:700; border-color:var(--gold); }
+    .tab:hover:not(.active){ border-color:var(--gold); color:var(--white); }
+
+    /* Buttons */
     .btn{
       width:100%; padding:.85rem;
       background:var(--gold); color:var(--navy);
@@ -48,6 +58,8 @@
     }
     .btn:hover{ opacity:.85; }
     .btn:disabled{ opacity:.35; cursor:not-allowed; }
+
+    /* Dropzone */
     .dropzone{
       border:2px dashed rgba(201,168,76,.45);
       border-radius:12px; padding:2.5rem 1.5rem;
@@ -63,22 +75,73 @@
     .dz-text{ color:rgba(255,255,255,.55); font-size:.9rem; line-height:1.6; }
     .dz-text strong{ color:var(--gold); }
     #preview-wrap{ margin-bottom:1.2rem; display:none; }
-    #preview-wrap img{ width:100%; border-radius:8px; max-height:280px; object-fit:contain; }
+    #preview-wrap img{ width:100%; border-radius:8px; max-height:320px; object-fit:contain; }
+
+    /* Status */
     .status{ margin-top:.9rem; text-align:center; font-size:.9rem; min-height:1.4rem; }
-    .status.ok{ color:#66bb6a; }
-    .status.err{ color:#ef5350; }
+    .status.ok{ color:var(--green); }
+    .status.err{ color:var(--red); }
+
+    /* Help link */
     .help-link{
       color:var(--gold); font-size:.8rem; text-decoration:none;
       display:block; margin-bottom:1.2rem;
     }
     .help-link:hover{ text-decoration:underline; }
-    #screen-login,#screen-upload{ display:none; }
-    #screen-login.on,#screen-upload.on{ display:block; }
+
+    /* Screen toggles */
+    #screen-login,#screen-main{ display:none; }
+    #screen-login.on,#screen-main.on{ display:block; }
+    #tab-upload,#tab-manage{ display:none; }
+    #tab-upload.on,#tab-manage.on{ display:block; }
+
+    /* Logout */
     .logout{ background:none; border:none; color:rgba(255,255,255,.35);
-      font-size:.8rem; cursor:pointer; margin-top:1rem; width:100%; text-align:center; }
+      font-size:.8rem; cursor:pointer; margin-top:1.5rem; width:100%; text-align:center; }
     .logout:hover{ color:var(--white); }
-    .step-title{ color:var(--gold); font-size:.8rem; font-weight:700;
-      text-transform:uppercase; letter-spacing:.05em; margin-bottom:1rem; }
+
+    /* Manage grid */
+    .manage-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fill,minmax(140px,1fr));
+      gap:1rem;
+      margin-bottom:1rem;
+    }
+    .img-card{
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.1);
+      border-radius:10px;
+      overflow:hidden;
+      position:relative;
+    }
+    .img-card img{
+      width:100%; display:block;
+      max-height:160px; object-fit:cover;
+    }
+    .img-card .del-btn{
+      width:100%; padding:.5rem;
+      background:rgba(239,83,80,.85);
+      color:#fff; border:none;
+      font-family:'Heebo',sans-serif;
+      font-size:.82rem; cursor:pointer;
+      transition:background .2s;
+    }
+    .img-card .del-btn:hover{ background:var(--red); }
+    .manage-empty{
+      text-align:center; color:rgba(255,255,255,.45);
+      font-size:.9rem; padding:2rem 0;
+    }
+    .refresh-btn{
+      background:none; border:1px solid rgba(201,168,76,.4);
+      color:var(--gold); border-radius:8px;
+      padding:.5rem 1.2rem; font-family:'Heebo',sans-serif;
+      font-size:.85rem; cursor:pointer; margin-bottom:1.2rem;
+      transition:.2s;
+    }
+    .refresh-btn:hover{ background:rgba(201,168,76,.1); }
+    .manage-status{ text-align:center; font-size:.88rem; min-height:1.2rem; margin-bottom:.8rem; }
+    .manage-status.ok{ color:var(--green); }
+    .manage-status.err{ color:var(--red); }
   </style>
 </head>
 <body>
@@ -102,19 +165,36 @@
     <div class="status" id="login-status"></div>
   </div>
 
-  <!-- ─── UPLOAD ─── -->
-  <div id="screen-upload">
-    <p class="sub">גרור צילום מסך לאזור הכחול, או לחץ לבחירת קובץ מהמכשיר</p>
-    <div class="dropzone" id="dropzone">
-      <input type="file" id="file-input" accept="image/*" onchange="onFile(this.files[0])">
-      <div class="dz-icon">📲</div>
-      <p class="dz-text"><strong>גרור תמונה לכאן</strong><br>או לחץ לבחירה</p>
+  <!-- ─── MAIN ─── -->
+  <div id="screen-main">
+    <div class="tabs">
+      <button class="tab active" id="t-upload" onclick="switchTab('upload')">📤 העלאת תמונה</button>
+      <button class="tab" id="t-manage" onclick="switchTab('manage')">🗂 ניהול ומחיקה</button>
     </div>
-    <div id="preview-wrap">
-      <img id="preview-img" src="" alt="תצוגה מקדימה">
+
+    <!-- TAB: UPLOAD -->
+    <div id="tab-upload" class="on">
+      <p class="sub">גרור צילום מסך לאזור הכחול, או לחץ לבחירת קובץ מהמכשיר</p>
+      <div class="dropzone" id="dropzone">
+        <input type="file" id="file-input" accept="image/*" onchange="onFile(this.files[0])">
+        <div class="dz-icon">📲</div>
+        <p class="dz-text"><strong>גרור תמונה לכאן</strong><br>או לחץ לבחירה</p>
+      </div>
+      <div id="preview-wrap">
+        <img id="preview-img" src="" alt="תצוגה מקדימה">
+      </div>
+      <button class="btn" id="pub-btn" onclick="doUpload()" disabled>פרסם באתר ✓</button>
+      <div class="status" id="upload-status"></div>
     </div>
-    <button class="btn" id="pub-btn" onclick="doUpload()" disabled>פרסם באתר ✓</button>
-    <div class="status" id="upload-status"></div>
+
+    <!-- TAB: MANAGE -->
+    <div id="tab-manage">
+      <p class="sub">לחץ "מחק" מתחת לתמונה להסרתה מהאתר. הפעולה מיידית ובלתי הפיכה.</p>
+      <button class="refresh-btn" onclick="loadManage()">↻ רענן רשימה</button>
+      <div class="manage-status" id="manage-status"></div>
+      <div class="manage-grid" id="manage-grid"></div>
+    </div>
+
     <button class="logout" onclick="doLogout()">התנתק</button>
   </div>
 </div>
@@ -126,14 +206,31 @@ const FOLDER = 'whatsapp-screenshots';
 
 let pickedFile = null;
 
+/* ── helpers ── */
 function show(id) {
-  ['screen-login','screen-upload'].forEach(s =>
+  ['screen-login','screen-main'].forEach(s =>
     document.getElementById(s).classList.remove('on'));
   document.getElementById(id).classList.add('on');
 }
 
+function switchTab(name) {
+  ['upload','manage'].forEach(n => {
+    document.getElementById('tab-'+n).classList.toggle('on', n===name);
+    document.getElementById('t-'+n).classList.toggle('active', n===name);
+  });
+  if (name==='manage') loadManage();
+}
+
+function ghHeaders() {
+  return {
+    Authorization: `token ${sessionStorage.getItem('gh_token')}`,
+    'Content-Type': 'application/json'
+  };
+}
+
+/* ── init ── */
 window.addEventListener('load', () => {
-  if (sessionStorage.getItem('gh_token')) show('screen-upload');
+  if (sessionStorage.getItem('gh_token')) show('screen-main');
   else show('screen-login');
 
   const dz = document.getElementById('dropzone');
@@ -146,25 +243,27 @@ window.addEventListener('load', () => {
   });
 });
 
+/* ── login ── */
 async function doLogin() {
   const token = document.getElementById('token-input').value.trim();
   const st    = document.getElementById('login-status');
   const btn   = document.getElementById('login-btn');
-  if (!token) { st.textContent = 'נא להכניס Token'; st.className = 'status err'; return; }
-  btn.disabled = true; st.className = 'status'; st.textContent = 'מתחבר...';
+  if (!token) { st.textContent='נא להכניס Token'; st.className='status err'; return; }
+  btn.disabled=true; st.className='status'; st.textContent='מתחבר...';
   try {
     const r = await fetch(`https://api.github.com/repos/${REPO}`,
-      { headers: { Authorization: `token ${token}` } });
+      { headers:{ Authorization:`token ${token}` } });
     if (r.ok) {
       sessionStorage.setItem('gh_token', token);
-      st.textContent = ''; show('screen-upload');
+      st.textContent=''; show('screen-main');
     } else {
-      st.textContent = 'Token שגוי — בדוק שיש הרשאת repo'; st.className = 'status err';
+      st.textContent='Token שגוי — בדוק שיש הרשאת repo'; st.className='status err';
     }
-  } catch { st.textContent = 'שגיאת רשת'; st.className = 'status err'; }
-  btn.disabled = false;
+  } catch { st.textContent='שגיאת רשת'; st.className='status err'; }
+  btn.disabled=false;
 }
 
+/* ── upload ── */
 function onFile(file) {
   if (!file) return;
   pickedFile = file;
@@ -179,7 +278,7 @@ function onFile(file) {
 }
 
 function readBase64(file) {
-  return new Promise((res, rej) => {
+  return new Promise((res,rej) => {
     const r = new FileReader();
     r.onload = e => res(e.target.result.split(',')[1]);
     r.onerror = rej;
@@ -192,8 +291,7 @@ async function doUpload() {
   const st    = document.getElementById('upload-status');
   const btn   = document.getElementById('pub-btn');
   if (!pickedFile || !token) return;
-  btn.disabled = true; st.className = 'status'; st.textContent = 'מעלה תמונה...';
-
+  btn.disabled=true; st.className='status'; st.textContent='מעלה תמונה...';
   try {
     const ext      = (pickedFile.name.split('.').pop() || 'jpg').toLowerCase();
     const filename = `wa-${Date.now()}.${ext}`;
@@ -201,53 +299,124 @@ async function doUpload() {
 
     const up = await fetch(
       `https://api.github.com/repos/${REPO}/contents/${FOLDER}/${filename}`, {
-      method: 'PUT',
-      headers: { Authorization: `token ${token}`, 'Content-Type': 'application/json' },
-      body: JSON.stringify({ message: `Add screenshot ${filename}`, content: b64, branch: BRANCH })
+      method:'PUT', headers:ghHeaders(),
+      body:JSON.stringify({ message:`Add screenshot ${filename}`, content:b64, branch:BRANCH })
     });
-    if (!up.ok) throw new Error('שגיאה בהעלאת תמונה (' + up.status + ')');
+    if (!up.ok) throw new Error('שגיאה בהעלאת תמונה ('+up.status+')');
 
-    st.textContent = 'מעדכן רשימה...';
-    await updateList(token, filename);
+    st.textContent='מעדכן רשימה...';
+    await updateList(token, filename, 'add');
 
-    st.textContent = '✅ פורסם! יופיע באתר תוך כדקה.';
-    st.className = 'status ok';
-    pickedFile = null;
-    document.getElementById('preview-wrap').style.display = 'none';
-    document.getElementById('preview-img').src = '';
-    document.getElementById('file-input').value = '';
-    btn.disabled = true;
-  } catch (err) {
-    st.textContent = '❌ ' + err.message; st.className = 'status err';
-    btn.disabled = false;
+    st.textContent='✅ פורסם! יופיע באתר תוך כדקה.';
+    st.className='status ok';
+    pickedFile=null;
+    document.getElementById('preview-wrap').style.display='none';
+    document.getElementById('preview-img').src='';
+    document.getElementById('file-input').value='';
+    btn.disabled=true;
+  } catch(err) {
+    st.textContent='❌ '+err.message; st.className='status err';
+    btn.disabled=false;
   }
 }
 
-async function updateList(token, filename) {
-  const url = `https://api.github.com/repos/${REPO}/contents/${FOLDER}/list.txt`;
-  const get = await fetch(`${url}?ref=${BRANCH}`,
-    { headers: { Authorization: `token ${token}` } });
+/* ── list.txt helpers ── */
+async function getList(token) {
+  const url = `https://api.github.com/repos/${REPO}/contents/${FOLDER}/list.txt?ref=${BRANCH}`;
+  const r   = await fetch(url, { headers:{ Authorization:`token ${token}` } });
+  if (!r.ok) return { sha:null, names:[] };
+  const d    = await r.json();
+  let content='';
+  try { content = decodeURIComponent(escape(atob(d.content.replace(/\s/g,'')))); } catch {}
+  const names = content.split('\n').map(s=>s.trim()).filter(Boolean);
+  return { sha:d.sha, names };
+}
 
-  let sha = null, current = '';
-  if (get.ok) {
-    const d = await get.json();
-    sha = d.sha;
-    try { current = decodeURIComponent(escape(atob(d.content.replace(/\s/g,'')))); } catch {}
+async function updateList(token, filename, action) {
+  const { sha, names } = await getList(token);
+  let updated;
+  if (action==='add') {
+    updated = [...names, filename].join('\n') + '\n';
+  } else {
+    updated = names.filter(n=>n!==filename).join('\n') + (names.length>1?'\n':'');
   }
-
-  const updated = (current.trim() ? current.trim() + '\n' : '') + filename + '\n';
   const encoded = btoa(unescape(encodeURIComponent(updated)));
-  const body    = { message: `List: add ${filename}`, content: encoded, branch: BRANCH };
+  const body    = { message:`List: ${action} ${filename}`, content:encoded, branch:BRANCH };
   if (sha) body.sha = sha;
-
-  const put = await fetch(url, {
-    method: 'PUT',
-    headers: { Authorization: `token ${token}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify(body)
-  });
-  if (!put.ok) throw new Error('שגיאה בעדכון רשימה (' + put.status + ')');
+  const r = await fetch(
+    `https://api.github.com/repos/${REPO}/contents/${FOLDER}/list.txt`,
+    { method:'PUT', headers:ghHeaders(), body:JSON.stringify(body) }
+  );
+  if (!r.ok) throw new Error('שגיאה בעדכון רשימה ('+r.status+')');
 }
 
+/* ── manage / delete ── */
+async function loadManage() {
+  const token = sessionStorage.getItem('gh_token');
+  const st    = document.getElementById('manage-status');
+  const grid  = document.getElementById('manage-grid');
+  st.className='manage-status'; st.textContent='טוען...';
+  grid.innerHTML='';
+  try {
+    const { names } = await getList(token);
+    st.textContent='';
+    if (!names.length) {
+      grid.innerHTML='<p class="manage-empty">אין תמונות עדיין</p>';
+      return;
+    }
+    names.forEach(name => {
+      const base = `https://raw.githubusercontent.com/${REPO}/${BRANCH}/${FOLDER}/`;
+      const card = document.createElement('div');
+      card.className='img-card';
+      card.innerHTML=`
+        <img src="${base}${name}" alt="${name}" loading="lazy">
+        <button class="del-btn" onclick="doDelete('${name}',this)">🗑 מחק</button>
+      `;
+      grid.appendChild(card);
+    });
+  } catch(e) {
+    st.textContent='❌ שגיאה בטעינה'; st.className='manage-status err';
+  }
+}
+
+async function doDelete(filename, btn) {
+  if (!confirm(`למחוק את "${filename}"?\nלא ניתן לבטל.`)) return;
+  const token = sessionStorage.getItem('gh_token');
+  const st    = document.getElementById('manage-status');
+  btn.disabled=true; btn.textContent='מוחק...';
+  st.className='manage-status'; st.textContent='';
+  try {
+    /* get file sha */
+    const info = await fetch(
+      `https://api.github.com/repos/${REPO}/contents/${FOLDER}/${filename}?ref=${BRANCH}`,
+      { headers:{ Authorization:`token ${token}` } }
+    );
+    if (!info.ok) throw new Error('קובץ לא נמצא');
+    const { sha } = await info.json();
+
+    /* delete file */
+    const del = await fetch(
+      `https://api.github.com/repos/${REPO}/contents/${FOLDER}/${filename}`,
+      { method:'DELETE', headers:ghHeaders(),
+        body:JSON.stringify({ message:`Delete ${filename}`, sha, branch:BRANCH }) }
+    );
+    if (!del.ok) throw new Error('שגיאה במחיקה ('+del.status+')');
+
+    /* update list.txt */
+    await updateList(token, filename, 'remove');
+
+    st.textContent='✅ נמחק בהצלחה'; st.className='manage-status ok';
+    btn.closest('.img-card').remove();
+    const grid = document.getElementById('manage-grid');
+    if (!grid.children.length)
+      grid.innerHTML='<p class="manage-empty">אין תמונות עדיין</p>';
+  } catch(e) {
+    st.textContent='❌ '+e.message; st.className='manage-status err';
+    btn.disabled=false; btn.textContent='🗑 מחק';
+  }
+}
+
+/* ── logout ── */
 function doLogout() {
   sessionStorage.removeItem('gh_token');
   show('screen-login');
