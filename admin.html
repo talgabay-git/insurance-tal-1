@@ -116,6 +116,10 @@
     .review-status{ margin-top:.9rem; text-align:center; font-size:.9rem; min-height:1.4rem; }
     .review-status.ok{ color:var(--green); }
     .review-status.err{ color:var(--red); }
+    .btn-row{ display:flex; gap:.75rem; }
+    .btn-row .btn{ flex:1; }
+    .btn-danger{ background:rgba(239,83,80,.85); color:#fff; }
+    .btn-danger:hover{ background:var(--red); opacity:1; }
 
     /* Logout */
     .logout{ background:none; border:none; color:rgba(255,255,255,.35);
@@ -228,7 +232,10 @@
       <textarea id="review-textarea" class="review-textarea" placeholder="כתוב כאן את סקירת השוק...&#10;&#10;שורה ריקה בין פסקאות יוצרת פסקה חדשה בדף.&#10;&#10;טקסט **בולד** יהיה מודגש בדף."></textarea>
       <p class="review-hint">💡 הסקירה תופיע מעל קישורי השוק בעמוד "תמונת מצב בשווקים".<br>
       לחץ "שמור סקירה" — השינוי יפורסם באתר תוך כ-2 דקות.</p>
-      <button class="btn" onclick="saveReview()">שמור סקירה ✓</button>
+      <div class="btn-row">
+        <button class="btn" onclick="saveReview()">שמור סקירה ✓</button>
+        <button class="btn btn-danger" onclick="deleteReview()">🗑 מחק סקירה</button>
+      </div>
       <div class="review-status" id="review-status"></div>
     </div>
 
@@ -530,6 +537,35 @@ async function saveReview() {
     );
     if (!r.ok) throw new Error('שגיאת שמירה (' + r.status + ')');
     st.textContent = '✅ הסקירה נשמרה! תופיע באתר תוך ~2 דקות';
+    st.className = 'review-status ok';
+  } catch(e) {
+    st.textContent = '❌ ' + e.message; st.className = 'review-status err';
+  }
+}
+
+async function deleteReview() {
+  if (!confirm('למחוק את הסקירה הנוכחית?\nהדף יחזור להיות ריק עד לפרסום סקירה חדשה.')) return;
+  const token = sessionStorage.getItem('gh_token');
+  const st    = document.getElementById('review-status');
+  st.textContent = 'מוחק...'; st.className = 'review-status';
+  const empty = JSON.stringify({ date: '', content: '' });
+  const b64   = btoa(unescape(encodeURIComponent(empty)));
+  try {
+    const info = await fetch(
+      `https://api.github.com/repos/${REPO}/contents/${REVIEW_FILE}?ref=${BRANCH}`,
+      { headers: { Authorization: `token ${token}` } }
+    );
+    const { sha } = info.ok ? await info.json() : { sha: undefined };
+    const body = { message: 'מחיקת סקירת שוק', content: b64, branch: BRANCH };
+    if (sha) body.sha = sha;
+    const r = await fetch(
+      `https://api.github.com/repos/${REPO}/contents/${REVIEW_FILE}`,
+      { method: 'PUT', headers: ghHeaders(), body: JSON.stringify(body) }
+    );
+    if (!r.ok) throw new Error('שגיאה (' + r.status + ')');
+    document.getElementById('review-date-input').value = '';
+    document.getElementById('review-textarea').value   = '';
+    st.textContent = '✅ הסקירה נמחקה. החלק יוסתר מהדף תוך ~2 דקות';
     st.className = 'review-status ok';
   } catch(e) {
     st.textContent = '❌ ' + e.message; st.className = 'review-status err';
