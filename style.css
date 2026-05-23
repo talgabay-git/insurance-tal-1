@@ -237,14 +237,14 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .nav-list {
   display: flex;
   gap: .1rem;
-  justify-content: flex-start;
+  justify-content: center;
   flex-wrap: nowrap;
 }
 .nav-link {
   padding: .3rem .4rem;
   border-radius: 4px;
   font-weight: 700;
-  font-size: .97rem;
+  font-size: .85rem;
   color: var(--navy);
   transition: var(--transition);
   white-space: nowrap;
