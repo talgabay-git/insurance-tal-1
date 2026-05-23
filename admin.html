@@ -305,7 +305,10 @@
       <label class="review-label">מנורה מבטחים</label>
       <input type="url" id="act-link-menora" class="act-input" placeholder="https://" dir="ltr">
 
-      <button class="btn" onclick="saveActions()">שמור שינויים ✓</button>
+      <div class="btn-row" style="margin-top:.5rem">
+        <button class="btn" onclick="saveActions()">שמור שינויים ✓</button>
+        <button class="btn btn-danger" onclick="deleteActionSection()">🗑 מחק סעיף זה</button>
+      </div>
       <div class="review-status" id="actions-status"></div>
     </div>
 
@@ -715,6 +718,44 @@ async function saveActions() {
     );
     if (!r.ok) throw new Error('שגיאת שמירה (' + r.status + ')');
     st.textContent = '✅ נשמר! יתעדכן באתר תוך ~2 דקות'; st.className = 'review-status ok';
+  } catch(e) {
+    st.textContent = '❌ ' + e.message; st.className = 'review-status err';
+  }
+}
+
+async function deleteActionSection() {
+  if (!actionsData) return;
+  const sel   = document.getElementById('actions-section-select');
+  const idx   = parseInt(sel.value) || 0;
+  const title = actionsData.sections[idx].title;
+  if (!confirm(`למחוק את הסעיף "${title}"?\nהפעולה תסיר אותו מהדף לצמיתות.`)) return;
+
+  actionsData.sections.splice(idx, 1);
+
+  /* rebuild select options */
+  sel.innerHTML = actionsData.sections.map((s,i) =>
+    `<option value="${i}">${i+1}. ${s.title}</option>`).join('');
+  sel.value = Math.min(idx, actionsData.sections.length - 1);
+  renderActionsEditor();
+
+  const token = sessionStorage.getItem('gh_token');
+  const st    = document.getElementById('actions-status');
+  st.textContent = 'מוחק ושומר...'; st.className = 'review-status';
+  const b64 = btoa(unescape(encodeURIComponent(JSON.stringify(actionsData, null, 2))));
+  try {
+    const info = await fetch(
+      `https://api.github.com/repos/${REPO}/contents/${ACTIONS_FILE}?ref=${BRANCH}`,
+      { headers: { Authorization: `token ${token}` } }
+    );
+    const { sha } = info.ok ? await info.json() : { sha: undefined };
+    const body = { message: `מחיקת סעיף "${title}" מפעולות נפוצות`, content: b64, branch: BRANCH };
+    if (sha) body.sha = sha;
+    const r = await fetch(
+      `https://api.github.com/repos/${REPO}/contents/${ACTIONS_FILE}`,
+      { method: 'PUT', headers: ghHeaders(), body: JSON.stringify(body) }
+    );
+    if (!r.ok) throw new Error('שגיאת שמירה (' + r.status + ')');
+    st.textContent = `✅ "${title}" נמחק! יתעדכן תוך ~2 דקות`; st.className = 'review-status ok';
   } catch(e) {
     st.textContent = '❌ ' + e.message; st.className = 'review-status err';
   }
