@@ -662,7 +662,7 @@ async function loadActions() {
     );
     if (!r.ok) throw new Error('קובץ לא נמצא');
     const d = await r.json();
-    actionsData = JSON.parse(atob(d.content.replace(/\n/g, '')));
+    actionsData = JSON.parse(decodeURIComponent(escape(atob(d.content.replace(/\s/g,'')))));
     renderActionsEditor();
     st.textContent = '✅ הנתונים נטענו'; st.className = 'review-status ok';
   } catch(e) {
