@@ -290,5 +290,22 @@
     document.addEventListener('click',function(e){if(!document.getElementById('a11y-widget').contains(e.target)){p.classList.remove('open');t.setAttribute('aria-expanded','false');p.setAttribute('aria-hidden','true');}});
   })();
   </script>
+  <script>
+  (function(){
+    var btn = document.querySelector('.page-cta .btn-gold');
+    if (!btn) return;
+    var opened = false;
+    btn.addEventListener('mouseenter', function() {
+      if (opened) return;
+      setTimeout(function() {
+        opened = true;
+        document.getElementById('meeting-modal').classList.add('open');
+      }, 400);
+    });
+    document.getElementById('meeting-modal').addEventListener('click', function(e) {
+      if (e.target === this) { this.classList.remove('open'); opened = false; }
+    });
+  })();
+  </script>
 </body>
 </html>
