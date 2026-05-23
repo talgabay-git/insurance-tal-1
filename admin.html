@@ -92,8 +92,30 @@
     /* Screen toggles */
     #screen-login,#screen-main{ display:none; }
     #screen-login.on,#screen-main.on{ display:block; }
-    #tab-upload,#tab-manage{ display:none; }
-    #tab-upload.on,#tab-manage.on{ display:block; }
+    #tab-upload,#tab-manage,#tab-review{ display:none; }
+    #tab-upload.on,#tab-manage.on,#tab-review.on{ display:block; }
+
+    /* Review tab */
+    .review-label{ display:block; font-size:.82rem; color:rgba(255,255,255,.6); margin-bottom:.4rem; }
+    .review-date-input{
+      width:100%; padding:.65rem 1rem; margin-bottom:1.2rem;
+      background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.2);
+      border-radius:8px; color:var(--white); font-family:'Heebo',sans-serif;
+      font-size:.95rem; direction:rtl;
+    }
+    .review-date-input:focus{ outline:none; border-color:var(--gold); }
+    .review-textarea{
+      width:100%; height:280px; padding:1rem;
+      background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.2);
+      border-radius:8px; color:var(--white); font-family:'Heebo',sans-serif;
+      font-size:.92rem; line-height:1.8; resize:vertical; direction:rtl;
+      margin-bottom:.75rem;
+    }
+    .review-textarea:focus{ outline:none; border-color:var(--gold); }
+    .review-hint{ font-size:.78rem; color:rgba(255,255,255,.4); margin-bottom:1.2rem; line-height:1.6; }
+    .review-status{ margin-top:.9rem; text-align:center; font-size:.9rem; min-height:1.4rem; }
+    .review-status.ok{ color:var(--green); }
+    .review-status.err{ color:var(--red); }
 
     /* Logout */
     .logout{ background:none; border:none; color:rgba(255,255,255,.35);
@@ -170,6 +192,7 @@
     <div class="tabs">
       <button class="tab active" id="t-upload" onclick="switchTab('upload')">📤 העלאת תמונה</button>
       <button class="tab" id="t-manage" onclick="switchTab('manage')">🗂 ניהול ומחיקה</button>
+      <button class="tab" id="t-review" onclick="switchTab('review')">📝 סקירת שוק</button>
     </div>
 
     <!-- TAB: UPLOAD -->
@@ -195,6 +218,20 @@
       <div class="manage-grid" id="manage-grid"></div>
     </div>
 
+    <!-- TAB: REVIEW -->
+    <div id="tab-review">
+      <p class="sub">כתוב את סקירת השוק. שורה ריקה בין פסקאות = פסקה חדשה בדף.<br>
+      כדי לכתוב <strong style="color:var(--gold)">בולד</strong> — עטוף ב-**כוכביות**.</p>
+      <label class="review-label">תאריך הסקירה (יוצג בדף)</label>
+      <input type="text" id="review-date-input" class="review-date-input" placeholder="לדוגמה: מאי 2026">
+      <label class="review-label">תוכן הסקירה</label>
+      <textarea id="review-textarea" class="review-textarea" placeholder="כתוב כאן את סקירת השוק...&#10;&#10;שורה ריקה בין פסקאות יוצרת פסקה חדשה בדף.&#10;&#10;טקסט **בולד** יהיה מודגש בדף."></textarea>
+      <p class="review-hint">💡 הסקירה תופיע מעל קישורי השוק בעמוד "תמונת מצב בשווקים".<br>
+      לחץ "שמור סקירה" — השינוי יפורסם באתר תוך כ-2 דקות.</p>
+      <button class="btn" onclick="saveReview()">שמור סקירה ✓</button>
+      <div class="review-status" id="review-status"></div>
+    </div>
+
     <button class="logout" onclick="doLogout()">התנתק</button>
   </div>
 </div>
@@ -214,11 +251,12 @@ function show(id) {
 }
 
 function switchTab(name) {
-  ['upload','manage'].forEach(n => {
+  ['upload','manage','review'].forEach(n => {
     document.getElementById('tab-'+n).classList.toggle('on', n===name);
     document.getElementById('t-'+n).classList.toggle('active', n===name);
   });
   if (name==='manage') loadManage();
+  if (name==='review') loadReview();
 }
 
 function ghHeaders() {
@@ -420,6 +458,82 @@ async function doDelete(filename, btn) {
 function doLogout() {
   sessionStorage.removeItem('gh_token');
   show('screen-login');
+}
+
+/* ── review tab ── */
+const REVIEW_FILE = 'market-review-data.json';
+
+function textToHtml(text) {
+  return text.trim().split(/\n{2,}/).map(para => {
+    const line = para.replace(/\n/g, ' ').trim();
+    // **bold** → <strong>bold</strong>
+    const bolded = line.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+    return `<p>${bolded}</p>`;
+  }).join('\n');
+}
+
+function htmlToText(html) {
+  return html
+    .replace(/<strong>([\s\S]*?)<\/strong>/g, '**$1**')
+    .replace(/<\/p>\s*<p>/g, '\n\n')
+    .replace(/<\/?p>/g, '')
+    .trim();
+}
+
+async function loadReview() {
+  const token = sessionStorage.getItem('gh_token');
+  const st = document.getElementById('review-status');
+  st.textContent = 'טוען...'; st.className = 'review-status';
+  try {
+    const r = await fetch(
+      `https://api.github.com/repos/${REPO}/contents/${REVIEW_FILE}?ref=${BRANCH}`,
+      { headers: { Authorization: `token ${token}` } }
+    );
+    if (!r.ok) throw new Error('קובץ לא נמצא');
+    const { content } = await r.json();
+    const data = JSON.parse(atob(content.replace(/\n/g, '')));
+    document.getElementById('review-date-input').value = data.date || '';
+    document.getElementById('review-textarea').value   = data.content ? htmlToText(data.content) : '';
+    st.textContent = data.date ? `✅ סקירה קיימת — ${data.date}` : '(אין סקירה שמורה עדיין)';
+    st.className = 'review-status ok';
+  } catch(e) {
+    st.textContent = '⚠️ ' + e.message; st.className = 'review-status err';
+  }
+}
+
+async function saveReview() {
+  const token   = sessionStorage.getItem('gh_token');
+  const dateVal = document.getElementById('review-date-input').value.trim();
+  const rawText = document.getElementById('review-textarea').value.trim();
+  const st      = document.getElementById('review-status');
+  if (!rawText) { st.textContent='⚠️ הסקירה ריקה'; st.className='review-status err'; return; }
+
+  st.textContent = 'שומר...'; st.className = 'review-status';
+  const data = JSON.stringify({ date: dateVal, content: textToHtml(rawText) });
+  const b64  = btoa(unescape(encodeURIComponent(data)));
+
+  try {
+    /* get current SHA */
+    const info = await fetch(
+      `https://api.github.com/repos/${REPO}/contents/${REVIEW_FILE}?ref=${BRANCH}`,
+      { headers: { Authorization: `token ${token}` } }
+    );
+    const { sha } = info.ok ? await info.json() : { sha: undefined };
+
+    const body = { message: `עדכון סקירת שוק — ${dateVal || new Date().toLocaleDateString('he-IL')}`,
+                   content: b64, branch: BRANCH };
+    if (sha) body.sha = sha;
+
+    const r = await fetch(
+      `https://api.github.com/repos/${REPO}/contents/${REVIEW_FILE}`,
+      { method: 'PUT', headers: ghHeaders(), body: JSON.stringify(body) }
+    );
+    if (!r.ok) throw new Error('שגיאת שמירה (' + r.status + ')');
+    st.textContent = '✅ הסקירה נשמרה! תופיע באתר תוך ~2 דקות';
+    st.className = 'review-status ok';
+  } catch(e) {
+    st.textContent = '❌ ' + e.message; st.className = 'review-status err';
+  }
 }
 </script>
 </body>

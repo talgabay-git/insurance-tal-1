@@ -33,11 +33,19 @@
     .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
     .btn-white { background: var(--white); color: var(--navy); font-weight: 800; }
     .btn-white:hover { background: var(--off-white); }
+    .review-section { max-width:820px; margin:0 auto 3rem; background:var(--white); border-radius:var(--radius-lg); padding:2.5rem 3rem; box-shadow:var(--shadow-md); border-right:5px solid var(--gold); }
+    .review-section-header { display:flex; align-items:baseline; gap:.8rem; margin-bottom:1.5rem; padding-bottom:.75rem; border-bottom:1px solid #e8e0cc; flex-wrap:wrap; }
+    .review-section-header h2 { font-family:'Heebo',sans-serif; font-size:1.4rem; font-weight:900; color:var(--navy); margin:0; }
+    .review-date-badge { font-size:.85rem; font-weight:700; color:var(--white); background:var(--gold); padding:.2rem .75rem; border-radius:20px; white-space:nowrap; }
+    .review-section p { font-size:1.05rem; line-height:1.95; color:var(--text); margin-bottom:1.2rem; }
+    .review-section p:last-child { margin-bottom:0; }
     @media (max-width: 768px) {
       .page-hero { padding: 3rem 0 2.5rem; }
       .article-card { padding: 1.75rem 1.25rem; border-right-width: 4px; }
       .article-card p { font-size: 1rem; }
       .links-card { padding: 1.5rem 1.25rem; }
+      .review-section { padding: 1.75rem 1.25rem; border-right-width: 4px; }
+      .review-section p { font-size: 1rem; }
       .page-cta { padding: 3rem 0; }
     }
     @media (max-width: 480px) {
@@ -187,6 +195,15 @@
         <p class="highlight">למי שמעוניין בהשקעה לטווח ארוך חשוב לדעת כי הפסדים היו נדירים וזמניים עבור המשקיעים במהלך השוק השורי הנוכחי, שנמשך מעל 17 שנים במניות.</p>
 
         <p><strong>תנודתיות היא חלק בלתי נפרד מהשוק, ולכן, המשקיעים צריכים להתמקד בטווח הארוך ולא לפחד מירידות זמניות ("שוקי דובים" או בועות). לא לנסות לתזמן את השוק, ותמיד להתמקד בראיה לטווח ארוך.</strong></p>
+      </div>
+
+      <!-- ── סקירת שוק — נטען דינמית ── -->
+      <div class="review-section fade-in-up" id="review-section" style="display:none" aria-live="polite">
+        <div class="review-section-header">
+          <h2><i class="fa-solid fa-chart-line" style="color:var(--gold);margin-left:.5rem"></i> סקירת שוק</h2>
+          <span class="review-date-badge" id="review-date-badge"></span>
+        </div>
+        <div id="review-content"></div>
       </div>
 
       <div class="links-card fade-in-up">
@@ -467,6 +484,25 @@
     document.getElementById('meeting-modal').addEventListener('click', function(e){
       if(e.target===this){ this.classList.remove('open'); opened=false; }
     });
+  })();
+  </script>
+  <script>
+  /* ── סקירת שוק — טעינה דינמית ── */
+  (function(){
+    const REVIEW_URL = 'https://raw.githubusercontent.com/talgabay-git/insurance-tal-1/gh-pages/market-review-data.json';
+    fetch(REVIEW_URL + '?v=' + Date.now())
+      .then(r => r.ok ? r.json() : null)
+      .then(data => {
+        if (!data || !data.content) return;
+        const section = document.getElementById('review-section');
+        const content = document.getElementById('review-content');
+        const badge   = document.getElementById('review-date-badge');
+        content.innerHTML = data.content;
+        if (data.date) badge.textContent = data.date;
+        else badge.style.display = 'none';
+        section.style.display = 'block';
+      })
+      .catch(() => {});
   })();
   </script>
 </body>
