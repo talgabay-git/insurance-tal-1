@@ -20,25 +20,6 @@
       }
     },
     {
-      "id": "portability",
-      "icon": "fa-arrows-rotate",
-      "title": "× ××× ×§××¤××ª ××§×¨× ××ª",
-      "desc": "××¢××¨×ª ××¡×¤×× ××××£ ×××¡×× ××× ××××¨ â ×§×¨× ×¤× ×¡××, ×§××¤×ª ×××, ×§×¨× ××©×ª××××ª",
-      "note": "× ××× ××¤×©×¨× ××× ×××¤×× ××× ×××¨××¢ ××¡. ×××××¥ ×××××§ ×¢× ×××£ ××§××× ××¤× × ×××©×ª ×××§×©×.",
-      "links": {
-        "mor": "https://www.moreinvest.co.il/×¤×¢××××ª-× ×¤××¦××ª/××¤×¡××-×©××××©×××/",
-        "analyst": "https://www.analyst.co.il/forms/",
-        "meitav": "https://www.meitav.co.il/provident_pension/gemel/portability_regulations/",
-        "yalin": "https://www.yl-invest.co.il/forms/",
-        "altschuler": "https://www.as-invest.co.il/interstedin/forms/",
-        "harel": "https://www.harel-group.co.il/search/form-locator",
-        "clal": "https://www.clalbit.co.il/forms/",
-        "migdal": "https://my.migdal.co.il/support/forms",
-        "phoenix": "https://www.xnes.co.il/gemel/customerservice/forms/",
-        "menora": "https://www.menoramivt.co.il/forms/"
-      }
-    },
-    {
       "id": "withdrawal",
       "icon": "fa-money-bill-transfer",
       "title": "××©×××ª ××¡×¤××",
