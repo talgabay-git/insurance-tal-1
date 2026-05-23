@@ -92,8 +92,8 @@
     /* Screen toggles */
     #screen-login,#screen-main{ display:none; }
     #screen-login.on,#screen-main.on{ display:block; }
-    #tab-upload,#tab-manage,#tab-review{ display:none; }
-    #tab-upload.on,#tab-manage.on,#tab-review.on{ display:block; }
+    #tab-upload,#tab-manage,#tab-review,#tab-actions{ display:none; }
+    #tab-upload.on,#tab-manage.on,#tab-review.on,#tab-actions.on{ display:block; }
 
     /* Review tab */
     .review-label{ display:block; font-size:.82rem; color:rgba(255,255,255,.6); margin-bottom:.4rem; }
@@ -120,6 +120,24 @@
     .btn-row .btn{ flex:1; }
     .btn-danger{ background:rgba(239,83,80,.85); color:#fff; }
     .btn-danger:hover{ background:var(--red); opacity:1; }
+
+    /* Actions tab */
+    .actions-section-label{
+      font-size:.72rem; font-weight:700; letter-spacing:.06em;
+      color:rgba(201,168,76,.7); text-transform:uppercase;
+      margin:1.2rem 0 .5rem; padding-bottom:.3rem;
+      border-bottom:1px solid rgba(201,168,76,.2);
+    }
+    .act-input{
+      width:100%; padding:.55rem .8rem; margin-bottom:.7rem;
+      background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.2);
+      border-radius:8px; color:var(--white); font-family:'Heebo',sans-serif;
+      font-size:.88rem; direction:rtl;
+    }
+    .act-input[dir=ltr]{ direction:ltr; }
+    .act-input:focus{ outline:none; border-color:var(--gold); }
+    select.review-date-input{ cursor:pointer; }
+    select.review-date-input option{ background:#0d1e35; }
 
     /* Logout */
     .logout{ background:none; border:none; color:rgba(255,255,255,.35);
@@ -197,6 +215,7 @@
       <button class="tab active" id="t-upload" onclick="switchTab('upload')">📤 העלאת תמונה</button>
       <button class="tab" id="t-manage" onclick="switchTab('manage')">🗂 ניהול ומחיקה</button>
       <button class="tab" id="t-review" onclick="switchTab('review')">📝 סקירת שוק</button>
+      <button class="tab" id="t-actions" onclick="switchTab('actions')">🔗 פעולות נפוצות</button>
     </div>
 
     <!-- TAB: UPLOAD -->
@@ -239,6 +258,58 @@
       <div class="review-status" id="review-status"></div>
     </div>
 
+    <!-- TAB: ACTIONS -->
+    <div id="tab-actions">
+      <p class="sub">בחר פעולה מהרשימה, ערוך את הכותרת, התיאור, ההערה והלינקים, ולחץ שמור.</p>
+
+      <label class="review-label">פעולה לעריכה</label>
+      <select id="actions-section-select" class="review-date-input" onchange="renderActionsEditor()">
+        <option value="0">1. שינוי מסלול השקעה</option>
+        <option value="1">2. ניוד קופות וקרנות</option>
+        <option value="2">3. משיכת כספים</option>
+        <option value="3">4. לקיחת הלוואה</option>
+        <option value="4">5. עדכון מוטבים</option>
+        <option value="5">6. עדכון פרטים אישיים</option>
+        <option value="6">7. הפקדה לקופה או לקרן קיימת</option>
+        <option value="7">8. טופס הוראת קבע</option>
+        <option value="8">9. ייפוי כוח לקבלת מידע</option>
+      </select>
+
+      <label class="review-label">כותרת</label>
+      <input type="text" id="act-title" class="act-input" placeholder="כותרת הפעולה">
+      <label class="review-label">תיאור קצר</label>
+      <input type="text" id="act-desc" class="act-input" placeholder="תיאור הפעולה">
+      <label class="review-label">הערה (מוצגת בתחתית הכרטיס — השאר ריק אם אין)</label>
+      <input type="text" id="act-note" class="act-input" placeholder="הערה חשובה...">
+
+      <p class="actions-section-label">בתי השקעות</p>
+      <label class="review-label">מור</label>
+      <input type="url" id="act-link-mor" class="act-input" placeholder="https://" dir="ltr">
+      <label class="review-label">אנליסט</label>
+      <input type="url" id="act-link-analyst" class="act-input" placeholder="https://" dir="ltr">
+      <label class="review-label">מיטב</label>
+      <input type="url" id="act-link-meitav" class="act-input" placeholder="https://" dir="ltr">
+      <label class="review-label">ילין לפידות</label>
+      <input type="url" id="act-link-yalin" class="act-input" placeholder="https://" dir="ltr">
+      <label class="review-label">אלטשולר שחם</label>
+      <input type="url" id="act-link-altschuler" class="act-input" placeholder="https://" dir="ltr">
+
+      <p class="actions-section-label">חברות ביטוח</p>
+      <label class="review-label">הראל</label>
+      <input type="url" id="act-link-harel" class="act-input" placeholder="https://" dir="ltr">
+      <label class="review-label">כלל</label>
+      <input type="url" id="act-link-clal" class="act-input" placeholder="https://" dir="ltr">
+      <label class="review-label">מגדל</label>
+      <input type="url" id="act-link-migdal" class="act-input" placeholder="https://" dir="ltr">
+      <label class="review-label">הפניקס</label>
+      <input type="url" id="act-link-phoenix" class="act-input" placeholder="https://" dir="ltr">
+      <label class="review-label">מנורה מבטחים</label>
+      <input type="url" id="act-link-menora" class="act-input" placeholder="https://" dir="ltr">
+
+      <button class="btn" onclick="saveActions()">שמור שינויים ✓</button>
+      <div class="review-status" id="actions-status"></div>
+    </div>
+
     <button class="logout" onclick="doLogout()">התנתק</button>
   </div>
 </div>
@@ -258,12 +329,13 @@ function show(id) {
 }
 
 function switchTab(name) {
-  ['upload','manage','review'].forEach(n => {
+  ['upload','manage','review','actions'].forEach(n => {
     document.getElementById('tab-'+n).classList.toggle('on', n===name);
     document.getElementById('t-'+n).classList.toggle('active', n===name);
   });
   if (name==='manage') loadManage();
   if (name==='review') loadReview();
+  if (name==='actions') loadActions();
 }
 
 function ghHeaders() {
@@ -567,6 +639,83 @@ async function deleteReview() {
     document.getElementById('review-textarea').value   = '';
     st.textContent = '✅ הסקירה נמחקה. החלק יוסתר מהדף תוך ~2 דקות';
     st.className = 'review-status ok';
+  } catch(e) {
+    st.textContent = '❌ ' + e.message; st.className = 'review-status err';
+  }
+}
+
+/* ── actions tab ── */
+const ACTIONS_FILE = 'common-actions-data.json';
+const ACT_INST_KEYS = ['mor','analyst','meitav','yalin','altschuler'];
+const ACT_INS_KEYS  = ['harel','clal','migdal','phoenix','menora'];
+let actionsData = null;
+
+async function loadActions() {
+  const token = sessionStorage.getItem('gh_token');
+  const st = document.getElementById('actions-status');
+  if (actionsData) { renderActionsEditor(); return; }
+  st.textContent = 'טוען...'; st.className = 'review-status';
+  try {
+    const r = await fetch(
+      `https://api.github.com/repos/${REPO}/contents/${ACTIONS_FILE}?ref=${BRANCH}`,
+      { headers: { Authorization: `token ${token}` } }
+    );
+    if (!r.ok) throw new Error('קובץ לא נמצא');
+    const d = await r.json();
+    actionsData = JSON.parse(atob(d.content.replace(/\n/g, '')));
+    renderActionsEditor();
+    st.textContent = '✅ הנתונים נטענו'; st.className = 'review-status ok';
+  } catch(e) {
+    st.textContent = '⚠️ ' + e.message; st.className = 'review-status err';
+  }
+}
+
+function renderActionsEditor() {
+  if (!actionsData) return;
+  const idx = parseInt(document.getElementById('actions-section-select').value) || 0;
+  const s = actionsData.sections[idx];
+  document.getElementById('act-title').value = s.title || '';
+  document.getElementById('act-desc').value  = s.desc  || '';
+  document.getElementById('act-note').value  = s.note  || '';
+  [...ACT_INST_KEYS, ...ACT_INS_KEYS].forEach(k => {
+    const el = document.getElementById('act-link-' + k);
+    if (el) el.value = (s.links && s.links[k]) || '';
+  });
+}
+
+function collectActionsSection() {
+  const idx = parseInt(document.getElementById('actions-section-select').value) || 0;
+  actionsData.sections[idx].title = document.getElementById('act-title').value.trim();
+  actionsData.sections[idx].desc  = document.getElementById('act-desc').value.trim();
+  actionsData.sections[idx].note  = document.getElementById('act-note').value.trim();
+  [...ACT_INST_KEYS, ...ACT_INS_KEYS].forEach(k => {
+    const el = document.getElementById('act-link-' + k);
+    if (el) actionsData.sections[idx].links[k] = el.value.trim();
+  });
+}
+
+async function saveActions() {
+  if (!actionsData) { return; }
+  collectActionsSection();
+  const token = sessionStorage.getItem('gh_token');
+  const st = document.getElementById('actions-status');
+  st.textContent = 'שומר...'; st.className = 'review-status';
+  const data = JSON.stringify(actionsData, null, 2);
+  const b64 = btoa(unescape(encodeURIComponent(data)));
+  try {
+    const info = await fetch(
+      `https://api.github.com/repos/${REPO}/contents/${ACTIONS_FILE}?ref=${BRANCH}`,
+      { headers: { Authorization: `token ${token}` } }
+    );
+    const { sha } = info.ok ? await info.json() : { sha: undefined };
+    const body = { message: 'עדכון פעולות נפוצות', content: b64, branch: BRANCH };
+    if (sha) body.sha = sha;
+    const r = await fetch(
+      `https://api.github.com/repos/${REPO}/contents/${ACTIONS_FILE}`,
+      { method: 'PUT', headers: ghHeaders(), body: JSON.stringify(body) }
+    );
+    if (!r.ok) throw new Error('שגיאת שמירה (' + r.status + ')');
+    st.textContent = '✅ נשמר! יתעדכן באתר תוך ~2 דקות'; st.className = 'review-status ok';
   } catch(e) {
     st.textContent = '❌ ' + e.message; st.className = 'review-status err';
   }
