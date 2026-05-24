@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>טל גבאי | שאלות ותשובות — תכנון פיננסי</title>
+  <meta name="description" content="שאלות ותשובות נפוצות בנושאי קרן פנסיה, ביטוח מנהלים, קרן השתלמות, תכנון פרישה וביטוח. טל גבאי תכנון פיננסי לבכירים." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700;800&family=Heebo:wght@400;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .page-hero { background: var(--navy); padding: 5rem 0 4rem; text-align: center; position: relative; overflow: hidden; }
+    .page-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 60% 40%, rgba(201,168,76,.12) 0%, transparent 65%); pointer-events: none; }
+    .page-hero h1 { font-family: 'Heebo', sans-serif; font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 900; color: var(--gold); margin-bottom: 1rem; border: 2px solid var(--gold); display: inline-block; padding: .5rem 2rem; border-radius: 10px; }
+    .page-hero .hero-tagline { font-size: clamp(1rem, 2.5vw, 1.25rem); color: rgba(255,255,255,.85); max-width: 700px; margin: 1rem auto 0; line-height: 1.7; font-weight: 600; }
+
+    .faq-section { padding: 5rem 0 6rem; background: var(--off-white); }
+    .faq-category { max-width: 820px; margin: 0 auto 3rem; }
+    .faq-category-title {
+      font-family: 'Heebo', sans-serif; font-size: 1.25rem; font-weight: 900;
+      color: var(--navy); margin-bottom: 1.25rem; padding-bottom: .6rem;
+      border-bottom: 2px solid var(--gold); display: flex; align-items: center; gap: .6rem;
+    }
+    .faq-category-title i { color: var(--gold); font-size: 1.1rem; }
+
+    details.faq-item {
+      background: var(--white); border-radius: var(--radius);
+      margin-bottom: .75rem; box-shadow: var(--shadow-sm);
+      border-right: 4px solid transparent;
+      transition: border-color .2s;
+    }
+    details.faq-item[open] { border-right-color: var(--gold); }
+    details.faq-item summary {
+      font-size: 1rem; font-weight: 700; color: var(--navy);
+      padding: 1.1rem 1.3rem; cursor: pointer; list-style: none;
+      display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+      transition: color .2s;
+    }
+    details.faq-item summary::-webkit-details-marker { display: none; }
+    details.faq-item summary::after {
+      content: '\f078'; font-family: 'Font Awesome 6 Free'; font-weight: 900;
+      font-size: .75rem; color: var(--gold); flex-shrink: 0;
+      transition: transform .25s;
+    }
+    details.faq-item[open] summary::after { transform: rotate(180deg); }
+    details.faq-item[open] summary { color: var(--gold); }
+
+    .faq-answer {
+      padding: 0 1.3rem 1.3rem; font-size: .97rem; line-height: 1.85;
+      color: var(--text); border-top: 1px solid var(--light-gray);
+      margin-top: .1rem;
+    }
+    .faq-answer p { margin-bottom: .85rem; }
+    .faq-answer p:last-child { margin-bottom: 0; }
+    .faq-answer strong { color: var(--navy); }
+    .faq-answer ul { padding-right: 1.2rem; margin: .5rem 0 .85rem; }
+    .faq-answer ul li { margin-bottom: .4rem; }
+
+    .page-cta { background: var(--navy); padding: 4rem 0; text-align: center; }
+    .page-cta h2 { font-family: 'Heebo', sans-serif; font-size: clamp(1.5rem,3.5vw,2.2rem); font-weight: 900; color: var(--white); margin-bottom: .75rem; }
+    .page-cta p { color: rgba(255,255,255,.75); font-size: 1.05rem; margin-bottom: 2rem; }
+    .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-white { background: var(--white); color: var(--navy); font-weight: 800; }
+    .btn-white:hover { background: var(--off-white); }
+
+    .modal-overlay { display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:2000;align-items:center;justify-content:center;padding:1rem; }
+    .modal-overlay.open { display:flex; }
+    .modal-box { background:var(--white);border-radius:var(--radius-lg);padding:2.2rem 2rem;width:100%;max-width:500px;max-height:90vh;overflow-y:auto;position:relative;box-shadow:var(--shadow-lg); }
+    .modal-close { position:absolute;top:1rem;left:1rem;background:none;border:none;font-size:1.4rem;color:var(--mid-gray);cursor:pointer; }
+    .modal-title { font-family:'Heebo',sans-serif;font-size:1.3rem;font-weight:900;color:var(--navy);text-align:center;margin-bottom:.3rem; }
+    .modal-subtitle { font-size:.88rem;color:var(--dark-gray);text-align:center;margin-bottom:1.75rem; }
+    .modal-form { display:flex;flex-direction:column;gap:.9rem; }
+    .modal-row { display:grid;grid-template-columns:1fr 1fr;gap:.9rem; }
+    .modal-success { display:none;flex-direction:column;align-items:center;gap:.75rem;padding:2rem 0;text-align:center; }
+    .modal-success i { font-size:2.8rem;color:#48bb78; }
+    .modal-success h3 { font-size:1.2rem;font-weight:800;color:var(--navy); }
+
+    @media (max-width: 768px) {
+      .page-hero { padding: 3rem 0 2.5rem; }
+      .faq-section { padding: 3rem 0 4rem; }
+      .modal-row { grid-template-columns: 1fr; }
+      .modal-box { padding: 1.75rem 1.25rem; }
+    }
+  </style>
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="שאלות ותשובות | טל גבאי תכנון פיננסי" />
+  <meta property="og:description" content="שאלות ותשובות נפוצות בתכנון פיננסי — פנסיה, ביטוח, חיסכון ותכנון פרישה." />
+  <meta property="og:url" content="https://talgabay-git.github.io/insurance-tal-1/faq.html" />
+  <meta property="og:locale" content="he_IL" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5F91Q1DPZV"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-5F91Q1DPZV',{'anonymize_ip':true});</script>
+</head>
+<body>
+  <a href="#content-start" class="skip-link">דלג לתוכן הראשי</a>
+
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo header-logo" aria-label="עמוד הבית">
+        <span class="logo-main">טל גבאי</span>
+        <span class="logo-sep">|</span>
+        <span class="logo-sub">תכנון פיננסי</span>
+      </a>
+      <nav class="main-nav" aria-label="ניווט ראשי">
+        <ul class="nav-list">
+          <li><a href="financial-planning.html" class="nav-link">תכנון פיננסי</a></li>
+          <li><a href="retirement-planning.html" class="nav-link">תכנון פרישה</a></li>
+          <li><a href="early-retirement.html" class="nav-link">פרישה מוקדמת</a></li>
+          <li><a href="family-office.html" class="nav-link"><span lang="en">Family Office</span></a></li>
+          <li><a href="market-status.html" class="nav-link">תמונת מצב בשווקים</a></li>
+          <li><a href="faq.html" class="nav-link active" style="color:var(--gold);font-weight:700">שאלות ותשובות</a></li>
+          <li class="nav-dropdown">
+            <a href="#" class="nav-link dropdown-toggle" onclick="return false;">פעולות נפוצות <i class="fa-solid fa-chevron-down fa-xs"></i></a>
+            <ul class="dropdown-menu">
+              <li><a href="documents.html" class="dropdown-item">מסלקה פנסיונית</a></li>
+              <li><a href="holistic-checkup.html" class="dropdown-item">צ'ק אפ פיננסי</a></li>
+              <li class="dropdown-divider"></li>
+              <li><a href="common-actions.html#track-change" class="dropdown-item">שינוי מסלול השקעה</a></li>
+              <li><a href="common-actions.html#withdrawal" class="dropdown-item">משיכת כספים</a></li>
+              <li><a href="common-actions.html#loan" class="dropdown-item">לקיחת הלוואה דיגיטלית</a></li>
+              <li><a href="common-actions.html#beneficiaries" class="dropdown-item">עדכון מוטבים</a></li>
+              <li><a href="common-actions.html#personal-details" class="dropdown-item">עדכון פרטים אישיים</a></li>
+              <li><a href="common-actions.html#deposit" class="dropdown-item">הפקדה לקופה או לקרן</a></li>
+              <li><a href="common-actions.html#standing-order" class="dropdown-item">טופס הוראת קבע</a></li>
+              <li><a href="common-actions.html#poa" class="dropdown-item">ייפוי כוח לקבלת מידע</a></li>
+            </ul>
+          </li>
+          <li class="nav-dropdown">
+            <a href="#" class="nav-link dropdown-toggle" onclick="return false;">מכשירים פיננסיים <i class="fa-solid fa-chevron-down fa-xs"></i></a>
+            <ul class="dropdown-menu">
+              <li><a href="pension-fund.html" class="dropdown-item">קרן פנסיה</a></li>
+              <li><a href="managers-insurance.html" class="dropdown-item">ביטוח מנהלים</a></li>
+              <li><a href="provident-fund.html" class="dropdown-item">קופת גמל</a></li>
+              <li><a href="gemel-190.html" class="dropdown-item">קופת גמל 190</a></li>
+              <li><a href="gemel-hashkaa.html" class="dropdown-item">קופת גמל להשקעה</a></li>
+              <li><a href="keren-hishtalmut.html" class="dropdown-item">קרן השתלמות</a></li>
+              <li><a href="savings-policies.html" class="dropdown-item">פוליסות חיסכון</a></li>
+              <li><a href="managed-portfolios.html" class="dropdown-item">תיקי השקעות מנוהלים</a></li>
+              <li><a href="structured-products.html" class="dropdown-item">מוצרים מובנים (סטרקצ'רים)</a></li>
+              <li><a href="mutual-funds-etf.html" class="dropdown-item">קרנות נאמנות וקרנות סל (ETF)</a></li>
+              <li><a href="alternative-investments.html" class="dropdown-item">השקעות אלטרנטיביות</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <div class="header-left" style="display:flex;align-items:center;gap:.6rem;">
+        <a href="en/index.html" title="English" aria-label="Switch to English" lang="en" class="lang-switch-btn" style="font-size:1.47rem;text-decoration:none;line-height:1;color:var(--gold);font-weight:700;letter-spacing:.03em;">EN</a>
+        <a href="https://portal.roeto.co.il/pfinvest/login" class="btn-personal-area" target="_blank" rel="noopener"><i class="fa-solid fa-key"></i> כניסה לאיזור אישי</a>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="פתח תפריט" aria-expanded="false">
+        <span class="hamburger-line"></span><span class="hamburger-line"></span><span class="hamburger-line"></span>
+      </button>
+    </div>
+    <nav class="mobile-menu" id="mobile-menu" aria-label="תפריט נייד" aria-hidden="true">
+      <ul class="mobile-nav-list">
+        <li><a href="index.html" class="mobile-nav-link">דף הבית</a></li>
+        <li><a href="financial-planning.html" class="mobile-nav-link">תכנון פיננסי</a></li>
+        <li><a href="retirement-planning.html" class="mobile-nav-link">תכנון פרישה</a></li>
+        <li><a href="early-retirement.html" class="mobile-nav-link">פרישה מוקדמת</a></li>
+        <li><a href="family-office.html" class="mobile-nav-link"><span lang="en">Family Office</span></a></li>
+        <li><a href="market-status.html" class="mobile-nav-link">תמונת מצב בשווקים</a></li>
+        <li><a href="faq.html" class="mobile-nav-link" style="color:var(--gold);font-weight:700">שאלות ותשובות</a></li>
+        <li style="padding:.4rem 1.5rem;font-size:.75rem;color:rgba(255,255,255,.4);font-weight:700;letter-spacing:.05em;">פעולות נפוצות</li>
+        <li><a href="common-actions.html" class="mobile-nav-link" style="padding-right:2rem;">↳ פעולות נפוצות</a></li>
+        <li><a href="holistic-checkup.html" class="mobile-nav-link" style="padding-right:2rem;">↳ צ'ק אפ פיננסי</a></li>
+        <li><a href="documents.html" class="mobile-nav-link" style="padding-right:2rem;">↳ מסלקה פנסיונית</a></li>
+        <li style="padding:.4rem 1.5rem;font-size:.75rem;color:rgba(255,255,255,.4);font-weight:700;letter-spacing:.05em;">מכשירים פיננסיים</li>
+        <li><a href="pension-fund.html" class="mobile-nav-link" style="padding-right:2rem;">↳ קרן פנסיה</a></li>
+        <li><a href="managers-insurance.html" class="mobile-nav-link" style="padding-right:2rem;">↳ ביטוח מנהלים</a></li>
+        <li><a href="provident-fund.html" class="mobile-nav-link" style="padding-right:2rem;">↳ קופת גמל</a></li>
+        <li><a href="keren-hishtalmut.html" class="mobile-nav-link" style="padding-right:2rem;">↳ קרן השתלמות</a></li>
+        <li><a href="savings-policies.html" class="mobile-nav-link" style="padding-right:2rem;">↳ פוליסות חיסכון</a></li>
+        <li><a href="tel:052-8000556" class="mobile-nav-link mobile-phone"><i class="fa-solid fa-phone"></i> 052-8000556</a></li>
+        <li><a href="https://wa.me/972528000556" class="mobile-nav-link"><i class="fa-brands fa-whatsapp"></i> <span lang="en">WhatsApp</span></a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div id="content-start" tabindex="-1"></div>
+
+  <section class="page-hero">
+    <div class="container">
+      <h1>שאלות ותשובות</h1>
+      <p class="hero-tagline">תשובות מפורטות לשאלות הנפוצות ביותר בנושאי פנסיה, ביטוח, חיסכון ותכנון פרישה</p>
+    </div>
+  </section>
+
+  <section class="faq-section">
+    <div class="container">
+
+      <!-- קרן פנסיה -->
+      <div class="faq-category fade-in-up">
+        <div class="faq-category-title"><i class="fa-solid fa-piggy-bank"></i> קרן פנסיה</div>
+
+        <details class="faq-item">
+          <summary>מה ההבדל בין קרן פנסיה לביטוח מנהלים?</summary>
+          <div class="faq-answer">
+            <p><strong>קרן פנסיה</strong> היא מוצר קבוצתי: כל העמיתים בקרן "מאגדים" יחדיו את הסיכון הביטוחי — אם עמיתים רבים נפטרים או נעשים נכים בשנה מסוימת, דמי הניהול של כלל המבוטחים עולים. לעומת זאת, <strong>ביטוח מנהלים</strong> הוא חוזה אישי מול חברת הביטוח: פרמיית הביטוח נעולה ביום ההצטרפות ואינה מושפעת מהתנהגות הקבוצה.</p>
+            <p>הבדלים מרכזיים: ביטוח מנהלים מאפשר לנעול <strong>מקדם המרה</strong> לקצבה בעת ההצטרפות (יתרון משמעותי), בעוד בקרן פנסיה המקדם עשוי להשתנות לעמיתים חדשים. קרן פנסיה נהנית מ<strong>אגרות חוב מיועדות</strong> (תשואה מובטחת על כ-30% מהנכסים) — יתרון שאין לביטוח מנהלים.</p>
+            <p>לבכירים בעלי שכר גבוה, שילוב של שני המוצרים עשוי להיות הפתרון האופטימלי.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>מה זה מקדם המרה ולמה הוא חשוב כל כך?</summary>
+          <div class="faq-answer">
+            <p>מקדם ההמרה הוא המספר שבו מחלקים את הצבירה הפנסיונית שלך כדי לחשב את הקצבה החודשית. לדוגמה: צבירה של 2,000,000 ש"ח ומקדם של 200 — תניב קצבה של 10,000 ש"ח לחודש.</p>
+            <p><strong>מדוע הוא קריטי?</strong> מקדם נמוך יותר = קצבה גבוהה יותר. בביטוח מנהלים ישנים ניתן לנעול מקדם של 150–160, לעומת מקדמים עכשוויים שעומדים על 200–230 ומעלה. ההבדל בגובה הקצבה המתקבלת יכול להגיע ל-30%–40% לאורך שנות הפרישה.</p>
+            <p>לפני ניוד ביטוח מנהלים ישן — חובה לבדוק את מקדם ההמרה הקיים.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>מה זה אגרות חוב מיועדות וכיצד הן מגינות עליי?</summary>
+          <div class="faq-answer">
+            <p>קרנות פנסיה מחויבות להשקיע כ-30% מנכסיהן באגרות חוב ממשלתיות מיועדות, הנושאות ריבית ריאלית מובטחת של 4.86% (נכון להוראות רשות שוק ההון). זוהי תשואה מובטחת על ידי המדינה — ללא תנודות שוק.</p>
+            <p>המשמעות: גם בשנות שפל בשוקי ההון, חלק ניכר מהצבירה שלך נשמר ומניב תשואה יציבה. זהו יתרון ייחודי של קרן פנסיה שאינו קיים בביטוח מנהלים, קופות גמל או פוליסות חיסכון.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>מה קורה לפנסיה אם אפוטר?</summary>
+          <div class="faq-answer">
+            <p>כספי הפנסיה שייכים לך ואינם אובדים בפיטורים. בפיטורים:</p>
+            <ul>
+              <li><strong>הכספים הצבורים</strong> — נשארים בקרן הפנסיה על שמך וממשיכים להיות מושקעים.</li>
+              <li><strong>כיסוי ביטוחי</strong> — מוחל "תקופת אכשרה" (עד 5 חודשים בדרך כלל) שבה הכיסוי הביטוחי נשמר ללא הפקדות. לאחר מכן יש לחדש הפקדות כדי לשמור על הכיסוי.</li>
+              <li><strong>פיצויי פיטורים</strong> — חלק מהצבירה הכולל פיצויים (8.33% מהשכר שהפקיד המעסיק) ניתן למשיכה ללא מס במקרים רבים — בהתאם לסעיף 14 לחוק פיצויי פיטורים.</li>
+            </ul>
+            <p>מומלץ לא למשוך כספי תגמולים גם לאחר פיטורים — משיכה לפני גיל הזכאות חייבת במס מלא.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>האם כדאי לשנות מסלול השקעה לפי גיל?</summary>
+          <div class="faq-answer">
+            <p>ברוב קרנות הפנסיה קיים <strong>מסלול תלוי גיל</strong> (ברירת מחדל) שמקטין אוטומטית את החשיפה למניות ככל שמתקרבים לגיל הפרישה. זהו פתרון נוח שמפחית סיכון ב-"עשור האחרון".</p>
+            <p>עם זאת, לבכירים עם מקורות הכנסה נוספים בפרישה (נדל"ן, ירושות, חיסכון אחר) — ייתכן שחשיפה מנייתית גבוהה יותר גם קרוב לפרישה תהיה מתאימה, כיוון שאין תלות בלעדית בקצבת הפנסיה.</p>
+            <p>שינוי מסלול מבוצע ללא אירוע מס וניתן לשינוי פעמים רבות בשנה.</p>
+          </div>
+        </details>
+      </div>
+
+      <!-- ביטוח מנהלים -->
+      <div class="faq-category fade-in-up">
+        <div class="faq-category-title"><i class="fa-solid fa-briefcase"></i> ביטוח מנהלים</div>
+
+        <details class="faq-item">
+          <summary>מה ביטוח מנהלים ומה יתרונו על פני קרן פנסיה?</summary>
+          <div class="faq-answer">
+            <p>ביטוח מנהלים הוא <strong>חוזה ביטוח וחיסכון אישי</strong> הנערך בין המבוטח לחברת ביטוח. בניגוד לקרן פנסיה, תנאי הפוליסה — לרבות מקדם ההמרה לקצבה — נקבעים ביום ההצטרפות ולא ישתנו.</p>
+            <p>יתרונות עיקריים: נעילת מקדם המרה (קריטי לפוליסות ישנות), הגמישות בקביעת המוטבים ואחוז שאירים, ועצמאות מ"ריסק הקבוצה" של הפנסיה. חיסרון: אין אגרות חוב מיועדות, ודמי הניהול ופרמיות הביטוח נטו לרוב גבוהים יותר מקרן פנסיה.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>האם ניתן לנייד ביטוח מנהלים ישן לקרן פנסיה?</summary>
+          <div class="faq-answer">
+            <p>כן, ניוד אפשרי מבחינה חוקית — אולם <strong>לא תמיד כדאי</strong>. לפני כל ניוד יש לבחון:</p>
+            <ul>
+              <li><strong>מקדם ההמרה</strong> — פוליסות ישנות (לפני 2013) כוללות לרוב מקדמים נמוכים (150–170) שמבטיחים קצבה גבוהה משמעותית. ניוד ימחק הטבה זו.</li>
+              <li><strong>גיל ומצב בריאותי</strong> — ניוד עשוי להצריך חיתום מחדש לכיסויים ביטוחיים.</li>
+              <li><strong>כיסויים קיימים</strong> — פוליסה ישנה עשויה לכלול כיסוי ביטוחי שלא ניתן לשחזר.</li>
+            </ul>
+            <p>ניוד ביטוח מנהלים הוא אחד ההחלטות הפיננסיות המורכבות ביותר — מומלץ לבחון אותה לעומק לפני קבלת כל החלטה.</p>
+          </div>
+        </details>
+      </div>
+
+      <!-- קרן השתלמות -->
+      <div class="faq-category fade-in-up">
+        <div class="faq-category-title"><i class="fa-solid fa-seedling"></i> קרן השתלמות</div>
+
+        <details class="faq-item">
+          <summary>מה קרן השתלמות ומה ייחודה?</summary>
+          <div class="faq-answer">
+            <p>קרן השתלמות היא <strong>מוצר החיסכון ה"עדיף" ביותר בישראל מבחינה מיסויית</strong>. עבור שכירים: המעסיק מפקיד 7.5% ממשכורת, העובד 2.5% — וכל הצבירה פטורה ממס רווחי הון לצמיתות (עד תקרה הצמודה למדד).</p>
+            <p>מה שהופך אותה ייחודית: בניגוד לפנסיה, לאחר 6 שנות ותק (3 שנים לגיל 67+) ניתן <strong>למשוך את הכספים ללא תשלום מס כלשהו</strong> — לכל מטרה. זהו "כסף נזיל" מבחינה מיסויית.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>מה ההבדל בין קרן השתלמות לשכיר לבין עצמאי?</summary>
+          <div class="faq-answer">
+            <p><strong>שכיר:</strong> המעסיק מפקיד 7.5% (או יותר בהסכם), העובד 2.5%. הפקדת עובד מעל 2.5% אינה מוכרת כהוצאה אך הרווחים עדיין פטורים. הפקדת המעסיק אינה מחויבת במס הכנסה לעובד עד תקרה.</p>
+            <p><strong>עצמאי:</strong> מפקיד לעצמו עד 4.5% מהכנסתו (עד תקרה), וסכום זה <strong>מוכר כהוצאה לצרכי מס הכנסה</strong>. זו אחת מהטבות המס המשמעותיות ביותר לעצמאים — ניכוי מס + פטור ממס רווחי הון.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>מתי ניתן למשוך מקרן השתלמות ומה קורה אם מושכים לפני?</summary>
+          <div class="faq-answer">
+            <p>לאחר <strong>6 שנות ותק</strong> (מיום פתיחת הקרן) — המשיכה חופשית לחלוטין, ללא מס. לאחר <strong>3 שנים</strong> — ניתן למשוך לצרכי השתלמות (לימודים).</p>
+            <p>משיכה לפני 6 שנים (שלא לצרכי השתלמות): הרווחים חייבים במס של 25% (כרווחי הון). את הקרן ניתן להמשיך ולהשאיר מושקעת גם מעבר ל-6 שנים — אין חובת משיכה, וניתן להשאירה כחיסכון לפרישה.</p>
+          </div>
+        </details>
+      </div>
+
+      <!-- קופת גמל -->
+      <div class="faq-category fade-in-up">
+        <div class="faq-category-title"><i class="fa-solid fa-coins"></i> קופת גמל וחיסכון</div>
+
+        <details class="faq-item">
+          <summary>מה ההבדל בין קופת גמל לקרן השתלמות?</summary>
+          <div class="faq-answer">
+            <p>שני המוצרים דומים במבנה ההשקעה, אך שונים בתנאי משיכה ובמטרה:</p>
+            <ul>
+              <li><strong>קרן השתלמות</strong> — מיועדת לחיסכון לטווח בינוני (6 שנים), נזילה לחלוטין לאחר מכן, פטורה ממס.</li>
+              <li><strong>קופת גמל</strong> — מיועדת לחיסכון לפרישה. כספי תגמולים (לא פיצויים) שהופקדו משנת 2008 מחויבים בקצבה (לא ניתנים למשיכה כסכום חד-פעמי). רווחים פטורים ממס אם נמשכים כקצבה.</li>
+            </ul>
+            <p>קופת גמל "להשקעה" (190) היא מוצר שונה — נזילה בכל עת עם מס על הרווחים, אך ניתן לקבלה כקצבה פטורה ממס בפרישה.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>האם כדאי למשוך כספים מקופת גמל לפני גיל פרישה?</summary>
+          <div class="faq-answer">
+            <p>ברוב המקרים — <strong>לא</strong>. כספי תגמולים שהופקדו אחרי 2008 אינם ניתנים למשיכה כסכום חד-פעמי (אלא כקצבה). כספי פיצויים שנמשכים לפני גיל הזכאות (67/62) חייבים במס הכנסה שולי מלא.</p>
+            <p>מעבר לאספקט המיסויי: כל שקל שנמשך בגיל 40 מאבד את פוטנציאל הגידול של 25+ שנות ריבית דריבית — ההשפעה על הפנסיה סופית עלולה להיות פי 3–5 ממה שנמשך.</p>
+          </div>
+        </details>
+      </div>
+
+      <!-- תכנון פרישה -->
+      <div class="faq-category fade-in-up">
+        <div class="faq-category-title"><i class="fa-solid fa-sun"></i> תכנון פרישה</div>
+
+        <details class="faq-item">
+          <summary>מה גיל הפרישה הרשמי בישראל?</summary>
+          <div class="faq-answer">
+            <p><strong>לגברים:</strong> 67. <strong>לנשים:</strong> עולה בהדרגה — כיום 62, ועתיד להגיע ל-65. עם זאת, "גיל הפרישה" ו"גיל הזכאות לקצבה" הם לא בהכרח אותו דבר — ניתן להמשיך לעבוד ולצבור ולקבל קצבה גדולה יותר בגיל מאוחר יותר.</p>
+            <p>ניתן גם לפרוש <strong>מוקדם</strong> — החל מגיל 60 לגברים ו-55 לנשים — אם הקצבה המצטברת עוברת סף מינימום שנקבע בחוק (כ-5,012 ש"ח לחודש נכון ל-2026).</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>מתי נכון להתחיל לתכנן פרישה?</summary>
+          <div class="faq-answer">
+            <p>ה"תכנון" מתחיל ביום שמתחילים לעבוד — בחירת מוצר, מסלול השקעה, וכיסויים ביטוחיים הם כולם החלטות פרישה. אך <strong>תכנון פרישה ממוקד ומפורט</strong> כדאי להתחיל לפחות <strong>10 שנים לפני הפרישה הצפויה</strong>.</p>
+            <p>בשנות הייצוג הגבוהות (40–55) ניתן לבצע הפקדות מוגדלות, לכוון מסלולי השקעה, לבדוק פערים ביטוחיים ולתכנן אסטרטגיית מס לפרישה. ככל שמתחילים מוקדם יותר — יש יותר גמישות ופחות לחץ.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>כיצד מחושבת קצבת הפנסיה שאקבל?</summary>
+          <div class="faq-answer">
+            <p>הנוסחה הבסיסית: <strong>קצבה חודשית = סך הצבירה ÷ מקדם ההמרה</strong>.</p>
+            <p>לדוגמה: צבירה של 3,000,000 ש"ח ומקדם 210 = קצבה של 14,285 ש"ח לחודש (לפני מס). הצבירה מורכבת מסך ההפקדות + תשואת ההשקעות לאורך השנים.</p>
+            <p>גורמים שמשפיעים על הקצבה: סך ההפקדות הכוללות, תשואת ההשקעה, מקדם ההמרה, גיל הפרישה (פרישה מאוחרת = מקדם נמוך = קצבה גבוהה יותר), ומסלול המשיכה שנבחר.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>מה זה "פרישה מוקדמת" ומהן התנאים?</summary>
+          <div class="faq-answer">
+            <p>פרישה מוקדמת (FIRE בשפה בינלאומית) מאפשרת לעזוב את שוק העבודה לפני גיל הפרישה החוקי. בישראל ניתן למשוך פנסיה מוקדמת מגיל 60 (גברים) / 55 (נשים) בתנאי שהקצבה עוברת סף מינימום.</p>
+            <p>אתגרים ייחודיים לפרישה מוקדמת: כספי הפנסיה ייוותרו "קפואים" עד גיל הזכאות ויש לתכנן מקורות הכנסה חלופיים לגשר; אובדן כיסוי ביטוחי של המעסיק; ואריכות ימים — צריך לתכנן ל-30–40 שנות פרישה ולא 20. תכנון מפורט ומקצועי הכרחי.</p>
+          </div>
+        </details>
+      </div>
+
+      <!-- ביטוח -->
+      <div class="faq-category fade-in-up">
+        <div class="faq-category-title"><i class="fa-solid fa-shield-halved"></i> ביטוח וכיסויים</div>
+
+        <details class="faq-item">
+          <summary>מה ביטוח אובדן כושר עבודה (נכות)?</summary>
+          <div class="faq-answer">
+            <p>ביטוח אובדן כושר עבודה (אכ"ע) משלם <strong>קצבה חודשית חלופית</strong> אם אינך מסוגל לעבוד בשל מחלה או תאונה. הוא כולל שלושה רכיבים עיקריים לבדיקה:</p>
+            <ul>
+              <li><strong>הגדרת אובדן כושר</strong> — "עיסוק ספציפי" (רופא שאינו יכול לבצע ניתוחים יקבל קצבה) לעומת "כל עיסוק סביר" (מגן פחות).</li>
+              <li><strong>גובה הקצבה</strong> — בדרך כלל 75%–80% מהשכר.</li>
+              <li><strong>תקופת המתנה</strong> — כמה חודשים עוברים מהנכות עד שמתחיל התשלום (30–180 יום).</li>
+            </ul>
+            <p>הכיסוי בתוך קרן הפנסיה מוגבל לתקרת שכר ולהגדרה כללית. לבכירים עם שכר גבוה — כיסוי משלים דרך פוליסת ריסק עצמאית חיוני.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>מה מטריה ביטוחית ומי צריך אותה?</summary>
+          <div class="faq-answer">
+            <p>מטריה ביטוחית היא <strong>פוליסת ביטוח פרטית</strong> שנרכשת כדי להשלים את הכיסויים שבתוך קרן הפנסיה. קרן הפנסיה מבטחת שכר עד תקרה (לרוב כ-3 פעמים השכר הממוצע) — שכירים בכירים עם שכר גבוה מהתקרה נותרים ללא כיסוי על ההפרש.</p>
+            <p>המטריה מכסה: אובדן כושר עבודה מעל תקרת הקרן, ביטוח חיים (ריסק) בסכום שמותאם לצרכי המשפחה, ולעיתים ביטוח מחלות קשות. היא שייכת למבוטח אישית — ולא תלויה בהמשך העסקה.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>מה מכסה ביטוח השאירים שבפנסיה?</summary>
+          <div class="faq-answer">
+            <p>ביטוח שאירים בקרן פנסיה משלם קצבה חודשית לבן/בת הזוג ולילדים הקטינים במקרה של פטירת המבוטח. בן/בת זוג מקבל לרוב 60% מהקצבה שהיה מקבל המנוח, כל עוד לא נישא מחדש (וגם לאחר מכן — בחלק מהקרנות).</p>
+            <p>חשוב לדעת: ביטוח השאירים מחושב לפי שכר בפועל עד לתקרה. לבכירים — ייתכן שסכום הביטוח אינו מספיק לכסות משכנתה גבוהה, חינוך ילדים ושמירה על רמת החיים. לכן כיסוי ריסק עצמאי נוסף הוא לעיתים הכרחי.</p>
+          </div>
+        </details>
+      </div>
+
+      <!-- ניוד ופעולות -->
+      <div class="faq-category fade-in-up">
+        <div class="faq-category-title"><i class="fa-solid fa-arrows-rotate"></i> ניוד, מעבר וניהול</div>
+
+        <details class="faq-item">
+          <summary>מה זה ניוד קופה וכיצד מבצעים אותו?</summary>
+          <div class="faq-answer">
+            <p>ניוד ("העברה") הוא העברת כספים מקופה פנסיונית אחת לאחרת — ללא אירוע מס וללא פגיעה בכיסוי. ניתן לנייד בין קרנות פנסיה, בין קופות גמל, ובמקרים מסוימים גם בין סוגי מוצרים.</p>
+            <p>התהליך: מגישים טופס "בקשת העברת כספים" לקופה הקולטת — היא מטפלת בהליך מול הקופה המעבירה. התהליך אורך בדרך כלל 3–7 ימי עסקים. <strong>לפני ניוד — חשוב לבדוק מקדם המרה (בביטוח מנהלים), כיסויים ביטוחיים, ותנאי הקופה הקולטת.</strong></p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>מה דמי ניהול ועד כמה הם משפיעים?</summary>
+          <div class="faq-answer">
+            <p>דמי ניהול הם העלות השוטפת של ניהול החיסכון שלך. הם נגבים בשני מסלולים:</p>
+            <ul>
+              <li><strong>מהצבירה</strong> — אחוז שנתי מסך הכסף הצבור (לדוגמה: 0.5% מהצבירה).</li>
+              <li><strong>מהפקדות</strong> — אחוז מכל הפקדה חדשה (עד 6% בפנסיה).</li>
+            </ul>
+            <p>ההשפעה לטווח ארוך: הפרש של 0.3% בדמי ניהול על צבירה של מיליון ש"ח = 3,000 ש"ח בשנה, שמצטברים לסכומים משמעותיים לאורך 20–30 שנה. ניהול מקצועי של דמי הניהול ומשא ומתן מולם הם חלק מהתכנון הפיננסי.</p>
+          </div>
+        </details>
+      </div>
+
+      <!-- שירותים -->
+      <div class="faq-category fade-in-up">
+        <div class="faq-category-title"><i class="fa-solid fa-user-tie"></i> שירותי תכנון פיננסי</div>
+
+        <details class="faq-item">
+          <summary>מה כולל צ'ק אפ פיננסי?</summary>
+          <div class="faq-answer">
+            <p>צ'ק אפ פיננסי הוא <strong>בדיקה מקיפה של מצב החיסכון הפנסיוני, הביטוחי וההשקעתי</strong> שלך — בדומה לבדיקות שגרתיות ברפואה. הוא כולל:</p>
+            <ul>
+              <li>ריכוז כל המוצרים הפנסיוניים, ביטוחי חיים ונכות, וחסכונות</li>
+              <li>בדיקת גובה כיסויי אובדן כושר עבודה מול הכנסה בפועל</li>
+              <li>בדיקת דמי ניהול בפועל מול שוק</li>
+              <li>הערכת מסלולי השקעה ביחס לגיל ולצרכים</li>
+              <li>בדיקת עדכניות מוטבים ומסמכים</li>
+              <li>תמונת מצב של הצבירה הצפויה לפרישה</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>מה זה Family Office ולמי הוא מיועד?</summary>
+          <div class="faq-answer">
+            <p>Family Office הוא שירות ניהול הון מקיף לאנשים ומשפחות בעלי הון משמעותי. הוא מרכז תחת מטריה אחת את ניהול ההשקעות, תכנון מס, העברה בין-דורית, ביטוחים, ולעיתים גם היבטים משפטיים.</p>
+            <p>היתרון המרכזי: <strong>תיאום מלא בין כל מרכיבי ההון</strong> — במקום לעבוד עם גורמים מקצועיים שונים שאינם מתואמים. מתאים בדרך כלל למשפחות עם נכסים פיננסיים ממיליוני שקלים ומעלה, שמורכבות הצרכים שלהן מצדיקה ניהול ייעודי.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>מהם הטבות המס על הפקדות לפנסיה?</summary>
+          <div class="faq-answer">
+            <p>שכירים נהנים מ-3 הטבות מס על הפקדות לפנסיה:</p>
+            <ul>
+              <li><strong>ניכוי ממס הכנסה</strong> — הפקדה עצמית עד 7% מהשכר מוכרת כניכוי (מקטינה את ההכנסה החייבת).</li>
+              <li><strong>זיכוי ממס</strong> — 35% מההפקדה עד 5% מהשכר מוחזרים ישירות כזיכוי ממס.</li>
+              <li><strong>פטור ממס רווחי הון</strong> — תשואת ההשקעה בשלב הצבירה אינה חייבת במס.</li>
+            </ul>
+            <p>לעצמאים: ניכוי של עד 16% מהכנסה (מחולק בין תגמולים לפיצויים), ועל חלק מסוים גם זיכוי מס של 35%. הטבות המס הופכות את הפנסיה לאחד מכלי ההשקעה היעילים ביותר מבחינה פיסקלית.</p>
+          </div>
+        </details>
+      </div>
+
+    </div><!-- /container -->
+  </section>
+
+  <section class="page-cta">
+    <div class="container">
+      <h2>יש לכם שאלה שלא מצאתם כאן?</h2>
+      <p style="font-weight:800;color:var(--gold)">צרו קשר ישירות — נשמח לענות על כל שאלה בתכנון פיננסי</p>
+      <div class="cta-buttons">
+        <button class="btn btn-gold btn-lg" onclick="document.getElementById('meeting-modal').classList.add('open')"><i class="fa-solid fa-calendar-check"></i> קביעת פגישה</button>
+        <a href="tel:052-8000556" class="btn btn-white btn-lg"><i class="fa-solid fa-phone"></i> 052-8000556</a>
+        <a href="https://wa.me/972528000556" class="btn btn-white btn-lg" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="modal-overlay" id="meeting-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-box">
+      <button class="modal-close" onclick="document.getElementById('meeting-modal').classList.remove('open')" aria-label="סגור">&times;</button>
+      <div id="modal-form-wrap">
+        <p class="modal-title" id="modal-title"><i class="fa-solid fa-calendar-check" style="color:var(--gold);margin-left:.4rem"></i> קביעת פגישה</p>
+        <p class="modal-subtitle">בחרו תאריך ושעה מועדפים — נאשר בהקדם</p>
+        <form class="modal-form" id="meeting-form" action="https://formsubmit.co/ajax/office@pf-invest.co.il" method="POST">
+          <input type="hidden" name="_subject" value="בקשת פגישה — שאלות ותשובות" />
+          <input type="hidden" name="_cc" value="tal@pf-invest.co.il" />
+          <input type="hidden" name="_captcha" value="false" />
+          <div class="modal-row">
+            <div class="form-group"><label class="form-label" for="meet-name">שם מלא <span style="color:#e53e3e">*</span></label><input type="text" id="meet-name" name="שם מלא" class="form-input" required placeholder="ישראל ישראלי" /></div>
+            <div class="form-group"><label class="form-label" for="meet-phone">פלאפון <span style="color:#e53e3e">*</span></label><input type="tel" id="meet-phone" name="פלאפון" class="form-input" required placeholder="050-0000000" /></div>
+          </div>
+          <div class="form-group"><label class="form-label" for="meet-email">אימייל <span style="color:#e53e3e">*</span></label><input type="email" id="meet-email" name="אימייל" class="form-input" required placeholder="example@email.com" /></div>
+          <div class="modal-row">
+            <div class="form-group"><label class="form-label" for="meet-date">תאריך מועדף</label><input type="date" id="meet-date" name="תאריך מועדף" class="form-input" /></div>
+            <div class="form-group"><label class="form-label" for="meet-time">שעה מועדפת</label>
+              <select id="meet-time" name="שעה מועדפת" class="form-select">
+                <option value="">בחרו שעה</option>
+                <option>08:00</option><option>09:00</option><option>10:00</option><option>11:00</option>
+                <option>12:00</option><option>13:00</option><option>14:00</option><option>15:00</option>
+                <option>16:00</option><option>17:00</option><option>18:00</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group"><label class="form-label" for="meet-notes">הערות (אופציונלי)</label><textarea id="meet-notes" name="הערות" class="form-textarea" rows="2" placeholder="נושא הפגישה, שאלה ספציפית..."></textarea></div>
+          <button type="submit" class="btn btn-gold" style="width:100%;justify-content:center;padding:.85rem;font-size:1rem;border-radius:var(--radius)">
+            <i class="fa-solid fa-paper-plane"></i> שליחת בקשת הפגישה
+          </button>
+        </form>
+      </div>
+      <div class="modal-success" id="modal-success">
+        <i class="fa-solid fa-circle-check"></i>
+        <h3>בקשתכם התקבלה!</h3>
+        <p>נחזור אליכם לאישור מועד הפגישה בהקדם האפשרי.</p>
+        <button onclick="document.getElementById('meeting-modal').classList.remove('open')" class="btn btn-gold" style="margin-top:.5rem">סגירה</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-top">
+      <div class="container footer-top-inner">
+        <div class="footer-col footer-brand">
+          <a href="index.html" class="footer-logo">
+            <span class="logo-main">טל גבאי</span><span class="logo-sep">|</span><span class="logo-sub">תכנון פיננסי</span>
+          </a>
+          <p class="footer-tagline">ליווי אישי וממוקד לבכירים</p>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-col-title">קישורים מהירים</h4>
+          <ul class="footer-links">
+            <li><a href="index.html" class="footer-link"><i class="fa-solid fa-chevron-left"></i> דף הבית</a></li>
+            <li><a href="financial-planning.html" class="footer-link"><i class="fa-solid fa-chevron-left"></i> תכנון פיננסי</a></li>
+            <li><a href="faq.html" class="footer-link"><i class="fa-solid fa-chevron-left"></i> שאלות ותשובות</a></li>
+            <li><a href="index.html#contact" class="footer-link"><i class="fa-solid fa-chevron-left"></i> צור קשר</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-col-title">פרטי התקשרות</h4>
+          <ul class="footer-contact-list">
+            <li><i class="fa-solid fa-phone footer-contact-icon"></i><span><a href="tel:074-7019277" class="footer-contact-link">074-7019277</a><br><a href="tel:052-8000556" class="footer-contact-link">052-8000556</a></span></li>
+            <li><i class="fa-solid fa-envelope footer-contact-icon"></i><span><a href="mailto:office@pf-invest.co.il" class="footer-contact-link">office@pf-invest.co.il</a></span></li>
+            <li><i class="fa-solid fa-location-dot footer-contact-icon"></i><span>היצירה 19, רחובות</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <p class="footer-copy">&copy; 2026 טל גבאי - תכנון פיננסי מתקדם לבכירים. כל הזכויות שמורות.</p>
+        <p class="footer-legal">מורשה על ידי רשות שוק ההון, ביטוח וחיסכון</p>
+        <p class="footer-disclaimer">המידע באתר זה הינו למטרות הכרות כללית בלבד ואינו מהווה ייעוץ השקעות, ייעוץ פנסיוני, ייעוץ מס או המלצה כלשהי. אין להסתמך עליו ללא קבלת ייעוץ מקצועי המותאם לנסיבות האישיות.</p>
+        <p class="footer-links-legal"><a href="accessibility.html" class="footer-legal-link">הצהרת נגישות</a><span class="footer-sep"> | </span><a href="privacy-policy.html" class="footer-legal-link">מדיניות פרטיות</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/972528000556" target="_blank" rel="noopener noreferrer" class="whatsapp-float" aria-label="WhatsApp">
+    <i class="fa-brands fa-whatsapp whatsapp-icon"></i>
+  </a>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    hamburger.addEventListener('click', () => {
+      const open = mobileMenu.classList.toggle('open');
+      hamburger.setAttribute('aria-expanded', open);
+      mobileMenu.setAttribute('aria-hidden', !open);
+    });
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
+
+    // Meeting form
+    (function(){
+      var form = document.getElementById('meeting-form');
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
+        var btn = form.querySelector('button[type="submit"]');
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> שולח...';
+        fetch(form.action, { method:'POST', body: new FormData(form), headers:{'Accept':'application/json'} })
+          .then(function(){ document.getElementById('modal-form-wrap').style.display='none'; document.getElementById('modal-success').style.display='flex'; })
+          .catch(function(){ btn.disabled=false; btn.innerHTML='<i class="fa-solid fa-paper-plane"></i> שליחת בקשת הפגישה'; });
+      });
+    })();
+  </script>
+
+  <div class="a11y-widget" id="a11y-widget">
+    <button class="a11y-toggle" id="a11y-toggle" aria-label="אפשרויות נגישות" aria-expanded="false"><i class="fa-solid fa-universal-access"></i></button>
+    <div class="a11y-panel" id="a11y-panel" role="dialog" aria-label="תפריט נגישות" aria-hidden="true">
+      <div class="a11y-panel-title">נגישות</div>
+      <button class="a11y-btn" id="a11y-font-up"><i class="fa-solid fa-plus"></i> הגדל טקסט</button>
+      <button class="a11y-btn" id="a11y-font-down"><i class="fa-solid fa-minus"></i> הקטן טקסט</button>
+      <button class="a11y-btn" id="a11y-contrast"><i class="fa-solid fa-circle-half-stroke"></i> ניגודיות גבוהה</button>
+      <button class="a11y-btn" id="a11y-animations"><i class="fa-solid fa-pause"></i> עצור אנימציות</button>
+      <button class="a11y-btn" id="a11y-links"><i class="fa-solid fa-link"></i> הדגש קישורים</button>
+      <button class="a11y-btn" id="a11y-spacing"><i class="fa-solid fa-text-width"></i> ריווח טקסט</button>
+      <button class="a11y-btn a11y-reset" id="a11y-reset"><i class="fa-solid fa-rotate-left"></i> איפוס</button>
+    </div>
+  </div>
+  <script>
+  (function(){
+    var t=document.getElementById('a11y-toggle'),p=document.getElementById('a11y-panel');
+    var fs=parseInt(localStorage.getItem('a11y-fs')||'16');
+    var hc=localStorage.getItem('a11y-hc')==='1',na=localStorage.getItem('a11y-na')==='1',hl=localStorage.getItem('a11y-hl')==='1',ts=localStorage.getItem('a11y-ts')==='1';
+    function apply(){document.documentElement.style.fontSize=fs+'px';document.body.classList.toggle('high-contrast',hc);document.body.classList.toggle('no-animations',na);document.body.classList.toggle('highlight-links',hl);document.body.classList.toggle('text-spacing',ts);document.getElementById('a11y-contrast').classList.toggle('active',hc);document.getElementById('a11y-animations').classList.toggle('active',na);document.getElementById('a11y-links').classList.toggle('active',hl);document.getElementById('a11y-spacing').classList.toggle('active',ts);}
+    apply();
+    t.addEventListener('click',function(){var o=p.classList.toggle('open');t.setAttribute('aria-expanded',o);p.setAttribute('aria-hidden',!o);});
+    document.getElementById('a11y-font-up').addEventListener('click',function(){if(fs<22){fs+=2;localStorage.setItem('a11y-fs',fs);apply();}});
+    document.getElementById('a11y-font-down').addEventListener('click',function(){if(fs>12){fs-=2;localStorage.setItem('a11y-fs',fs);apply();}});
+    document.getElementById('a11y-contrast').addEventListener('click',function(){hc=!hc;localStorage.setItem('a11y-hc',hc?'1':'0');apply();});
+    document.getElementById('a11y-animations').addEventListener('click',function(){na=!na;localStorage.setItem('a11y-na',na?'1':'0');apply();});
+    document.getElementById('a11y-links').addEventListener('click',function(){hl=!hl;localStorage.setItem('a11y-hl',hl?'1':'0');apply();});
+    document.getElementById('a11y-spacing').addEventListener('click',function(){ts=!ts;localStorage.setItem('a11y-ts',ts?'1':'0');apply();});
+    document.getElementById('a11y-reset').addEventListener('click',function(){fs=16;hc=false;na=false;hl=false;ts=false;localStorage.removeItem('a11y-fs');localStorage.removeItem('a11y-hc');localStorage.removeItem('a11y-na');localStorage.removeItem('a11y-hl');localStorage.removeItem('a11y-ts');apply();});
+    document.addEventListener('click',function(e){if(!document.getElementById('a11y-widget').contains(e.target)){p.classList.remove('open');t.setAttribute('aria-expanded','false');p.setAttribute('aria-hidden','true');}});
+  })();
+  </script>
+</body>
+</html>
