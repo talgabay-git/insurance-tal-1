@@ -346,7 +346,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   display: flex;
   align-items: center;
   flex-shrink: 0;
-  animation: search-blink 2s step-end infinite;
+  animation: search-blink 3s step-end infinite;
 }
 .search-toggle:hover,
 .search-toggle[aria-expanded="true"] {
