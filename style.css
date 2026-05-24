@@ -350,8 +350,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
 .search-overlay {
   display: none;
-  position: absolute;
-  top: 100%;
+  position: fixed;
+  top: var(--header-h);
   right: 0;
   left: 0;
   background: var(--navy);
