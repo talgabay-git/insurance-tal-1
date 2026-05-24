@@ -200,6 +200,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   gap: .1rem;
   flex-shrink: 0;
   line-height: 1;
+  padding-top: .55rem;
 }
 .logo-row {
   display: flex;
