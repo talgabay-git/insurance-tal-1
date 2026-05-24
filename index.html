@@ -1507,7 +1507,7 @@
             a.onmouseover = function(){ this.style.transform='scale(1.02)'; };
             a.onmouseout  = function(){ this.style.transform='scale(1)'; };
             var img = document.createElement('img');
-            img.src = src; img.alt = 'עדות לקוח'; img.loading = 'lazy';
+            img.src = src; img.alt = 'עדות לקוח'; img.decoding = 'async';
             img.style.cssText = 'width:100%;display:block;';
             a.appendChild(img); grid.appendChild(a);
           });
