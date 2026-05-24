@@ -75,7 +75,7 @@
     closeBtn.addEventListener('click', closeSearch);
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeSearch(); });
     document.addEventListener('click', function (e) {
-      if (overlay.classList.contains('open') && !overlay.contains(e.target) && e.target !== toggle) closeSearch();
+      if (overlay.classList.contains('open') && !overlay.contains(e.target) && !toggle.contains(e.target)) closeSearch();
     });
 
     inp.addEventListener('input', function () {
