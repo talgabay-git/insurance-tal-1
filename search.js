@@ -72,6 +72,9 @@
     toggle.addEventListener('click', function () {
       overlay.classList.contains('open') ? closeSearch() : openSearch();
     });
+    toggle.addEventListener('mouseenter', function () {
+      if (!overlay.classList.contains('open')) openSearch();
+    });
     closeBtn.addEventListener('click', closeSearch);
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeSearch(); });
     document.addEventListener('click', function (e) {
