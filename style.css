@@ -440,6 +440,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   max-height: 400px;
   overflow-y: auto;
 }
+.search-results:empty { display: none; }
 .search-result-link {
   display: flex;
   flex-direction: column;
