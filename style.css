@@ -247,7 +247,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     justify-self: center;
     align-self: center;
     align-items: center;
-    padding-top: .2rem;
+    padding-top: .7rem;
     padding-bottom: .1rem;
   }
   .header-left {
