@@ -32,6 +32,11 @@
     .orbit-oval.popup-open .member-popup { opacity: 1; pointer-events: auto; }
     .about-bio-intro { margin-top: 0; }
     @media (max-width: 768px) { .how-arrows .arr { transform: rotate(90deg); } }
+    /* Two-row header LTR overrides */
+    @media (min-width: 1101px) {
+      .header-inner { direction: ltr; }
+      .header-left { grid-column: 3; grid-row: 2; justify-self: end; }
+    }
   </style>
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
@@ -63,9 +68,8 @@
     <div class="container header-inner">
 
       <a href="index.html" class="logo header-logo" aria-label="Home">
-        <span class="logo-main">Tal Gabay</span>
-        <span class="logo-sep">|</span>
-        <span class="logo-sub">Financial Planning</span>
+        <span class="logo-row"><span class="logo-main">Tal Gabay</span><span class="logo-sep">|</span><span class="logo-sub">Financial Planning</span></span>
+        <span class="logo-tagline">Personal &amp; Focused Guidance for Executives</span>
       </a>
 
       <nav class="main-nav" aria-label="Main navigation">
