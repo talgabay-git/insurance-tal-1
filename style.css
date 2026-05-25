@@ -231,7 +231,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .header-logo .logo-sub  { font-size: 1.73rem; }
 }
 @media (min-width: 1101px) {
-  :root { --header-h: 115px; }
+  :root { --header-h: 135px; }
   .hero { background-attachment: fixed; }
   .header-inner {
     display: grid;
