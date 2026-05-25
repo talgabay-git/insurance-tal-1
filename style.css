@@ -241,17 +241,17 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     gap: 0;
   }
   .header-logo {
-    grid-column: 1;
+    grid-column: 1 / -1;
     grid-row: 1;
-    justify-self: start;
+    justify-self: center;
     align-self: center;
-    align-items: flex-start;
+    align-items: center;
     padding-top: .2rem;
     padding-bottom: .1rem;
   }
   .header-left {
     grid-column: 3;
-    grid-row: 1;
+    grid-row: 2;
     justify-self: end;
     align-self: center;
   }
