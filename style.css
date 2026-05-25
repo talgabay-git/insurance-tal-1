@@ -252,13 +252,24 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .header-left {
     grid-column: 3;
     grid-row: 2;
-    justify-self: end;
+    justify-self: start;
     align-self: center;
   }
   .main-nav {
     grid-column: 2;
     grid-row: 2;
     margin: 0;
+  }
+  .search-toggle {
+    grid-column: 1;
+    grid-row: 2;
+    justify-self: end;
+    align-self: center;
+    border: 1.5px solid var(--gold);
+    border-radius: 4px;
+    padding: .4rem .85rem;
+    animation: none;
+    color: var(--gold);
   }
   .hamburger { display: none; }
 }
