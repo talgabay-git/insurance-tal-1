@@ -239,6 +239,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     grid-template-rows: auto auto;
     align-items: center;
     gap: 0;
+    column-gap: .6rem;
   }
   .header-logo {
     grid-column: 1 / -1;
@@ -401,6 +402,18 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .search-toggle:hover,
 .search-toggle[aria-expanded="true"] { color: var(--white); background: rgba(201,168,76,.15); }
+
+/* Desktop: search icon as bordered button adjacent to nav */
+@media (min-width: 1101px) {
+  .search-toggle {
+    border: 1.5px solid var(--gold);
+    border-radius: 4px;
+    padding: .4rem .85rem;
+    animation: none;
+    color: var(--gold);
+    font-size: 1.05rem;
+  }
+}
 
 .search-overlay {
   display: none;
