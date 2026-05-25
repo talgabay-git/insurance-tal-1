@@ -248,7 +248,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     align-self: center;
     align-items: center;
     padding-top: .7rem;
-    padding-bottom: .1rem;
+    padding-bottom: .45rem;
   }
   .header-left {
     grid-column: 3;
