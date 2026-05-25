@@ -36,6 +36,7 @@
     @media (min-width: 1101px) {
       .header-inner { direction: ltr; }
       .header-left { grid-column: 3; grid-row: 2; justify-self: end; }
+      #search-toggle { grid-column: 1; grid-row: 2; justify-self: start; }
     }
   </style>
   <!-- Open Graph -->
@@ -89,6 +90,8 @@
         </div>
       </div>
 
+      <button class="search-toggle" id="search-toggle" aria-label="Search" aria-expanded="false"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
+
       <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
         <span class="hamburger-line"></span>
         <span class="hamburger-line"></span>
@@ -108,6 +111,13 @@
       </ul>
     </nav>
   </header>
+<div class="search-overlay" id="search-overlay" role="search" aria-hidden="true">
+  <div class="search-inner">
+    <input type="search" class="search-input" id="search-input" placeholder="Search... (pension, retirement, insurance...)" autocomplete="off" dir="ltr" aria-label="Search site" />
+    <button class="search-close" id="search-close" aria-label="Close search"><i class="fa-solid fa-xmark"></i></button>
+    <ul class="search-results" id="search-results" role="listbox" aria-label="Search results"></ul>
+  </div>
+</div>
   <div id="content-start" tabindex="-1"></div>
 
   <!-- HERO -->
@@ -1045,6 +1055,7 @@
   </button>
 
   <script src="../script.js"></script>
+  <script src="../search.js"></script>
   <script>
   document.querySelectorAll('.partners-track-wrap').forEach(wrap => {
     const track = wrap.querySelector('.partners-track');
