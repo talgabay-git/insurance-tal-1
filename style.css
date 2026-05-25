@@ -405,13 +405,26 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
 /* Desktop: search icon as bordered button adjacent to nav */
 @media (min-width: 1101px) {
-  .search-toggle {
+  #search-toggle {
+    background: transparent;
     border: 1.5px solid var(--gold);
     border-radius: 4px;
     padding: .4rem .85rem;
     animation: none;
-    color: var(--gold);
+    color: var(--white);
     font-size: 1.05rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: var(--transition);
+    white-space: nowrap;
+  }
+  #search-toggle:hover,
+  #search-toggle[aria-expanded="true"] {
+    background: rgba(201,168,76,.15);
+    color: var(--white);
+    animation: none;
   }
 }
 
