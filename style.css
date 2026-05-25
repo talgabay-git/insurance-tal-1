@@ -232,20 +232,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 @media (min-width: 1101px) {
   .hero { background-attachment: fixed; }
-  .header-inner { justify-content: center; }
-  .main-nav { flex: none; margin-inline: 0; }
-  .header-logo {
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-  .header-left {
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-  }
+  .main-nav { flex: none; margin-inline: auto; }
+  .header-logo { flex: 1; }
+  .header-left { flex: 1; justify-content: flex-end; }
 }
 @media (max-width: 1100px) and (min-width: 769px) {
   .main-nav    { display: none; }
