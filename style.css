@@ -409,7 +409,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     background: transparent;
     border: 1.5px solid var(--gold);
     border-radius: 4px;
-    padding: .4rem .85rem;
+    padding: .4rem 1.9rem;
     animation: none;
     color: var(--white);
     font-size: 1.05rem;
