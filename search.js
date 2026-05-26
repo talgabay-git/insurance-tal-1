@@ -55,18 +55,33 @@
     var list    = document.getElementById('search-results');
     if (!toggle || !overlay || !inp) return;
 
+    var autoCloseTimer = null;
+    var isOverOverlay  = false;
+
+    function scheduleClose() {
+      clearTimeout(autoCloseTimer);
+      autoCloseTimer = setTimeout(function () {
+        if (!isOverOverlay && document.activeElement !== inp) {
+          closeSearch();
+        }
+      }, 3000);
+    }
+
     function openSearch() {
       overlay.classList.add('open');
       overlay.setAttribute('aria-hidden', 'false');
       toggle.setAttribute('aria-expanded', 'true');
       inp.focus();
+      scheduleClose();
     }
     function closeSearch() {
+      clearTimeout(autoCloseTimer);
       overlay.classList.remove('open');
       overlay.setAttribute('aria-hidden', 'true');
       toggle.setAttribute('aria-expanded', 'false');
       inp.value = '';
       list.innerHTML = '';
+      isOverOverlay = false;
     }
 
     toggle.addEventListener('click', function () {
@@ -74,7 +89,23 @@
     });
     toggle.addEventListener('mouseenter', function () {
       if (!overlay.classList.contains('open')) openSearch();
+      else { clearTimeout(autoCloseTimer); scheduleClose(); }
     });
+
+    overlay.addEventListener('mouseenter', function () {
+      isOverOverlay = true;
+      clearTimeout(autoCloseTimer);
+    });
+    overlay.addEventListener('mouseleave', function () {
+      isOverOverlay = false;
+      if (document.activeElement !== inp) scheduleClose();
+    });
+
+    inp.addEventListener('focus', function () { clearTimeout(autoCloseTimer); });
+    inp.addEventListener('blur',  function () {
+      if (!isOverOverlay) scheduleClose();
+    });
+
     closeBtn.addEventListener('click', closeSearch);
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeSearch(); });
     document.addEventListener('click', function (e) {
