@@ -56,14 +56,14 @@
     if (!toggle || !overlay || !inp) return;
 
     var autoCloseTimer = null;
-    var isOverOverlay  = false;
 
-    function hasTyped() { return inp.value.trim().length > 0; }
+    function hasTyped()    { return inp.value.trim().length > 0; }
+    function isHovered()   { return overlay.matches(':hover') || toggle.matches(':hover'); }
 
     function scheduleClose() {
       clearTimeout(autoCloseTimer);
       autoCloseTimer = setTimeout(function () {
-        if (!isOverOverlay && !hasTyped()) closeSearch();
+        if (!isHovered() && !hasTyped()) closeSearch();
       }, 3000);
     }
 
@@ -80,7 +80,6 @@
       toggle.setAttribute('aria-expanded', 'false');
       inp.value = '';
       list.innerHTML = '';
-      isOverOverlay = false;
     }
 
     toggle.addEventListener('click', function () {
@@ -88,17 +87,9 @@
     });
     toggle.addEventListener('mouseenter', function () {
       if (!overlay.classList.contains('open')) openSearch();
-      else { clearTimeout(autoCloseTimer); scheduleClose(); }
     });
-
-    overlay.addEventListener('mouseenter', function () {
-      isOverOverlay = true;
-      clearTimeout(autoCloseTimer);
-    });
-    overlay.addEventListener('mouseleave', function () {
-      isOverOverlay = false;
-      if (!hasTyped()) scheduleClose();
-    });
+    overlay.addEventListener('mouseenter', function () { clearTimeout(autoCloseTimer); });
+    overlay.addEventListener('mouseleave', function () { if (!hasTyped()) scheduleClose(); });
 
     closeBtn.addEventListener('click', closeSearch);
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeSearch(); });
@@ -108,7 +99,7 @@
 
     inp.addEventListener('input', function () {
       if (hasTyped()) clearTimeout(autoCloseTimer);
-      else if (!isOverOverlay) scheduleClose();
+      else if (!isHovered()) scheduleClose();
 
       var q = this.value;
       var hits = doSearch(q);
