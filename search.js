@@ -58,12 +58,12 @@
     var autoCloseTimer = null;
     var isOverOverlay  = false;
 
+    function hasTyped() { return inp.value.trim().length > 0; }
+
     function scheduleClose() {
       clearTimeout(autoCloseTimer);
       autoCloseTimer = setTimeout(function () {
-        if (!isOverOverlay && document.activeElement !== inp) {
-          closeSearch();
-        }
+        if (!isOverOverlay && !hasTyped()) closeSearch();
       }, 3000);
     }
 
@@ -71,7 +71,6 @@
       overlay.classList.add('open');
       overlay.setAttribute('aria-hidden', 'false');
       toggle.setAttribute('aria-expanded', 'true');
-      inp.focus();
       scheduleClose();
     }
     function closeSearch() {
@@ -98,12 +97,7 @@
     });
     overlay.addEventListener('mouseleave', function () {
       isOverOverlay = false;
-      if (document.activeElement !== inp) scheduleClose();
-    });
-
-    inp.addEventListener('focus', function () { clearTimeout(autoCloseTimer); });
-    inp.addEventListener('blur',  function () {
-      if (!isOverOverlay) scheduleClose();
+      if (!hasTyped()) scheduleClose();
     });
 
     closeBtn.addEventListener('click', closeSearch);
@@ -113,6 +107,9 @@
     });
 
     inp.addEventListener('input', function () {
+      if (hasTyped()) clearTimeout(autoCloseTimer);
+      else if (!isOverOverlay) scheduleClose();
+
       var q = this.value;
       var hits = doSearch(q);
       if (!hits.length) {
