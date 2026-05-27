@@ -1084,7 +1084,11 @@ br.mobile-br { display: none; }
 .orbit-oval {
   position: static;
   cursor: default;
+  min-width: 204px;
+  padding: .85rem 2.55rem;
 }
+.orbit-oval .oval-name { font-size: .98rem; }
+.orbit-oval .oval-role { font-size: .75rem; }
 
 /* ── Team oval animations ── */
 @keyframes ovalPulse {
