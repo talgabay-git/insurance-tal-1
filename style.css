@@ -247,27 +247,27 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   }
   .header-logo {
     grid-column: 1 / -1;
-    grid-row: 1;
+    grid-row: 2;
     justify-self: center;
     align-self: center;
     align-items: center;
-    padding-top: .7rem;
-    padding-bottom: .45rem;
+    padding-top: .45rem;
+    padding-bottom: .55rem;
   }
   .header-left {
     grid-column: 3;
-    grid-row: 2;
+    grid-row: 1;
     justify-self: start;
     align-self: center;
   }
   .main-nav {
     grid-column: 2;
-    grid-row: 2;
+    grid-row: 1;
     margin: 0;
   }
   .search-toggle {
     grid-column: 1;
-    grid-row: 2;
+    grid-row: 1;
     justify-self: end;
     align-self: center;
     border: 1.5px solid var(--gold);
