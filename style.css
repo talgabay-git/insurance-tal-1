@@ -966,7 +966,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   max-width: 860px;
   margin-top: 0.25rem;
   padding-top: 0.5rem;
-  border-top: 1px solid var(--light-gray);
   line-height: 1.85;
   color: var(--dark-gray);
   font-size: 1rem;
