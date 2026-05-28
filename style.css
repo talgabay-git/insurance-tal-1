@@ -658,7 +658,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .hero-logo .logo-tagline { font-size: 1.46rem; color: rgba(255,255,255,.82); font-family: 'Assistant', sans-serif; font-weight: 700; letter-spacing: .01em; white-space: nowrap; }
 .hero-logo:hover .logo-main { color: var(--gold); }
 .hero-logo:hover .logo-sub  { color: var(--white); }
-@media (max-width: 1100px) { .hero-logo { display: none; } }
+@media (max-width: 1100px) and (min-width: 769px) { .hero-logo { display: none; } }
 .hero-text { max-width: 100%; text-align: center; width: 100%; margin: 0 auto; }
 .hero-text h1, .hero-text p { text-align: center; width: 100%; }
 .hero-title {
@@ -1606,12 +1606,15 @@ br.mobile-br { display: none; }
   .hamburger { display: flex; }
   .mobile-menu { display: block; }
 
-  /* Shrink logo on mobile so it doesn't overflow into EN/IL button */
-  .header-logo .logo-main { font-size: 1.44rem; }
-  .header-logo .logo-sep  { font-size: 1.04rem; margin: 0 .2rem; }
-  .header-logo .logo-sub  { font-size: 1.32rem; }
-  /* Ensure EN/IL stays above the centered logo */
+  /* Hide header logo on mobile — shown in hero instead */
+  .header-logo { display: none; }
   .header-left { position: relative; z-index: 2; }
+  /* Hero logo — mobile sizing */
+  .hero-logo { transform: translateY(-0.3cm); }
+  .hero-logo .logo-main { font-size: 1.75rem; }
+  .hero-logo .logo-sep  { font-size: 1.05rem; margin: 0 .2rem; }
+  .hero-logo .logo-sub  { font-size: 1.58rem; }
+  .hero-logo .logo-tagline { font-size: .88rem; }
 
   .hero-content { flex-direction: column; text-align: center; padding-block: 3.5rem; }
   .hero-text { max-width: 100%; }
