@@ -2331,7 +2331,19 @@ body.text-spacing th {
   50%       { color: var(--gold); }
 }
 .blink-white-gold {
-  animation: white-to-gold 5s ease-in-out infinite;
+  position: relative;
+  display: inline;
+}
+.blink-white-gold::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--gold);
+  border-radius: 2px;
+  animation: underline-fade 5s ease-in-out infinite;
 }
 .underline-pulse {
   position: relative;
