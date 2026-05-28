@@ -501,9 +501,9 @@
   <script>
     const hamburger=document.getElementById('hamburger'),mobileMenu=document.getElementById('mobile-menu');
     hamburger.addEventListener('click',()=>{const o=mobileMenu.classList.toggle('open');hamburger.setAttribute('aria-expanded',o);mobileMenu.setAttribute('aria-hidden',!o);});
-    document.getElementById('meeting-modal').addEventListener('click',function(e){if(e.target===this)this.classList.remove('open');});
+    document.getElementById('meeting-modal').addEventListener('click',function(e){if(e.target===this){this.classList.remove('open');if(typeof _opened!=='undefined')_opened=false;}});
     var btn=document.querySelector('.page-cta .btn-gold');
-    if(btn)btn.addEventListener('click',function(e){e.preventDefault();document.getElementById('meeting-modal').classList.add('open');});
+    if(btn){var _opened=false;btn.addEventListener('mouseenter',function(){if(_opened)return;setTimeout(function(){_opened=true;document.getElementById('meeting-modal').classList.add('open');},400);});btn.addEventListener('click',function(e){e.preventDefault();_opened=true;document.getElementById('meeting-modal').classList.add('open');});}
     document.getElementById('meeting-form').addEventListener('submit',async function(e){
       e.preventDefault();const b=this.querySelector('button[type="submit"]');b.disabled=true;b.innerHTML='<i class="fa-solid fa-spinner fa-spin"></i> שולח...';
       const d=new FormData(this);d.append('_cc','tal@pf-invest.co.il');d.append('_subject','בקשת פגישה — הטבה לפי סעיף 125ד\'');d.append('_captcha','false');d.append('_template','table');
