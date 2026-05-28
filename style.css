@@ -758,7 +758,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .stat-number {
   display: block;
-  font-size: 2rem;
+  font-size: 2.30rem;
   font-weight: 800;
   color: var(--gold);
   line-height: 1;
@@ -766,9 +766,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .stat-item:hover .stat-number,
 .stat-item.stat-auto-active .stat-number { color: var(--white); transform: scale(1.5); }
-.stat-plus { font-size: 1.3rem; }
+.stat-plus { font-size: 1.50rem; }
 .stat-label {
-  font-size: .88rem;
+  font-size: 1.01rem;
   color: rgba(255,255,255,.75);
   font-weight: 500;
   transition: color 0.9s ease, transform 0.9s ease;
