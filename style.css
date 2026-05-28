@@ -1169,11 +1169,11 @@ br.mobile-br { display: none; }
 .team-oval-lead {
   background: var(--navy);
   border-color: var(--navy);
-  padding: 1rem 3rem;
-  min-width: 240px;
+  padding: .9rem 2.7rem;
+  min-width: 216px;
 }
-.team-oval-lead .oval-name { color: var(--white); font-size: 1.15rem; }
-.team-oval-lead .oval-role { color: var(--gold); font-size: .88rem; }
+.team-oval-lead .oval-name { color: var(--white); font-size: 1.04rem; }
+.team-oval-lead .oval-role { color: var(--gold); font-size: .79rem; }
 
 .oval-name { font-weight: 700; font-size: .95rem; color: var(--navy); line-height: 1.3; }
 .oval-role { font-size: .78rem; color: var(--dark-gray); }
