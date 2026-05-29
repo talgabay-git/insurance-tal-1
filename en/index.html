@@ -32,6 +32,11 @@
     .orbit-oval.popup-open .member-popup { opacity: 1; pointer-events: auto; }
     .about-bio-intro { margin-top: 0; }
     @media (max-width: 768px) { .how-arrows .arr { transform: rotate(90deg); } }
+    .hero-title-mobile { display: none; }
+    @media (max-width: 768px) {
+      .hero-title-desktop { display: none; }
+      .hero-title-mobile { display: block; }
+    }
     /* Single-row header LTR overrides */
     @media (min-width: 1101px) {
       .header-inner { direction: ltr; }
@@ -127,7 +132,10 @@
         <span class="logo-tagline">Personal &amp; Focused Guidance for Executives</span>
       </a>
       <div class="hero-text fade-in-up">
-        <h1 class="hero-title">· Financial Planning ·<br>· Wealth Management ·<br>· Retirement Planning ·</h1>
+        <h1 class="hero-title">
+          <span class="hero-title-desktop">Financial Planning · Wealth Management · Retirement Planning</span>
+          <span class="hero-title-mobile">· Financial Planning ·<br>· Wealth Management ·<br>· Retirement Planning ·</span>
+        </h1>
         <p class="hero-subtitle">Navigating family wealth with confidence</p>
       </div>
     </div>
