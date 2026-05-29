@@ -38,6 +38,17 @@
       .hero-title-mobile { display: block; }
       .hero-subtitle { color: var(--gold); }
     }
+    /* Advisor table — fixed columns on mobile */
+    @media (max-width: 640px) {
+      .advisor-table { table-layout: fixed; width: 100% !important; }
+      .advisor-table th:nth-child(1), .advisor-table td:nth-child(1) { width: 28%; word-break: break-word; }
+      .advisor-table th:nth-child(2), .advisor-table td:nth-child(2) { width: 30%; word-break: break-word; }
+      .advisor-table th:nth-child(3), .advisor-table td:nth-child(3) { width: 42%; word-break: break-word; }
+      .advisor-table th { font-size: .72rem !important; padding: .5rem .4rem !important; line-height: 1.3; }
+      .advisor-table td { font-size: .72rem !important; padding: .5rem .4rem !important; }
+      .advisor-cards-grid { grid-template-columns: 1fr !important; }
+      .advisor-subtitle-nowrap { white-space: normal !important; }
+    }
     /* Single-row header LTR overrides */
     @media (min-width: 1101px) {
       .header-inner { direction: ltr; }
