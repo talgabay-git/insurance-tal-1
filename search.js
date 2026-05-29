@@ -114,3 +114,82 @@
     });
   });
 })();
+
+/* ── Mobile nav accordion ─────────────────────────────── */
+(function(){
+  document.addEventListener('DOMContentLoaded', function(){
+    var nav  = document.getElementById('mobile-menu');
+    if (!nav) return;
+    var list = nav.querySelector('.mobile-nav-list');
+    if (!list) return;
+    var items = Array.from(list.children);
+
+    var groups = [];
+    var cur    = null;
+
+    items.forEach(function(li){
+      var a       = li.querySelector('a.mobile-nav-link');
+      var liStyle = li.getAttribute('style') || '';
+      var aStyle  = a ? (a.getAttribute('style') || '') : '';
+
+      // Section header: <li> without link, gray label style
+      if (!a && liStyle.includes('font-size:.75rem')) {
+        cur = { toggle: li, subs: [], type: 'header' };
+        groups.push(cur);
+        return;
+      }
+
+      // תמונת מצב בשווקים link → becomes a toggle
+      if (a && (a.getAttribute('href') || '').includes('market-status.html') && !aStyle.includes('padding-right:2rem')) {
+        cur = { toggle: li, subs: [], type: 'link' };
+        groups.push(cur);
+        return;
+      }
+
+      // Sub-item: indented link
+      var isSub = aStyle.includes('padding-right:2rem');
+      if (isSub && cur) {
+        cur.subs.push(li);
+      } else if (!isSub) {
+        cur = null;
+      }
+    });
+
+    groups.forEach(function(g){
+      if (!g.subs.length) return;
+
+      // Hide all sub-items
+      g.subs.forEach(function(s){
+        s.classList.add('mob-acc-sub');
+      });
+
+      var open = false;
+
+      if (g.type === 'header') {
+        var chev = document.createElement('i');
+        chev.className = 'fa-solid fa-chevron-down mob-acc-chev';
+        g.toggle.classList.add('mob-acc-toggle');
+        g.toggle.appendChild(chev);
+        g.toggle.addEventListener('click', toggle);
+
+      } else {
+        // Link type: add chevron button, keep link navigatable
+        g.toggle.classList.add('mob-acc-link-row');
+        var btn  = document.createElement('button');
+        btn.className = 'mob-acc-btn';
+        btn.setAttribute('aria-label', 'פתח');
+        btn.innerHTML = '<i class="fa-solid fa-chevron-down"></i>';
+        btn.addEventListener('click', function(e){ e.preventDefault(); e.stopPropagation(); toggle(); });
+        g.toggle.appendChild(btn);
+      }
+
+      function toggle(){
+        open = !open;
+        g.subs.forEach(function(s){
+          s.classList.toggle('mob-acc-visible', open);
+        });
+        g.toggle.classList.toggle('mob-acc-open', open);
+      }
+    });
+  });
+})();

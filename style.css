@@ -595,7 +595,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   overflow: hidden;
   transition: max-height .4s ease;
 }
-.mobile-menu.open { max-height: 400px; }
+.mobile-menu.open { max-height: 85vh; overflow-y: auto; }
 .mobile-nav-list { padding: .5rem 1.5rem; }
 .mobile-nav-link {
   display: flex;
@@ -610,6 +610,17 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .mobile-nav-link:last-child { border-bottom: none; }
 .mobile-nav-link:hover { color: var(--gold) !important; }
 .mobile-phone { color: var(--gold) !important; direction: ltr; justify-content: flex-end; }
+/* Mobile accordion */
+.mob-acc-toggle { cursor: pointer; display: flex !important; justify-content: space-between; align-items: center; user-select: none; }
+.mob-acc-toggle .mob-acc-chev { font-size: .65rem; color: rgba(255,255,255,.45); transition: transform .25s ease; flex-shrink: 0; margin-right: auto; padding-right: .5rem; }
+.mob-acc-toggle.mob-acc-open .mob-acc-chev { transform: rotate(180deg); color: var(--gold); }
+.mob-acc-sub { display: none; }
+.mob-acc-sub.mob-acc-visible { display: list-item; animation: mobAccIn .18s ease; }
+@keyframes mobAccIn { from { opacity:0; transform:translateY(-4px); } to { opacity:1; transform:translateY(0); } }
+.mob-acc-link-row { display: flex !important; align-items: center; justify-content: space-between; }
+.mob-acc-link-row .mob-acc-btn { background: none; border: none; cursor: pointer; padding: .4rem .6rem; line-height: 1; flex-shrink: 0; }
+.mob-acc-link-row .mob-acc-btn i { font-size: .65rem; color: var(--gold); transition: transform .25s; }
+.mob-acc-link-row.mob-acc-open .mob-acc-btn i { transform: rotate(180deg); }
 
 /* ============================================================
    HERO
