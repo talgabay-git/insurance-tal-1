@@ -2208,7 +2208,7 @@ body.text-spacing th {
 }
 .tal-popup-contact a {
   font-size: .65rem;
-  color: #cfe0ff;
+  color: var(--gold);
   text-decoration: none;
 }
 .tal-popup-contact a:hover { text-decoration: underline; }
