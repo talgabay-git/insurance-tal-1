@@ -336,6 +336,7 @@
     document.getElementById('cookie-accept').addEventListener('click',function(){localStorage.setItem('cookie-consent','accepted');b.style.display='none';});
     document.getElementById('cookie-decline').addEventListener('click',function(){localStorage.setItem('cookie-consent','declined');b.style.display='none';window['ga-disable-G-5F91Q1DPZV']=true;});
     if(consent==='declined') window['ga-disable-G-5F91Q1DPZV']=true;
+    if(!consent) setTimeout(function(){ b.style.display='none'; }, 10000);
   })();
   </script>
 </body>

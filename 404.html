@@ -103,6 +103,7 @@
     });
     // if previously declined, disable GA
     if(consent==='declined') window['ga-disable-G-5F91Q1DPZV']=true;
+    if(!consent) setTimeout(function(){ b.style.display='none'; }, 10000);
   })();
   </script>
 </body>
