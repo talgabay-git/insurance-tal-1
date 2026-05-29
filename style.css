@@ -1943,12 +1943,12 @@ br.mobile-br { display: none; }
   .how-steps {
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
+    gap: .25rem;
   }
   .how-arrows {
     flex-direction: row;
     justify-content: center;
-    gap: 1rem;
+    gap: .5rem;
     padding-top: 0;
     transform: none;
   }
@@ -1956,7 +1956,10 @@ br.mobile-br { display: none; }
     display: inline-block;
     transform: rotate(-90deg);
   }
-  .how-step { max-width: 100%; }
+  .how-step { max-width: 100%; padding: .35rem .5rem; }
+  .how-we-work { padding: 2.5rem 0; }
+  .how-num { font-size: 3.5rem; margin-bottom: .3rem; }
+  .how-step-title { margin-bottom: .25rem; }
 }
 
 /* ── Hero touch word highlight ───────────────────────────── */
