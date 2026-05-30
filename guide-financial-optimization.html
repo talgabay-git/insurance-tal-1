@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>מדריך אופטימיזציה לתכנון פיננסי | טל גבאי</title>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;700;900&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Heebo', Arial, sans-serif;
+      background: #f5f5f5;
+      color: #1a1a2e;
+      direction: rtl;
+    }
+
+    .page {
+      max-width: 800px;
+      margin: 2rem auto;
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(0,0,0,.12);
+    }
+
+    /* ── Header ── */
+    .header {
+      background: #0d1e35;
+      padding: 2.5rem 3rem 2rem;
+      position: relative;
+    }
+    .header::after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 4px;
+      background: #c9a84c;
+      margin-top: 1.2rem;
+    }
+    .logo-line {
+      font-size: .85rem;
+      color: rgba(255,255,255,.5);
+      letter-spacing: .08em;
+      margin-bottom: .5rem;
+    }
+    .header h1 {
+      font-size: 1.9rem;
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.3;
+    }
+    .header h1 span { color: #c9a84c; }
+    .header .subtitle {
+      margin-top: .6rem;
+      font-size: 1rem;
+      color: rgba(255,255,255,.7);
+    }
+
+    /* ── Body ── */
+    .body { padding: 2.5rem 3rem; }
+
+    .intro {
+      background: #f9f5ec;
+      border-right: 4px solid #c9a84c;
+      padding: 1rem 1.2rem;
+      border-radius: 6px;
+      font-size: .97rem;
+      line-height: 1.8;
+      color: #333;
+      margin-bottom: 2rem;
+    }
+
+    /* ── Step ── */
+    .step {
+      display: flex;
+      gap: 1.2rem;
+      margin-bottom: 1.8rem;
+      align-items: flex-start;
+    }
+    .step-num {
+      flex-shrink: 0;
+      width: 42px;
+      height: 42px;
+      background: #0d1e35;
+      color: #c9a84c;
+      font-size: 1.1rem;
+      font-weight: 900;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .step-body h2 {
+      font-size: 1.05rem;
+      font-weight: 900;
+      color: #0d1e35;
+      margin-bottom: .35rem;
+    }
+    .step-body p {
+      font-size: .93rem;
+      line-height: 1.75;
+      color: #444;
+    }
+    .step-body ul {
+      padding-right: 1.1rem;
+      margin-top: .4rem;
+      display: flex;
+      flex-direction: column;
+      gap: .3rem;
+    }
+    .step-body ul li {
+      font-size: .91rem;
+      color: #444;
+      line-height: 1.6;
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid #e8e8e8;
+      margin: .4rem 0 1.8rem;
+    }
+
+    /* ── Tip box ── */
+    .tip {
+      background: #e8f4fd;
+      border-right: 4px solid #2980b9;
+      padding: .75rem 1rem;
+      border-radius: 6px;
+      font-size: .88rem;
+      line-height: 1.7;
+      color: #1a3a4a;
+      margin-top: .6rem;
+    }
+    .tip strong { color: #1a3a4a; }
+
+    /* ── Summary ── */
+    .summary {
+      background: #0d1e35;
+      color: #fff;
+      border-radius: 10px;
+      padding: 1.5rem 1.8rem;
+      margin-top: 2rem;
+    }
+    .summary h3 {
+      font-size: 1.05rem;
+      font-weight: 900;
+      color: #c9a84c;
+      margin-bottom: .8rem;
+    }
+    .summary ul {
+      padding-right: 1.1rem;
+      display: flex;
+      flex-direction: column;
+      gap: .4rem;
+    }
+    .summary ul li {
+      font-size: .91rem;
+      line-height: 1.65;
+      color: rgba(255,255,255,.85);
+    }
+
+    /* ── Footer ── */
+    .footer {
+      border-top: 1px solid #eee;
+      padding: 1.4rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: .5rem;
+    }
+    .footer-brand { font-weight: 900; color: #0d1e35; font-size: .9rem; }
+    .footer-brand span { color: #c9a84c; }
+    .footer-contact { font-size: .82rem; color: #666; text-align: left; }
+    .footer-disclaimer {
+      width: 100%;
+      font-size: .75rem;
+      color: #999;
+      line-height: 1.6;
+      padding-top: .6rem;
+      border-top: 1px solid #f0f0f0;
+      margin-top: .4rem;
+    }
+
+    /* ── Print ── */
+    @media print {
+      body { background: #fff; }
+      .page { margin: 0; box-shadow: none; border-radius: 0; }
+      .header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .step-num { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .summary { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="logo-line">טל גבאי | תכנון פיננסי</div>
+    <h1>מדריך <span>אופטימיזציה</span><br>לתכנון פיננסי</h1>
+    <div class="subtitle">7 צעדים לניהול עושר חכם ויעיל</div>
+  </div>
+
+  <!-- Body -->
+  <div class="body">
+
+    <div class="intro">
+      תכנון פיננסי אינו אירוע חד-פעמי — הוא תהליך מתמשך של התאמה, בחינה וייעול. המדריך הבא מציג 7 עקרונות מרכזיים שיסייעו לכם לקבל את המרב מהתיק הפיננסי שלכם.
+    </div>
+
+    <!-- Steps -->
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <h2>מיפוי מלא של הנכסים וההתחייבויות</h2>
+        <p>לפני כל פעולה — יש לדעת בדיוק מה יש לכם. זה כולל:</p>
+        <ul>
+          <li>קרנות פנסיה, ביטוחי מנהלים, קרנות השתלמות</li>
+          <li>חסכונות, תיקי השקעות, נדל"ן</li>
+          <li>הלוואות, משכנתאות, ערבויות</li>
+        </ul>
+        <div class="tip"><strong>טיפ:</strong> שימוש במסלקה הפנסיונית חושף לעיתים קרנות ישנות שנשכחו — כסף שמחכה לכם.</div>
+      </div>
+    </div>
+    <hr class="divider" />
+
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <h2>הגדרת יעדים פיננסיים ברורים</h2>
+        <p>ללא יעדים — אין כיוון. הגדירו יעדים לטווח קצר (1–3 שנים), בינוני (3–10) וארוך (10+):</p>
+        <ul>
+          <li>גיל ורמת הכנסה רצויה בפרישה</li>
+          <li>רכישת נכס, מימון לימודי ילדים</li>
+          <li>בניית כרית ביטחון נזילה</li>
+        </ul>
+      </div>
+    </div>
+    <hr class="divider" />
+
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <h2>אופטימיזציה של מסלולי ההשקעה</h2>
+        <p>מסלול ברירת המחדל לרוב אינו המסלול האופטימלי. יש לבחון:</p>
+        <ul>
+          <li>התאמת רמת הסיכון לגיל וליעדים</li>
+          <li>פיזור נכסים בין מניות, אג"ח, נדל"ן ואלטרנטיביים</li>
+          <li>השוואת דמי ניהול בין הגופים</li>
+        </ul>
+        <div class="tip"><strong>טיפ:</strong> הפרש של 0.5% בדמי ניהול שווה עשרות אלפי שקלים לאורך 20 שנה.</div>
+      </div>
+    </div>
+    <hr class="divider" />
+
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-body">
+        <h2>תכנון מס חכם</h2>
+        <p>מס הוא אחד ה"דליפות" הגדולות ביותר מהתיק. נקודות לבחינה:</p>
+        <ul>
+          <li>ניצול הטבות מס על הפקדות לגמל/השתלמות</li>
+          <li>תכנון מימוש רווחי הון (פיצול בין שנות מס)</li>
+          <li>קיזוז הפסדים כנגד רווחים</li>
+          <li>סעיף 125ד' לגמלאים — פטור על ריבית</li>
+        </ul>
+      </div>
+    </div>
+    <hr class="divider" />
+
+    <div class="step">
+      <div class="step-num">5</div>
+      <div class="step-body">
+        <h2>ביטוח — לא פחות ולא יותר</h2>
+        <p>כיסוי ביטוחי לקוי עלול לאיים על כל התכנון. יש לוודא:</p>
+        <ul>
+          <li>ביטוח חיים — מותאם לגובה ההתחייבויות והתלויים</li>
+          <li>אובדן כושר עבודה — עד 75% מהשכר</li>
+          <li>ביטול כפילויות בין פוליסות שונות</li>
+        </ul>
+        <div class="tip"><strong>טיפ:</strong> בדיקה תקופתית של הכיסויים חוסכת בממוצע 15%–30% מפרמיות מיותרות.</div>
+      </div>
+    </div>
+    <hr class="divider" />
+
+    <div class="step">
+      <div class="step-num">6</div>
+      <div class="step-body">
+        <h2>תכנון פרישה מוקדם ככל האפשר</h2>
+        <p>כל שנה שמתחילים מוקדם יותר שווה הרבה יותר בזכות ריבית דריבית:</p>
+        <ul>
+          <li>חישוב הקצבה הצפויה מול ההוצאות בפרישה</li>
+          <li>בחינת האפשרות לפרישה מוקדמת</li>
+          <li>ניצול "חלון ההזדמנויות" לפני גיל 60</li>
+        </ul>
+      </div>
+    </div>
+    <hr class="divider" />
+
+    <div class="step">
+      <div class="step-num">7</div>
+      <div class="step-body">
+        <h2>בחינה תקופתית ועדכון</h2>
+        <p>תכנון פיננסי טוב מתעדכן לפחות אחת לשנה, ובמיוחד לאחר אירועי חיים:</p>
+        <ul>
+          <li>שינוי מקום עבודה / שכר</li>
+          <li>נישואין, גירושין, לידת ילד</li>
+          <li>שינויים בחקיקת המס</li>
+          <li>תנודות משמעותיות בשוק ההון</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Summary -->
+    <div class="summary">
+      <h3>✅ רשימת תיוג — אופטימיזציה פיננסית</h3>
+      <ul>
+        <li>מיפוי כל הנכסים וההתחייבויות</li>
+        <li>הגדרת יעדים לטווח קצר, בינוני וארוך</li>
+        <li>התאמת מסלולי השקעה לגיל וליעדים</li>
+        <li>בחינת דמי ניהול והפחתתם</li>
+        <li>תכנון מס ומיצוי הטבות</li>
+        <li>עדכון כיסויים ביטוחיים</li>
+        <li>בחינה תקופתית אחת לשנה לפחות</li>
+      </ul>
+    </div>
+
+  </div><!-- /body -->
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="footer-brand">טל גבאי <span>|</span> תכנון פיננסי</div>
+    <div class="footer-contact">052-8000556 &nbsp;|&nbsp; office@pf-invest.co.il &nbsp;|&nbsp; pf-invest.co.il</div>
+    <div class="footer-disclaimer">המידע במדריך זה הינו כללי ואינפורמטיבי בלבד ואינו מהווה ייעוץ השקעות, ייעוץ פנסיוני, ייעוץ מס או תחליף לייעוץ אישי. מומלץ להיוועץ עם מתכנן פיננסי מוסמך המותאם לנסיבות האישיות שלכם.</div>
+  </div>
+
+</div><!-- /page -->
+
+<div style="text-align:center;padding:1.5rem;font-family:'Heebo',sans-serif;font-size:.85rem;color:#888;">
+  להדפסה: Ctrl+P &nbsp;|&nbsp; שמירה כ-PDF: בחר "Save as PDF" בתפריט המדפסת
+</div>
+
+</body>
+</html>
