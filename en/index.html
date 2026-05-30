@@ -1076,6 +1076,22 @@
   </button>
 
   <script src="../script.js"></script>
+  <script>
+  (function() {
+    var items = document.querySelectorAll('.stats-bar .stat-item');
+    if (items.length < 3) return;
+    var order = [0, 1, 2];
+    var current = 0;
+    var activeDuration = 600;
+    var pauseDuration = 2000;
+    function pulse(idx) {
+      items[idx].classList.add('stat-auto-active');
+      setTimeout(function() { items[idx].classList.remove('stat-auto-active'); }, activeDuration);
+    }
+    function cycle() { pulse(order[current]); current = (current + 1) % order.length; }
+    setInterval(cycle, pauseDuration);
+  })();
+  </script>
   <script src="../search.js"></script>
   <script>
   document.querySelectorAll('.partners-track-wrap').forEach(wrap => {

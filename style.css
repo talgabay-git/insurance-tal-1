@@ -1676,6 +1676,11 @@ br.mobile-br { display: none; }
   .stats-inner { gap: 1rem; }
   .stat-item { padding: .5rem 1.5rem; }
   .stat-divider { display: none; }
+  .stats-bar { overflow: visible; }
+  .stat-item:hover .stat-number,
+  .stat-item.stat-auto-active .stat-number { transform: scale(1.2); }
+  .stat-item:hover .stat-label,
+  .stat-item.stat-auto-active .stat-label { transform: scale(1.2); }
 
   .whatsapp-float { bottom: 1.5rem; left: 1rem; width: 48px; height: 48px; }
   .back-to-top { bottom: 5.5rem; left: 1rem; width: 38px; height: 38px; }
