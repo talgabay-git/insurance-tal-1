@@ -291,10 +291,10 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   flex-wrap: nowrap;
 }
 .nav-link {
-  padding: .3rem .4rem;
+  padding: .3rem .35rem;
   border-radius: 4px;
   font-weight: 700;
-  font-size: .85rem;
+  font-size: .73rem;
   color: var(--navy);
   transition: var(--transition);
   white-space: nowrap;
