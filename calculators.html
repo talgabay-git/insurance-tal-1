@@ -1184,8 +1184,8 @@
       el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
 
-    /* פתח לשונית לפי hash בכתובת */
-    (function() {
+    /* פתח לשונית לפי hash בכתובת — גם בטעינה ראשונית וגם בשינוי hash */
+    function activateTabFromHash() {
       const hash = window.location.hash;
       if (hash === '#retirement') {
         const btn = document.querySelector('[aria-controls="panel-retirement"]');
@@ -1193,8 +1193,13 @@
       } else if (hash === '#severance') {
         const btn = document.querySelector('[aria-controls="panel-severance"]');
         if (btn) switchTab('severance', btn);
+      } else if (!hash || hash === '#compound') {
+        const btn = document.querySelector('[aria-controls="panel-compound"]');
+        if (btn) switchTab('compound', btn);
       }
-    })();
+    }
+    activateTabFromHash();
+    window.addEventListener('hashchange', activateTabFromHash);
 
     /* ── Retirement Simulator ── */
     function simToggle(btn) {
