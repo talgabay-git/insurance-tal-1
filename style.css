@@ -304,6 +304,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .nav-link:hover,
 .nav-link.active { color: var(--gold); background: transparent; }
 .mobile-nav-link.active { font-weight: 700; }
+.nav-home-icon { color: var(--gold) !important; font-size: 1rem; padding: .3rem .4rem; }
+.nav-home-icon:hover { opacity: .75; }
 
 /* Dropdown Nav */
 .nav-dropdown { position: relative; }
