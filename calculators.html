@@ -45,14 +45,56 @@
     }
 
     .calc-section {
-      padding: 4rem 0 5rem;
+      padding: 0 0 5rem;
       background: var(--off-white);
     }
-    .calc-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-      gap: 2rem;
-      max-width: 1000px;
+
+    /* ── Tab Bar ── */
+    .calc-tab-bar {
+      background: var(--navy);
+      position: sticky;
+      top: 64px;
+      z-index: 100;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .calc-tab-bar::-webkit-scrollbar { display: none; }
+    .calc-tab-list {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0 1rem;
+      min-width: max-content;
+    }
+    .calc-tab-btn {
+      background: none;
+      border: none;
+      padding: 1rem 1.4rem;
+      font-family: 'Heebo', sans-serif;
+      font-size: .9rem;
+      font-weight: 700;
+      color: rgba(255,255,255,.55);
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      white-space: nowrap;
+      transition: color .2s, border-color .2s;
+      display: flex;
+      align-items: center;
+      gap: .45rem;
+    }
+    .calc-tab-btn:hover { color: rgba(255,255,255,.85); }
+    .calc-tab-btn.active {
+      color: var(--gold);
+      border-bottom-color: var(--gold);
+    }
+
+    /* ── Tab Panels ── */
+    .calc-panel { display: none; padding: 3rem 0 2rem; }
+    .calc-panel.active { display: block; animation: fadeUp .25s ease; }
+
+    .calc-panel-inner {
+      max-width: 540px;
       margin: 0 auto;
     }
 
@@ -594,192 +636,210 @@
   </section>
 
   <!-- ========== CALCULATORS ========== -->
-  <main class="calc-section">
+  <main class="calc-section" id="content-calculators">
+
+    <!-- Tab Bar -->
+    <nav class="calc-tab-bar" aria-label="מחשבונים">
+      <ul class="calc-tab-list" role="tablist">
+        <li role="presentation">
+          <button class="calc-tab-btn active" role="tab" aria-selected="true" aria-controls="panel-compound" onclick="switchTab('compound',this)">
+            <i class="fa-solid fa-chart-line"></i> ריבית דה ריבית
+          </button>
+        </li>
+        <li role="presentation">
+          <button class="calc-tab-btn" role="tab" aria-selected="false" aria-controls="panel-retirement" onclick="switchTab('retirement',this)">
+            <i class="fa-solid fa-person-cane"></i> סימולטור פרישה
+          </button>
+        </li>
+      </ul>
+    </nav>
+
     <div class="container">
-      <div class="calc-grid">
 
-        <!-- ── ריבית דה ריבית ── -->
-        <div class="calc-card" id="compound-interest">
-          <div class="calc-card-header">
-            <i class="fa-solid fa-chart-line"></i>
-            <h2>ריבית דה ריבית</h2>
-          </div>
-          <div class="calc-card-body">
-
-            <div class="calc-field">
-              <label class="calc-label" for="lump-sum">הפקדה חד פעמית</label>
-              <div class="calc-input-wrap">
-                <input class="calc-input has-suffix" type="number" id="lump-sum" value="100000" min="0" step="1000" inputmode="numeric" />
-                <span class="calc-input-suffix">₪</span>
-              </div>
+      <!-- ── Panel 1: ריבית דה ריבית ── -->
+      <div class="calc-panel active" id="panel-compound" role="tabpanel">
+        <div class="calc-panel-inner">
+          <div class="calc-card">
+            <div class="calc-card-header">
+              <i class="fa-solid fa-chart-line"></i>
+              <h2>ריבית דה ריבית</h2>
             </div>
+            <div class="calc-card-body">
 
-            <div class="calc-field">
-              <label class="calc-label" for="monthly-dep">הפקדה חודשית</label>
-              <div class="calc-input-wrap">
-                <input class="calc-input has-suffix" type="number" id="monthly-dep" value="1000" min="0" step="100" inputmode="numeric" />
-                <span class="calc-input-suffix">₪</span>
-              </div>
-            </div>
-
-            <div class="calc-field">
-              <label class="calc-label" for="annual-return">תשואה שנתית</label>
-              <div class="calc-input-wrap">
-                <input class="calc-input has-suffix" type="number" id="annual-return" value="7" min="0" max="30" step="0.1" inputmode="decimal" />
-                <span class="calc-input-suffix">%</span>
-              </div>
-            </div>
-
-            <div class="calc-field">
-              <label class="calc-label" for="years">מספר שנות ההפקדה</label>
-              <div class="calc-input-wrap">
-                <input class="calc-input" type="number" id="years" value="20" min="1" max="60" step="1" inputmode="numeric" />
-              </div>
-            </div>
-
-            <hr class="calc-divider" />
-
-            <button class="calc-btn" onclick="calcCompound()">
-              <i class="fa-solid fa-calculator"></i> חשב
-            </button>
-
-            <div class="calc-result" id="compound-result">
-              <div class="result-title">תוצאות החישוב</div>
-              <div class="result-rows">
-                <div class="result-row">
-                  <span class="label">סה"כ הפקדות</span>
-                  <span class="value" id="res-deposits">—</span>
-                </div>
-                <div class="result-row">
-                  <span class="label">סה"כ רווח (ריבית דה ריבית)</span>
-                  <span class="value" id="res-profit">—</span>
-                </div>
-                <hr class="result-sep" />
-                <div class="result-row highlight">
-                  <span class="label">סכום סופי</span>
-                  <span class="value" id="res-total">—</span>
+              <div class="calc-field">
+                <label class="calc-label" for="lump-sum">הפקדה חד פעמית</label>
+                <div class="calc-input-wrap">
+                  <input class="calc-input has-suffix" type="number" id="lump-sum" value="100000" min="0" step="1000" inputmode="numeric" />
+                  <span class="calc-input-suffix">₪</span>
                 </div>
               </div>
-            </div>
 
+              <div class="calc-field">
+                <label class="calc-label" for="monthly-dep">הפקדה חודשית</label>
+                <div class="calc-input-wrap">
+                  <input class="calc-input has-suffix" type="number" id="monthly-dep" value="1000" min="0" step="100" inputmode="numeric" />
+                  <span class="calc-input-suffix">₪</span>
+                </div>
+              </div>
+
+              <div class="calc-field">
+                <label class="calc-label" for="annual-return">תשואה שנתית</label>
+                <div class="calc-input-wrap">
+                  <input class="calc-input has-suffix" type="number" id="annual-return" value="7" min="0" max="30" step="0.1" inputmode="decimal" />
+                  <span class="calc-input-suffix">%</span>
+                </div>
+              </div>
+
+              <div class="calc-field">
+                <label class="calc-label" for="years">מספר שנות ההפקדה</label>
+                <div class="calc-input-wrap">
+                  <input class="calc-input" type="number" id="years" value="20" min="1" max="60" step="1" inputmode="numeric" />
+                </div>
+              </div>
+
+              <hr class="calc-divider" />
+
+              <button class="calc-btn" onclick="calcCompound()">
+                <i class="fa-solid fa-calculator"></i> חשב
+              </button>
+
+              <div class="calc-result" id="compound-result">
+                <div class="result-title">תוצאות החישוב</div>
+                <div class="result-rows">
+                  <div class="result-row">
+                    <span class="label">סה"כ הפקדות</span>
+                    <span class="value" id="res-deposits">—</span>
+                  </div>
+                  <div class="result-row">
+                    <span class="label">סה"כ רווח (ריבית דה ריבית)</span>
+                    <span class="value" id="res-profit">—</span>
+                  </div>
+                  <hr class="result-sep" />
+                  <div class="result-row highlight">
+                    <span class="label">סכום סופי</span>
+                    <span class="value" id="res-total">—</span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
           </div>
         </div>
-
       </div>
+
+      <!-- ── Panel 2: סימולטור פרישה ── -->
+      <div class="calc-panel" id="panel-retirement" role="tabpanel">
+        <div class="sim-wrapper" style="max-width:820px;margin:0 auto;">
+
+          <div class="sim-header">
+            <h2>סימולטור פרישה</h2>
+            <p>מאפשר להעריך את הקצבה החודשית הצפויה על בסיס החיסכון הנוכחי, גיל הפרישה והתשואה הצפויה. הסכומים הם הערכה בלבד לצרכי המחשבה.</p>
+          </div>
+
+          <!-- פרטי המבוטח -->
+          <div class="sim-block">
+            <div class="sim-block-title"><i class="fa-solid fa-user"></i> פרטי המבוטח</div>
+            <div class="sim-row">
+              <div class="sim-field">
+                <label class="sim-label">גיל נוכחי</label>
+                <input class="sim-input" type="number" id="s-age" value="" min="40" max="80" placeholder="למשל: 58" inputmode="numeric" />
+              </div>
+              <div class="sim-field">
+                <label class="sim-label">גיל פרישה</label>
+                <input class="sim-input" type="number" id="s-retire-age" value="67" min="55" max="80" inputmode="numeric" />
+              </div>
+              <div class="sim-field">
+                <label class="sim-label">מין</label>
+                <div class="sim-toggle">
+                  <button class="sim-toggle-btn active" data-group="gender" data-val="m" onclick="simToggle(this)">זכר</button>
+                  <button class="sim-toggle-btn" data-group="gender" data-val="f" onclick="simToggle(this)">נקבה</button>
+                </div>
+              </div>
+              <div class="sim-field">
+                <label class="sim-label">האם יש לך בן/ת-זוג?</label>
+                <div class="sim-toggle">
+                  <button class="sim-toggle-btn" data-group="partner" data-val="y" onclick="simToggle(this)">כן</button>
+                  <button class="sim-toggle-btn active" data-group="partner" data-val="n" onclick="simToggle(this)">לא</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- פרטי חיסכון -->
+          <div class="sim-block">
+            <div class="sim-block-title"><i class="fa-solid fa-piggy-bank"></i> פרטי תוכניות החיסכון שלך המיועדות לקצבה</div>
+
+            <div class="sim-row" style="grid-template-columns:1fr 1fr;align-items:end;">
+              <div class="sim-field">
+                <label class="sim-label">הפקדה חודשית לפנסיה (₪)</label>
+                <div class="sim-input-wrap">
+                  <input class="sim-input" type="number" id="s-monthly" value="" min="0" step="100" placeholder="למשל: 3,000" inputmode="numeric" />
+                  <span class="sim-suffix">₪</span>
+                </div>
+              </div>
+              <div class="sim-field">
+                <label class="sim-label">תשואה שנתית צפויה</label>
+                <div class="sim-input-wrap">
+                  <input class="sim-input" type="number" id="s-return" value="4.5" min="0" max="15" step="0.1" inputmode="decimal" />
+                  <span class="sim-suffix">%</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="sim-label" style="margin-bottom:.6rem;margin-top:.5rem;">סכומים צבורים נוכחיים (₪)</div>
+            <div class="sim-funds">
+              <div class="sim-fund-card">
+                <div class="fund-name">קרנות פנסיה<br>כלליות / מקיפות</div>
+                <input class="sim-fund-input" type="number" id="s-pension" value="" placeholder="0" min="0" step="1000" inputmode="numeric" />
+                <div class="sim-fund-label">סכום צבור ₪</div>
+              </div>
+              <div class="sim-fund-card">
+                <div class="fund-name">ביטוח<br>מנהלים</div>
+                <input class="sim-fund-input" type="number" id="s-managers" value="" placeholder="0" min="0" step="1000" inputmode="numeric" />
+                <div class="sim-fund-label">סכום צבור ₪</div>
+              </div>
+              <div class="sim-fund-card">
+                <div class="fund-name">קופות<br>גמל</div>
+                <input class="sim-fund-input" type="number" id="s-gemel" value="" placeholder="0" min="0" step="1000" inputmode="numeric" />
+                <div class="sim-fund-label">סכום צבור ₪</div>
+              </div>
+              <div class="sim-fund-card">
+                <div class="fund-name">מקורות<br>כספיים אחרים</div>
+                <input class="sim-fund-input" type="number" id="s-other" value="" placeholder="0" min="0" step="1000" inputmode="numeric" />
+                <div class="sim-fund-label">סכום צבור ₪</div>
+              </div>
+            </div>
+          </div>
+
+          <button class="sim-calc-btn" onclick="calcRetirement()">
+            <i class="fa-solid fa-calculator"></i> חשב
+          </button>
+
+          <!-- תוצאות -->
+          <div class="sim-result" id="sim-result">
+            <div class="sim-result-title">תחזית קצבת הפרישה החודשית</div>
+            <div class="sim-result-main">
+              <div class="sim-result-item">
+                <div class="label">קצבה חודשית משוערת</div>
+                <div class="value" id="sr-pension">—</div>
+              </div>
+              <div class="sim-result-item">
+                <div class="label">צבירה כוללת בפרישה</div>
+                <div class="value secondary" id="sr-total">—</div>
+              </div>
+              <div class="sim-result-item">
+                <div class="label">שנים לפרישה</div>
+                <div class="value secondary" id="sr-years">—</div>
+              </div>
+            </div>
+            <div class="sim-disclaimer">* הסכומים הם הערכה בלבד המבוססת על מקדם המרה משוערב לפי גיל ומין. אינם מהווים ייעוץ פנסיוני. לחישוב מדויק פנה לטל גבאי לתכנון פרישה אישי.</div>
+          </div>
+
+        </div>
+      </div>
+
     </div>
   </main>
-
-  <!-- ========== RETIREMENT SIMULATOR ========== -->
-  <section class="sim-section" id="retirement-sim">
-    <div class="container sim-wrapper">
-
-      <div class="sim-header">
-        <div class="section-label" style="margin-bottom:.75rem;">סימולטור</div>
-        <h2>סימולטור פרישה</h2>
-        <p>המחשבון מיועד לאנשים שנמצאים לקראת פרישה. מאפשר להעריך את הקצבה החודשית הצפויה על בסיס החיסכון הנוכחי, גיל הפרישה והתשואה הצפויה. הסכומים הם הערכה בלבד לצרכי המחשבה.</p>
-      </div>
-
-      <!-- פרטי המבוטח -->
-      <div class="sim-block">
-        <div class="sim-block-title"><i class="fa-solid fa-user"></i> פרטי המבוטח</div>
-        <div class="sim-row">
-          <div class="sim-field">
-            <label class="sim-label">גיל נוכחי</label>
-            <input class="sim-input" type="number" id="s-age" value="" min="40" max="80" placeholder="למשל: 58" inputmode="numeric" />
-          </div>
-          <div class="sim-field">
-            <label class="sim-label">גיל פרישה</label>
-            <input class="sim-input" type="number" id="s-retire-age" value="67" min="55" max="80" inputmode="numeric" />
-          </div>
-          <div class="sim-field">
-            <label class="sim-label">מין</label>
-            <div class="sim-toggle">
-              <button class="sim-toggle-btn active" data-group="gender" data-val="m" onclick="simToggle(this)">זכר</button>
-              <button class="sim-toggle-btn" data-group="gender" data-val="f" onclick="simToggle(this)">נקבה</button>
-            </div>
-          </div>
-          <div class="sim-field">
-            <label class="sim-label">האם יש לך בן/ת-זוג?</label>
-            <div class="sim-toggle">
-              <button class="sim-toggle-btn" data-group="partner" data-val="y" onclick="simToggle(this)">כן</button>
-              <button class="sim-toggle-btn active" data-group="partner" data-val="n" onclick="simToggle(this)">לא</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- פרטי חיסכון -->
-      <div class="sim-block">
-        <div class="sim-block-title"><i class="fa-solid fa-piggy-bank"></i> פרטי תוכניות החיסכון שלך המיועדות לקצבה</div>
-
-        <div class="sim-row" style="grid-template-columns:1fr 1fr;align-items:end;">
-          <div class="sim-field">
-            <label class="sim-label">הפקדה חודשית לפנסיה (₪)</label>
-            <div class="sim-input-wrap">
-              <input class="sim-input" type="number" id="s-monthly" value="" min="0" step="100" placeholder="למשל: 3,000" inputmode="numeric" />
-              <span class="sim-suffix">₪</span>
-            </div>
-          </div>
-          <div class="sim-field">
-            <label class="sim-label">תשואה שנתית צפויה</label>
-            <div class="sim-input-wrap">
-              <input class="sim-input" type="number" id="s-return" value="4.5" min="0" max="15" step="0.1" inputmode="decimal" />
-              <span class="sim-suffix">%</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="sim-label" style="margin-bottom:.6rem;margin-top:.5rem;">סכומים צבורים נוכחיים (₪)</div>
-        <div class="sim-funds">
-          <div class="sim-fund-card">
-            <div class="fund-name">קרנות פנסיה<br>כלליות / מקיפות</div>
-            <input class="sim-fund-input" type="number" id="s-pension" value="" placeholder="0" min="0" step="1000" inputmode="numeric" />
-            <div class="sim-fund-label">סכום צבור ₪</div>
-          </div>
-          <div class="sim-fund-card">
-            <div class="fund-name">ביטוח<br>מנהלים</div>
-            <input class="sim-fund-input" type="number" id="s-managers" value="" placeholder="0" min="0" step="1000" inputmode="numeric" />
-            <div class="sim-fund-label">סכום צבור ₪</div>
-          </div>
-          <div class="sim-fund-card">
-            <div class="fund-name">קופות<br>גמל</div>
-            <input class="sim-fund-input" type="number" id="s-gemel" value="" placeholder="0" min="0" step="1000" inputmode="numeric" />
-            <div class="sim-fund-label">סכום צבור ₪</div>
-          </div>
-          <div class="sim-fund-card">
-            <div class="fund-name">מקורות<br>כספיים אחרים</div>
-            <input class="sim-fund-input" type="number" id="s-other" value="" placeholder="0" min="0" step="1000" inputmode="numeric" />
-            <div class="sim-fund-label">סכום צבור ₪</div>
-          </div>
-        </div>
-      </div>
-
-      <button class="sim-calc-btn" onclick="calcRetirement()">
-        <i class="fa-solid fa-calculator"></i> חשב
-      </button>
-
-      <!-- תוצאות -->
-      <div class="sim-result" id="sim-result">
-        <div class="sim-result-title">תחזית קצבת הפרישה החודשית</div>
-        <div class="sim-result-main">
-          <div class="sim-result-item">
-            <div class="label">קצבה חודשית משוערת</div>
-            <div class="value" id="sr-pension">—</div>
-          </div>
-          <div class="sim-result-item">
-            <div class="label">צבירה כוללת בפרישה</div>
-            <div class="value secondary" id="sr-total">—</div>
-          </div>
-          <div class="sim-result-item">
-            <div class="label">שנים לפרישה</div>
-            <div class="value secondary" id="sr-years">—</div>
-          </div>
-        </div>
-        <div class="sim-disclaimer">* הסכומים הם הערכה בלבד המבוססת על מקדם המרה משוערב לפי גיל ומין. אינם מהווים ייעוץ פנסיוני. לחישוב מדויק פנה לטל גבאי לתכנון פרישה אישי.</div>
-      </div>
-
-    </div>
-  </section>
 
   <!-- ========== FOOTER ========== -->
   <footer class="site-footer">
@@ -861,6 +921,14 @@
     document.querySelectorAll('.calc-input').forEach(el => {
       el.addEventListener('keydown', e => { if (e.key === 'Enter') calcCompound(); });
     });
+
+    function switchTab(id, btn) {
+      document.querySelectorAll('.calc-panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.calc-tab-btn').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected','false'); });
+      document.getElementById('panel-' + id).classList.add('active');
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected','true');
+    }
 
     /* ── Retirement Simulator ── */
     function simToggle(btn) {
