@@ -465,6 +465,18 @@
       line-height: 1.6;
     }
 
+    .sim-input select, select.sim-input {
+      -webkit-appearance: none;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23999'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: left .5rem center;
+      padding-left: 1.5rem;
+      direction: rtl;
+      text-align: right;
+      cursor: pointer;
+    }
+
     @media (max-width: 600px) {
       .sim-block { padding: 1.25rem 1rem; }
       .sim-funds { grid-template-columns: repeat(2, 1fr); }
@@ -562,6 +574,7 @@
             <ul class="dropdown-menu">
               <li><a href="calculators.html" class="dropdown-item">מחשבון ריבית דה ריבית</a></li>
               <li><a href="calculators.html#retirement" class="dropdown-item">סימולטור פרישה</a></li>
+              <li><a href="calculators.html#severance" class="dropdown-item">מחשבון פיצויי פיטורין</a></li>
             </ul>
           </li>
         </ul>
@@ -655,6 +668,11 @@
         <li role="presentation">
           <button class="calc-tab-btn" role="tab" aria-selected="false" aria-controls="panel-retirement" onclick="switchTab('retirement',this)">
             <i class="fa-solid fa-person-cane"></i> סימולטור פרישה
+          </button>
+        </li>
+        <li role="presentation">
+          <button class="calc-tab-btn" role="tab" aria-selected="false" aria-controls="panel-severance" onclick="switchTab('severance',this)">
+            <i class="fa-solid fa-file-invoice-dollar"></i> מחשבון פיצויי פיטורין
           </button>
         </li>
       </ul>
@@ -844,6 +862,141 @@
         </div>
       </div>
 
+      <!-- ── Panel 3: פיצויי פיטורין ── -->
+      <div class="calc-panel" id="panel-severance" role="tabpanel">
+        <div class="sim-wrapper" style="max-width:680px;margin:0 auto;">
+
+          <div class="sim-header">
+            <h2>מחשבון פיצויי פיטורין</h2>
+            <p>חשב את הפיצויים המגיעים לך — חישוב פיצויים פטורים במס, פיצויים חייבים במס, מענק פרישה חייב במס.</p>
+          </div>
+
+          <div class="sim-block">
+            <div class="sim-block-title"><i class="fa-solid fa-shekel-sign"></i> נתוני השכר והעבודה</div>
+
+            <div class="sim-field" style="margin-bottom:1rem;">
+              <label class="sim-label">משכורת קובעת לפיצויים ברוטו, לפני מס (₪)</label>
+              <div class="sim-input-wrap">
+                <input class="sim-input" type="number" id="sv-salary" placeholder="למשל: 20,000" min="0" step="100" inputmode="numeric" />
+                <span class="sim-suffix">₪</span>
+              </div>
+            </div>
+
+            <div class="sim-row" style="grid-template-columns:1fr 1fr;gap:1.25rem;">
+              <div class="sim-field">
+                <label class="sim-label">תאריך תחילת עבודה</label>
+                <div style="display:flex;gap:.4rem;">
+                  <select class="sim-input" id="sv-start-day" style="flex:0 0 60px;padding-left:.3rem;padding-right:.3rem;"></select>
+                  <select class="sim-input" id="sv-start-month" style="flex:1;padding-left:.3rem;padding-right:.3rem;"></select>
+                  <select class="sim-input" id="sv-start-year" style="flex:0 0 72px;padding-left:.3rem;padding-right:.3rem;"></select>
+                </div>
+              </div>
+              <div class="sim-field">
+                <label class="sim-label">תאריך סיום עבודה</label>
+                <div style="display:flex;gap:.4rem;">
+                  <select class="sim-input" id="sv-end-day" style="flex:0 0 60px;padding-left:.3rem;padding-right:.3rem;"></select>
+                  <select class="sim-input" id="sv-end-month" style="flex:1;padding-left:.3rem;padding-right:.3rem;"></select>
+                  <select class="sim-input" id="sv-end-year" style="flex:0 0 72px;padding-left:.3rem;padding-right:.3rem;"></select>
+                </div>
+              </div>
+            </div>
+
+            <div class="sim-row" style="grid-template-columns:1fr 1fr;gap:1.25rem;margin-top:.25rem;">
+              <div class="sim-field">
+                <label class="sim-label">חופשה ללא תשלום (שנים)</label>
+                <input class="sim-input" type="number" id="sv-unpaid" value="0" min="0" max="30" step="0.5" inputmode="decimal" />
+              </div>
+              <div class="sim-field">
+                <label class="sim-label">שיעור הפיצויים</label>
+                <div class="sim-input-wrap">
+                  <input class="sim-input" type="number" id="sv-rate" value="100" min="0" max="200" step="1" inputmode="numeric" />
+                  <span class="sim-suffix">%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="sim-block">
+            <div class="sim-block-title"><i class="fa-solid fa-plus-circle"></i> תשלומים נוספים (השאר ריק אם אינו רלוונטי)</div>
+
+            <div class="sim-row" style="grid-template-columns:1fr 1fr;gap:1.25rem;">
+              <div class="sim-field">
+                <label class="sim-label">מענק הסתגלות (₪)</label>
+                <div class="sim-input-wrap">
+                  <input class="sim-input" type="number" id="sv-adjustment" placeholder="0" min="0" inputmode="numeric" />
+                  <span class="sim-suffix">₪</span>
+                </div>
+              </div>
+              <div class="sim-field">
+                <label class="sim-label">מענק בגין אי הודעה מוקדמת (₪)</label>
+                <div class="sim-input-wrap">
+                  <input class="sim-input" type="number" id="sv-notice" placeholder="0" min="0" inputmode="numeric" />
+                  <span class="sim-suffix">₪</span>
+                </div>
+              </div>
+            </div>
+            <div class="sim-row" style="grid-template-columns:1fr 1fr;gap:1.25rem;">
+              <div class="sim-field">
+                <label class="sim-label">פדיון ימי מחלה (₪)</label>
+                <div class="sim-input-wrap">
+                  <input class="sim-input" type="number" id="sv-sick" placeholder="0" min="0" inputmode="numeric" />
+                  <span class="sim-suffix">₪</span>
+                </div>
+              </div>
+              <div class="sim-field">
+                <label class="sim-label" style="font-size:.72rem;">מענק פרישה נוסף — אין לכלול פדיון ימי חופשה, תשלום בגין אי תחרות וכל תשלום שלא אגב הפרישה (₪)</label>
+                <div class="sim-input-wrap">
+                  <input class="sim-input" type="number" id="sv-extra" placeholder="0" min="0" inputmode="numeric" />
+                  <span class="sim-suffix">₪</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button class="sim-calc-btn" onclick="calcSeverance()">
+            <i class="fa-solid fa-calculator"></i> חשב
+          </button>
+
+          <!-- תוצאות -->
+          <div class="sim-result" id="sv-result" style="margin-top:1.75rem;">
+            <div class="sim-result-title">תוצאות החישוב</div>
+            <div class="sim-result-main" style="flex-direction:column;gap:.8rem;">
+              <div style="display:flex;justify-content:space-between;align-items:center;font-size:.92rem;">
+                <span style="color:rgba(255,255,255,.7);">תקופת עבודה</span>
+                <span style="font-weight:700;" id="sv-r-years">—</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;font-size:.92rem;">
+                <span style="color:rgba(255,255,255,.7);">פיצויי פיטורין ברוטו</span>
+                <span style="font-weight:700;" id="sv-r-gross">—</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;font-size:.92rem;">
+                <span style="color:rgba(255,255,255,.7);">סכום פטור ממס (פטור מוגדל)</span>
+                <span style="font-weight:700;color:#7ef0a0;" id="sv-r-exempt">—</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;font-size:.92rem;">
+                <span style="color:rgba(255,255,255,.7);">פיצויים חייבים במס</span>
+                <span style="font-weight:700;color:#ffb3b3;" id="sv-r-taxable">—</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;font-size:.92rem;">
+                <span style="color:rgba(255,255,255,.7);">תשלומים נוספים (הסתגלות, הודעה, מחלה, מענק)</span>
+                <span style="font-weight:700;" id="sv-r-extra">—</span>
+              </div>
+              <hr style="border:none;border-top:1px solid rgba(255,255,255,.2);margin:.25rem 0;" />
+              <div style="display:flex;justify-content:space-between;align-items:center;">
+                <span style="color:rgba(255,255,255,.85);font-weight:700;">סה"כ חבילת פרישה</span>
+                <span style="font-size:1.4rem;font-weight:900;color:var(--gold);" id="sv-r-total">—</span>
+              </div>
+            </div>
+            <div class="sim-disclaimer" style="margin-top:1rem;">
+              * החישוב מבוסס על תקרת הפטור המעודכנת לשנת 2026 — 13,750 ₪ לכל שנת עבודה (פטור מוגדל: מינימום בין משכורת × 150% לבין 13,750 ₪).<br>
+              * במידה ויש פיצויים בקרן פנסיה — ניתן להשאירם בקופה ולהמירם לקצבה חודשית פטורה ממס.<br>
+              * אינו מהווה ייעוץ מס. לתכנון מס מקצועי — פנה לטל גבאי.
+            </div>
+          </div>
+
+        </div>
+      </div>
+
     </div>
   </main>
 
@@ -936,11 +1089,110 @@
       btn.setAttribute('aria-selected','true');
     }
 
+    /* ── Date dropdowns init ── */
+    (function() {
+      const MONTHS = ['ינואר','פברואר','מרץ','אפריל','מאי','יוני','יולי','אוגוסט','ספטמבר','אוקטובר','נובמבר','דצמבר'];
+      const now = new Date();
+
+      function fillDay(id, sel) {
+        for (let d = 1; d <= 31; d++) {
+          const o = document.createElement('option');
+          o.value = d; o.textContent = d;
+          if (d === sel) o.selected = true;
+          document.getElementById(id).appendChild(o);
+        }
+      }
+      function fillMonth(id, sel) {
+        MONTHS.forEach((m, i) => {
+          const o = document.createElement('option');
+          o.value = i + 1; o.textContent = m;
+          if (i + 1 === sel) o.selected = true;
+          document.getElementById(id).appendChild(o);
+        });
+      }
+      function fillYear(id, from, to, sel) {
+        for (let y = to; y >= from; y--) {
+          const o = document.createElement('option');
+          o.value = y; o.textContent = y;
+          if (y === sel) o.selected = true;
+          document.getElementById(id).appendChild(o);
+        }
+      }
+
+      fillDay('sv-start-day', 1);
+      fillMonth('sv-start-month', 1);
+      fillYear('sv-start-year', 1960, now.getFullYear(), now.getFullYear() - 10);
+
+      fillDay('sv-end-day', now.getDate());
+      fillMonth('sv-end-month', now.getMonth() + 1);
+      fillYear('sv-end-year', 1960, now.getFullYear(), now.getFullYear());
+    })();
+
+    /* ── Severance Calculator ── */
+    function calcSeverance() {
+      const salary    = parseFloat(document.getElementById('sv-salary').value)     || 0;
+      const startDate = new Date(
+        parseInt(document.getElementById('sv-start-year').value),
+        parseInt(document.getElementById('sv-start-month').value) - 1,
+        parseInt(document.getElementById('sv-start-day').value)
+      );
+      const endDate = new Date(
+        parseInt(document.getElementById('sv-end-year').value),
+        parseInt(document.getElementById('sv-end-month').value) - 1,
+        parseInt(document.getElementById('sv-end-day').value)
+      );
+      const unpaid    = parseFloat(document.getElementById('sv-unpaid').value)     || 0;
+      const rate      = parseFloat(document.getElementById('sv-rate').value)       || 100;
+      const adj       = parseFloat(document.getElementById('sv-adjustment').value) || 0;
+      const notice    = parseFloat(document.getElementById('sv-notice').value)     || 0;
+      const sick      = parseFloat(document.getElementById('sv-sick').value)       || 0;
+      const extra     = parseFloat(document.getElementById('sv-extra').value)      || 0;
+
+      /* שנות עבודה */
+      const msPerYear = 1000 * 60 * 60 * 24 * 365.25;
+      const rawYears  = (endDate - startDate) / msPerYear;
+      const years     = Math.max(rawYears - unpaid, 0);
+
+      /* פיצויים ברוטו */
+      const gross = salary * years * (rate / 100);
+
+      /* פטור מוגדל: מינימום בין שכר×150% ל-13,750 לכל שנה */
+      const CEILING = 13750;
+      const exemptPerYear = Math.min(salary * 1.5, CEILING);
+      const exempt  = exemptPerYear * years;
+      const taxable = Math.max(gross - exempt, 0);
+
+      const extras  = adj + notice + sick + extra;
+      const total   = gross + extras;
+
+      const fmt = v => '₪' + Math.round(v).toLocaleString('he-IL');
+      const yrs = y => {
+        const full = Math.floor(y);
+        const m    = Math.round((y - full) * 12);
+        return m > 0 ? `${full} שנים ו-${m} חודשים` : `${full} שנים`;
+      };
+
+      document.getElementById('sv-r-years').textContent   = yrs(years);
+      document.getElementById('sv-r-gross').textContent   = fmt(gross);
+      document.getElementById('sv-r-exempt').textContent  = fmt(exempt);
+      document.getElementById('sv-r-taxable').textContent = fmt(taxable);
+      document.getElementById('sv-r-extra').textContent   = fmt(extras);
+      document.getElementById('sv-r-total').textContent   = fmt(total);
+
+      const el = document.getElementById('sv-result');
+      el.classList.add('show');
+      el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
     /* פתח לשונית לפי hash בכתובת */
     (function() {
-      if (window.location.hash === '#retirement') {
+      const hash = window.location.hash;
+      if (hash === '#retirement') {
         const btn = document.querySelector('[aria-controls="panel-retirement"]');
         if (btn) switchTab('retirement', btn);
+      } else if (hash === '#severance') {
+        const btn = document.querySelector('[aria-controls="panel-severance"]');
+        if (btn) switchTab('severance', btn);
       }
     })();
 
