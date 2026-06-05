@@ -244,13 +244,13 @@
     <!-- TAB: REVIEW -->
     <div id="tab-review">
       <p class="sub">כתוב את סקירת השוק. שורה ריקה בין פסקאות = פסקה חדשה בדף.<br>
-      כדי לכתוב <strong style="color:var(--gold)">בולד</strong> — עטוף ב-**כוכביות**.</p>
+      כדי לכתוב <strong style="color:var(--gold)">בולד</strong> - עטוף ב-**כוכביות**.</p>
       <label class="review-label">תאריך הסקירה (יוצג בדף)</label>
       <input type="text" id="review-date-input" class="review-date-input" placeholder="לדוגמה: מאי 2026">
       <label class="review-label">תוכן הסקירה</label>
       <textarea id="review-textarea" class="review-textarea" placeholder="כתוב כאן את סקירת השוק...&#10;&#10;שורה ריקה בין פסקאות יוצרת פסקה חדשה בדף.&#10;&#10;טקסט **בולד** יהיה מודגש בדף."></textarea>
       <p class="review-hint">💡 הסקירה תופיע מעל קישורי השוק בעמוד "תמונת מצב בשווקים".<br>
-      לחץ "שמור סקירה" — השינוי יפורסם באתר תוך כ-2 דקות.</p>
+      לחץ "שמור סקירה" - השינוי יפורסם באתר תוך כ-2 דקות.</p>
       <div class="btn-row">
         <button class="btn" onclick="saveReview()">שמור סקירה ✓</button>
         <button class="btn btn-danger" onclick="deleteReview()">🗑 מחק סקירה</button>
@@ -278,7 +278,7 @@
       <input type="text" id="act-title" class="act-input" placeholder="כותרת הפעולה">
       <label class="review-label">תיאור קצר</label>
       <input type="text" id="act-desc" class="act-input" placeholder="תיאור הפעולה">
-      <label class="review-label">הערה (מוצגת בתחתית הכרטיס — השאר ריק אם אין)</label>
+      <label class="review-label">הערה (מוצגת בתחתית הכרטיס - השאר ריק אם אין)</label>
       <input type="text" id="act-note" class="act-input" placeholder="הערה חשובה...">
 
       <p class="actions-section-label">בתי השקעות</p>
@@ -376,7 +376,7 @@ async function doLogin() {
       sessionStorage.setItem('gh_token', token);
       st.textContent=''; show('screen-main');
     } else {
-      st.textContent='Token שגוי — בדוק שיש הרשאת repo'; st.className='status err';
+      st.textContent='Token שגוי - בדוק שיש הרשאת repo'; st.className='status err';
     }
   } catch { st.textContent='שגיאת רשת'; st.className='status err'; }
   btn.disabled=false;
@@ -575,7 +575,7 @@ async function loadReview() {
     const data = JSON.parse(atob(content.replace(/\n/g, '')));
     document.getElementById('review-date-input').value = data.date || '';
     document.getElementById('review-textarea').value   = data.content ? htmlToText(data.content) : '';
-    st.textContent = data.date ? `✅ סקירה קיימת — ${data.date}` : '(אין סקירה שמורה עדיין)';
+    st.textContent = data.date ? `✅ סקירה קיימת - ${data.date}` : '(אין סקירה שמורה עדיין)';
     st.className = 'review-status ok';
   } catch(e) {
     st.textContent = '⚠️ ' + e.message; st.className = 'review-status err';
@@ -601,7 +601,7 @@ async function saveReview() {
     );
     const { sha } = info.ok ? await info.json() : { sha: undefined };
 
-    const body = { message: `עדכון סקירת שוק — ${dateVal || new Date().toLocaleDateString('he-IL')}`,
+    const body = { message: `עדכון סקירת שוק - ${dateVal || new Date().toLocaleDateString('he-IL')}`,
                    content: b64, branch: BRANCH };
     if (sha) body.sha = sha;
 
