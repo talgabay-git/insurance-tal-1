@@ -374,7 +374,7 @@
     <div class="container">
       <div class="section-label">מחשבון</div>
       <h1>מחשבונים פיננסיים</h1>
-      <p class="hero-tagline">כלים פשוטים לחישוב עתיד הכסף שלכם — בהפקדה חד פעמית, הפקדה חודשית, ובהתחשב בדמי ניהול ותשואה.</p>
+      <p class="hero-tagline">כלים פשוטים לחישוב עתיד הכסף שלכם — בהפקדה חד פעמית, הפקדה חודשית ותשואה שנתית.</p>
     </div>
   </section>
 
@@ -419,14 +419,6 @@
               <label class="calc-label" for="years">מספר שנות ההפקדה</label>
               <div class="calc-input-wrap">
                 <input class="calc-input" type="number" id="years" value="20" min="1" max="60" step="1" inputmode="numeric" />
-              </div>
-            </div>
-
-            <div class="calc-field">
-              <label class="calc-label" for="mgmt-fee">דמי ניהול מצבירה</label>
-              <div class="calc-input-wrap">
-                <input class="calc-input has-suffix" type="number" id="mgmt-fee" value="0.8" min="0" max="5" step="0.1" inputmode="decimal" />
-                <span class="calc-input-suffix">%</span>
               </div>
             </div>
 
@@ -521,9 +513,7 @@
       const PMT     = parseFloat(document.getElementById('monthly-dep').value)  || 0;
       const annRate = parseFloat(document.getElementById('annual-return').value)|| 0;
       const years   = parseFloat(document.getElementById('years').value)        || 0;
-      const fee     = parseFloat(document.getElementById('mgmt-fee').value)     || 0;
-
-      const netAnnual  = annRate - fee;
+      const netAnnual  = annRate;
       const monthlyR   = Math.pow(1 + netAnnual / 100, 1 / 12) - 1;
       const n          = years * 12;
 
