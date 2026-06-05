@@ -304,8 +304,14 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .nav-link:hover,
 .nav-link.active { color: var(--gold); background: transparent; }
 .mobile-nav-link.active { font-weight: 700; }
-.nav-home-icon { color: var(--gold) !important; font-size: 1.1rem; padding: .3rem .4rem; }
-.nav-home-icon:hover { color: var(--white) !important; opacity: 1; }
+.nav-home-icon,
+.site-header .nav-home-icon,
+.nav-home-icon:link,
+.nav-home-icon:visited,
+.site-header .nav-home-icon:link,
+.site-header .nav-home-icon:visited { color: #c9a84c !important; font-size: 1.1rem; padding: .3rem .4rem; }
+.nav-home-icon:hover,
+.site-header .nav-home-icon:hover { color: var(--white) !important; opacity: 1; }
 
 /* Dropdown Nav */
 .nav-dropdown { position: relative; }
