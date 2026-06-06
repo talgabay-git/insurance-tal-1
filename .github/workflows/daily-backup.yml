@@ -20,7 +20,14 @@ jobs:
             --exclude ".github/*"
           echo "DATE=${DATE}" >> $GITHUB_ENV
 
-      - name: Send backup by email
+      - name: Upload backup artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: backup-${{ env.DATE }}
+          path: backup-*.zip
+          retention-days: 30
+
+      - name: Send email notification
         uses: dawidd6/action-send-mail@v3
         with:
           server_address: smtp.gmail.com
@@ -34,15 +41,12 @@ jobs:
           body: |
             שלום טל,
 
-            מצורף גיבוי יומי של האתר pf-invest.co.il מתאריך ${{ env.DATE }}.
+            הגיבוי היומי של האתר pf-invest.co.il בוצע בהצלחה בתאריך ${{ env.DATE }}.
+
+            להורדת הגיבוי:
+            https://github.com/talgabay-git/insurance-tal-1/actions/runs/${{ github.run_id }}
+
+            לחץ על הקישור → גלול למטה → תחת "Artifacts" הורד את הקובץ.
 
             בברכה,
             מערכת הגיבוי האוטומטית
-          attachments: backup-${{ env.DATE }}.zip
-
-      - name: Upload backup artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: backup-${{ github.run_id }}
-          path: backup-*.zip
-          retention-days: 30
