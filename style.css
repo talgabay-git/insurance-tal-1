@@ -995,7 +995,6 @@ br.mobile-br { display: none; }
 }
 .testimonials-track {
   display: flex;
-  align-items: flex-start;
   gap: 1.5rem;
   width: max-content;
   animation: scrollTestimonials 45s linear infinite;
