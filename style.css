@@ -983,7 +983,7 @@ br.mobile-br { display: none; }
 /* ============================================================
    TESTIMONIALS
    ============================================================ */
-.testimonials { padding: 5rem 0; background: var(--white); }
+.testimonials { padding: 3rem 0 1rem; background: var(--white); }
 .testimonials-carousel-wrap {
   overflow: hidden;
   padding-top: 24px;
