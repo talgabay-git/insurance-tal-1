@@ -1,0 +1,156 @@
+{
+  "sections": [
+    {
+      "id": "track-change",
+      "icon": "fa-shuffle",
+      "title": "שינוי מסלול השקעה",
+      "desc": "מעבר בין מסלולי השקעה בקרן פנסיה, קופת גמל, קרן השתלמות או פוליסת חיסכון",
+      "note": "",
+      "links": {
+        "mor": "https://www.moreinvest.co.il/פעולות-נפוצות/טפסים-שימושיים/",
+        "analyst": "https://www.analyst.co.il/forms/",
+        "meitav": "https://www.meitav.co.il/forms/",
+        "yalin": "https://www.yl-invest.co.il/forms/",
+        "altschuler": "https://www.as-invest.co.il/interstedin/gemel/מעבר-בין-מסלולים-1/",
+        "harel": "https://www.harel-group.co.il/search/form-locator",
+        "clal": "https://www.clalbit.co.il/forms/",
+        "migdal": "https://my.migdal.co.il/support/forms",
+        "phoenix": "https://www.xnes.co.il/gemel/customerservice/forms/",
+        "menora": "https://www.menoramivt.co.il/forms/"
+      }
+    },
+    {
+      "id": "withdrawal",
+      "icon": "fa-money-bill-transfer",
+      "title": "משיכת כספים",
+      "desc": "בקשה למשיכת כספים מקופת גמל, קרן פנסיה, קרן השתלמות או פוליסת חיסכון",
+      "note": "משיכה לפני גיל הזכאות עשויה להיות חייבת במס. מומלץ להיוועץ לפני ביצוע הפעולה.",
+      "links": {
+        "mor": "https://www.moreinvest.co.il/פעולות-נפוצות/טפסים-שימושיים/",
+        "analyst": "https://www.analyst.co.il/cash-withdrawal/",
+        "meitav": "https://www.meitav.co.il/provident_pension/money_withdrawal/",
+        "yalin": "https://www.yl-invest.co.il/forms/",
+        "altschuler": "https://www.as-invest.co.il/interstedin/forms/",
+        "harel": "https://www.harel-group.co.il/search/form-locator",
+        "clal": "https://www.clalbit.co.il/forms/",
+        "migdal": "https://my.migdal.co.il/support/forms",
+        "phoenix": "https://www.xnes.co.il/gemel/customerservice/forms/",
+        "menora": "https://www.menoramivt.co.il/forms/"
+      }
+    },
+    {
+      "id": "loan",
+      "icon": "fa-hand-holding-dollar",
+      "title": "לקיחת הלוואה דיגיטלית מהאזור האישי",
+      "desc": "הלוואה בתנאים מעולים - פריים מינוס 0.5% - פריים מינוס 0.75%",
+      "note": "להכין צילום דו צדדי ת.ז. וצילום צ'ק או אישור קיום חשבון בנק",
+      "links": {
+        "mor": "https://my-account.more.co.il/personalarea/login",
+        "analyst": "https://www.analyst.co.il/forms/",
+        "meitav": "https://www.meitav.co.il/loans/",
+        "yalin": "https://www.yl-invest.co.il/forms/",
+        "altschuler": "https://www.as-invest.co.il/interstedin/gemel/%D7%A4%D7%A2%D7%95%D7%9C%D7%95%D7%AA-%D7%95%D7%9E%D7%99%D7%93%D7%A2-%D7%91%D7%A9%D7%99%D7%A8%D7%95%D7%AA-%D7%A2%D7%A6%D7%9E%D7%99/",
+        "harel": "https://www.harel-group.co.il/common-actions/joining-loans",
+        "clal": "https://www.clalbit.co.il/loansandmortgage/gemelloans/",
+        "migdal": "https://www.migdal.co.il/lps/513a",
+        "phoenix": "https://www.fnx.co.il/loans/loans-from-savings/",
+        "menora": "https://www.menoramivt.co.il/links/loans"
+      }
+    },
+    {
+      "id": "beneficiaries",
+      "icon": "fa-people-arrows",
+      "title": "עדכון מוטבים",
+      "desc": "מינוי או שינוי מוטבים שיקבלו את הכספים בקרן פנסיה, קופת גמל, קרן השתלמות ופוליסות",
+      "note": "מינוי מוטבים מאפשר העברת כספים ישירות ללא עיזבון — מומלץ לעדכן לאחר אירועי חיים משמעותיים.",
+      "links": {
+        "mor": "https://www.moreinvest.co.il/פעולות-נפוצות/טפסים-שימושיים/",
+        "analyst": "https://www.analyst.co.il/forms/",
+        "meitav": "https://www.meitav.co.il/forms/",
+        "yalin": "https://www.yl-invest.co.il/forms/",
+        "altschuler": "https://www.as-invest.co.il/interstedin/forms/",
+        "harel": "https://www.harel-group.co.il/search/form-locator",
+        "clal": "https://www.clalbit.co.il/forms/",
+        "migdal": "https://my.migdal.co.il/support/forms",
+        "phoenix": "https://www.xnes.co.il/gemel/customerservice/forms/",
+        "menora": "https://www.menoramivt.co.il/forms/"
+      }
+    },
+    {
+      "id": "personal-details",
+      "icon": "fa-user-pen",
+      "title": "עדכון פרטים אישיים",
+      "desc": "עדכון כתובת, טלפון, דוא\"ל, חשבון בנק ופרטי זיהוי אישיים בגופים הפיננסיים",
+      "note": "",
+      "links": {
+        "mor": "https://www.moreinvest.co.il/פעולות-נפוצות/טפסים-שימושיים/",
+        "analyst": "https://www.analyst.co.il/forms/",
+        "meitav": "https://www.meitav.co.il/forms/",
+        "yalin": "https://www.yl-invest.co.il/forms/",
+        "altschuler": "https://www.as-invest.co.il/interstedin/forms/",
+        "harel": "https://www.harel-group.co.il/search/form-locator",
+        "clal": "https://www.clalbit.co.il/forms/",
+        "migdal": "https://my.migdal.co.il/support/forms",
+        "phoenix": "https://www.xnes.co.il/gemel/customerservice/forms/",
+        "menora": "https://www.menoramivt.co.il/forms/"
+      }
+    },
+    {
+      "id": "deposit",
+      "icon": "fa-circle-plus",
+      "title": "הפקדה לקופה או לקרן קיימת",
+      "desc": "הפקדה חד-פעמית או קביעת הפקדה שוטפת לקופת גמל, קרן השתלמות, קרן פנסיה או פוליסה",
+      "note": "",
+      "links": {
+        "mor": "https://www.moreinvest.co.il/פעולות-נפוצות/טפסים-שימושיים/",
+        "analyst": "https://www.analyst.co.il/forms/",
+        "meitav": "https://www.meitav.co.il/forms/",
+        "yalin": "https://www.yl-invest.co.il/forms/",
+        "altschuler": "https://www.as-invest.co.il/interstedin/saving_plus_deposit/",
+        "harel": "https://www.harel-group.co.il/search/form-locator",
+        "clal": "https://www.clalbit.co.il/forms/",
+        "migdal": "https://my.migdal.co.il/support/forms",
+        "phoenix": "https://www.xnes.co.il/gemel/customerservice/forms/",
+        "menora": "https://www.menoramivt.co.il/forms/"
+      }
+    },
+    {
+      "id": "standing-order",
+      "icon": "fa-calendar-check",
+      "title": "טופס הוראת קבע",
+      "desc": "הגדרת הפקדה חודשית קבועה — לרוב מבוצעת דרך הבנק בו מתנהל חשבון המשכורת",
+      "note": "הוראת קבע מבוצעת לרוב ישירות מהבנק. פנה לגוף המנהל לקבל את פרטי חשבון הגבייה.",
+      "links": {
+        "mor": "https://www.moreinvest.co.il/פעולות-נפוצות/טפסים-שימושיים/",
+        "analyst": "https://www.analyst.co.il/forms/",
+        "meitav": "https://www.meitav.co.il/forms/",
+        "yalin": "https://www.yl-invest.co.il/forms/",
+        "altschuler": "https://www.as-invest.co.il/interstedin/forms/",
+        "harel": "https://www.harel-group.co.il/search/form-locator",
+        "clal": "https://www.clalbit.co.il/forms/",
+        "migdal": "https://my.migdal.co.il/support/forms",
+        "phoenix": "https://www.xnes.co.il/gemel/customerservice/forms/",
+        "menora": "https://www.menoramivt.co.il/forms/"
+      }
+    },
+    {
+      "id": "poa",
+      "icon": "fa-file-signature",
+      "title": "ייפוי כוח לקבלת מידע",
+      "desc": "מסמך המאפשר לגורם מורשה (כגון מתכנן פיננסי) לקבל מידע על החיסכון שלכם ולפעול בשמכם",
+      "note": "נדרש לצורך קבלת ליווי מקצועי מלא. ניתן לבטל את ייפוי הכוח בכל עת.",
+      "links": {
+        "mor": "https://www.moreinvest.co.il/פעולות-נפוצות/טפסים-שימושיים/",
+        "analyst": "https://www.analyst.co.il/forms/",
+        "meitav": "https://www.meitav.co.il/media/1pgkvt0w/ייפוי-כוח-לקבלת-מידע.pdf",
+        "yalin": "https://www.yl-invest.co.il/forms/",
+        "altschuler": "https://www.as-invest.co.il/interstedin/קופות-גמל/ייפוי-כוח-לקבלת-מידע/",
+        "harel": "https://www.harel-group.co.il/search/form-locator",
+        "clal": "https://www.clalbit.co.il/forms/",
+        "migdal": "https://my.migdal.co.il/support/forms",
+        "phoenix": "https://www.xnes.co.il/gemel/customerservice/forms/",
+        "menora": "https://www.menoramivt.co.il/forms/"
+      }
+    }
+  ]
+}

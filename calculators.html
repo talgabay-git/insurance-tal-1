@@ -1,0 +1,1283 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>טל גבאי | מחשבונים פיננסיים</title>
+  <meta name="description" content="מחשבונים פיננסיים - ריבית דה ריבית וכלים נוספים לתכנון פיננסי. טל גבאי תכנון פיננסי לבכירים." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700;800&family=Heebo:wght@400;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .calc-hero {
+      background: var(--navy);
+      padding: 5rem 0 4rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .calc-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 60% 40%, rgba(201,168,76,.13) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .calc-hero .section-label { margin-bottom: 1.2rem; }
+    .calc-hero h1 {
+      font-family: 'Heebo', sans-serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 900;
+      color: var(--gold);
+      margin-bottom: 1rem;
+      border: 2px solid var(--gold);
+      display: inline-block;
+      padding: .5rem 2rem;
+      border-radius: 10px;
+    }
+    .calc-hero .hero-tagline {
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      color: rgba(255,255,255,.8);
+      max-width: 600px;
+      margin: 1rem auto 0;
+    }
+
+    .calc-section {
+      padding: 0 0 5rem;
+      background: var(--off-white);
+    }
+
+    /* ── Tab Bar ── */
+    .calc-tab-bar {
+      background: var(--navy);
+      position: sticky;
+      top: 64px;
+      z-index: 100;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .calc-tab-bar::-webkit-scrollbar { display: none; }
+    .calc-tab-list {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0 1rem;
+      min-width: max-content;
+    }
+    .calc-tab-btn {
+      background: none;
+      border: none;
+      padding: 1rem 1.4rem;
+      font-family: 'Heebo', sans-serif;
+      font-size: .9rem;
+      font-weight: 700;
+      color: rgba(255,255,255,.55);
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      white-space: nowrap;
+      transition: color .2s, border-color .2s;
+      display: flex;
+      align-items: center;
+      gap: .45rem;
+    }
+    .calc-tab-btn:hover { color: rgba(255,255,255,.85); }
+    .calc-tab-btn.active {
+      color: var(--gold);
+      border-bottom-color: var(--gold);
+    }
+
+    /* ── Tab Panels ── */
+    .calc-panel { display: none; padding: 3rem 0 2rem; }
+    .calc-panel.active { display: block; animation: fadeUp .25s ease; }
+
+    .calc-panel-inner {
+      max-width: 540px;
+      margin: 0 auto;
+    }
+
+    /* ── Calculator Card ── */
+    .calc-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      overflow: hidden;
+    }
+    .calc-card-header {
+      background: var(--navy);
+      padding: 1.25rem 1.75rem;
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+    }
+    .calc-card-header i {
+      font-size: 1.4rem;
+      color: var(--gold);
+    }
+    .calc-card-header h2 {
+      font-family: 'Heebo', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--white);
+      margin: 0;
+    }
+    .calc-card-body { padding: 1.75rem; }
+
+    /* ── Form Fields ── */
+    .calc-field { margin-bottom: 1.1rem; }
+    .calc-label {
+      display: block;
+      font-size: .82rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: .35rem;
+    }
+    .calc-input-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    .calc-input {
+      width: 100%;
+      border: 1.5px solid #d0d8e4;
+      border-radius: var(--radius);
+      padding: .6rem .9rem;
+      font-size: .95rem;
+      font-family: 'Assistant', sans-serif;
+      color: var(--text);
+      background: #f8fafc;
+      transition: border-color .2s, box-shadow .2s;
+      text-align: left;
+      direction: ltr;
+    }
+    .calc-input:focus {
+      outline: none;
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(201,168,76,.15);
+      background: var(--white);
+    }
+    .calc-input-suffix {
+      position: absolute;
+      left: .75rem;
+      font-size: .85rem;
+      color: #888;
+      pointer-events: none;
+    }
+    .calc-input.has-suffix { padding-left: 2.2rem; }
+
+    .calc-divider {
+      border: none;
+      border-top: 1px solid #e8edf3;
+      margin: 1.25rem 0;
+    }
+
+    /* ── Button ── */
+    .calc-btn {
+      width: 100%;
+      background: var(--navy);
+      color: var(--white);
+      border: none;
+      border-radius: var(--radius);
+      padding: .75rem 1.5rem;
+      font-family: 'Heebo', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background .2s, transform .15s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .5rem;
+    }
+    .calc-btn:hover { background: #1a3a60; transform: translateY(-1px); }
+    .calc-btn:active { transform: translateY(0); }
+
+    /* ── Results ── */
+    .calc-result {
+      display: none;
+      margin-top: 1.4rem;
+      background: linear-gradient(135deg, var(--navy) 0%, #1a3a60 100%);
+      border-radius: var(--radius);
+      padding: 1.4rem 1.5rem;
+      color: var(--white);
+    }
+    .calc-result.show { display: block; animation: fadeUp .3s ease; }
+    @keyframes fadeUp { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:translateY(0); } }
+
+    .result-title {
+      font-size: .78rem;
+      font-weight: 600;
+      color: rgba(255,255,255,.6);
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      margin-bottom: 1rem;
+    }
+    .result-rows { display: flex; flex-direction: column; gap: .6rem; }
+    .result-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: .9rem;
+    }
+    .result-row .label { color: rgba(255,255,255,.75); }
+    .result-row .value { font-weight: 700; color: var(--white); direction: ltr; }
+    .result-row.highlight .value {
+      font-size: 1.3rem;
+      color: var(--gold);
+    }
+    .result-sep {
+      border: none;
+      border-top: 1px solid rgba(255,255,255,.15);
+      margin: .5rem 0;
+    }
+
+    /* ── Coming soon cards ── */
+    .calc-card-coming {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      border: 2px dashed #d0d8e4;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem 2rem;
+      text-align: center;
+      color: #aab;
+      min-height: 200px;
+    }
+    .calc-card-coming i { font-size: 2rem; margin-bottom: .75rem; color: #c8d0dc; }
+    .calc-card-coming span { font-size: .95rem; font-weight: 600; }
+
+    @media (max-width: 600px) {
+      .calc-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── Retirement Simulator ── */
+    .sim-section {
+      background: var(--white);
+      padding: 4rem 0 5rem;
+      border-top: 1px solid #e8edf3;
+    }
+    .sim-wrapper {
+      max-width: 820px;
+      margin: 0 auto;
+    }
+    .sim-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .sim-header h2 {
+      font-family: 'Heebo', sans-serif;
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      font-weight: 900;
+      color: var(--navy);
+      margin-bottom: .75rem;
+    }
+    .sim-header p {
+      font-size: .88rem;
+      color: var(--dark-gray);
+      line-height: 1.75;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .sim-block {
+      background: #f4f7fb;
+      border-radius: var(--radius-lg);
+      padding: 1.75rem 2rem;
+      margin-bottom: 1.5rem;
+    }
+    .sim-block-title {
+      font-family: 'Heebo', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+    .sim-block-title i { color: var(--gold); }
+    .sim-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .sim-row:last-child { margin-bottom: 0; }
+    .sim-field { display: flex; flex-direction: column; gap: .3rem; }
+    .sim-label {
+      font-size: .78rem;
+      font-weight: 600;
+      color: #556;
+    }
+    .sim-input {
+      border: 1.5px solid #d0d8e4;
+      border-radius: var(--radius);
+      padding: .55rem .8rem;
+      font-size: .95rem;
+      font-family: 'Assistant', sans-serif;
+      color: var(--text);
+      background: var(--white);
+      width: 100%;
+      transition: border-color .2s, box-shadow .2s;
+      direction: ltr;
+      text-align: left;
+    }
+    .sim-input:focus {
+      outline: none;
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(201,168,76,.15);
+    }
+    .sim-input-wrap { position: relative; }
+    .sim-input-wrap .sim-suffix {
+      position: absolute;
+      left: .7rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: .82rem;
+      color: #999;
+      pointer-events: none;
+    }
+    .sim-input-wrap .sim-input { padding-left: 1.8rem; }
+
+    /* toggle buttons */
+    .sim-toggle { display: flex; gap: .4rem; flex-wrap: wrap; }
+    .sim-toggle-btn {
+      border: 1.5px solid #d0d8e4;
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: .45rem 1.1rem;
+      font-size: .88rem;
+      font-family: 'Assistant', sans-serif;
+      font-weight: 600;
+      color: #556;
+      cursor: pointer;
+      transition: all .18s;
+    }
+    .sim-toggle-btn.active {
+      background: var(--navy);
+      border-color: var(--navy);
+      color: var(--white);
+    }
+
+    /* fund cards */
+    .sim-funds {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: .85rem;
+      margin-top: .75rem;
+    }
+    .sim-fund-card {
+      background: var(--white);
+      border: 1.5px solid #d0d8e4;
+      border-radius: var(--radius-lg);
+      padding: 1rem .75rem;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .sim-fund-card:hover { border-color: var(--gold); box-shadow: 0 2px 8px rgba(201,168,76,.15); }
+    .sim-fund-card.active { border-color: var(--gold); background: #fffbf0; }
+    .sim-fund-card .fund-name {
+      font-size: .8rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: .5rem;
+    }
+    .sim-fund-input {
+      border: 1.5px solid #d0d8e4;
+      border-radius: 6px;
+      padding: .4rem .5rem;
+      font-size: .82rem;
+      width: 100%;
+      text-align: center;
+      direction: ltr;
+      background: #f8fafc;
+      transition: border-color .2s;
+    }
+    .sim-fund-input:focus { outline: none; border-color: var(--gold); }
+    .sim-fund-label { font-size: .7rem; color: #999; margin-top: .3rem; }
+
+    .sim-calc-btn {
+      display: block;
+      margin: 1.75rem auto 0;
+      background: var(--gold);
+      color: var(--navy);
+      border: none;
+      border-radius: var(--radius);
+      padding: .85rem 3.5rem;
+      font-family: 'Heebo', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 900;
+      cursor: pointer;
+      transition: background .2s, transform .15s;
+      letter-spacing: .02em;
+    }
+    .sim-calc-btn:hover { background: #b8952e; transform: translateY(-1px); }
+
+    /* results */
+    .sim-result {
+      display: none;
+      margin-top: 1.75rem;
+      background: linear-gradient(135deg, var(--navy) 0%, #1a3a60 100%);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      color: var(--white);
+    }
+    .sim-result.show { display: block; animation: fadeUp .35s ease; }
+    .sim-result-title {
+      font-size: .75rem;
+      font-weight: 600;
+      color: rgba(255,255,255,.5);
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      margin-bottom: 1.25rem;
+    }
+    .sim-result-main {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+    .sim-result-item { text-align: center; }
+    .sim-result-item .label {
+      font-size: .78rem;
+      color: rgba(255,255,255,.6);
+      margin-bottom: .3rem;
+    }
+    .sim-result-item .value {
+      font-family: 'Heebo', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: var(--gold);
+    }
+    .sim-result-item .value.secondary { font-size: 1.1rem; color: var(--white); }
+    .sim-disclaimer {
+      font-size: .72rem;
+      color: rgba(255,255,255,.4);
+      border-top: 1px solid rgba(255,255,255,.12);
+      padding-top: .9rem;
+      margin-top: .75rem;
+      line-height: 1.6;
+    }
+
+    .sim-input select, select.sim-input {
+      -webkit-appearance: none;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23999'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: left .5rem center;
+      padding-left: 1.5rem;
+      direction: rtl;
+      text-align: right;
+      cursor: pointer;
+    }
+
+    @media (max-width: 600px) {
+      .sim-block { padding: 1.25rem 1rem; }
+      .sim-funds { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="#content-start" class="skip-link">דלג לתוכן הראשי</a>
+
+  <!-- ========== HEADER / NAVIGATION ========== -->
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo header-logo" aria-label="עמוד הבית">
+        <span class="logo-row"><span class="logo-main">טל גבאי</span><span class="logo-sep">|</span><span class="logo-sub">תכנון פיננסי</span></span>
+        <span class="logo-tagline">ליווי אישי וממוקד לבכירים</span>
+      </a>
+      <nav class="main-nav" aria-label="ניווט ראשי">
+        <ul class="nav-list">
+          <li>
+            <a href="index.html" class="nav-link nav-home-icon" aria-label="דף הבית" title="דף הבית"><i class="fa-solid fa-house"></i></a>
+          </li>
+          <li class="nav-dropdown">
+            <a href="#" class="nav-link dropdown-toggle" onclick="return false;">תחומי התמחות <i class="fa-solid fa-chevron-down fa-xs"></i></a>
+            <ul class="dropdown-menu">
+              <li><a href="family-office.html" class="dropdown-item"><span lang="en">Family Office</span></a></li>
+              <li><a href="financial-planning.html" class="dropdown-item">תכנון פיננסי</a></li>
+              <li><a href="retirement-planning.html" class="dropdown-item">תכנון פרישה</a></li>
+              <li><a href="early-retirement.html" class="dropdown-item">תכנון פרישה מוקדמת</a></li>
+            </ul>
+          </li>
+          <li class="nav-dropdown">
+            <a href="market-status.html" class="nav-link dropdown-toggle">תמונת מצב בשווקים <i class="fa-solid fa-chevron-down fa-xs"></i></a>
+            <ul class="dropdown-menu">
+              <li><a href="https://www.meitav.co.il/" class="dropdown-item" target="_blank" rel="noopener">בית השקעות מיטב</a></li>
+              <li><a href="https://www.fnx.co.il/" class="dropdown-item" target="_blank" rel="noopener">סקירה חודשית - הפניקס</a></li>
+              <li><a href="https://www.sponsor.co.il/" class="dropdown-item" target="_blank" rel="noopener">ספונסר - ניתוחי שוק</a></li>
+              <li><a href="https://finance.yahoo.com/" class="dropdown-item" target="_blank" rel="noopener">Yahoo Finance</a></li>
+              <li><a href="https://il.investing.com/" class="dropdown-item" target="_blank" rel="noopener"><span lang="en">Investing.com</span> ישראל</a></li>
+              <li><a href="https://www.bloomberg.com/markets" class="dropdown-item" target="_blank" rel="noopener">Bloomberg Markets</a></li>
+            </ul>
+          </li>
+          <li class="nav-dropdown">
+            <a href="faq.html" class="nav-link dropdown-toggle">שאלות ותשובות <i class="fa-solid fa-chevron-down fa-xs"></i></a>
+            <ul class="dropdown-menu">
+              <li><a href="faq.html#faq-pension" class="dropdown-item">קרן פנסיה</a></li>
+              <li><a href="faq.html#faq-managers" class="dropdown-item">ביטוח מנהלים</a></li>
+              <li><a href="faq.html#faq-hishtalmut" class="dropdown-item">קרן השתלמות</a></li>
+              <li><a href="faq.html#faq-gemel" class="dropdown-item">קופת גמל וחיסכון</a></li>
+              <li><a href="faq.html#faq-retirement" class="dropdown-item">תכנון פרישה</a></li>
+              <li><a href="faq.html#faq-insurance" class="dropdown-item">ביטוח וכיסויים</a></li>
+              <li><a href="faq.html#faq-transfer" class="dropdown-item">ניוד, מעבר וניהול</a></li>
+              <li><a href="faq.html#faq-services" class="dropdown-item">שירותי תכנון פיננסי</a></li>
+            </ul>
+          </li>
+          <li class="nav-dropdown">
+            <a href="#" class="nav-link dropdown-toggle" onclick="return false;">פעולות נפוצות <i class="fa-solid fa-chevron-down fa-xs"></i></a>
+            <ul class="dropdown-menu">
+              <li><a href="documents.html" class="dropdown-item">מסלקה פנסיונית</a></li>
+              <li><a href="holistic-checkup.html" class="dropdown-item">צ'ק אפ פיננסי</a></li>
+              <li class="dropdown-divider"></li>
+              <li><a href="common-actions.html#track-change" class="dropdown-item">שינוי מסלול השקעה</a></li>
+              <li><a href="common-actions.html#withdrawal" class="dropdown-item">משיכת כספים</a></li>
+              <li><a href="common-actions.html#loan" class="dropdown-item">לקיחת הלוואה דיגיטלית</a></li>
+              <li><a href="common-actions.html#beneficiaries" class="dropdown-item">עדכון מוטבים</a></li>
+              <li><a href="common-actions.html#personal-details" class="dropdown-item">עדכון פרטים אישיים</a></li>
+              <li><a href="common-actions.html#deposit" class="dropdown-item">הפקדה לקופה או לקרן</a></li>
+              <li><a href="common-actions.html#standing-order" class="dropdown-item">טופס הוראת קבע</a></li>
+              <li><a href="common-actions.html#poa" class="dropdown-item">ייפוי כוח לקבלת מידע</a></li>
+            </ul>
+          </li>
+          <li class="nav-dropdown">
+            <a href="#" class="nav-link dropdown-toggle" onclick="return false;">מכשירים פנסיוניים <i class="fa-solid fa-chevron-down fa-xs"></i></a>
+            <ul class="dropdown-menu">
+              <li><a href="savings-policies.html" class="dropdown-item">פוליסות חיסכון</a></li>
+              <li><a href="managed-portfolios.html" class="dropdown-item">תיקי השקעות מנוהלים</a></li>
+              <li><a href="structured-products.html" class="dropdown-item">מוצרים מובנים (סטרקצ'רים)</a></li>
+              <li><a href="mutual-funds-etf.html" class="dropdown-item">קרנות נאמנות וקרנות סל (ETF)</a></li>
+              <li><a href="alternative-investments.html" class="dropdown-item">השקעות אלטרנטיביות</a></li>
+              <li><a href="hedge-funds.html" class="dropdown-item">קרנות גידור בנאמנות</a></li>
+              <li><a href="rsu-espp-options.html" class="dropdown-item"><span lang="en">RSU, ESPP</span> ואופציות</a></li>
+            </ul>
+          </li>
+          <li class="nav-dropdown">
+            <a href="#" class="nav-link dropdown-toggle" onclick="return false;">מכשירים פיננסיים <i class="fa-solid fa-chevron-down fa-xs"></i></a>
+            <ul class="dropdown-menu">
+              <li><a href="pension-fund.html" class="dropdown-item">קרן פנסיה</a></li>
+              <li><a href="matria-bituchit.html" class="dropdown-item">מטריה ביטוחית</a></li>
+              <li><a href="managers-insurance.html" class="dropdown-item">ביטוח מנהלים</a></li>
+              <li><a href="gemel-190.html" class="dropdown-item">קופת גמל 190</a></li>
+              <li><a href="gemel-hashkaa.html" class="dropdown-item">קופת גמל להשקעה</a></li>
+              <li><a href="keren-hishtalmut.html" class="dropdown-item">קרן השתלמות</a></li>
+              <li><a href="section-125d.html" class="dropdown-item">הטבה לפי סעיף 125ד' לגימלאים</a></li>
+            </ul>
+          </li>
+          <li class="nav-dropdown">
+            <a href="calculators.html" class="nav-link dropdown-toggle active">מחשבונים <i class="fa-solid fa-chevron-down fa-xs"></i></a>
+            <ul class="dropdown-menu">
+              <li><a href="calculators.html" class="dropdown-item">מחשבון ריבית דה ריבית</a></li>
+              <li><a href="calculators.html#retirement" class="dropdown-item">סימולטור פרישה</a></li>
+              <li><a href="calculators.html#severance" class="dropdown-item">מחשבון פיצויי פיטורים</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <div class="header-left" style="display:flex;align-items:center;gap:.6rem;">
+        <a href="en/index.html" title="English" aria-label="Switch to English" lang="en" class="lang-switch-btn" style="font-size:1.47rem;text-decoration:none;line-height:1;color:var(--gold);font-weight:700;letter-spacing:.03em;">EN</a>
+        <a href="https://portal.roeto.co.il/pfinvest/login" class="btn-personal-area" target="_blank" rel="noopener"><i class="fa-solid fa-key"></i> איזור אישי</a>
+      </div>
+      <button class="search-toggle" id="search-toggle" aria-label="חיפוש באתר" aria-expanded="false"><i class="fa-solid fa-magnifying-glass"></i> חיפוש</button>
+      <button class="hamburger" id="hamburger" aria-label="פתח תפריט" aria-expanded="false" aria-controls="mobile-menu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <nav class="mobile-menu" id="mobile-menu" aria-label="תפריט נייד" aria-hidden="true">
+      <ul class="mobile-nav-list">
+        <li><a href="index.html" class="mobile-nav-link">דף הבית</a></li>
+        <li style="padding:.4rem 1.5rem;font-size:.75rem;color:rgba(255,255,255,.4);font-weight:700;letter-spacing:.05em;">תחומי התמחות</li>
+        <li><a href="family-office.html" class="mobile-nav-link"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> <span lang="en">Family Office</span></a></li>
+        <li><a href="financial-planning.html" class="mobile-nav-link"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> תכנון פיננסי</a></li>
+        <li><a href="retirement-planning.html" class="mobile-nav-link"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> תכנון פרישה</a></li>
+        <li><a href="early-retirement.html" class="mobile-nav-link"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> תכנון פרישה מוקדמת</a></li>
+        <li><a href="faq.html" class="mobile-nav-link">שאלות ותשובות</a></li>
+        <li style="padding:.4rem 1.5rem;font-size:.75rem;color:rgba(255,255,255,.4);font-weight:700;letter-spacing:.05em;">פעולות נפוצות</li>
+        <li><a href="common-actions.html" class="mobile-nav-link"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> פעולות נפוצות</a></li>
+        <li><a href="holistic-checkup.html" class="mobile-nav-link"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> צ'ק אפ הוליסטי</a></li>
+        <li><a href="documents.html" class="mobile-nav-link"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> מסלקה פנסיונית</a></li>
+        <li style="padding:.4rem 1.5rem;font-size:.75rem;color:rgba(255,255,255,.4);font-weight:700;letter-spacing:.05em;">מכשירים פנסיוניים</li>
+        <li><a href="savings-policies.html" class="mobile-nav-link"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> פוליסות חיסכון</a></li>
+        <li><a href="managed-portfolios.html" class="mobile-nav-link"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> תיקי השקעות מנוהלים</a></li>
+        <li><a href="structured-products.html" class="mobile-nav-link"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> מוצרים מובנים (סטרקצ'רים)</a></li>
+        <li><a href="mutual-funds-etf.html" class="mobile-nav-link"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> קרנות נאמנות וקרנות סל (ETF)</a></li>
+        <li><a href="alternative-investments.html" class="mobile-nav-link"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> השקעות אלטרנטיביות</a></li>
+        <li><a href="hedge-funds.html" class="mobile-nav-link"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> קרנות גידור בנאמנות</a></li>
+        <li><a href="rsu-espp-options.html" class="mobile-nav-link"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> <span lang="en">RSU, ESPP</span> ואופציות</a></li>
+        <li style="padding:.4rem 1.5rem;font-size:.75rem;color:rgba(255,255,255,.4);font-weight:700;letter-spacing:.05em;">מכשירים פיננסיים</li>
+        <li><a href="pension-fund.html" class="mobile-nav-link"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> קרן פנסיה</a></li>
+        <li><a href="matria-bituchit.html" class="mobile-nav-link"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> מטריה ביטוחית</a></li>
+        <li><a href="managers-insurance.html" class="mobile-nav-link"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> ביטוח מנהלים</a></li>
+        <li><a href="gemel-190.html" class="mobile-nav-link"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> קופת גמל 190</a></li>
+        <li><a href="gemel-hashkaa.html" class="mobile-nav-link"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> קופת גמל להשקעה</a></li>
+        <li><a href="keren-hishtalmut.html" class="mobile-nav-link"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> קרן השתלמות</a></li>
+        <li><a href="section-125d.html" class="mobile-nav-link"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> הטבה לפי סעיף 125ד'</a></li>
+        <li style="padding:.4rem 1.5rem;font-size:.75rem;color:rgba(255,255,255,.4);font-weight:700;letter-spacing:.05em;">מחשבונים</li>
+        <li><a href="calculators.html" class="mobile-nav-link"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> ריבית דה ריבית</a></li>
+                <li><a href="market-status.html" class="mobile-nav-link">תמונת מצב בשווקים</a></li>
+        <li><a href="https://www.meitav.co.il/" class="mobile-nav-link" style="padding-right:2rem;" target="_blank" rel="noopener"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> בית השקעות מיטב</a></li>
+        <li><a href="https://www.fnx.co.il/" class="mobile-nav-link" style="padding-right:2rem;" target="_blank" rel="noopener"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> סקירה חודשית - הפניקס</a></li>
+        <li><a href="https://www.sponsor.co.il/" class="mobile-nav-link" style="padding-right:2rem;" target="_blank" rel="noopener"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> ספונסר - ניתוחי שוק</a></li>
+        <li><a href="https://finance.yahoo.com/" class="mobile-nav-link" style="padding-right:2rem;" target="_blank" rel="noopener"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> <span lang="en">Yahoo Finance</span></a></li>
+        <li><a href="https://il.investing.com/" class="mobile-nav-link" style="padding-right:2rem;" target="_blank" rel="noopener"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> <span lang="en">Investing.com</span> ישראל</a></li>
+        <li><a href="https://www.bloomberg.com/markets" class="mobile-nav-link" style="padding-right:2rem;" target="_blank" rel="noopener"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> <span lang="en">Bloomberg Markets</span></a></li>
+        <li><a href="index.html#testimonials" class="mobile-nav-link">המלצות</a></li>
+        <li><a href="tel:052-8000556" class="mobile-nav-link mobile-phone"><i class="fa-solid fa-phone"></i> 052-8000556</a></li>
+        <li><a href="https://wa.me/9720528000556" class="mobile-nav-link"><i class="fa-brands fa-whatsapp"></i> <span lang="en">WhatsApp</span></a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="search-overlay" id="search-overlay" role="search" aria-hidden="true">
+    <div class="search-inner">
+      <input type="search" class="search-input" id="search-input" placeholder="חיפוש... (פנסיה, פרישה, ביטוח, גמל...)" autocomplete="off" dir="rtl" aria-label="חיפוש באתר" />
+      <button class="search-close" id="search-close" aria-label="סגור חיפוש"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <ul class="search-results" id="search-results" role="listbox" aria-label="תוצאות חיפוש"></ul>
+  </div>
+
+  <!-- ========== HERO ========== -->
+  <section class="calc-hero" id="content-start" tabindex="-1">
+    <div class="container">
+      <div class="section-label">מחשבון</div>
+      <h1>מחשבונים פיננסיים</h1>
+      <p class="hero-tagline">כלים פשוטים לחישוב עתיד הכסף שלכם - בהפקדה חד פעמית, הפקדה חודשית ותשואה שנתית.</p>
+    </div>
+  </section>
+
+  <!-- ========== CALCULATORS ========== -->
+  <main class="calc-section" id="content-calculators">
+
+    <!-- Tab Bar -->
+    <nav class="calc-tab-bar" aria-label="מחשבונים">
+      <ul class="calc-tab-list" role="tablist">
+        <li role="presentation">
+          <button class="calc-tab-btn active" role="tab" aria-selected="true" aria-controls="panel-compound" onclick="switchTab('compound',this)">
+            <i class="fa-solid fa-chart-line"></i> מחשבון ריבית דה ריבית
+          </button>
+        </li>
+        <li role="presentation">
+          <button class="calc-tab-btn" role="tab" aria-selected="false" aria-controls="panel-retirement" onclick="switchTab('retirement',this)">
+            <i class="fa-solid fa-person-cane"></i> סימולטור פרישה
+          </button>
+        </li>
+        <li role="presentation">
+          <button class="calc-tab-btn" role="tab" aria-selected="false" aria-controls="panel-severance" onclick="switchTab('severance',this)">
+            <i class="fa-solid fa-file-invoice-dollar"></i> מחשבון פיצויי פיטורים
+          </button>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="container">
+
+      <!-- ── Panel 1: ריבית דה ריבית ── -->
+      <div class="calc-panel active" id="panel-compound" role="tabpanel">
+        <div class="calc-panel-inner">
+          <div class="calc-card">
+            <div class="calc-card-header">
+              <i class="fa-solid fa-chart-line"></i>
+              <h2>ריבית דה ריבית</h2>
+            </div>
+            <div class="calc-card-body">
+
+              <div class="calc-field">
+                <label class="calc-label" for="lump-sum">הפקדה חד פעמית</label>
+                <div class="calc-input-wrap">
+                  <input class="calc-input has-suffix" type="number" id="lump-sum" value="100000" min="0" step="1000" inputmode="numeric" />
+                  <span class="calc-input-suffix">₪</span>
+                </div>
+              </div>
+
+              <div class="calc-field">
+                <label class="calc-label" for="monthly-dep">הפקדה חודשית</label>
+                <div class="calc-input-wrap">
+                  <input class="calc-input has-suffix" type="number" id="monthly-dep" value="1000" min="0" step="100" inputmode="numeric" />
+                  <span class="calc-input-suffix">₪</span>
+                </div>
+              </div>
+
+              <div class="calc-field">
+                <label class="calc-label" for="annual-return">תשואה שנתית</label>
+                <div class="calc-input-wrap">
+                  <input class="calc-input has-suffix" type="number" id="annual-return" value="7" min="0" max="30" step="0.1" inputmode="decimal" />
+                  <span class="calc-input-suffix">%</span>
+                </div>
+              </div>
+
+              <div class="calc-field">
+                <label class="calc-label" for="years">מספר שנות ההפקדה</label>
+                <div class="calc-input-wrap">
+                  <input class="calc-input" type="number" id="years" value="20" min="1" max="60" step="1" inputmode="numeric" />
+                </div>
+              </div>
+
+              <hr class="calc-divider" />
+
+              <button class="calc-btn" onclick="calcCompound()">
+                <i class="fa-solid fa-calculator"></i> חשב
+              </button>
+
+              <div class="calc-result" id="compound-result">
+                <div class="result-title">תוצאות החישוב</div>
+                <div class="result-rows">
+                  <div class="result-row">
+                    <span class="label">סה"כ הפקדות</span>
+                    <span class="value" id="res-deposits">-</span>
+                  </div>
+                  <div class="result-row">
+                    <span class="label">סה"כ רווח (ריבית דה ריבית)</span>
+                    <span class="value" id="res-profit">-</span>
+                  </div>
+                  <hr class="result-sep" />
+                  <div class="result-row highlight">
+                    <span class="label">סכום סופי</span>
+                    <span class="value" id="res-total">-</span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Panel 2: סימולטור פרישה ── -->
+      <div class="calc-panel" id="panel-retirement" role="tabpanel">
+        <div class="sim-wrapper" style="max-width:820px;margin:0 auto;">
+
+          <div class="sim-header">
+            <h2>סימולטור פרישה</h2>
+            <p>מאפשר להעריך את הקצבה החודשית הצפויה על בסיס החיסכון הנוכחי, גיל הפרישה והתשואה הצפויה. הסכומים הם הערכה בלבד לצרכי המחשבה.</p>
+          </div>
+
+          <!-- פרטי המבוטח -->
+          <div class="sim-block">
+            <div class="sim-block-title"><i class="fa-solid fa-user"></i> פרטי המבוטח</div>
+            <div class="sim-row">
+              <div class="sim-field">
+                <label class="sim-label">גיל נוכחי</label>
+                <input class="sim-input" type="number" id="s-age" value="" min="40" max="80" placeholder="למשל: 58" inputmode="numeric" />
+              </div>
+              <div class="sim-field">
+                <label class="sim-label">גיל פרישה</label>
+                <input class="sim-input" type="number" id="s-retire-age" value="67" min="55" max="80" inputmode="numeric" />
+              </div>
+              <div class="sim-field">
+                <label class="sim-label">מין</label>
+                <div class="sim-toggle">
+                  <button class="sim-toggle-btn active" data-group="gender" data-val="m" onclick="simToggle(this)">זכר</button>
+                  <button class="sim-toggle-btn" data-group="gender" data-val="f" onclick="simToggle(this)">נקבה</button>
+                </div>
+              </div>
+              <div class="sim-field">
+                <label class="sim-label">האם יש לך בן/ת-זוג?</label>
+                <div class="sim-toggle">
+                  <button class="sim-toggle-btn" data-group="partner" data-val="y" onclick="simToggle(this)">כן</button>
+                  <button class="sim-toggle-btn active" data-group="partner" data-val="n" onclick="simToggle(this)">לא</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- פרטי חיסכון -->
+          <div class="sim-block">
+            <div class="sim-block-title"><i class="fa-solid fa-piggy-bank"></i> פרטי תוכניות החיסכון שלך המיועדות לקצבה</div>
+
+            <div class="sim-row" style="grid-template-columns:1fr 1fr;align-items:end;">
+              <div class="sim-field">
+                <label class="sim-label">הפקדה חודשית לפנסיה (₪)</label>
+                <div class="sim-input-wrap">
+                  <input class="sim-input" type="number" id="s-monthly" value="" min="0" step="100" placeholder="למשל: 3,000" inputmode="numeric" />
+                  <span class="sim-suffix">₪</span>
+                </div>
+              </div>
+              <div class="sim-field">
+                <label class="sim-label">תשואה שנתית צפויה</label>
+                <div class="sim-input-wrap">
+                  <input class="sim-input" type="number" id="s-return" value="4.5" min="0" max="15" step="0.1" inputmode="decimal" />
+                  <span class="sim-suffix">%</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="sim-label" style="margin-bottom:.6rem;margin-top:.5rem;">סכומים צבורים נוכחיים (₪)</div>
+            <div class="sim-funds">
+              <div class="sim-fund-card">
+                <div class="fund-name">קרנות פנסיה<br>כלליות / מקיפות</div>
+                <input class="sim-fund-input" type="number" id="s-pension" value="" placeholder="0" min="0" step="1000" inputmode="numeric" />
+                <div class="sim-fund-label">סכום צבור ₪</div>
+              </div>
+              <div class="sim-fund-card">
+                <div class="fund-name">ביטוח<br>מנהלים</div>
+                <input class="sim-fund-input" type="number" id="s-managers" value="" placeholder="0" min="0" step="1000" inputmode="numeric" />
+                <div class="sim-fund-label">סכום צבור ₪</div>
+              </div>
+              <div class="sim-fund-card">
+                <div class="fund-name">קופות<br>גמל</div>
+                <input class="sim-fund-input" type="number" id="s-gemel" value="" placeholder="0" min="0" step="1000" inputmode="numeric" />
+                <div class="sim-fund-label">סכום צבור ₪</div>
+              </div>
+              <div class="sim-fund-card">
+                <div class="fund-name">מקורות<br>כספיים אחרים</div>
+                <input class="sim-fund-input" type="number" id="s-other" value="" placeholder="0" min="0" step="1000" inputmode="numeric" />
+                <div class="sim-fund-label">סכום צבור ₪</div>
+              </div>
+            </div>
+          </div>
+
+          <button class="sim-calc-btn" onclick="calcRetirement()">
+            <i class="fa-solid fa-calculator"></i> חשב
+          </button>
+
+          <!-- תוצאות -->
+          <div class="sim-result" id="sim-result">
+            <div class="sim-result-title">תחזית קצבת הפרישה החודשית</div>
+            <div class="sim-result-main">
+              <div class="sim-result-item">
+                <div class="label">קצבה חודשית משוערת</div>
+                <div class="value" id="sr-pension">-</div>
+              </div>
+              <div class="sim-result-item">
+                <div class="label">צבירה כוללת בפרישה</div>
+                <div class="value secondary" id="sr-total">-</div>
+              </div>
+              <div class="sim-result-item">
+                <div class="label">שנים לפרישה</div>
+                <div class="value secondary" id="sr-years">-</div>
+              </div>
+            </div>
+            <div class="sim-disclaimer">* הסכומים הם הערכה בלבד המבוססת על מקדם המרה משוערב לפי גיל ומין. אינם מהווים ייעוץ פנסיוני. לחישוב מדויק פנה לטל גבאי לתכנון פרישה אישי.</div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ── Panel 3: פיצויי פיטורים ── -->
+      <div class="calc-panel" id="panel-severance" role="tabpanel">
+        <div class="sim-wrapper" style="max-width:680px;margin:0 auto;">
+
+          <div class="sim-header">
+            <h2>מחשבון פיצויי פיטורים</h2>
+            <p>חשב את הפיצויים המגיעים לך - חישוב פיצויים פטורים במס, פיצויים חייבים במס, מענק פרישה חייב במס.</p>
+          </div>
+
+          <div class="sim-block">
+            <div class="sim-block-title"><i class="fa-solid fa-shekel-sign"></i> נתוני השכר והעבודה</div>
+
+            <div class="sim-field" style="margin-bottom:1rem;">
+              <label class="sim-label">משכורת קובעת לפיצויים ברוטו, לפני מס (₪)</label>
+              <div class="sim-input-wrap">
+                <input class="sim-input" type="number" id="sv-salary" placeholder="למשל: 20,000" min="0" step="100" inputmode="numeric" />
+                <span class="sim-suffix">₪</span>
+              </div>
+            </div>
+
+            <div class="sim-row" style="grid-template-columns:1fr 1fr;gap:1.25rem;">
+              <div class="sim-field">
+                <label class="sim-label">תאריך תחילת עבודה</label>
+                <div style="display:flex;gap:.4rem;">
+                  <select class="sim-input" id="sv-start-day" style="flex:0 0 60px;padding-left:.3rem;padding-right:.3rem;"></select>
+                  <select class="sim-input" id="sv-start-month" style="flex:1;padding-left:.3rem;padding-right:.3rem;"></select>
+                  <select class="sim-input" id="sv-start-year" style="flex:0 0 72px;padding-left:.3rem;padding-right:.3rem;"></select>
+                </div>
+              </div>
+              <div class="sim-field">
+                <label class="sim-label">תאריך סיום עבודה</label>
+                <div style="display:flex;gap:.4rem;">
+                  <select class="sim-input" id="sv-end-day" style="flex:0 0 60px;padding-left:.3rem;padding-right:.3rem;"></select>
+                  <select class="sim-input" id="sv-end-month" style="flex:1;padding-left:.3rem;padding-right:.3rem;"></select>
+                  <select class="sim-input" id="sv-end-year" style="flex:0 0 72px;padding-left:.3rem;padding-right:.3rem;"></select>
+                </div>
+              </div>
+            </div>
+
+            <div class="sim-row" style="grid-template-columns:1fr 1fr;gap:1.25rem;margin-top:.25rem;">
+              <div class="sim-field">
+                <label class="sim-label">חופשה ללא תשלום (שנים)</label>
+                <input class="sim-input" type="number" id="sv-unpaid" value="0" min="0" max="30" step="0.5" inputmode="decimal" />
+              </div>
+              <div class="sim-field">
+                <label class="sim-label">שיעור הפיצויים</label>
+                <div class="sim-input-wrap">
+                  <input class="sim-input" type="number" id="sv-rate" value="100" min="0" max="200" step="1" inputmode="numeric" />
+                  <span class="sim-suffix">%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="sim-block">
+            <div class="sim-block-title"><i class="fa-solid fa-plus-circle"></i> תשלומים נוספים (השאר ריק אם אינו רלוונטי)</div>
+
+            <div class="sim-row" style="grid-template-columns:1fr 1fr;gap:1.25rem;">
+              <div class="sim-field">
+                <label class="sim-label">מענק הסתגלות (₪)</label>
+                <div class="sim-input-wrap">
+                  <input class="sim-input" type="number" id="sv-adjustment" placeholder="0" min="0" inputmode="numeric" />
+                  <span class="sim-suffix">₪</span>
+                </div>
+              </div>
+              <div class="sim-field">
+                <label class="sim-label">מענק בגין אי הודעה מוקדמת (₪)</label>
+                <div class="sim-input-wrap">
+                  <input class="sim-input" type="number" id="sv-notice" placeholder="0" min="0" inputmode="numeric" />
+                  <span class="sim-suffix">₪</span>
+                </div>
+              </div>
+            </div>
+            <div class="sim-row" style="grid-template-columns:1fr 1fr;gap:1.25rem;">
+              <div class="sim-field">
+                <label class="sim-label">פדיון ימי מחלה (₪)</label>
+                <div class="sim-input-wrap">
+                  <input class="sim-input" type="number" id="sv-sick" placeholder="0" min="0" inputmode="numeric" />
+                  <span class="sim-suffix">₪</span>
+                </div>
+              </div>
+              <div class="sim-field">
+                <label class="sim-label" style="font-size:.72rem;">מענק פרישה נוסף - אין לכלול פדיון ימי חופשה, תשלום בגין אי תחרות וכל תשלום שלא אגב הפרישה (₪)</label>
+                <div class="sim-input-wrap">
+                  <input class="sim-input" type="number" id="sv-extra" placeholder="0" min="0" inputmode="numeric" />
+                  <span class="sim-suffix">₪</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button class="sim-calc-btn" onclick="calcSeverance()">
+            <i class="fa-solid fa-calculator"></i> חשב
+          </button>
+
+          <!-- תוצאות -->
+          <div class="sim-result" id="sv-result" style="margin-top:1.75rem;">
+            <div class="sim-result-title">תוצאות החישוב</div>
+            <div class="sim-result-main" style="flex-direction:column;gap:.8rem;">
+              <div style="display:flex;justify-content:space-between;align-items:center;font-size:.92rem;">
+                <span style="color:rgba(255,255,255,.7);">תקופת עבודה</span>
+                <span style="font-weight:700;" id="sv-r-years">-</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;font-size:.92rem;">
+                <span style="color:rgba(255,255,255,.7);">פיצויי פיטורים ברוטו</span>
+                <span style="font-weight:700;" id="sv-r-gross">-</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;font-size:.92rem;">
+                <span style="color:rgba(255,255,255,.7);">סכום פטור ממס (פטור מוגדל)</span>
+                <span style="font-weight:700;color:#7ef0a0;" id="sv-r-exempt">-</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;font-size:.92rem;">
+                <span style="color:rgba(255,255,255,.7);">פיצויים חייבים במס</span>
+                <span style="font-weight:700;color:#ffb3b3;" id="sv-r-taxable">-</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;font-size:.92rem;">
+                <span style="color:rgba(255,255,255,.7);">תשלומים נוספים (הסתגלות, הודעה, מחלה, מענק)</span>
+                <span style="font-weight:700;" id="sv-r-extra">-</span>
+              </div>
+              <hr style="border:none;border-top:1px solid rgba(255,255,255,.2);margin:.25rem 0;" />
+              <div style="display:flex;justify-content:space-between;align-items:center;">
+                <span style="color:rgba(255,255,255,.85);font-weight:700;">סה"כ חבילת פרישה</span>
+                <span style="font-size:1.4rem;font-weight:900;color:var(--gold);" id="sv-r-total">-</span>
+              </div>
+            </div>
+            <div class="sim-disclaimer" style="margin-top:1rem;">
+              * החישוב מבוסס על תקרת הפטור המעודכנת לשנת 2026 - 13,750 ₪ לכל שנת עבודה (פטור מוגדל: מינימום בין משכורת × 150% לבין 13,750 ₪).<br>
+              * במידה ויש פיצויים בקרן פנסיה - ניתן להשאירם בקופה ולהמירם לקצבה חודשית פטורה ממס.<br>
+              * אינו מהווה ייעוץ מס. לתכנון מס מקצועי - פנה לטל גבאי.
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="site-footer">
+    <div class="footer-top">
+      <div class="container footer-top-inner">
+        <div class="footer-col footer-brand">
+          <a href="index.html" class="footer-logo">
+            <span class="logo-main">טל גבאי</span>
+            <span class="logo-sep">|</span>
+            <span class="logo-sub">תכנון פיננסי</span>
+          </a>
+          <p class="footer-tagline">ליווי אישי וממוקד לבכירים</p>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-col-title">קישורים מהירים</h4>
+          <ul class="footer-links">
+            <li><a href="index.html" class="footer-link"><i class="fa-solid fa-chevron-left"></i> דף הבית</a></li>
+            <li><a href="index.html#about" class="footer-link"><i class="fa-solid fa-chevron-left"></i> אודותנו</a></li>
+            <li><a href="index.html#services" class="footer-link"><i class="fa-solid fa-chevron-left"></i> שירותים</a></li>
+            <li><a href="holistic-checkup.html" class="footer-link"><i class="fa-solid fa-chevron-left"></i> צ'ק אפ הוליסטי</a></li>
+            <li><a href="index.html#contact" class="footer-link"><i class="fa-solid fa-chevron-left"></i> צור קשר</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-col-title">פרטי התקשרות</h4>
+          <ul class="footer-contact-list">
+            <li><i class="fa-solid fa-location-dot footer-contact-icon"></i><span>היצירה 19, רחובות</span></li>
+            <li><i class="fa-solid fa-phone footer-contact-icon"></i><span><a href="tel:074-7019277" class="footer-contact-link">074-7019277</a><br><a href="tel:052-8000556" class="footer-contact-link">052-8000556</a></span></li>
+            <li><i class="fa-solid fa-envelope footer-contact-icon"></i><span><a href="mailto:office@pf-invest.co.il" class="footer-contact-link">office@pf-invest.co.il</a></span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <p class="footer-copy">&copy; 2026 טל גבאי - תכנון פיננסי מתקדם לבכירים. כל הזכויות שמורות.</p>
+        <p class="footer-legal">מורשה על ידי רשות שוק ההון, ביטוח וחיסכון</p>
+        <p class="footer-disclaimer">המידע באתר זה הינו למטרות הכרות כללית בלבד ואינו מהווה ייעוץ השקעות, ייעוץ פנסיוני, ייעוץ מס או המלצה כלשהי. אין להסתמך עליו ללא קבלת ייעוץ מקצועי המותאם לנסיבות האישיות.</p>
+        <p class="footer-links-legal"><a href="accessibility.html" class="footer-legal-link">הצהרת נגישות</a><span class="footer-sep"> | </span><a href="privacy-policy.html" class="footer-legal-link">מדיניות פרטיות</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/972528000556" target="_blank" rel="noopener noreferrer" class="whatsapp-float" aria-label="WhatsApp">
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
+
+  <script src="script.js"></script>
+  <script>
+    function calcCompound() {
+      const PV      = parseFloat(document.getElementById('lump-sum').value)    || 0;
+      const PMT     = parseFloat(document.getElementById('monthly-dep').value)  || 0;
+      const annRate = parseFloat(document.getElementById('annual-return').value)|| 0;
+      const years   = parseFloat(document.getElementById('years').value)        || 0;
+      const netAnnual  = annRate;
+      const monthlyR   = Math.pow(1 + netAnnual / 100, 1 / 12) - 1;
+      const n          = years * 12;
+
+      let fv;
+      if (monthlyR === 0) {
+        fv = PV + PMT * n;
+      } else {
+        const growth = Math.pow(1 + monthlyR, n);
+        fv = PV * growth + PMT * (growth - 1) / monthlyR;
+      }
+
+      const totalDeposits = PV + PMT * n;
+      const totalProfit   = fv - totalDeposits;
+
+      const fmt = v => '₪' + Math.round(v).toLocaleString('he-IL');
+
+      document.getElementById('res-deposits').textContent = fmt(totalDeposits);
+      document.getElementById('res-profit').textContent   = fmt(totalProfit);
+      document.getElementById('res-total').textContent    = fmt(fv);
+
+      document.getElementById('compound-result').classList.add('show');
+    }
+
+    document.querySelectorAll('.calc-input').forEach(el => {
+      el.addEventListener('keydown', e => { if (e.key === 'Enter') calcCompound(); });
+    });
+
+    function switchTab(id, btn) {
+      document.querySelectorAll('.calc-panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.calc-tab-btn').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected','false'); });
+      document.getElementById('panel-' + id).classList.add('active');
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected','true');
+    }
+
+    /* ── Date dropdowns init ── */
+    (function() {
+      const MONTHS = ['ינואר','פברואר','מרץ','אפריל','מאי','יוני','יולי','אוגוסט','ספטמבר','אוקטובר','נובמבר','דצמבר'];
+      const now = new Date();
+
+      function fillDay(id, sel) {
+        for (let d = 1; d <= 31; d++) {
+          const o = document.createElement('option');
+          o.value = d; o.textContent = d;
+          if (d === sel) o.selected = true;
+          document.getElementById(id).appendChild(o);
+        }
+      }
+      function fillMonth(id, sel) {
+        MONTHS.forEach((m, i) => {
+          const o = document.createElement('option');
+          o.value = i + 1; o.textContent = m;
+          if (i + 1 === sel) o.selected = true;
+          document.getElementById(id).appendChild(o);
+        });
+      }
+      function fillYear(id, from, to, sel) {
+        for (let y = to; y >= from; y--) {
+          const o = document.createElement('option');
+          o.value = y; o.textContent = y;
+          if (y === sel) o.selected = true;
+          document.getElementById(id).appendChild(o);
+        }
+      }
+
+      fillDay('sv-start-day', 1);
+      fillMonth('sv-start-month', 1);
+      fillYear('sv-start-year', 1960, now.getFullYear(), now.getFullYear() - 10);
+
+      fillDay('sv-end-day', now.getDate());
+      fillMonth('sv-end-month', now.getMonth() + 1);
+      fillYear('sv-end-year', 1960, now.getFullYear(), now.getFullYear());
+    })();
+
+    /* ── Severance Calculator ── */
+    function calcSeverance() {
+      const salary    = parseFloat(document.getElementById('sv-salary').value)     || 0;
+      const startDate = new Date(
+        parseInt(document.getElementById('sv-start-year').value),
+        parseInt(document.getElementById('sv-start-month').value) - 1,
+        parseInt(document.getElementById('sv-start-day').value)
+      );
+      const endDate = new Date(
+        parseInt(document.getElementById('sv-end-year').value),
+        parseInt(document.getElementById('sv-end-month').value) - 1,
+        parseInt(document.getElementById('sv-end-day').value)
+      );
+      const unpaid    = parseFloat(document.getElementById('sv-unpaid').value)     || 0;
+      const rate      = parseFloat(document.getElementById('sv-rate').value)       || 100;
+      const adj       = parseFloat(document.getElementById('sv-adjustment').value) || 0;
+      const notice    = parseFloat(document.getElementById('sv-notice').value)     || 0;
+      const sick      = parseFloat(document.getElementById('sv-sick').value)       || 0;
+      const extra     = parseFloat(document.getElementById('sv-extra').value)      || 0;
+
+      /* שנות עבודה */
+      const msPerYear = 1000 * 60 * 60 * 24 * 365.25;
+      const rawYears  = (endDate - startDate) / msPerYear;
+      const years     = Math.max(rawYears - unpaid, 0);
+
+      /* פיצויים ברוטו */
+      const gross = salary * years * (rate / 100);
+
+      /* פטור מוגדל: מינימום בין שכר×150% ל-13,750 לכל שנה */
+      const CEILING = 13750;
+      const exemptPerYear = Math.min(salary * 1.5, CEILING);
+      const exempt  = exemptPerYear * years;
+      const taxable = Math.max(gross - exempt, 0);
+
+      const extras  = adj + notice + sick + extra;
+      const total   = gross + extras;
+
+      const fmt = v => '₪' + Math.round(v).toLocaleString('he-IL');
+      const yrs = y => {
+        const full = Math.floor(y);
+        const m    = Math.round((y - full) * 12);
+        return m > 0 ? `${full} שנים ו-${m} חודשים` : `${full} שנים`;
+      };
+
+      document.getElementById('sv-r-years').textContent   = yrs(years);
+      document.getElementById('sv-r-gross').textContent   = fmt(gross);
+      document.getElementById('sv-r-exempt').textContent  = fmt(exempt);
+      document.getElementById('sv-r-taxable').textContent = fmt(taxable);
+      document.getElementById('sv-r-extra').textContent   = fmt(extras);
+      document.getElementById('sv-r-total').textContent   = fmt(total);
+
+      const el = document.getElementById('sv-result');
+      el.classList.add('show');
+      el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    /* פתח לשונית לפי hash בכתובת - גם בטעינה ראשונית וגם בשינוי hash */
+    function activateTabFromHash() {
+      const hash = window.location.hash;
+      if (hash === '#retirement') {
+        const btn = document.querySelector('[aria-controls="panel-retirement"]');
+        if (btn) switchTab('retirement', btn);
+      } else if (hash === '#severance') {
+        const btn = document.querySelector('[aria-controls="panel-severance"]');
+        if (btn) switchTab('severance', btn);
+      } else if (!hash || hash === '#compound') {
+        const btn = document.querySelector('[aria-controls="panel-compound"]');
+        if (btn) switchTab('compound', btn);
+      }
+    }
+    activateTabFromHash();
+    window.addEventListener('hashchange', activateTabFromHash);
+
+    /* ── Retirement Simulator ── */
+    function simToggle(btn) {
+      const group = btn.dataset.group;
+      document.querySelectorAll(`[data-group="${group}"]`).forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
+
+    function simGetVal(group) {
+      const active = document.querySelector(`[data-group="${group}"].active`);
+      return active ? active.dataset.val : null;
+    }
+
+    /* מקדם המרה משוערב (annuity factor) לפי גיל פרישה ומין */
+    function getAnnuityFactor(retireAge, gender, hasPartner) {
+      /* ערכים קרובים לתקנות קרן הפנסיה הישראלית */
+      const base = {
+        m: { 55:270, 57:258, 60:243, 62:232, 65:216, 67:206, 70:190 },
+        f: { 55:305, 57:292, 60:274, 62:261, 65:243, 67:232, 70:213 }
+      };
+      const tbl = base[gender] || base['m'];
+      const ages = Object.keys(tbl).map(Number).sort((a,b)=>a-b);
+      let lo = ages[0], hi = ages[ages.length-1];
+      for (let i = 0; i < ages.length - 1; i++) {
+        if (retireAge >= ages[i] && retireAge <= ages[i+1]) { lo = ages[i]; hi = ages[i+1]; break; }
+      }
+      const t = hi === lo ? 0 : (retireAge - lo) / (hi - lo);
+      let factor = tbl[lo] + t * (tbl[hi] - tbl[lo]);
+      if (hasPartner === 'y') factor += 14; /* כיסוי שאירים מגדיל את המקדם */
+      return factor;
+    }
+
+    function calcRetirement() {
+      const age       = parseFloat(document.getElementById('s-age').value) || 0;
+      const retireAge = parseFloat(document.getElementById('s-retire-age').value) || 67;
+      const monthly   = parseFloat(document.getElementById('s-monthly').value) || 0;
+      const annReturn = parseFloat(document.getElementById('s-return').value) || 4.5;
+      const gender    = simGetVal('gender') || 'm';
+      const partner   = simGetVal('partner') || 'n';
+
+      const pension   = parseFloat(document.getElementById('s-pension').value)   || 0;
+      const managers  = parseFloat(document.getElementById('s-managers').value)  || 0;
+      const gemel     = parseFloat(document.getElementById('s-gemel').value)      || 0;
+      const other     = parseFloat(document.getElementById('s-other').value)      || 0;
+
+      const yearsLeft = Math.max(retireAge - age, 0);
+      const n         = yearsLeft * 12;
+      const rM        = Math.pow(1 + annReturn / 100, 1 / 12) - 1;
+      const totalNow  = pension + managers + gemel + other;
+
+      let fv;
+      if (rM === 0) {
+        fv = totalNow + monthly * n;
+      } else {
+        const g = Math.pow(1 + rM, n);
+        fv = totalNow * g + monthly * (g - 1) / rM;
+      }
+
+      const factor       = getAnnuityFactor(retireAge, gender, partner);
+      const monthlyPension = fv / factor;
+
+      const fmt  = v => '₪' + Math.round(v).toLocaleString('he-IL');
+      const fmtY = v => v + ' שנים';
+
+      document.getElementById('sr-pension').textContent = fmt(monthlyPension);
+      document.getElementById('sr-total').textContent   = fmt(fv);
+      document.getElementById('sr-years').textContent   = fmtY(yearsLeft);
+
+      document.getElementById('sim-result').classList.add('show');
+      document.getElementById('sim-result').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  </script>
+  <script src="search.js"></script>
+  <button class="back-to-top" id="back-to-top" aria-label="חזור לראש הדף">
+    <i class="fa-solid fa-chevron-up"></i>
+  </button>
+</body>
+</html>

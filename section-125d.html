@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>טל גבאי | הטבת מס לגימלאים - סעיף 125ד'</title>
+  <meta name="description" content="הטבה לפי סעיף 125ד' לגימלאים - פטור ממס רווחי הון על הכנסות מריבית וחיסכון. ערכים לשנת 2026: 15,000 ₪ ליחיד, 18,360 ₪ לזוג."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700;800&family=Heebo:wght@400;700;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    .page-hero{background:var(--navy);padding:5rem 0 4rem;text-align:center;position:relative;overflow:hidden;}
+    .page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 60% 40%,rgba(201,168,76,.12) 0%,transparent 65%);pointer-events:none;}
+    .page-hero h1{font-family:'Heebo',sans-serif;font-size:clamp(1.8rem,5vw,3rem);font-weight:900;color:var(--gold);margin-bottom:1rem;border:2px solid var(--gold);display:inline-block;padding:.5rem 2rem;border-radius:10px;}
+    .page-hero .hero-tagline{font-size:clamp(1rem,2.5vw,1.25rem);color:rgba(255,255,255,.85);max-width:700px;margin:1rem auto 0;line-height:1.7;}
+    .page-content{padding:5rem 0;background:var(--off-white);}
+    .page-intro{max-width:820px;margin:0 auto 4rem;background:var(--white);border-radius:var(--radius-lg);padding:2.5rem 3rem;box-shadow:var(--shadow-md);border-right:5px solid var(--gold);}
+    .page-intro h2{font-family:'Heebo',sans-serif;font-size:1.2rem;font-weight:900;color:var(--navy);margin-bottom:.8rem;}
+    .page-intro p{font-size:1.08rem;line-height:1.9;color:var(--text);margin-bottom:1.4rem;}
+    .page-intro p:last-child{margin-bottom:0;}
+    .page-intro ul{margin:.5rem 0 1.2rem 0;padding-right:0;list-style:none;}
+    .page-intro ul li{font-size:1.05rem;line-height:1.9;color:var(--text);margin-bottom:.3rem;text-align:right;}
+    .page-benefits{max-width:960px;margin:0 auto 4rem;}
+    .page-benefits h2{font-family:'Heebo',sans-serif;font-size:clamp(1.5rem,3vw,2rem);font-weight:900;color:var(--navy);text-align:center;margin-bottom:2rem;}
+    .benefits-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;}
+    .benefit-card{background:var(--white);border-radius:var(--radius-lg);padding:1.75rem 1.5rem;text-align:center;box-shadow:var(--shadow-sm);transition:transform .25s,box-shadow .25s;border-top:3px solid transparent;}
+    .benefit-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);border-top-color:var(--gold);}
+    .benefit-icon{font-size:2.2rem;color:var(--gold);margin-bottom:.9rem;}
+    .benefit-title{font-size:1rem;font-weight:800;color:var(--navy);margin-bottom:.5rem;}
+    .benefit-desc{font-size:.85rem;color:var(--dark-gray);line-height:1.65;}
+    /* Tables */
+    .tax-table-wrap{max-width:820px;margin:0 auto 4rem;overflow-x:auto;}
+    .tax-table-wrap h2{font-family:'Heebo',sans-serif;font-size:clamp(1.3rem,3vw,1.7rem);font-weight:900;color:var(--navy);text-align:center;margin-bottom:1.5rem;}
+    .tax-table{width:100%;border-collapse:collapse;background:var(--white);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-md);}
+    .tax-table thead{background:var(--navy);}
+    .tax-table thead th{color:var(--gold);font-family:'Heebo',sans-serif;font-size:.95rem;font-weight:700;padding:1rem 1.2rem;text-align:center;}
+    .tax-table tbody tr{border-bottom:1px solid var(--light-gray);}
+    .tax-table tbody tr:last-child{border-bottom:none;}
+    .tax-table tbody tr:hover{background:rgba(201,168,76,.06);}
+    .tax-table tbody td{padding:.9rem 1.2rem;font-size:.97rem;color:var(--text);text-align:center;line-height:1.6;}
+    .tax-table tbody td:first-child{font-weight:700;color:var(--navy);text-align:right;}
+    .tax-table .highlight-row td{background:rgba(201,168,76,.1);font-weight:700;}
+    /* Example boxes */
+    .example-grid{max-width:960px;margin:0 auto 4rem;display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;}
+    .example-box{background:var(--white);border-radius:var(--radius-lg);padding:2rem 1.75rem;box-shadow:var(--shadow-md);border-top:4px solid var(--gold);}
+    .example-box h3{font-family:'Heebo',sans-serif;font-size:1.15rem;font-weight:900;color:var(--navy);margin-bottom:1.2rem;display:flex;align-items:center;gap:.5rem;}
+    .example-box h3 i{color:var(--gold);}
+    .example-row{display:flex;justify-content:space-between;align-items:center;padding:.5rem 0;border-bottom:1px solid var(--light-gray);font-size:.97rem;}
+    .example-row:last-of-type{border-bottom:none;}
+    .example-label{color:var(--dark-gray);}
+    .example-val{font-weight:700;color:var(--navy);}
+    .example-val.gold{color:var(--gold);}
+    .example-val.green{color:#276749;}
+    .example-note{font-size:.82rem;color:var(--mid-gray);margin-top:1rem;line-height:1.6;}
+    /* Eligibility */
+    .eligibility-box{max-width:820px;margin:0 auto 4rem;background:var(--navy);border-radius:var(--radius-lg);padding:2.5rem 3rem;color:var(--white);}
+    .eligibility-box h2{font-family:'Heebo',sans-serif;font-size:1.35rem;font-weight:900;color:var(--gold);margin-bottom:1.2rem;}
+    .eligibility-box ul{list-style:none;padding:0;margin:0;}
+    .eligibility-box ul li{font-size:1.02rem;line-height:1.8;color:rgba(255,255,255,.88);padding:.3rem 0;display:flex;align-items:flex-start;gap:.7rem;}
+    .eligibility-box ul li i{color:var(--gold);margin-top:.3rem;flex-shrink:0;}
+    .page-cta{background:var(--navy);padding:4rem 0;text-align:center;}
+    .page-cta h2{font-family:'Heebo',sans-serif;font-size:clamp(1.5rem,3.5vw,2.2rem);font-weight:900;color:var(--white);margin-bottom:.75rem;}
+    .page-cta p{color:rgba(255,255,255,.75);font-size:1.05rem;margin-bottom:2rem;}
+    .cta-buttons{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+    .btn-white{background:var(--white);color:var(--navy);font-weight:800;}
+    .btn-white:hover{background:var(--off-white);}
+    .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:2000;align-items:center;justify-content:center;padding:1rem;}
+    .modal-overlay.open{display:flex;}
+    .modal-box{background:var(--white);border-radius:var(--radius-lg);padding:2.2rem 2rem;width:100%;max-width:500px;max-height:90vh;overflow-y:auto;position:relative;box-shadow:var(--shadow-lg);}
+    .modal-close{position:absolute;top:1rem;left:1rem;background:none;border:none;font-size:1.4rem;color:var(--mid-gray);cursor:pointer;}
+    .modal-title{font-family:'Heebo',sans-serif;font-size:1.3rem;font-weight:900;color:var(--navy);text-align:center;margin-bottom:.3rem;}
+    .modal-subtitle{font-size:.88rem;color:var(--dark-gray);text-align:center;margin-bottom:1.75rem;}
+    .modal-form{display:flex;flex-direction:column;gap:.9rem;}
+    .modal-row{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;}
+    .modal-success{display:none;flex-direction:column;align-items:center;gap:.75rem;padding:2rem 0;text-align:center;}
+    .modal-success i{font-size:2.8rem;color:#48bb78;}
+    .modal-success h3{font-size:1.2rem;font-weight:800;color:var(--navy);}
+    @media(max-width:768px){
+      .page-hero{padding:3rem 0 2.5rem;}
+      .page-intro{padding:1.75rem 1.25rem;border-right-width:4px;}
+      .page-intro p{font-size:1rem;}
+      .benefits-grid{grid-template-columns:1fr 1fr;}
+      .example-grid{grid-template-columns:1fr;}
+      .eligibility-box{padding:1.75rem 1.25rem;}
+      .page-cta{padding:3rem 0;}
+      .modal-row{grid-template-columns:1fr;}
+      .tax-table thead th{font-size:.82rem;padding:.75rem .6rem;}
+      .tax-table tbody td{font-size:.88rem;padding:.7rem .6rem;}
+    }
+    @media(max-width:480px){
+      .benefits-grid{grid-template-columns:1fr;}
+      .page-hero h1{font-size:1.5rem;padding:.4rem 1rem;}
+    }
+  </style>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5F91Q1DPZV"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-5F91Q1DPZV',{'anonymize_ip':true});</script>
+</head>
+<body>
+  <a href="#content-start" class="skip-link">דלג לתוכן הראשי</a>
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo header-logo" aria-label="עמוד הבית">
+        <span class="logo-row"><span class="logo-main">טל גבאי</span><span class="logo-sep">|</span><span class="logo-sub">תכנון פיננסי</span></span>
+        <span class="logo-tagline">ליווי אישי וממוקד לבכירים</span>
+      </a>
+      <nav class="main-nav" aria-label="ניווט ראשי">
+        <ul class="nav-list">
+          <li>
+            <a href="index.html" class="nav-link nav-home-icon" aria-label="דף הבית" title="דף הבית"><i class="fa-solid fa-house"></i></a>
+          </li>
+          <li class="nav-dropdown">
+            <a href="#" class="nav-link dropdown-toggle" onclick="return false;">תחומי התמחות <i class="fa-solid fa-chevron-down fa-xs"></i></a>
+            <ul class="dropdown-menu">
+              <li><a href="family-office.html" class="dropdown-item"><span lang="en">Family Office</span></a></li>
+              <li><a href="financial-planning.html" class="dropdown-item">תכנון פיננסי</a></li>
+              <li><a href="retirement-planning.html" class="dropdown-item">תכנון פרישה</a></li>
+              <li><a href="early-retirement.html" class="dropdown-item">תכנון פרישה מוקדמת</a></li>
+            </ul>
+          </li>
+          <li class="nav-dropdown">
+            <a href="market-status.html" class="nav-link dropdown-toggle">תמונת מצב בשווקים <i class="fa-solid fa-chevron-down fa-xs"></i></a>
+            <ul class="dropdown-menu">
+              <li><a href="https://www.meitav.co.il/" class="dropdown-item" target="_blank" rel="noopener">בית השקעות מיטב</a></li>
+              <li><a href="https://www.fnx.co.il/" class="dropdown-item" target="_blank" rel="noopener">סקירה חודשית - הפניקס</a></li>
+              <li><a href="https://www.sponsor.co.il/" class="dropdown-item" target="_blank" rel="noopener">ספונסר - ניתוחי שוק</a></li>
+              <li><a href="https://finance.yahoo.com/" class="dropdown-item" target="_blank" rel="noopener">Yahoo Finance</a></li>
+              <li><a href="https://il.investing.com/" class="dropdown-item" target="_blank" rel="noopener"><span lang="en">Investing.com</span> ישראל</a></li>
+              <li><a href="https://www.bloomberg.com/markets" class="dropdown-item" target="_blank" rel="noopener">Bloomberg Markets</a></li>
+            </ul>
+          </li>
+          <li class="nav-dropdown">
+            <a href="faq.html" class="nav-link dropdown-toggle">שאלות ותשובות <i class="fa-solid fa-chevron-down fa-xs"></i></a>
+            <ul class="dropdown-menu">
+              <li><a href="faq.html#faq-pension" class="dropdown-item">קרן פנסיה</a></li>
+              <li><a href="faq.html#faq-managers" class="dropdown-item">ביטוח מנהלים</a></li>
+              <li><a href="faq.html#faq-hishtalmut" class="dropdown-item">קרן השתלמות</a></li>
+              <li><a href="faq.html#faq-gemel" class="dropdown-item">קופת גמל וחיסכון</a></li>
+              <li><a href="faq.html#faq-retirement" class="dropdown-item">תכנון פרישה</a></li>
+              <li><a href="faq.html#faq-insurance" class="dropdown-item">ביטוח וכיסויים</a></li>
+              <li><a href="faq.html#faq-transfer" class="dropdown-item">ניוד, מעבר וניהול</a></li>
+              <li><a href="faq.html#faq-services" class="dropdown-item">שירותי תכנון פיננסי</a></li>
+            </ul>
+          </li>
+          <li class="nav-dropdown">
+            <a href="#" class="nav-link dropdown-toggle" onclick="return false;">פעולות נפוצות <i class="fa-solid fa-chevron-down fa-xs"></i></a>
+            <ul class="dropdown-menu">
+              <li><a href="documents.html" class="dropdown-item">מסלקה פנסיונית</a></li>
+              <li><a href="holistic-checkup.html" class="dropdown-item">צ'ק אפ פיננסי</a></li>
+              <li class="dropdown-divider"></li>
+              <li><a href="common-actions.html#track-change" class="dropdown-item">שינוי מסלול השקעה</a></li>
+              <li><a href="common-actions.html#withdrawal" class="dropdown-item">משיכת כספים</a></li>
+              <li><a href="common-actions.html#loan" class="dropdown-item">לקיחת הלוואה דיגיטלית</a></li>
+              <li><a href="common-actions.html#beneficiaries" class="dropdown-item">עדכון מוטבים</a></li>
+              <li><a href="common-actions.html#personal-details" class="dropdown-item">עדכון פרטים אישיים</a></li>
+              <li><a href="common-actions.html#deposit" class="dropdown-item">הפקדה לקופה או לקרן</a></li>
+              <li><a href="common-actions.html#standing-order" class="dropdown-item">טופס הוראת קבע</a></li>
+              <li><a href="common-actions.html#poa" class="dropdown-item">ייפוי כוח לקבלת מידע</a></li>
+            </ul>
+          </li>
+          <li class="nav-dropdown">
+
+            <a href="#" class="nav-link dropdown-toggle" onclick="return false;">מכשירים פנסיוניים <i class="fa-solid fa-chevron-down fa-xs"></i></a>
+
+            <ul class="dropdown-menu">
+
+              <li><a href="savings-policies.html" class="dropdown-item">פוליסות חיסכון</a></li>
+
+              <li><a href="managed-portfolios.html" class="dropdown-item">תיקי השקעות מנוהלים</a></li>
+
+              <li><a href="structured-products.html" class="dropdown-item">מוצרים מובנים (סטרקצ'רים)</a></li>
+
+              <li><a href="mutual-funds-etf.html" class="dropdown-item">קרנות נאמנות וקרנות סל (ETF)</a></li>
+
+              <li><a href="alternative-investments.html" class="dropdown-item">השקעות אלטרנטיביות</a></li>
+
+              <li><a href="hedge-funds.html" class="dropdown-item">קרנות גידור בנאמנות</a></li>
+
+              <li><a href="rsu-espp-options.html" class="dropdown-item"><span lang="en">RSU, ESPP</span> ואופציות</a></li>
+
+            </ul>
+
+          </li>
+
+          <li class="nav-dropdown">
+
+            <a href="#" class="nav-link dropdown-toggle" onclick="return false;">מכשירים פיננסיים <i class="fa-solid fa-chevron-down fa-xs"></i></a>
+
+            <ul class="dropdown-menu">
+
+              <li><a href="pension-fund.html" class="dropdown-item">קרן פנסיה</a></li>
+
+              <li><a href="matria-bituchit.html" class="dropdown-item">מטריה ביטוחית</a></li>
+
+              <li><a href="managers-insurance.html" class="dropdown-item">ביטוח מנהלים</a></li>
+
+              <li><a href="gemel-190.html" class="dropdown-item">קופת גמל 190</a></li>
+
+              <li><a href="gemel-hashkaa.html" class="dropdown-item">קופת גמל להשקעה</a></li>
+
+              <li><a href="keren-hishtalmut.html" class="dropdown-item">קרן השתלמות</a></li>
+
+              <li><a href="section-125d.html" class="dropdown-item">הטבה לפי סעיף 125ד' לגימלאים</a></li>
+
+            </ul>
+
+          </li>
+          <li class="nav-dropdown">
+            <a href="calculators.html" class="nav-link dropdown-toggle">מחשבונים <i class="fa-solid fa-chevron-down fa-xs"></i></a>
+            <ul class="dropdown-menu">
+              <li><a href="calculators.html" class="dropdown-item">מחשבון ריבית דה ריבית</a></li>
+              <li><a href="calculators.html#retirement" class="dropdown-item">סימולטור פרישה</a></li>
+              <li><a href="calculators.html#severance" class="dropdown-item">מחשבון פיצויי פיטורים</a></li>
+            </ul>
+          </li>
+</ul>
+      </nav>
+      <div class="header-left" style="display:flex;align-items:center;gap:.6rem;">
+        <a href="en/index.html" title="English" aria-label="Switch to English" lang="en" class="lang-switch-btn" style="font-size:1.47rem;text-decoration:none;line-height:1;color:var(--gold);font-weight:700;letter-spacing:.03em;">EN</a>
+        <a href="https://portal.roeto.co.il/pfinvest/login" class="btn-personal-area" target="_blank" rel="noopener"><i class="fa-solid fa-key"></i> איזור אישי</a>
+      </div>
+      <button class="search-toggle" id="search-toggle" aria-label="חיפוש באתר" aria-expanded="false"><i class="fa-solid fa-magnifying-glass"></i> חיפוש</button>
+      <button class="hamburger" id="hamburger" aria-label="פתח תפריט" aria-expanded="false">
+        <span class="hamburger-line"></span><span class="hamburger-line"></span><span class="hamburger-line"></span>
+      </button>
+    </div>
+    <nav class="mobile-menu" id="mobile-menu" aria-label="תפריט נייד" aria-hidden="true">
+      <ul class="mobile-nav-list">
+        <li><a href="index.html" class="mobile-nav-link">דף הבית</a></li>
+        <li><a href="financial-planning.html" class="mobile-nav-link">תכנון פיננסי</a></li>
+        <li><a href="early-retirement.html" class="mobile-nav-link">תכנון פרישה מוקדמת</a></li>
+        <li><a href="retirement-planning.html" class="mobile-nav-link" style="padding-right:2rem;"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> תכנון פרישה</a></li>
+        <li><a href="early-retirement.html" class="mobile-nav-link" style="padding-right:2rem;"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> תכנון פרישה מוקדמת</a></li>
+        <li><a href="family-office.html" class="mobile-nav-link"><span lang="en">Family Office</span></a></li>
+        <li><a href="holistic-checkup.html" class="mobile-nav-link">צ'ק אפ הוליסטי</a></li>
+        <li><a href="documents.html" class="mobile-nav-link">מסלקה פנסיונית</a></li>
+        <li><a href="faq.html" class="mobile-nav-link">שאלות ותשובות</a></li>
+        <li><a href="common-actions.html" class="mobile-nav-link">פעולות נפוצות</a></li>
+        <li style="padding:.4rem 1.5rem;font-size:.75rem;color:rgba(255,255,255,.4);font-weight:700;letter-spacing:.05em;">מכשירים פנסיוניים</li>
+
+        <li><a href="savings-policies.html" class="mobile-nav-link" style="padding-right:2rem;"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> פוליסות חיסכון</a></li>
+
+        <li><a href="managed-portfolios.html" class="mobile-nav-link" style="padding-right:2rem;"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> תיקי השקעות מנוהלים</a></li>
+
+        <li><a href="structured-products.html" class="mobile-nav-link" style="padding-right:2rem;"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> מוצרים מובנים (סטרקצ'רים)</a></li>
+
+        <li><a href="mutual-funds-etf.html" class="mobile-nav-link" style="padding-right:2rem;"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> קרנות נאמנות וקרנות סל (ETF)</a></li>
+
+        <li><a href="alternative-investments.html" class="mobile-nav-link" style="padding-right:2rem;"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> השקעות אלטרנטיביות</a></li>
+
+        <li><a href="hedge-funds.html" class="mobile-nav-link" style="padding-right:2rem;"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> קרנות גידור בנאמנות</a></li>
+
+        <li><a href="rsu-espp-options.html" class="mobile-nav-link"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> <span lang="en">RSU, ESPP</span> ואופציות</a></li>
+
+        <li style="padding:.4rem 1.5rem;font-size:.75rem;color:rgba(255,255,255,.4);font-weight:700;letter-spacing:.05em;">מכשירים פיננסיים</li>
+
+        <li><a href="pension-fund.html" class="mobile-nav-link" style="padding-right:2rem;"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> קרן פנסיה</a></li>
+
+        <li><a href="matria-bituchit.html" class="mobile-nav-link" style="padding-right:2rem;"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> מטריה ביטוחית</a></li>
+
+        <li><a href="managers-insurance.html" class="mobile-nav-link" style="padding-right:2rem;"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> ביטוח מנהלים</a></li>
+
+        <li><a href="gemel-190.html" class="mobile-nav-link" style="padding-right:2rem;"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> קופת גמל 190</a></li>
+
+        <li><a href="gemel-hashkaa.html" class="mobile-nav-link" style="padding-right:2rem;"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> קופת גמל להשקעה</a></li>
+
+        <li><a href="keren-hishtalmut.html" class="mobile-nav-link" style="padding-right:2rem;"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> קרן השתלמות</a></li>
+
+        <li><a href="section-125d.html" class="mobile-nav-link" style="padding-right:2rem;"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> הטבה לפי סעיף 125ד'</a></li>
+                <li><a href="market-status.html" class="mobile-nav-link">תמונת מצב בשווקים</a></li>
+        <li><a href="https://www.meitav.co.il/" class="mobile-nav-link" style="padding-right:2rem;" target="_blank" rel="noopener"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> בית השקעות מיטב</a></li>
+        <li><a href="https://www.fnx.co.il/" class="mobile-nav-link" style="padding-right:2rem;" target="_blank" rel="noopener"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> סקירה חודשית - הפניקס</a></li>
+        <li><a href="https://www.sponsor.co.il/" class="mobile-nav-link" style="padding-right:2rem;" target="_blank" rel="noopener"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> ספונסר - ניתוחי שוק</a></li>
+        <li><a href="https://finance.yahoo.com/" class="mobile-nav-link" style="padding-right:2rem;" target="_blank" rel="noopener"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> <span lang="en">Yahoo Finance</span></a></li>
+        <li><a href="https://il.investing.com/" class="mobile-nav-link" style="padding-right:2rem;" target="_blank" rel="noopener"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> <span lang="en">Investing.com</span> ישראל</a></li>
+        <li><a href="https://www.bloomberg.com/markets" class="mobile-nav-link" style="padding-right:2rem;" target="_blank" rel="noopener"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> <span lang="en">Bloomberg Markets</span></a></li>
+<li><a href="index.html#testimonials" class="mobile-nav-link">המלצות</a></li>
+        <li style="padding:.4rem 1.5rem;font-size:.75rem;color:rgba(255,255,255,.4);font-weight:700;letter-spacing:.05em;">מחשבונים</li>
+        <li><a href="calculators.html" class="mobile-nav-link"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> ריבית דה ריבית</a></li>
+        <li><a href="tel:052-8000556" class="mobile-nav-link mobile-phone"><i class="fa-solid fa-phone"></i> 052-8000556</a></li>
+        <li><a href="https://wa.me/9720528000556" class="mobile-nav-link"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a></li>
+      </ul>
+    </nav>
+  </header>
+  <div class="search-overlay" id="search-overlay" role="search" aria-hidden="true">
+    <div class="search-inner">
+      <input type="search" class="search-input" id="search-input" placeholder="חיפוש... (פנסיה, פרישה, ביטוח, גמל...)" autocomplete="off" dir="rtl" aria-label="חיפוש באתר" />
+      <button class="search-close" id="search-close" aria-label="סגור חיפוש"><i class="fa-solid fa-xmark"></i></button>
+      <ul class="search-results" id="search-results" role="listbox" aria-label="תוצאות חיפוש"></ul>
+    </div>
+  </div>
+  <div id="content-start" tabindex="-1"></div>
+
+  <section class="page-hero">
+    <div class="container">
+      <h1>הטבה לפי סעיף 125ד' לגימלאים</h1>
+      <p class="hero-tagline"><strong style="color:var(--white)">פטור ממס רווחי הון על הכנסות מריבית וחיסכון - הטבת מס ייחודית לגמלאים בישראל</strong></p>
+    </div>
+  </section>
+
+  <section class="page-content">
+    <div class="container">
+
+      <!-- What is Section 125D -->
+      <div class="page-intro fade-in-up">
+        <h2 style="text-align:center;">מהי ההטבה לפי סעיף 125ד'?</h2>
+        <p>סעיף 125ד' לפקודת מס הכנסה מעניק לגמלאים שהגיעו לגיל פרישה <strong>פטור ממס על הכנסות מריבית ורווחי הון</strong><br>עד לתקרה הקבועה בחוק. ההטבה מאפשרת לגמלאים לקבל תשואה על חסכונותיהם מבלי לשלם מס, ובכך לשפר את הכנסתם הפנויה בשנים שלאחר הפרישה.</p>
+        <p>ההטבה חלה על הכנסות מ<strong>פיקדונות בנקאיים, תוכניות חיסכון, אגרות חוב ממשלתיות, קרנות נאמנות ופוליסות חיסכון</strong> - כל עוד ההכנסה נובעת מהשקעה ולא מעסק. תקרת הפטור מתעדכנת מדי שנה בהתאם למדד המחירים לצרכן.</p>
+        <p><strong>בשנת 2026</strong> תקרת הפטור ממס רווחי הון לפי סעיף 125ד(ג) עומדת על <strong>15,000 ₪ ליחיד ו-18,360 ₪ לזוג</strong>, כשמס רווחי ההון הרגיל עומד על 25%. כלומר, חיסכון מס של עד 3,750 ₪ ליחיד ועד 4,590 ₪ לזוג בשנה.</p>
+      </div>
+
+      <!-- Eligibility -->
+      <div class="eligibility-box fade-in-up">
+        <h2><i class="fa-solid fa-circle-check"></i> מי זכאי להטבה?</h2>
+        <ul>
+          <li><i class="fa-solid fa-chevron-left fa-xs"></i>גברים שהגיעו לגיל 67 ומעלה</li>
+          <li><i class="fa-solid fa-chevron-left fa-xs"></i>נשים שהגיעו לגיל 62 ומעלה (בהתאם לגיל הפרישה הקבוע בחוק)</li>
+          <li><i class="fa-solid fa-chevron-left fa-xs"></i>תושבי ישראל בלבד</li>
+          <li><i class="fa-solid fa-chevron-left fa-xs"></i>ההכנסה מריבית / רווח הון אינה מגיעה מעסק או משלח יד</li>
+          <li><i class="fa-solid fa-chevron-left fa-xs"></i>זוגות נשואים זכאים לתקרה מוגדלת של 18,360 ₪ - גם אם רק אחד מהם הגיע לגיל הפרישה, בתנאי שבן/בת הזוג השני עומד/ת בתנאי גיל הפרישה</li>
+        </ul>
+      </div>
+
+      <!-- 2026 values table -->
+      <div class="tax-table-wrap fade-in-up">
+        <h2>תקרות הפטור לשנת 2026</h2>
+        <table class="tax-table" aria-label="תקרות פטור ממס לפי סעיף 125ד' לשנת 2026">
+          <thead>
+            <tr>
+              <th>סוג הזכאי</th>
+              <th>תקרת הפטור השנתית</th>
+              <th>שיעור מס רווחי הון</th>
+              <th>חיסכון מס מקסימלי</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="highlight-row">
+              <td>יחיד</td>
+              <td>15,000 ₪</td>
+              <td>25%</td>
+              <td>3,750 ₪</td>
+            </tr>
+            <tr class="highlight-row">
+              <td>זוג</td>
+              <td>18,360 ₪</td>
+              <td>25%</td>
+              <td>4,590 ₪</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Numerical examples -->
+      <div style="max-width:960px;margin:0 auto 2rem;">
+        <h2 style="font-family:'Heebo',sans-serif;font-size:clamp(1.5rem,3vw,2rem);font-weight:900;color:var(--navy);text-align:center;margin-bottom:2rem;">דוגמאות מספריות לשנת 2026</h2>
+      </div>
+      <div class="example-grid fade-in-up">
+        <div class="example-box">
+          <h3><i class="fa-solid fa-user"></i> דוגמה ליחיד</h3>
+          <div class="example-row">
+            <span class="example-label">סכום חיסכון / השקעה</span>
+            <span class="example-val">300,000 ₪</span>
+          </div>
+          <div class="example-row">
+            <span class="example-label">תשואה שנתית</span>
+            <span class="example-val">5%</span>
+          </div>
+          <div class="example-row">
+            <span class="example-label">הכנסה מריבית / רווח שנתי</span>
+            <span class="example-val">15,000 ₪</span>
+          </div>
+          <div class="example-row">
+            <span class="example-label">תקרת הפטור לפי סעיף 125ד'</span>
+            <span class="example-val gold">15,000 ₪</span>
+          </div>
+          <div class="example-row">
+            <span class="example-label">סכום פטור ממס</span>
+            <span class="example-val gold">15,000 ₪ (100%)</span>
+          </div>
+          <div class="example-row">
+            <span class="example-label">מס שהיה משולם ללא הפטור (25%)</span>
+            <span class="example-val">3,750 ₪</span>
+          </div>
+          <div class="example-row">
+            <span class="example-label">חיסכון במס בפועל</span>
+            <span class="example-val green">3,750 ₪</span>
+          </div>
+          <p class="example-note">* בדוגמה זו כל הרווח השנתי נמצא בגבול תקרת הפטור, ולכן אין תשלום מס כלל.</p>
+        </div>
+        <div class="example-box">
+          <h3><i class="fa-solid fa-user-group"></i> דוגמה לזוג</h3>
+          <div class="example-row">
+            <span class="example-label">סכום חיסכון / השקעה</span>
+            <span class="example-val">400,000 ₪</span>
+          </div>
+          <div class="example-row">
+            <span class="example-label">תשואה שנתית</span>
+            <span class="example-val">5%</span>
+          </div>
+          <div class="example-row">
+            <span class="example-label">הכנסה מריבית / רווח שנתי</span>
+            <span class="example-val">20,000 ₪</span>
+          </div>
+          <div class="example-row">
+            <span class="example-label">תקרת הפטור לפי סעיף 125ד'</span>
+            <span class="example-val gold">18,360 ₪</span>
+          </div>
+          <div class="example-row">
+            <span class="example-label">סכום פטור ממס</span>
+            <span class="example-val gold">18,360 ₪</span>
+          </div>
+          <div class="example-row">
+            <span class="example-label">סכום חייב במס</span>
+            <span class="example-val">1,640 ₪</span>
+          </div>
+          <div class="example-row">
+            <span class="example-label">מס בפועל (25% מ-1,640)</span>
+            <span class="example-val">410 ₪</span>
+          </div>
+          <div class="example-row">
+            <span class="example-label">חיסכון במס בפועל</span>
+            <span class="example-val green">4,590 ₪</span>
+          </div>
+          <p class="example-note">* הזוג חסך 4,590 ₪ ושילם רק 410 ₪ מס על החלק שמעבר לתקרה.</p>
+        </div>
+      </div>
+
+      <!-- Eligible instruments -->
+      <div class="page-benefits" style="margin-top:4rem;">
+        <h2>מכשירים פיננסיים הזכאים להטבה</h2>
+        <div class="benefits-grid">
+          <div class="benefit-card fade-in-up">
+            <div class="benefit-icon"><i class="fa-solid fa-building-columns"></i></div>
+            <div class="benefit-title">פיקדונות בנקאיים</div>
+            <div class="benefit-desc">ריבית על פיקדונות ותוכניות חיסכון בכל הבנקים זכאית לפטור עד לתקרה.</div>
+          </div>
+          <div class="benefit-card fade-in-up">
+            <div class="benefit-icon"><i class="fa-solid fa-shield-halved"></i></div>
+            <div class="benefit-title">פוליסות חיסכון</div>
+            <div class="benefit-desc">רווחים ממדיניות חיסכון בחברות ביטוח - בעת המשיכה - זכאים לפטור.</div>
+          </div>
+          <div class="benefit-card fade-in-up">
+            <div class="benefit-icon"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+            <div class="benefit-title">אגרות חוב ממשלתיות</div>
+            <div class="benefit-desc">ריבית ורווחי הון על אגרות חוב ממשלתיות ואג"ח מדינה זכאים לפטור.</div>
+          </div>
+          <div class="benefit-card fade-in-up">
+            <div class="benefit-icon"><i class="fa-solid fa-chart-line"></i></div>
+            <div class="benefit-title">קרנות נאמנות</div>
+            <div class="benefit-desc">חלוקות ריבית מקרנות נאמנות אגרות חוב ורווחים בעת פדיון.</div>
+          </div>
+          <div class="benefit-card fade-in-up">
+            <div class="benefit-icon"><i class="fa-solid fa-coins"></i></div>
+            <div class="benefit-title">קופות גמל וחיסכון</div>
+            <div class="benefit-desc">הכנסות מקופות גמל להשקעה ומוצרי חיסכון ייעודיים - בכפוף לתנאי הסעיף.</div>
+          </div>
+          <div class="benefit-card fade-in-up">
+            <div class="benefit-icon"><i class="fa-solid fa-landmark"></i></div>
+            <div class="benefit-title">אגרות חוב קונצרניות</div>
+            <div class="benefit-desc">ריבית ורווח הון על אגרות חוב של חברות בישראל - בכפוף לאחזקה ברמת היחיד.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- How to claim -->
+      <div class="page-intro fade-in-up">
+        <h2>כיצד ממשים את ההטבה?</h2>
+        <p>לרוב, הפטור נתבע <strong>ישירות מהגוף המשלם</strong> (בנק, חברת ביטוח, בית השקעות) על ידי הגשת טופס הצהרה על גיל ועמידה בתנאים. הגוף ינכה מס מופחת או לא ינכה כלל עד לתקרה.</p>
+        <p style="margin-bottom:.3rem;"><strong>שלבים מעשיים:</strong></p>
+        <ul>
+          <li>פנו לסניף הבנק / לחברת הביטוח / לבית ההשקעות שלכם והודיעו על הזכאות</li>
+          <li>מלאו טופס הצהרה על גיל פרישה וזכאות לפי סעיף 125ד'</li>
+          <li>בדקו שהניכוי במקור מבוצע נכון - לא ינוכה מס על ההכנסה עד לתקרה</li>
+          <li>אם נוכה מס ביתר, ניתן לתבוע החזר מס דרך דוח שנתי לרשות המסים</li>
+        </ul>
+        <p style="margin-top:1.4rem;">חשוב: <strong>ההטבה אינה ניתנת אוטומטית</strong> - יש לדאוג לדווח על הזכאות לכל גוף פיננסי בנפרד.<br>תיאום ומעקב מסודר עם מתכנן פיננסי מוסמך יכולים להבטיח שלא תפספסו שקל.</p>
+      </div>
+
+      <!-- Important notes -->
+      <div class="page-intro fade-in-up" style="border-right-color:var(--navy);">
+        <h2>נקודות חשובות לידיעה</h2>
+        <p><strong>התקרה היא שנתית ומצטברת:</strong> סך כל ההכנסות מריבית ורווחי הון מכלל המקורות נחשב ביחד. אם חרגתם מהתקרה, תשלמו מס רק על החלק החריג.</p>
+        <p><strong>הפחתת אינפלציה:</strong> המס מחושב על הרווח הריאלי (בניכוי האינפלציה), כך שבפועל שיעור המס האפקטיבי נמוך מ-25%.</p>
+        <p><strong>תיאום ביחס לקצבה:</strong> ההטבה לפי סעיף 125ד' עצמאית מניכוי המס על קצבאות - שתיהן יכולות להתקיים בו-זמנית. פנסיה ממוסה בנפרד לפי סעיף 9א'.</p>
+        <p><strong>עדכון שנתי:</strong> תקרת הפטור מתעדכנת ועולה בכל שנה בהתאם לשינויים במדד המחירים לצרכן.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="page-cta">
+    <div class="container">
+      <h2>רוצים לוודא שאתם מממשים את הטבת המס במלואה?</h2>
+      <p style="font-weight:800;color:var(--gold)">נבחן את מצבכם הפיננסי ונוודא שכל ההטבות להן אתם זכאים - ממומשות בפועל ✔️.</p>
+      <div class="cta-buttons">
+        <button class="btn btn-gold btn-lg" onclick="document.getElementById('meeting-modal').classList.add('open')"><i class="fa-solid fa-calendar-check"></i> קביעת פגישה</button>
+        <a href="tel:052-8000556" class="btn btn-white btn-lg"><i class="fa-solid fa-phone"></i> 052-8000556</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="modal-overlay" id="meeting-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-box">
+      <button class="modal-close" onclick="document.getElementById('meeting-modal').classList.remove('open')" aria-label="סגור">&times;</button>
+      <div id="modal-form-wrap">
+        <p class="modal-title" id="modal-title"><i class="fa-solid fa-calendar-check" style="color:var(--gold);margin-left:.4rem"></i> קביעת פגישה</p>
+        <p class="modal-subtitle">בחרו תאריך ושעה מועדפים - נאשר בהקדם</p>
+        <form class="modal-form" id="meeting-form">
+          <div class="modal-row">
+            <div class="form-group"><label class="form-label" for="meet-name">שם מלא <span style="color:#e53e3e">*</span></label><input type="text" id="meet-name" name="שם מלא" class="form-input" required placeholder="ישראל ישראלי"/></div>
+            <div class="form-group"><label class="form-label" for="meet-phone">פלאפון <span style="color:#e53e3e">*</span></label><input type="tel" id="meet-phone" name="פלאפון" class="form-input" required placeholder="050-0000000"/></div>
+          </div>
+          <div class="form-group"><label class="form-label" for="meet-email">אימייל <span style="color:#e53e3e">*</span></label><input type="email" id="meet-email" name="אימייל" class="form-input" required placeholder="example@email.com"/></div>
+          <div class="modal-row">
+            <div class="form-group"><label class="form-label" for="meet-date">תאריך מועדף <span style="color:#e53e3e">*</span></label><input type="date" id="meet-date" name="תאריך מועדף" class="form-input" required/></div>
+            <div class="form-group"><label class="form-label" for="meet-time">שעה מועדפת <span style="color:#e53e3e">*</span></label>
+              <select id="meet-time" name="שעה מועדפת" class="form-select" required>
+                <option value="">בחרו שעה</option>
+                <option>08:00</option><option>08:30</option><option>09:00</option><option>09:30</option>
+                <option>10:00</option><option>10:30</option><option>11:00</option><option>11:30</option>
+                <option>12:00</option><option>12:30</option><option>13:00</option><option>13:30</option>
+                <option>14:00</option><option>14:30</option><option>15:00</option><option>15:30</option>
+                <option>16:00</option><option>16:30</option><option>17:00</option><option>17:30</option>
+                <option>18:00</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group"><label class="form-label" for="meet-notes">הערות (אופציונלי)</label><textarea id="meet-notes" name="הערות" class="form-textarea" rows="2" placeholder="נושא הפגישה, בקשות מיוחדות..."></textarea></div>
+          <button type="submit" class="btn btn-gold" style="width:100%;justify-content:center;padding:.85rem;font-size:1rem;border-radius:var(--radius)"><i class="fa-solid fa-paper-plane"></i> שליחת בקשת הפגישה</button>
+        </form>
+      </div>
+      <div class="modal-success" id="modal-success">
+        <i class="fa-solid fa-circle-check"></i>
+        <h3>בקשתכם התקבלה!</h3>
+        <p>נחזור אליכם לאישור מועד הפגישה בהקדם האפשרי.</p>
+        <button onclick="document.getElementById('meeting-modal').classList.remove('open')" class="btn btn-gold" style="margin-top:.5rem">סגירה</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-top">
+      <div class="container footer-top-inner">
+        <div class="footer-col footer-brand">
+          <a href="index.html" class="footer-logo"><span class="logo-main">טל גבאי</span><span class="logo-sep">|</span><span class="logo-sub">תכנון פיננסי</span></a>
+          <p class="footer-tagline">ליווי אישי וממוקד לבכירים</p>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-col-title">קישורים מהירים</h4>
+          <ul class="footer-links">
+            <li><a href="index.html" class="footer-link"><i class="fa-solid fa-chevron-left"></i> דף הבית</a></li>
+            <li><a href="retirement-planning.html" class="footer-link"><i class="fa-solid fa-chevron-left"></i> תכנון פרישה</a></li>
+            <li><a href="holistic-checkup.html" class="footer-link"><i class="fa-solid fa-chevron-left"></i> צ'ק אפ הוליסטי</a></li>
+            <li><a href="index.html#contact" class="footer-link"><i class="fa-solid fa-chevron-left"></i> צור קשר</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-col-title">פרטי התקשרות</h4>
+          <ul class="footer-contact-list">
+            <li><i class="fa-solid fa-phone footer-contact-icon"></i><span><a href="tel:074-7019277" class="footer-contact-link">074-7019277</a><br><a href="tel:052-8000556" class="footer-contact-link">052-8000556</a></span></li>
+            <li><i class="fa-solid fa-envelope footer-contact-icon"></i><span><a href="mailto:office@pf-invest.co.il" class="footer-contact-link">office@pf-invest.co.il</a></span></li>
+            <li><i class="fa-solid fa-location-dot footer-contact-icon"></i><span>היצירה 19, רחובות</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <p class="footer-copy">&copy; 2026 טל גבאי - תכנון פיננסי מתקדם לבכירים. כל הזכויות שמורות.</p>
+        <p class="footer-legal">מורשה על ידי רשות שוק ההון, ביטוח וחיסכון</p>
+        <p class="footer-disclaimer">המידע באתר זה הינו למטרות הכרות כללית בלבד ואינו מהווה ייעוץ השקעות, ייעוץ פנסיוני, ייעוץ מס או המלצה כלשהי. אין להסתמך עליו ללא קבלת ייעוץ מקצועי המותאם לנסיבות האישיות.</p>
+        <p class="footer-links-legal"><a href="accessibility.html" class="footer-legal-link">הצהרת נגישות</a><span class="footer-sep"> | </span><a href="privacy-policy.html" class="footer-legal-link">מדיניות פרטיות</a></p>
+      </div>
+    </div>
+  </footer>
+  <a href="https://wa.me/972528000556" target="_blank" rel="noopener noreferrer" class="whatsapp-float" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp whatsapp-icon"></i></a>
+  <script>
+    const hamburger=document.getElementById('hamburger'),mobileMenu=document.getElementById('mobile-menu');
+    hamburger.addEventListener('click',()=>{const o=mobileMenu.classList.toggle('open');hamburger.setAttribute('aria-expanded',o);mobileMenu.setAttribute('aria-hidden',!o);});
+    document.getElementById('meeting-modal').addEventListener('click',function(e){if(e.target===this){this.classList.remove('open');if(typeof _opened!=='undefined')_opened=false;}});
+    var btn=document.querySelector('.page-cta .btn-gold');
+    if(btn){var _opened=false;btn.addEventListener('mouseenter',function(){if(_opened)return;setTimeout(function(){_opened=true;document.getElementById('meeting-modal').classList.add('open');},400);});btn.addEventListener('click',function(e){e.preventDefault();_opened=true;document.getElementById('meeting-modal').classList.add('open');});}
+    document.getElementById('meeting-form').addEventListener('submit',async function(e){
+      e.preventDefault();const b=this.querySelector('button[type="submit"]');b.disabled=true;b.innerHTML='<i class="fa-solid fa-spinner fa-spin"></i> שולח...';
+      const d=new FormData(this);d.append('_cc','tal@pf-invest.co.il');d.append('_subject','בקשת פגישה - הטבה לפי סעיף 125ד\'');d.append('_captcha','false');d.append('_template','table');
+      try{const r=await fetch('https://formsubmit.co/ajax/office@pf-invest.co.il',{method:'POST',headers:{'Accept':'application/json'},body:d});
+        if(r.ok){document.getElementById('modal-form-wrap').style.display='none';document.getElementById('modal-success').style.display='flex';}else throw new Error();
+      }catch{b.disabled=false;b.innerHTML='<i class="fa-solid fa-paper-plane"></i> שליחת בקשת הפגישה';alert('אירעה שגיאה. נסו שוב או התקשרו אלינו ישירות.');}
+    });
+    const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target);}});},{threshold:0.1});
+    document.querySelectorAll('.fade-in-up').forEach(el=>observer.observe(el));
+    const searchToggle=document.getElementById('search-toggle'),searchOverlay=document.getElementById('search-overlay'),searchClose=document.getElementById('search-close'),searchInput=document.getElementById('search-input');
+    searchToggle.addEventListener('click',()=>{searchOverlay.classList.add('open');searchOverlay.setAttribute('aria-hidden','false');searchInput.focus();});
+    searchClose.addEventListener('click',()=>{searchOverlay.classList.remove('open');searchOverlay.setAttribute('aria-hidden','true');});
+    searchOverlay.addEventListener('click',e=>{if(e.target===searchOverlay){searchOverlay.classList.remove('open');searchOverlay.setAttribute('aria-hidden','true');}});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape'&&searchOverlay.classList.contains('open')){searchOverlay.classList.remove('open');searchOverlay.setAttribute('aria-hidden','true');}});
+  </script>
+  <script src="search.js"></script>
+  <button class="back-to-top" id="back-to-top" aria-label="חזור לראש הדף">
+    <i class="fa-solid fa-chevron-up"></i>
+  </button>
+</body>
+</html>

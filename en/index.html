@@ -32,6 +32,27 @@
     .orbit-oval.popup-open .member-popup { opacity: 1; pointer-events: auto; }
     .about-bio-intro { margin-top: 0; }
     @media (max-width: 768px) { .how-arrows .arr { transform: rotate(90deg); } }
+    .hero-title-mobile { display: none; }
+    @media (max-width: 768px) {
+      .hero-title-desktop { display: none; }
+      .hero-title-mobile { display: block; }
+      .hero-subtitle { color: var(--gold); }
+    }
+    /* Advisor table — fixed columns on mobile */
+    @media (max-width: 640px) {
+      .advisor-table { table-layout: fixed; width: 100% !important; }
+      .advisor-table th:nth-child(1), .advisor-table td:nth-child(1) { width: 28%; word-break: break-word; }
+      .advisor-table th:nth-child(2), .advisor-table td:nth-child(2) { width: 30%; word-break: break-word; }
+      .advisor-table th:nth-child(3), .advisor-table td:nth-child(3) { width: 42%; word-break: break-word; }
+      .advisor-table th { font-size: .72rem !important; padding: .5rem .4rem !important; line-height: 1.3; }
+      .advisor-table td { font-size: .72rem !important; padding: .5rem .4rem !important; }
+      .advisor-cards-grid { grid-template-columns: 1fr !important; }
+      .advisor-subtitle-nowrap { white-space: normal !important; }
+    }
+    /* Single-row header LTR overrides */
+    @media (min-width: 1101px) {
+      .header-inner { direction: ltr; }
+    }
   </style>
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
@@ -63,9 +84,8 @@
     <div class="container header-inner">
 
       <a href="index.html" class="logo header-logo" aria-label="Home">
-        <span class="logo-main">Tal Gabay</span>
-        <span class="logo-sep">|</span>
-        <span class="logo-sub">Financial Planning</span>
+        <span class="logo-row"><span class="logo-main">Tal Gabay</span><span class="logo-sep">|</span><span class="logo-sub">Financial Planning</span></span>
+        <span class="logo-tagline">Personal &amp; Focused Guidance for Executives</span>
       </a>
 
       <nav class="main-nav" aria-label="Main navigation">
@@ -81,9 +101,11 @@
       <div class="header-left" style="display:flex;align-items:center;gap:.6rem;">
         <a href="https://portal.roeto.co.il/pfinvest/login" class="btn-personal-area" target="_blank" rel="noopener"><i class="fa-solid fa-key"></i> Client Portal</a>
         <div class="lang-flags">
-          <a href="../index.html" class="lang-flag lang-switch-btn" title="עברית" aria-label="Switch to Hebrew" style="font-size:1.725rem;color:#c9a84c;font-weight:700;letter-spacing:.03em;text-decoration:none;">IL</a>
+          <a href="../index.html" class="lang-flag lang-switch-btn" title="עברית" aria-label="Switch to Hebrew" style="font-size:1.725rem;color:#ffffff;font-weight:700;letter-spacing:.03em;text-decoration:none;">IL</a>
         </div>
       </div>
+
+      <button class="search-toggle" id="search-toggle" aria-label="Search" aria-expanded="false"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
 
       <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
         <span class="hamburger-line"></span>
@@ -104,14 +126,28 @@
       </ul>
     </nav>
   </header>
+<div class="search-overlay" id="search-overlay" role="search" aria-hidden="true">
+  <div class="search-inner">
+    <input type="search" class="search-input" id="search-input" placeholder="Search... (pension, retirement, insurance...)" autocomplete="off" dir="ltr" aria-label="Search site" />
+    <button class="search-close" id="search-close" aria-label="Close search"><i class="fa-solid fa-xmark"></i></button>
+    <ul class="search-results" id="search-results" role="listbox" aria-label="Search results"></ul>
+  </div>
+</div>
   <div id="content-start" tabindex="-1"></div>
 
   <!-- HERO -->
   <section class="hero" id="home">
     <div class="hero-overlay"></div>
     <div class="container hero-content">
+      <a href="index.html" class="hero-logo fade-in-up" aria-label="Home">
+        <span class="logo-row"><span class="logo-main">Tal Gabay</span><span class="logo-sep">|</span><span class="logo-sub">Financial Planning</span></span>
+        <span class="logo-tagline">Personal &amp; Focused Guidance for Executives</span>
+      </a>
       <div class="hero-text fade-in-up">
-        <h1 class="hero-title">Financial Planning · Wealth Management · Retirement Planning</h1>
+        <h1 class="hero-title">
+          <span class="hero-title-desktop">Financial Planning · Wealth Management · Retirement Planning</span>
+          <span class="hero-title-mobile">· Financial Planning ·<br>· Wealth Management ·<br>· Retirement Planning ·</span>
+        </h1>
         <p class="hero-subtitle">Navigating family wealth with confidence</p>
       </div>
     </div>
@@ -272,6 +308,43 @@
         <p class="section-subtitle advisor-subtitle-nowrap" style="font-weight:700;color:var(--gold);font-size:1.575rem;white-space:nowrap;max-width:none;">4 giants in financial management and research define the value of a financial planner</p>
       </div>
 
+      <p style="text-align:center;font-weight:700;color:var(--navy);font-family:'Heebo',sans-serif;font-size:1.5rem;margin-bottom:1rem;line-height:1.5;"><span style="font-size:1.875rem;">Comparative Summary of the Studies</span><br>(data from the studies)</p>
+      <div style="overflow-x:auto;margin-bottom:2rem;">
+        <div style="overflow:hidden;border-radius:var(--radius-lg);box-shadow:var(--shadow-md);">
+          <table class="advisor-table" style="width:100%;border-collapse:collapse;font-family:'Heebo',sans-serif;font-size:.95rem;background:var(--navy);">
+            <thead>
+              <tr>
+                <th style="padding:1rem 1.4rem;text-align:left;color:var(--white);font-weight:700;border-bottom:1px solid rgba(255,255,255,.15);">Research Firm</th>
+                <th style="padding:1rem 1.4rem;text-align:center;color:var(--white);font-weight:700;border-bottom:1px solid rgba(255,255,255,.15);text-decoration:underline;">Estimated Added Value</th>
+                <th style="padding:1rem 1.4rem;text-align:center;color:var(--white);font-weight:700;border-bottom:1px solid rgba(255,255,255,.15);">Concept</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom:1px solid rgba(255,255,255,.1);">
+                <td style="padding:.85rem 1.4rem;text-align:left;color:var(--white);">Vanguard</td>
+                <td style="padding:.85rem 1.4rem;text-align:center;color:var(--gold);font-weight:700;">~3.00%</td>
+                <td style="padding:.85rem 1.4rem;text-align:center;color:rgba(255,255,255,.85);">Advisor's Alpha</td>
+              </tr>
+              <tr style="border-bottom:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.05);">
+                <td style="padding:.85rem 1.4rem;text-align:left;color:var(--white);">Russell Investments</td>
+                <td style="padding:.85rem 1.4rem;text-align:center;color:var(--gold);font-weight:700;">~4.87%</td>
+                <td style="padding:.85rem 1.4rem;text-align:center;color:rgba(255,255,255,.85);">Value of Advisor</td>
+              </tr>
+              <tr style="border-bottom:1px solid rgba(255,255,255,.1);">
+                <td style="padding:.85rem 1.4rem;text-align:left;color:var(--white);">Morningstar</td>
+                <td style="padding:.85rem 1.4rem;text-align:center;color:var(--gold);font-weight:700;">~1.80% (or 22% more income)</td>
+                <td style="padding:.85rem 1.4rem;text-align:center;color:rgba(255,255,255,.85);">Gamma</td>
+              </tr>
+              <tr style="background:rgba(255,255,255,.05);">
+                <td style="padding:.85rem 1.4rem;text-align:left;color:var(--white);">Envestnet</td>
+                <td style="padding:.85rem 1.4rem;text-align:center;color:var(--gold);font-weight:700;">~3.00%</td>
+                <td style="padding:.85rem 1.4rem;text-align:center;color:rgba(255,255,255,.85);">Capital Sigma</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
       <div class="advisor-cards-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:2rem;">
 
         <!-- 1. Vanguard -->
@@ -280,8 +353,8 @@
             <h3 style="font-family:'Heebo',sans-serif;font-size:1.15rem;font-weight:800;color:var(--navy);margin:0;text-decoration:underline;">Vanguard</h3>
           </div>
           <p style="font-size:.93rem;color:var(--dark-gray);margin:0 0 .5rem;font-weight:700;">One of the world's largest asset management companies — pioneer of index funds.</p>
-          <p style="font-size:.93rem;color:var(--dark-gray);margin:0 0 .5rem;">Concept: <strong>Advisor's Alpha</strong></p>
-          <p style="font-size:.93rem;color:var(--dark-gray);margin:0 0 1rem;line-height:1.7;"><strong>According to Vanguard's research, a financial planner can add approximately 3% to net annual returns,</strong> primarily through behavioural coaching (preventing client mistakes during downturns), proper asset allocation, and building an effective tax strategy.</p>
+          <p style="font-size:.93rem;color:var(--dark-gray);margin:0 0 .5rem;">Concept: Advisor's Alpha</p>
+          <p style="font-size:.93rem;color:var(--dark-gray);margin:0 0 1rem;line-height:1.7;"><strong>According to Vanguard's research, a financial planner can <u>add approximately 3% to net annual returns,</u></strong> primarily through behavioural coaching (preventing client mistakes during downturns), proper asset allocation, and building an effective tax strategy.</p>
           <a href="https://www.vanguardsouthamerica.com/content/dam/intl/americas/documents/latam/en/2022/08/mx-sa-2335954-putting-a-value-on-your-value-quantifying-vanguard-advisors-alpha.pdf?hl=he" target="_blank" rel="noopener noreferrer" style="font-size:.85rem;color:var(--gold);text-decoration:none;font-weight:600;">Read the full paper <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
         </div>
 
@@ -291,8 +364,8 @@
             <h3 style="font-family:'Heebo',sans-serif;font-size:1.15rem;font-weight:800;color:var(--navy);margin:0;text-decoration:underline;">Russell Investments</h3>
           </div>
           <p style="font-size:.93rem;color:var(--dark-gray);margin:0 0 .5rem;font-weight:700;">A global investment firm specialising in institutional consulting and multi-manager investment solutions.</p>
-          <p style="font-size:.93rem;color:var(--dark-gray);margin:0 0 .5rem;">Concept: <strong>Value of Advisor</strong></p>
-          <p style="font-size:.93rem;color:var(--dark-gray);margin:0 0 1rem;line-height:1.7;"><strong>The added value of a financial planner is very high — approximately 4.87% per year.</strong> They place strong emphasis on tax management, retirement planning, and the emotional/behavioural value the adviser provides.</p>
+          <p style="font-size:.93rem;color:var(--dark-gray);margin:0 0 .5rem;">Concept: Value of Advisor</p>
+          <p style="font-size:.93rem;color:var(--dark-gray);margin:0 0 1rem;line-height:1.7;"><strong>The added value of a financial planner is very high — <u>approximately 4.87% per year.</u></strong> They place strong emphasis on tax management, retirement planning, and the emotional/behavioural value the adviser provides.</p>
           <a href="https://russellinvestments.com/content/dam/ri/files/us/en/financial-professional/insights/value-of-an-advisor-study.pdf?hl=he" target="_blank" rel="noopener noreferrer" style="font-size:.85rem;color:var(--gold);text-decoration:none;font-weight:600;">Read the full paper <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
         </div>
 
@@ -302,8 +375,8 @@
             <h3 style="font-family:'Heebo',sans-serif;font-size:1.15rem;font-weight:800;color:var(--navy);margin:0;text-decoration:underline;">Morningstar</h3>
           </div>
           <p style="font-size:.93rem;color:var(--dark-gray);margin:0 0 .5rem;font-weight:700;">One of the world's leading financial research and rating companies, renowned for its mutual fund and stock ratings.</p>
-          <p style="font-size:.93rem;color:var(--dark-gray);margin:0 0 .5rem;">Concept: <strong>Gamma</strong></p>
-          <p style="font-size:.93rem;color:var(--dark-gray);margin:0 0 1rem;line-height:1.7;">"Gamma" is defined as the value generated by smart planning decisions (such as optimal withdrawal sequencing in retirement). <strong>Morningstar estimates this at 1.80% additional return — or a 22% improvement in real income over time.</strong></p>
+          <p style="font-size:.93rem;color:var(--dark-gray);margin:0 0 .5rem;">Concept: Gamma</p>
+          <p style="font-size:.93rem;color:var(--dark-gray);margin:0 0 1rem;line-height:1.7;">"Gamma" is defined as the value generated by smart planning decisions (such as optimal withdrawal sequencing in retirement). <strong>Morningstar estimates this at 1.80% additional return — or a <u>22% improvement in real income over time.</u></strong></p>
           <a href="https://www.morningstar.com/content/dam/marketing/shared/research/foundational/831611-GammaEfficientPortfolio.pdf?hl=he" target="_blank" rel="noopener noreferrer" style="font-size:.85rem;color:var(--gold);text-decoration:none;font-weight:600;">Read the full paper <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
         </div>
 
@@ -313,50 +386,12 @@
             <h3 style="font-family:'Heebo',sans-serif;font-size:1.15rem;font-weight:800;color:var(--navy);margin:0;text-decoration:underline;">Envestnet</h3>
           </div>
           <p style="font-size:.93rem;color:var(--dark-gray);margin:0 0 .5rem;font-weight:700;">A leading financial technology (FinTech) company providing wealth management platforms for hundreds of thousands of financial advisers.</p>
-          <p style="font-size:.93rem;color:var(--dark-gray);margin:0 0 .5rem;">Concept: <strong>Capital Sigma</strong></p>
-          <p style="font-size:.93rem;color:var(--dark-gray);margin:0 0 1rem;line-height:1.7;">Similar to Vanguard, they estimate the <strong>added value of a professional financial planner using advanced technological and planning tools at approximately 3.00% per year on average.</strong></p>
+          <p style="font-size:.93rem;color:var(--dark-gray);margin:0 0 .5rem;">Concept: Capital Sigma</p>
+          <p style="font-size:.93rem;color:var(--dark-gray);margin:0 0 1rem;line-height:1.7;">Similar to Vanguard, they estimate the <strong>added value of a financial planner <u>at approximately 3.00% per year on average.</u></strong></p>
           <a href="https://www.envestnet.com/files/Envestat-Report/images/05-17/ENV-WP-CS-0516-FullVersion.pdf?hl=he" target="_blank" rel="noopener noreferrer" style="font-size:.85rem;color:var(--gold);text-decoration:none;font-weight:600;">Read the full paper <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
         </div>
 
       </div><!-- /.advisor-grid -->
-
-
-      <p style="text-align:center;font-weight:700;color:var(--navy);font-family:'Heebo',sans-serif;font-size:1.5rem;margin-bottom:1rem;line-height:1.5;"><span style="font-size:1.875rem;">Comparative Summary of the Studies</span><br>(data from the studies)</p>
-      <div style="overflow-x:auto;">
-        <div style="overflow:hidden;border-radius:var(--radius-lg);box-shadow:var(--shadow-md);">
-          <table class="advisor-table" style="width:100%;border-collapse:collapse;font-family:'Heebo',sans-serif;font-size:.95rem;background:var(--navy);">
-            <thead>
-              <tr>
-                <th style="padding:1rem 1.4rem;text-align:left;color:var(--white);font-weight:700;border-bottom:1px solid rgba(255,255,255,.15);">Research Firm</th>
-                <th style="padding:1rem 1.4rem;text-align:center;color:var(--white);font-weight:700;border-bottom:1px solid rgba(255,255,255,.15);">Concept</th>
-                <th style="padding:1rem 1.4rem;text-align:center;color:var(--white);font-weight:700;border-bottom:1px solid rgba(255,255,255,.15);">Estimated Added Value</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr style="border-bottom:1px solid rgba(255,255,255,.1);">
-                <td style="padding:.85rem 1.4rem;text-align:left;color:var(--white);">Vanguard</td>
-                <td style="padding:.85rem 1.4rem;text-align:center;color:rgba(255,255,255,.85);">Advisor's Alpha</td>
-                <td style="padding:.85rem 1.4rem;text-align:center;color:var(--gold);font-weight:700;">~3.00%</td>
-              </tr>
-              <tr style="border-bottom:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.05);">
-                <td style="padding:.85rem 1.4rem;text-align:left;color:var(--white);">Russell Investments</td>
-                <td style="padding:.85rem 1.4rem;text-align:center;color:rgba(255,255,255,.85);">Value of Advisor</td>
-                <td style="padding:.85rem 1.4rem;text-align:center;color:var(--gold);font-weight:700;">~4.87%</td>
-              </tr>
-              <tr style="border-bottom:1px solid rgba(255,255,255,.1);">
-                <td style="padding:.85rem 1.4rem;text-align:left;color:var(--white);">Morningstar</td>
-                <td style="padding:.85rem 1.4rem;text-align:center;color:rgba(255,255,255,.85);">Gamma</td>
-                <td style="padding:.85rem 1.4rem;text-align:center;color:var(--gold);font-weight:700;">~1.80% (or 22% more income)</td>
-              </tr>
-              <tr style="background:rgba(255,255,255,.05);">
-                <td style="padding:.85rem 1.4rem;text-align:left;color:var(--white);">Envestnet</td>
-                <td style="padding:.85rem 1.4rem;text-align:center;color:rgba(255,255,255,.85);">Capital Sigma</td>
-                <td style="padding:.85rem 1.4rem;text-align:center;color:var(--gold);font-weight:700;">~3.00%</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
 
     </div><!-- /.container -->
   </section>
@@ -370,7 +405,7 @@
     </div>
     <div class="container about-bio fade-in-up">
       <p class="about-bio-intro"><strong>Tal Gabay</strong>, Senior Financial Planner, Retirement Planner<br>M.B.A — Business Administration</p>
-      <p>My professional journey in the world of finance began at the heart of Israel's financial industry. In 2006, I served as a manager at Excellence Investment House, where I gained deep and unique insight into how capital markets operate "behind the scenes." The experience I accumulated in managing complex investment systems gave me the tools to analyze every financial opportunity in depth and act from a broad strategic perspective.</p>
+      <p>My professional journey in the world of finance began at the heart of Israel's financial industry. In 2006, I served as a manager at Excellence Investment House, where "behind the scenes" I gained <u>deep and unique</u> insight into how capital markets operate.</p>
       <p>Driven by a desire to bring the high standards of the institutional capital market directly to our clients, we founded the firm in 2011. Today, we responsibly and professionally manage the financial future of hundreds of families across Israel.</p>
       <h3 class="about-bio-heading">Professional Guidance at Life's Key Crossroads</h3>
       <ul class="about-bio-list">
@@ -416,7 +451,7 @@
         <div class="how-step fade-in-up">
           <div class="how-num">03</div>
           <h3 class="how-step-title">Implementation</h3>
-          <p class="how-step-text"><u>Restructuring</u> the portfolio and aligning it with the financial plan's objectives.</p>
+          <p class="how-step-text"><u>Restructuring</u> the portfolio and aligning it with the financial plan's objectives and bringing the portfolio. <strong><u>Full optimisation</u></strong></p>
         </div>
         <div class="how-arrows" aria-hidden="true">
           <span class="arr arr-1">&#10095;</span><span class="arr arr-2">&#10095;</span><span class="arr arr-3">&#10095;</span>
@@ -481,13 +516,13 @@
           </div>
         </div>
         <div class="team-members-row">
-          <div class="team-oval orbit-oval anim-glow"><span class="oval-name">Sapir Rozental</span><span class="oval-role">Client Relations Manager</span><div class="member-popup" aria-hidden="true"><a href="https://wa.me/972502963843" target="_blank" rel="noopener">050-2963843</a><a href="mailto:sapir@pf-invest.co.il">sapir@pf-invest.co.il</a></div></div>
+          <div class="team-oval orbit-oval anim-glow"><span class="oval-name">Sapir Rozental</span><span class="oval-role">Client Portfolio Manager</span><div class="member-popup" aria-hidden="true"><a href="https://wa.me/972502963843" target="_blank" rel="noopener">050-2963843</a><a href="mailto:sapir@pf-invest.co.il">sapir@pf-invest.co.il</a></div></div>
           <div class="team-oval orbit-oval anim-glow"><span class="oval-name">Inbal Kidron</span><span class="oval-role">Pension Dept. Manager</span><div class="member-popup" aria-hidden="true"><a href="https://wa.me/972503825445" target="_blank" rel="noopener">050-3825445</a><a href="mailto:inbal@pf-invest.co.il">inbal@pf-invest.co.il</a></div></div>
           <div class="team-oval orbit-oval anim-glow"><span class="oval-name">Orly Berman</span><span class="oval-role">Professional Manager</span><div class="member-popup" aria-hidden="true"><a href="https://wa.me/972547013111" target="_blank" rel="noopener">054-7013111</a><a href="mailto:orli@pf-invest.co.il">orli@pf-invest.co.il</a></div></div>
           <div class="team-oval orbit-oval anim-glow"><span class="oval-name">Mital Gabay</span><span class="oval-role">Partner & Office Manager</span><div class="member-popup" aria-hidden="true"><a href="https://wa.me/972523089208" target="_blank" rel="noopener">052-3089208</a><a href="mailto:office@pf-invest.co.il">office@pf-invest.co.il</a></div></div>
-          <div class="team-oval orbit-oval anim-glow"><span class="oval-name">Dana Levi</span><span class="oval-role">Client Relations Manager</span><div class="member-popup" aria-hidden="true"><a href="https://wa.me/972502963849" target="_blank" rel="noopener">050-2963849</a><a href="mailto:dana@pf-invest.co.il">dana@pf-invest.co.il</a></div></div>
-          <div class="team-oval orbit-oval anim-glow"><span class="oval-name">Chen Lev</span><span class="oval-role">Client Relations Manager</span><div class="member-popup" aria-hidden="true"><a href="https://wa.me/972542211644" target="_blank" rel="noopener">054-2211644</a><a href="mailto:henl@pf-invest.co.il">henl@pf-invest.co.il</a></div></div>
-          <div class="team-oval orbit-oval anim-glow"><span class="oval-name">Lea Menachem</span><span class="oval-role">Client Relations Manager</span><div class="member-popup" aria-hidden="true"><a href="https://wa.me/972502963862" target="_blank" rel="noopener">050-2963862</a><a href="mailto:lea@pf-invest.co.il">lea@pf-invest.co.il</a></div></div>
+          <div class="team-oval orbit-oval anim-glow"><span class="oval-name">Dana Levi</span><span class="oval-role">Client Portfolio Manager</span><div class="member-popup" aria-hidden="true"><a href="https://wa.me/972502963849" target="_blank" rel="noopener">050-2963849</a><a href="mailto:dana@pf-invest.co.il">dana@pf-invest.co.il</a></div></div>
+          <div class="team-oval orbit-oval anim-glow"><span class="oval-name">Chen Lev</span><span class="oval-role">Insurance Division Coordinator</span><div class="member-popup" aria-hidden="true"><a href="https://wa.me/972542211644" target="_blank" rel="noopener">054-2211644</a><a href="mailto:henl@pf-invest.co.il">henl@pf-invest.co.il</a></div></div>
+          <div class="team-oval orbit-oval anim-glow"><span class="oval-name">Lea Menachem</span><span class="oval-role">Client Portfolio Manager</span><div class="member-popup" aria-hidden="true"><a href="https://wa.me/972502963862" target="_blank" rel="noopener">050-2963862</a><a href="mailto:lea@pf-invest.co.il">lea@pf-invest.co.il</a></div></div>
         </div>
       </div>
     </div>
@@ -497,7 +532,7 @@
   <section class="testimonials" id="testimonials">
     <div class="container">
       <div class="section-header fade-in-up">
-        <h2 class="section-title">Satisfied Customers</h2>
+        <h2 class="section-title">Testimonials</h2>
         <p class="section-subtitle" style="color:var(--gold);font-weight:700"><strong>Your trust is our success</strong></p>
       </div>
       <div class="testimonials-carousel-wrap">
@@ -815,6 +850,7 @@
           <blockquote class="testimonial-card" aria-hidden="true"><div class="testimonial-stars" style="color:var(--gold)"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><p class="testimonial-text">"I met Tal at the beginning of his career when he came to the Weizmann Institute. Since then we have been working together. Tal is an honest, professional and principled person — pleasant, knowledgeable and full of integrity. I wish him success in all his endeavours."</p><footer class="testimonial-footer"><div class="testimonial-avatar" aria-hidden="true"><i class="fa-solid fa-user"></i></div><cite class="testimonial-name">Yair Ram, Chairman of the Engineers' Committee, Weizmann Institute of Science</cite></footer></blockquote>
           <blockquote class="testimonial-card" aria-hidden="true"><div class="testimonial-stars" style="color:var(--gold)"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><p class="testimonial-text">"Tal Gabay has been our investment agent for many years, during which we also became friends. On the professional side, Tal provided us with the highest-level professional service, with sensitivity and understanding of our changing needs. Over the many years he managed our investment portfolio, Tal demonstrated the ability to anticipate future financial processes and took steps that secured profits and prevented losses. We are very satisfied with the service and treatment we received and look forward to many more years of collaboration."</p><footer class="testimonial-footer"><div class="testimonial-avatar" aria-hidden="true"><i class="fa-solid fa-user"></i></div><cite class="testimonial-name">Varda and Yaakov Nagranu</cite></footer></blockquote>
           <blockquote class="testimonial-card" aria-hidden="true"><div class="testimonial-stars" style="color:var(--gold)"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><p class="testimonial-text">"In a world of information overload and lack of time, it is worth letting professionals handle the important things. Tal Gabay is that kind of professional. His guidance saved me hundreds of thousands of shekels. Warmly recommended."</p><footer class="testimonial-footer"><div class="testimonial-avatar" aria-hidden="true"><i class="fa-solid fa-user"></i></div><cite class="testimonial-name">Adv. Assaf Friel</cite></footer></blockquote>
+          <blockquote class="testimonial-card" aria-hidden="true"><div class="testimonial-stars" style="color:var(--gold)"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><p class="testimonial-text">"I would like to express my gratitude and appreciation for the personal, professional and responsible guidance in managing my investment portfolio over the years. Your measured and objective approach to decision-making contributes to my peace of mind and my trust in you. Beyond that, I am very satisfied with the excellent results in the portfolio even during challenging market periods. I wish you continued great success in your work."</p><footer class="testimonial-footer"><div class="testimonial-avatar" aria-hidden="true"><i class="fa-solid fa-user"></i></div><cite class="testimonial-name">Reuven Golan</cite></footer></blockquote>
 
         </div>
       </div>
@@ -827,7 +863,7 @@
         var dragging = false, dragLastX = 0;
         var touchDragging = false, touchLastX = 0;
         function pxPerSec() {
-          return halfWidth / (window.innerWidth <= 768 ? 92 : 77.8);
+          return halfWidth / (window.innerWidth <= 768 ? 187.1 : 177.0);
         }
         function wrapPos(p) {
           if (!halfWidth) return p;
@@ -870,7 +906,7 @@
   <!-- WHATSAPP TESTIMONIALS -->
   <section style="padding:4rem 0;background:var(--off-white);" id="whatsapp-testimonials" aria-labelledby="wa-heading">
     <div class="container" style="direction:ltr;text-align:left;">
-      <h2 class="section-title" id="wa-heading" style="text-align:center;">Clients Write</h2>
+      <h2 class="section-title" id="wa-heading" style="text-align:center;">The Results Speak for Themselves</h2>
       <p class="section-subtitle" style="margin-bottom:2.5rem;text-align:center;">Real testimonials from WhatsApp conversations</p>
       <div id="wa-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.25rem;"></div>
       <p id="wa-empty" style="text-align:center;color:var(--dark-gray);display:none;font-size:.95rem;">Testimonials coming soon</p>
@@ -1042,6 +1078,23 @@
 
   <script src="../script.js"></script>
   <script>
+  (function() {
+    var items = document.querySelectorAll('.stats-bar .stat-item');
+    if (items.length < 3) return;
+    var order = [0, 1, 2];
+    var current = 0;
+    var activeDuration = 600;
+    var pauseDuration = 2000;
+    function pulse(idx) {
+      items[idx].classList.add('stat-auto-active');
+      setTimeout(function() { items[idx].classList.remove('stat-auto-active'); }, activeDuration);
+    }
+    function cycle() { pulse(order[current]); current = (current + 1) % order.length; }
+    setInterval(cycle, pauseDuration);
+  })();
+  </script>
+  <script src="../search.js"></script>
+  <script>
   document.querySelectorAll('.partners-track-wrap').forEach(wrap => {
     const track = wrap.querySelector('.partners-track');
     const isReverse = track.classList.contains('partners-track-reverse');
@@ -1122,7 +1175,7 @@
   (function(){
     var b=document.getElementById('cookie-banner');
     var consent=localStorage.getItem('cookie-consent');
-    if(!consent) b.style.display='flex';
+    b.style.display='flex';
     document.getElementById('cookie-accept').addEventListener('click',function(){
       localStorage.setItem('cookie-consent','accepted');
       b.style.display='none';
@@ -1135,6 +1188,7 @@
     });
     // if previously declined, disable GA
     if(consent==='declined') window['ga-disable-G-5F91Q1DPZV']=true;
+    setTimeout(function(){ b.style.display='none'; }, 10000);
   })();
   </script>
   <script>
