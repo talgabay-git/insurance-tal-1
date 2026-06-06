@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self' https://formsubmit.co https://www.google-analytics.com; frame-src 'none'; object-src 'none';" />
   <title>Tal Gabay | Retirement Planning</title>
   <meta name="description" content="Professional retirement planning — turning financial uncertainty into a structured, professional plan. Tal Gabay Financial Planning." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -376,11 +377,10 @@
   (function(){
     var b=document.getElementById('cookie-banner');
     var consent=localStorage.getItem('cookie-consent');
-    b.style.display='flex';
+    if(!consent) b.style.display='flex';
     document.getElementById('cookie-accept').addEventListener('click',function(){localStorage.setItem('cookie-consent','accepted');b.style.display='none';});
     document.getElementById('cookie-decline').addEventListener('click',function(){localStorage.setItem('cookie-consent','declined');b.style.display='none';window['ga-disable-G-5F91Q1DPZV']=true;});
     if(consent==='declined') window['ga-disable-G-5F91Q1DPZV']=true;
-    setTimeout(function(){ b.style.display='none'; }, 10000);
   })();
   </script>
 </body>

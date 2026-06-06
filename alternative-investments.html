@@ -1,332 +1,451 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self' https://formsubmit.co https://www.google-analytics.com; frame-src 'none'; object-src 'none';" />
   <title>טל גבאי | השקעות אלטרנטיביות</title>
-  <meta name="description" content="השקעות אלטרנטיביות - מדריך מקצועי. טל גבאי תכנון פיננסי לבכירים."/>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700;800&family=Heebo:wght@400;700;900&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer"/>
-  <link rel="stylesheet" href="style.css"/>
-  <style>    .page-hero{background:var(--navy);padding:5rem 0 4rem;text-align:center;position:relative;overflow:hidden;}
-    .page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 60% 40%,rgba(201,168,76,.12) 0%,transparent 65%);pointer-events:none;}
-    .page-hero h1{font-family:'Heebo',sans-serif;font-size:clamp(2rem,5vw,3.2rem);font-weight:900;color:var(--gold);margin-bottom:1rem;border:2px solid var(--gold);display:inline-block;padding:.5rem 2rem;border-radius:10px;}
-    .page-hero .hero-tagline{font-size:clamp(1rem,2.5vw,1.25rem);color:rgba(255,255,255,.85);max-width:700px;margin:1rem auto 0;line-height:1.7;}
-    .page-content{padding:5rem 0;background:var(--off-white);}
-    .page-intro{max-width:820px;margin:0 auto 4rem;background:var(--white);border-radius:var(--radius-lg);padding:2.5rem 3rem;box-shadow:var(--shadow-md);border-right:5px solid var(--gold);}
-    .page-intro h2{font-family:'Heebo',sans-serif;font-size:1.2rem;font-weight:900;color:var(--navy);margin-bottom:.8rem;}
-    .page-intro p{font-size:1.08rem;line-height:1.9;color:var(--text);margin-bottom:1.4rem;}
-    .page-intro p:last-child{margin-bottom:0;}
-    .page-benefits{max-width:960px;margin:0 auto 4rem;}
-    .page-benefits h2{font-family:'Heebo',sans-serif;font-size:clamp(1.5rem,3vw,2rem);font-weight:900;color:var(--navy);text-align:center;margin-bottom:2rem;}
-    .benefits-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;}
-    .benefit-card{background:var(--white);border-radius:var(--radius-lg);padding:1.75rem 1.5rem;text-align:center;box-shadow:var(--shadow-sm);transition:transform .25s,box-shadow .25s;border-top:3px solid transparent;}
-    .benefit-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);border-top-color:var(--gold);}
-    .benefit-icon{font-size:2.2rem;color:var(--gold);margin-bottom:.9rem;}
-    .benefit-title{font-size:1rem;font-weight:800;color:var(--navy);margin-bottom:.5rem;}
-    .benefit-desc{font-size:.85rem;color:var(--dark-gray);line-height:1.65;}
-    .page-cta{background:var(--navy);padding:4rem 0;text-align:center;}
-    .page-cta h2{font-family:'Heebo',sans-serif;font-size:clamp(1.5rem,3.5vw,2.2rem);font-weight:900;color:var(--white);margin-bottom:.75rem;}
-    .page-cta p{color:rgba(255,255,255,.75);font-size:1.05rem;margin-bottom:2rem;}
-    .cta-buttons{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
-    .btn-white{background:var(--white);color:var(--navy);font-weight:800;}
-    .btn-white:hover{background:var(--off-white);}
-    .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:2000;align-items:center;justify-content:center;padding:1rem;}
-    .modal-overlay.open{display:flex;}
-    .modal-box{background:var(--white);border-radius:var(--radius-lg);padding:2.2rem 2rem;width:100%;max-width:500px;max-height:90vh;overflow-y:auto;position:relative;box-shadow:var(--shadow-lg);}
-    .modal-close{position:absolute;top:1rem;left:1rem;background:none;border:none;font-size:1.4rem;color:var(--mid-gray);cursor:pointer;}
-    .modal-title{font-family:'Heebo',sans-serif;font-size:1.3rem;font-weight:900;color:var(--navy);text-align:center;margin-bottom:.3rem;}
-    .modal-subtitle{font-size:.88rem;color:var(--dark-gray);text-align:center;margin-bottom:1.75rem;}
-    .modal-form{display:flex;flex-direction:column;gap:.9rem;}
-    .modal-row{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;}
-    .modal-success{display:none;flex-direction:column;align-items:center;gap:.75rem;padding:2rem 0;text-align:center;}
-    .modal-success i{font-size:2.8rem;color:#48bb78;}
-    .modal-success h3{font-size:1.2rem;font-weight:800;color:var(--navy);}
-    @media(max-width:768px){.page-hero{padding:3rem 0 2.5rem;}.page-intro{padding:1.75rem 1.25rem;border-right-width:4px;}.page-intro p{font-size:1rem;}.benefits-grid{grid-template-columns:1fr 1fr;}.page-cta{padding:3rem 0;}.modal-row{grid-template-columns:1fr;}}
-    @media(max-width:480px){.benefits-grid{grid-template-columns:1fr;}.page-hero h1{font-size:1.6rem;padding:.4rem 1.2rem;}}</style>
+  <meta name="description" content="השקעות אלטרנטיביות — גיוון תיק ההשקעות עם נדל"ן, קרנות גידור וחברות פרטיות. טל גבאי תכנון פיננסי." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700;800&family=Heebo:wght@400;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ── Page Hero ── */
+    .checkup-hero {
+      background: var(--navy);
+      padding: 5rem 0 4rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .checkup-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 60% 40%, rgba(201,168,76,.12) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .checkup-hero .section-label { margin-bottom: 1.2rem; }
+    .checkup-hero h1 {
+      font-family: 'Heebo', sans-serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 900;
+      color: var(--white);
+      margin-bottom: 1rem;
+      border: 2px solid var(--gold);
+      display: inline-block;
+      padding: .5rem 2rem;
+      border-radius: 10px;
+      color: var(--gold);
+    }
+    .checkup-hero .hero-tagline {
+      font-size: clamp(1rem, 2.5vw, 1.3rem);
+      color: rgba(255,255,255,.8);
+      max-width: 620px;
+      margin: 1rem auto 0;
+      line-height: 1.7;
+    }
+
+    /* ── Content ── */
+    .checkup-content {
+      padding: 5rem 0;
+      background: var(--off-white);
+    }
+
+    .checkup-intro {
+      max-width: 820px;
+      margin: 0 auto 4rem;
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem 3rem;
+      box-shadow: var(--shadow-md);
+      border-right: 5px solid var(--gold);
+    }
+    .checkup-intro p {
+      font-size: 1.08rem;
+      line-height: 1.9;
+      color: var(--text);
+      margin-bottom: 1.4rem;
+    }
+    .checkup-intro p:last-child { margin-bottom: 0; }
+
+    /* ── Benefits grid ── */
+    .checkup-benefits {
+      max-width: 900px;
+      margin: 0 auto 4rem;
+    }
+    .checkup-benefits h2 {
+      font-family: 'Heebo', sans-serif;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 900;
+      color: var(--navy);
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+    .benefit-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem 1.5rem;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      transition: transform .25s, box-shadow .25s;
+      border-top: 3px solid transparent;
+    }
+    .benefit-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+      border-top-color: var(--gold);
+    }
+    .benefit-icon {
+      font-size: 2.2rem;
+      color: var(--gold);
+      margin-bottom: .9rem;
+    }
+    .benefit-title {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: .5rem;
+    }
+    .benefit-desc {
+      font-size: .85rem;
+      color: var(--dark-gray);
+      line-height: 1.65;
+    }
+
+    /* ── CTA ── */
+    .checkup-cta {
+      background: var(--navy);
+      padding: 4rem 0;
+      text-align: center;
+    }
+    .checkup-cta h2 {
+      font-family: 'Heebo', sans-serif;
+      font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+      font-weight: 900;
+      color: var(--white);
+      margin-bottom: .75rem;
+    }
+    .checkup-cta p {
+      color: rgba(255,255,255,.75);
+      font-size: 1.05rem;
+      margin-bottom: 2rem;
+    }
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn-white {
+      background: var(--white);
+      color: var(--navy);
+      font-weight: 800;
+    }
+    .btn-white:hover { background: var(--off-white); }
+
+    /* ── Modal ── */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.6);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+    .modal-overlay.open { display: flex; animation: modalFadeIn .75s ease; }
+    @keyframes modalFadeIn { from { opacity:0; } to { opacity:1; } }
+    .modal-box {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 2.2rem 2rem;
+      width: 100%;
+      max-width: 500px;
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+      box-shadow: var(--shadow-lg);
+    }
+    .modal-close {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      background: none;
+      border: none;
+      font-size: 1.4rem;
+      color: var(--mid-gray);
+      cursor: pointer;
+      line-height: 1;
+      padding: .2rem .5rem;
+    }
+    .modal-close:hover { color: var(--navy); }
+    .modal-title {
+      font-family: 'Heebo', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 900;
+      color: var(--navy);
+      text-align: center;
+      margin-bottom: .3rem;
+    }
+    .modal-subtitle {
+      font-size: .88rem;
+      color: var(--dark-gray);
+      text-align: center;
+      margin-bottom: 1.75rem;
+    }
+    .modal-form { display: flex; flex-direction: column; gap: .9rem; }
+    .modal-row { display: grid; grid-template-columns: 1fr 1fr; gap: .9rem; }
+    .modal-success {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: .75rem;
+      padding: 2rem 0;
+      text-align: center;
+    }
+    .modal-success i { font-size: 2.8rem; color: #48bb78; }
+    .modal-success h3 { font-size: 1.2rem; font-weight: 800; color: var(--navy); }
+    .modal-success p { font-size: .9rem; color: var(--dark-gray); }
+
+    @media (max-width: 768px) {
+      .modal-row { grid-template-columns: 1fr; }
+      .modal-box { padding: 1.75rem 1.25rem; }
+    }
+    /* ── end modal ── */
+
+    @media (max-width: 768px) {
+      .checkup-hero { padding: 3rem 0 2.5rem; }
+      .checkup-intro { padding: 1.75rem 1.25rem; border-right-width: 4px; }
+      .checkup-intro p { font-size: 1rem; }
+      .benefits-grid { grid-template-columns: 1fr 1fr; }
+      .checkup-cta { padding: 3rem 0; }
+    }
+    @media (max-width: 480px) {
+      .benefits-grid { grid-template-columns: 1fr; }
+      .checkup-hero h1 { font-size: 1.6rem; padding: .4rem 1.2rem; }
+    }
+  </style>
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="טל גבאי תכנון פיננסי" />
+  <meta property="og:title" content="השקעות אלטרנטיביות | טל גבאי" />
+  <meta property="og:description" content="השקעות אלטרנטיביות — גיוון תיק ההשקעות עם נדל&quot;ן, קרנות גידור וחברות פרטיות. טל גבאי תכנון פיננסי." />
+  <meta property="og:url" content="https://talgabay-git.github.io/insurance-tal-1/alternative-investments.html" />
+  <meta property="og:image" content="https://talgabay-git.github.io/insurance-tal-1/tal.jpg" />
+  <meta property="og:locale" content="he_IL" />
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="השקעות אלטרנטיביות | טל גבאי" />
+  <meta name="twitter:description" content="השקעות אלטרנטיביות — גיוון תיק ההשקעות עם נדל&quot;ן, קרנות גידור וחברות פרטיות. טל גבאי תכנון פיננסי." />
+  <meta name="twitter:image" content="https://talgabay-git.github.io/insurance-tal-1/tal.jpg" />
+  <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-5F91Q1DPZV"></script>
-  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-5F91Q1DPZV',{'anonymize_ip':true});</script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-5F91Q1DPZV', { 'anonymize_ip': true });
+  </script>
 </head>
 <body>
   <a href="#content-start" class="skip-link">דלג לתוכן הראשי</a>
+
+  <!-- ========== HEADER ========== -->
   <header class="site-header" id="site-header">
     <div class="container header-inner">
-            <a href="index.html" class="logo header-logo" aria-label="עמוד הבית">
-        <span class="logo-row"><span class="logo-main">טל גבאי</span><span class="logo-sep">|</span><span class="logo-sub">תכנון פיננסי</span></span>
-        <span class="logo-tagline">ליווי אישי וממוקד לבכירים</span>
+      <a href="index.html" class="logo header-logo" aria-label="עמוד הבית">
+        <span class="logo-main">טל גבאי</span>
+        <span class="logo-sep">|</span>
+        <span class="logo-sub">תכנון פיננסי</span>
       </a>
             <nav class="main-nav" aria-label="ניווט ראשי">
         <ul class="nav-list">
-          <li>
-            <a href="index.html" class="nav-link nav-home-icon" aria-label="דף הבית" title="דף הבית"><i class="fa-solid fa-house"></i></a>
-          </li>
-          <li class="nav-dropdown">
-            <a href="#" class="nav-link dropdown-toggle" onclick="return false;">תחומי התמחות <i class="fa-solid fa-chevron-down fa-xs"></i></a>
-            <ul class="dropdown-menu">
-              <li><a href="financial-planning.html" class="dropdown-item">תכנון פיננסי</a></li>
-              <li><a href="family-office.html" class="dropdown-item"><span lang="en">Family Office</span></a></li>
-              <li><a href="retirement-planning.html" class="dropdown-item">תכנון פרישה</a></li>
-              <li><a href="early-retirement.html" class="dropdown-item">תכנון פרישה מוקדמת</a></li>
-            </ul>
-          </li>
-          <li class="nav-dropdown">
-            <a href="market-status.html" class="nav-link dropdown-toggle">תמונת מצב בשווקים <i class="fa-solid fa-chevron-down fa-xs"></i></a>
-            <ul class="dropdown-menu">
-              <li><a href="https://www.meitav.co.il/" class="dropdown-item" target="_blank" rel="noopener">בית השקעות מיטב</a></li>
-              <li><a href="https://www.fnx.co.il/" class="dropdown-item" target="_blank" rel="noopener">סקירה חודשית - הפניקס</a></li>
-              <li><a href="https://www.sponsor.co.il/" class="dropdown-item" target="_blank" rel="noopener">ספונסר - ניתוחי שוק</a></li>
-              <li><a href="https://finance.yahoo.com/" class="dropdown-item" target="_blank" rel="noopener">Yahoo Finance</a></li>
-              <li><a href="https://il.investing.com/" class="dropdown-item" target="_blank" rel="noopener"><span lang="en">Investing.com</span> ישראל</a></li>
-              <li><a href="https://www.bloomberg.com/markets" class="dropdown-item" target="_blank" rel="noopener">Bloomberg Markets</a></li>
-            </ul>
-          </li>
-        <li class="nav-dropdown">
-            <a href="faq.html" class="nav-link dropdown-toggle">שאלות ותשובות <i class="fa-solid fa-chevron-down fa-xs"></i></a>
-            <ul class="dropdown-menu">
-              <li><a href="faq.html#faq-pension" class="dropdown-item">קרן פנסיה</a></li>
-              <li><a href="faq.html#faq-managers" class="dropdown-item">ביטוח מנהלים</a></li>
-              <li><a href="faq.html#faq-hishtalmut" class="dropdown-item">קרן השתלמות</a></li>
-              <li><a href="faq.html#faq-gemel" class="dropdown-item">קופת גמל וחיסכון</a></li>
-              <li><a href="faq.html#faq-retirement" class="dropdown-item">תכנון פרישה</a></li>
-              <li><a href="faq.html#faq-insurance" class="dropdown-item">ביטוח וכיסויים</a></li>
-              <li><a href="faq.html#faq-transfer" class="dropdown-item">ניוד, מעבר וניהול</a></li>
-              <li><a href="faq.html#faq-services" class="dropdown-item">שירותי תכנון פיננסי</a></li>
-            </ul>
-          </li>
-          <li class="nav-dropdown">
-            <a href="#" class="nav-link dropdown-toggle" onclick="return false;">פעולות נפוצות <i class="fa-solid fa-chevron-down fa-xs"></i></a>
-            <ul class="dropdown-menu">
-              <li><a href="documents.html" class="dropdown-item">מסלקה פנסיונית</a></li>
-              <li><a href="holistic-checkup.html" class="dropdown-item">צ'ק אפ פיננסי</a></li>
-              <li class="dropdown-divider"></li>
-              <li><a href="common-actions.html#track-change" class="dropdown-item">שינוי מסלול השקעה</a></li>
-              <li><a href="common-actions.html#withdrawal" class="dropdown-item">משיכת כספים</a></li>
-              <li><a href="common-actions.html#loan" class="dropdown-item">לקיחת הלוואה דיגיטלית</a></li>
-              <li><a href="common-actions.html#beneficiaries" class="dropdown-item">עדכון מוטבים</a></li>
-              <li><a href="common-actions.html#personal-details" class="dropdown-item">עדכון פרטים אישיים</a></li>
-              <li><a href="common-actions.html#deposit" class="dropdown-item">הפקדה לקופה או לקרן</a></li>
-              <li><a href="common-actions.html#standing-order" class="dropdown-item">טופס הוראת קבע</a></li>
-              <li><a href="common-actions.html#poa" class="dropdown-item">ייפוי כוח לקבלת מידע</a></li>
-            </ul>
-          </li>
-          <li class="nav-dropdown">
-
-            <a href="#" class="nav-link dropdown-toggle" onclick="return false;">מכשירים פנסיוניים <i class="fa-solid fa-chevron-down fa-xs"></i></a>
-
-            <ul class="dropdown-menu">
-
-              <li><a href="savings-policies.html" class="dropdown-item">פוליסות חיסכון</a></li>
-
-              <li><a href="managed-portfolios.html" class="dropdown-item">תיקי השקעות מנוהלים</a></li>
-
-              <li><a href="structured-products.html" class="dropdown-item">מוצרים מובנים (סטרקצ'רים)</a></li>
-
-              <li><a href="mutual-funds-etf.html" class="dropdown-item">קרנות נאמנות וקרנות סל (ETF)</a></li>
-
-              <li><a href="alternative-investments.html" class="dropdown-item">השקעות אלטרנטיביות</a></li>
-
-              <li><a href="hedge-funds.html" class="dropdown-item">קרנות גידור בנאמנות</a></li>
-
-              <li><a href="rsu-espp-options.html" class="dropdown-item"><span lang="en">RSU, ESPP</span> ואופציות</a></li>
-
-            </ul>
-
-          </li>
-
-          <li class="nav-dropdown">
-
-            <a href="#" class="nav-link dropdown-toggle" onclick="return false;">מכשירים פיננסיים <i class="fa-solid fa-chevron-down fa-xs"></i></a>
-
-            <ul class="dropdown-menu">
-
-              <li><a href="pension-fund.html" class="dropdown-item">קרן פנסיה</a></li>
-
-              <li><a href="matria-bituchit.html" class="dropdown-item">מטריה ביטוחית</a></li>
-
-              <li><a href="managers-insurance.html" class="dropdown-item">ביטוח מנהלים</a></li>
-
-              <li><a href="gemel-190.html" class="dropdown-item">קופת גמל 190</a></li>
-
-              <li><a href="gemel-hashkaa.html" class="dropdown-item">קופת גמל להשקעה</a></li>
-
-              <li><a href="keren-hishtalmut.html" class="dropdown-item">קרן השתלמות</a></li>
-
-              <li><a href="section-125d.html" class="dropdown-item">הטבה לפי סעיף 125ד' לגימלאים</a></li>
-
-            </ul>
-
-          </li>
-
-        
-          <li class="nav-dropdown">
-            <a href="calculators.html" class="nav-link dropdown-toggle">מחשבונים <i class="fa-solid fa-chevron-down fa-xs"></i></a>
-            <ul class="dropdown-menu">
-              <li><a href="calculators.html" class="dropdown-item">מחשבון ריבית דה ריבית</a></li>
-              <li><a href="calculators.html#retirement" class="dropdown-item">סימולטור פרישה</a></li>
-              <li><a href="calculators.html#severance" class="dropdown-item">מחשבון פיצויי פיטורים</a></li>
-            </ul>
-          </li>
-</ul>
+          <li><a href="financial-planning.html" class="nav-link" style="font-weight:700;color:var(--white)">תכנון פיננסי</a></li>
+          <li><a href="retirement-planning.html" class="nav-link">תכנון פרישה</a></li>
+          <li><a href="early-retirement.html" class="nav-link">פרישה מוקדמת</a></li>
+          <li><a href="family-office.html" class="nav-link"><span lang="en">Family Office</span></a></li>
+          <li><a href="market-status.html" class="nav-link">תמונת מצב בשווקים</a></li>
+          <li><a href="holistic-checkup.html" class="nav-link">צ'ק אפ הוליסטי</a></li>
+          <li><a href="documents.html" class="nav-link">מסלקה פנסיונית</a></li>
+        </ul>
       </nav>
-      <div class="header-left" style="display:flex;align-items:center;gap:.6rem;">
-        <a href="en/index.html" title="English" aria-label="Switch to English" lang="en" class="lang-switch-btn" style="font-size:1.47rem;text-decoration:none;line-height:1;color:var(--gold);font-weight:700;letter-spacing:.03em;">EN</a>
-        <a href="https://portal.roeto.co.il/pfinvest/login" class="btn-personal-area" target="_blank" rel="noopener"><i class="fa-solid fa-key"></i> איזור אישי</a>
+      <div class="header-left">
+        <a href="https://portal.roeto.co.il/pfinvest/login" class="btn-personal-area" target="_blank" rel="noopener"><i class="fa-solid fa-key"></i> כניסה לאיזור אישי</a>
       </div>
-      <button class="search-toggle" id="search-toggle" aria-label="חיפוש באתר" aria-expanded="false"><i class="fa-solid fa-magnifying-glass"></i> חיפוש</button>
       <button class="hamburger" id="hamburger" aria-label="פתח תפריט" aria-expanded="false">
-        <span class="hamburger-line"></span><span class="hamburger-line"></span><span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
       </button>
     </div>
     <nav class="mobile-menu" id="mobile-menu" aria-label="תפריט נייד" aria-hidden="true">
-            <ul class="mobile-nav-list">
+      <ul class="mobile-nav-list">
         <li><a href="index.html" class="mobile-nav-link">דף הבית</a></li>
-        <li><a href="financial-planning.html" class="mobile-nav-link">תכנון פיננסי</a></li>
-        <li><a href="early-retirement.html" class="mobile-nav-link">תכנון פרישה מוקדמת</a></li>
-        <li><a href="retirement-planning.html" class="mobile-nav-link" style="padding-right:2rem;"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> תכנון פרישה</a></li>
-        <li><a href="early-retirement.html" class="mobile-nav-link" style="padding-right:2rem;"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> תכנון פרישה מוקדמת</a></li>
-        <li><a href="family-office.html" class="mobile-nav-link"><span lang="en">Family Office</span></a></li>
-        <li><a href="holistic-checkup.html" class="mobile-nav-link">צ'ק אפ הוליסטי</a></li>
-        <li><a href="documents.html" class="mobile-nav-link">מסלקה פנסיונית</a></li>
-        <li><a href="faq.html" class="mobile-nav-link">שאלות ותשובות</a></li>
-        <li><a href="common-actions.html" class="mobile-nav-link">פעולות נפוצות</a></li>
-        <li style="padding:.4rem 1.5rem;font-size:.75rem;color:rgba(255,255,255,.4);font-weight:700;letter-spacing:.05em;">מכשירים פנסיוניים</li>
-
-        <li><a href="savings-policies.html" class="mobile-nav-link" style="padding-right:2rem;"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> פוליסות חיסכון</a></li>
-
-        <li><a href="managed-portfolios.html" class="mobile-nav-link" style="padding-right:2rem;"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> תיקי השקעות מנוהלים</a></li>
-
-        <li><a href="structured-products.html" class="mobile-nav-link" style="padding-right:2rem;"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> מוצרים מובנים (סטרקצ'רים)</a></li>
-
-        <li><a href="mutual-funds-etf.html" class="mobile-nav-link" style="padding-right:2rem;"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> קרנות נאמנות וקרנות סל (ETF)</a></li>
-
-        <li><a href="alternative-investments.html" class="mobile-nav-link" style="padding-right:2rem;"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> השקעות אלטרנטיביות</a></li>
-
-        <li><a href="hedge-funds.html" class="mobile-nav-link" style="padding-right:2rem;"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> קרנות גידור בנאמנות</a></li>
-
-        <li><a href="rsu-espp-options.html" class="mobile-nav-link"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> <span lang="en">RSU, ESPP</span> ואופציות</a></li>
-
-        <li style="padding:.4rem 1.5rem;font-size:.75rem;color:rgba(255,255,255,.4);font-weight:700;letter-spacing:.05em;">מכשירים פיננסיים</li>
-
-        <li><a href="pension-fund.html" class="mobile-nav-link" style="padding-right:2rem;"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> קרן פנסיה</a></li>
-
-        <li><a href="matria-bituchit.html" class="mobile-nav-link" style="padding-right:2rem;"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> מטריה ביטוחית</a></li>
-
-        <li><a href="managers-insurance.html" class="mobile-nav-link" style="padding-right:2rem;"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> ביטוח מנהלים</a></li>
-
-        <li><a href="gemel-190.html" class="mobile-nav-link" style="padding-right:2rem;"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> קופת גמל 190</a></li>
-
-        <li><a href="gemel-hashkaa.html" class="mobile-nav-link" style="padding-right:2rem;"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> קופת גמל להשקעה</a></li>
-
-        <li><a href="keren-hishtalmut.html" class="mobile-nav-link" style="padding-right:2rem;"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> קרן השתלמות</a></li>
-
-        <li><a href="section-125d.html" class="mobile-nav-link" style="padding-right:2rem;"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> הטבה לפי סעיף 125ד'</a></li>
-                <li><a href="market-status.html" class="mobile-nav-link">תמונת מצב בשווקים</a></li>
-        <li><a href="https://www.meitav.co.il/" class="mobile-nav-link" style="padding-right:2rem;" target="_blank" rel="noopener"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> בית השקעות מיטב</a></li>
-        <li><a href="https://www.fnx.co.il/" class="mobile-nav-link" style="padding-right:2rem;" target="_blank" rel="noopener"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> סקירה חודשית - הפניקס</a></li>
-        <li><a href="https://www.sponsor.co.il/" class="mobile-nav-link" style="padding-right:2rem;" target="_blank" rel="noopener"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> ספונסר - ניתוחי שוק</a></li>
-        <li><a href="https://finance.yahoo.com/" class="mobile-nav-link" style="padding-right:2rem;" target="_blank" rel="noopener"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> <span lang="en">Yahoo Finance</span></a></li>
-        <li><a href="https://il.investing.com/" class="mobile-nav-link" style="padding-right:2rem;" target="_blank" rel="noopener"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> <span lang="en">Investing.com</span> ישראל</a></li>
-        <li><a href="https://www.bloomberg.com/markets" class="mobile-nav-link" style="padding-right:2rem;" target="_blank" rel="noopener"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> <span lang="en">Bloomberg Markets</span></a></li>
-<li><a href="index.html#testimonials" class="mobile-nav-link">המלצות</a></li>
-        <li style="padding:.4rem 1.5rem;font-size:.75rem;color:rgba(255,255,255,.4);font-weight:700;letter-spacing:.05em;">מחשבונים</li>
-        <li><a href="calculators.html" class="mobile-nav-link"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> ריבית דה ריבית</a></li>
+        <li><a href="index.html#services" class="mobile-nav-link">השירותים שלנו</a></li>
+        <li><a href="holistic-checkup.html" class="mobile-nav-link" style="font-weight:700">צ'ק אפ הוליסטי</a></li>
         <li><a href="tel:052-8000556" class="mobile-nav-link mobile-phone"><i class="fa-solid fa-phone"></i> 052-8000556</a></li>
         <li><a href="https://wa.me/9720528000556" class="mobile-nav-link"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a></li>
       </ul>
     </nav>
-</header>
-<div class="search-overlay" id="search-overlay" role="search" aria-hidden="true">
-  <div class="search-inner">
-    <input type="search" class="search-input" id="search-input" placeholder="חיפוש... (פנסיה, פרישה, ביטוח, גמל...)" autocomplete="off" dir="rtl" aria-label="חיפוש באתר" />
-    <button class="search-close" id="search-close" aria-label="סגור חיפוש"><i class="fa-solid fa-xmark"></i></button>
-    <ul class="search-results" id="search-results" role="listbox" aria-label="תוצאות חיפוש"></ul>
-  </div>
-</div>
+  </header>
   <div id="content-start" tabindex="-1"></div>
 
-  <section class="page-hero">
+  <!-- ========== HERO ========== -->
+  <section class="checkup-hero">
     <div class="container">
       <h1>השקעות אלטרנטיביות</h1>
-      <p class="hero-tagline"><strong style="color:var(--white)">קרנות גידור, הון סיכון, פרייבט אקוויטי ו-P2P - גיוון אמיתי מעבר לשוק ניירות הערך</strong></p>
+      <p class="hero-tagline"><strong style="color:var(--white)">גיוון תיק ההשקעות מעבר לשוק ההון — נדל"ן, קרנות פרטיות וכלים ייחודיים לתשואה יציבה</strong></p>
     </div>
   </section>
 
-  <section class="page-content">
+  <!-- ========== CONTENT ========== -->
+  <section class="checkup-content">
     <div class="container">
-      <div class="page-intro fade-in-up">
-        <h2>מהן השקעות אלטרנטיביות?</h2>
-      <p>השקעות אלטרנטיביות הן כל מה שמחוץ לשוק ניירות ערך הסחיר הקלאסי - מניות, אגרות חוב וכסף מזומן. <strong>הן כוללות: קרנות גידור (Hedge Funds), הון סיכון (Venture Capital), השקעות פרייבט אקוויטי (Private Equity), נדל"ן מניב, הלוואות עמית-לעמית (P2P) ותשתיות.</strong> עד לפני עשור, תחום זה היה שמור כמעט אך ורק למשקיעים מוסדיים. כיום, גם <strong><u>משקיעים פרטיים "כשירים"</u></strong> יכולים לגשת אל חלק גדול מתחום זה.</p>
-      <p><strong>היתרון המרכזי של השקעות אלטרנטיביות הוא המתאם הנמוך לשוק המניות</strong> - כלומר, הן אינן "נופלות יחד" עם שוק המניות בזמן משבר. זה מה שהופך אותן לכלי חיוני בבניית תיק מפוזר אמיתי. בנוסף, בתחומים כמו פרייבט אקוויטי והון סיכון - התשואות ההיסטוריות עלו על אלו של שוק המניות הסחיר, עם סיכון ואי-נזילות גבוהים יותר.</p>
-      <h2>בישראל, משקיע "כשיר" נדרש לעמוד באחד מהתנאים הבאים:</h2>
-      <ul style="margin: .5rem 0 1.2rem 0; padding-right: 1.4rem; line-height: 2; color: #2d3748;">
-        <li><strong>נכסים נזילים:</strong> לקוח שמחזיק בנכסים פיננסיים נזילים (מזומנים, ניירות ערך, פיקדונות) בשווי כולל של לפחות כ-9,410,000 ש"ח.</li>
-        <li><strong>הכנסה שנתית:</strong> לקוח שעמד בהכנסה שנתית של לפחות כ-1,410,000 ש"ח כיחיד, או כ-2,100,000 ש"ח כמשק בית, בכל אחת משתי השנים האחרונות.</li>
-        <li><strong>שילוב של נכסים והכנסה:</strong> לקוח שמחזיק בנכסים נזילים בהיקף של לפחות כ-4,700,000 ש"ח והכנסה של כ-700,000 ש"ח (ליחיד) או כ-1,050,000 ש"ח (לתא משפחתי) בשנתיים האחרונות.</li>
-      </ul>
-      <p><strong>אבל מעמד "כשיר" אינו ערובה לאיכות ההשקעה - בדיקת נאותות (Due Diligence) קריטית לפני כל השקעה.</strong></p>
+
+      <div class="checkup-intro fade-in-up">
+        <p>
+          השקעות אלטרנטיביות הן שם כולל למגוון רחב של אפיקי השקעה שאינם נסחרים בבורסה באופן שוטף, בניגוד למניות או איגרות חוב מסורתיות. בעוד ששוק ההון חשוף לתנודות יומיומיות המושפעות מאירועים גלובליים, נכסים אלטרנטיביים מתנהגים באופן עצמאי יחסית.
+        </p>
+        <p>
+          הם מאפשרים למשקיעים להצטרף למיזמים וקרנות שבעבר היו פתוחים רק לגופים מוסדיים גדולים או למשקיעים בעלי הון גבוה — כמו קרנות גידור, השקעה ישירה בנדל"ן וחברות טכנולוגיה פרטיות.
+        </p>
       </div>
-      <div class="page-benefits">
-        <h2>יתרונות מרכזיים של השקעות אלטרנטיביות</h2>
+
+      <div class="checkup-benefits">
+        <h2>למה כדאי לשלב אותן בתיק שלכם?</h2>
         <div class="benefits-grid">
-          <div class="benefit-card fade-in-up"><div class="benefit-icon"><i class="fa-solid fa-chart-area"></i></div><div class="benefit-title">מתאם נמוך לשוק</div><div class="benefit-desc">אלטרנטיביות לא 'נופלות' בהכרח עם הבורסה - מגן חשוב בתיק בזמני תנודתיות גבוהה.</div></div>
-          <div class="benefit-card fade-in-up"><div class="benefit-icon"><i class="fa-solid fa-seedling"></i></div><div class="benefit-title">פוטנציאל תשואה גבוה</div><div class="benefit-desc">פרייבט אקוויטי והון סיכון הניבו היסטורית תשואות עודפות - בתמורה לנעילת הכסף לשנים.</div></div>
-          <div class="benefit-card fade-in-up"><div class="benefit-icon"><i class="fa-solid fa-handshake"></i></div><div class="benefit-title">גישה לעסקאות פרטיות</div><div class="benefit-desc">השקעה בחברות לפני שנכנסות לבורסה - הזדמנויות שאינן קיימות בשוק הסחיר הציבורי.</div></div>
-          <div class="benefit-card fade-in-up"><div class="benefit-icon"><i class="fa-solid fa-building"></i></div><div class="benefit-title">נדל"ן ותשתיות</div><div class="benefit-desc">הכנסה שוטפת ממשכירות ותשתיות עם מתאם חלקי לאינפלציה - יציבות בתיק לטווח ארוך.</div></div>
-          <div class="benefit-card fade-in-up"><div class="benefit-icon"><i class="fa-solid fa-shield-halved"></i></div><div class="benefit-title">גידור סיכונים</div><div class="benefit-desc">קרנות גידור יכולות להרוויח גם בשוק יורד - באמצעות שורט, נגזרים ואסטרטגיות ארביטראז'.</div></div>
-          <div class="benefit-card fade-in-up"><div class="benefit-icon"><i class="fa-solid fa-network-wired"></i></div><div class="benefit-title">גיוון אמיתי</div><div class="benefit-desc">תוספת אלטרנטיביות לתיק מניות/אג"ח יוצרת פיזור עמוק יותר שמפחית סיכון כולל.</div></div>
+
+          <div class="benefit-card fade-in-up">
+            <div class="benefit-icon"><i class="fa-solid fa-building"></i></div>
+            <div class="benefit-title">נדל"ן מניב</div>
+            <div class="benefit-desc">השקעה בנכסים מניבים בארץ ובחו"ל — תזרים יציב וצמיחת ערך לאורך זמן</div>
+          </div>
+
+          <div class="benefit-card fade-in-up">
+            <div class="benefit-icon"><i class="fa-solid fa-hand-holding-dollar"></i></div>
+            <div class="benefit-title">קרנות חוב פרטי</div>
+            <div class="benefit-desc">הלוואות לחברות פרטיות בריבית גבוהה — תשואה עדיפה על אג"ח סחיר עם סיכון מנוהל</div>
+          </div>
+
+          <div class="benefit-card fade-in-up">
+            <div class="benefit-icon"><i class="fa-solid fa-bolt"></i></div>
+            <div class="benefit-title">תשתיות ואנרגיה</div>
+            <div class="benefit-desc">השקעה בפרויקטים של אנרגיה מתחדשת ותשתיות — תזרים צפוי ומוגן מפני אינפלציה</div>
+          </div>
+
+          <div class="benefit-card fade-in-up">
+            <div class="benefit-icon"><i class="fa-solid fa-chart-pie"></i></div>
+            <div class="benefit-title">גיוון אמיתי</div>
+            <div class="benefit-desc">מתאם נמוך לשוק ההון — ירידות בבורסה לא בהכרח משפיעות על נכסים אלטרנטיביים</div>
+          </div>
+
+          <div class="benefit-card fade-in-up">
+            <div class="benefit-icon"><i class="fa-solid fa-shield-halved"></i></div>
+            <div class="benefit-title">הגנה מתנודתיות</div>
+            <div class="benefit-desc">הנכסים משמשים "בולם זעזועים" ומפחיתים את הסיכון הכולל בתיק בתקופות משבר</div>
+          </div>
+
+          <div class="benefit-card fade-in-up">
+            <div class="benefit-icon"><i class="fa-solid fa-rocket"></i></div>
+            <div class="benefit-title">פוטנציאל תשואה</div>
+            <div class="benefit-desc">גישה להזדמנויות צמיחה ייחודיות שאינן זמינות לציבור הרחב — עם פוטנציאל לתשואות גבוהות</div>
+          </div>
+
         </div>
       </div>
-      <div class="page-intro fade-in-up">
-        <h2>למי מתאימות השקעות אלטרנטיביות ומה חייבים לדעת?</h2>
-      <p>השקעות אלטרנטיביות מתאימות ל<strong>משקיעים בעלי הון משמעותי המסוגלים "לנעול" חלק מהכסף לתקופות ארוכות - בדרך כלל 5-10 שנים</strong> - מבלי שהדבר יפגע בנזילות הכוללת של תיקם. ההמלצה היא להקצות לאלטרנטיביות בין 10% ל-30% מהתיק הכולל, תלוי בגיל, הכנסה ונזילות נדרשת.</p>
-      <p><strong>אזהרות חשובות:</strong> בתחום זה נדרשת בדיקת נאותות (Due Diligence) מקיפה - משפטית, פיננסית ותפעולית. עמלות הניהול גבוהות יחסית (לעיתים 2% ניהול + 20% מהרווחים).</p>
+
+      <!-- הסבר נוסף -->
+      <div style="max-width:820px;margin:0 auto 1rem;background:var(--white);border-radius:var(--radius-lg);padding:2rem 2.5rem;box-shadow:var(--shadow-md);border-right:5px solid var(--gold)">
+        <h2 style="font-family:'Heebo',sans-serif;font-size:1.2rem;font-weight:900;color:var(--navy);margin-bottom:1rem">למי מתאים?</h2>
+        <p style="font-size:1rem;line-height:1.9;color:var(--text);margin-bottom:1rem">השקעות אלטרנטיביות מתאימות למשקיעים המחפשים גיוון מעבר למניות ואג"ח, עם אופק השקעה של 3–7 שנים ומעלה. הן מתאימות במיוחד לבעלי הון שצברו תיק השקעות סולידי ומעוניינים להוסיף שכבת תשואה שאינה תלויה בתנודות הבורסה.</p>
+        <p style="font-size:.95rem;color:var(--dark-gray);border-top:1px solid var(--light-gray);padding-top:.9rem;margin-bottom:0">⚠️ <strong>לתשומת לבכם:</strong> השקעות אלטרנטיביות כרוכות בסיכון ואינן מתאימות לכל משקיע. חשוב לבצע בדיקת נאותות מקיפה לפני כל השקעה. המידע כאן הוא למטרת היכרות בלבד ואינו מהווה ייעוץ השקעות.</p>
       </div>
+
     </div>
   </section>
 
-  <section class="page-cta">
+  <!-- ========== CTA ========== -->
+  <section class="checkup-cta">
     <div class="container">
-      <h2>מעוניינים להוסיף השקעות אלטרנטיביות לתיק - ולהבין למה בדיוק אתם נכנסים?</h2>
-      <p style="font-weight:800;color:var(--gold)">טל גבאי מלווה בכירים בבחינה ובחירה של השקעות אלטרנטיביות - עם ניתוח מלא ובלי ניגוד עניינים.</p>
+      <h2>רוצים לבחון הזדמנויות השקעה אלטרנטיביות?</h2>
+      <p style="font-weight:800;color:var(--gold)">השאירו פרטים ונחזור אליכם לתיאום<br>שיחת היכרות</p>
       <div class="cta-buttons">
-        <button class="btn btn-gold btn-lg" onclick="document.getElementById('meeting-modal').classList.add('open')"><i class="fa-solid fa-calendar-check"></i> קביעת פגישה</button>
-        <a href="tel:052-8000556" class="btn btn-white btn-lg"><i class="fa-solid fa-phone"></i> 052-8000556</a>
+        <button id="cta-meeting-btn" onclick="document.getElementById('meeting-modal').classList.add('open')" class="btn btn-gold btn-lg" style="animation:ctaPulse 1.9s ease-in-out infinite">
+          <i class="fa-solid fa-calendar-check"></i> קביעת פגישה
+        </button>
+        <a href="tel:052-8000556" class="btn btn-white btn-lg">
+          <i class="fa-solid fa-phone"></i> 052-8000556
+        </a>
       </div>
     </div>
   </section>
 
+  <!-- ========== MEETING MODAL ========== -->
   <div class="modal-overlay" id="meeting-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
     <div class="modal-box">
       <button class="modal-close" onclick="document.getElementById('meeting-modal').classList.remove('open')" aria-label="סגור">&times;</button>
+
       <div id="modal-form-wrap">
         <p class="modal-title" id="modal-title"><i class="fa-solid fa-calendar-check" style="color:var(--gold);margin-left:.4rem"></i> קביעת פגישה</p>
-        <p class="modal-subtitle">בחרו תאריך ושעה מועדפים - נאשר בהקדם</p>
+        <p class="modal-subtitle">בחרו תאריך ושעה מועדפים — נאשר בהקדם</p>
+
         <form class="modal-form" id="meeting-form">
           <div class="modal-row">
-            <div class="form-group"><label class="form-label" for="meet-name">שם מלא <span style="color:#e53e3e">*</span></label><input type="text" id="meet-name" name="שם מלא" class="form-input" required placeholder="ישראל ישראלי"/></div>
-            <div class="form-group"><label class="form-label" for="meet-phone">פלאפון <span style="color:#e53e3e">*</span></label><input type="tel" id="meet-phone" name="פלאפון" class="form-input" required placeholder="050-0000000"/></div>
+            <div class="form-group">
+              <label class="form-label" for="meet-name">שם מלא <span class="required" style="color:#e53e3e">*</span></label>
+              <input type="text" id="meet-name" name="שם מלא" class="form-input" required aria-required="true" placeholder="ישראל ישראלי" />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="meet-phone">פלאפון <span class="required" style="color:#e53e3e">*</span></label>
+              <input type="tel" id="meet-phone" name="פלאפון" class="form-input" required aria-required="true" placeholder="050-0000000" />
+            </div>
           </div>
-          <div class="form-group"><label class="form-label" for="meet-email">אימייל <span style="color:#e53e3e">*</span></label><input type="email" id="meet-email" name="אימייל" class="form-input" required placeholder="example@email.com"/></div>
+          <div class="form-group">
+            <label class="form-label" for="meet-email">אימייל <span class="required" style="color:#e53e3e">*</span></label>
+            <input type="email" id="meet-email" name="אימייל" class="form-input" required aria-required="true" placeholder="example@email.com" />
+          </div>
           <div class="modal-row">
-            <div class="form-group"><label class="form-label" for="meet-date">תאריך מועדף <span style="color:#e53e3e">*</span></label><input type="date" id="meet-date" name="תאריך מועדף" class="form-input" required/></div>
-            <div class="form-group"><label class="form-label" for="meet-time">שעה מועדפת <span style="color:#e53e3e">*</span></label>
-              <select id="meet-time" name="שעה מועדפת" class="form-select" required>
+            <div class="form-group">
+              <label class="form-label" for="meet-date">תאריך מועדף <span class="required" style="color:#e53e3e">*</span></label>
+              <input type="date" id="meet-date" name="תאריך מועדף" class="form-input" required aria-required="true" />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="meet-time">שעה מועדפת <span class="required" style="color:#e53e3e">*</span></label>
+              <select id="meet-time" name="שעה מועדפת" class="form-select" required aria-required="true">
                 <option value="">בחרו שעה</option>
-                <option>08:00</option><option>08:30</option><option>09:00</option><option>09:30</option>
-                <option>10:00</option><option>10:30</option><option>11:00</option><option>11:30</option>
-                <option>12:00</option><option>12:30</option><option>13:00</option><option>13:30</option>
-                <option>14:00</option><option>14:30</option><option>15:00</option><option>15:30</option>
-                <option>16:00</option><option>16:30</option><option>17:00</option><option>17:30</option>
+                <option>08:00</option><option>08:30</option>
+                <option>09:00</option><option>09:30</option>
+                <option>10:00</option><option>10:30</option>
+                <option>11:00</option><option>11:30</option>
+                <option>12:00</option><option>12:30</option>
+                <option>13:00</option><option>13:30</option>
+                <option>14:00</option><option>14:30</option>
+                <option>15:00</option><option>15:30</option>
+                <option>16:00</option><option>16:30</option>
+                <option>17:00</option><option>17:30</option>
                 <option>18:00</option>
               </select>
             </div>
           </div>
-          <div class="form-group"><label class="form-label" for="meet-notes">הערות (אופציונלי)</label><textarea id="meet-notes" name="הערות" class="form-textarea" rows="2" placeholder="נושא הפגישה, בקשות מיוחדות..."></textarea></div>
-          <button type="submit" class="btn btn-gold" style="width:100%;justify-content:center;padding:.85rem;font-size:1rem;border-radius:var(--radius)"><i class="fa-solid fa-paper-plane"></i> שליחת בקשת הפגישה</button>
+          <div class="form-group">
+            <label class="form-label" for="meet-notes">הערות (אופציונלי)</label>
+            <textarea id="meet-notes" name="הערות" class="form-textarea" rows="2" placeholder="נושא הפגישה, בקשות מיוחדות..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-gold" style="width:100%;justify-content:center;padding:.85rem;font-size:1rem;border-radius:var(--radius)">
+            <i class="fa-solid fa-paper-plane"></i> שליחת בקשת הפגישה
+          </button>
         </form>
       </div>
+
       <div class="modal-success" id="modal-success">
         <i class="fa-solid fa-circle-check"></i>
         <h3>בקשתכם התקבלה!</h3>
@@ -335,18 +454,25 @@
       </div>
     </div>
   </div>
+
+  <!-- ========== FOOTER ========== -->
   <footer class="site-footer">
     <div class="footer-top">
       <div class="container footer-top-inner">
         <div class="footer-col footer-brand">
-          <a href="index.html" class="footer-logo"><span class="logo-main">טל גבאי</span><span class="logo-sep">|</span><span class="logo-sub">תכנון פיננסי</span></a>
+          <a href="index.html" class="footer-logo">
+            <span class="logo-main">טל גבאי</span>
+            <span class="logo-sep">|</span>
+            <span class="logo-sub">תכנון פיננסי</span>
+          </a>
           <p class="footer-tagline">ליווי אישי וממוקד לבכירים</p>
         </div>
         <div class="footer-col">
           <h4 class="footer-col-title">קישורים מהירים</h4>
           <ul class="footer-links">
             <li><a href="index.html" class="footer-link"><i class="fa-solid fa-chevron-left"></i> דף הבית</a></li>
-            <li><a href="retirement-planning.html" class="footer-link"><i class="fa-solid fa-chevron-left"></i> תכנון פרישה</a></li>
+            <li><a href="index.html#about" class="footer-link"><i class="fa-solid fa-chevron-left"></i> אודותנו</a></li>
+            <li><a href="index.html#services" class="footer-link"><i class="fa-solid fa-chevron-left"></i> שירותים</a></li>
             <li><a href="holistic-checkup.html" class="footer-link"><i class="fa-solid fa-chevron-left"></i> צ'ק אפ הוליסטי</a></li>
             <li><a href="index.html#contact" class="footer-link"><i class="fa-solid fa-chevron-left"></i> צור קשר</a></li>
           </ul>
@@ -354,9 +480,9 @@
         <div class="footer-col">
           <h4 class="footer-col-title">פרטי התקשרות</h4>
           <ul class="footer-contact-list">
+            <li><i class="fa-solid fa-location-dot footer-contact-icon"></i><span>היצירה 19, רחובות</span></li>
             <li><i class="fa-solid fa-phone footer-contact-icon"></i><span><a href="tel:074-7019277" class="footer-contact-link">074-7019277</a><br><a href="tel:052-8000556" class="footer-contact-link">052-8000556</a></span></li>
             <li><i class="fa-solid fa-envelope footer-contact-icon"></i><span><a href="mailto:office@pf-invest.co.il" class="footer-contact-link">office@pf-invest.co.il</a></span></li>
-            <li><i class="fa-solid fa-location-dot footer-contact-icon"></i><span>היצירה 19, רחובות</span></li>
           </ul>
         </div>
       </div>
@@ -365,30 +491,79 @@
       <div class="container footer-bottom-inner">
         <p class="footer-copy">&copy; 2026 טל גבאי - תכנון פיננסי מתקדם לבכירים. כל הזכויות שמורות.</p>
         <p class="footer-legal">מורשה על ידי רשות שוק ההון, ביטוח וחיסכון</p>
-        <p class="footer-disclaimer">המידע באתר זה הינו למטרות הכרות כללית בלבד ואינו מהווה ייעוץ השקעות, ייעוץ פנסיוני, ייעוץ מס או המלצה כלשהי. אין להסתמך עליו ללא קבלת ייעוץ מקצועי המותאם לנסיבות האישיות.</p>
+              <p class="footer-disclaimer">המידע באתר זה הינו למטרות הכרות כללית בלבד ואינו מהווה ייעוץ השקעות, ייעוץ פנסיוני, ייעוץ מס או המלצה כלשהי. אין להסתמך עליו ללא קבלת ייעוץ מקצועי המותאם לנסיבות האישיות.</p>
         <p class="footer-links-legal"><a href="accessibility.html" class="footer-legal-link">הצהרת נגישות</a><span class="footer-sep"> | </span><a href="privacy-policy.html" class="footer-legal-link">מדיניות פרטיות</a></p>
-      </div>
+</div>
     </div>
   </footer>
-  <a href="https://wa.me/972528000556" target="_blank" rel="noopener noreferrer" class="whatsapp-float" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp whatsapp-icon"></i></a>
+
+  <a href="https://wa.me/972528000556" target="_blank" rel="noopener noreferrer" class="whatsapp-float" aria-label="WhatsApp">
+    <i class="fa-brands fa-whatsapp whatsapp-icon"></i>
+  </a>
+
   <script>
-    const hamburger=document.getElementById('hamburger'),mobileMenu=document.getElementById('mobile-menu');
-    hamburger.addEventListener('click',()=>{const o=mobileMenu.classList.toggle('open');hamburger.setAttribute('aria-expanded',o);mobileMenu.setAttribute('aria-hidden',!o);});
-    document.getElementById('meeting-modal').addEventListener('click',function(e){if(e.target===this)this.classList.remove('open');});
-    var btn=document.querySelector('.page-cta .btn-gold');
-    if(btn)btn.addEventListener('click',function(e){e.preventDefault();document.getElementById('meeting-modal').classList.add('open');});
-    document.getElementById('meeting-form').addEventListener('submit',async function(e){
-      e.preventDefault();const b=this.querySelector('button[type="submit"]');b.disabled=true;b.innerHTML='<i class="fa-solid fa-spinner fa-spin"></i> שולח...';
-      const d=new FormData(this);d.append('_cc','tal@pf-invest.co.il');d.append('_subject','בקשת פגישה - מכשירים פיננסיים');d.append('_captcha','false');d.append('_template','table');
-      try{const r=await fetch('https://formsubmit.co/ajax/office@pf-invest.co.il',{method:'POST',headers:{'Accept':'application/json'},body:d});
-        if(r.ok){document.getElementById('modal-form-wrap').style.display='none';document.getElementById('modal-success').style.display='flex';}else throw new Error();
-      }catch{b.disabled=false;b.innerHTML='<i class="fa-solid fa-paper-plane"></i> שליחת בקשת הפגישה';alert('אירעה שגיאה. נסו שוב או התקשרו אלינו ישירות.');}
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    hamburger.addEventListener('click', () => {
+      const open = mobileMenu.classList.toggle('open');
+      hamburger.setAttribute('aria-expanded', open);
+      mobileMenu.setAttribute('aria-hidden', !open);
     });
-    const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target);}});},{threshold:0.1});
-    document.querySelectorAll('.fade-in-up').forEach(el=>observer.observe(el));
+
+    /* Set min date to today */
+    const dateInput = document.getElementById('meet-date');
+    if (dateInput) {
+      const today = new Date().toISOString().split('T')[0];
+      dateInput.min = today;
+    }
+
+    /* Close modal on overlay click */
+    document.getElementById('meeting-modal').addEventListener('click', function(e) {
+      if (e.target === this) this.classList.remove('open');
+    });
+
+    /* Meeting form submit */
+    document.getElementById('meeting-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const btn = this.querySelector('button[type="submit"]');
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> שולח...';
+
+      const data = new FormData(this);
+      data.append('_cc', 'tal@pf-invest.co.il');
+      data.append('_subject', 'בקשת פגישה חדשה - צ\'ק אפ פיננסי');
+      data.append('_captcha', 'false');
+      data.append('_template', 'table');
+
+      try {
+        const res = await fetch('https://formsubmit.co/ajax/office@pf-invest.co.il', {
+          method: 'POST',
+          headers: { 'Accept': 'application/json' },
+          body: data
+        });
+        if (res.ok) {
+          document.getElementById('modal-form-wrap').style.display = 'none';
+          document.getElementById('modal-success').style.display = 'flex';
+        } else { throw new Error(); }
+      } catch {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> שליחת בקשת הפגישה';
+        alert('אירעה שגיאה. נסו שוב או התקשרו אלינו ישירות.');
+      }
+    });
+
+    /* Scroll animations */
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
   </script>
+
+  <!-- ========== ACCESSIBILITY WIDGET ========== -->
   <div class="a11y-widget" id="a11y-widget">
-    <button class="a11y-toggle" id="a11y-toggle" aria-label="אפשרויות נגישות" aria-expanded="false"><i class="fa-solid fa-universal-access"></i></button>
+    <button class="a11y-toggle" id="a11y-toggle" aria-label="אפשרויות נגישות" aria-expanded="false">
+      <i class="fa-solid fa-universal-access"></i>
+    </button>
     <div class="a11y-panel" id="a11y-panel" role="dialog" aria-label="תפריט נגישות" aria-hidden="true">
       <div class="a11y-panel-title">נגישות</div>
       <button class="a11y-btn" id="a11y-font-up" aria-label="הגדל גופן"><i class="fa-solid fa-plus"></i> הגדל טקסט</button>
@@ -403,23 +578,96 @@
   <script>
   (function(){
     var t=document.getElementById('a11y-toggle'),p=document.getElementById('a11y-panel');
-    var fs=parseInt(localStorage.getItem('a11y-fs')||'16'),hc=localStorage.getItem('a11y-hc')==='1',na=localStorage.getItem('a11y-na')==='1',hl=localStorage.getItem('a11y-hl')==='1',ts=localStorage.getItem('a11y-ts')==='1';
-    function apply(){document.documentElement.style.fontSize=fs+'px';document.body.classList.toggle('high-contrast',hc);document.body.classList.toggle('no-animations',na);document.body.classList.toggle('highlight-links',hl);document.body.classList.toggle('text-spacing',ts);document.getElementById('a11y-contrast').classList.toggle('active',hc);document.getElementById('a11y-animations').classList.toggle('active',na);document.getElementById('a11y-links').classList.toggle('active',hl);document.getElementById('a11y-spacing').classList.toggle('active',ts);}
+    var fs=parseInt(localStorage.getItem('a11y-fs')||'16');
+    var hc=localStorage.getItem('a11y-hc')==='1';
+    var na=localStorage.getItem('a11y-na')==='1';
+    var hl=localStorage.getItem('a11y-hl')==='1';
+    var ts=localStorage.getItem('a11y-ts')==='1';
+    function apply(){
+      document.documentElement.style.fontSize=fs+'px';
+      document.body.classList.toggle('high-contrast',hc);
+      document.body.classList.toggle('no-animations',na);
+      document.body.classList.toggle('highlight-links',hl);
+      document.body.classList.toggle('text-spacing',ts);
+      document.getElementById('a11y-contrast').classList.toggle('active',hc);
+      document.getElementById('a11y-animations').classList.toggle('active',na);
+      document.getElementById('a11y-links').classList.toggle('active',hl);
+      document.getElementById('a11y-spacing').classList.toggle('active',ts);
+    }
     apply();
-    t.addEventListener('click',function(){var o=p.classList.toggle('open');t.setAttribute('aria-expanded',o);p.setAttribute('aria-hidden',!o);});
+    t.addEventListener('click',function(){
+      var o=p.classList.toggle('open');
+      t.setAttribute('aria-expanded',o);
+      p.setAttribute('aria-hidden',!o);
+    });
     document.getElementById('a11y-font-up').addEventListener('click',function(){if(fs<22){fs+=2;localStorage.setItem('a11y-fs',fs);apply();}});
     document.getElementById('a11y-font-down').addEventListener('click',function(){if(fs>12){fs-=2;localStorage.setItem('a11y-fs',fs);apply();}});
     document.getElementById('a11y-contrast').addEventListener('click',function(){hc=!hc;localStorage.setItem('a11y-hc',hc?'1':'0');apply();});
     document.getElementById('a11y-animations').addEventListener('click',function(){na=!na;localStorage.setItem('a11y-na',na?'1':'0');apply();});
     document.getElementById('a11y-links').addEventListener('click',function(){hl=!hl;localStorage.setItem('a11y-hl',hl?'1':'0');apply();});
     document.getElementById('a11y-spacing').addEventListener('click',function(){ts=!ts;localStorage.setItem('a11y-ts',ts?'1':'0');apply();});
-    document.getElementById('a11y-reset').addEventListener('click',function(){fs=16;hc=false;na=false;hl=false;ts=false;['a11y-fs','a11y-hc','a11y-na','a11y-hl','a11y-ts'].forEach(k=>localStorage.removeItem(k));apply();});
+    document.getElementById('a11y-reset').addEventListener('click',function(){fs=16;hc=false;na=false;hl=false;ts=false;localStorage.removeItem('a11y-fs');localStorage.removeItem('a11y-hc');localStorage.removeItem('a11y-na');localStorage.removeItem('a11y-hl');localStorage.removeItem('a11y-ts');apply();});
     document.addEventListener('click',function(e){if(!document.getElementById('a11y-widget').contains(e.target)){p.classList.remove('open');t.setAttribute('aria-expanded','false');p.setAttribute('aria-hidden','true');}});
+  })();
+  </script>
+
+  <!-- Photo Modal -->
+  <div class="photo-modal" id="photo-modal" role="dialog" aria-modal="true" aria-label="תמונת טל גבאי">
+    <button class="photo-modal-close" id="photo-modal-close" aria-label="סגור" type="button">&times;</button>
+    <img src="tal.jpg" alt="טל גבאי — מתכנן פיננסי לבכירים" />
+  </div>
+  <script>
+  (function(){
+    var m=document.getElementById('photo-modal');
+    if(!m) return;
+    
+    document.getElementById('photo-modal-close').addEventListener('click',function(e){
+      e.stopPropagation();
+      m.classList.remove('open');
+      document.body.style.overflow='';
+    });
+    m.addEventListener('click',function(){
+      m.classList.remove('open');
+      document.body.style.overflow='';
+    });
+    m.querySelector('img').addEventListener('click',function(e){e.stopPropagation();});
+    document.addEventListener('keydown',function(e){
+      if(e.key==='Escape'){m.classList.remove('open');document.body.style.overflow='';}
+    });
+  })();
+  </script>
+
+
+  <!-- ===== COOKIE CONSENT BANNER ===== -->
+  <div id="cookie-banner" role="dialog" aria-label="הסכמה לעוגיות" aria-live="polite" style="display:none;position:fixed;bottom:0;right:0;left:0;z-index:99999;background:#0d1e35;color:#fff;padding:1rem 1.5rem;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.75rem;box-shadow:0 -2px 12px rgba(0,0,0,.35);font-family:'Heebo',sans-serif;font-size:.92rem;line-height:1.5;">
+    <p style="margin:0;flex:1 1 260px;">אתר זה משתמש ב<strong>Google Analytics</strong> לצורך ניתוח תנועת גולשים בלבד. לא נאסף מידע אישי מזהה. <a href="privacy-policy.html" style="color:#c9a84c;text-decoration:underline;">מדיניות פרטיות</a></p>
+    <div style="display:flex;gap:.6rem;flex-shrink:0;">
+      <button id="cookie-accept" style="background:#c9a84c;color:#0d1e35;border:none;border-radius:6px;padding:.45rem 1.1rem;font-weight:700;cursor:pointer;font-size:.9rem;">אני מסכים</button>
+      <button id="cookie-decline" style="background:transparent;color:rgba(255,255,255,.65);border:1px solid rgba(255,255,255,.3);border-radius:6px;padding:.45rem 1.1rem;cursor:pointer;font-size:.9rem;">דחה</button>
+    </div>
+  </div>
+  <script>
+  (function(){
+    var b=document.getElementById('cookie-banner');
+    var consent=localStorage.getItem('cookie-consent');
+    if(!consent) b.style.display='flex';
+    document.getElementById('cookie-accept').addEventListener('click',function(){
+      localStorage.setItem('cookie-consent','accepted');
+      b.style.display='none';
+    });
+    document.getElementById('cookie-decline').addEventListener('click',function(){
+      localStorage.setItem('cookie-consent','declined');
+      b.style.display='none';
+      // disable GA
+      window['ga-disable-G-5F91Q1DPZV']=true;
+    });
+    // if previously declined, disable GA
+    if(consent==='declined') window['ga-disable-G-5F91Q1DPZV']=true;
   })();
   </script>
   <script>
   (function(){
-    var btn = document.querySelector('.page-cta .btn-gold');
+    var btn = document.getElementById('cta-meeting-btn');
     if (!btn) return;
     var opened = false;
     btn.addEventListener('mouseenter', function() {
@@ -434,9 +682,5 @@
     });
   })();
   </script>
-  <script src="search.js"></script>
-  <button class="back-to-top" id="back-to-top" aria-label="חזור לראש הדף">
-    <i class="fa-solid fa-chevron-up"></i>
-  </button>
 </body>
 </html>
