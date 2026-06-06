@@ -5,6 +5,9 @@ on:
     - cron: '0 6 * * *'  # כל יום ב-06:00 UTC (09:00 ישראל)
   workflow_dispatch:       # אפשרות להפעיל ידנית
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   backup:
     runs-on: ubuntu-latest
