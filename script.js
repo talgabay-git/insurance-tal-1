@@ -118,9 +118,14 @@ const form       = document.getElementById('contact-form');
 const successMsg = document.getElementById('form-success');
 
 if (form) {
+  const formLoadTime = Date.now();
+
   form.addEventListener('submit', e => {
     e.preventDefault();
     let valid = true;
+
+    /* Bot check: הגשה תוך פחות מ-2 שניות = בוט */
+    if (Date.now() - formLoadTime < 2000) return;
 
     /* Helper: find the error span for an input by convention: id="<input-id>-error" */
     const getErrEl = id => form.querySelector(`#${id}-error`);
