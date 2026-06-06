@@ -28,7 +28,7 @@ jobs:
         with:
           name: backup-${{ env.DATE }}
           path: backup-*.zip
-          retention-days: 30
+          retention-days: 50
 
       - name: Send email notification
         uses: dawidd6/action-send-mail@v3
