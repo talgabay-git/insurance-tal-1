@@ -1,0 +1,48 @@
+name: Daily Backup
+
+on:
+  schedule:
+    - cron: '0 6 * * *'  # כל יום ב-06:00 UTC (09:00 ישראל)
+  workflow_dispatch:       # אפשרות להפעיל ידנית
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Create ZIP backup
+        run: |
+          DATE=$(date +%Y-%m-%d)
+          zip -r "backup-${DATE}.zip" . \
+            --exclude ".git/*" \
+            --exclude ".github/*"
+          echo "DATE=${DATE}" >> $GITHUB_ENV
+
+      - name: Send backup by email
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          secure: true
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          subject: "גיבוי יומי — אתר pf-invest.co.il — ${{ env.DATE }}"
+          to: tal@pf-invest.co.il
+          from: ${{ secrets.MAIL_USERNAME }}
+          body: |
+            שלום טל,
+
+            מצורף גיבוי יומי של האתר pf-invest.co.il מתאריך ${{ env.DATE }}.
+
+            בברכה,
+            מערכת הגיבוי האוטומטית
+          attachments: backup-${{ env.DATE }}.zip
+
+      - name: Upload backup artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: backup-${{ github.run_id }}
+          path: backup-*.zip
+          retention-days: 30
