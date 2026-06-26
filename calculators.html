@@ -1045,11 +1045,6 @@
               </div>
 
               <div class="calc-field">
-                <label class="calc-label" for="lvi-inflation">אינפלציה שנתית (%)</label>
-                <input class="calc-input" id="lvi-inflation" type="number" value="3.5" step="0.1" />
-              </div>
-
-              <div class="calc-field">
                 <label class="calc-label" for="lvi-mgmt">דמי ניהול שנתיים (%)</label>
                 <input class="calc-input" id="lvi-mgmt" type="number" value="0.6" step="0.1" />
               </div>
@@ -1119,7 +1114,7 @@
                 </table>
               </div>
 
-              <p style="font-size:.78rem;color:var(--dark-gray);margin-top:1rem;text-align:center;">* הפער מחושב: תשואה − ריבית הלוואה − אינפלציה − דמי ניהול. ירוק = רווחי, אדום = לא כדאי.</p>
+              <p style="font-size:.78rem;color:var(--dark-gray);margin-top:1rem;text-align:center;">* הפער מחושב: תשואה − ריבית הלוואה − דמי ניהול. ירוק = רווחי, אדום = לא כדאי.</p>
             </div>
           </div>
         </div>
@@ -1410,7 +1405,7 @@
       const prime    = parseFloat(document.getElementById('lvi-prime-rate').value)  || 5.25;
       const spread   = parseFloat(document.getElementById('lvi-spread').value)      || -0.5;
       const retPct   = parseFloat(document.getElementById('lvi-return').value)      || 7;
-      const inflPct  = parseFloat(document.getElementById('lvi-inflation').value)   || 3.5;
+
       const mgmtPct  = parseFloat(document.getElementById('lvi-mgmt').value)        || 0.6;
       const selYears = document.getElementById('lvi-years').value;
       const years    = selYears === 'custom'
@@ -1419,9 +1414,9 @@
 
       const loanRate  = (prime + spread) / 100;   // ריבית הלוואה שנתית
       const retRate   = retPct  / 100;
-      const inflRate  = inflPct / 100;
+
       const mgmtRate  = mgmtPct / 100;
-      const netReturn = retRate - inflRate - mgmtRate; // תשואה נטו שנתית
+      const netReturn = retRate - mgmtRate; // תשואה נטו שנתית
       const gapRate   = netReturn - loanRate;          // פער שנתי
 
       const fmt  = v => '₪' + Math.round(v).toLocaleString('he-IL');
@@ -1462,7 +1457,7 @@
 
         // שווי השקעה (ריבית דריבית)
         investVal        *= (1 + retRate);
-        const investNet   = investVal * (1 - inflRate) * (1 - mgmtRate);
+        const investNet   = investVal * (1 - mgmtRate);
 
         // פער נטו שנתי (₪) — בשיטת בלון כבסיס
         const gapShekel   = amount * gapRate;
