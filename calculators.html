@@ -678,6 +678,11 @@
             <i class="fa-solid fa-file-invoice-dollar"></i> מחשבון פיצויי פיטורים
           </button>
         </li>
+        <li role="presentation">
+          <button class="calc-tab-btn" role="tab" aria-selected="false" aria-controls="panel-loan-vs-invest" onclick="switchTab('loan-vs-invest',this)">
+            <i class="fa-solid fa-scale-balanced"></i> הלוואה מול השקעה
+          </button>
+        </li>
       </ul>
     </nav>
 
@@ -1000,6 +1005,125 @@
         </div>
       </div>
 
+      <!-- ── Panel 4: הלוואה מול השקעה ── -->
+      <div class="calc-panel" id="panel-loan-vs-invest" role="tabpanel">
+        <div class="calc-panel-inner" style="max-width:900px;">
+          <div class="calc-card">
+            <div class="calc-card-header">
+              <i class="fa-solid fa-scale-balanced"></i>
+              <h2>מחשבון הלוואה מול השקעה</h2>
+              <p>השווה בין עלות הלוואה לתשואת השקעה — גלה מאיזה שלב משתלם להשקיע במקום לפדות</p>
+            </div>
+
+            <!-- שורת קלטים -->
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin-bottom:1.5rem;">
+
+              <div class="calc-field">
+                <label class="calc-label" for="lvi-amount">סכום התחלתי (₪)</label>
+                <input class="calc-input" id="lvi-amount" type="number" value="100000" min="0" step="1000" />
+              </div>
+
+              <div class="calc-field">
+                <label class="calc-label" for="lvi-prime-rate">ריבית הפריים (%)</label>
+                <input class="calc-input" id="lvi-prime-rate" type="number" value="5.25" step="0.25" />
+              </div>
+
+              <div class="calc-field">
+                <label class="calc-label" for="lvi-spread">מרווח מהפריים</label>
+                <select class="calc-input" id="lvi-spread">
+                  <option value="-0.75">פריים מינוס 0.75%</option>
+                  <option value="-0.5" selected>פריים מינוס 0.5%</option>
+                  <option value="-0.25">פריים מינוס 0.25%</option>
+                  <option value="0">פריים</option>
+                </select>
+              </div>
+
+              <div class="calc-field">
+                <label class="calc-label" for="lvi-return">תשואה שנתית משוערת (%)</label>
+                <input class="calc-input" id="lvi-return" type="number" value="7" step="0.1" />
+              </div>
+
+              <div class="calc-field">
+                <label class="calc-label" for="lvi-inflation">אינפלציה שנתית (%)</label>
+                <input class="calc-input" id="lvi-inflation" type="number" value="3.5" step="0.1" />
+              </div>
+
+              <div class="calc-field">
+                <label class="calc-label" for="lvi-mgmt">דמי ניהול שנתיים (%)</label>
+                <input class="calc-input" id="lvi-mgmt" type="number" value="0.6" step="0.1" />
+              </div>
+
+              <div class="calc-field">
+                <label class="calc-label" for="lvi-years">טווח זמן (שנים)</label>
+                <select class="calc-input" id="lvi-years" onchange="syncYearsCustom()">
+                  <option value="1">1 שנה</option>
+                  <option value="2">2 שנים</option>
+                  <option value="3">3 שנים</option>
+                  <option value="4">4 שנים</option>
+                  <option value="5" selected>5 שנים</option>
+                  <option value="6">6 שנים</option>
+                  <option value="7">7 שנים</option>
+                  <option value="8">8 שנים</option>
+                  <option value="9">9 שנים</option>
+                  <option value="10">10 שנים</option>
+                  <option value="custom">אחר...</option>
+                </select>
+              </div>
+
+              <div class="calc-field" id="lvi-years-custom-wrap" style="display:none;">
+                <label class="calc-label" for="lvi-years-custom">מספר שנים מותאם</label>
+                <input class="calc-input" id="lvi-years-custom" type="number" value="15" min="1" max="50" step="1" />
+              </div>
+
+            </div>
+
+            <button class="btn btn-gold" onclick="calcLVI()" style="width:100%;margin-bottom:1.5rem;">
+              <i class="fa-solid fa-calculator"></i> חשב
+            </button>
+
+            <!-- תוצאות -->
+            <div id="lvi-result" style="display:none;">
+
+              <!-- כרטיסי סיכום עליון -->
+              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem;margin-bottom:1.5rem;">
+                <div style="background:var(--navy);color:#fff;border-radius:12px;padding:1rem;text-align:center;">
+                  <div style="font-size:.8rem;opacity:.7;margin-bottom:.3rem;">ריבית הלוואה</div>
+                  <div id="lvi-s-rate" style="font-size:1.6rem;font-weight:900;color:var(--gold);"></div>
+                </div>
+                <div style="background:var(--navy);color:#fff;border-radius:12px;padding:1rem;text-align:center;">
+                  <div style="font-size:.8rem;opacity:.7;margin-bottom:.3rem;">תשואה נטו (אחרי ניכויים)</div>
+                  <div id="lvi-s-netreturn" style="font-size:1.6rem;font-weight:900;color:var(--gold);"></div>
+                </div>
+                <div style="background:var(--navy);color:#fff;border-radius:12px;padding:1rem;text-align:center;">
+                  <div style="font-size:.8rem;opacity:.7;margin-bottom:.3rem;">פער שנתי</div>
+                  <div id="lvi-s-gap" style="font-size:1.6rem;font-weight:900;"></div>
+                </div>
+              </div>
+
+              <!-- טבלה שנתית -->
+              <div style="overflow-x:auto;">
+                <table style="width:100%;border-collapse:collapse;font-size:.88rem;text-align:right;" id="lvi-table">
+                  <thead>
+                    <tr style="background:var(--navy);color:#fff;">
+                      <th style="padding:.6rem .8rem;">שנה</th>
+                      <th style="padding:.6rem .8rem;color:#ffd875;">בלון מלא<br><small style="font-weight:400;font-size:.75rem;">ריבית + קרן בסוף</small></th>
+                      <th style="padding:.6rem .8rem;color:#ffd875;">גרייס<br><small style="font-weight:400;font-size:.75rem;">ריבית בלבד חודשי</small></th>
+                      <th style="padding:.6rem .8rem;color:#ffd875;">שפיצר<br><small style="font-weight:400;font-size:.75rem;">קרן+ריבית חודשי</small></th>
+                      <th style="padding:.6rem .8rem;color:#a8e6cf;">שווי השקעה</th>
+                      <th style="padding:.6rem .8rem;color:#a8e6cf;">פער נטו (בלון)</th>
+                    </tr>
+                  </thead>
+                  <tbody id="lvi-tbody"></tbody>
+                  <tfoot id="lvi-tfoot"></tfoot>
+                </table>
+              </div>
+
+              <p style="font-size:.78rem;color:var(--dark-gray);margin-top:1rem;text-align:center;">* הפער מחושב: תשואה − ריבית הלוואה − אינפלציה − דמי ניהול. ירוק = רווחי, אדום = לא כדאי.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </main>
 
@@ -1274,6 +1398,103 @@
       document.getElementById('sim-result').classList.add('show');
       document.getElementById('sim-result').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
+    /* ── Loan vs Investment Calculator ── */
+    function syncYearsCustom() {
+      const sel = document.getElementById('lvi-years');
+      document.getElementById('lvi-years-custom-wrap').style.display = sel.value === 'custom' ? '' : 'none';
+    }
+
+    function calcLVI() {
+      const amount   = parseFloat(document.getElementById('lvi-amount').value)      || 100000;
+      const prime    = parseFloat(document.getElementById('lvi-prime-rate').value)  || 5.25;
+      const spread   = parseFloat(document.getElementById('lvi-spread').value)      || -0.5;
+      const retPct   = parseFloat(document.getElementById('lvi-return').value)      || 7;
+      const inflPct  = parseFloat(document.getElementById('lvi-inflation').value)   || 3.5;
+      const mgmtPct  = parseFloat(document.getElementById('lvi-mgmt').value)        || 0.6;
+      const selYears = document.getElementById('lvi-years').value;
+      const years    = selYears === 'custom'
+        ? (parseFloat(document.getElementById('lvi-years-custom').value) || 5)
+        : parseInt(selYears, 10);
+
+      const loanRate  = (prime + spread) / 100;   // ריבית הלוואה שנתית
+      const retRate   = retPct  / 100;
+      const inflRate  = inflPct / 100;
+      const mgmtRate  = mgmtPct / 100;
+      const netReturn = retRate - inflRate - mgmtRate; // תשואה נטו שנתית
+      const gapRate   = netReturn - loanRate;          // פער שנתי
+
+      const fmt  = v => '₪' + Math.round(v).toLocaleString('he-IL');
+      const fmtP = v => (v >= 0 ? '+' : '') + v.toFixed(2) + '%';
+      const color = v => v >= 0 ? '#1a7f4b' : '#c0392b';
+
+      // כרטיסי סיכום
+      document.getElementById('lvi-s-rate').textContent      = (prime + spread).toFixed(2) + '%';
+      document.getElementById('lvi-s-netreturn').textContent = (netReturn * 100).toFixed(2) + '%';
+      const gapEl = document.getElementById('lvi-s-gap');
+      gapEl.textContent  = fmtP(gapRate * 100);
+      gapEl.style.color  = color(gapRate);
+
+      // חישוב תשלום שפיצר חודשי
+      const r12    = loanRate / 12;
+      const n12    = years * 12;
+      const spitzer = r12 === 0 ? amount / n12
+        : amount * r12 * Math.pow(1 + r12, n12) / (Math.pow(1 + r12, n12) - 1);
+
+      const tbody = document.getElementById('lvi-tbody');
+      const tfoot = document.getElementById('lvi-tfoot');
+      tbody.innerHTML = '';
+
+      let investVal      = amount;
+      let spitzerPaid    = 0;
+      let gracePaid      = 0;
+      let totalGapShekel = 0;
+
+      for (let y = 1; y <= years; y++) {
+        // בלון: ריבית שנתית על הקרן המקורית, בשנה האחרונה + קרן
+        const balloonYear = amount * loanRate + (y === years ? amount : 0);
+        // גרייס: ריבית בלבד × 12 חודשים (בשנה האחרונה + קרן)
+        const graceYear   = amount * loanRate * 12/12 + (y === years ? amount : 0);
+        // שפיצר: תשלום חודשי × 12
+        const spitzYear   = spitzer * 12;
+        spitzerPaid      += spitzYear;
+        gracePaid        += graceYear;
+
+        // שווי השקעה (ריבית דריבית)
+        investVal        *= (1 + retRate);
+        const investNet   = investVal * (1 - inflRate) * (1 - mgmtRate);
+
+        // פער נטו שנתי (₪) — בשיטת בלון כבסיס
+        const gapShekel   = amount * gapRate;
+        totalGapShekel   += gapShekel;
+
+        const isGain = gapRate >= 0;
+        const tr = `<tr style="border-bottom:1px solid #eee;">
+          <td style="padding:.55rem .8rem;font-weight:700;">${y}</td>
+          <td style="padding:.55rem .8rem;">${fmt(amount * loanRate)}${y === years ? '<br><small style="color:#888">+ קרן ' + fmt(amount) + '</small>' : ''}</td>
+          <td style="padding:.55rem .8rem;">${fmt(amount * loanRate)}${y === years ? '<br><small style="color:#888">+ קרן ' + fmt(amount) + '</small>' : ''}</td>
+          <td style="padding:.55rem .8rem;">${fmt(spitzYear)}</td>
+          <td style="padding:.55rem .8rem;color:#1a7f4b;font-weight:700;">${fmt(Math.round(investVal))}</td>
+          <td style="padding:.55rem .8rem;font-weight:700;color:${color(gapRate)}">${fmtP(gapRate * 100)}<br><small>${fmt(Math.round(gapShekel))}</small></td>
+        </tr>`;
+        tbody.innerHTML += tr;
+      }
+
+      // שורת סיכום
+      const totalInvest    = investVal - amount; // רווח כולל
+      const totalLoanCost  = amount * loanRate * years; // עלות כוללת בלון
+      tfoot.innerHTML = `<tr style="background:#f0f4f8;font-weight:700;">
+        <td style="padding:.7rem .8rem;">סה"כ</td>
+        <td style="padding:.7rem .8rem;">${fmt(totalLoanCost)}<br><small style="color:#888">+ קרן ${fmt(amount)}</small></td>
+        <td style="padding:.7rem .8rem;">${fmt(totalLoanCost)}<br><small style="color:#888">+ קרן ${fmt(amount)}</small></td>
+        <td style="padding:.7rem .8rem;">${fmt(spitzerPaid)}</td>
+        <td style="padding:.7rem .8rem;color:#1a7f4b;">${fmt(Math.round(investVal))}<br><small>רווח: ${fmt(Math.round(totalInvest))}</small></td>
+        <td style="padding:.7rem .8rem;color:${color(totalGapShekel)};">${fmt(Math.round(totalGapShekel))}<br><small>${fmtP(gapRate * 100)} לשנה</small></td>
+      </tr>`;
+
+      document.getElementById('lvi-result').style.display = '';
+      document.getElementById('lvi-result').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
   </script>
   <script src="search.js"></script>
   <button class="back-to-top" id="back-to-top" aria-label="חזור לראש הדף">
