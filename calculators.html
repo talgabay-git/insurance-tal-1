@@ -1007,7 +1007,7 @@
 
       <!-- ── Panel 4: הלוואה מול השקעה ── -->
       <div class="calc-panel" id="panel-loan-vs-invest" role="tabpanel">
-        <div class="calc-panel-inner" style="max-width:900px;">
+        <div class="calc-panel-inner" style="max-width:860px;margin-right:auto;margin-left:auto;padding:0 1.5rem;box-sizing:border-box;">
           <div class="calc-card">
             <div class="calc-card-header">
               <i class="fa-solid fa-scale-balanced"></i>
@@ -1072,9 +1072,11 @@
 
             </div>
 
-            <button class="btn btn-gold" onclick="calcLVI()" style="width:100%;margin-bottom:1.5rem;">
-              <i class="fa-solid fa-calculator"></i> חשב
-            </button>
+            <div style="text-align:center;margin-bottom:1.5rem;">
+              <button class="btn btn-gold" onclick="calcLVI()" style="padding:.6rem 2.5rem;font-size:1rem;">
+                <i class="fa-solid fa-calculator"></i> חשב
+              </button>
+            </div>
 
             <!-- תוצאות -->
             <div id="lvi-result" style="display:none;">
