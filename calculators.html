@@ -1277,7 +1277,18 @@
       document.getElementById('panel-' + id).classList.add('active');
       btn.classList.add('active');
       btn.setAttribute('aria-selected','true');
+      localStorage.setItem('activeCalcTab', id);
     }
+
+    // שחזור הטאב הפעיל לאחר רענון
+    (function() {
+      const saved = location.hash.replace('#','') || localStorage.getItem('activeCalcTab');
+      if (saved) {
+        const panel = document.getElementById('panel-' + saved);
+        const btn   = document.querySelector('[aria-controls="panel-' + saved + '"]');
+        if (panel && btn) switchTab(saved, btn);
+      }
+    })();
 
     /* ── Date dropdowns init ── */
     (function() {
