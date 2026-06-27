@@ -1280,7 +1280,15 @@
       localStorage.setItem('activeCalcTab', id);
     }
 
-    // שחזור הטאב הפעיל לאחר רענון
+    // הצגת תוצאות ברירת מחדל בטעינת הדף (ללא גלילה)
+    let _autoInit = true;
+    calcCompound();
+    calcRetirement();
+    calcSeverance();
+    calcLVI();
+    _autoInit = false;
+
+    // שחזור הטאב הפעיל — חייב לרוץ אחרון
     (function() {
       const saved = location.hash.replace('#','') || localStorage.getItem('activeCalcTab');
       if (saved) {
@@ -1288,14 +1296,6 @@
         const btn   = document.querySelector('[aria-controls="panel-' + saved + '"]');
         if (panel && btn) switchTab(saved, btn);
       }
-    })();
-
-    // הצגת תוצאות ברירת מחדל בטעינת הדף
-    (function() {
-      calcCompound();
-      calcRetirement();
-      calcSeverance();
-      calcLVI();
     })();
 
     /* ── Date dropdowns init ── */
@@ -1390,7 +1390,7 @@
 
       const el = document.getElementById('sv-result');
       el.classList.add('show');
-      el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      if (!_autoInit) el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
 
     /* פתח לשונית לפי hash בכתובת - גם בטעינה ראשונית וגם בשינוי hash */
@@ -1478,7 +1478,7 @@
       document.getElementById('sr-years').textContent   = fmtY(yearsLeft);
 
       document.getElementById('sim-result').classList.add('show');
-      document.getElementById('sim-result').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      if (!_autoInit) document.getElementById('sim-result').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
     /* ── Loan vs Investment Calculator ── */
     function syncYearsCustom() {
@@ -1602,7 +1602,7 @@
       </tr>`;
 
       document.getElementById('lvi-result').style.display = '';
-      document.getElementById('lvi-result').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      if (!_autoInit) document.getElementById('lvi-result').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
 
   </script>
