@@ -1527,29 +1527,41 @@
       let gracePaid      = 0;
       let totalGapShekel = 0;
 
+      // בלון: תשלום חד פעמי בסוף — קרן + ריבית פשוטה מצטברת
+      const balloonTotal = amount + amount * loanRate * years;
+
       for (let y = 1; y <= years; y++) {
-        // בלון: ריבית שנתית על הקרן המקורית, בשנה האחרונה + קרן
-        const balloonYear = amount * loanRate + (y === years ? amount : 0);
-        // גרייס: ריבית בלבד × 12 חודשים (בשנה האחרונה + קרן)
-        const graceYear   = amount * loanRate * 12/12 + (y === years ? amount : 0);
+        // בלון: ₪0 בכל שנה, בשנה האחרונה משולם הכל (קרן + כל הריבית)
+        const balloonYearDisplay = y === years ? balloonTotal : 0;
+
+        // גרייס: ריבית חודשית × 12, בשנה האחרונה + החזר קרן
+        const graceInterestYear = amount * loanRate;       // ריבית שנתית (= חודשי × 12)
+        const graceYear         = graceInterestYear + (y === years ? amount : 0);
+
         // שפיצר: תשלום חודשי × 12
-        const spitzYear   = spitzer * 12;
-        spitzerPaid      += spitzYear;
-        gracePaid        += graceYear;
+        const spitzYear = spitzer * 12;
+        spitzerPaid    += spitzYear;
+        gracePaid      += graceYear;
 
         // שווי השקעה (ריבית דריבית)
-        investVal        *= (1 + retRate);
-        const investNet   = investVal * (1 - mgmtRate);
+        investVal *= (1 + retRate);
 
         // פער נטו שנתי (₪) — בשיטת בלון כבסיס
-        const gapShekel   = amount * gapRate;
-        totalGapShekel   += gapShekel;
+        const gapShekel = amount * gapRate;
+        totalGapShekel += gapShekel;
 
-        const isGain = gapRate >= 0;
+        const balloonCell = y === years
+          ? `${fmt(balloonTotal)}<br><small style="color:#888">ריבית: ${fmt(amount * loanRate * years)} + קרן: ${fmt(amount)}</small>`
+          : `<span style="color:#aaa;font-size:.82rem;">לא משולם</span>`;
+
+        const graceCell = y === years
+          ? `${fmt(graceInterestYear)}<br><small style="color:#888">+ קרן ${fmt(amount)}</small>`
+          : fmt(graceInterestYear);
+
         const tr = `<tr style="border-bottom:1px solid #eee;">
           <td style="padding:.55rem .8rem;font-weight:700;">${y}</td>
-          <td style="padding:.55rem .8rem;">${fmt(amount * loanRate)}${y === years ? '<br><small style="color:#888">+ קרן ' + fmt(amount) + '</small>' : ''}</td>
-          <td style="padding:.55rem .8rem;">${fmt(amount * loanRate)}${y === years ? '<br><small style="color:#888">+ קרן ' + fmt(amount) + '</small>' : ''}</td>
+          <td style="padding:.55rem .8rem;">${balloonCell}</td>
+          <td style="padding:.55rem .8rem;">${graceCell}</td>
           <td style="padding:.55rem .8rem;">${fmt(spitzYear)}</td>
           <td style="padding:.55rem .8rem;color:#1a7f4b;font-weight:700;">${fmt(Math.round(investVal))}</td>
           <td style="padding:.55rem .8rem;font-weight:700;color:${color(gapRate)}">${fmtP(gapRate * 100)}<br><small>${fmt(Math.round(gapShekel))}</small></td>
@@ -1558,15 +1570,16 @@
       }
 
       // שורת סיכום
-      const totalInvest    = investVal - amount; // רווח כולל
-      const totalLoanCost  = amount * loanRate * years; // עלות כוללת בלון
-      tfoot.innerHTML = `<tr style="background:#f0f4f8;font-weight:700;">
+      const totalInvest   = investVal - amount; // רווח כולל
+      const totalInterest = amount * loanRate * years; // ריבית כוללת
+      const graceInterestTotal = totalInterest; // גרייס: אותה ריבית כוללת
+      tfoot.innerHTML = `<tr style="background:#e8edf5;font-weight:700;border-top:2px solid #c9a84c;">
         <td style="padding:.7rem .8rem;">סה"כ</td>
-        <td style="padding:.7rem .8rem;">${fmt(totalLoanCost)}<br><small style="color:#888">+ קרן ${fmt(amount)}</small></td>
-        <td style="padding:.7rem .8rem;">${fmt(totalLoanCost)}<br><small style="color:#888">+ קרן ${fmt(amount)}</small></td>
+        <td style="padding:.7rem .8rem;">${fmt(balloonTotal)}<br><small style="color:#888;font-weight:400;">ריבית: ${fmt(totalInterest)} + קרן: ${fmt(amount)}</small></td>
+        <td style="padding:.7rem .8rem;">${fmt(graceInterestTotal + amount)}<br><small style="color:#888;font-weight:400;">ריבית: ${fmt(graceInterestTotal)} + קרן: ${fmt(amount)}</small></td>
         <td style="padding:.7rem .8rem;">${fmt(spitzerPaid)}</td>
-        <td style="padding:.7rem .8rem;color:#1a7f4b;">${fmt(Math.round(investVal))}<br><small>רווח: ${fmt(Math.round(totalInvest))}</small></td>
-        <td style="padding:.7rem .8rem;color:${color(totalGapShekel)};">${fmt(Math.round(totalGapShekel))}<br><small>${fmtP(gapRate * 100)} לשנה</small></td>
+        <td style="padding:.7rem .8rem;color:#1a7f4b;">${fmt(Math.round(investVal))}<br><small style="font-weight:400;">רווח: ${fmt(Math.round(totalInvest))}</small></td>
+        <td style="padding:.7rem .8rem;color:${color(totalGapShekel)};">${fmt(Math.round(totalGapShekel))}<br><small style="font-weight:400;">${fmtP(gapRate * 100)} לשנה</small></td>
       </tr>`;
 
       document.getElementById('lvi-result').style.display = '';
