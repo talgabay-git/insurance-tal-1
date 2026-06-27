@@ -196,14 +196,14 @@
 
     /* ── Results ── */
     .calc-result {
-      display: none;
       margin-top: 1.4rem;
       background: linear-gradient(135deg, var(--navy) 0%, #1a3a60 100%);
       border-radius: var(--radius);
       padding: 1.4rem 1.5rem;
       color: var(--white);
     }
-    .calc-result.show { display: block; animation: fadeUp .3s ease; }
+    .calc-result { display: block; }
+    .calc-result.show { animation: fadeUp .3s ease; }
     @keyframes fadeUp { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:translateY(0); } }
 
     .result-title {
@@ -420,14 +420,14 @@
 
     /* results */
     .sim-result {
-      display: none;
       margin-top: 1.75rem;
       background: linear-gradient(135deg, var(--navy) 0%, #1a3a60 100%);
       border-radius: var(--radius-lg);
       padding: 2rem;
       color: var(--white);
     }
-    .sim-result.show { display: block; animation: fadeUp .35s ease; }
+    .sim-result { display: block; }
+    .sim-result.show { animation: fadeUp .35s ease; }
     .sim-result-title {
       font-size: .75rem;
       font-weight: 600;
@@ -1135,7 +1135,7 @@
             </div>
 
             <!-- תוצאות -->
-            <div id="lvi-result" style="display:none;background:#f8fafc;border-top:2px solid #e0e8f0;padding:1.5rem 2rem;">
+            <div id="lvi-result" style="background:#f8fafc;border-top:2px solid #e0e8f0;padding:1.5rem 2rem;">
 
               <!-- כרטיסי סיכום -->
               <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;margin-bottom:1.4rem;">
