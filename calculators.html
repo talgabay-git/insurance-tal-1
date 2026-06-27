@@ -683,6 +683,11 @@
             <i class="fa-solid fa-scale-balanced"></i> הלוואה מול השקעה
           </button>
         </li>
+        <li role="presentation">
+          <button class="calc-tab-btn" role="tab" aria-selected="false" aria-controls="panel-pension-compare" onclick="switchTab('pension-compare',this)">
+            <i class="fa-solid fa-shield-halved"></i> פנסיה מול ביטוח מנהלים
+          </button>
+        </li>
       </ul>
     </nav>
 
@@ -1192,6 +1197,193 @@
         </div>
       </div>
 
+      <!-- ── Panel 5: פנסיה מול ביטוח מנהלים ── -->
+      <div class="calc-panel" id="panel-pension-compare" role="tabpanel">
+        <div class="calc-panel-inner" style="max-width:960px;">
+          <div style="background:#1a2d47;border-radius:24px;box-shadow:0 8px 40px rgba(13,30,53,.35);overflow:hidden;border:2px solid #2a3f5c;">
+
+            <!-- כותרת -->
+            <div style="background:linear-gradient(135deg,#0d1e35 0%,#1a2d47 100%);padding:1.4rem 2rem;text-align:center;border-bottom:1px solid rgba(201,168,76,.3);">
+              <div style="display:flex;align-items:center;gap:.6rem;justify-content:center;margin-bottom:.4rem;">
+                <i class="fa-solid fa-shield-halved" style="font-size:1.3rem;color:var(--gold);"></i>
+                <h2 style="margin:0;font-size:1.15rem;font-weight:700;color:#fff;font-family:'Heebo',sans-serif;">מחשבון פנסיה מול ביטוח מנהלים</h2>
+              </div>
+              <p style="margin:0;font-size:.82rem;color:rgba(255,255,255,.55);">הוכחה כלכלית ומספרית - האם כדאי לעבור מביטוח מנהלים לקרן פנסיה?</p>
+            </div>
+
+            <!-- שדות קלט -->
+            <div style="padding:1.5rem 2rem 1rem;background:#f0f4f8;">
+
+              <!-- שורה 1: צבירה + גיל נוכחי + גיל פרישה -->
+              <div style="display:grid;grid-template-columns:2fr 1fr 1fr;gap:1rem;margin-bottom:1rem;">
+                <div>
+                  <label style="display:block;font-size:.75rem;font-weight:700;color:#0d1e35;margin-bottom:.3rem;">צבירה נוכחית (₪)</label>
+                  <select id="pc-accum" style="width:100%;background:#fff;border:2px solid #d0d8e4;border-radius:10px;padding:.55rem .9rem;font-size:.95rem;font-weight:600;color:#0d1e35;" onchange="runPensionCompare()">
+                    <option value="250000">250,000 ₪</option>
+                    <option value="500000">500,000 ₪</option>
+                    <option value="750000">750,000 ₪</option>
+                    <option value="1000000" selected>1,000,000 ₪</option>
+                    <option value="1500000">1,500,000 ₪</option>
+                    <option value="2000000">2,000,000 ₪</option>
+                    <option value="2500000">2,500,000 ₪</option>
+                    <option value="3000000">3,000,000 ₪</option>
+                    <option value="custom">סכום אחר...</option>
+                  </select>
+                  <input id="pc-accum-custom" type="number" placeholder="הכנס סכום" style="display:none;margin-top:.4rem;width:100%;background:#fff;border:2px solid #c9a84c;border-radius:10px;padding:.5rem .9rem;font-size:.95rem;font-weight:600;box-sizing:border-box;" onchange="runPensionCompare()" />
+                </div>
+                <div>
+                  <label style="display:block;font-size:.75rem;font-weight:700;color:#0d1e35;margin-bottom:.3rem;">גיל נוכחי</label>
+                  <input id="pc-age-now" type="number" value="45" min="30" max="69" style="width:100%;background:#fff;border:2px solid #d0d8e4;border-radius:10px;padding:.55rem .9rem;font-size:.95rem;font-weight:600;text-align:center;" onchange="runPensionCompare()" />
+                </div>
+                <div>
+                  <label style="display:block;font-size:.75rem;font-weight:700;color:#0d1e35;margin-bottom:.3rem;">גיל פרישה</label>
+                  <select id="pc-ret-age" style="width:100%;background:#fff;border:2px solid #d0d8e4;border-radius:10px;padding:.55rem .9rem;font-size:.95rem;font-weight:600;" onchange="runPensionCompare()">
+                    <option value="60">60</option><option value="61">61</option><option value="62">62</option>
+                    <option value="63">63</option><option value="64">64</option><option value="65">65</option>
+                    <option value="66">66</option><option value="67" selected>67</option><option value="68">68</option>
+                    <option value="69">69</option><option value="70">70</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- שורה 2: מין + מצב משפחתי + סוג פוליסה -->
+              <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;margin-bottom:1rem;">
+                <div>
+                  <label style="display:block;font-size:.75rem;font-weight:700;color:#0d1e35;margin-bottom:.3rem;">מין</label>
+                  <select id="pc-gender" style="width:100%;background:#fff;border:2px solid #d0d8e4;border-radius:10px;padding:.55rem .9rem;font-size:.95rem;font-weight:600;" onchange="pcUpdateGenderDefaults();runPensionCompare()">
+                    <option value="male" selected>גבר</option>
+                    <option value="female">אישה</option>
+                  </select>
+                </div>
+                <div>
+                  <label style="display:block;font-size:.75rem;font-weight:700;color:#0d1e35;margin-bottom:.3rem;">מצב משפחתי</label>
+                  <select id="pc-status" style="width:100%;background:#fff;border:2px solid #d0d8e4;border-radius:10px;padding:.55rem .9rem;font-size:.95rem;font-weight:600;" onchange="runPensionCompare()">
+                    <option value="married" selected>נשוי/ה</option>
+                    <option value="single">רווק/ה או גרוש/ה</option>
+                  </select>
+                </div>
+                <div>
+                  <label style="display:block;font-size:.75rem;font-weight:700;color:#0d1e35;margin-bottom:.3rem;">סוג פוליסה קיימת</label>
+                  <select id="pc-policy" style="width:100%;background:#fff;border:2px solid #d0d8e4;border-radius:10px;padding:.55rem .9rem;font-size:.95rem;font-weight:600;" onchange="runPensionCompare()">
+                    <option value="pre2001">ביטוח מנהלים לפני יוני 2001</option>
+                    <option value="post2001" selected>ביטוח מנהלים אחרי יוני 2001</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- שורה 3: מסלול הבטחה + השוואה מול + תשואה -->
+              <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;margin-bottom:1rem;">
+                <div>
+                  <label style="display:block;font-size:.75rem;font-weight:700;color:#0d1e35;margin-bottom:.3rem;">חודשים מובטחים</label>
+                  <select id="pc-track" style="width:100%;background:#fff;border:2px solid #d0d8e4;border-radius:10px;padding:.55rem .9rem;font-size:.95rem;font-weight:600;" onchange="runPensionCompare()">
+                    <option value="0">ללא הבטחה</option>
+                    <option value="60">60 חודשים</option>
+                    <option value="120" selected>120 חודשים</option>
+                    <option value="180">180 חודשים</option>
+                    <option value="240">240 חודשים (מנהלים בלבד)</option>
+                  </select>
+                </div>
+                <div>
+                  <label style="display:block;font-size:.75rem;font-weight:700;color:#0d1e35;margin-bottom:.3rem;">השוואה מול</label>
+                  <select id="pc-compare-to" style="width:100%;background:#fff;border:2px solid #d0d8e4;border-radius:10px;padding:.55rem .9rem;font-size:.95rem;font-weight:600;" onchange="runPensionCompare()">
+                    <option value="supplementary" selected>קרן פנסיה משלימה</option>
+                    <option value="comprehensive">קרן פנסיה מקיפה</option>
+                  </select>
+                </div>
+                <div>
+                  <label style="display:block;font-size:.75rem;font-weight:700;color:#0d1e35;margin-bottom:.3rem;">תשואה שנתית משוערת (%)</label>
+                  <select id="pc-return" style="width:100%;background:#fff;border:2px solid #d0d8e4;border-radius:10px;padding:.55rem .9rem;font-size:.95rem;font-weight:600;" onchange="runPensionCompare()">
+                    <option value="3">3%</option><option value="4">4%</option>
+                    <option value="5" selected>5%</option><option value="6">6%</option>
+                    <option value="7">7%</option><option value="8">8%</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- שורה 4: דמי ניהול ביטוח + אכ"ע -->
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.4rem;">
+                <div>
+                  <label style="display:block;font-size:.75rem;font-weight:700;color:#0d1e35;margin-bottom:.3rem;">דמי ניהול ביטוח מנהלים מצבירה (%/שנה)</label>
+                  <select id="pc-ins-fee" style="width:100%;background:#fff;border:2px solid #d0d8e4;border-radius:10px;padding:.55rem .9rem;font-size:.95rem;font-weight:600;" onchange="runPensionCompare()">
+                    <option value="0.5">0.5%</option><option value="0.6">0.6%</option>
+                    <option value="0.7">0.7%</option><option value="0.8">0.8%</option>
+                    <option value="1.0">1.0%</option><option value="1.25" selected>1.25%</option>
+                    <option value="1.5">1.5%</option><option value="2.0">2.0%</option>
+                  </select>
+                </div>
+                <div>
+                  <label style="display:block;font-size:.75rem;font-weight:700;color:#0d1e35;margin-bottom:.3rem;">עלות כיסוי אכ"ע (% משכר חודשי)</label>
+                  <select id="pc-disability-fee" style="width:100%;background:#fff;border:2px solid #d0d8e4;border-radius:10px;padding:.55rem .9rem;font-size:.95rem;font-weight:600;" onchange="runPensionCompare()">
+                    <option value="0">ללא כיסוי / מעסיק מממן</option>
+                    <option value="1" selected>1% (הטבת מעסיק)</option>
+                    <option value="1.5">1.5%</option>
+                    <option value="2">2%</option>
+                    <option value="2.5">2.5%</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- כפתור חשב -->
+              <button onclick="runPensionCompare()"
+                style="width:100%;padding:.85rem;background:linear-gradient(135deg,#c9a84c,#e8c86a);border:none;border-radius:14px;font-size:1.05rem;font-weight:800;color:#0d1e35;cursor:pointer;font-family:'Heebo',sans-serif;letter-spacing:.03em;box-shadow:0 4px 14px rgba(201,168,76,.4);transition:transform .1s;margin-bottom:.5rem;"
+                onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform=''">
+                <i class="fa-solid fa-calculator" style="margin-left:.4rem;"></i> חשב והשווה
+              </button>
+            </div>
+
+            <!-- תוצאות -->
+            <div id="pc-result" style="background:#f8fafc;border-top:2px solid #e0e8f0;padding:1.5rem 2rem;">
+
+              <!-- KPI cards -->
+              <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;margin-bottom:1.4rem;">
+                <div style="background:var(--navy);border-radius:12px;padding:1rem;text-align:center;">
+                  <div style="font-size:.7rem;color:rgba(255,255,255,.6);margin-bottom:.3rem;">קצבת נטו — ביטוח מנהלים</div>
+                  <div id="pc-kpi-ins" style="font-size:1.4rem;font-weight:900;color:var(--gold);"></div>
+                  <div id="pc-kpi-ins-coef" style="font-size:.7rem;color:rgba(255,255,255,.45);margin-top:.2rem;"></div>
+                </div>
+                <div style="background:#1a4a2e;border-radius:12px;padding:1rem;text-align:center;">
+                  <div style="font-size:.7rem;color:rgba(255,255,255,.6);margin-bottom:.3rem;">קצבת נטו — קרן פנסיה</div>
+                  <div id="pc-kpi-pen" style="font-size:1.4rem;font-weight:900;color:#6ee7a8;"></div>
+                  <div id="pc-kpi-pen-coef" style="font-size:.7rem;color:rgba(255,255,255,.45);margin-top:.2rem;"></div>
+                </div>
+                <div id="pc-kpi-gap-card" style="background:#3a1a1a;border-radius:12px;padding:1rem;text-align:center;">
+                  <div style="font-size:.7rem;color:rgba(255,255,255,.6);margin-bottom:.3rem;">יתרון חודשי לפנסיה</div>
+                  <div id="pc-kpi-gap" style="font-size:1.4rem;font-weight:900;"></div>
+                  <div id="pc-kpi-lost" style="font-size:.7rem;color:rgba(255,255,255,.45);margin-top:.2rem;"></div>
+                </div>
+              </div>
+
+              <!-- טבלת השוואה -->
+              <div style="overflow-x:auto;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.08);margin-bottom:1.2rem;">
+                <table style="width:100%;border-collapse:collapse;font-size:.83rem;text-align:center;">
+                  <thead>
+                    <tr style="background:var(--navy);color:#fff;">
+                      <th style="padding:.6rem .5rem;text-align:right;">מוצר</th>
+                      <th style="padding:.6rem .5rem;">מקדם המרה</th>
+                      <th style="padding:.6rem .5rem;">צבירה בפרישה</th>
+                      <th style="padding:.6rem .5rem;">קצבה ברוטו</th>
+                      <th style="padding:.6rem .5rem;color:#fca5a5;">מס מנוכה</th>
+                      <th style="padding:.6rem .5rem;color:#6ee7a8;font-weight:800;">קצבת נטו ✦</th>
+                    </tr>
+                  </thead>
+                  <tbody id="pc-tbody"></tbody>
+                </table>
+              </div>
+
+              <!-- הפרש הון -->
+              <div id="pc-capital-box" style="background:#fffbe6;border:1.5px solid #f0d060;border-radius:12px;padding:.9rem 1.1rem;margin-bottom:1.2rem;font-size:.84rem;color:#5a4a00;line-height:1.8;"></div>
+
+              <!-- אזהרת שאירים -->
+              <div id="pc-spouse-warning" style="display:none;background:#fff3cd;border:1.5px solid #f0c040;border-radius:12px;padding:.9rem 1.1rem;margin-bottom:1.2rem;font-size:.84rem;color:#7a5c00;line-height:1.8;"></div>
+
+              <!-- המלצה סופית -->
+              <div id="pc-recommendation" style="background:linear-gradient(135deg,#0d1e35,#1a2d47);border-radius:14px;padding:1.2rem 1.5rem;color:#fff;font-size:.88rem;line-height:1.9;"></div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
     </div>
   </main>
 
@@ -1292,6 +1484,7 @@
     calcRetirement();
     calcSeverance();
     calcLVI();
+    runPensionCompare();
     _autoInit = false;
 
     // שחזור הטאב הפעיל — חייב לרוץ אחרון
@@ -1632,6 +1825,268 @@
 
       document.getElementById('lvi-result').style.display = '';
       if (!_autoInit) document.getElementById('lvi-result').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       מחשבון פנסיה מול ביטוח מנהלים
+    ═══════════════════════════════════════════════════════════ */
+
+    /* ── מקדמי ביטוח מנהלים לפני 2001 (בסיס: 120 חודשים) ── */
+    const INS_PRE2001 = {
+      male:   {60:153.50,61:150.80,62:147.90,63:145.10,64:142.10,65:139.10,66:136.20,67:133.30,68:130.50,69:127.70,70:125.00},
+      female: {60:167.30,61:164.40,62:161.40,63:158.40,64:155.20,65:152.00,66:148.80,67:145.60,68:142.40,69:139.20,70:136.00}
+    };
+    const INS_PRE2001_TRACK_ADJ = {0:-4.20, 60:-2.10, 120:0, 180:3.40, 240:8.10};
+
+    /* ── מקדמי ביטוח מנהלים אחרי 2001 (בסיס: 240 חודשים, שנת 2001) ── */
+    const INS_POST2001_BASE240 = {
+      male:   {60:198.80,61:196.20,62:193.50,63:190.70,64:187.90,65:185.00,66:182.10,67:179.10,68:176.10,69:173.00,70:169.90},
+      female: {60:213.20,61:210.60,62:208.00,63:205.30,64:202.60,65:199.90,66:197.10,67:194.30,68:191.40,69:188.50,70:185.50}
+    };
+    const INS_POST2001_LONGEVITY = { male: 0.13, female: 0.11 };
+    const INS_POST2001_TRACK_ADJ = {
+      male:   {0:-15.40, 60:-13.10, 120:-9.20, 180:-4.90, 240:0},
+      female: {0:-14.10, 60:-12.00, 120:-8.40, 180:-4.50, 240:0}
+    };
+
+    /* ── מקדמי קצבה — קרן פנסיה מקיפה ── */
+    const PENSION_COMP = {
+      singleMale:   {60:[233.10,233.80,235.90,239.30],61:[227.80,228.60,230.70,234.30],62:[222.40,223.20,225.50,229.20],63:[216.90,217.80,220.20,224.10],64:[211.30,212.30,214.80,218.90],65:[205.70,206.70,209.40,213.70],66:[200.00,201.10,203.90,208.40],67:[194.20,195.40,198.30,203.10],68:[188.40,189.60,192.70,197.80],69:[182.50,183.80,187.10,192.50],70:[176.60,178.00,181.50,187.20]},
+      marriedMale:  {60:[247.90,248.30,249.70,252.10],61:[242.70,243.20,244.60,247.10],62:[237.50,238.00,239.50,242.10],63:[232.20,232.70,234.30,237.00],64:[226.80,227.40,229.00,231.90],65:[221.40,222.00,223.70,226.70],66:[215.90,216.50,218.30,221.50],67:[210.40,211.10,212.90,216.20],68:[204.80,205.50,207.40,210.90],69:[199.20,199.90,201.90,205.60],70:[193.50,194.30,196.40,200.30]},
+      singleFemale: {60:[247.10,247.50,248.80,251.20],61:[241.70,242.10,243.50,246.00],62:[236.20,236.70,238.10,240.70],63:[230.70,231.20,232.70,235.40],64:[225.10,225.60,227.20,230.00],65:[219.40,219.90,221.60,224.50],66:[213.70,214.30,216.00,219.00],67:[207.90,208.50,210.30,213.40],68:[202.10,202.70,204.60,207.80],69:[196.20,196.90,198.80,202.10],70:[190.30,191.00,193.00,196.40]},
+      marriedFemale:{60:[256.40,256.60,257.40,259.00],61:[251.10,251.40,252.20,253.90],62:[245.80,246.10,246.90,248.70],63:[240.50,240.80,241.60,243.40],64:[235.10,235.40,236.30,238.10],65:[229.70,230.00,230.90,232.80],66:[224.20,224.50,225.40,227.40],67:[218.70,219.00,220.00,222.00],68:[213.10,213.40,214.50,216.60],69:[207.50,207.90,209.00,211.20],70:[201.90,202.30,203.50,205.80]}
+    };
+
+    /* ── מקדמי קצבה — קרן פנסיה ותיקה / צוברת ── */
+    const PENSION_SUPP = {
+      singleMale:   {60:[242.40,243.10,245.30,248.80],61:[236.90,237.70,239.90,243.60],62:[231.30,232.10,234.50,238.40],63:[225.60,226.50,229.00,233.10],64:[219.80,219.90,223.40,227.70],65:[214.00,215.00,217.80,222.30],66:[208.00,209.10,212.10,216.80],67:[202.00,203.20,206.30,211.20],68:[196.00,197.20,200.40,205.70],69:[189.90,191.10,194.60,200.20],70:[183.70,185.10,188.70,194.60]},
+      marriedMale:  {60:[257.80,258.20,259.70,262.20],61:[252.40,252.90,254.40,257.00],62:[247.00,247.50,249.00,251.70],63:[241.50,242.00,243.70,246.50],64:[235.90,236.50,238.20,241.10],65:[230.30,230.90,232.70,235.80],66:[224.60,225.20,227.10,230.40],67:[218.90,219.60,221.50,224.90],68:[213.10,213.80,215.80,219.40],69:[207.30,208.00,210.10,213.90],70:[201.40,202.20,204.40,208.40]},
+      singleFemale: {60:[256.40,256.80,258.10,260.50],61:[251.00,251.40,252.80,255.30],62:[245.50,246.00,247.40,250.00],63:[240.00,240.50,242.00,244.70],64:[234.30,234.80,236.40,239.20],65:[228.50,229.00,230.70,233.60],66:[222.70,223.30,225.00,228.00],67:[216.80,217.40,219.20,222.30],68:[210.80,211.40,213.30,216.50],69:[204.80,205.50,207.40,210.70],70:[198.70,199.40,201.40,204.80]},
+      marriedFemale:{60:[265.70,265.90,266.70,268.30],61:[260.40,260.70,261.50,263.20],62:[255.10,255.40,256.20,258.00],63:[249.70,250.00,250.80,252.60],64:[244.30,244.60,245.50,247.30],65:[238.80,239.10,240.00,241.90],66:[233.20,233.50,234.40,236.40],67:[227.60,227.90,228.90,230.90],68:[222.00,222.30,223.40,225.50],69:[216.30,216.70,217.80,220.00],70:[210.60,211.00,212.20,214.50]}
+    };
+
+    /* ── מנוע מס 2026 ── */
+    const TAX2026 = {
+      KITZBA_MEZAKA: 9430,
+      EXEMPTION_PCT: 0.67,
+      CREDIT_POINT: 242,
+      CREDIT_POINTS: { male: 2.25, female: 2.75 },
+      BRACKETS: [
+        { upTo: 7010,     rate: 0.10 },
+        { upTo: 10060,    rate: 0.14 },
+        { upTo: 16150,    rate: 0.20 },
+        { upTo: 22440,    rate: 0.31 },
+        { upTo: Infinity, rate: 0.47 }
+      ]
+    };
+
+    function calcTax2026(grossMonthly, gender) {
+      // קצבה מזכה עד תקרה
+      const mezaka = Math.min(grossMonthly, TAX2026.KITZBA_MEZAKA);
+      const exempt = mezaka * TAX2026.EXEMPTION_PCT;
+      const taxable = grossMonthly - exempt;
+      if (taxable <= 0) return 0;
+
+      let tax = 0, prev = 0;
+      for (const b of TAX2026.BRACKETS) {
+        const slice = Math.min(taxable, b.upTo) - prev;
+        if (slice <= 0) break;
+        tax += slice * b.rate;
+        prev = b.upTo;
+      }
+      // ניכוי נקודות זיכוי
+      const credits = TAX2026.CREDIT_POINTS[gender] * TAX2026.CREDIT_POINT;
+      return Math.max(0, tax - credits);
+    }
+
+    /* ── מחשב מקדם ביטוח מנהלים ── */
+    function getInsuranceCoef(gender, retAge, policy, track) {
+      const yearNow = 2026;
+      if (policy === 'pre2001') {
+        const base = INS_PRE2001[gender][retAge] || INS_PRE2001[gender][67];
+        return base + (INS_PRE2001_TRACK_ADJ[track] || 0);
+      } else {
+        // post-2001: בסיס 240 + גורם אריכות ימים + היסט לפי מסלול
+        const yearsSince2001 = yearNow - 2001;
+        const longevityAdj   = yearsSince2001 * INS_POST2001_LONGEVITY[gender];
+        const base240 = (INS_POST2001_BASE240[gender][retAge] || INS_POST2001_BASE240[gender][67]) + longevityAdj;
+        const trackAdj = (INS_POST2001_TRACK_ADJ[gender][track] !== undefined)
+          ? INS_POST2001_TRACK_ADJ[gender][track] : 0;
+        return base240 + trackAdj;
+      }
+    }
+
+    /* ── מחשב מקדם קרן פנסיה ── */
+    function getPensionCoef(gender, status, compareTo, track) {
+      const tables = compareTo === 'comprehensive' ? PENSION_COMP : PENSION_SUPP;
+      const key = (status === 'married' ? 'married' : 'single') + (gender === 'male' ? 'Male' : 'Female');
+      const retAge = parseInt(document.getElementById('pc-ret-age').value) || 67;
+      const row = tables[key][retAge] || tables[key][67];
+      // track: 0→idx0, 60→idx1, 120→idx2, 180→idx3
+      const trackIdx = {0:0, 60:1, 120:2, 180:3};
+      return row[trackIdx[track] !== undefined ? trackIdx[track] : 2];
+    }
+
+    /* ── שחיקת דמי ניהול ── */
+    function applyFees(accumulation, yearsToRetire, feesPct) {
+      // כל שקל גדל בתשואה נטו לפני דמי ניהול, ודמי ניהול נשחקים ממנו
+      // קירוב: accumulation * (1 - feesPct)^years
+      return accumulation * Math.pow(1 - feesPct / 100, yearsToRetire);
+    }
+
+    /* ── עדכון ברירות מחדל לפי מגדר ── */
+    function pcUpdateGenderDefaults() {
+      const gender = document.getElementById('pc-gender').value;
+      const retAgeEl = document.getElementById('pc-ret-age');
+      retAgeEl.value = (gender === 'female') ? '64' : '67';
+    }
+
+    /* ── פונקציה ראשית ── */
+    function runPensionCompare() {
+      // ── קריאת קלטים ──
+      const accumSel = document.getElementById('pc-accum').value;
+      const accum = accumSel === 'custom'
+        ? (parseFloat(document.getElementById('pc-accum-custom').value) || 0)
+        : parseFloat(accumSel);
+
+      const ageNow  = parseInt(document.getElementById('pc-age-now').value)   || 45;
+      const retAge  = parseInt(document.getElementById('pc-ret-age').value)    || 67;
+      const gender  = document.getElementById('pc-gender').value;
+      const status  = document.getElementById('pc-status').value;
+      const policy  = document.getElementById('pc-policy').value;
+      const track   = parseInt(document.getElementById('pc-track').value)      || 120;
+      const compareTo = document.getElementById('pc-compare-to').value;
+      const returnPct = parseFloat(document.getElementById('pc-return').value) || 5;
+      const insFee  = parseFloat(document.getElementById('pc-ins-fee').value)  || 1.25;
+      const disFee  = parseFloat(document.getElementById('pc-disability-fee').value) || 1;
+
+      const yearsToRetire = Math.max(1, retAge - ageNow);
+
+      if (accum <= 0) {
+        document.getElementById('pc-result').style.display = 'none';
+        return;
+      }
+
+      // ── שחיקת צבירה עד גיל פרישה ──
+      // ביטוח מנהלים: דמי ניהול 1.25% + דמי ניהול נכות
+      const insFeeTotalPct = insFee + disFee;
+      // קרן פנסיה: 0.2% בממוצע
+      const penFeePct = 0.2;
+
+      const accumIns = applyFees(accum, yearsToRetire, insFeeTotalPct);
+      const accumPen = applyFees(accum, yearsToRetire, penFeePct);
+
+      // ── מקדמי קצבה ──
+      const insCoef = getInsuranceCoef(gender, retAge, policy, track);
+      const penCoef = getPensionCoef(gender, status, compareTo, track);
+
+      // ── קצבה ברוטו חודשית ──
+      const insGross = accumIns / insCoef;
+      const penGross = accumPen / penCoef;
+
+      // ── מס ──
+      const insTax = calcTax2026(insGross, gender);
+      const penTax = calcTax2026(penGross, gender);
+
+      const insNet = insGross - insTax;
+      const penNet = penGross - penTax;
+
+      // ── פערים ──
+      const gapGross  = insGross - penGross;
+      const gapNet    = insNet   - penNet;
+      // הפסד הון מצטבר: הפרש צבירה × מכפיל שנות פרישה (קירוב 20 שנה)
+      const estYearsRetired = 20;
+      const capitalLost = (accumPen - accumIns); // כמה פנסיה "קיבלה" יותר
+      const netLostMonthly = penNet - insNet;
+      const totalNetLost = netLostMonthly * 12 * estYearsRetired;
+
+      // ── עדכון KPI ──
+      const fmtMo  = v => '₪' + Math.round(v).toLocaleString('he-IL') + '/חודש';
+      const fmtNum = v => '₪' + Math.round(Math.abs(v)).toLocaleString('he-IL');
+      const fmtCoef = v => v.toFixed(1);
+      const colorGood = '#1a7f4b', colorBad = '#c0392b', colorNeut = '#0d1e35';
+
+      document.getElementById('pc-kpi-ins').textContent     = fmtMo(insNet);
+      document.getElementById('pc-kpi-ins-coef').textContent = 'מקדם: ' + fmtCoef(insCoef);
+      document.getElementById('pc-kpi-pen').textContent     = fmtMo(penNet);
+      document.getElementById('pc-kpi-pen-coef').textContent = 'מקדם: ' + fmtCoef(penCoef);
+
+      const gapEl = document.getElementById('pc-kpi-gap');
+      const gapWinner = penNet > insNet ? 'פנסיה' : 'ביטוח מנהלים';
+      const gapAbs = Math.abs(gapNet);
+      gapEl.textContent = '+' + fmtMo(gapAbs) + ' לטובת ' + gapWinner;
+      gapEl.style.color = penNet > insNet ? '#6ee7a8' : '#fbbf24';
+      document.querySelector('#pc-kpi-gap-card > div:first-child').textContent =
+        'יתרון חודשי — ' + gapWinner;
+
+      const lostEl = document.getElementById('pc-kpi-lost');
+      const lostLabel = penNet > insNet ? 'הפסד לאורך 20 שנה' : 'חיסכון לאורך 20 שנה';
+      lostEl.textContent = lostLabel + ': ' + fmtNum(Math.abs(totalNetLost));
+      lostEl.style.color = 'rgba(255,255,255,.55)';
+
+      // ── טבלת השוואה (עמודות: מוצר | מקדם | צבירה | ברוטו | מס | נטו) ──
+      const tbody = document.getElementById('pc-tbody');
+      const rows = [
+        { name: 'ביטוח מנהלים', coef: fmtCoef(insCoef), accum: fmtNum(accumIns), gross: fmtMo(insGross), tax: fmtNum(insTax), net: fmtMo(insNet), netVal: insNet },
+        { name: 'קרן פנסיה (' + (compareTo === 'comprehensive' ? 'מקיפה' : 'משלימה') + ')', coef: fmtCoef(penCoef), accum: fmtNum(accumPen), gross: fmtMo(penGross), tax: fmtNum(penTax), net: fmtMo(penNet), netVal: penNet }
+      ];
+      tbody.innerHTML = rows.map((r, i) => {
+        const winner = r.netVal === Math.max(insNet, penNet);
+        const netColor = winner ? colorGood : colorBad;
+        return `<tr style="border-bottom:1px solid #eee;${winner?'background:#f0fff4;':''}">
+          <td style="padding:.55rem .5rem;font-weight:700;text-align:right;">${r.name}${winner ? ' ✔' : ''}</td>
+          <td style="padding:.55rem .5rem;text-align:center;">${r.coef}</td>
+          <td style="padding:.55rem .5rem;text-align:center;">${r.accum}</td>
+          <td style="padding:.55rem .5rem;text-align:center;">${r.gross}</td>
+          <td style="padding:.55rem .5rem;text-align:center;color:#c0392b;">${r.tax}</td>
+          <td style="padding:.55rem .5rem;text-align:center;font-weight:800;color:${netColor};">${r.net}</td>
+        </tr>`;
+      }).join('');
+
+      // ── קופסת הון שנבלע ──
+      const capBox = document.getElementById('pc-capital-box');
+      capBox.innerHTML = `<div style="background:#fff8e6;border:2px solid #c9a84c;border-radius:12px;padding:1rem 1.2rem;margin-top:1.2rem;">
+        <div style="font-weight:700;color:#0d1e35;margin-bottom:.4rem;">📊 הפרש צבירה לגיל פרישה</div>
+        <div style="font-size:.92rem;color:#444;">
+          ביטוח מנהלים: <strong>${fmtNum(accumIns)}</strong> | פנסיה: <strong>${fmtNum(accumPen)}</strong><br>
+          <span style="color:${colorBad}">הפרש (לרעת ביטוח): ${fmtNum(capitalLost)}</span>
+        </div>
+      </div>`;
+
+      // ── אזהרת בן/בת זוג ──
+      const spouseWarn = document.getElementById('pc-spouse-warning');
+      if (status === 'married' && policy === 'pre2001') {
+        spouseWarn.style.display = 'block';
+        spouseWarn.innerHTML = `<div style="background:#fff0f0;border:2px solid #c0392b;border-radius:10px;padding:.8rem 1rem;margin-top:1rem;font-size:.88rem;color:#c0392b;">
+          ⚠️ <strong>שימו לב:</strong> ביטוח מנהלים לפני 2001 אינו כולל קצבה לשאיר/ה מחוק. ודאו כי ישנה הסדרה נפרדת.
+        </div>`;
+      } else {
+        spouseWarn.style.display = 'none';
+      }
+
+      // ── המלצה ──
+      const recEl = document.getElementById('pc-recommendation');
+      if (penNet > insNet) {
+        recEl.innerHTML = `<div style="background:#f0fff4;border:2px solid #1a7f4b;border-radius:12px;padding:1rem 1.2rem;margin-top:1.2rem;">
+          <div style="font-weight:700;color:#1a7f4b;margin-bottom:.4rem;">✔ קרן הפנסיה עדיפה</div>
+          <div style="font-size:.92rem;color:#333;">
+            על פי הנתונים שהזנת, קרן הפנסיה (${compareTo === 'comprehensive' ? 'מקיפה' : 'משלימה'}) מניבה
+            קצבה נטו גבוהה יותר ב-${fmtMo(penNet - insNet)} — כ-${fmtNum(Math.abs(totalNetLost))} לאורך 20 שנות פרישה.
+            ביטוח המנהלים נשחק יותר מדמי ניהול גבוהים (${insFeeTotalPct.toFixed(1)}% מול ${penFeePct}%).
+          </div>
+        </div>`;
+      } else {
+        recEl.innerHTML = `<div style="background:#f5f0ff;border:2px solid #6d4aff;border-radius:12px;padding:1rem 1.2rem;margin-top:1.2rem;">
+          <div style="font-weight:700;color:#6d4aff;margin-bottom:.4rem;">📋 ביטוח מנהלים עדיף</div>
+          <div style="font-size:.92rem;color:#333;">
+            על פי הנתונים שהזנת, ביטוח המנהלים מניב קצבה נטו גבוהה יותר ב-${fmtMo(Math.abs(gapNet))}.
+            בדקו את תנאי הפוליסה הספציפית שלכם — מקדם קצבה מובטח יכול לשפר משמעותית את התוצאה.
+          </div>
+        </div>`;
+      }
+
+      document.getElementById('pc-result').style.display = 'block';
+      if (!_autoInit) document.getElementById('pc-result').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
 
   </script>
