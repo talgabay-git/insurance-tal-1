@@ -1595,7 +1595,7 @@
         totalGapGrace    += gapGrace2;
         totalGapSpitzer  += gapSpitzer;
 
-        const td = (v) => `<td style="padding:.45rem .35rem;font-weight:700;color:${color(v)};text-align:center;"><span style="font-size:1rem;">${v >= 0 ? '✔' : '✘'}</span><br><span style="font-size:.78rem;">${v >= 0 ? '+' : ''}${fmt(Math.round(v))}</span></td>`;
+        const td = (v) => `<td style="padding:.45rem .35rem;font-weight:700;color:${color(v)};text-align:center;"><span style="font-size:1rem;">${v >= 0 ? '✔' : '✘'}</span><br><span style="font-size:.78rem;direction:ltr;display:inline-block;">${v >= 0 ? '+' : '-'}${fmt(Math.abs(Math.round(v)))}</span></td>`;
 
         const balloonCell = y === years
           ? `${fmt(balloonTotal)}<br><small style="color:#888">ריבית: ${fmt(amount * loanRate * years)} + קרן: ${fmt(amount)}</small>`
@@ -1625,9 +1625,9 @@
         <td style="padding:.6rem .4rem;text-align:center;">${fmt(totalInterest + amount)}<br><small style="color:#888;font-weight:400;">ריבית: ${fmt(totalInterest)}</small></td>
         <td style="padding:.6rem .4rem;text-align:center;">${fmt(spitzerPaid)}</td>
         <td style="padding:.6rem .4rem;text-align:center;color:#1a7f4b;">${fmt(Math.round(investVal))}<br><small style="font-weight:400;">רווח: ${fmt(Math.round(totalInvest))}</small></td>
-        <td style="padding:.6rem .4rem;text-align:center;color:${color(totalGapBalloon)};font-weight:700;"><span style="font-size:1.2rem;">${totalGapBalloon >= 0 ? '✔' : '✘'}</span><br><span style="font-size:.82rem;">${fmt(Math.round(totalGapBalloon))}</span></td>
-        <td style="padding:.6rem .4rem;text-align:center;color:${color(totalGapGrace)};font-weight:700;"><span style="font-size:1.2rem;">${totalGapGrace >= 0 ? '✔' : '✘'}</span><br><span style="font-size:.82rem;">${fmt(Math.round(totalGapGrace))}</span></td>
-        <td style="padding:.6rem .4rem;text-align:center;color:${color(totalGapSpitzer)};font-weight:700;"><span style="font-size:1.2rem;">${totalGapSpitzer >= 0 ? '✔' : '✘'}</span><br><span style="font-size:.82rem;">${fmt(Math.round(totalGapSpitzer))}</span></td>
+        <td style="padding:.6rem .4rem;text-align:center;color:${color(totalGapBalloon)};font-weight:700;"><span style="font-size:1.2rem;">${totalGapBalloon >= 0 ? '✔' : '✘'}</span><br><span style="font-size:.82rem;direction:ltr;display:inline-block;">${totalGapBalloon >= 0 ? '+' : '-'}${fmt(Math.abs(Math.round(totalGapBalloon)))}</span></td>
+        <td style="padding:.6rem .4rem;text-align:center;color:${color(totalGapGrace)};font-weight:700;"><span style="font-size:1.2rem;">${totalGapGrace >= 0 ? '✔' : '✘'}</span><br><span style="font-size:.82rem;direction:ltr;display:inline-block;">${totalGapGrace >= 0 ? '+' : '-'}${fmt(Math.abs(Math.round(totalGapGrace)))}</span></td>
+        <td style="padding:.6rem .4rem;text-align:center;color:${color(totalGapSpitzer)};font-weight:700;"><span style="font-size:1.2rem;">${totalGapSpitzer >= 0 ? '✔' : '✘'}</span><br><span style="font-size:.82rem;direction:ltr;display:inline-block;">${totalGapSpitzer >= 0 ? '+' : '-'}${fmt(Math.abs(Math.round(totalGapSpitzer)))}</span></td>
       </tr>`;
 
       document.getElementById('lvi-result').style.display = '';
