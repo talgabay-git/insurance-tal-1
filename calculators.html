@@ -1277,6 +1277,7 @@
       document.getElementById('panel-' + id).classList.add('active');
       btn.classList.add('active');
       btn.setAttribute('aria-selected','true');
+      history.replaceState(null, '', '#' + id);
       localStorage.setItem('activeCalcTab', id);
     }
 
