@@ -1595,7 +1595,7 @@
         totalGapGrace    += gapGrace2;
         totalGapSpitzer  += gapSpitzer;
 
-        const td = (v) => `<td style="padding:.45rem .35rem;font-weight:700;color:${color(v)};text-align:center;font-size:.8rem;">${v >= 0 ? '+' : ''}${fmt(Math.round(v))}</td>`;
+        const td = (v) => `<td style="padding:.45rem .35rem;font-weight:700;color:${color(v)};text-align:center;"><span style="font-size:1rem;">${v >= 0 ? '✔' : '✘'}</span><br><span style="font-size:.78rem;">${v >= 0 ? '+' : ''}${fmt(Math.round(v))}</span></td>`;
 
         const balloonCell = y === years
           ? `${fmt(balloonTotal)}<br><small style="color:#888">ריבית: ${fmt(amount * loanRate * years)} + קרן: ${fmt(amount)}</small>`
