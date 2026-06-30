@@ -1353,7 +1353,7 @@
               </div>
 
               <!-- כפתור חשב -->
-              <button onclick="runPensionCompare()"
+              <button onclick="runPensionCompare(true)"
                 style="width:100%;padding:.85rem;background:linear-gradient(135deg,#c9a84c,#e8c86a);border:none;border-radius:14px;font-size:1.05rem;font-weight:800;color:#0d1e35;cursor:pointer;font-family:'Heebo',sans-serif;letter-spacing:.03em;box-shadow:0 4px 14px rgba(201,168,76,.4);transition:transform .1s;margin-bottom:.5rem;"
                 onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform=''">
                 <i class="fa-solid fa-calculator" style="margin-left:.4rem;"></i> חשב והשווה
@@ -1985,7 +1985,7 @@
     }
 
     /* ── פונקציה ראשית ── */
-    function runPensionCompare() {
+    function runPensionCompare(scroll) {
       try {
       // ── קריאת קלטים ──
       const accumSel = document.getElementById('pc-accum').value;
@@ -2137,7 +2137,7 @@
       }
 
       document.getElementById('pc-result').style.display = 'block';
-      if (!_autoInit) document.getElementById('pc-result').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      if (!_autoInit && scroll) document.getElementById('pc-result').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       } catch(e) { console.error('runPensionCompare error:', e); }
     }
 
