@@ -1300,53 +1300,55 @@
                 </div>
               </div>
 
-              <!-- שורה 4: דמי ניהול (ביטוח + פנסיה) -->
+              <!-- שורה 4: דמי ניהול מצבירה (ביטוח + פנסיה) -->
               <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;">
                 <div>
                   <label style="display:block;font-size:.75rem;font-weight:700;color:#0d1e35;margin-bottom:.3rem;">דמי ניהול ביטוח מנהלים מצבירה (%/שנה)</label>
-                  <select id="pc-ins-fee" style="width:100%;background:#fff;border:2px solid #d0d8e4;border-radius:10px;padding:.55rem .9rem;font-size:.95rem;font-weight:600;" onchange="runPensionCompare()">
-                    <option value="0.5">0.5%</option><option value="0.6">0.6%</option>
-                    <option value="0.7">0.7%</option><option value="0.8">0.8%</option>
-                    <option value="1.0">1.0%</option><option value="1.25" selected>1.25%</option>
-                    <option value="1.5">1.5%</option><option value="2.0">2.0%</option>
-                  </select>
+                  <input id="pc-ins-fee" type="number" value="1.25" min="0" max="3" step="0.01"
+                    style="width:100%;background:#fff;border:2px solid #d0d8e4;border-radius:10px;padding:.55rem .9rem;font-size:.95rem;font-weight:600;box-sizing:border-box;"
+                    oninput="runPensionCompare()" />
+                  <small style="color:#888;font-size:.7rem;">מקסימום חוקי: 2% | ממוצע שוק: 1.25%</small>
                 </div>
                 <div>
                   <label style="display:block;font-size:.75rem;font-weight:700;color:#0d1e35;margin-bottom:.3rem;">דמי ניהול קרן פנסיה מצבירה (%/שנה)</label>
-                  <select id="pc-pen-fee" style="width:100%;background:#fff;border:2px solid #d0d8e4;border-radius:10px;padding:.55rem .9rem;font-size:.95rem;font-weight:600;" onchange="runPensionCompare()">
-                    <option value="0.1">0.1%</option>
-                    <option value="0.2" selected>0.2% (ממוצע שוק)</option>
-                    <option value="0.3">0.3%</option>
-                    <option value="0.5">0.5%</option>
-                    <option value="0.7">0.7%</option>
-                    <option value="1.0">1.0% (מקסימום חוקי)</option>
-                  </select>
+                  <input id="pc-pen-fee" type="number" value="0.20" min="0" max="1" step="0.01"
+                    style="width:100%;background:#fff;border:2px solid #d0d8e4;border-radius:10px;padding:.55rem .9rem;font-size:.95rem;font-weight:600;box-sizing:border-box;"
+                    oninput="runPensionCompare()" />
+                  <small style="color:#888;font-size:.7rem;">מקסימום חוקי: 0.5% | ממוצע שוק: 0.2%</small>
                 </div>
               </div>
 
-              <!-- שורה 5: עלות נכות (ביטוח + פנסיה) -->
+              <!-- שורה 5: דמי ניהול מהפקדות (ביטוח + פנסיה) -->
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;">
+                <div>
+                  <label style="display:block;font-size:.75rem;font-weight:700;color:#0d1e35;margin-bottom:.3rem;">דמי ניהול ביטוח מנהלים מהפקדות (%)</label>
+                  <input id="pc-ins-deposit-fee" type="number" value="3.00" min="0" max="6" step="0.01"
+                    style="width:100%;background:#fff;border:2px solid #d0d8e4;border-radius:10px;padding:.55rem .9rem;font-size:.95rem;font-weight:600;box-sizing:border-box;"
+                    oninput="runPensionCompare()" />
+                  <small style="color:#888;font-size:.7rem;">מקסימום חוקי: 6% | ממוצע שוק: 3%</small>
+                </div>
+                <div>
+                  <label style="display:block;font-size:.75rem;font-weight:700;color:#0d1e35;margin-bottom:.3rem;">דמי ניהול קרן פנסיה מהפקדות (%)</label>
+                  <input id="pc-pen-deposit-fee" type="number" value="6.00" min="0" max="6" step="0.01"
+                    style="width:100%;background:#fff;border:2px solid #d0d8e4;border-radius:10px;padding:.55rem .9rem;font-size:.95rem;font-weight:600;box-sizing:border-box;"
+                    oninput="runPensionCompare()" />
+                  <small style="color:#888;font-size:.7rem;">מקסימום חוקי: 6% | ממוצע שוק: 6%</small>
+                </div>
+              </div>
+
+              <!-- שורה 6: עלות נכות (ביטוח + פנסיה) -->
               <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.4rem;">
                 <div>
                   <label style="display:block;font-size:.75rem;font-weight:700;color:#0d1e35;margin-bottom:.3rem;">עלות כיסוי אכ"ע — ביטוח מנהלים (%/שנה מצבירה)</label>
-                  <select id="pc-disability-fee" style="width:100%;background:#fff;border:2px solid #d0d8e4;border-radius:10px;padding:.55rem .9rem;font-size:.95rem;font-weight:600;" onchange="runPensionCompare()">
-                    <option value="0">ללא כיסוי / מעסיק מממן</option>
-                    <option value="0.5">0.5%</option>
-                    <option value="1" selected>1%</option>
-                    <option value="1.5">1.5%</option>
-                    <option value="2">2%</option>
-                    <option value="2.5">2.5%</option>
-                  </select>
+                  <input id="pc-disability-fee" type="number" value="1.00" min="0" max="4" step="0.01"
+                    style="width:100%;background:#fff;border:2px solid #d0d8e4;border-radius:10px;padding:.55rem .9rem;font-size:.95rem;font-weight:600;box-sizing:border-box;"
+                    oninput="runPensionCompare()" />
                 </div>
                 <div>
                   <label style="display:block;font-size:.75rem;font-weight:700;color:#0d1e35;margin-bottom:.3rem;">עלות כיסוי נכות — קרן פנסיה (%/שנה מצבירה)</label>
-                  <select id="pc-pen-disability" style="width:100%;background:#fff;border:2px solid #d0d8e4;border-radius:10px;padding:.55rem .9rem;font-size:.95rem;font-weight:600;" onchange="runPensionCompare()">
-                    <option value="0">ללא כיסוי</option>
-                    <option value="0.5">0.5%</option>
-                    <option value="0.75" selected>0.75% (גבר, ממוצע)</option>
-                    <option value="1.0">1.0%</option>
-                    <option value="1.2">1.2% (אישה, ממוצע)</option>
-                    <option value="1.5">1.5%</option>
-                  </select>
+                  <input id="pc-pen-disability" type="number" value="0.75" min="0" max="3" step="0.01"
+                    style="width:100%;background:#fff;border:2px solid #d0d8e4;border-radius:10px;padding:.55rem .9rem;font-size:.95rem;font-weight:600;box-sizing:border-box;"
+                    oninput="runPensionCompare()" />
                 </div>
               </div>
 
@@ -1999,10 +2001,12 @@
       const track   = parseInt(document.getElementById('pc-track').value)      || 120;
       const compareTo = document.getElementById('pc-compare-to').value;
       const returnPct = parseFloat(document.getElementById('pc-return').value) || 5;
-      const insFee  = parseFloat(document.getElementById('pc-ins-fee').value)  || 1.25;
-      const penFee  = parseFloat(document.getElementById('pc-pen-fee').value)  || 0.2;
-      const disFee  = parseFloat(document.getElementById('pc-disability-fee').value) || 1;
-      const penDisFee = parseFloat(document.getElementById('pc-pen-disability').value) || 0.75;
+      const insFee       = parseFloat(document.getElementById('pc-ins-fee').value)         || 1.25;
+      const penFee       = parseFloat(document.getElementById('pc-pen-fee').value)         || 0.2;
+      const disFee       = parseFloat(document.getElementById('pc-disability-fee').value)  || 1;
+      const penDisFee    = parseFloat(document.getElementById('pc-pen-disability').value)  || 0.75;
+      const insDepositFee = parseFloat(document.getElementById('pc-ins-deposit-fee').value) || 3;
+      const penDepositFee = parseFloat(document.getElementById('pc-pen-deposit-fee').value) || 6;
 
       const yearsToRetire = Math.max(1, retAge - ageNow);
 
@@ -2066,17 +2070,22 @@
       lostEl.textContent = lostLabel + ': ' + fmtNum(Math.abs(totalNetLost));
       lostEl.style.color = 'rgba(255,255,255,.55)';
 
-      // ── טבלת השוואה (עמודות: מוצר | מקדם | צבירה | ברוטו | מס | נטו) ──
+      // ── טבלת השוואה ──
       const tbody = document.getElementById('pc-tbody');
       const rows = [
-        { name: 'ביטוח מנהלים', coef: fmtCoef(insCoef), accum: fmtNum(accumIns), gross: fmtMo(insGross), tax: fmtNum(insTax), net: fmtMo(insNet), netVal: insNet },
-        { name: 'קרן פנסיה (' + (compareTo === 'comprehensive' ? 'מקיפה' : 'משלימה') + ')', coef: fmtCoef(penCoef), accum: fmtNum(accumPen), gross: fmtMo(penGross), tax: fmtNum(penTax), net: fmtMo(penNet), netVal: penNet }
+        { name: 'ביטוח מנהלים', coef: fmtCoef(insCoef), accum: fmtNum(accumIns), gross: fmtMo(insGross), tax: fmtNum(insTax), net: fmtMo(insNet), netVal: insNet,
+          feeSummary: insFeeTotalPct.toFixed(2) + '% מצבירה + ' + insDepositFee.toFixed(2) + '% מהפקדות' },
+        { name: 'קרן פנסיה (' + (compareTo === 'comprehensive' ? 'מקיפה' : 'משלימה') + ')', coef: fmtCoef(penCoef), accum: fmtNum(accumPen), gross: fmtMo(penGross), tax: fmtNum(penTax), net: fmtMo(penNet), netVal: penNet,
+          feeSummary: penFeeTotalPct.toFixed(2) + '% מצבירה + ' + penDepositFee.toFixed(2) + '% מהפקדות' }
       ];
-      tbody.innerHTML = rows.map((r, i) => {
+      tbody.innerHTML = rows.map((r) => {
         const winner = r.netVal === Math.max(insNet, penNet);
         const netColor = winner ? colorGood : colorBad;
         return `<tr style="border-bottom:1px solid #eee;${winner?'background:#f0fff4;':''}">
-          <td style="padding:.55rem .5rem;font-weight:700;text-align:right;">${r.name}${winner ? ' ✔' : ''}</td>
+          <td style="padding:.55rem .5rem;font-weight:700;text-align:right;">
+            ${r.name}${winner ? ' ✔' : ''}<br>
+            <small style="font-weight:400;color:#888;">${r.feeSummary}</small>
+          </td>
           <td style="padding:.55rem .5rem;text-align:center;">${r.coef}</td>
           <td style="padding:.55rem .5rem;text-align:center;">${r.accum}</td>
           <td style="padding:.55rem .5rem;text-align:center;">${r.gross}</td>
