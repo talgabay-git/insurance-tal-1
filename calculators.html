@@ -1218,7 +1218,7 @@
               <div style="display:grid;grid-template-columns:2fr 1fr 1fr;gap:1rem;margin-bottom:1rem;">
                 <div>
                   <label style="display:block;font-size:.75rem;font-weight:700;color:#0d1e35;margin-bottom:.3rem;">צבירה נוכחית (₪)</label>
-                  <select id="pc-accum" style="width:100%;background:#fff;border:2px solid #d0d8e4;border-radius:10px;padding:.55rem .9rem;font-size:.95rem;font-weight:600;color:#0d1e35;" onchange="runPensionCompare()">
+                  <select id="pc-accum" style="width:100%;background:#fff;border:2px solid #d0d8e4;border-radius:10px;padding:.55rem .9rem;font-size:.95rem;font-weight:600;color:#0d1e35;" onchange="pcAccumChange()">
                     <option value="250000">250,000 ₪</option>
                     <option value="500000">500,000 ₪</option>
                     <option value="750000">750,000 ₪</option>
@@ -1291,7 +1291,7 @@
                   </select>
                 </div>
                 <div>
-                  <label style="display:block;font-size:.75rem;font-weight:700;color:#0d1e35;margin-bottom:.3rem;">תשואה שנתית משוערת (%)</label>
+                  <label style="display:block;font-size:.75rem;font-weight:700;color:#0d1e35;margin-bottom:.3rem;">תשואה שנתית — שני המוצרים (%)</label>
                   <select id="pc-return" style="width:100%;background:#fff;border:2px solid #d0d8e4;border-radius:10px;padding:.55rem .9rem;font-size:.95rem;font-weight:600;" onchange="runPensionCompare()">
                     <option value="3">3%</option><option value="4">4%</option>
                     <option value="5" selected>5%</option><option value="6">6%</option>
@@ -1300,8 +1300,8 @@
                 </div>
               </div>
 
-              <!-- שורה 4: דמי ניהול ביטוח + אכ"ע -->
-              <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.4rem;">
+              <!-- שורה 4: דמי ניהול (ביטוח + פנסיה) -->
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;">
                 <div>
                   <label style="display:block;font-size:.75rem;font-weight:700;color:#0d1e35;margin-bottom:.3rem;">דמי ניהול ביטוח מנהלים מצבירה (%/שנה)</label>
                   <select id="pc-ins-fee" style="width:100%;background:#fff;border:2px solid #d0d8e4;border-radius:10px;padding:.55rem .9rem;font-size:.95rem;font-weight:600;" onchange="runPensionCompare()">
@@ -1312,13 +1312,40 @@
                   </select>
                 </div>
                 <div>
-                  <label style="display:block;font-size:.75rem;font-weight:700;color:#0d1e35;margin-bottom:.3rem;">עלות כיסוי אכ"ע (% משכר חודשי)</label>
+                  <label style="display:block;font-size:.75rem;font-weight:700;color:#0d1e35;margin-bottom:.3rem;">דמי ניהול קרן פנסיה מצבירה (%/שנה)</label>
+                  <select id="pc-pen-fee" style="width:100%;background:#fff;border:2px solid #d0d8e4;border-radius:10px;padding:.55rem .9rem;font-size:.95rem;font-weight:600;" onchange="runPensionCompare()">
+                    <option value="0.1">0.1%</option>
+                    <option value="0.2" selected>0.2% (ממוצע שוק)</option>
+                    <option value="0.3">0.3%</option>
+                    <option value="0.5">0.5%</option>
+                    <option value="0.7">0.7%</option>
+                    <option value="1.0">1.0% (מקסימום חוקי)</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- שורה 5: עלות נכות (ביטוח + פנסיה) -->
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.4rem;">
+                <div>
+                  <label style="display:block;font-size:.75rem;font-weight:700;color:#0d1e35;margin-bottom:.3rem;">עלות כיסוי אכ"ע — ביטוח מנהלים (%/שנה מצבירה)</label>
                   <select id="pc-disability-fee" style="width:100%;background:#fff;border:2px solid #d0d8e4;border-radius:10px;padding:.55rem .9rem;font-size:.95rem;font-weight:600;" onchange="runPensionCompare()">
                     <option value="0">ללא כיסוי / מעסיק מממן</option>
-                    <option value="1" selected>1% (הטבת מעסיק)</option>
+                    <option value="0.5">0.5%</option>
+                    <option value="1" selected>1%</option>
                     <option value="1.5">1.5%</option>
                     <option value="2">2%</option>
                     <option value="2.5">2.5%</option>
+                  </select>
+                </div>
+                <div>
+                  <label style="display:block;font-size:.75rem;font-weight:700;color:#0d1e35;margin-bottom:.3rem;">עלות כיסוי נכות — קרן פנסיה (%/שנה מצבירה)</label>
+                  <select id="pc-pen-disability" style="width:100%;background:#fff;border:2px solid #d0d8e4;border-radius:10px;padding:.55rem .9rem;font-size:.95rem;font-weight:600;" onchange="runPensionCompare()">
+                    <option value="0">ללא כיסוי</option>
+                    <option value="0.5">0.5%</option>
+                    <option value="0.75" selected>0.75% (גבר, ממוצע)</option>
+                    <option value="1.0">1.0%</option>
+                    <option value="1.2">1.2% (אישה, ממוצע)</option>
+                    <option value="1.5">1.5%</option>
                   </select>
                 </div>
               </div>
@@ -1943,12 +1970,21 @@
     /* ── עדכון ברירות מחדל לפי מגדר ── */
     function pcUpdateGenderDefaults() {
       const gender = document.getElementById('pc-gender').value;
-      const retAgeEl = document.getElementById('pc-ret-age');
-      retAgeEl.value = (gender === 'female') ? '64' : '67';
+      document.getElementById('pc-ret-age').value = (gender === 'female') ? '64' : '67';
+      document.getElementById('pc-pen-disability').value = (gender === 'female') ? '1.2' : '0.75';
+    }
+
+    /* ── הצגת שדה סכום מותאם ── */
+    function pcAccumChange() {
+      const sel = document.getElementById('pc-accum').value;
+      const customEl = document.getElementById('pc-accum-custom');
+      customEl.style.display = sel === 'custom' ? 'block' : 'none';
+      if (sel !== 'custom') runPensionCompare();
     }
 
     /* ── פונקציה ראשית ── */
     function runPensionCompare() {
+      try {
       // ── קריאת קלטים ──
       const accumSel = document.getElementById('pc-accum').value;
       const accum = accumSel === 'custom'
@@ -1964,7 +2000,9 @@
       const compareTo = document.getElementById('pc-compare-to').value;
       const returnPct = parseFloat(document.getElementById('pc-return').value) || 5;
       const insFee  = parseFloat(document.getElementById('pc-ins-fee').value)  || 1.25;
+      const penFee  = parseFloat(document.getElementById('pc-pen-fee').value)  || 0.2;
       const disFee  = parseFloat(document.getElementById('pc-disability-fee').value) || 1;
+      const penDisFee = parseFloat(document.getElementById('pc-pen-disability').value) || 0.75;
 
       const yearsToRetire = Math.max(1, retAge - ageNow);
 
@@ -1974,13 +2012,11 @@
       }
 
       // ── שחיקת צבירה עד גיל פרישה ──
-      // ביטוח מנהלים: דמי ניהול 1.25% + דמי ניהול נכות
-      const insFeeTotalPct = insFee + disFee;
-      // קרן פנסיה: 0.2% בממוצע
-      const penFeePct = 0.2;
+      const insFeeTotalPct = insFee + disFee;       // ביטוח: דמי ניהול + אכ"ע
+      const penFeeTotalPct = penFee + penDisFee;    // פנסיה: דמי ניהול + נכות
 
       const accumIns = applyFees(accum, yearsToRetire, insFeeTotalPct);
-      const accumPen = applyFees(accum, yearsToRetire, penFeePct);
+      const accumPen = applyFees(accum, yearsToRetire, penFeeTotalPct);
 
       // ── מקדמי קצבה ──
       const insCoef = getInsuranceCoef(gender, retAge, policy, track);
@@ -2078,7 +2114,7 @@
           <div style="font-size:.92rem;color:#333;">
             על פי הנתונים שהזנת, קרן הפנסיה (${compareTo === 'comprehensive' ? 'מקיפה' : 'משלימה'}) מניבה
             קצבה נטו גבוהה יותר ב-${fmtMo(penNet - insNet)} — כ-${fmtNum(Math.abs(totalNetLost))} לאורך 20 שנות פרישה.
-            ביטוח המנהלים נשחק יותר מדמי ניהול גבוהים (${insFeeTotalPct.toFixed(1)}% מול ${penFeePct}%).
+            ביטוח המנהלים נשחק יותר מדמי ניהול גבוהים (${insFeeTotalPct.toFixed(1)}% מול ${penFeeTotalPct.toFixed(1)}%).
           </div>
         </div>`;
       } else {
@@ -2093,6 +2129,7 @@
 
       document.getElementById('pc-result').style.display = 'block';
       if (!_autoInit) document.getElementById('pc-result').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      } catch(e) { console.error('runPensionCompare error:', e); }
     }
 
   </script>
