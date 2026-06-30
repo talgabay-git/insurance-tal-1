@@ -1746,13 +1746,17 @@
       let spitzerBal   = amount; // יתרת קרן שפיצר
 
       // בלון: תשלום חד פעמי בסוף — קרן + ריבית פשוטה מצטברת
-      const balloonTotal = amount + amount * loanRate * years;
+      // בלון: ריבית דריבית (המציאות בישראל — חוב מצטבר מעריכית)
+      const balloonTotal = amount * Math.pow(1 + loanRate, years);
 
-      // מצבר פערים לסה"כ
-      let totalGapBalloon = 0, totalGapGrace = 0, totalGapSpitzer = 0;
+      // פערים סופיים לשורת סה"כ (מצב בסוף תקופה)
+      let finalGapBalloon = 0, finalGapGrace = 0, finalGapSpitzer = 0;
+
+      // בלון: סה"כ לתשלום = קרן + ריבית דריבית (ריבית מצטברת לאורך כל התקופה)
+      const balloonFinalOwed = amount * Math.pow(1 + loanRate, years);
 
       for (let y = 1; y <= years; y++) {
-        // גרייס: ריבית שנתית (חודשי × 12)
+        // גרייס: ריבית שנתית (ריבית פשוטה — משולמת שוטף)
         const graceInterestYear = amount * loanRate;
         const graceYear         = graceInterestYear + (y === years ? amount : 0);
         gracePaid += graceYear;
@@ -1760,7 +1764,6 @@
         // שפיצר: תשלום חודשי × 12, ומעקב יתרת קרן
         const spitzYear = spitzer * 12;
         spitzerPaid    += spitzYear;
-        // חישוב יתרת קרן שפיצר בסוף השנה (12 תשלומים)
         for (let m = 0; m < 12; m++) {
           const interest  = spitzerBal * r12;
           const principal = spitzer - interest;
@@ -1770,29 +1773,31 @@
         // שווי השקעה (ריבית דריבית)
         investVal *= (1 + retRate);
 
-        // פערים: שווי השקעה פחות מה שעדיין חייבים (יתרת חוב)
-        // בלון: חוב = קרן + ריבית מצטברת עד שנה y
-        const balloonOwed   = amount + amount * loanRate * y;
-        // גרייס: חוב = קרן בלבד (ריבית כבר שולמה חודשי)
-        const graceOwed     = amount;
-        // שפיצר: יתרת קרן שנותרה
-        const spitzerOwed   = spitzerBal;
+        // פערים שנתיים:
+        // בלון: ריבית דריבית — חוב גדל בצורה מעריכית
+        const balloonOwedY = amount * Math.pow(1 + loanRate, y);
+        const gapBalloon   = investVal - balloonOwedY;
 
-        const gapBalloon  = investVal - balloonOwed;
-        const gapGrace    = investVal - amount - gracePaid + amount; // רווח נטו לאחר עלות ריבית
-        // פשטות: פער = שווי השקעה - (מה ששילמת + מה שעוד חייב)
-        const gapGrace2   = investVal - (graceInterestYear * y + amount);
-        const gapSpitzer  = investVal - (spitzerPaid + spitzerBal);
+        // גרייס: ריבית פשוטה שוטפת — פער = השקעה פחות (ריבית ששולמה + קרן)
+        const gapGrace = investVal - (graceInterestYear * y + amount);
 
-        totalGapBalloon  += gapBalloon;
-        totalGapGrace    += gapGrace2;
-        totalGapSpitzer  += gapSpitzer;
+        // שפיצר: פער = השקעה פחות (ששולם + יתרה)
+        const gapSpitzer = investVal - (spitzerPaid + spitzerBal);
+
+        // שמור את השנה האחרונה לסה"כ
+        if (y === years) {
+          finalGapBalloon = gapBalloon;
+          finalGapGrace   = gapGrace;
+          finalGapSpitzer = gapSpitzer;
+        }
 
         const td = (v) => `<td style="padding:.45rem .35rem;font-weight:700;color:${color(v)};text-align:center;"><span style="font-size:1rem;">${v >= 0 ? '✔' : '✘'}</span><br><span style="font-size:.78rem;direction:ltr;display:inline-block;">${v >= 0 ? '+' : '-'}${fmt(Math.abs(Math.round(v)))}</span></td>`;
 
+        // תא בלון: בשנות ביניים — "לא משולם" + חוב צובר; בשנה אחרונה — תשלום סופי
+        const balloonDebt = fmt(Math.round(balloonOwedY));
         const balloonCell = y === years
-          ? `${fmt(balloonTotal)}<br><small style="color:#888">ריבית: ${fmt(amount * loanRate * years)} + קרן: ${fmt(amount)}</small>`
-          : `<span style="color:#aaa;font-size:.8rem;">לא משולם</span>`;
+          ? `${fmt(Math.round(balloonFinalOwed))}<br><small style="color:#888">ריבית: ${fmt(Math.round(balloonFinalOwed - amount))} + קרן: ${fmt(amount)}</small>`
+          : `<span style="color:#aaa;font-size:.8rem;">לא משולם<br>(חוב: ${balloonDebt})</span>`;
 
         const graceCell = y === years
           ? `${fmt(graceInterestYear)}<br><small style="color:#888">+ קרן ${fmt(amount)}</small>`
@@ -1804,23 +1809,24 @@
           <td style="padding:.45rem .4rem;text-align:center;">${graceCell}</td>
           <td style="padding:.45rem .4rem;text-align:center;">${fmt(spitzYear)}</td>
           <td style="padding:.45rem .4rem;color:#1a7f4b;font-weight:700;text-align:center;">${fmt(Math.round(investVal))}</td>
-          ${td(gapBalloon)}${td(gapGrace2)}${td(gapSpitzer)}
+          ${td(gapBalloon)}${td(gapGrace)}${td(gapSpitzer)}
         </tr>`;
         tbody.innerHTML += tr;
       }
 
-      // שורת סיכום
+      // שורת סיכום — מציגה את המצב בסוף התקופה (לא סכום שנתי)
       const totalInvest   = investVal - amount;
-      const totalInterest = amount * loanRate * years;
+      const totalInterest = amount * loanRate * years; // גרייס: ריבית פשוטה
+      const balloonInterestFinal = balloonFinalOwed - amount;
       tfoot.innerHTML = `<tr style="background:#e8edf5;font-weight:700;border-top:2px solid #c9a84c;">
         <td style="padding:.6rem .4rem;text-align:center;">סה"כ</td>
-        <td style="padding:.6rem .4rem;text-align:center;">${fmt(balloonTotal)}<br><small style="color:#888;font-weight:400;">ריבית: ${fmt(totalInterest)}</small></td>
+        <td style="padding:.6rem .4rem;text-align:center;">${fmt(Math.round(balloonFinalOwed))}<br><small style="color:#888;font-weight:400;">ריבית (דריבית): ${fmt(Math.round(balloonInterestFinal))}</small></td>
         <td style="padding:.6rem .4rem;text-align:center;">${fmt(totalInterest + amount)}<br><small style="color:#888;font-weight:400;">ריבית: ${fmt(totalInterest)}</small></td>
         <td style="padding:.6rem .4rem;text-align:center;">${fmt(spitzerPaid)}</td>
         <td style="padding:.6rem .4rem;text-align:center;color:#1a7f4b;">${fmt(Math.round(investVal))}<br><small style="font-weight:400;">רווח: ${fmt(Math.round(totalInvest))}</small></td>
-        <td style="padding:.6rem .4rem;text-align:center;color:${color(totalGapBalloon)};font-weight:700;"><span style="font-size:1.2rem;">${totalGapBalloon >= 0 ? '✔' : '✘'}</span><br><span style="font-size:.82rem;direction:ltr;display:inline-block;">${totalGapBalloon >= 0 ? '+' : '-'}${fmt(Math.abs(Math.round(totalGapBalloon)))}</span></td>
-        <td style="padding:.6rem .4rem;text-align:center;color:${color(totalGapGrace)};font-weight:700;"><span style="font-size:1.2rem;">${totalGapGrace >= 0 ? '✔' : '✘'}</span><br><span style="font-size:.82rem;direction:ltr;display:inline-block;">${totalGapGrace >= 0 ? '+' : '-'}${fmt(Math.abs(Math.round(totalGapGrace)))}</span></td>
-        <td style="padding:.6rem .4rem;text-align:center;color:${color(totalGapSpitzer)};font-weight:700;"><span style="font-size:1.2rem;">${totalGapSpitzer >= 0 ? '✔' : '✘'}</span><br><span style="font-size:.82rem;direction:ltr;display:inline-block;">${totalGapSpitzer >= 0 ? '+' : '-'}${fmt(Math.abs(Math.round(totalGapSpitzer)))}</span></td>
+        <td style="padding:.6rem .4rem;text-align:center;color:${color(finalGapBalloon)};font-weight:700;"><span style="font-size:1.2rem;">${finalGapBalloon >= 0 ? '✔' : '✘'}</span><br><span style="font-size:.82rem;direction:ltr;display:inline-block;">${finalGapBalloon >= 0 ? '+' : '-'}${fmt(Math.abs(Math.round(finalGapBalloon)))}</span></td>
+        <td style="padding:.6rem .4rem;text-align:center;color:${color(finalGapGrace)};font-weight:700;"><span style="font-size:1.2rem;">${finalGapGrace >= 0 ? '✔' : '✘'}</span><br><span style="font-size:.82rem;direction:ltr;display:inline-block;">${finalGapGrace >= 0 ? '+' : '-'}${fmt(Math.abs(Math.round(finalGapGrace)))}</span></td>
+        <td style="padding:.6rem .4rem;text-align:center;color:${color(finalGapSpitzer)};font-weight:700;"><span style="font-size:1.2rem;">${finalGapSpitzer >= 0 ? '✔' : '✘'}</span><br><span style="font-size:.82rem;direction:ltr;display:inline-block;">${finalGapSpitzer >= 0 ? '+' : '-'}${fmt(Math.abs(Math.round(finalGapSpitzer)))}</span></td>
       </tr>`;
 
       document.getElementById('lvi-result').style.display = '';
