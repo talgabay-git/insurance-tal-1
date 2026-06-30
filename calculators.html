@@ -1302,53 +1302,71 @@
 
               <!-- שורה 4: דמי ניהול מצבירה (ביטוח + פנסיה) -->
               <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;">
-                <div>
-                  <label style="display:block;font-size:.75rem;font-weight:700;color:#0d1e35;margin-bottom:.3rem;">דמי ניהול ביטוח מנהלים מצבירה (%/שנה)</label>
+                <div style="position:relative;">
+                  <label style="display:flex;justify-content:space-between;align-items:center;font-size:.75rem;font-weight:700;color:#0d1e35;margin-bottom:.3rem;">
+                    <span>דמי ניהול ביטוח מנהלים מצבירה (%/שנה)</span>
+                    <span id="pc-ins-fee-badge" style="background:#0d1e35;color:#c9a84c;font-size:.85rem;font-weight:900;padding:.1rem .5rem;border-radius:8px;min-width:3.2rem;text-align:center;">1.25%</span>
+                  </label>
                   <input id="pc-ins-fee" type="number" value="1.25" min="0" max="3" step="0.01"
                     style="width:100%;background:#fff;border:2px solid #d0d8e4;border-radius:10px;padding:.55rem .9rem;font-size:.95rem;font-weight:600;box-sizing:border-box;"
-                    oninput="runPensionCompare()" />
+                    oninput="pcFeeBadge('pc-ins-fee','pc-ins-fee-badge');runPensionCompare()" />
                   <small style="color:#888;font-size:.7rem;">מקסימום חוקי: 2% | ממוצע שוק: 1.25%</small>
                 </div>
-                <div>
-                  <label style="display:block;font-size:.75rem;font-weight:700;color:#0d1e35;margin-bottom:.3rem;">דמי ניהול קרן פנסיה מצבירה (%/שנה)</label>
+                <div style="position:relative;">
+                  <label style="display:flex;justify-content:space-between;align-items:center;font-size:.75rem;font-weight:700;color:#0d1e35;margin-bottom:.3rem;">
+                    <span>דמי ניהול קרן פנסיה מצבירה (%/שנה)</span>
+                    <span id="pc-pen-fee-badge" style="background:#1a4a2e;color:#6ee7a8;font-size:.85rem;font-weight:900;padding:.1rem .5rem;border-radius:8px;min-width:3.2rem;text-align:center;">0.20%</span>
+                  </label>
                   <input id="pc-pen-fee" type="number" value="0.20" min="0" max="1" step="0.01"
                     style="width:100%;background:#fff;border:2px solid #d0d8e4;border-radius:10px;padding:.55rem .9rem;font-size:.95rem;font-weight:600;box-sizing:border-box;"
-                    oninput="runPensionCompare()" />
+                    oninput="pcFeeBadge('pc-pen-fee','pc-pen-fee-badge');runPensionCompare()" />
                   <small style="color:#888;font-size:.7rem;">מקסימום חוקי: 0.5% | ממוצע שוק: 0.2%</small>
                 </div>
               </div>
 
               <!-- שורה 5: דמי ניהול מהפקדות (ביטוח + פנסיה) -->
               <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;">
-                <div>
-                  <label style="display:block;font-size:.75rem;font-weight:700;color:#0d1e35;margin-bottom:.3rem;">דמי ניהול ביטוח מנהלים מהפקדות (%)</label>
+                <div style="position:relative;">
+                  <label style="display:flex;justify-content:space-between;align-items:center;font-size:.75rem;font-weight:700;color:#0d1e35;margin-bottom:.3rem;">
+                    <span>דמי ניהול ביטוח מנהלים מהפקדות (%)</span>
+                    <span id="pc-ins-deposit-fee-badge" style="background:#0d1e35;color:#c9a84c;font-size:.85rem;font-weight:900;padding:.1rem .5rem;border-radius:8px;min-width:3.2rem;text-align:center;">3.00%</span>
+                  </label>
                   <input id="pc-ins-deposit-fee" type="number" value="3.00" min="0" max="6" step="0.01"
                     style="width:100%;background:#fff;border:2px solid #d0d8e4;border-radius:10px;padding:.55rem .9rem;font-size:.95rem;font-weight:600;box-sizing:border-box;"
-                    oninput="runPensionCompare()" />
+                    oninput="pcFeeBadge('pc-ins-deposit-fee','pc-ins-deposit-fee-badge');runPensionCompare()" />
                   <small style="color:#888;font-size:.7rem;">מקסימום חוקי: 6% | ממוצע שוק: 3%</small>
                 </div>
-                <div>
-                  <label style="display:block;font-size:.75rem;font-weight:700;color:#0d1e35;margin-bottom:.3rem;">דמי ניהול קרן פנסיה מהפקדות (%)</label>
+                <div style="position:relative;">
+                  <label style="display:flex;justify-content:space-between;align-items:center;font-size:.75rem;font-weight:700;color:#0d1e35;margin-bottom:.3rem;">
+                    <span>דמי ניהול קרן פנסיה מהפקדות (%)</span>
+                    <span id="pc-pen-deposit-fee-badge" style="background:#1a4a2e;color:#6ee7a8;font-size:.85rem;font-weight:900;padding:.1rem .5rem;border-radius:8px;min-width:3.2rem;text-align:center;">6.00%</span>
+                  </label>
                   <input id="pc-pen-deposit-fee" type="number" value="6.00" min="0" max="6" step="0.01"
                     style="width:100%;background:#fff;border:2px solid #d0d8e4;border-radius:10px;padding:.55rem .9rem;font-size:.95rem;font-weight:600;box-sizing:border-box;"
-                    oninput="runPensionCompare()" />
+                    oninput="pcFeeBadge('pc-pen-deposit-fee','pc-pen-deposit-fee-badge');runPensionCompare()" />
                   <small style="color:#888;font-size:.7rem;">מקסימום חוקי: 6% | ממוצע שוק: 6%</small>
                 </div>
               </div>
 
               <!-- שורה 6: עלות נכות (ביטוח + פנסיה) -->
               <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.4rem;">
-                <div>
-                  <label style="display:block;font-size:.75rem;font-weight:700;color:#0d1e35;margin-bottom:.3rem;">עלות כיסוי אכ"ע — ביטוח מנהלים (%/שנה מצבירה)</label>
+                <div style="position:relative;">
+                  <label style="display:flex;justify-content:space-between;align-items:center;font-size:.75rem;font-weight:700;color:#0d1e35;margin-bottom:.3rem;">
+                    <span>עלות כיסוי אכ"ע — ביטוח מנהלים (%/שנה מצבירה)</span>
+                    <span id="pc-dis-fee-badge" style="background:#0d1e35;color:#c9a84c;font-size:.85rem;font-weight:900;padding:.1rem .5rem;border-radius:8px;min-width:3.2rem;text-align:center;">1.00%</span>
+                  </label>
                   <input id="pc-disability-fee" type="number" value="1.00" min="0" max="4" step="0.01"
                     style="width:100%;background:#fff;border:2px solid #d0d8e4;border-radius:10px;padding:.55rem .9rem;font-size:.95rem;font-weight:600;box-sizing:border-box;"
-                    oninput="runPensionCompare()" />
+                    oninput="pcFeeBadge('pc-disability-fee','pc-dis-fee-badge');runPensionCompare()" />
                 </div>
-                <div>
-                  <label style="display:block;font-size:.75rem;font-weight:700;color:#0d1e35;margin-bottom:.3rem;">עלות כיסוי נכות — קרן פנסיה (%/שנה מצבירה)</label>
+                <div style="position:relative;">
+                  <label style="display:flex;justify-content:space-between;align-items:center;font-size:.75rem;font-weight:700;color:#0d1e35;margin-bottom:.3rem;">
+                    <span>עלות כיסוי נכות — קרן פנסיה (%/שנה מצבירה)</span>
+                    <span id="pc-pen-dis-badge" style="background:#1a4a2e;color:#6ee7a8;font-size:.85rem;font-weight:900;padding:.1rem .5rem;border-radius:8px;min-width:3.2rem;text-align:center;">0.75%</span>
+                  </label>
                   <input id="pc-pen-disability" type="number" value="0.75" min="0" max="3" step="0.01"
                     style="width:100%;background:#fff;border:2px solid #d0d8e4;border-radius:10px;padding:.55rem .9rem;font-size:.95rem;font-weight:600;box-sizing:border-box;"
-                    oninput="runPensionCompare()" />
+                    oninput="pcFeeBadge('pc-pen-disability','pc-pen-dis-badge');runPensionCompare()" />
                 </div>
               </div>
 
@@ -1967,6 +1985,12 @@
       // כל שקל גדל בתשואה נטו לפני דמי ניהול, ודמי ניהול נשחקים ממנו
       // קירוב: accumulation * (1 - feesPct)^years
       return accumulation * Math.pow(1 - feesPct / 100, yearsToRetire);
+    }
+
+    /* ── עדכון badge דמי ניהול ── */
+    function pcFeeBadge(inputId, badgeId) {
+      const v = parseFloat(document.getElementById(inputId).value);
+      if (!isNaN(v)) document.getElementById(badgeId).textContent = v.toFixed(2) + '%';
     }
 
     /* ── עדכון ברירות מחדל לפי מגדר ── */
