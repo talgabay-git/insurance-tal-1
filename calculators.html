@@ -1902,6 +1902,255 @@
     activateTabFromHash();
     window.addEventListener('hashchange', activateTabFromHash);
 
+    /* ══════════════════════════════════════════
+       מחשבון כדאיות דמי ניהול פנסיה
+    ══════════════════════════════════════════ */
+    const PF_FUNDS = {
+      mor: {
+        name: 'מור פנסיה',
+        note: 'מקור: מחירון מור פנסיה, ינואר 2025. ניתן לבחור מסלול בהסכם מול הקרן.',
+        type: 'combos',
+        combos: [
+          { label: 'מסלול 1', accum: 0.20, deposit: 1.20 },
+          { label: 'מסלול 2', accum: 0.15, deposit: 1.70 },
+          { label: 'מסלול 3', accum: 0.12, deposit: 2.00 },
+          { label: 'מסלול 4', accum: 0.10, deposit: 2.20 },
+          { label: 'מסלול 5', accum: 0.05, deposit: 2.70 },
+        ]
+      },
+      meitav: {
+        name: 'מיטב פנסיה',
+        note: 'מקור: מחירון מיטב, ינואר 2025. דמי הניהול נקבעים לפי השכר החודשי. שתי חלופות לבחירה.',
+        type: 'salary-tiered',
+        alternatives: [
+          { label: 'חלופה א׳', tiers: [
+            { maxSalary: 10000,    accum: 0.22, deposit: 1.0 },
+            { maxSalary: 15000,    accum: 0.20, deposit: 1.0 },
+            { maxSalary: 20000,    accum: 0.18, deposit: 1.0 },
+            { maxSalary: Infinity, accum: 0.15, deposit: 1.0 },
+          ]},
+          { label: 'חלופה ב׳', tiers: [
+            { maxSalary: 10000,    accum: 0.12, deposit: 2.00 },
+            { maxSalary: 15000,    accum: 0.12, deposit: 1.70 },
+            { maxSalary: 20000,    accum: 0.11, deposit: 1.60 },
+            { maxSalary: Infinity, accum: 0.10, deposit: 1.50 },
+          ]}
+        ]
+      },
+      clal: {
+        name: 'כלל פנסיה',
+        note: 'מקור: מחירון כלל ביטוח ופיננסים. דמי הניהול יורדים אוטומטית ככל שהצבירה גדלה.',
+        type: 'accum-tiered',
+        tiers: [
+          { maxAccum:    49999, accum: 0.250, deposit: 2.500 },
+          { maxAccum:    99999, accum: 0.200, deposit: 2.000 },
+          { maxAccum:   199999, accum: 0.150, deposit: 1.950 },
+          { maxAccum:   299999, accum: 0.100, deposit: 1.900 },
+          { maxAccum:   399999, accum: 0.092, deposit: 1.850 },
+          { maxAccum:   499999, accum: 0.088, deposit: 1.800 },
+          { maxAccum:   599999, accum: 0.084, deposit: 1.750 },
+          { maxAccum:   699999, accum: 0.080, deposit: 1.700 },
+          { maxAccum:   799999, accum: 0.076, deposit: 1.650 },
+          { maxAccum:   899999, accum: 0.072, deposit: 1.600 },
+          { maxAccum:   999999, accum: 0.068, deposit: 1.550 },
+          { maxAccum:  1099999, accum: 0.064, deposit: 1.500 },
+          { maxAccum:  1199999, accum: 0.060, deposit: 1.450 },
+          { maxAccum:  1299999, accum: 0.053, deposit: 1.384 },
+          { maxAccum:  1399999, accum: 0.051, deposit: 1.326 },
+          { maxAccum:  1499999, accum: 0.049, deposit: 1.275 },
+          { maxAccum:  1599999, accum: 0.047, deposit: 1.230 },
+          { maxAccum:  1699999, accum: 0.046, deposit: 1.189 },
+          { maxAccum:  1799999, accum: 0.044, deposit: 1.152 },
+          { maxAccum:  1899999, accum: 0.043, deposit: 1.118 },
+          { maxAccum:  1999999, accum: 0.042, deposit: 1.087 },
+          { maxAccum: Infinity, accum: 0.041, deposit: 1.058 },
+        ]
+      },
+      phoenix: {
+        name: 'הפניקס פנסיה',
+        note: 'נתוני הפניקס הם אינדיקטיביים בלבד. יש לאמת שיעורים מול הפניקס ישירות.',
+        type: 'combos',
+        combos: [
+          { label: 'מסלול א׳', accum: 0.25, deposit: 2.00 },
+          { label: 'מסלול ב׳', accum: 0.20, deposit: 1.50 },
+          { label: 'מסלול ג׳', accum: 0.15, deposit: 1.00 },
+          { label: 'מסלול ד׳', accum: 0.10, deposit: 0.50 },
+        ]
+      }
+    };
+
+    let _pfCurrentFund = 'mor';
+
+    function pfSelectFund(key, ev) {
+      _pfCurrentFund = key;
+      document.querySelectorAll('#panel-pension-fees .pf-fund-tab').forEach(b => b.classList.remove('active'));
+      if (ev && ev.currentTarget) ev.currentTarget.classList.add('active');
+      pfCalc();
+    }
+
+    function pfGetMeitavFees(salary) {
+      return PF_FUNDS.meitav.alternatives.map(alt => {
+        const tier = alt.tiers.find(t => salary <= t.maxSalary);
+        return { label: alt.label, accum: tier.accum, deposit: tier.deposit };
+      });
+    }
+
+    function pfGetClalFees(accum) {
+      return PF_FUNDS.clal.tiers.find(t => accum <= t.maxAccum);
+    }
+
+    function pfGetCombos(fund, salary, accum) {
+      if (fund.type === 'combos') return fund.combos;
+      if (fund.type === 'salary-tiered') return pfGetMeitavFees(salary);
+      if (fund.type === 'accum-tiered') {
+        const t = pfGetClalFees(accum);
+        return [{ label: 'טייר אוטומטי', accum: t.accum, deposit: t.deposit }];
+      }
+      return [];
+    }
+
+    function pfAnnualCost(accum, annualDep, accumPct, depositPct) {
+      return accum * accumPct / 100 + annualDep * depositPct / 100;
+    }
+
+    function pfNextAccum(accum, annualDep, returnPct, accumFeePct) {
+      return accum * (1 + returnPct / 100 - accumFeePct / 100) + annualDep;
+    }
+
+    function pfCalc() {
+      const salary     = parseFloat(document.getElementById('pf-salary').value)      || 20000;
+      const depositPct = parseFloat(document.getElementById('pf-deposit-pct').value) || 18.5;
+      const accumStart = parseFloat(document.getElementById('pf-accum').value)        || 0;
+      const ageNow     = parseInt(document.getElementById('pf-age').value)            || 40;
+      const retAge     = parseInt(document.getElementById('pf-ret-age').value)        || 67;
+      const returnPct  = parseFloat(document.getElementById('pf-return').value)       || 6;
+
+      const monthlyDep = salary * depositPct / 100;
+      const annualDep  = monthlyDep * 12;
+      const yearsLeft  = Math.max(1, retAge - ageNow);
+      const fmtILS = v => '₪' + Math.round(v).toLocaleString('he-IL');
+      const fmtPct = (v, d=2) => v.toFixed(d) + '%';
+
+      document.getElementById('kpi-monthly-dep').textContent = fmtILS(monthlyDep);
+      document.getElementById('kpi-annual-dep').textContent  = fmtILS(annualDep);
+      document.getElementById('kpi-years').textContent        = yearsLeft + ' שנים';
+
+      const fund   = PF_FUNDS[_pfCurrentFund];
+      const combos = pfGetCombos(fund, salary, accumStart);
+      document.getElementById('pf-fund-note').textContent = fund.note;
+
+      const rows = combos.map(c => ({
+        ...c,
+        costAccum:   accumStart * c.accum   / 100,
+        costDeposit: annualDep  * c.deposit / 100,
+        total: pfAnnualCost(accumStart, annualDep, c.accum, c.deposit)
+      }));
+      rows.sort((a, b) => a.total - b.total);
+      const minTotal = rows[0].total;
+      const maxTotal = rows[rows.length - 1].total;
+
+      document.getElementById('pf-fee-tbody').innerHTML = rows.map(r => {
+        const isCheapest  = Math.abs(r.total - minTotal) < 0.01;
+        const isCostliest = Math.abs(r.total - maxTotal) < 0.01 && rows.length > 1;
+        return `<tr class="${isCheapest ? 'winner' : ''}">
+          <td style="text-align:right;font-weight:700">${r.label}${isCheapest ? ' ✔ <span style="font-size:.75rem;color:#1a7f4b">הזול ביותר</span>' : ''}</td>
+          <td>${fmtPct(r.accum)}</td>
+          <td>${fmtPct(r.deposit)}</td>
+          <td class="cost-col">${fmtILS(r.costAccum)}</td>
+          <td class="cost-col">${fmtILS(r.costDeposit)}</td>
+          <td class="cost-col ${isCheapest ? 'cheapest' : isCostliest ? 'costliest' : ''}">${fmtILS(r.total)}</td>
+        </tr>`;
+      }).join('');
+
+      const winner = rows[0];
+      const loser  = rows[rows.length - 1];
+      const saving = loser.total - winner.total;
+      const recEl  = document.getElementById('pf-rec');
+      recEl.style.display = 'block';
+      recEl.innerHTML = `<div class="rec-title">📌 המלצה נוכחית - ${fund.name}</div>
+        <p>המסלול הזול ביותר עבורך כיום הוא <strong>${winner.label}</strong>
+        (${fmtPct(winner.accum)} מצבירה + ${fmtPct(winner.deposit)} מהפקדות) -
+        <strong>${fmtILS(winner.total)}/שנה</strong> בסה"כ.${rows.length > 1 ? `<br>לעומת המסלול היקר ביותר (<strong>${loser.label}</strong>): חיסכון של <strong>${fmtILS(saving)}/שנה</strong>, ולאורך ${yearsLeft} שנות ההפקדה: <strong>${fmtILS(saving * yearsLeft)}</strong> בסה"כ.` : ''}</p>`;
+
+      pfBuildProjection(combos, accumStart, annualDep, returnPct, yearsLeft, ageNow);
+      pfBuildBreakeven(combos, annualDep, accumStart, returnPct, yearsLeft, ageNow);
+    }
+
+    function pfBuildProjection(combos, accumStart, annualDep, returnPct, yearsLeft, ageNow) {
+      const fmtILS = v => '₪' + Math.round(v).toLocaleString('he-IL');
+      const fmtPct = (v, d=2) => v.toFixed(d) + '%';
+      document.getElementById('pf-proj-head').innerHTML = `<tr>
+        <th>שנה</th><th>גיל</th><th>צבירה משוערת</th>
+        ${combos.map(c => `<th>${c.label}<br><small style="font-weight:400">${fmtPct(c.accum)} מצ׳ + ${fmtPct(c.deposit)} מהפ׳</small></th>`).join('')}
+        <th>הזול ביותר</th>
+      </tr>`;
+
+      const accums = combos.map(() => accumStart);
+      let rows = '';
+      const maxYears = Math.min(yearsLeft, 40);
+      for (let y = 1; y <= maxYears; y++) {
+        const age = ageNow + y;
+        const costs = combos.map((c, i) => {
+          const cost = pfAnnualCost(accums[i], annualDep, c.accum, c.deposit);
+          accums[i] = pfNextAccum(accums[i], annualDep, returnPct, c.accum);
+          return cost;
+        });
+        const displayAccum = accums[0];
+        const minCost = Math.min(...costs);
+        const maxCost = Math.max(...costs);
+        rows += `<tr>
+          <td class="yr-col">שנה ${y}</td>
+          <td class="yr-col">${age}</td>
+          <td style="font-weight:700">${fmtILS(displayAccum)}</td>
+          ${costs.map((cost, i) => {
+            const isBest  = Math.abs(cost - minCost) < 0.01;
+            const isWorst = Math.abs(cost - maxCost) < 0.01 && combos.length > 1;
+            return `<td class="${isBest ? 'best-cell' : isWorst ? 'worst-cell' : ''}">${fmtILS(cost)}</td>`;
+          }).join('')}
+          <td style="font-weight:900;color:#1a7f4b">${combos[costs.indexOf(minCost)].label}</td>
+        </tr>`;
+      }
+      document.getElementById('pf-proj-tbody').innerHTML = rows;
+    }
+
+    function pfBuildBreakeven(combos, annualDep, accumStart, returnPct, yearsLeft, ageNow) {
+      const fmtILS = v => '₪' + Math.round(v).toLocaleString('he-IL');
+      const card = document.getElementById('pf-breakeven-card');
+      const content = document.getElementById('pf-breakeven-content');
+      if (combos.length < 2) { card.style.display = 'none'; return; }
+
+      let html = '<p style="font-size:.85rem;color:#555;margin-bottom:1rem;">נקודת האיזון היא הצבירה שבה שתי קומבינציות שוות בעלות שנתית. מעל לנקודה זו - המסלול עם % מצבירה נמוך יותר נהיה זול יותר.</p>';
+      html += '<div style="overflow-x:auto;"><table class="pf-fee-table"><thead><tr><th>השוואה</th><th>צבירת איזון</th><th>מסלול עדיף לצבירה נמוכה</th><th>מסלול עדיף לצבירה גבוהה</th></tr></thead><tbody>';
+
+      for (let i = 0; i < combos.length - 1; i++) {
+        const a = combos[i], b = combos[i + 1];
+        if (Math.abs(a.accum - b.accum) < 0.001) continue;
+        const beAccum = annualDep * (b.deposit - a.deposit) / (a.accum - b.accum);
+        const cheapBelow = b.deposit > a.deposit ? a.label : b.label;
+        const cheapAbove = b.deposit > a.deposit ? b.label : a.label;
+        if (beAccum > 0) {
+          const status = accumStart >= beAccum
+            ? `✔ הצבירה שלך (${fmtILS(accumStart)}) כבר מעל נקודת האיזון`
+            : `הצבירה שלך עדיין מתחת (${fmtILS(accumStart)} מתוך ${fmtILS(beAccum)})`;
+          html += `<tr>
+            <td style="text-align:right">${a.label} מול ${b.label}</td>
+            <td style="font-weight:800;color:#0d1e35">${fmtILS(beAccum)}</td>
+            <td>${cheapBelow}</td>
+            <td>${cheapAbove}</td>
+          </tr>
+          <tr style="background:#f8f8f8;"><td colspan="4" style="font-size:.78rem;color:#666;text-align:right;padding:.3rem .7rem;">${status}</td></tr>`;
+        }
+      }
+      html += '</tbody></table></div>';
+      content.innerHTML = html;
+      card.style.display = 'block';
+    }
+
+    // הפעלה ראשונית של מחשבון דמי הניהול כשהפאנל מופעל
+    document.querySelector('[aria-controls="panel-pension-fees"]').addEventListener('click', () => {
+      setTimeout(pfCalc, 50);
+    });
+
     /* ── Retirement Simulator ── */
     function simToggle(btn) {
       const group = btn.dataset.group;
