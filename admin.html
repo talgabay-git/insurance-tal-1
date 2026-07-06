@@ -160,7 +160,7 @@ async function doLogin() {
       sessionStorage.setItem('gh_token', token);
       st.textContent = ''; show('screen-upload');
     } else {
-      st.textContent = 'Token שגוי — בדוק שיש הרשאת repo'; st.className = 'status err';
+      st.textContent = 'Token שגוי - בדוק שיש הרשאת repo'; st.className = 'status err';
     }
   } catch { st.textContent = 'שגיאת רשת'; st.className = 'status err'; }
   btn.disabled = false;
