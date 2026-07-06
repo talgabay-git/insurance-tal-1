@@ -597,7 +597,7 @@
               <li><a href="calculators.html#severance" class="dropdown-item">מחשבון פיצויי פיטורים</a></li>
               <li><a href="calculators.html#loan-vs-invest" class="dropdown-item">הלוואה מול השקעה</a></li>
               <li><a href="calculators.html#pension-compare" class="dropdown-item">פנסיה מול ביטוח מנהלים</a></li>
-              <li><a href="calculators.html#pension-fees" class="dropdown-item">כדאיות דמי ניהול פנסיה</a></li>
+              <li><a href="calculators.html#pension-fees" class="dropdown-item">כדאיות דמי ניהול בקרן הפנסיה</a></li>
             </ul>
           </li>
         </ul>
@@ -709,7 +709,7 @@
         </li>
         <li role="presentation">
           <button class="calc-tab-btn" role="tab" aria-selected="false" aria-controls="panel-pension-fees" onclick="switchTab('pension-fees',this)">
-            <i class="fa-solid fa-coins"></i> כדאיות דמי ניהול פנסיה
+            <i class="fa-solid fa-coins"></i> כדאיות דמי ניהול בקרן הפנסיה
           </button>
         </li>
       </ul>
@@ -1221,7 +1221,7 @@
         </div>
       </div>
 
-      <!-- ── Panel 6: כדאיות דמי ניהול פנסיה ── -->
+      <!-- ── Panel 6: כדאיות דמי ניהול בקרן הפנסיה ── -->
       <div class="calc-panel" id="panel-pension-fees" role="tabpanel">
         <div class="calc-panel-inner" style="max-width:960px;">
           <style>
@@ -1275,7 +1275,7 @@
             <div style="background:linear-gradient(135deg,#0d1e35 0%,#1a2d47 100%);padding:1.4rem 2rem;text-align:center;border-bottom:1px solid rgba(201,168,76,.3);">
               <div style="display:flex;align-items:center;gap:.6rem;justify-content:center;margin-bottom:.4rem;">
                 <i class="fa-solid fa-coins" style="font-size:1.3rem;color:var(--gold);"></i>
-                <h2 style="margin:0;font-size:1.15rem;font-weight:700;color:#fff;font-family:'Heebo',sans-serif;">מחשבון כדאיות דמי ניהול פנסיה</h2>
+                <h2 style="margin:0;font-size:1.15rem;font-weight:700;color:#fff;font-family:'Heebo',sans-serif;">מחשבון כדאיות דמי ניהול בקרן הפנסיה</h2>
               </div>
               <p style="margin:0;font-size:.82rem;color:rgba(255,255,255,.55);">כמה עולה כל קומבינציה של דמי ניהול - מצבירה מול מהפקדות - ואיזו זולה יותר עבורך</p>
             </div>
@@ -1911,7 +1911,7 @@
     window.addEventListener('hashchange', activateTabFromHash);
 
     /* ══════════════════════════════════════════
-       מחשבון כדאיות דמי ניהול פנסיה
+       מחשבון כדאיות דמי ניהול בקרן הפנסיה
     ══════════════════════════════════════════ */
     const PF_FUNDS = {
       mor: {
