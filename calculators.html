@@ -1396,6 +1396,16 @@
                     </div>
 
                     <div style="margin-bottom:.9rem;">
+                      <label style="display:flex;justify-content:space-between;align-items:center;font-size:.72rem;font-weight:700;color:#0d1e35;margin-bottom:.25rem;">
+                        <span>עלות כיסוי אכ"ע (%/שנה מצבירה)</span>
+                        <span id="pc-dis-fee-badge" style="background:#0d1e35;color:#c9a84c;font-size:.82rem;font-weight:900;padding:.1rem .45rem;border-radius:7px;min-width:3rem;text-align:center;">1.00%</span>
+                      </label>
+                      <input id="pc-disability-fee" type="number" value="1.00" min="0" max="4" step="0.01"
+                        style="width:100%;background:#fff;border:2px solid #e8d5a3;border-radius:9px;padding:.5rem .8rem;font-size:.9rem;font-weight:600;box-sizing:border-box;"
+                        oninput="pcFeeBadge('pc-disability-fee','pc-dis-fee-badge');runPensionCompare()" />
+                    </div>
+
+                    <div>
                       <label style="display:block;font-size:.72rem;font-weight:700;color:#0d1e35;margin-bottom:.25rem;">חודשים מובטחים</label>
                       <select id="pc-track" style="width:100%;background:#fff;border:2px solid #e8d5a3;border-radius:9px;padding:.5rem .8rem;font-size:.9rem;font-weight:600;" onchange="runPensionCompare()">
                         <option value="0">ללא הבטחה</option>
@@ -1404,16 +1414,6 @@
                         <option value="180">180 חודשים</option>
                         <option value="240">240 חודשים</option>
                       </select>
-                    </div>
-
-                    <div>
-                      <label style="display:flex;justify-content:space-between;align-items:center;font-size:.72rem;font-weight:700;color:#0d1e35;margin-bottom:.25rem;">
-                        <span>עלות כיסוי אכ"ע (%/שנה מצבירה)</span>
-                        <span id="pc-dis-fee-badge" style="background:#0d1e35;color:#c9a84c;font-size:.82rem;font-weight:900;padding:.1rem .45rem;border-radius:7px;min-width:3rem;text-align:center;">1.00%</span>
-                      </label>
-                      <input id="pc-disability-fee" type="number" value="1.00" min="0" max="4" step="0.01"
-                        style="width:100%;background:#fff;border:2px solid #e8d5a3;border-radius:9px;padding:.5rem .8rem;font-size:.9rem;font-weight:600;box-sizing:border-box;"
-                        oninput="pcFeeBadge('pc-disability-fee','pc-dis-fee-badge');runPensionCompare()" />
                     </div>
 
                   </div>
