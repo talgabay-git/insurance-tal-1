@@ -588,6 +588,7 @@
               <li><a href="calculators.html#retirement" class="dropdown-item">סימולטור פרישה</a></li>
               <li><a href="calculators.html#severance" class="dropdown-item">מחשבון פיצויי פיטורים</a></li>
               <li><a href="calculators.html#loan-vs-invest" class="dropdown-item">הלוואה מול השקעה</a></li>
+              <li><a href="calculators.html#pension-compare" class="dropdown-item">פנסיה מול ביטוח מנהלים</a></li>
             </ul>
           </li>
         </ul>
@@ -1699,6 +1700,12 @@
       } else if (hash === '#severance') {
         const btn = document.querySelector('[aria-controls="panel-severance"]');
         if (btn) switchTab('severance', btn);
+      } else if (hash === '#loan-vs-invest') {
+        const btn = document.querySelector('[aria-controls="panel-loan-vs-invest"]');
+        if (btn) switchTab('loan-vs-invest', btn);
+      } else if (hash === '#pension-compare') {
+        const btn = document.querySelector('[aria-controls="panel-pension-compare"]');
+        if (btn) switchTab('pension-compare', btn);
       } else if (!hash || hash === '#compound') {
         const btn = document.querySelector('[aria-controls="panel-compound"]');
         if (btn) switchTab('compound', btn);
