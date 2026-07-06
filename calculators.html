@@ -2226,7 +2226,7 @@
         <div style="font-weight:700;color:#0d1e35;margin-bottom:.4rem;">📊 הפרש צבירה לגיל פרישה</div>
         <div style="font-size:.92rem;color:#444;">
           ביטוח מנהלים: <strong>${fmtNum(accumIns)}</strong> | פנסיה: <strong>${fmtNum(accumPen)}</strong><br>
-          <span style="color:${colorBad}">הפרש (לרעת ביטוח): ${fmtNum(capitalLost)}</span>
+          <span style="color:${capitalLost >= 0 ? colorGood : colorBad}">${capitalLost >= 0 ? 'הפרש לטובת קרן הפנסיה' : 'הפרש לטובת ביטוח מנהלים'}: ${fmtNum(capitalLost)}</span>
         </div>
       </div>`;
 
