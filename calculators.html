@@ -2020,7 +2020,7 @@
       if (fund.type === 'salary-tiered') return pfGetMeitavFees(salary);
       if (fund.type === 'accum-tiered') {
         const t = pfGetClalFees(accum);
-        return [{ label: 'טייר אוטומטי', accum: t.accum, deposit: t.deposit }];
+        return [{ label: 'דמי ניהול לפי גובה הצבירה', accum: t.accum, deposit: t.deposit }];
       }
       return [];
     }
