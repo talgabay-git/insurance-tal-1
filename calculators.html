@@ -1294,7 +1294,7 @@
                   <label style="display:block;font-size:.75rem;font-weight:700;color:#0d1e35;margin-bottom:.3rem;">תשואה שנתית — שני המוצרים (%)</label>
                   <select id="pc-return" style="width:100%;background:#fff;border:2px solid #d0d8e4;border-radius:10px;padding:.55rem .9rem;font-size:.95rem;font-weight:600;" onchange="runPensionCompare()">
                     <option value="3">3%</option><option value="4">4%</option>
-                    <option value="5" selected>5%</option><option value="6">6%</option>
+                    <option value="5">5%</option><option value="6" selected>6%</option>
                     <option value="7">7%</option><option value="8">8%</option>
                   </select>
                 </div>
@@ -1324,26 +1324,15 @@
                 </div>
               </div>
 
-              <!-- שורה 4ב: השתתפות ברווח — רק לפני 2001 -->
-              <div id="pc-profit-share-row" style="display:none;background:#fff8e6;border:2px solid #c9a84c;border-radius:10px;padding:.8rem 1rem;margin-bottom:1rem;">
-                <div style="font-size:.78rem;font-weight:700;color:#0d1e35;margin-bottom:.4rem;">מבנה עלויות — פוליסה לפני יוני 2001</div>
-                <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
-                  <div>
-                    <label style="display:flex;justify-content:space-between;align-items:center;font-size:.72rem;font-weight:700;color:#0d1e35;margin-bottom:.25rem;">
-                      <span>השתתפות ברווח (%)</span>
-                      <span id="pc-profit-share-badge" style="background:#0d1e35;color:#c9a84c;font-size:.82rem;font-weight:900;padding:.1rem .4rem;border-radius:7px;min-width:2.8rem;text-align:center;">15%</span>
-                    </label>
-                    <input id="pc-profit-share" type="number" value="15" min="0" max="30" step="1"
-                      style="width:100%;background:#fff;border:2px solid #d0d8e4;border-radius:10px;padding:.45rem .8rem;font-size:.9rem;font-weight:600;box-sizing:border-box;"
-                      oninput="pcFeeBadge('pc-profit-share','pc-profit-share-badge');runPensionCompare()" />
-                    <small style="color:#888;font-size:.68rem;">% מהרווחים השנתיים</small>
-                  </div>
-                  <div style="font-size:.78rem;color:#555;padding-top:.5rem;">
-                    <div>✓ דמי ניהול מצבירה: <strong>0.6%/שנה</strong></div>
-                    <div>✓ דמי ניהול מהפקדות: <strong>0%</strong></div>
-                    <div style="color:#888;margin-top:.3rem;">ערבות תשואה — אין גביה מהפקדות</div>
-                  </div>
+              <!-- שורה 4ב: מבנה עלויות פוליסה לפני 2001 — קבוע -->
+              <div id="pc-profit-share-row" style="display:none;background:#fff8e6;border:2px solid #c9a84c;border-radius:10px;padding:.8rem 1.2rem;margin-bottom:1rem;">
+                <div style="font-size:.78rem;font-weight:700;color:#0d1e35;margin-bottom:.6rem;">מבנה עלויות — פוליסת משתתף ברווחים (לפני יוני 2001)</div>
+                <div style="display:flex;gap:1.5rem;flex-wrap:wrap;font-size:.82rem;color:#333;">
+                  <div>✓ דמי ניהול מצבירה: <strong>0.6%/שנה</strong> (קבוע)</div>
+                  <div>✓ השתתפות ברווח: <strong>15% מהרווחים</strong> (קבוע)</div>
+                  <div>✓ דמי ניהול מהפקדות: <strong>0%</strong></div>
                 </div>
+                <div style="margin-top:.5rem;font-size:.75rem;color:#888;">לדוגמה בתשואה 6%: 0.6% + (15%×6%) = 0.6% + 0.9% = <strong>1.5% עלות אפקטיבית</strong></div>
               </div>
 
               <!-- שורה 5: דמי ניהול מהפקדות (ביטוח + פנסיה) -->
@@ -2093,7 +2082,7 @@
       const penDisFee     = parseFloat(document.getElementById('pc-pen-disability').value)   || 0.75;
       const insDepositFee = policy === 'pre2001' ? 0 : (parseFloat(document.getElementById('pc-ins-deposit-fee').value) || 3);
       const penDepositFee = parseFloat(document.getElementById('pc-pen-deposit-fee').value)  || 6;
-      const profitShare   = policy === 'pre2001' ? (parseFloat(document.getElementById('pc-profit-share').value) || 15) : 0;
+      const profitShare   = 15; // קבוע — השתתפות ברווח בפוליסות לפני 2001
 
       const yearsToRetire = Math.max(1, retAge - ageNow);
 
