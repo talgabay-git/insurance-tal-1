@@ -589,6 +589,7 @@
               <li><a href="calculators.html#severance" class="dropdown-item">מחשבון פיצויי פיטורים</a></li>
               <li><a href="calculators.html#loan-vs-invest" class="dropdown-item">הלוואה מול השקעה</a></li>
               <li><a href="calculators.html#pension-compare" class="dropdown-item">פנסיה מול ביטוח מנהלים</a></li>
+              <li><a href="calculators.html#pension-fees" class="dropdown-item">כדאיות דמי ניהול פנסיה</a></li>
             </ul>
           </li>
         </ul>
@@ -696,6 +697,11 @@
         <li role="presentation">
           <button class="calc-tab-btn" role="tab" aria-selected="false" aria-controls="panel-pension-compare" onclick="switchTab('pension-compare',this)">
             <i class="fa-solid fa-shield-halved"></i> פנסיה מול ביטוח מנהלים
+          </button>
+        </li>
+        <li role="presentation">
+          <button class="calc-tab-btn" role="tab" aria-selected="false" aria-controls="panel-pension-fees" onclick="switchTab('pension-fees',this)">
+            <i class="fa-solid fa-coins"></i> כדאיות דמי ניהול פנסיה
           </button>
         </li>
       </ul>
@@ -1204,6 +1210,169 @@
             </div>
 
           </div><!-- /גוף מחשבון -->
+        </div>
+      </div>
+
+      <!-- ── Panel 6: כדאיות דמי ניהול פנסיה ── -->
+      <div class="calc-panel" id="panel-pension-fees" role="tabpanel">
+        <div class="calc-panel-inner" style="max-width:960px;">
+          <style>
+            #panel-pension-fees .pf-card { background:#fff; border-radius:16px; box-shadow:0 4px 24px rgba(13,30,53,.10); padding:2rem 2.2rem; margin-bottom:1.5rem; }
+            #panel-pension-fees .pf-card h3 { font-family:'Heebo',sans-serif; font-size:1.1rem; font-weight:900; color:#0d1e35; margin-bottom:1.2rem; border-right:4px solid #c9a84c; padding-right:.7rem; }
+            #panel-pension-fees .pf-inputs { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; }
+            #panel-pension-fees .pf-inp label { display:block; font-size:.75rem; font-weight:700; color:#0d1e35; margin-bottom:.3rem; }
+            #panel-pension-fees .pf-inp input, #panel-pension-fees .pf-inp select { width:100%; background:#fff; border:2px solid #d0d8e4; border-radius:10px; padding:.55rem .9rem; font-size:.95rem; font-weight:600; font-family:'Heebo',sans-serif; box-sizing:border-box; }
+            #panel-pension-fees .pf-inp input:focus, #panel-pension-fees .pf-inp select:focus { border-color:#c9a84c; outline:none; }
+            #panel-pension-fees .pf-fund-tabs { display:flex; gap:.5rem; flex-wrap:wrap; margin-bottom:1.4rem; }
+            #panel-pension-fees .pf-fund-tab { padding:.5rem 1.3rem; border-radius:30px; border:2px solid #d0d8e4; background:#fff; font-size:.88rem; font-weight:700; cursor:pointer; font-family:'Heebo',sans-serif; color:#0d1e35; transition:all .2s; }
+            #panel-pension-fees .pf-fund-tab.active { background:#0d1e35; color:#c9a84c; border-color:#0d1e35; }
+            #panel-pension-fees .pf-fee-table { width:100%; border-collapse:collapse; font-size:.88rem; }
+            #panel-pension-fees .pf-fee-table th { background:#0d1e35; color:#c9a84c; padding:.6rem .7rem; text-align:center; font-weight:700; }
+            #panel-pension-fees .pf-fee-table td { padding:.55rem .7rem; text-align:center; border-bottom:1px solid #eef0f5; }
+            #panel-pension-fees .pf-fee-table tr.winner { background:#f0fff4; }
+            #panel-pension-fees .pf-fee-table tr.winner td:first-child { font-weight:900; color:#1a7f4b; }
+            #panel-pension-fees .pf-fee-table tr:hover { background:#f8faff; }
+            #panel-pension-fees .pf-fee-table td.cost-col { font-weight:800; }
+            #panel-pension-fees .pf-fee-table td.cheapest { color:#1a7f4b; font-weight:900; }
+            #panel-pension-fees .pf-fee-table td.costliest { color:#c0392b; }
+            #panel-pension-fees .pf-proj-wrap { overflow-x:auto; }
+            #panel-pension-fees .pf-proj-table { width:100%; border-collapse:collapse; font-size:.82rem; min-width:580px; }
+            #panel-pension-fees .pf-proj-table th { background:#0d1e35; color:#c9a84c; padding:.55rem .6rem; text-align:center; font-weight:700; white-space:nowrap; }
+            #panel-pension-fees .pf-proj-table td { padding:.48rem .6rem; text-align:center; border-bottom:1px solid #eef0f5; }
+            #panel-pension-fees .pf-proj-table tr:hover { background:#f8faff; }
+            #panel-pension-fees .pf-proj-table .yr-col { font-weight:800; color:#0d1e35; white-space:nowrap; }
+            #panel-pension-fees .pf-proj-table .best-cell { background:#e8f8ee; color:#1a7f4b; font-weight:900; border-radius:6px; }
+            #panel-pension-fees .pf-proj-table .worst-cell { color:#c0392b; }
+            #panel-pension-fees .pf-kpi-banner { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin-bottom:1.4rem; }
+            #panel-pension-fees .pf-kpi-box { background:#0d1e35; border-radius:12px; padding:1rem 1.2rem; text-align:center; }
+            #panel-pension-fees .pf-kpi-box .kpi-val { font-family:'Heebo',sans-serif; font-size:1.3rem; font-weight:900; color:#c9a84c; }
+            #panel-pension-fees .pf-kpi-box .kpi-label { font-size:.73rem; color:rgba(255,255,255,.7); margin-top:.25rem; }
+            #panel-pension-fees .pf-rec-box { background:linear-gradient(135deg,#0d1e35 60%,#1a3256); border-radius:14px; padding:1.2rem 1.6rem; color:#fff; margin-top:1.2rem; }
+            #panel-pension-fees .pf-rec-box .rec-title { font-family:'Heebo',sans-serif; font-weight:900; font-size:1.05rem; color:#c9a84c; margin-bottom:.5rem; }
+            #panel-pension-fees .pf-rec-box p { font-size:.9rem; line-height:1.7; color:rgba(255,255,255,.9); margin:0; }
+            #panel-pension-fees .pf-rec-box strong { color:#c9a84c; }
+            #panel-pension-fees .pf-note { background:#fff8e6; border:2px solid #c9a84c; border-radius:10px; padding:.8rem 1.1rem; font-size:.8rem; color:#555; margin-top:1rem; }
+            @media(max-width:768px) {
+              #panel-pension-fees .pf-inputs { grid-template-columns:1fr 1fr; }
+              #panel-pension-fees .pf-kpi-banner { grid-template-columns:1fr 1fr; }
+            }
+            @media(max-width:480px) {
+              #panel-pension-fees .pf-inputs { grid-template-columns:1fr; }
+              #panel-pension-fees .pf-kpi-banner { grid-template-columns:1fr; }
+              #panel-pension-fees .pf-card { padding:1.3rem 1rem; }
+            }
+          </style>
+
+          <div style="background:#1a2d47;border-radius:24px;box-shadow:0 8px 40px rgba(13,30,53,.35);overflow:hidden;border:2px solid #2a3f5c;">
+            <div style="background:linear-gradient(135deg,#0d1e35 0%,#1a2d47 100%);padding:1.4rem 2rem;text-align:center;border-bottom:1px solid rgba(201,168,76,.3);">
+              <div style="display:flex;align-items:center;gap:.6rem;justify-content:center;margin-bottom:.4rem;">
+                <i class="fa-solid fa-coins" style="font-size:1.3rem;color:var(--gold);"></i>
+                <h2 style="margin:0;font-size:1.15rem;font-weight:700;color:#fff;font-family:'Heebo',sans-serif;">מחשבון כדאיות דמי ניהול פנסיה</h2>
+              </div>
+              <p style="margin:0;font-size:.82rem;color:rgba(255,255,255,.55);">כמה עולה כל קומבינציה של דמי ניהול - מצבירה מול מהפקדות - ואיזו זולה יותר עבורך</p>
+            </div>
+            <div style="padding:1.5rem 2rem;background:#f8fafc;">
+
+              <!-- נתוני לקוח -->
+              <div class="pf-card">
+                <h3>נתוני הלקוח/ה</h3>
+                <div class="pf-inputs">
+                  <div class="pf-inp">
+                    <label for="pf-salary">שכר ברוטו חודשי (₪)</label>
+                    <input id="pf-salary" type="number" value="20000" min="3000" max="200000" step="500" oninput="pfCalc()" />
+                  </div>
+                  <div class="pf-inp">
+                    <label for="pf-deposit-pct">שיעור הפקדה מהשכר (%)</label>
+                    <input id="pf-deposit-pct" type="number" value="18.5" min="5" max="30" step="0.5" oninput="pfCalc()" />
+                    <small style="color:#888;font-size:.7rem;">עובד 6% + מעסיק 6.5% + פיצויים 6%</small>
+                  </div>
+                  <div class="pf-inp">
+                    <label for="pf-accum">צבירה קיימת בקרן (₪)</label>
+                    <input id="pf-accum" type="number" value="150000" min="0" max="10000000" step="10000" oninput="pfCalc()" />
+                  </div>
+                  <div class="pf-inp">
+                    <label for="pf-age">גיל נוכחי</label>
+                    <input id="pf-age" type="number" value="40" min="20" max="65" step="1" oninput="pfCalc()" />
+                  </div>
+                  <div class="pf-inp">
+                    <label for="pf-ret-age">גיל פרישה</label>
+                    <input id="pf-ret-age" type="number" value="67" min="55" max="70" step="1" oninput="pfCalc()" />
+                  </div>
+                  <div class="pf-inp">
+                    <label for="pf-return">תשואה שנתית נומינלית (%)</label>
+                    <select id="pf-return" onchange="pfCalc()">
+                      <option value="4">4%</option>
+                      <option value="5">5%</option>
+                      <option value="6" selected>6%</option>
+                      <option value="7">7%</option>
+                      <option value="8">8%</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <!-- בחירת קרן -->
+              <div class="pf-card">
+                <h3>בחרו קרן פנסיה</h3>
+                <div class="pf-fund-tabs" role="tablist">
+                  <button class="pf-fund-tab active" onclick="pfSelectFund('mor',event)" role="tab">מור פנסיה</button>
+                  <button class="pf-fund-tab" onclick="pfSelectFund('meitav',event)" role="tab">מיטב פנסיה</button>
+                  <button class="pf-fund-tab" onclick="pfSelectFund('clal',event)" role="tab">כלל פנסיה</button>
+                  <button class="pf-fund-tab" onclick="pfSelectFund('phoenix',event)" role="tab">הפניקס פנסיה</button>
+                </div>
+                <div id="pf-fund-note" style="font-size:.8rem;color:#888;margin-bottom:.8rem;"></div>
+
+                <!-- KPI -->
+                <div class="pf-kpi-banner" id="pf-kpi">
+                  <div class="pf-kpi-box"><div class="kpi-val" id="kpi-monthly-dep">-</div><div class="kpi-label">הפקדה חודשית</div></div>
+                  <div class="pf-kpi-box"><div class="kpi-val" id="kpi-annual-dep">-</div><div class="kpi-label">הפקדה שנתית</div></div>
+                  <div class="pf-kpi-box"><div class="kpi-val" id="kpi-years">-</div><div class="kpi-label">שנים לפרישה</div></div>
+                </div>
+
+                <!-- טבלת השוואה -->
+                <div style="overflow-x:auto;">
+                  <table class="pf-fee-table" id="pf-fee-table">
+                    <thead>
+                      <tr>
+                        <th>מסלול / חלופה</th>
+                        <th>מצבירה %</th>
+                        <th>מהפקדות %</th>
+                        <th>עלות מצבירה<br><small style="font-weight:400">(שנתית)</small></th>
+                        <th>עלות מהפקדות<br><small style="font-weight:400">(שנתית)</small></th>
+                        <th>סה"כ עלות שנתית</th>
+                      </tr>
+                    </thead>
+                    <tbody id="pf-fee-tbody"></tbody>
+                  </table>
+                </div>
+
+                <!-- המלצה -->
+                <div class="pf-rec-box" id="pf-rec" style="display:none;"></div>
+              </div>
+
+              <!-- תחזית שנה אחר שנה -->
+              <div class="pf-card">
+                <h3>תחזית עלויות שנה אחר שנה - עד הפרישה</h3>
+                <p style="font-size:.83rem;color:#666;margin-bottom:1rem;">הטבלה מחשבת את העלות השנתית של כל מסלול ככל שהצבירה גדלה. <strong>תא ירוק = המסלול הזול ביותר באותה שנה.</strong></p>
+                <div class="pf-proj-wrap">
+                  <table class="pf-proj-table" id="pf-proj-table">
+                    <thead id="pf-proj-head"></thead>
+                    <tbody id="pf-proj-tbody"></tbody>
+                  </table>
+                </div>
+                <div class="pf-note" style="margin-top:1.2rem;">
+                  <strong>הנחות החישוב:</strong> תשואה ברוטו לפי הבחירה למעלה. עלות מצבירה = צבירה שנה קודמת × %. עלות הפקדות = הפקדה שנתית × %. הצבירה גדלה בתשואה נטו + הפקדות נטו. מחיר ב-₪ ריאלי.
+                </div>
+              </div>
+
+              <!-- נקודות איזון -->
+              <div class="pf-card" id="pf-breakeven-card" style="display:none;">
+                <h3>נקודת האיזון - מתי המסלולים מתחלפים?</h3>
+                <div id="pf-breakeven-content"></div>
+              </div>
+
+            </div>
+          </div>
         </div>
       </div>
 
@@ -1722,6 +1891,9 @@
       } else if (hash === '#pension-compare') {
         const btn = document.querySelector('[aria-controls="panel-pension-compare"]');
         if (btn) switchTab('pension-compare', btn);
+      } else if (hash === '#pension-fees') {
+        const btn = document.querySelector('[aria-controls="panel-pension-fees"]');
+        if (btn) switchTab('pension-fees', btn);
       } else if (!hash || hash === '#compound') {
         const btn = document.querySelector('[aria-controls="panel-compound"]');
         if (btn) switchTab('compound', btn);
