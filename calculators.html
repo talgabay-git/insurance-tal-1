@@ -1287,16 +1287,16 @@
                 <div class="pf-inputs">
                   <div class="pf-inp">
                     <label for="pf-salary">שכר ברוטו חודשי (₪)</label>
-                    <input id="pf-salary" type="number" value="20000" min="3000" max="200000" step="500" oninput="pfCalc()" />
+                    <input id="pf-salary" type="text" value="27,101" oninput="pfFmtNum(this);pfCalc()" />
                   </div>
                   <div class="pf-inp">
                     <label for="pf-deposit-pct">שיעור הפקדה מהשכר (%)</label>
                     <input id="pf-deposit-pct" type="number" value="18.5" min="5" max="30" step="0.5" oninput="pfCalc()" />
-                    <small style="color:#888;font-size:.7rem;">עובד 6% + מעסיק 6.5% + פיצויים 6%</small>
+                    <small style="color:#888;font-size:.7rem;">עובד 6% + מעסיק 6.5% + פיצויים 8.33%</small>
                   </div>
                   <div class="pf-inp">
                     <label for="pf-accum">צבירה קיימת בקרן (₪)</label>
-                    <input id="pf-accum" type="number" value="150000" min="0" max="10000000" step="10000" oninput="pfCalc()" />
+                    <input id="pf-accum" type="text" value="1,000,000" oninput="pfFmtNum(this);pfCalc()" />
                   </div>
                   <div class="pf-inp">
                     <label for="pf-age">גיל נוכחי</label>
@@ -2025,10 +2025,19 @@
       return accum * (1 + returnPct / 100 - accumFeePct / 100) + annualDep;
     }
 
+    function pfFmtNum(el) {
+      const raw = el.value.replace(/[^\d]/g, '');
+      if (raw) el.value = parseInt(raw, 10).toLocaleString('en-US');
+    }
+
+    function pfParseNum(id) {
+      return parseFloat(document.getElementById(id).value.replace(/,/g, '')) || 0;
+    }
+
     function pfCalc() {
-      const salary     = parseFloat(document.getElementById('pf-salary').value)      || 20000;
+      const salary     = pfParseNum('pf-salary')                                      || 27101;
       const depositPct = parseFloat(document.getElementById('pf-deposit-pct').value) || 18.5;
-      const accumStart = parseFloat(document.getElementById('pf-accum').value)        || 0;
+      const accumStart = pfParseNum('pf-accum');
       const ageNow     = parseInt(document.getElementById('pf-age').value)            || 40;
       const retAge     = parseInt(document.getElementById('pf-ret-age').value)        || 67;
       const returnPct  = parseFloat(document.getElementById('pf-return').value)       || 6;
