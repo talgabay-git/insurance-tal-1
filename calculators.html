@@ -1964,7 +1964,11 @@
       male:   {60:180.8,61:177.6,62:174.2,63:170.9,64:167.4,65:163.8,66:160.4,67:157.0,68:153.7,69:150.4,70:147.2},
       female: {60:202.7,61:199.1,62:195.5,63:191.9,64:188.0,65:184.1,66:180.3,67:176.4,68:172.5,69:168.6,70:164.7}
     };
-    const INS_PRE2001_TRACK_ADJ = {0:-4.20, 60:-2.10, 120:0, 180:3.40, 240:8.10};
+    // התאמת מקדם לפי חודשים מובטחים - גבר: 120→157, 240→175 (+18); אישה: 120→188, 240→202 (+14)
+    const INS_PRE2001_TRACK_ADJ = {
+      male:   {0: -9, 60: -5, 120: 0, 180: 9,  240: 18},
+      female: {0: -8, 60: -4, 120: 0, 180: 7,  240: 14}
+    };
 
     /* ── מקדמי ביטוח מנהלים אחרי 2001 (בסיס: 240 חודשים, שנת 2001) ── */
     const INS_POST2001_BASE240 = {
@@ -2032,7 +2036,9 @@
       const yearNow = 2026;
       if (policy === 'pre2001') {
         const base = INS_PRE2001[gender][retAge] || INS_PRE2001[gender][67];
-        return base + (INS_PRE2001_TRACK_ADJ[track] || 0);
+        const adj  = (INS_PRE2001_TRACK_ADJ[gender] && INS_PRE2001_TRACK_ADJ[gender][track] !== undefined)
+          ? INS_PRE2001_TRACK_ADJ[gender][track] : 0;
+        return base + adj;
       } else {
         // post-2001: בסיס 240 + גורם אריכות ימים + היסט לפי מסלול
         const yearsSince2001 = yearNow - 2001;
@@ -2124,9 +2130,16 @@
     function pcUpdateInsCoefDisplay() {
       const gender = document.getElementById('pc-gender').value;
       const policy = document.getElementById('pc-policy').value;
-      const coef = policy === 'pre2001'
-        ? (gender === 'female' ? 188 : 157)
-        : (gender === 'female' ? 220 : 200);
+      const track  = parseInt(document.getElementById('pc-track').value) || 120;
+      let coef;
+      if (policy === 'pre2001') {
+        const base = gender === 'female' ? 188 : 157;
+        const adj  = (INS_PRE2001_TRACK_ADJ[gender] && INS_PRE2001_TRACK_ADJ[gender][track] !== undefined)
+          ? INS_PRE2001_TRACK_ADJ[gender][track] : 0;
+        coef = Math.round(base + adj);
+      } else {
+        coef = gender === 'female' ? 220 : 200;
+      }
       document.getElementById('pc-ins-coef-display').textContent = coef;
     }
 
@@ -2185,9 +2198,10 @@
       const accumPen = applyFees(accum, yearsToRetire, penFeeTotalPct, penReturnPct);
 
       // ── מקדמי קצבה ──
+      pcUpdateInsCoefDisplay();
       const penCoef = parseFloat(document.getElementById('pc-pen-coef').value) || 200;
       const insCoef = policy === 'pre2001'
-        ? (gender === 'female' ? 188 : 157)
+        ? getInsuranceCoef(gender, retAge, policy, track)
         : (gender === 'female' ? 220 : 200);
 
       // ── קצבה ברוטו חודשית ──
