@@ -2577,7 +2577,7 @@
     function pcUpdateInsCoefDisplay() {
       const gender = document.getElementById('pc-gender').value;
       const policy = document.getElementById('pc-policy').value;
-      const track  = parseInt(document.getElementById('pc-track').value) || 120;
+      const track  = parseInt(document.getElementById('pc-track').value ?? '120');
       let coef;
       if (policy === 'pre2001') {
         const base = gender === 'female' ? 188 : 157;
@@ -2612,7 +2612,8 @@
       const gender  = document.getElementById('pc-gender').value;
       const status  = document.getElementById('pc-status').value;
       const policy  = document.getElementById('pc-policy').value;
-      const track   = parseInt(document.getElementById('pc-track').value)      || 120;
+      const trackEl = document.getElementById('pc-track').value;
+      const track   = trackEl !== '' ? parseInt(trackEl) : 120;
       const compareTo = document.getElementById('pc-compare-to').value;
       const penReturnPct = parseFloat(document.getElementById('pc-pen-return').value) || 6;
       const insReturnPct = parseFloat(document.getElementById('pc-ins-return').value) || 6;
