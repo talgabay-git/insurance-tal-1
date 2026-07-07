@@ -1295,6 +1295,11 @@
                     <small style="color:#888;font-size:.7rem;">עובד 6% + מעסיק 6.5% + פיצויים 8.33% = 20.83%</small>
                   </div>
                   <div class="pf-inp">
+                    <label for="pf-manual-dep">הפקדה חודשית ידנית (₪) — אופציונלי</label>
+                    <input id="pf-manual-dep" type="text" placeholder="ריק = חישוב לפי שכר × %" oninput="pfFmtNum(this);pfCalc()" />
+                    <small style="color:#888;font-size:.7rem;">אם מולא, יחליף את חישוב השכר × %</small>
+                  </div>
+                  <div class="pf-inp">
                     <label for="pf-accum">צבירה קיימת בקרן (₪)</label>
                     <input id="pf-accum" type="text" value="1,000,000" oninput="pfFmtNum(this);pfCalc()" />
                   </div>
@@ -2050,7 +2055,8 @@
       const retAge     = parseInt(document.getElementById('pf-ret-age').value)        || 67;
       const returnPct  = parseFloat(document.getElementById('pf-return').value)       || 6;
 
-      const monthlyDep = salary * depositPct / 100;
+      const manualDep  = pfParseNum('pf-manual-dep');
+      const monthlyDep = manualDep > 0 ? manualDep : salary * depositPct / 100;
       const annualDep  = monthlyDep * 12;
       const yearsLeft  = Math.max(1, retAge - ageNow);
       const fmtILS = v => '₪' + Math.round(v).toLocaleString('he-IL');
