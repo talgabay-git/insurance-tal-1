@@ -2516,9 +2516,9 @@
     }
 
     /* ── שחיקה לפני 2001: 0.6% מצבירה + X% מרווחים ── */
-    function applyFeesPre2001(accumulation, yearsToRetire, profitSharePct, returnPct) {
-      // כל שנה: צבירה × (1 + תשואה×(1-השתתפות/100)) × (1 - 0.6/100)
-      const netReturnFactor = (1 + returnPct * (1 - profitSharePct / 100) / 100) * (1 - 0.6 / 100);
+    function applyFeesPre2001(accumulation, yearsToRetire, profitSharePct, returnPct, disFee = 0) {
+      // כל שנה: צבירה × (1 + תשואה×(1-השתתפות/100)) × (1 - (0.6+אכ"ע)/100)
+      const netReturnFactor = (1 + returnPct * (1 - profitSharePct / 100) / 100) * (1 - (0.6 + disFee) / 100);
       return accumulation * Math.pow(netReturnFactor, yearsToRetire);
     }
 
@@ -2619,8 +2619,8 @@
       const insReturnPct = parseFloat(document.getElementById('pc-ins-return').value) || 6;
       const insFee        = parseFloat(document.getElementById('pc-ins-fee').value)          || (policy === 'pre2001' ? 0.6 : 1.25);
       const penFee        = parseFloat(document.getElementById('pc-pen-fee').value)          || 0.2;
-      const disFee        = parseFloat(document.getElementById('pc-disability-fee').value)   || (policy === 'pre2001' ? 0 : 1);
-      const penDisFee     = parseFloat(document.getElementById('pc-pen-disability').value)   || 0.75;
+      const disFee    = parseFloat(document.getElementById('pc-disability-fee').value)   || 0;
+      const penDisFee = parseFloat(document.getElementById('pc-pen-disability').value)   || 0;
       const insDepositFee = policy === 'pre2001' ? 0 : (parseFloat(document.getElementById('pc-ins-deposit-fee').value) || 3);
       const penDepositFee = parseFloat(document.getElementById('pc-pen-deposit-fee').value)  || 6;
       const profitShare   = 15; // קבוע - השתתפות ברווח בפוליסות לפני 2001
@@ -2638,7 +2638,7 @@
       let accumIns;
       if (policy === 'pre2001') {
         // 0.6% קבוע + השתתפות ברווח (X% מהתשואה השנתית)
-        accumIns = applyFeesPre2001(accum, yearsToRetire, profitShare, insReturnPct);
+        accumIns = applyFeesPre2001(accum, yearsToRetire, profitShare, insReturnPct, disFee);
       } else {
         const insFeeTotalPct = insFee + disFee;  // ביטוח: דמי ניהול + אכ"ע
         accumIns = applyFees(accum, yearsToRetire, insFeeTotalPct, insReturnPct);
