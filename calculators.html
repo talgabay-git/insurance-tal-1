@@ -2645,11 +2645,12 @@
       const penFeeTotalPct = penFee + penDisFee;    // פנסיה: דמי ניהול + נכות
 
       let accumIns;
+      let insFeeTotalPct = profitShare + 0.6; // קירוב לתצוגה - פוליסת טרום-2001
       if (policy === 'pre2001') {
         // 0.6% קבוע + השתתפות ברווח (X% מהתשואה השנתית)
         accumIns = applyFeesPre2001(accum, yearsToRetire, profitShare, insReturnPct, disFee);
       } else {
-        const insFeeTotalPct = insFee + disFee;  // ביטוח: דמי ניהול + אכ"ע
+        insFeeTotalPct = insFee + disFee;  // ביטוח: דמי ניהול + אכ"ע
         accumIns = applyFees(accum, yearsToRetire, insFeeTotalPct, insReturnPct);
       }
       const accumPen = applyFees(accum, yearsToRetire, penFeeTotalPct, penReturnPct);
