@@ -410,9 +410,7 @@
       const btn = this.querySelector('button[type="submit"]');
       btn.disabled = true; btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> שולח...';
       const data = new FormData(this);
-      data.append('_cc', 'tal@pf-invest.co.il');
       data.append('_subject', 'בקשת פגישה - מכשירים פיננסיים');
-      data.append('_captcha', 'false'); data.append('_template', 'table');
       try {
         const res = await fetch('https://formspree.io/f/maqrwedd', {
           method:'POST', headers:{'Accept':'application/json'}, body:data

@@ -474,9 +474,7 @@
       btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> שולח...';
 
       const formData = new FormData(this);
-      formData.append('_cc', 'tal@pf-invest.co.il');
       formData.append('_subject', 'מסמכים חדשים התקבלו - טל גבאי פיננסים');
-      formData.append('_captcha', 'false');
 
       try {
         const res = await fetch('https://formspree.io/f/maqrwedd', {
