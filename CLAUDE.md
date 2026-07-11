@@ -47,6 +47,7 @@
 - אזהרה בעמוד market-status.html
 - בדיקת alt text על כל התמונות (11.7.26 — נמצא תקין, אין צורך בתיקון)
 - בדיקת היררכיית כותרות h1→h2→h3 (11.7.26 — תוקן: footer h4→h3 ב-45 קבצים, faq.html קטגוריות div→h2)
+- כותרות אבטחה (X-Frame-Options, X-Content-Type-Options, Referrer-Policy) + SRI ל-Font Awesome — כל 50 העמודים (11.7.26)
 
 ## רגולציה — עדיין פתוח
 - FormSubmit — אין הסכם עיבוד נתונים רשמי (DPA)
