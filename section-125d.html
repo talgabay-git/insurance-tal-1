@@ -588,7 +588,7 @@
     document.getElementById('meeting-form').addEventListener('submit',async function(e){
       e.preventDefault();const b=this.querySelector('button[type="submit"]');b.disabled=true;b.innerHTML='<i class="fa-solid fa-spinner fa-spin"></i> שולח...';
       const d=new FormData(this);d.append('_cc','tal@pf-invest.co.il');d.append('_subject','בקשת פגישה - הטבה לפי סעיף 125ד\'');d.append('_captcha','false');d.append('_template','table');
-      try{const r=await fetch('https://formsubmit.co/ajax/office@pf-invest.co.il',{method:'POST',headers:{'Accept':'application/json'},body:d});
+      try{const r=await fetch('https://formspree.io/f/maqrwedd',{method:'POST',headers:{'Accept':'application/json'},body:d});
         if(r.ok){document.getElementById('modal-form-wrap').style.display='none';document.getElementById('modal-success').style.display='flex';}else throw new Error();
       }catch{b.disabled=false;b.innerHTML='<i class="fa-solid fa-paper-plane"></i> שליחת בקשת הפגישה';alert('אירעה שגיאה. נסו שוב או התקשרו אלינו ישירות.');}
     });

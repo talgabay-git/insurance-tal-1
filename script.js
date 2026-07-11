@@ -168,7 +168,7 @@ if (form) {
     submitBtn.querySelector('.btn-text').textContent = 'שולח...';
 
     const data = new FormData(form);
-    fetch('https://formsubmit.co/ajax/office@pf-invest.co.il', {
+    fetch('https://formspree.io/f/maqrwedd', {
       method: 'POST',
       headers: { 'Accept': 'application/json' },
       body: data
