@@ -166,7 +166,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 @media (min-width: 1101px) {
   .header-inner:has(#search-toggle) {
     justify-content: center;
-    gap: 2.5rem;
+    gap: 0.25rem;
   }
   .header-inner:has(#search-toggle) .main-nav {
     flex: 0 1 auto;
