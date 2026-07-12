@@ -797,5 +797,12 @@
   <button class="back-to-top" id="back-to-top" aria-label="חזור לראש הדף">
     <i class="fa-solid fa-chevron-up"></i>
   </button>
+  <script>
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.modal-overlay.open').forEach(function(m) { m.classList.remove('open'); });
+    }
+  });
+  </script>
 </body>
 </html>
