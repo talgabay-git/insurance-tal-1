@@ -1177,6 +1177,15 @@ br.mobile-br { display: none; }
   }
   .orbit-oval .oval-name { font-size: .9rem; }
   .orbit-oval .oval-role { font-size: .75rem; }
+  /* כרטיסי הביו המורחבים של הצוות (נדב טסלר, עופר נאמן, אדי גוטסמן, איתי אלמקייס) -
+     בנויים עם style="display:flex" inline בלי שום התאמה למובייל, מה שגרם לעמודת הטקסט
+     להידחס לכ-66px ולצאת חלקית מחוץ למסך. עוברים לפריסה אנכית (תמונה מעל, טקסט מתחת). */
+  div[style*="max-width:860px"] {
+    flex-direction: column;
+    padding: 1.5rem 1.25rem !important;
+    text-align: center;
+  }
+  div[style*="max-width:860px"] img { margin: 0 auto; }
 }
 
 .team-oval-lead {
