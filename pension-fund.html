@@ -439,6 +439,7 @@
       <button class="a11y-btn" id="a11y-animations" aria-label="עצור אנימציות"><i class="fa-solid fa-pause"></i> עצור אנימציות</button>
       <button class="a11y-btn" id="a11y-links" aria-label="הדגש קישורים"><i class="fa-solid fa-link"></i> הדגש קישורים</button>
       <button class="a11y-btn" id="a11y-spacing" aria-label="ריווח טקסט"><i class="fa-solid fa-text-width"></i> ריווח טקסט</button>
+      <button class="a11y-btn" id="a11y-keyboard" aria-label="ניווט מקלדת"><i class="fa-solid fa-keyboard"></i> ניווט מקלדת</button>
       <button class="a11y-btn a11y-reset" id="a11y-reset" aria-label="איפוס הגדרות"><i class="fa-solid fa-rotate-left"></i> איפוס</button>
     </div>
   </div>
@@ -473,6 +474,21 @@
     document.addEventListener('click',function(e){if(!document.getElementById('a11y-widget').contains(e.target)){p.classList.remove('open');t.setAttribute('aria-expanded','false');p.setAttribute('aria-hidden','true');}});
   })();
   </script>
+  <script>
+  (function(){
+    var kn=localStorage.getItem('a11y-kn')==='1';
+    var kb=document.getElementById('a11y-keyboard');
+    function applyKn(){
+      document.body.classList.toggle('keyboard-nav',kn);
+      if(kb)kb.classList.toggle('active',kn);
+    }
+    applyKn();
+    if(kb)kb.addEventListener('click',function(){kn=!kn;localStorage.setItem('a11y-kn',kn?'1':'0');applyKn();});
+    var rb=document.getElementById('a11y-reset');
+    if(rb)rb.addEventListener('click',function(){kn=false;localStorage.removeItem('a11y-kn');applyKn();});
+  })();
+  </script>
+
   <script>
   (function(){
     var btn = document.querySelector('.page-cta .btn-gold');

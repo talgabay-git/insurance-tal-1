@@ -304,6 +304,7 @@
       <button class="a11y-btn" id="a11y-animations"><i class="fa-solid fa-pause"></i> Stop Animations</button>
       <button class="a11y-btn" id="a11y-links"><i class="fa-solid fa-link"></i> Highlight Links</button>
       <button class="a11y-btn" id="a11y-spacing"><i class="fa-solid fa-text-width"></i> Text Spacing</button>
+      <button class="a11y-btn" id="a11y-keyboard" aria-label="ניווט מקלדת"><i class="fa-solid fa-keyboard"></i> ניווט מקלדת</button>
       <button class="a11y-btn a11y-reset" id="a11y-reset"><i class="fa-solid fa-rotate-left"></i> Reset</button>
     </div>
   </div>
@@ -323,6 +324,21 @@
     document.addEventListener('click',function(e){if(!document.getElementById('a11y-widget').contains(e.target)){p.classList.remove('open');t.setAttribute('aria-expanded','false');p.setAttribute('aria-hidden','true');}});
   })();
   </script>
+  <script>
+  (function(){
+    var kn=localStorage.getItem('a11y-kn')==='1';
+    var kb=document.getElementById('a11y-keyboard');
+    function applyKn(){
+      document.body.classList.toggle('keyboard-nav',kn);
+      if(kb)kb.classList.toggle('active',kn);
+    }
+    applyKn();
+    if(kb)kb.addEventListener('click',function(){kn=!kn;localStorage.setItem('a11y-kn',kn?'1':'0');applyKn();});
+    var rb=document.getElementById('a11y-reset');
+    if(rb)rb.addEventListener('click',function(){kn=false;localStorage.removeItem('a11y-kn');applyKn();});
+  })();
+  </script>
+
 
   <div id="cookie-banner" role="dialog" aria-label="Cookie consent" aria-live="polite" style="display:none;position:fixed;bottom:0;right:0;left:0;z-index:99999;background:#0d1e35;color:#fff;padding:1rem 1.5rem;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.75rem;box-shadow:0 -2px 12px rgba(0,0,0,.35);font-family:'Assistant',sans-serif;font-size:.92rem;line-height:1.5;">
     <p style="margin:0;flex:1 1 260px;">This site uses <strong>Google Analytics</strong> for visitor analytics only. No personally identifiable information is collected. <a href="../privacy-policy.html" style="color:#c9a84c;text-decoration:underline;">Privacy Policy</a></p>

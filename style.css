@@ -2136,6 +2136,16 @@ body.text-spacing th {
   word-spacing: 0.15em !important;
   line-height: 1.9 !important;
 }
+/* מצב ניווט מקלדת - מסגרת פוקוס בולטת סביב כל אלמנט אינטראקטיבי */
+body.keyboard-nav a:focus,
+body.keyboard-nav button:focus,
+body.keyboard-nav input:focus,
+body.keyboard-nav select:focus,
+body.keyboard-nav textarea:focus,
+body.keyboard-nav [tabindex]:focus {
+  outline: 3px solid var(--gold) !important;
+  outline-offset: 3px !important;
+}
 @media (max-width: 768px) {
   .a11y-widget { bottom: 9rem; left: 1rem; }
   .a11y-toggle { width: 44px; height: 44px; font-size: 1.2rem; }
