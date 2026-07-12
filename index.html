@@ -1669,6 +1669,33 @@
         else { window.addEventListener('load', start); }
       })();
       </script>
+      <script>
+      (function(){
+        function addReadMore(){
+          document.querySelectorAll('.testimonial-text').forEach(function(textEl){
+            if (textEl.dataset.rmChecked) return;
+            textEl.dataset.rmChecked = '1';
+            if (textEl.scrollHeight > textEl.clientHeight + 2) {
+              var btn = document.createElement('span');
+              btn.className = 'testimonial-readmore';
+              btn.textContent = 'להמשך קריאה...';
+              btn.setAttribute('role', 'button');
+              btn.setAttribute('tabindex', '0');
+              btn.addEventListener('click', function(){
+                textEl.classList.add('expanded');
+                btn.remove();
+              });
+              btn.addEventListener('keydown', function(e){
+                if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); btn.click(); }
+              });
+              textEl.insertAdjacentElement('afterend', btn);
+            }
+          });
+        }
+        if (document.readyState === 'complete') { setTimeout(addReadMore, 50); }
+        else { window.addEventListener('load', function(){ setTimeout(addReadMore, 50); }); }
+      })();
+      </script>
     </div><!-- /.container -->
   </section>
 
