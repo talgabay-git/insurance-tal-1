@@ -174,6 +174,23 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     flex: 0 1 auto;
   }
 }
+/* Pages with the search button: the visible logo + full nav + search + header-left need >=1750px to coexist at natural
+   width (see above). Between 1101-1749px there isn't room for the full desktop nav alongside them, so keep using the
+   hamburger menu (same pattern as the 769-1100px tablet range) instead of letting the header overflow off-screen. */
+@media (min-width: 1101px) and (max-width: 1749px) {
+  .site-header:has(#search-toggle) .main-nav { display: none; }
+  .site-header:has(#search-toggle) .header-phone { display: none; }
+  .site-header:has(#search-toggle) .hamburger { display: flex; }
+  .site-header:has(#search-toggle) .mobile-menu { display: block; }
+  .site-header:has(#search-toggle) .header-inner { justify-content: space-between; position: relative; }
+  .site-header:has(#search-toggle) .header-logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .site-header:has(#search-toggle) .search-toggle,
+  .site-header:has(#search-toggle) .header-left { position: relative; z-index: 2; }
+}
 
 /* Logo */
 .logo {
