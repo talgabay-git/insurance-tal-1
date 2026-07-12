@@ -2108,7 +2108,7 @@ body.text-spacing th {
   line-height: 1.9 !important;
 }
 @media (max-width: 768px) {
-  .a11y-widget { bottom: 5.5rem; left: 1rem; }
+  .a11y-widget { bottom: 9rem; left: 1rem; }
   .a11y-toggle { width: 44px; height: 44px; font-size: 1.2rem; }
 }
 
