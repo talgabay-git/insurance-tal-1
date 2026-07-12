@@ -32,6 +32,8 @@ html {
   font-size: 16px;
   overflow-x: hidden;
 }
+/* Keep anchor-linked sections from landing hidden behind the sticky header */
+[id] { scroll-margin-top: var(--header-h); }
 
 body {
   font-family: 'Assistant', Arial, sans-serif;
