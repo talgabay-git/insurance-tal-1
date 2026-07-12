@@ -162,6 +162,16 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   height: 100%;
   gap: 1.5rem;
 }
+/* On pages with the search button, cluster nav/search/header-left together with a smaller, symmetric gap instead of stretching edge-to-edge (desktop only - tablet/mobile breakpoints need their own space-between + z-index handling around the centered logo) */
+@media (min-width: 1101px) {
+  .header-inner:has(#search-toggle) {
+    justify-content: center;
+    gap: 2.5rem;
+  }
+  .header-inner:has(#search-toggle) .main-nav {
+    flex: 0 1 auto;
+  }
+}
 
 /* Logo */
 .logo {
