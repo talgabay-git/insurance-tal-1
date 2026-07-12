@@ -1285,6 +1285,7 @@ br.mobile-br { display: none; }
 }
 .testimonials-track {
   display: flex;
+  align-items: flex-start;
   gap: 1.5rem;
   width: max-content;
   animation: scrollTestimonials 45s linear infinite;
@@ -1321,6 +1322,10 @@ br.mobile-br { display: none; }
   color: var(--dark-gray);
   line-height: 1.7;
   margin-bottom: 1.25rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 8;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 .testimonial-author {
   display: flex;
