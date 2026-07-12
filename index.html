@@ -1957,6 +1957,7 @@
     var lead=document.querySelector('.team-oval-lead-center');
     if(lead){
       lead.addEventListener('touchend',function(e){
+        if(e.target.closest('a')) return;
         e.preventDefault();
         lead.classList.toggle('popup-open');
       });
