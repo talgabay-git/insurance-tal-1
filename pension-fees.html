@@ -414,13 +414,14 @@
   }
 
   /* ── החישוב הראשי ── */
+  function numOr(v, def) { const n = parseFloat(v); return isNaN(n) ? def : n; }
   function pfCalc() {
-    const salary      = parseFloat(document.getElementById('pf-salary').value)      || 20000;
-    const depositPct  = parseFloat(document.getElementById('pf-deposit-pct').value) || 18.5;
-    const accumStart  = parseFloat(document.getElementById('pf-accum').value)        || 0;
-    const ageNow      = parseInt(document.getElementById('pf-age').value)            || 40;
-    const retAge      = parseInt(document.getElementById('pf-ret-age').value)        || 67;
-    const returnPct   = parseFloat(document.getElementById('pf-return').value)       || 6;
+    const salary      = numOr(document.getElementById('pf-salary').value, 20000);
+    const depositPct  = numOr(document.getElementById('pf-deposit-pct').value, 18.5);
+    const accumStart  = numOr(document.getElementById('pf-accum').value, 0);
+    const ageNow      = numOr(document.getElementById('pf-age').value, 40);
+    const retAge      = numOr(document.getElementById('pf-ret-age').value, 67);
+    const returnPct   = numOr(document.getElementById('pf-return').value, 6);
 
     const monthlyDep  = salary * depositPct / 100;
     const annualDep   = monthlyDep * 12;

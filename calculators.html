@@ -2083,17 +2083,19 @@
       if (raw) el.value = parseInt(raw, 10).toLocaleString('en-US');
     }
 
-    function pfParseNum(id) {
-      return parseFloat(document.getElementById(id).value.replace(/,/g, '')) || 0;
+    function pfParseNum(id, def = 0) {
+      const n = parseFloat(document.getElementById(id).value.replace(/,/g, ''));
+      return isNaN(n) ? def : n;
     }
+    function pfNumOr(v, def) { const n = parseFloat(v); return isNaN(n) ? def : n; }
 
     function pfCalc() {
-      const salary     = pfParseNum('pf-salary')                                      || 27101;
-      const depositPct = parseFloat(document.getElementById('pf-deposit-pct').value) || 20.83;
+      const salary     = pfParseNum('pf-salary', 27101);
+      const depositPct = pfNumOr(document.getElementById('pf-deposit-pct').value, 20.83);
       const accumStart = pfParseNum('pf-accum');
-      const ageNow     = parseInt(document.getElementById('pf-age').value)            || 40;
-      const retAge     = parseInt(document.getElementById('pf-ret-age').value)        || 67;
-      const returnPct  = parseFloat(document.getElementById('pf-return').value)       || 6;
+      const ageNow     = pfNumOr(document.getElementById('pf-age').value, 40);
+      const retAge     = pfNumOr(document.getElementById('pf-ret-age').value, 67);
+      const returnPct  = pfNumOr(document.getElementById('pf-return').value, 6);
 
       const manualDep  = pfParseNum('pf-manual-dep');
       const monthlyDep = manualDep > 0 ? manualDep : salary * depositPct / 100;
