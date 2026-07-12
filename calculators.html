@@ -68,9 +68,12 @@
       z-index: 100;
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
+      scrollbar-width: thin;
+      scrollbar-color: #c9a84c var(--navy);
     }
-    .calc-tab-bar::-webkit-scrollbar { display: none; }
+    .calc-tab-bar::-webkit-scrollbar { height: 6px; }
+    .calc-tab-bar::-webkit-scrollbar-track { background: var(--navy); }
+    .calc-tab-bar::-webkit-scrollbar-thumb { background: #c9a84c; border-radius: 3px; }
     .calc-tab-list {
       display: flex;
       list-style: none;
