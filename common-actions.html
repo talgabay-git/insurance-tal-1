@@ -496,7 +496,13 @@ d.append('_subject','בקשת פגישה - פעולות נפוצות');
 
   fetch('https://raw.githubusercontent.com/talgabay-git/insurance-tal-1/gh-pages/common-actions-data.json?_=' + Date.now())
     .then(r => r.json())
-    .then(d => renderActions(d.sections))
+    .then(d => {
+      renderActions(d.sections);
+      if (location.hash) {
+        const target = document.getElementById(location.hash.slice(1));
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    })
     .catch(() => {
       document.getElementById('actions-container').innerHTML =
         '<p style="text-align:center;padding:2rem;color:#666">לא ניתן לטעון את התוכן כעת. נסו לרענן את הדף.</p>';
