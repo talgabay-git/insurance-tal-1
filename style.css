@@ -564,7 +564,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   overflow: hidden;
   transition: max-height .4s ease;
 }
-.mobile-menu.open { max-height: 400px; }
+.mobile-menu.open { max-height: 85vh; overflow-y: auto; }
 .mobile-nav-list { padding: .5rem 1.5rem; }
 .mobile-nav-link {
   display: flex;
