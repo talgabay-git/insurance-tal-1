@@ -226,6 +226,25 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .header-logo .logo-main { font-size: 1.90rem; }
   .header-logo .logo-sub  { font-size: 1.73rem; }
 }
+/* Hamburger */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  padding: .4rem;
+}
+.hamburger-line {
+  display: block;
+  width: 24px;
+  height: 2.5px;
+  background: var(--navy);
+  border-radius: 2px;
+  transition: var(--transition);
+}
+.hamburger.open .hamburger-line:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+.hamburger.open .hamburger-line:nth-child(2) { opacity: 0; }
+.hamburger.open .hamburger-line:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+
 @media (min-width: 1101px) {
   .hero { background-attachment: fixed; }
 }
@@ -535,25 +554,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .header-whatsapp i { font-size: 1.3rem; }
 .header-whatsapp:hover { color: #1faf54; }
-
-/* Hamburger */
-.hamburger {
-  display: none;
-  flex-direction: column;
-  gap: 5px;
-  padding: .4rem;
-}
-.hamburger-line {
-  display: block;
-  width: 24px;
-  height: 2.5px;
-  background: var(--navy);
-  border-radius: 2px;
-  transition: var(--transition);
-}
-.hamburger.open .hamburger-line:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
-.hamburger.open .hamburger-line:nth-child(2) { opacity: 0; }
-.hamburger.open .hamburger-line:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
 
 /* Mobile Menu */
 .mobile-menu {
