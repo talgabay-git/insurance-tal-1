@@ -261,8 +261,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     left: 50%;
     transform: translateX(-50%);
   }
-  /* Ensure the search button stays above the centered logo instead of overlapping it */
-  .search-toggle { position: relative; z-index: 2; }
+  /* Ensure the search button and EN/personal-area block stay above the centered logo instead of overlapping it */
+  .search-toggle, .header-left { position: relative; z-index: 2; }
   .hero-content { flex-direction: column; text-align: center; padding-block: 3.5rem; }
   .hero-badge { display: none; }
   .hero-title { white-space: normal; font-size: clamp(1.4rem, 5vw, 2.2rem); }
