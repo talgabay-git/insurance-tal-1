@@ -2485,3 +2485,40 @@ body.keyboard-nav [tabindex]:focus {
 .header-logo:hover .logo-sub {
   color: var(--white);
 }
+
+/* ============================================================
+   הדפסה - כל שאר ה-49 עמודים לא הכילו @media print כלל.
+   מסתיר רכיבים אינטראקטיביים-בלבד (אין להם ערך על נייר) ומבטל את הרקע הכהה
+   הכבד של הכותרת כדי לא לבזבז דיו; מרחיב המלצות שנחתכות ב-line-clamp.
+   ============================================================ */
+@media print {
+  .whatsapp-float,
+  .back-to-top,
+  .a11y-widget,
+  .hamburger,
+  .mobile-menu,
+  .search-toggle,
+  #search-overlay,
+  .modal-overlay,
+  .photo-modal,
+  .testimonial-readmore {
+    display: none !important;
+  }
+  .site-header {
+    position: static;
+    background: none;
+    box-shadow: none;
+    border-bottom: 1px solid #ccc;
+    color: var(--navy);
+  }
+  .site-header .nav-link,
+  .site-header .logo-main,
+  .header-left a {
+    color: var(--navy) !important;
+  }
+  .testimonial-text {
+    -webkit-line-clamp: unset;
+    overflow: visible;
+    display: block;
+  }
+}
