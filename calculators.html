@@ -1218,17 +1218,17 @@
                 <table style="width:100%;border-collapse:collapse;font-size:.82rem;text-align:center;" id="lvi-table">
                   <thead>
                     <tr style="background:var(--navy);color:#fff;">
-                      <th rowspan="2" style="padding:.5rem .4rem;text-align:center;border-left:1px solid rgba(255,255,255,.15);">שנה</th>
-                      <th rowspan="2" style="padding:.5rem .4rem;color:#ffd875;text-align:center;border-left:1px solid rgba(255,255,255,.15);">בלון מלא<br><small style="font-weight:400;font-size:.7rem;">החזר בסוף ההלוואה</small></th>
-                      <th rowspan="2" style="padding:.5rem .4rem;color:#ffd875;text-align:center;border-left:1px solid rgba(255,255,255,.15);">גרייס<br><small style="font-weight:400;font-size:.7rem;">החזר חודשי ריבית בלבד</small></th>
-                      <th rowspan="2" style="padding:.5rem .4rem;color:#ffd875;text-align:center;border-left:1px solid rgba(255,255,255,.15);">שפיצר<br><small style="font-weight:400;font-size:.7rem;">החזר חודשי קרן+ריבית</small></th>
-                      <th rowspan="2" style="padding:.5rem .4rem;color:#a8e6cf;text-align:center;border-left:1px solid rgba(255,255,255,.15);">שווי<br>השקעה</th>
-                      <th colspan="3" style="padding:.5rem .4rem;color:#a8e6cf;text-align:center;border-right:1px solid rgba(255,255,255,.15);border-left:1px solid rgba(255,255,255,.15);border-bottom:1px solid rgba(255,255,255,.25);">פער נטו (השקעה מול הלוואה)</th>
+                      <th scope="col" rowspan="2" style="padding:.5rem .4rem;text-align:center;border-left:1px solid rgba(255,255,255,.15);">שנה</th>
+                      <th scope="col" rowspan="2" style="padding:.5rem .4rem;color:#ffd875;text-align:center;border-left:1px solid rgba(255,255,255,.15);">בלון מלא<br><small style="font-weight:400;font-size:.7rem;">החזר בסוף ההלוואה</small></th>
+                      <th scope="col" rowspan="2" style="padding:.5rem .4rem;color:#ffd875;text-align:center;border-left:1px solid rgba(255,255,255,.15);">גרייס<br><small style="font-weight:400;font-size:.7rem;">החזר חודשי ריבית בלבד</small></th>
+                      <th scope="col" rowspan="2" style="padding:.5rem .4rem;color:#ffd875;text-align:center;border-left:1px solid rgba(255,255,255,.15);">שפיצר<br><small style="font-weight:400;font-size:.7rem;">החזר חודשי קרן+ריבית</small></th>
+                      <th scope="col" rowspan="2" style="padding:.5rem .4rem;color:#a8e6cf;text-align:center;border-left:1px solid rgba(255,255,255,.15);">שווי<br>השקעה</th>
+                      <th scope="colgroup" colspan="3" style="padding:.5rem .4rem;color:#a8e6cf;text-align:center;border-right:1px solid rgba(255,255,255,.15);border-left:1px solid rgba(255,255,255,.15);border-bottom:1px solid rgba(255,255,255,.25);">פער נטו (השקעה מול הלוואה)</th>
                     </tr>
                     <tr style="background:#0d2340;color:#a8e6cf;font-size:.75rem;">
-                      <th style="padding:.3rem .4rem;text-align:center;border-left:1px solid rgba(255,255,255,.15);">בלון</th>
-                      <th style="padding:.3rem .4rem;text-align:center;border-left:1px solid rgba(255,255,255,.15);">גרייס</th>
-                      <th style="padding:.3rem .4rem;text-align:center;">שפיצר</th>
+                      <th scope="col" style="padding:.3rem .4rem;text-align:center;border-left:1px solid rgba(255,255,255,.15);">בלון</th>
+                      <th scope="col" style="padding:.3rem .4rem;text-align:center;border-left:1px solid rgba(255,255,255,.15);">גרייס</th>
+                      <th scope="col" style="padding:.3rem .4rem;text-align:center;">שפיצר</th>
                     </tr>
                   </thead>
                   <tbody id="lvi-tbody"></tbody>
@@ -1376,12 +1376,12 @@
                   <table class="pf-fee-table" id="pf-fee-table">
                     <thead>
                       <tr>
-                        <th>מסלול / חלופה</th>
-                        <th>מצבירה %</th>
-                        <th>מהפקדות %</th>
-                        <th>עלות מצבירה<br><small style="font-weight:400">(שנתית)</small></th>
-                        <th>עלות מהפקדות<br><small style="font-weight:400">(שנתית)</small></th>
-                        <th>סה"כ עלות שנתית</th>
+                        <th scope="col">מסלול / חלופה</th>
+                        <th scope="col">מצבירה %</th>
+                        <th scope="col">מהפקדות %</th>
+                        <th scope="col">עלות מצבירה<br><small style="font-weight:400">(שנתית)</small></th>
+                        <th scope="col">עלות מהפקדות<br><small style="font-weight:400">(שנתית)</small></th>
+                        <th scope="col">סה"כ עלות שנתית</th>
                       </tr>
                     </thead>
                     <tbody id="pf-fee-tbody"></tbody>
@@ -1684,12 +1684,12 @@
                 <table style="width:100%;border-collapse:collapse;font-size:.83rem;text-align:center;">
                   <thead>
                     <tr style="background:var(--navy);color:#fff;">
-                      <th style="padding:.6rem .5rem;text-align:right;">מוצר</th>
-                      <th style="padding:.6rem .5rem;">מקדם המרה</th>
-                      <th style="padding:.6rem .5rem;">צבירה בפרישה</th>
-                      <th style="padding:.6rem .5rem;">קצבה ברוטו</th>
-                      <th style="padding:.6rem .5rem;color:#fca5a5;">מס מנוכה</th>
-                      <th style="padding:.6rem .5rem;color:#6ee7a8;font-weight:800;">קצבת נטו ✦</th>
+                      <th scope="col" style="padding:.6rem .5rem;text-align:right;">מוצר</th>
+                      <th scope="col" style="padding:.6rem .5rem;">מקדם המרה</th>
+                      <th scope="col" style="padding:.6rem .5rem;">צבירה בפרישה</th>
+                      <th scope="col" style="padding:.6rem .5rem;">קצבה ברוטו</th>
+                      <th scope="col" style="padding:.6rem .5rem;color:#fca5a5;">מס מנוכה</th>
+                      <th scope="col" style="padding:.6rem .5rem;color:#6ee7a8;font-weight:800;">קצבת נטו ✦</th>
                     </tr>
                   </thead>
                   <tbody id="pc-tbody"></tbody>
@@ -2171,9 +2171,9 @@
       const fmtILS = v => '₪' + Math.round(v).toLocaleString('he-IL');
       const fmtPct = (v, d=2) => v.toFixed(d) + '%';
       document.getElementById('pf-proj-head').innerHTML = `<tr>
-        <th>שנה</th><th>גיל</th><th>צבירה משוערת</th>
-        ${combos.map(c => `<th>${c.label}<br><small style="font-weight:400">${fmtPct(c.accum)} מצ׳ + ${fmtPct(c.deposit)} מהפ׳</small></th>`).join('')}
-        <th>הזול ביותר</th>
+        <th scope="col">שנה</th><th scope="col">גיל</th><th scope="col">צבירה משוערת</th>
+        ${combos.map(c => `<th scope="col">${c.label}<br><small style="font-weight:400">${fmtPct(c.accum)} מצ׳ + ${fmtPct(c.deposit)} מהפ׳</small></th>`).join('')}
+        <th scope="col">הזול ביותר</th>
       </tr>`;
 
       const accums = combos.map(() => accumStart);
@@ -2211,7 +2211,7 @@
       if (combos.length < 2) { card.style.display = 'none'; return; }
 
       let html = '<p style="font-size:.85rem;color:#555;margin-bottom:1rem;">נקודת האיזון היא הצבירה שבה שתי קומבינציות שוות בעלות שנתית. מעל לנקודה זו - המסלול עם % מצבירה נמוך יותר נהיה זול יותר.</p>';
-      html += '<div style="overflow-x:auto;"><table class="pf-fee-table"><thead><tr><th>השוואה</th><th>צבירת איזון</th><th>מסלול עדיף לצבירה נמוכה</th><th>מסלול עדיף לצבירה גבוהה</th></tr></thead><tbody>';
+      html += '<div style="overflow-x:auto;"><table class="pf-fee-table"><thead><tr><th scope="col">השוואה</th><th scope="col">צבירת איזון</th><th scope="col">מסלול עדיף לצבירה נמוכה</th><th scope="col">מסלול עדיף לצבירה גבוהה</th></tr></thead><tbody>';
 
       for (let i = 0; i < combos.length - 1; i++) {
         const a = combos[i], b = combos[i + 1];

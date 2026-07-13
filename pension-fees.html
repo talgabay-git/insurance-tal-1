@@ -230,12 +230,12 @@
             <table class="fee-table" id="pf-fee-table">
               <thead>
                 <tr>
-                  <th>מסלול / חלופה</th>
-                  <th>מצבירה %</th>
-                  <th>מהפקדות %</th>
-                  <th>עלות מצבירה<br><small style="font-weight:400">(שנתית)</small></th>
-                  <th>עלות מהפקדות<br><small style="font-weight:400">(שנתית)</small></th>
-                  <th>סה"כ עלות שנתית</th>
+                  <th scope="col">מסלול / חלופה</th>
+                  <th scope="col">מצבירה %</th>
+                  <th scope="col">מהפקדות %</th>
+                  <th scope="col">עלות מצבירה<br><small style="font-weight:400">(שנתית)</small></th>
+                  <th scope="col">עלות מהפקדות<br><small style="font-weight:400">(שנתית)</small></th>
+                  <th scope="col">סה"כ עלות שנתית</th>
                 </tr>
               </thead>
               <tbody id="pf-fee-tbody"></tbody>
@@ -503,11 +503,11 @@
     const body = document.getElementById('pf-proj-tbody');
 
     head.innerHTML = `<tr>
-      <th>שנה</th>
-      <th>גיל</th>
-      <th>צבירה משוערת</th>
-      ${combos.map(c => `<th>${c.label}<br><small style="font-weight:400">${fmtPct(c.accum)} מצ׳ + ${fmtPct(c.deposit)} מהפ׳</small></th>`).join('')}
-      <th>הזול ביותר</th>
+      <th scope="col">שנה</th>
+      <th scope="col">גיל</th>
+      <th scope="col">צבירה משוערת</th>
+      ${combos.map(c => `<th scope="col">${c.label}<br><small style="font-weight:400">${fmtPct(c.accum)} מצ׳ + ${fmtPct(c.deposit)} מהפ׳</small></th>`).join('')}
+      <th scope="col">הזול ביותר</th>
     </tr>`;
 
     // simulate accumulation per combo (each has its own net accum track)
@@ -553,7 +553,7 @@
     if (combos.length < 2) { card.style.display = 'none'; return; }
 
     let html = '<p style="font-size:.85rem;color:#555;margin-bottom:1rem;">נקודת האיזון היא הצבירה שבה שתי קומבינציות שוות בעלות שנתית. מעל לנקודה זו - המסלול עם % מצבירה נמוך יותר נהיה זול יותר.</p>';
-    html += '<div style="overflow-x:auto;"><table class="fee-table"><thead><tr><th>השוואה</th><th>צבירת איזון</th><th>מסלול עדיף לצבירה נמוכה</th><th>מסלול עדיף לצבירה גבוהה</th></tr></thead><tbody>';
+    html += '<div style="overflow-x:auto;"><table class="fee-table"><thead><tr><th scope="col">השוואה</th><th scope="col">צבירת איזון</th><th scope="col">מסלול עדיף לצבירה נמוכה</th><th scope="col">מסלול עדיף לצבירה גבוהה</th></tr></thead><tbody>';
 
     for (let i = 0; i < combos.length - 1; i++) {
       const a = combos[i], b = combos[i + 1];
