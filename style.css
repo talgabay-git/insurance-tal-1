@@ -179,7 +179,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
    hamburger menu (same pattern as the 769-1100px tablet range) instead of letting the header overflow off-screen. */
 @media (min-width: 1101px) and (max-width: 1749px) {
   .site-header:has(#search-toggle) .main-nav { display: none; }
-  .site-header:has(#search-toggle) .header-phone { display: none; }
   .site-header:has(#search-toggle) .hamburger { display: flex; }
   .site-header:has(#search-toggle) .mobile-menu { display: block; }
   .site-header:has(#search-toggle) .header-inner { justify-content: flex-start; position: relative; }
@@ -283,7 +282,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 @media (max-width: 1100px) and (min-width: 769px) {
   .main-nav    { display: none; }
-  .header-phone { display: none; }
   .hamburger   { display: flex; }
   .mobile-menu { display: block; }
   .header-inner { justify-content: space-between; position: relative; }
@@ -383,23 +381,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   white-space: nowrap;
 }
 .dropdown-item:hover { color: var(--gold); background: rgba(255,255,255,.06); }
-
-/* Header Phone */
-.header-phone {
-  display: flex;
-  align-items: center;
-  gap: .4rem;
-  font-weight: 700;
-  font-size: .95rem;
-  color: var(--navy);
-  background: var(--light-gray);
-  padding: .45rem 1rem;
-  border-radius: 50px;
-  transition: var(--transition);
-  flex-shrink: 0;
-  direction: ltr;
-}
-.header-phone:hover { background: var(--gold); color: var(--navy-dark); }
 
 /* ── Site Search ─────────────────────────────────────────── */
 .search-toggle {
@@ -551,20 +532,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   gap: .75rem;
   flex-shrink: 0;
 }
-.header-phone-num {
-  color: var(--white);
-  font-weight: 700;
-  font-size: .95rem;
-  direction: ltr;
-  display: inline-block;
-}
-.header-phone-num:hover { color: var(--gold); }
-.header-email-icon {
-  color: var(--white);
-  font-size: 1.1rem;
-  transition: var(--transition);
-}
-.header-email-icon:hover { color: var(--gold); }
 .btn-personal-area {
   background: transparent;
   color: var(--white);
@@ -1625,7 +1592,6 @@ br.mobile-br { display: none; }
   :root { --header-h: 69px; }
 
   .main-nav  { display: none; }
-  .header-phone { display: none; }
   .hamburger { display: flex; }
   .mobile-menu { display: block; }
 
