@@ -182,14 +182,16 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .site-header:has(#search-toggle) .header-phone { display: none; }
   .site-header:has(#search-toggle) .hamburger { display: flex; }
   .site-header:has(#search-toggle) .mobile-menu { display: block; }
-  .site-header:has(#search-toggle) .header-inner { justify-content: space-between; position: relative; }
+  .site-header:has(#search-toggle) .header-inner { justify-content: flex-start; position: relative; }
   .site-header:has(#search-toggle) .header-logo {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
   }
-  .site-header:has(#search-toggle) .search-toggle,
-  .site-header:has(#search-toggle) .header-left { position: relative; z-index: 2; }
+  /* Cluster search+header-left together at their own edge and push the hamburger to the opposite edge,
+     so nothing sits in the visual center where the logo is - z-index alone (previous fix) still let them
+     visually overlap the logo, just controlled which one painted on top. */
+  .site-header:has(#search-toggle) #hamburger { margin-inline-start: auto; }
 }
 
 /* Logo */
@@ -290,8 +292,14 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     left: 50%;
     transform: translateX(-50%);
   }
-  /* Ensure the search button and EN/personal-area block stay above the centered logo instead of overlapping it */
-  .search-toggle, .header-left { position: relative; z-index: 2; }
+  /* With only header-left + hamburger visible (no search-toggle), space-between puts one at each
+     edge with nothing in the center, so the centered logo doesn't collide with anything - fine as-is.
+     Pages that also have #search-toggle have a 3rd item, which needs its own layout below. */
+  .site-header:has(#search-toggle) .header-inner { justify-content: flex-start; }
+  .site-header:has(#search-toggle) #hamburger { margin-inline-start: auto; }
+  /* Even clustered, the logo (with its tagline) is still wide enough to clip into header-left at the
+     narrower end of this range (e.g. ~900px) - drop the tagline here to guarantee clearance. */
+  .site-header:has(#search-toggle) .header-logo .logo-tagline { display: none; }
   .hero-content { flex-direction: column; text-align: center; padding-block: 3.5rem; }
   .hero-badge { display: none; }
   .hero-title { white-space: normal; font-size: clamp(1.4rem, 5vw, 2.2rem); }
