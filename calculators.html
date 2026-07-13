@@ -1746,10 +1746,12 @@
   <script src="script.js"></script>
   <script>
     function calcCompound() {
-      const PV      = parseFloat(document.getElementById('lump-sum').value)    || 0;
-      const PMT     = parseFloat(document.getElementById('monthly-dep').value)  || 0;
-      const annRate = parseFloat(document.getElementById('annual-return').value)|| 0;
-      const years   = parseFloat(document.getElementById('years').value)        || 0;
+      // הצמדה לטווחים שמוצהרים ב-min/max/step של השדות עצמם - מונע תוצאה חסרת משמעות
+      // (למשל שנים שליליות) אם מישהו מזין ערך מחוץ לטווח
+      const PV      = Math.max(0, parseFloat(document.getElementById('lump-sum').value)    || 0);
+      const PMT     = Math.max(0, parseFloat(document.getElementById('monthly-dep').value)  || 0);
+      const annRate = Math.min(30, Math.max(0, parseFloat(document.getElementById('annual-return').value)|| 0));
+      const years   = Math.min(60, Math.max(1, parseFloat(document.getElementById('years').value)        || 1));
       const netAnnual  = annRate;
       const monthlyR   = Math.pow(1 + netAnnual / 100, 1 / 12) - 1;
       const n          = years * 12;
@@ -2324,7 +2326,7 @@
       const mgmtPct  = pfNumOr(document.getElementById('lvi-mgmt').value, 0.6);
       const selYears = document.getElementById('lvi-years').value;
       const years    = selYears === 'custom'
-        ? pfNumOr(document.getElementById('lvi-years-custom').value, 5)
+        ? Math.min(50, Math.max(1, pfNumOr(document.getElementById('lvi-years-custom').value, 5)))
         : parseInt(selYears, 10);
 
       const loanRate  = (prime + spread) / 100;   // ריבית הלוואה שנתית
