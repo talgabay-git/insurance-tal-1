@@ -1655,6 +1655,12 @@ br.mobile-br { display: none; }
   .hamburger { display: flex; }
   .mobile-menu { display: block; }
 
+  /* בדפים עם כפתור חיפוש יש 3 פריטים לצד הלוגו הממורכז (חיפוש, EN/איזור אישי, המבורגר) -
+     space-between דוחף את הפריט האמצעי (header-left) בדיוק למרכז, שם הלוגו יושב, וגורם לחפיפה
+     אמיתית בפועל ולא רק בעיית z-index. אשכל את הכל לקצה אחד ודחוף את ההמבורגר לקצה השני. */
+  .site-header:has(#search-toggle) .header-inner { justify-content: flex-start; }
+  .site-header:has(#search-toggle) #hamburger { margin-inline-start: auto; }
+
   /* Shrink logo on mobile so it doesn't overflow into EN/IL button */
   .header-logo .logo-main { font-size: 1.25rem; }
   .header-logo .logo-sep  { font-size: .9rem; margin: 0 .2rem; }
