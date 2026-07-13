@@ -2164,6 +2164,14 @@ body.no-animations *::after {
   animation-duration: 0s !important;
   transition-duration: 0s !important;
 }
+/* כיבוד אוטומטי של הגדרת prefers-reduced-motion של מערכת ההפעלה (בנוסף לכפתור הידני בווידג'ט הנגישות) */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0s !important;
+    transition-duration: 0s !important;
+    scroll-behavior: auto !important;
+  }
+}
 /* Highlight links mode */
 body.highlight-links a:not(.btn):not(.btn-gold):not(.btn-personal-area):not(.nav-link):not(.whatsapp-float):not(.back-to-top) {
   outline: 2px solid var(--gold) !important;
