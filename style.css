@@ -673,14 +673,13 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   gap: .45rem;
   line-height: 1;
 }
-.hero-logo .logo-row  { display: flex; align-items: center; white-space: nowrap; }
-.hero-logo .logo-main { font-size: 3.40rem; font-weight: 750; color: var(--white); letter-spacing: -.02em; white-space: nowrap; transition: color .3s; }
-.hero-logo .logo-sep  { color: var(--gold); font-size: 2.02rem; font-weight: 300; margin: 0 .35rem; }
-.hero-logo .logo-sub  { font-size: 3.07rem; font-weight: 650; color: var(--gold); white-space: nowrap; transition: color .3s; }
-.hero-logo .logo-tagline { font-size: 1.46rem; color: rgba(255,255,255,.82); font-family: 'Assistant', sans-serif; font-weight: 700; letter-spacing: .01em; white-space: nowrap; }
+.hero-logo .logo-row  { display: flex; align-items: center; flex-wrap: wrap; justify-content: center; }
+.hero-logo .logo-main { font-size: clamp(1.5rem, 5.5vw, 3.40rem); font-weight: 750; color: var(--white); letter-spacing: -.02em; white-space: nowrap; transition: color .3s; }
+.hero-logo .logo-sep  { color: var(--gold); font-size: clamp(.9rem, 3.3vw, 2.02rem); font-weight: 300; margin: 0 .35rem; }
+.hero-logo .logo-sub  { font-size: clamp(1.35rem, 5vw, 3.07rem); font-weight: 650; color: var(--gold); white-space: nowrap; transition: color .3s; }
+.hero-logo .logo-tagline { font-size: clamp(.68rem, 2.4vw, 1.46rem); color: rgba(255,255,255,.82); font-family: 'Assistant', sans-serif; font-weight: 700; letter-spacing: .01em; white-space: normal; text-align: center; }
 .hero-logo:hover .logo-main { color: var(--gold); }
 .hero-logo:hover .logo-sub  { color: var(--white); }
-@media (max-width: 1500px) { .hero-logo { display: none; } }
 .hero-text { max-width: 100%; text-align: center; width: 100%; margin: 0 auto; }
 .hero-text h1, .hero-text p { text-align: center; width: 100%; }
 .hero-title {
