@@ -162,15 +162,16 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   height: 100%;
   gap: 1.5rem;
 }
-/* On pages with the search button, cluster nav/search/header-left together with a smaller, symmetric gap instead of stretching edge-to-edge.
+/* Cluster nav/search/header-left/logo together with a smaller, symmetric gap instead of stretching edge-to-edge across the
+   full container width - applies to every header template (with or without the search button) so all pages look consistent.
    Only above 1750px: below that, the logo + full nav + search + header-left don't fit at their natural widths without main-nav's
    flex-grow acting as a safety valve (removing it caused the whole group to overflow off-screen on pages with a visible logo). */
 @media (min-width: 1750px) {
-  .header-inner:has(#search-toggle) {
+  .header-inner {
     justify-content: center;
     gap: 0.25rem;
   }
-  .header-inner:has(#search-toggle) .main-nav {
+  .header-inner .main-nav {
     flex: 0 1 auto;
   }
 }
