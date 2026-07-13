@@ -1658,8 +1658,12 @@ br.mobile-br { display: none; }
   /* בדפים עם כפתור חיפוש יש 3 פריטים לצד הלוגו הממורכז (חיפוש, EN/איזור אישי, המבורגר) -
      space-between דוחף את הפריט האמצעי (header-left) בדיוק למרכז, שם הלוגו יושב, וגורם לחפיפה
      אמיתית בפועל ולא רק בעיית z-index. אשכל את הכל לקצה אחד ודחוף את ההמבורגר לקצה השני. */
-  .site-header:has(#search-toggle) .header-inner { justify-content: flex-start; }
+  .site-header:has(#search-toggle) .header-inner { justify-content: flex-start; gap: 4px; }
   .site-header:has(#search-toggle) #hamburger { margin-inline-start: auto; }
+  /* בטלפונים צרים (320-375px) גם אחרי האשכול הלוגו עדיין נוגע בקבוצת חיפוש+EN -
+     המלל "חיפוש" מיותר לצד האייקון (יש aria-label), הסרתו החזותית משחררת מקום מבלי לפגוע בנגישות */
+  .site-header:has(#search-toggle) #search-toggle { font-size: 0; gap: 0; padding-inline: .4rem; }
+  .site-header:has(#search-toggle) #search-toggle i { font-size: 1.1rem; }
 
   /* Shrink logo on mobile so it doesn't overflow into EN/IL button */
   .header-logo .logo-main { font-size: 1.25rem; }
