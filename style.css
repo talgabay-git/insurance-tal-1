@@ -301,7 +301,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
      narrower end of this range (e.g. ~900px) - drop the tagline here to guarantee clearance. */
   .site-header:has(#search-toggle) .header-logo .logo-tagline { display: none; }
   .hero-content { flex-direction: column; text-align: center; padding-block: 3.5rem; }
-  .hero-badge { display: none; }
   .hero-title { white-space: normal; font-size: clamp(1.4rem, 5vw, 2.2rem); }
 }
 
@@ -703,25 +702,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   transition: color 0.3s ease;
 }
 .hero-subtitle:hover { color: var(--gold); }
-.hero-badge {
-  flex-shrink: 0;
-}
-.badge-inner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: .6rem;
-  background: rgba(255,255,255,.1);
-  border: 2px solid rgba(245,166,35,.4);
-  border-radius: var(--radius-lg);
-  padding: 2rem 2.5rem;
-  backdrop-filter: blur(8px);
-  color: var(--white);
-  text-align: center;
-}
-.badge-icon { font-size: 2.8rem; color: var(--gold); }
-.badge-text { font-size: 1rem; font-weight: 700; }
-
 .hero-scroll-indicator {
   position: absolute;
   bottom: 1.8rem;
@@ -1730,7 +1710,6 @@ br.mobile-br { display: none; }
   .testimonials-track .testimonial-card { min-width: 290px; max-width: 290px; }
   .testimonials-track { animation-duration: 23s; }
   .team-grid { grid-template-columns: 1fr; max-width: 240px; margin-inline: auto; }
-  .hero-badge { display: none; }
   .hero-title { font-size: clamp(1.6rem, 8vw, 2.2rem); }
   .hero-subtitle { font-size: 1rem; }
 }
