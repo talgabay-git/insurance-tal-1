@@ -881,6 +881,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   margin-bottom: calc(1.5rem + 0.5cm);
   text-align: center;
 }
+.about-bio-intro + .about-bio-credentials {
+  margin-top: 1.25rem;
+}
 .about-bio-credentials {
   white-space: nowrap;
   font-size: clamp(0.65rem, 1.1vw, 0.85rem);
