@@ -2512,3 +2512,12 @@ body.keyboard-nav [tabindex]:focus {
     display: block;
   }
 }
+
+/* מרחיב את אזור המגע של כפתור סגירת ה-modal (X) שהיה קטן מדי (27x29px) למגע -
+   מוגדר כאן במשותף כי modal-close כבר מוגדר עם position:absolute בכל 23+ העמודים.
+   הרחבה מתונה (לא עד 44px מלא) כדי לא לחפוף משמעותית לכותרת המודל הסמוכה. */
+.modal-close::after {
+  content: '';
+  position: absolute;
+  inset: -6px;
+}
