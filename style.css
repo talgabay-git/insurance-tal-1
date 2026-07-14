@@ -853,7 +853,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   max-width: 600px;
   margin-inline: auto;
   text-align: center;
-  padding-top: calc(47.5vw + 1rem);
+  padding-top: calc(47.5vw - 5rem);
 }
 
 .about-text {
@@ -1450,7 +1450,7 @@ br.mobile-br { display: none; }
 
   .about { padding-top: 4.5rem; }
   .about::before { background-position: center top; }
-  .about-inner { grid-template-columns: 1fr; padding-top: calc(48vw + 1rem); }
+  .about-inner { grid-template-columns: 1fr; padding-top: calc(48vw - 5rem); }
   .about-bio-intro + p { margin-top: 1rem; }
   br.mobile-br { display: inline; }
 
