@@ -2288,10 +2288,10 @@
     }
 
     function calcRetirement() {
-      const age       = parseFloat(document.getElementById('s-age').value) || 0;
-      const retireAge = pfNumOr(document.getElementById('s-retire-age').value, 67);
-      const monthly   = parseFloat(document.getElementById('s-monthly').value) || 0;
-      const annReturn = pfNumOr(document.getElementById('s-return').value, 4.5);
+      const age       = pfClamp(parseFloat(document.getElementById('s-age').value) || 40, 40, 80);
+      const retireAge = pfClamp(pfNumOr(document.getElementById('s-retire-age').value, 67), 55, 80);
+      const monthly   = Math.max(0, parseFloat(document.getElementById('s-monthly').value) || 0);
+      const annReturn = pfClamp(pfNumOr(document.getElementById('s-return').value, 4.5), 0, 15);
       const gender    = simGetVal('gender') || 'm';
       const partner   = simGetVal('partner') || 'n';
 
@@ -2348,7 +2348,7 @@
     }
 
     function calcLVI() {
-      const amount   = pfNumOr(document.getElementById('lvi-amount').value, 100000);
+      const amount   = Math.max(0, pfNumOr(document.getElementById('lvi-amount').value, 100000));
       const prime    = pfNumOr(document.getElementById('lvi-prime-rate').value, 5.25);
       const spread   = pfNumOr(document.getElementById('lvi-spread').value, -0.5);
       const retPct   = pfNumOr(document.getElementById('lvi-return').value, 7);
@@ -2652,7 +2652,7 @@
         ? (parseFloat(document.getElementById('pc-accum-custom').value) || 0)
         : parseFloat(accumSel);
 
-      const ageNow  = pfNumOr(document.getElementById('pc-age-now').value, 45);
+      const ageNow  = pfClamp(pfNumOr(document.getElementById('pc-age-now').value, 45), 30, 69);
       const retAge  = pfNumOr(document.getElementById('pc-ret-age').value, 67);
       const gender  = document.getElementById('pc-gender').value;
       const status  = document.getElementById('pc-status').value;
@@ -2662,12 +2662,12 @@
       const compareTo = document.getElementById('pc-compare-to').value;
       const penReturnPct = pfNumOr(document.getElementById('pc-pen-return').value, 6);
       const insReturnPct = pfNumOr(document.getElementById('pc-ins-return').value, 6);
-      const insFee        = pfNumOr(document.getElementById('pc-ins-fee').value, policy === 'pre2001' ? 0.6 : 1.25);
-      const penFee        = pfNumOr(document.getElementById('pc-pen-fee').value, 0.2);
-      const disFee    = parseFloat(document.getElementById('pc-disability-fee').value)   || 0;
-      const penDisFee = parseFloat(document.getElementById('pc-pen-disability').value)   || 0;
-      const insDepositFee = policy === 'pre2001' ? 0 : pfNumOr(document.getElementById('pc-ins-deposit-fee').value, 3);
-      const penDepositFee = pfNumOr(document.getElementById('pc-pen-deposit-fee').value, 6);
+      const insFee        = pfClamp(pfNumOr(document.getElementById('pc-ins-fee').value, policy === 'pre2001' ? 0.6 : 1.25), 0, 3);
+      const penFee        = pfClamp(pfNumOr(document.getElementById('pc-pen-fee').value, 0.2), 0, 1);
+      const disFee    = pfClamp(parseFloat(document.getElementById('pc-disability-fee').value)   || 0, 0, 4);
+      const penDisFee = pfClamp(parseFloat(document.getElementById('pc-pen-disability').value)   || 0, 0, 3);
+      const insDepositFee = policy === 'pre2001' ? 0 : pfClamp(pfNumOr(document.getElementById('pc-ins-deposit-fee').value, 3), 0, 6);
+      const penDepositFee = pfClamp(pfNumOr(document.getElementById('pc-pen-deposit-fee').value, 6), 0, 6);
       const profitShare   = 15; // קבוע - השתתפות ברווח בפוליסות לפני 2001
 
       const yearsToRetire = Math.max(1, retAge - ageNow);
