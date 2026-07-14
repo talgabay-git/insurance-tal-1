@@ -1731,7 +1731,9 @@
     <div class="container">
       <h2 class="section-title" id="wa-heading" style="text-align:center;">התוצאות מדברות בעד עצמן</h2>
       <p class="section-subtitle" style="margin-bottom:2.5rem;text-align:center;font-weight:700;color:var(--gold);">מתוך שיחות וואטסאפ</p>
-      <div id="wa-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,224px));gap:1.25rem;justify-content:center;"></div>
+      <div class="testimonials-carousel-wrap" id="wa-carousel-wrap">
+        <div id="wa-grid" class="testimonials-track" style="align-items:center;"></div>
+      </div>
       <p id="wa-empty" style="text-align:center;color:var(--dark-gray);display:none;font-size:.95rem;">עדויות בקרוב</p>
     </div>
     <!-- lightbox -->
@@ -1749,12 +1751,13 @@
           var grid  = document.getElementById('wa-grid');
           var empty = document.getElementById('wa-empty');
           if (!names.length){ empty.style.display = 'block'; return; }
-          names.forEach(function(name){
+          var doubled = names.concat(names);
+          doubled.forEach(function(name){
             var src = BASE + '/whatsapp-screenshots/' + name;
             var a   = document.createElement('a');
             a.href  = 'javascript:void(0)';
             a.onclick = function(){ waLbOpen(src); };
-            a.style.cssText = 'display:block;border-radius:12px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.1);transition:transform .2s;cursor:zoom-in;';
+            a.style.cssText = 'display:block;border-radius:12px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.1);transition:transform .2s;cursor:zoom-in;width:224px;flex-shrink:0;';
             a.onmouseover = function(){ this.style.transform='scale(1.02)'; };
             a.onmouseout  = function(){ this.style.transform='scale(1)'; };
             var img = document.createElement('img');
@@ -1762,9 +1765,96 @@
             img.style.cssText = 'width:100%;display:block;';
             a.appendChild(img); grid.appendChild(a);
           });
+          waCarouselStart();
         })
         .catch(function(){ document.getElementById('wa-empty').style.display='block'; });
     })();
+
+    function waCarouselStart(){
+      var wrap = document.getElementById('wa-carousel-wrap');
+      var track = document.getElementById('wa-grid');
+      if (!wrap || !track) return;
+
+      var pos = 0, halfWidth = 0, touching = false, hovering = false, lastTs = null;
+      var dragging = false, dragLastX = 0;
+      var touchDragging = false, touchLastX = 0;
+
+      function pxPerSec() {
+        return halfWidth / (window.innerWidth <= 768 ? 187.1 : 177.0);
+      }
+      function wrapPos(p) {
+        if (!halfWidth) return p;
+        while (p <= -halfWidth) p += halfWidth;
+        while (p > 0) p -= halfWidth;
+        return p;
+      }
+      function tick(ts) {
+        if (!lastTs) lastTs = ts;
+        var dt = Math.min((ts - lastTs) / 1000, 0.1);
+        lastTs = ts;
+        if (!dragging && !touchDragging) {
+          var factor = touching ? 0.4 : (hovering ? 0.5 : 1);
+          pos -= pxPerSec() * factor * dt;
+          pos = wrapPos(pos);
+        }
+        track.style.transform = 'translateX(' + pos + 'px)';
+        requestAnimationFrame(tick);
+      }
+      function start() {
+        halfWidth = track.offsetWidth / 2;
+        track.style.animation = 'none';
+        wrap.style.cursor = 'grab';
+        requestAnimationFrame(tick);
+      }
+      window.addEventListener('resize', function() {
+        var h = track.offsetWidth / 2;
+        if (h > 0 && halfWidth > 0) pos = pos * h / halfWidth;
+        halfWidth = h;
+      });
+      wrap.addEventListener('touchstart', function(e) {
+        touching = true;
+        touchDragging = true;
+        touchLastX = e.touches[0].clientX;
+      }, {passive: true});
+      wrap.addEventListener('touchmove', function(e) {
+        if (!touchDragging) return;
+        var dx = e.touches[0].clientX - touchLastX;
+        touchLastX = e.touches[0].clientX;
+        pos += dx;
+        if (halfWidth > 0) {
+          if (pos > 0)               pos -= halfWidth;
+          else if (pos <= -halfWidth) pos += halfWidth;
+        }
+      }, {passive: true});
+      wrap.addEventListener('touchend',    function() { touchDragging = false; touching = false; }, {passive: true});
+      wrap.addEventListener('touchcancel', function() { touchDragging = false; touching = false; }, {passive: true});
+      wrap.addEventListener('mouseenter', function() { if (!dragging) hovering = true;  });
+      wrap.addEventListener('mouseleave', function() { hovering = false; });
+      wrap.addEventListener('mousedown', function(e) {
+        dragging = true;
+        dragLastX = e.clientX;
+        wrap.style.cursor = 'grabbing';
+        e.preventDefault();
+      });
+      document.addEventListener('mousemove', function(e) {
+        if (!dragging) return;
+        var dx = e.clientX - dragLastX;
+        dragLastX = e.clientX;
+        pos += dx;
+        if (halfWidth > 0) {
+          if (pos > 0)          pos -= halfWidth;
+          else if (pos <= -halfWidth) pos += halfWidth;
+        }
+      });
+      document.addEventListener('mouseup', function() {
+        if (!dragging) return;
+        dragging = false;
+        hovering = false;
+        wrap.style.cursor = 'grab';
+      });
+      if (document.readyState === 'complete') { start(); }
+      else { window.addEventListener('load', start); }
+    }
     function waLbOpen(src){
       var lb = document.getElementById('wa-lb');
       document.getElementById('wa-lb-img').src = src;
