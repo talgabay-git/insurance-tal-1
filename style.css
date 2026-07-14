@@ -265,6 +265,14 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   flex-direction: column;
   gap: 5px;
   padding: .4rem;
+  position: relative;
+}
+/* מרחיב את אזור המגע ל-44x44px (מינימום נגישות למגע) בלי להשפיע על הפריסה החזותית -
+   שכבה שקופה שממורכזת סביב הכפתור, לא תופסת מקום ב-flex */
+.hamburger::after {
+  content: '';
+  position: absolute;
+  inset: -7px;
 }
 .hamburger-line {
   display: block;
@@ -391,10 +399,18 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   font-size: 1.1rem;
   padding: .3rem .4rem;
   border-radius: 6px;
+  position: relative;
   display: flex;
   align-items: center;
   flex-shrink: 0;
   color: var(--white);
+}
+/* מרחיב את אזור המגע (נגישות למגע) בלי להשפיע על הפריסה - ללא הרחבה בצד שמאל הפיזי
+   (שם נמצא כפתור EN/איזור אישי הסמוך, עם פער של 4px בלבד בטלפונים צרים) */
+.search-toggle::after {
+  content: '';
+  position: absolute;
+  inset: -8px -8px -8px 0;
 }
 .search-toggle:hover,
 .search-toggle[aria-expanded="true"] {
