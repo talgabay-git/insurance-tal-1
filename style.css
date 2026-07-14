@@ -884,12 +884,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .about-bio-intro + .about-bio-credentials {
   margin-top: 1.25rem;
 }
-.about-bio-credentials {
-  white-space: nowrap;
-  font-size: clamp(0.65rem, 1.1vw, 0.85rem);
-  overflow-x: auto;
-  max-width: 100%;
-}
 .about-bio-heading {
   font-family: 'Heebo', sans-serif;
   font-size: 1.15rem;
