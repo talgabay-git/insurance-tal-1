@@ -270,7 +270,7 @@
   </footer>
 
   <a href="https://wa.me/972528000556" target="_blank" rel="noopener noreferrer" class="whatsapp-float" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp whatsapp-icon"></i></a>
-  <button id="back-to-top" aria-label="Back to top"><i class="fa-solid fa-chevron-up"></i></button>
+  <button class="back-to-top" id="back-to-top" aria-label="Back to top"><i class="fa-solid fa-chevron-up"></i></button>
 
   <script src="../script.js"></script>
   <script>
@@ -350,5 +350,13 @@
   });
   </script>
 
+  <script>
+  (function(){
+    var btn = document.getElementById('back-to-top');
+    if (!btn) return;
+    window.addEventListener('scroll', function(){ btn.classList.toggle('visible', window.scrollY > 400); });
+    btn.addEventListener('click', function(){ window.scrollTo({top:0, behavior:'smooth'}); });
+  })();
+  </script>
 </body>
 </html>
