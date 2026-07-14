@@ -957,7 +957,7 @@ br.mobile-br { display: none; }
 }
 .team-members-row {
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   justify-content: center;
   gap: .75rem;
 }
