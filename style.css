@@ -1277,6 +1277,30 @@ br.mobile-br { display: none; }
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+.testimonial-footer {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  margin-top: .25rem;
+}
+.testimonial-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--off-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--gold);
+  font-size: .95rem;
+}
+.testimonial-name {
+  font-style: normal;
+  font-weight: 700;
+  font-size: .85rem;
+  color: var(--navy);
+}
 .testimonial-text.expanded {
   display: block;
   -webkit-line-clamp: unset;
