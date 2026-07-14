@@ -1852,8 +1852,7 @@
         hovering = false;
         wrap.style.cursor = 'grab';
       });
-      if (document.readyState === 'complete') { start(); }
-      else { window.addEventListener('load', start); }
+      start();
     }
     function waLbOpen(src){
       var lb = document.getElementById('wa-lb');
