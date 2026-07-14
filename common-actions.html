@@ -357,11 +357,11 @@
         <p class="modal-subtitle">בחרו תאריך ושעה מועדפים - נאשר בהקדם</p>
         <form class="modal-form" id="meeting-form">
           <div class="modal-row">
-            <div class="form-group"><label class="form-label" for="meet-name">שם מלא *</label><input type="text" id="meet-name" name="שם מלא" class="form-input" required placeholder="ישראל ישראלי"></div>
-            <div class="form-group"><label class="form-label" for="meet-phone">טלפון *</label><input type="tel" id="meet-phone" name="טלפון" class="form-input" required placeholder="050-0000000" dir="ltr"></div>
+            <div class="form-group"><label class="form-label" for="meet-name">שם מלא *</label><input type="text" id="meet-name" name="שם מלא" class="form-input" required placeholder="ישראל ישראלי" autocomplete="name"></div>
+            <div class="form-group"><label class="form-label" for="meet-phone">טלפון *</label><input type="tel" id="meet-phone" name="טלפון" class="form-input" required placeholder="050-0000000" dir="ltr" autocomplete="tel"></div>
           </div>
           <div class="modal-row">
-            <div class="form-group"><label class="form-label" for="meet-email">דוא"ל</label><input type="email" id="meet-email" name="דואל" class="form-input" placeholder="name@example.com" dir="ltr"></div>
+            <div class="form-group"><label class="form-label" for="meet-email">דוא"ל</label><input type="email" id="meet-email" name="דואל" class="form-input" placeholder="name@example.com" dir="ltr" autocomplete="email"></div>
             <div class="form-group"><label class="form-label" for="meet-date">תאריך מועדף</label><input type="date" id="meet-date" name="תאריך מועדף" class="form-input" dir="ltr"></div>
           </div>
           <div class="form-group"><label class="form-label" for="meet-notes">הערות (אופציונלי)</label><textarea id="meet-notes" name="הערות" class="form-textarea" rows="2" placeholder="נושא הפגישה, בקשות מיוחדות..."></textarea></div>
