@@ -936,13 +936,13 @@ br.mobile-br { display: none; }
   align-items: center;
   justify-content: center;
   gap: .25rem;
-  padding: .85rem 2rem;
+  padding: .85rem 1.5rem;
   border-radius: 100px;
   background: var(--white);
   border: 2px solid #e2e8f0;
   box-shadow: 0 2px 8px rgba(13,30,53,.07);
   text-align: center;
-  min-width: 170px;
+  min-width: 148px;
   transition: var(--transition);
 }
 .team-oval:hover { transform: translateY(-3px); box-shadow: 0 6px 18px rgba(13,30,53,.13); border-color: var(--gold); }
@@ -1049,6 +1049,7 @@ br.mobile-br { display: none; }
   border-color: var(--navy);
   padding: 1rem 3rem;
   min-width: 240px;
+  border-radius: 24px;
 }
 .team-oval-lead .oval-name { color: var(--white); font-size: 1.15rem; }
 .team-oval-lead .oval-role { color: var(--gold); font-size: .88rem; }
