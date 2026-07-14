@@ -2117,13 +2117,15 @@
       return isNaN(n) ? def : n;
     }
     function pfNumOr(v, def) { const n = parseFloat(v); return isNaN(n) ? def : n; }
+    // הצמדה לטווחים שמוצהרים ב-min/max של השדות עצמם - min/max ב-type="number" לא חוסמים הקלדה ידנית
+    function pfClamp(v, min, max) { return Math.min(max, Math.max(min, v)); }
 
     function pfCalc() {
       const salary     = pfParseNum('pf-salary', 27101);
-      const depositPct = pfNumOr(document.getElementById('pf-deposit-pct').value, 20.83);
+      const depositPct = pfClamp(pfNumOr(document.getElementById('pf-deposit-pct').value, 20.83), 5, 30);
       const accumStart = pfParseNum('pf-accum');
-      const ageNow     = pfNumOr(document.getElementById('pf-age').value, 40);
-      const retAge     = pfNumOr(document.getElementById('pf-ret-age').value, 67);
+      const ageNow     = pfClamp(pfNumOr(document.getElementById('pf-age').value, 40), 20, 65);
+      const retAge     = pfClamp(pfNumOr(document.getElementById('pf-ret-age').value, 67), 55, 70);
       const returnPct  = pfNumOr(document.getElementById('pf-return').value, 6);
 
       const manualDep  = pfParseNum('pf-manual-dep');

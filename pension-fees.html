@@ -429,12 +429,14 @@
 
   /* ── החישוב הראשי ── */
   function numOr(v, def) { const n = parseFloat(v); return isNaN(n) ? def : n; }
+  // הצמדה לטווחים שמוצהרים ב-min/max של השדות עצמם - min/max ב-type="number" לא חוסמים הקלדה ידנית
+  function clamp(v, min, max) { return Math.min(max, Math.max(min, v)); }
   function pfCalc() {
-    const salary      = numOr(document.getElementById('pf-salary').value, 20000);
-    const depositPct  = numOr(document.getElementById('pf-deposit-pct').value, 18.5);
-    const accumStart  = numOr(document.getElementById('pf-accum').value, 0);
-    const ageNow      = numOr(document.getElementById('pf-age').value, 40);
-    const retAge      = numOr(document.getElementById('pf-ret-age').value, 67);
+    const salary      = clamp(numOr(document.getElementById('pf-salary').value, 20000), 3000, 200000);
+    const depositPct  = clamp(numOr(document.getElementById('pf-deposit-pct').value, 18.5), 5, 30);
+    const accumStart  = clamp(numOr(document.getElementById('pf-accum').value, 0), 0, 10000000);
+    const ageNow      = clamp(numOr(document.getElementById('pf-age').value, 40), 20, 65);
+    const retAge      = clamp(numOr(document.getElementById('pf-ret-age').value, 67), 55, 70);
     const returnPct   = numOr(document.getElementById('pf-return').value, 6);
 
     const monthlyDep  = salary * depositPct / 100;
