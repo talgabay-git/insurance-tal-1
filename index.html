@@ -1737,8 +1737,8 @@
       <p id="wa-empty" style="text-align:center;color:var(--dark-gray);display:none;font-size:.95rem;">עדויות בקרוב</p>
     </div>
     <!-- lightbox -->
-    <div id="wa-lb" onclick="waLbClose()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:9999;cursor:zoom-out;align-items:center;justify-content:center;">
-      <img id="wa-lb-img" src="" alt="" style="max-width:92vw;max-height:92vh;border-radius:10px;box-shadow:0 8px 40px rgba(0,0,0,.6);">
+    <div id="wa-lb" onclick="waLbClose()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:9999;cursor:zoom-out;align-items:center;justify-content:center;overflow-y:auto;padding:2rem 0;">
+      <img id="wa-lb-img" src="" alt="" style="max-width:min(92vw,560px);width:auto;height:auto;max-height:none;border-radius:10px;box-shadow:0 8px 40px rgba(0,0,0,.6);margin:auto;">
     </div>
     <script>
     (function(){
