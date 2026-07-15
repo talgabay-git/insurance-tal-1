@@ -1487,7 +1487,7 @@
                 <div class="shared-row" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:.8rem;align-items:end;margin-top:.8rem;">
                   <div>
                     <label style="display:block;font-size:.72rem;font-weight:700;color:#0d1e35;margin-bottom:.25rem;">שכר ברוטו חודשי (₪)</label>
-                    <input id="pc-salary" type="text" value="20,000" style="width:100%;background:#fff;border:2px solid #d0d8e4;border-radius:9px;padding:.48rem .8rem;font-size:.9rem;font-weight:600;box-sizing:border-box;" oninput="pfFmtNum(this);runPensionCompare()" />
+                    <input id="pc-salary" type="text" value="0" style="width:100%;background:#fff;border:2px solid #d0d8e4;border-radius:9px;padding:.48rem .8rem;font-size:.9rem;font-weight:600;box-sizing:border-box;" oninput="pfFmtNum(this);runPensionCompare()" />
                   </div>
                   <div>
                     <label style="display:block;font-size:.72rem;font-weight:700;color:#0d1e35;margin-bottom:.25rem;">שיעור הפקדה מהשכר (%)</label>
@@ -2682,7 +2682,7 @@
       const penDepositFee = pfClamp(pfNumOr(document.getElementById('pc-pen-deposit-fee').value, 6), 0, 6);
       const profitShare   = 15; // קבוע - השתתפות ברווח בפוליסות לפני 2001
 
-      const salary    = pfClamp(parseFloat((document.getElementById('pc-salary').value || '').replace(/,/g, '')) || 20000, 0, 200000);
+      const salary    = pfClamp(pfNumOr(document.getElementById('pc-salary').value.replace(/,/g, ''), 0), 0, 200000);
       const depositPctSal = pfClamp(pfNumOr(document.getElementById('pc-deposit-pct').value, 20.83), 5, 30);
       const manualDep = parseFloat((document.getElementById('pc-manual-dep').value || '').replace(/,/g, '')) || 0;
       const monthlyDep = manualDep > 0 ? manualDep : salary * depositPctSal / 100;
