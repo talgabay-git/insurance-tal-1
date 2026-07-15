@@ -1454,18 +1454,7 @@
                 <div class="shared-row" style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr 1fr;gap:.8rem;align-items:end;">
                   <div>
                     <label style="display:block;font-size:.72rem;font-weight:700;color:#0d1e35;margin-bottom:.25rem;">צבירה נוכחית (₪)</label>
-                    <select id="pc-accum" style="width:100%;background:#fff;border:2px solid #d0d8e4;border-radius:9px;padding:.48rem .8rem;font-size:.9rem;font-weight:600;color:#0d1e35;" onchange="pcAccumChange()">
-                      <option value="250000">250,000 ₪</option>
-                      <option value="500000">500,000 ₪</option>
-                      <option value="750000">750,000 ₪</option>
-                      <option value="1000000" selected>1,000,000 ₪</option>
-                      <option value="1500000">1,500,000 ₪</option>
-                      <option value="2000000">2,000,000 ₪</option>
-                      <option value="2500000">2,500,000 ₪</option>
-                      <option value="3000000">3,000,000 ₪</option>
-                      <option value="custom">סכום אחר...</option>
-                    </select>
-                    <input id="pc-accum-custom" type="number" placeholder="הכנס סכום" style="display:none;margin-top:.4rem;width:100%;background:#fff;border:2px solid #c9a84c;border-radius:9px;padding:.48rem .8rem;font-size:.9rem;font-weight:600;box-sizing:border-box;" onchange="runPensionCompare()" />
+                    <input id="pc-accum" type="text" value="1,000,000" style="width:100%;background:#fff;border:2px solid #d0d8e4;border-radius:9px;padding:.48rem .8rem;font-size:.9rem;font-weight:600;color:#0d1e35;box-sizing:border-box;" oninput="pfFmtNum(this);runPensionCompare()" />
                   </div>
                   <div>
                     <label style="display:block;font-size:.72rem;font-weight:700;color:#0d1e35;margin-bottom:.25rem;">גיל נוכחי</label>
@@ -2669,22 +2658,11 @@
       document.getElementById('pc-ins-coef-display').textContent = coef;
     }
 
-    /* ── הצגת שדה סכום מותאם ── */
-    function pcAccumChange() {
-      const sel = document.getElementById('pc-accum').value;
-      const customEl = document.getElementById('pc-accum-custom');
-      customEl.style.display = sel === 'custom' ? 'block' : 'none';
-      if (sel !== 'custom') runPensionCompare();
-    }
-
     /* ── פונקציה ראשית ── */
     function runPensionCompare(scroll) {
       try {
       // ── קריאת קלטים ──
-      const accumSel = document.getElementById('pc-accum').value;
-      const accum = accumSel === 'custom'
-        ? (parseFloat(document.getElementById('pc-accum-custom').value) || 0)
-        : parseFloat(accumSel);
+      const accum = parseFloat((document.getElementById('pc-accum').value || '').replace(/,/g, '')) || 0;
 
       const ageNow  = pfClamp(pfNumOr(document.getElementById('pc-age-now').value, 45), 30, 69);
       const retAge  = pfNumOr(document.getElementById('pc-ret-age').value, 67);
