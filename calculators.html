@@ -1494,6 +1494,20 @@
                     </select>
                   </div>
                 </div>
+                <div class="shared-row" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:.8rem;align-items:end;margin-top:.8rem;">
+                  <div>
+                    <label style="display:block;font-size:.72rem;font-weight:700;color:#0d1e35;margin-bottom:.25rem;">שכר ברוטו חודשי (₪)</label>
+                    <input id="pc-salary" type="text" value="20,000" style="width:100%;background:#fff;border:2px solid #d0d8e4;border-radius:9px;padding:.48rem .8rem;font-size:.9rem;font-weight:600;box-sizing:border-box;" oninput="pfFmtNum(this);runPensionCompare()" />
+                  </div>
+                  <div>
+                    <label style="display:block;font-size:.72rem;font-weight:700;color:#0d1e35;margin-bottom:.25rem;">שיעור הפקדה מהשכר (%)</label>
+                    <input id="pc-deposit-pct" type="number" value="20.83" min="5" max="30" step="0.01" style="width:100%;background:#fff;border:2px solid #d0d8e4;border-radius:9px;padding:.48rem .8rem;font-size:.9rem;font-weight:600;box-sizing:border-box;" onchange="runPensionCompare()" />
+                  </div>
+                  <div>
+                    <label style="display:block;font-size:.72rem;font-weight:700;color:#0d1e35;margin-bottom:.25rem;">או הפקדה חודשית ידנית (₪)</label>
+                    <input id="pc-manual-dep" type="text" placeholder="ריק = חישוב לפי שכר × %" style="width:100%;background:#fff;border:2px solid #d0d8e4;border-radius:9px;padding:.48rem .8rem;font-size:.9rem;font-weight:600;box-sizing:border-box;" oninput="pfFmtNum(this);runPensionCompare()" />
+                  </div>
+                </div>
               </div>
 
               <!-- ── פריסה מחולקת: ימין = פנסיה | שמאל = ביטוח מנהלים ── -->
@@ -2567,6 +2581,25 @@
       return accumulation * Math.pow(netReturnFactor, yearsToRetire);
     }
 
+    /* ── שחיקה + הפקדות שוטפות: כל שנה מוסיפים הפקדה נטו (אחרי דמי ניהול מהפקדות) וגדלים לפי תשואה פחות דמי ניהול מצבירה ── */
+    function pcProjectAccum(startAccum, annualDep, yearsToRetire, returnPct, accumFeePct, depositFeePct) {
+      let accum = startAccum;
+      const netDeposit = annualDep * (1 - depositFeePct / 100);
+      const netFactor  = (1 + returnPct / 100) * (1 - accumFeePct / 100);
+      for (let y = 0; y < yearsToRetire; y++) {
+        accum = accum * netFactor + netDeposit;
+      }
+      return accum;
+    }
+    function pcProjectAccumPre2001(startAccum, annualDep, yearsToRetire, profitSharePct, returnPct, disFee = 0) {
+      let accum = startAccum;
+      const netReturnFactor = (1 + returnPct * (1 - profitSharePct / 100) / 100) * (1 - (0.6 + disFee) / 100);
+      for (let y = 0; y < yearsToRetire; y++) {
+        accum = accum * netReturnFactor + annualDep;
+      }
+      return accum;
+    }
+
     /* ── עדכון badge דמי ניהול ── */
     function pcFeeBadge(inputId, badgeId) {
       const v = parseFloat(document.getElementById(inputId).value);
@@ -2670,6 +2703,12 @@
       const penDepositFee = pfClamp(pfNumOr(document.getElementById('pc-pen-deposit-fee').value, 6), 0, 6);
       const profitShare   = 15; // קבוע - השתתפות ברווח בפוליסות לפני 2001
 
+      const salary    = pfClamp(parseFloat((document.getElementById('pc-salary').value || '').replace(/,/g, '')) || 20000, 0, 200000);
+      const depositPctSal = pfClamp(pfNumOr(document.getElementById('pc-deposit-pct').value, 20.83), 5, 30);
+      const manualDep = parseFloat((document.getElementById('pc-manual-dep').value || '').replace(/,/g, '')) || 0;
+      const monthlyDep = manualDep > 0 ? manualDep : salary * depositPctSal / 100;
+      const annualDep  = monthlyDep * 12;
+
       const yearsToRetire = Math.max(1, retAge - ageNow);
 
       if (accum <= 0) {
@@ -2677,19 +2716,19 @@
         return;
       }
 
-      // ── שחיקת צבירה עד גיל פרישה ──
+      // ── שחיקת צבירה + הפקדות שוטפות עד גיל פרישה ──
       const penFeeTotalPct = penFee + penDisFee;    // פנסיה: דמי ניהול + נכות
 
       let accumIns;
       let insFeeTotalPct = profitShare + 0.6; // קירוב לתצוגה - פוליסת טרום-2001
       if (policy === 'pre2001') {
         // 0.6% קבוע + השתתפות ברווח (X% מהתשואה השנתית)
-        accumIns = applyFeesPre2001(accum, yearsToRetire, profitShare, insReturnPct, disFee);
+        accumIns = pcProjectAccumPre2001(accum, annualDep, yearsToRetire, profitShare, insReturnPct, disFee);
       } else {
         insFeeTotalPct = insFee + disFee;  // ביטוח: דמי ניהול + אכ"ע
-        accumIns = applyFees(accum, yearsToRetire, insFeeTotalPct, insReturnPct);
+        accumIns = pcProjectAccum(accum, annualDep, yearsToRetire, insReturnPct, insFeeTotalPct, insDepositFee);
       }
-      const accumPen = applyFees(accum, yearsToRetire, penFeeTotalPct, penReturnPct);
+      const accumPen = pcProjectAccum(accum, annualDep, yearsToRetire, penReturnPct, penFeeTotalPct, penDepositFee);
 
       // ── מקדמי קצבה ──
       pcUpdateInsCoefDisplay();
