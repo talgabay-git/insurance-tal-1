@@ -839,11 +839,11 @@
             <div class="sim-block-title"><i class="fa-solid fa-user"></i> פרטי המבוטח</div>
             <div class="sim-row">
               <div class="sim-field">
-                <label class="sim-label">גיל נוכחי</label>
+                <label for="s-age" class="sim-label">גיל נוכחי</label>
                 <input class="sim-input" type="number" id="s-age" value="" min="40" max="80" placeholder="למשל: 58" inputmode="numeric" />
               </div>
               <div class="sim-field">
-                <label class="sim-label">גיל פרישה</label>
+                <label for="s-retire-age" class="sim-label">גיל פרישה</label>
                 <input class="sim-input" type="number" id="s-retire-age" value="67" min="55" max="80" inputmode="numeric" />
               </div>
               <div class="sim-field">
@@ -869,14 +869,14 @@
 
             <div class="sim-row" style="grid-template-columns:1fr 1fr;align-items:end;">
               <div class="sim-field">
-                <label class="sim-label">הפקדה חודשית לפנסיה (₪)</label>
+                <label for="s-monthly" class="sim-label">הפקדה חודשית לפנסיה (₪)</label>
                 <div class="sim-input-wrap">
                   <input class="sim-input" type="number" id="s-monthly" value="" min="0" step="100" placeholder="למשל: 3,000" inputmode="numeric" />
                   <span class="sim-suffix">₪</span>
                 </div>
               </div>
               <div class="sim-field">
-                <label class="sim-label">תשואה שנתית צפויה</label>
+                <label for="s-return" class="sim-label">תשואה שנתית צפויה</label>
                 <div class="sim-input-wrap">
                   <input class="sim-input" type="number" id="s-return" value="4.5" min="0" max="15" step="0.1" inputmode="decimal" />
                   <span class="sim-suffix">%</span>
@@ -949,7 +949,7 @@
             <div class="sim-block-title"><i class="fa-solid fa-shekel-sign"></i> נתוני השכר והעבודה</div>
 
             <div class="sim-field" style="margin-bottom:1rem;">
-              <label class="sim-label">משכורת קובעת לפיצויים ברוטו, לפני מס (₪)</label>
+              <label for="sv-salary" class="sim-label">משכורת קובעת לפיצויים ברוטו, לפני מס (₪)</label>
               <div class="sim-input-wrap">
                 <input class="sim-input" type="number" id="sv-salary" placeholder="למשל: 20,000" min="0" step="100" inputmode="numeric" />
                 <span class="sim-suffix">₪</span>
@@ -958,7 +958,7 @@
 
             <div class="sim-row" style="grid-template-columns:1fr 1fr;gap:1.25rem;">
               <div class="sim-field">
-                <label class="sim-label">תאריך תחילת עבודה</label>
+                <label for="sv-start-day" class="sim-label">תאריך תחילת עבודה</label>
                 <div style="display:flex;gap:.4rem;">
                   <select class="sim-input" id="sv-start-day" style="flex:0 0 60px;padding-left:.3rem;padding-right:.3rem;"></select>
                   <select class="sim-input" id="sv-start-month" style="flex:1;padding-left:.3rem;padding-right:.3rem;"></select>
@@ -966,7 +966,7 @@
                 </div>
               </div>
               <div class="sim-field">
-                <label class="sim-label">תאריך סיום עבודה</label>
+                <label for="sv-end-day" class="sim-label">תאריך סיום עבודה</label>
                 <div style="display:flex;gap:.4rem;">
                   <select class="sim-input" id="sv-end-day" style="flex:0 0 60px;padding-left:.3rem;padding-right:.3rem;"></select>
                   <select class="sim-input" id="sv-end-month" style="flex:1;padding-left:.3rem;padding-right:.3rem;"></select>
@@ -977,11 +977,11 @@
 
             <div class="sim-row" style="grid-template-columns:1fr 1fr;gap:1.25rem;margin-top:.25rem;">
               <div class="sim-field">
-                <label class="sim-label">חופשה ללא תשלום (שנים)</label>
+                <label for="sv-unpaid" class="sim-label">חופשה ללא תשלום (שנים)</label>
                 <input class="sim-input" type="number" id="sv-unpaid" value="0" min="0" max="30" step="0.5" inputmode="decimal" />
               </div>
               <div class="sim-field">
-                <label class="sim-label">שיעור הפיצויים</label>
+                <label for="sv-rate" class="sim-label">שיעור הפיצויים</label>
                 <div class="sim-input-wrap">
                   <input class="sim-input" type="number" id="sv-rate" value="100" min="0" max="200" step="1" inputmode="numeric" />
                   <span class="sim-suffix">%</span>
@@ -995,14 +995,14 @@
 
             <div class="sim-row" style="grid-template-columns:1fr 1fr;gap:1.25rem;">
               <div class="sim-field">
-                <label class="sim-label">מענק הסתגלות (₪)</label>
+                <label for="sv-adjustment" class="sim-label">מענק הסתגלות (₪)</label>
                 <div class="sim-input-wrap">
                   <input class="sim-input" type="number" id="sv-adjustment" placeholder="0" min="0" inputmode="numeric" />
                   <span class="sim-suffix">₪</span>
                 </div>
               </div>
               <div class="sim-field">
-                <label class="sim-label">מענק בגין אי הודעה מוקדמת (₪)</label>
+                <label for="sv-notice" class="sim-label">מענק בגין אי הודעה מוקדמת (₪)</label>
                 <div class="sim-input-wrap">
                   <input class="sim-input" type="number" id="sv-notice" placeholder="0" min="0" inputmode="numeric" />
                   <span class="sim-suffix">₪</span>
@@ -1011,14 +1011,14 @@
             </div>
             <div class="sim-row" style="grid-template-columns:1fr 1fr;gap:1.25rem;">
               <div class="sim-field">
-                <label class="sim-label">פדיון ימי מחלה (₪)</label>
+                <label for="sv-sick" class="sim-label">פדיון ימי מחלה (₪)</label>
                 <div class="sim-input-wrap">
                   <input class="sim-input" type="number" id="sv-sick" placeholder="0" min="0" inputmode="numeric" />
                   <span class="sim-suffix">₪</span>
                 </div>
               </div>
               <div class="sim-field">
-                <label class="sim-label" style="font-size:.72rem;">מענק פרישה נוסף - אין לכלול פדיון ימי חופשה, תשלום בגין אי תחרות וכל תשלום שלא אגב הפרישה (₪)</label>
+                <label for="sv-extra" class="sim-label" style="font-size:.72rem;">מענק פרישה נוסף - אין לכלול פדיון ימי חופשה, תשלום בגין אי תחרות וכל תשלום שלא אגב הפרישה (₪)</label>
                 <div class="sim-input-wrap">
                   <input class="sim-input" type="number" id="sv-extra" placeholder="0" min="0" inputmode="numeric" />
                   <span class="sim-suffix">₪</span>
@@ -1118,13 +1118,13 @@
               <!-- שורה 1: סכום + טווח -->
               <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;">
                 <div>
-                  <label style="display:block;font-size:.75rem;font-weight:700;color:#0d1e35;margin-bottom:.3rem;letter-spacing:.03em;">סכום התחלתי (₪)</label>
+                  <label for="lvi-amount" style="display:block;font-size:.75rem;font-weight:700;color:#0d1e35;margin-bottom:.3rem;letter-spacing:.03em;">סכום התחלתי (₪)</label>
                   <input class="calc-input" id="lvi-amount" type="number" value="100000" min="0" step="1000"
                     oninput="lviUpdateDisplay()"
                     style="background:#fff;border:2px solid #d0d8e4;border-radius:10px;padding:.55rem .9rem;font-size:.95rem;font-weight:600;" />
                 </div>
                 <div>
-                  <label style="display:block;font-size:.75rem;font-weight:700;color:#0d1e35;margin-bottom:.3rem;letter-spacing:.03em;">טווח זמן (שנים)</label>
+                  <label for="lvi-years" style="display:block;font-size:.75rem;font-weight:700;color:#0d1e35;margin-bottom:.3rem;letter-spacing:.03em;">טווח זמן (שנים)</label>
                   <select class="calc-input" id="lvi-years" onchange="syncYearsCustom();lviUpdateDisplay()"
                     style="background:#fff;border:2px solid #d0d8e4;border-radius:10px;padding:.55rem .9rem;font-size:.95rem;font-weight:600;">
                     <option value="1">1 שנה</option>
@@ -1144,7 +1144,7 @@
 
               <!-- שורה 1.5: שנים מותאם -->
               <div id="lvi-years-custom-wrap" style="display:none;margin-bottom:1rem;">
-                <label style="display:block;font-size:.75rem;font-weight:700;color:#0d1e35;margin-bottom:.3rem;">מספר שנים מותאם</label>
+                <label for="lvi-years-custom" style="display:block;font-size:.75rem;font-weight:700;color:#0d1e35;margin-bottom:.3rem;">מספר שנים מותאם</label>
                 <input class="calc-input" id="lvi-years-custom" type="number" value="15" min="1" max="50" step="1"
                   oninput="lviUpdateDisplay()"
                   style="background:#fff;border:2px solid #d0d8e4;border-radius:10px;padding:.55rem .9rem;font-size:.95rem;font-weight:600;max-width:200px;" />
@@ -1154,13 +1154,13 @@
               <div style="font-size:.7rem;font-weight:800;color:#0d1e35;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.6rem;opacity:.5;">ריבית הלוואה</div>
               <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;">
                 <div>
-                  <label style="display:block;font-size:.75rem;font-weight:700;color:#0d1e35;margin-bottom:.3rem;">ריבית הפריים (%)</label>
+                  <label for="lvi-prime-rate" style="display:block;font-size:.75rem;font-weight:700;color:#0d1e35;margin-bottom:.3rem;">ריבית הפריים (%)</label>
                   <input class="calc-input" id="lvi-prime-rate" type="number" value="5.25" step="0.25"
                     oninput="lviUpdateDisplay()"
                     style="background:#fff;border:2px solid #d0d8e4;border-radius:10px;padding:.55rem .9rem;font-size:.95rem;font-weight:600;" />
                 </div>
                 <div>
-                  <label style="display:block;font-size:.75rem;font-weight:700;color:#0d1e35;margin-bottom:.3rem;">מרווח מהפריים</label>
+                  <label for="lvi-spread" style="display:block;font-size:.75rem;font-weight:700;color:#0d1e35;margin-bottom:.3rem;">מרווח מהפריים</label>
                   <select class="calc-input" id="lvi-spread" onchange="lviUpdateDisplay()"
                     style="background:#fff;border:2px solid #d0d8e4;border-radius:10px;padding:.55rem .9rem;font-size:.95rem;font-weight:600;">
                     <option value="-0.75">פריים מינוס 0.75%</option>
@@ -1175,13 +1175,13 @@
               <div style="font-size:.7rem;font-weight:800;color:#0d1e35;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.6rem;opacity:.5;">השקעה</div>
               <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.4rem;">
                 <div>
-                  <label style="display:block;font-size:.75rem;font-weight:700;color:#0d1e35;margin-bottom:.3rem;">תשואה שנתית משוערת (%)</label>
+                  <label for="lvi-return" style="display:block;font-size:.75rem;font-weight:700;color:#0d1e35;margin-bottom:.3rem;">תשואה שנתית משוערת (%)</label>
                   <input class="calc-input" id="lvi-return" type="number" value="7" step="0.1"
                     oninput="lviUpdateDisplay()"
                     style="background:#fff;border:2px solid #d0d8e4;border-radius:10px;padding:.55rem .9rem;font-size:.95rem;font-weight:600;" />
                 </div>
                 <div>
-                  <label style="display:block;font-size:.75rem;font-weight:700;color:#0d1e35;margin-bottom:.3rem;">דמי ניהול שנתיים (%)</label>
+                  <label for="lvi-mgmt" style="display:block;font-size:.75rem;font-weight:700;color:#0d1e35;margin-bottom:.3rem;">דמי ניהול שנתיים (%)</label>
                   <input class="calc-input" id="lvi-mgmt" type="number" value="0.6" step="0.1"
                     oninput="lviUpdateDisplay()"
                     style="background:#fff;border:2px solid #d0d8e4;border-radius:10px;padding:.55rem .9rem;font-size:.95rem;font-weight:600;" />
@@ -1453,15 +1453,15 @@
                 <div style="font-size:.72rem;font-weight:800;color:#0d1e35;text-transform:uppercase;letter-spacing:.07em;margin-bottom:.8rem;opacity:.6;">נתוני הלקוח/ה - משותף לשני המוצרים</div>
                 <div class="shared-row" style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr 1fr;gap:.8rem;align-items:end;">
                   <div>
-                    <label style="display:block;font-size:.72rem;font-weight:700;color:#0d1e35;margin-bottom:.25rem;">צבירה נוכחית (₪)</label>
+                    <label for="pc-accum" style="display:block;font-size:.72rem;font-weight:700;color:#0d1e35;margin-bottom:.25rem;">צבירה נוכחית (₪)</label>
                     <input id="pc-accum" type="text" value="1,000,000" style="width:100%;background:#fff;border:2px solid #d0d8e4;border-radius:9px;padding:.48rem .8rem;font-size:.9rem;font-weight:600;color:#0d1e35;box-sizing:border-box;" oninput="pfFmtNum(this);runPensionCompare()" />
                   </div>
                   <div>
-                    <label style="display:block;font-size:.72rem;font-weight:700;color:#0d1e35;margin-bottom:.25rem;">גיל נוכחי</label>
+                    <label for="pc-age-now" style="display:block;font-size:.72rem;font-weight:700;color:#0d1e35;margin-bottom:.25rem;">גיל נוכחי</label>
                     <input id="pc-age-now" type="number" value="45" min="30" max="69" style="width:100%;background:#fff;border:2px solid #d0d8e4;border-radius:9px;padding:.48rem .8rem;font-size:.9rem;font-weight:600;text-align:center;" onchange="runPensionCompare()" />
                   </div>
                   <div>
-                    <label style="display:block;font-size:.72rem;font-weight:700;color:#0d1e35;margin-bottom:.25rem;">גיל פרישה</label>
+                    <label for="pc-ret-age" style="display:block;font-size:.72rem;font-weight:700;color:#0d1e35;margin-bottom:.25rem;">גיל פרישה</label>
                     <select id="pc-ret-age" style="width:100%;background:#fff;border:2px solid #d0d8e4;border-radius:9px;padding:.48rem .8rem;font-size:.9rem;font-weight:600;" onchange="runPensionCompare()">
                       <option value="60">60</option><option value="61">61</option><option value="62">62</option>
                       <option value="63">63</option><option value="64">64</option><option value="65">65</option>
@@ -1470,14 +1470,14 @@
                     </select>
                   </div>
                   <div>
-                    <label style="display:block;font-size:.72rem;font-weight:700;color:#0d1e35;margin-bottom:.25rem;">מין</label>
+                    <label for="pc-gender" style="display:block;font-size:.72rem;font-weight:700;color:#0d1e35;margin-bottom:.25rem;">מין</label>
                     <select id="pc-gender" style="width:100%;background:#fff;border:2px solid #d0d8e4;border-radius:9px;padding:.48rem .8rem;font-size:.9rem;font-weight:600;" onchange="pcUpdateGenderDefaults();runPensionCompare()">
                       <option value="male" selected>גבר</option>
                       <option value="female">אישה</option>
                     </select>
                   </div>
                   <div>
-                    <label style="display:block;font-size:.72rem;font-weight:700;color:#0d1e35;margin-bottom:.25rem;">מצב משפחתי</label>
+                    <label for="pc-status" style="display:block;font-size:.72rem;font-weight:700;color:#0d1e35;margin-bottom:.25rem;">מצב משפחתי</label>
                     <select id="pc-status" style="width:100%;background:#fff;border:2px solid #d0d8e4;border-radius:9px;padding:.48rem .8rem;font-size:.9rem;font-weight:600;" onchange="runPensionCompare()">
                       <option value="married" selected>נשוי/ה</option>
                       <option value="single">רווק/ה</option>
@@ -1486,15 +1486,15 @@
                 </div>
                 <div class="shared-row" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:.8rem;align-items:end;margin-top:.8rem;">
                   <div>
-                    <label style="display:block;font-size:.72rem;font-weight:700;color:#0d1e35;margin-bottom:.25rem;">שכר ברוטו חודשי (₪)</label>
+                    <label for="pc-salary" style="display:block;font-size:.72rem;font-weight:700;color:#0d1e35;margin-bottom:.25rem;">שכר ברוטו חודשי (₪)</label>
                     <input id="pc-salary" type="text" value="0" style="width:100%;background:#fff;border:2px solid #d0d8e4;border-radius:9px;padding:.48rem .8rem;font-size:.9rem;font-weight:600;box-sizing:border-box;" oninput="pfFmtNum(this);runPensionCompare()" />
                   </div>
                   <div>
-                    <label style="display:block;font-size:.72rem;font-weight:700;color:#0d1e35;margin-bottom:.25rem;">שיעור הפקדה מהשכר (%)</label>
+                    <label for="pc-deposit-pct" style="display:block;font-size:.72rem;font-weight:700;color:#0d1e35;margin-bottom:.25rem;">שיעור הפקדה מהשכר (%)</label>
                     <input id="pc-deposit-pct" type="number" value="20.83" min="5" max="30" step="0.01" style="width:100%;background:#fff;border:2px solid #d0d8e4;border-radius:9px;padding:.48rem .8rem;font-size:.9rem;font-weight:600;box-sizing:border-box;" onchange="runPensionCompare()" />
                   </div>
                   <div>
-                    <label style="display:block;font-size:.72rem;font-weight:700;color:#0d1e35;margin-bottom:.25rem;">או הפקדה חודשית ידנית (₪)</label>
+                    <label for="pc-manual-dep" style="display:block;font-size:.72rem;font-weight:700;color:#0d1e35;margin-bottom:.25rem;">או הפקדה חודשית ידנית (₪)</label>
                     <input id="pc-manual-dep" type="text" placeholder="ריק = חישוב לפי שכר × %" style="width:100%;background:#fff;border:2px solid #d0d8e4;border-radius:9px;padding:.48rem .8rem;font-size:.9rem;font-weight:600;box-sizing:border-box;" oninput="pfFmtNum(this);runPensionCompare()" />
                   </div>
                 </div>
@@ -1512,7 +1512,7 @@
                   <div style="padding:1rem;">
 
                     <div style="margin-bottom:.9rem;">
-                      <label style="display:block;font-size:.72rem;font-weight:700;color:#1a4a2e;margin-bottom:.25rem;">סוג קרן פנסיה</label>
+                      <label for="pc-compare-to" style="display:block;font-size:.72rem;font-weight:700;color:#1a4a2e;margin-bottom:.25rem;">סוג קרן פנסיה</label>
                       <select id="pc-compare-to" style="width:100%;background:#fff;border:2px solid #b2dfc8;border-radius:9px;padding:.5rem .8rem;font-size:.9rem;font-weight:600;" onchange="runPensionCompare()">
                         <option value="supplementary" selected>קרן פנסיה משלימה</option>
                         <option value="comprehensive">קרן פנסיה מקיפה</option>
@@ -1520,7 +1520,7 @@
                     </div>
 
                     <div style="margin-bottom:.9rem;">
-                      <label style="display:block;font-size:.72rem;font-weight:700;color:#1a4a2e;margin-bottom:.25rem;">תשואה שנתית (%)</label>
+                      <label for="pc-pen-return" style="display:block;font-size:.72rem;font-weight:700;color:#1a4a2e;margin-bottom:.25rem;">תשואה שנתית (%)</label>
                       <select id="pc-pen-return" style="width:100%;background:#fff;border:2px solid #b2dfc8;border-radius:9px;padding:.5rem .8rem;font-size:.9rem;font-weight:600;" onchange="runPensionCompare()">
                         <option value="3">3%</option><option value="4">4%</option>
                         <option value="5">5%</option><option value="6" selected>6%</option>
@@ -1529,7 +1529,7 @@
                     </div>
 
                     <div style="margin-bottom:.9rem;">
-                      <label style="display:flex;justify-content:space-between;align-items:center;font-size:.72rem;font-weight:700;color:#1a4a2e;margin-bottom:.25rem;">
+                      <label for="pc-pen-fee" style="display:flex;justify-content:space-between;align-items:center;font-size:.72rem;font-weight:700;color:#1a4a2e;margin-bottom:.25rem;">
                         <span>דמי ניהול מצבירה (%/שנה)</span>
                         <span id="pc-pen-fee-badge" style="background:#1a4a2e;color:#6ee7a8;font-size:.82rem;font-weight:900;padding:.1rem .45rem;border-radius:7px;min-width:3rem;text-align:center;">0.10%</span>
                       </label>
@@ -1540,7 +1540,7 @@
                     </div>
 
                     <div style="margin-bottom:.9rem;">
-                      <label style="display:flex;justify-content:space-between;align-items:center;font-size:.72rem;font-weight:700;color:#1a4a2e;margin-bottom:.25rem;">
+                      <label for="pc-pen-deposit-fee" style="display:flex;justify-content:space-between;align-items:center;font-size:.72rem;font-weight:700;color:#1a4a2e;margin-bottom:.25rem;">
                         <span>דמי ניהול מהפקדות (%)</span>
                         <span id="pc-pen-deposit-fee-badge" style="background:#1a4a2e;color:#6ee7a8;font-size:.82rem;font-weight:900;padding:.1rem .45rem;border-radius:7px;min-width:3rem;text-align:center;">1.50%</span>
                       </label>
@@ -1551,7 +1551,7 @@
                     </div>
 
                     <div style="margin-bottom:.9rem;">
-                      <label style="display:flex;justify-content:space-between;align-items:center;font-size:.72rem;font-weight:700;color:#1a4a2e;margin-bottom:.25rem;">
+                      <label for="pc-pen-disability" style="display:flex;justify-content:space-between;align-items:center;font-size:.72rem;font-weight:700;color:#1a4a2e;margin-bottom:.25rem;">
                         <span>עלות כיסוי נכות (%/שנה מצבירה)</span>
                         <span id="pc-pen-dis-badge" style="background:#1a4a2e;color:#6ee7a8;font-size:.82rem;font-weight:900;padding:.1rem .45rem;border-radius:7px;min-width:3rem;text-align:center;">0.75%</span>
                       </label>
@@ -1561,7 +1561,7 @@
                     </div>
 
                     <div>
-                      <label style="display:block;font-size:.72rem;font-weight:700;color:#1a4a2e;margin-bottom:.25rem;">מקדם קצבה</label>
+                      <label for="pc-pen-coef" style="display:block;font-size:.72rem;font-weight:700;color:#1a4a2e;margin-bottom:.25rem;">מקדם קצבה</label>
                       <select id="pc-pen-coef" style="width:100%;background:#fff;border:2px solid #b2dfc8;border-radius:9px;padding:.5rem .8rem;font-size:.9rem;font-weight:600;" onchange="runPensionCompare()">
                         <option value="200" selected>200</option>
                         <option value="210">210</option>
@@ -1583,7 +1583,7 @@
                   <div style="padding:1rem;">
 
                     <div style="margin-bottom:.9rem;">
-                      <label style="display:block;font-size:.72rem;font-weight:700;color:#0d1e35;margin-bottom:.25rem;">סוג פוליסה</label>
+                      <label for="pc-policy" style="display:block;font-size:.72rem;font-weight:700;color:#0d1e35;margin-bottom:.25rem;">סוג פוליסה</label>
                       <select id="pc-policy" style="width:100%;background:#fff;border:2px solid #e8d5a3;border-radius:9px;padding:.5rem .8rem;font-size:.9rem;font-weight:600;" onchange="pcPolicyChange()">
                         <option value="pre2001">לפני יוני 2001</option>
                         <option value="post2001" selected>אחרי יוני 2001</option>
@@ -1591,7 +1591,7 @@
                     </div>
 
                     <div style="margin-bottom:.9rem;">
-                      <label style="display:block;font-size:.72rem;font-weight:700;color:#0d1e35;margin-bottom:.25rem;">תשואה שנתית (%)</label>
+                      <label for="pc-ins-return" style="display:block;font-size:.72rem;font-weight:700;color:#0d1e35;margin-bottom:.25rem;">תשואה שנתית (%)</label>
                       <select id="pc-ins-return" style="width:100%;background:#fff;border:2px solid #e8d5a3;border-radius:9px;padding:.5rem .8rem;font-size:.9rem;font-weight:600;" onchange="runPensionCompare()">
                         <option value="3">3%</option><option value="4">4%</option>
                         <option value="5">5%</option><option value="6" selected>6%</option>
@@ -1601,7 +1601,7 @@
 
                     <!-- דמי ניהול מצבירה ביטוח - נעלם/מופיע לפי פוליסה -->
                     <div id="pc-ins-fees-row" style="margin-bottom:.9rem;">
-                      <label style="display:flex;justify-content:space-between;align-items:center;font-size:.72rem;font-weight:700;color:#0d1e35;margin-bottom:.25rem;">
+                      <label for="pc-ins-fee" style="display:flex;justify-content:space-between;align-items:center;font-size:.72rem;font-weight:700;color:#0d1e35;margin-bottom:.25rem;">
                         <span>דמי ניהול מצבירה (%/שנה)</span>
                         <span id="pc-ins-fee-badge" style="background:#0d1e35;color:#c9a84c;font-size:.82rem;font-weight:900;padding:.1rem .45rem;border-radius:7px;min-width:3rem;text-align:center;">1.25%</span>
                       </label>
@@ -1624,7 +1624,7 @@
 
                     <!-- דמי ניהול מהפקדות ביטוח -->
                     <div id="pc-deposit-fees-row" style="margin-bottom:.9rem;">
-                      <label style="display:flex;justify-content:space-between;align-items:center;font-size:.72rem;font-weight:700;color:#0d1e35;margin-bottom:.25rem;">
+                      <label for="pc-ins-deposit-fee" style="display:flex;justify-content:space-between;align-items:center;font-size:.72rem;font-weight:700;color:#0d1e35;margin-bottom:.25rem;">
                         <span>דמי ניהול מהפקדות (%)</span>
                         <span id="pc-ins-deposit-fee-badge" style="background:#0d1e35;color:#c9a84c;font-size:.82rem;font-weight:900;padding:.1rem .45rem;border-radius:7px;min-width:3rem;text-align:center;">3.00%</span>
                       </label>
@@ -1635,7 +1635,7 @@
                     </div>
 
                     <div style="margin-bottom:.9rem;">
-                      <label style="display:flex;justify-content:space-between;align-items:center;font-size:.72rem;font-weight:700;color:#0d1e35;margin-bottom:.25rem;">
+                      <label for="pc-disability-fee" style="display:flex;justify-content:space-between;align-items:center;font-size:.72rem;font-weight:700;color:#0d1e35;margin-bottom:.25rem;">
                         <span>עלות כיסוי אכ"ע (%/שנה מצבירה)</span>
                         <span id="pc-dis-fee-badge" style="background:#0d1e35;color:#c9a84c;font-size:.82rem;font-weight:900;padding:.1rem .45rem;border-radius:7px;min-width:3rem;text-align:center;">1.00%</span>
                       </label>
@@ -1650,7 +1650,7 @@
                     </div>
 
                     <div>
-                      <label style="display:block;font-size:.72rem;font-weight:700;color:#0d1e35;margin-bottom:.25rem;">חודשים מובטחים</label>
+                      <label for="pc-track" style="display:block;font-size:.72rem;font-weight:700;color:#0d1e35;margin-bottom:.25rem;">חודשים מובטחים</label>
                       <select id="pc-track" style="width:100%;background:#fff;border:2px solid #e8d5a3;border-radius:9px;padding:.5rem .8rem;font-size:.9rem;font-weight:600;" onchange="runPensionCompare()">
                         <option value="0">ללא הבטחה</option>
                         <option value="60">60 חודשים</option>
