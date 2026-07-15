@@ -282,6 +282,7 @@
     }
     @media (max-width: 480px) {
       #panel-pension-compare .shared-row { grid-template-columns: 1fr !important; }
+      #panel-pension-compare .pc-kpi-row { grid-template-columns: 1fr !important; }
     }
 
     /* ── Retirement Simulator ── */
@@ -1687,7 +1688,7 @@
             <div id="pc-result" style="background:#f8fafc;border-top:2px solid #e0e8f0;padding:1.5rem 2rem;">
 
               <!-- KPI cards -->
-              <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;margin-bottom:1.4rem;">
+              <div class="pc-kpi-row" style="display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;margin-bottom:1.4rem;">
                 <div style="background:var(--navy);border-radius:12px;padding:1rem;text-align:center;">
                   <div style="font-size:.7rem;color:rgba(255,255,255,.6);margin-bottom:.3rem;">קצבת נטו - ביטוח מנהלים</div>
                   <div id="pc-kpi-ins" style="font-size:1.4rem;font-weight:900;color:var(--gold);"></div>
