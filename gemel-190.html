@@ -510,6 +510,7 @@
     document.getElementById('a11y-spacing').addEventListener('click',function(){ts=!ts;localStorage.setItem('a11y-ts',ts?'1':'0');apply();});
     document.getElementById('a11y-reset').addEventListener('click',function(){fs=16;hc=false;na=false;hl=false;ts=false;['a11y-fs','a11y-hc','a11y-na','a11y-hl','a11y-ts'].forEach(k=>localStorage.removeItem(k));apply();});
     document.addEventListener('click',function(e){if(!document.getElementById('a11y-widget').contains(e.target)){p.classList.remove('open');t.setAttribute('aria-expanded','false');p.setAttribute('aria-hidden','true');}});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape'&&p.classList.contains('open')){p.classList.remove('open');t.setAttribute('aria-expanded','false');p.setAttribute('aria-hidden','true');t.focus();}});
   })();
   </script>
   <script>
