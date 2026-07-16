@@ -1625,7 +1625,7 @@
           if (!lastTs) lastTs = ts;
           var dt = Math.min((ts - lastTs) / 1000, 0.1);
           lastTs = ts;
-          if (!dragging && !touchDragging) {
+          if (!dragging && !touchDragging && !document.body.classList.contains('no-animations') && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
             var factor = touching ? 0.4 : (hovering ? 0.5 : 1);
             pos -= pxPerSec() * factor * dt;
             pos = wrapPos(pos);
@@ -1792,7 +1792,7 @@
         if (!lastTs) lastTs = ts;
         var dt = Math.min((ts - lastTs) / 1000, 0.1);
         lastTs = ts;
-        if (!dragging && !touchDragging) {
+        if (!dragging && !touchDragging && !document.body.classList.contains('no-animations') && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
           var factor = touching ? 0.4 : (hovering ? 0.5 : 1);
           pos -= pxPerSec() * factor * dt;
           pos = wrapPos(pos);

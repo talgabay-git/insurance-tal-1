@@ -850,7 +850,7 @@
           if (!lastTs) lastTs = ts;
           var dt = Math.min((ts - lastTs) / 1000, 0.1);
           lastTs = ts;
-          if (!dragging && !touchDragging) {
+          if (!dragging && !touchDragging && !document.body.classList.contains('no-animations') && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
             var factor = (hovering || touching) ? 0.5 : 1;
             pos -= pxPerSec() * dt * factor;
             pos = wrapPos(pos);
