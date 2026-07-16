@@ -266,7 +266,7 @@
   <script>
     const hamburger=document.getElementById('hamburger'),mobileMenu=document.getElementById('mobile-menu');
     hamburger.addEventListener('click',()=>{const open=mobileMenu.classList.toggle('open');hamburger.setAttribute('aria-expanded',open);mobileMenu.setAttribute('aria-hidden',!open);});
-    const dateInput=document.getElementById('meet-date');if(dateInput)dateInput.min=new Date().toISOString().split('T')[0];
+    const dateInput=document.getElementById('meet-date');if(dateInput)dateInput.min=new Date(Date.now()-new Date().getTimezoneOffset()*60000).toISOString().split('T')[0];
     document.getElementById('meeting-modal').addEventListener('click',function(e){if(e.target===this)this.classList.remove('open');});
     var _ctaBtn=document.querySelector('.checkup-cta .btn-gold,.page-cta .btn-gold');if(_ctaBtn)_ctaBtn.addEventListener('mouseenter',function(){document.getElementById('meeting-modal').classList.add('open');});
     document.getElementById('meeting-form').addEventListener('submit',async function(e){
