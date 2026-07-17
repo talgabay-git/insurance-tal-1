@@ -1824,6 +1824,18 @@
       localStorage.setItem('activeCalcTab', id);
     }
 
+    /* ניווט מקלדת בין לשוניות המחשבון בחיצי שמאל/ימין (תבנית ARIA tablist) */
+    document.querySelector('.calc-tab-list').addEventListener('keydown', function(e) {
+      if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+      var tabs = Array.from(document.querySelectorAll('.calc-tab-btn'));
+      var idx = tabs.indexOf(document.activeElement);
+      if (idx === -1) return;
+      e.preventDefault();
+      var next = e.key === 'ArrowLeft' ? (idx + 1) % tabs.length : (idx - 1 + tabs.length) % tabs.length;
+      tabs[next].focus();
+      tabs[next].click();
+    });
+
     /* ── מנוע מס 2026 ── */
     const TAX2026 = {
       KITZBA_MEZAKA: 9430,
