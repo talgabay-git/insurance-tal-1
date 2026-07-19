@@ -1937,14 +1937,19 @@ body.keyboard-nav [tabindex]:focus {
 /* ── Tuli - עוזר וירטואלי (FAQ + לידים) ──────────────────────── */
 .tuli-widget { position: fixed; bottom: 16rem; left: 1.5rem; z-index: 9999; direction: rtl; }
 .tuli-fab {
-  width: 67px; height: 67px; border: none; background: none; cursor: pointer;
+  width: 77px; height: 77px; border: none; background: none; cursor: pointer;
   display: flex; align-items: center; justify-content: center; padding: 0;
   filter: drop-shadow(0 3px 10px rgba(0,0,0,.35)); transition: var(--transition);
 }
 .tuli-fab:hover { transform: scale(1.06); }
 .tuli-fab:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; border-radius: 50%; }
-.tuli-fab img { width: 58px; height: 58px; object-fit: contain; animation: tuliBob 2.8s ease-in-out infinite; }
-@keyframes tuliBob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+.tuli-fab img { width: 67px; height: 67px; object-fit: contain; animation: tuliBob 2.4s ease-in-out infinite; transform-origin: 50% 100%; }
+@keyframes tuliBob {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  25% { transform: translateY(-3px) rotate(-8deg); }
+  50% { transform: translateY(-5px) rotate(0deg); }
+  75% { transform: translateY(-3px) rotate(8deg); }
+}
 @media (prefers-reduced-motion: reduce) {
   .tuli-fab img { animation: none; }
 }
