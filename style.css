@@ -1943,20 +1943,14 @@ body.keyboard-nav [tabindex]:focus {
 }
 .tuli-fab:hover { transform: scale(1.06); }
 .tuli-fab:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; border-radius: 50%; }
-.tuli-fab img { width: 67px; height: 67px; object-fit: contain; animation: tuliBob 5s ease-in-out infinite; transform-origin: 50% 100%; }
-.tuli-fab .tuli-fab-rest { animation: tuliBob 5s ease-in-out infinite, tuliWaveOut 5s ease-in-out infinite; }
-.tuli-fab .tuli-fab-wave { position: absolute; inset: 0; animation: tuliBob 5s ease-in-out infinite, tuliWaveIn 5s ease-in-out infinite; }
-@keyframes tuliBob {
-  0%, 30%, 100% { transform: translateY(0) rotate(0deg); }
-  6% { transform: translateY(-3px) rotate(-12deg); }
-  12% { transform: translateY(-3px) rotate(9deg); }
-  18% { transform: translateY(-3px) rotate(-12deg); }
-  24% { transform: translateY(-2px) rotate(9deg); }
-}
-@keyframes tuliWaveOut { 0%, 4%, 26%, 100% { opacity: 1; } 10%, 20% { opacity: 0; } }
-@keyframes tuliWaveIn  { 0%, 4%, 26%, 100% { opacity: 0; } 10%, 20% { opacity: 1; } }
+.tuli-fab img { width: 67px; height: 67px; object-fit: contain; animation: tuliBob 2.6s ease-in-out infinite; }
+.tuli-fab .tuli-fab-rest { animation: tuliBob 2.6s ease-in-out infinite, tuliWaveOut 6s steps(1) infinite; }
+.tuli-fab .tuli-fab-wave { position: absolute; inset: 0; animation: tuliBob 2.6s ease-in-out infinite, tuliWaveIn 6s steps(1) infinite; }
+@keyframes tuliBob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+@keyframes tuliWaveOut { 0%, 50% { opacity: 1; } 50.01%, 75% { opacity: 0; } 75.01%, 100% { opacity: 1; } }
+@keyframes tuliWaveIn  { 0%, 50% { opacity: 0; } 50.01%, 75% { opacity: 1; } 75.01%, 100% { opacity: 0; } }
 @media (prefers-reduced-motion: reduce) {
-  .tuli-fab img { animation: none; }
+  .tuli-fab .tuli-fab-rest, .tuli-fab .tuli-fab-wave { animation: none; }
   .tuli-fab .tuli-fab-rest { opacity: 1; }
   .tuli-fab .tuli-fab-wave { opacity: 0; }
 }
