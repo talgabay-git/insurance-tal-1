@@ -75,17 +75,16 @@ function animateCount(el, target, duration = 1600) {
   const isNumeric = /^\d+$/.test(target);
   if (!isNumeric) return;
 
-  let start = 0;
-  const end   = parseInt(target, 10);
-  const step  = Math.ceil(end / (duration / 16));
-  const plusEl = el.querySelector('.stat-plus');
+  const end = parseInt(target, 10);
+  const startTime = performance.now();
 
-  const tick = () => {
-    start = Math.min(start + step, end);
-    el.childNodes[0].textContent = start.toLocaleString('he-IL');
-    if (start < end) requestAnimationFrame(tick);
+  const tick = now => {
+    const progress = Math.min((now - startTime) / duration, 1);
+    const current  = Math.round(progress * end);
+    el.childNodes[0].textContent = current.toLocaleString('he-IL');
+    if (progress < 1) requestAnimationFrame(tick);
   };
-  tick();
+  requestAnimationFrame(tick);
 }
 
 const statNumbers = document.querySelectorAll('.stat-number');
