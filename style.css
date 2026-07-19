@@ -1944,21 +1944,23 @@ body.keyboard-nav [tabindex]:focus {
 .tuli-fab:hover { transform: scale(1.06); }
 .tuli-fab:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; border-radius: 50%; }
 .tuli-fab img { width: 67px; height: 67px; object-fit: contain; animation: tuliBob 2.6s ease-in-out infinite; }
-.tuli-fab .tuli-fab-rise, .tuli-fab .tuli-fab-waveA, .tuli-fab .tuli-fab-waveB { position: absolute; inset: 0; }
-.tuli-fab .tuli-fab-rest  { animation: tuliBob 2.6s ease-in-out infinite, tuliRest 6s steps(1) infinite; }
-.tuli-fab .tuli-fab-rise  { animation: tuliBob 2.6s ease-in-out infinite, tuliRise 6s steps(1) infinite; }
-.tuli-fab .tuli-fab-waveA { animation: tuliBob 2.6s ease-in-out infinite, tuliWaveA 6s steps(1) infinite; }
-.tuli-fab .tuli-fab-waveB { animation: tuliBob 2.6s ease-in-out infinite, tuliWaveB 6s steps(1) infinite; }
+.tuli-fab .tuli-fab-w1, .tuli-fab .tuli-fab-w2, .tuli-fab .tuli-fab-w3, .tuli-fab .tuli-fab-w4 { position: absolute; inset: 0; }
+.tuli-fab .tuli-fab-rest { animation: tuliBob 2.6s ease-in-out infinite, tuliRest 7s steps(1) infinite; }
+.tuli-fab .tuli-fab-w1   { animation: tuliBob 2.6s ease-in-out infinite, tuliW1 7s steps(1) infinite; }
+.tuli-fab .tuli-fab-w2   { animation: tuliBob 2.6s ease-in-out infinite, tuliW2 7s steps(1) infinite; }
+.tuli-fab .tuli-fab-w3   { animation: tuliBob 2.6s ease-in-out infinite, tuliW3 7s steps(1) infinite; }
+.tuli-fab .tuli-fab-w4   { animation: tuliBob 2.6s ease-in-out infinite, tuliW4 7s steps(1) infinite; }
 @keyframes tuliBob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
-/* רצף ניפנוף: מנוחה -> הרמת יד -> ניפנוף -> ניפנוף -> הרמת יד -> מנוחה */
-@keyframes tuliRest  { 0%, 55% { opacity: 1; } 55.01%, 84.99% { opacity: 0; } 85%, 100% { opacity: 1; } }
-@keyframes tuliRise  { 0%, 55% { opacity: 0; } 55.01%, 60% { opacity: 1; } 60.01%, 79.99% { opacity: 0; } 80%, 85% { opacity: 1; } 85.01%, 100% { opacity: 0; } }
-@keyframes tuliWaveA { 0%, 60% { opacity: 0; } 60.01%, 65% { opacity: 1; } 65.01%, 74.99% { opacity: 0; } 75%, 80% { opacity: 1; } 80.01%, 100% { opacity: 0; } }
-@keyframes tuliWaveB { 0%, 65% { opacity: 0; } 65.01%, 75% { opacity: 1; } 75.01%, 100% { opacity: 0; } }
+/* רצף ניפנוף חלק: מנוחה -> הרמה -> ניפנוף x3 -> חזרה -> מנוחה */
+@keyframes tuliRest { 0%, 50% { opacity: 1; } 50.01%, 86.99% { opacity: 0; } 87%, 100% { opacity: 1; } }
+@keyframes tuliW1 { 0%, 50% { opacity: 0; } 50.01%, 55% { opacity: 1; } 55.01%, 81.99% { opacity: 0; } 82%, 87% { opacity: 1; } 87.01%, 100% { opacity: 0; } }
+@keyframes tuliW2 { 0%, 55% { opacity: 0; } 55.01%, 60% { opacity: 1; } 60.01%, 76.99% { opacity: 0; } 77%, 82% { opacity: 1; } 82.01%, 100% { opacity: 0; } }
+@keyframes tuliW3 { 0%, 60% { opacity: 0; } 60.01%, 65% { opacity: 1; } 65.01%, 71.99% { opacity: 0; } 72%, 77% { opacity: 1; } 77.01%, 100% { opacity: 0; } }
+@keyframes tuliW4 { 0%, 65% { opacity: 0; } 65.01%, 72% { opacity: 1; } 72.01%, 100% { opacity: 0; } }
 @media (prefers-reduced-motion: reduce) {
-  .tuli-fab .tuli-fab-rest, .tuli-fab .tuli-fab-rise, .tuli-fab .tuli-fab-waveA, .tuli-fab .tuli-fab-waveB { animation: none; }
+  .tuli-fab .tuli-fab-rest, .tuli-fab .tuli-fab-w1, .tuli-fab .tuli-fab-w2, .tuli-fab .tuli-fab-w3, .tuli-fab .tuli-fab-w4 { animation: none; }
   .tuli-fab .tuli-fab-rest { opacity: 1; }
-  .tuli-fab .tuli-fab-rise, .tuli-fab .tuli-fab-waveA, .tuli-fab .tuli-fab-waveB { opacity: 0; }
+  .tuli-fab .tuli-fab-w1, .tuli-fab .tuli-fab-w2, .tuli-fab .tuli-fab-w3, .tuli-fab .tuli-fab-w4 { opacity: 0; }
 }
 .tuli-panel {
   position: absolute; bottom: 68px; left: 0; width: 320px; max-height: 480px;
