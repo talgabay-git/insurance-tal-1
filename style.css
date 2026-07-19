@@ -1944,15 +1944,21 @@ body.keyboard-nav [tabindex]:focus {
 .tuli-fab:hover { transform: scale(1.06); }
 .tuli-fab:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; border-radius: 50%; }
 .tuli-fab img { width: 67px; height: 67px; object-fit: contain; animation: tuliBob 2.6s ease-in-out infinite; }
-.tuli-fab .tuli-fab-rest { animation: tuliBob 2.6s ease-in-out infinite, tuliWaveOut 6s steps(1) infinite; }
-.tuli-fab .tuli-fab-wave { position: absolute; inset: 0; animation: tuliBob 2.6s ease-in-out infinite, tuliWaveIn 6s steps(1) infinite; }
+.tuli-fab .tuli-fab-rise, .tuli-fab .tuli-fab-waveA, .tuli-fab .tuli-fab-waveB { position: absolute; inset: 0; }
+.tuli-fab .tuli-fab-rest  { animation: tuliBob 2.6s ease-in-out infinite, tuliRest 6s steps(1) infinite; }
+.tuli-fab .tuli-fab-rise  { animation: tuliBob 2.6s ease-in-out infinite, tuliRise 6s steps(1) infinite; }
+.tuli-fab .tuli-fab-waveA { animation: tuliBob 2.6s ease-in-out infinite, tuliWaveA 6s steps(1) infinite; }
+.tuli-fab .tuli-fab-waveB { animation: tuliBob 2.6s ease-in-out infinite, tuliWaveB 6s steps(1) infinite; }
 @keyframes tuliBob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
-@keyframes tuliWaveOut { 0%, 50% { opacity: 1; } 50.01%, 75% { opacity: 0; } 75.01%, 100% { opacity: 1; } }
-@keyframes tuliWaveIn  { 0%, 50% { opacity: 0; } 50.01%, 75% { opacity: 1; } 75.01%, 100% { opacity: 0; } }
+/* רצף ניפנוף: מנוחה -> הרמת יד -> ניפנוף -> ניפנוף -> הרמת יד -> מנוחה */
+@keyframes tuliRest  { 0%, 55% { opacity: 1; } 55.01%, 84.99% { opacity: 0; } 85%, 100% { opacity: 1; } }
+@keyframes tuliRise  { 0%, 55% { opacity: 0; } 55.01%, 60% { opacity: 1; } 60.01%, 79.99% { opacity: 0; } 80%, 85% { opacity: 1; } 85.01%, 100% { opacity: 0; } }
+@keyframes tuliWaveA { 0%, 60% { opacity: 0; } 60.01%, 65% { opacity: 1; } 65.01%, 74.99% { opacity: 0; } 75%, 80% { opacity: 1; } 80.01%, 100% { opacity: 0; } }
+@keyframes tuliWaveB { 0%, 65% { opacity: 0; } 65.01%, 75% { opacity: 1; } 75.01%, 100% { opacity: 0; } }
 @media (prefers-reduced-motion: reduce) {
-  .tuli-fab .tuli-fab-rest, .tuli-fab .tuli-fab-wave { animation: none; }
+  .tuli-fab .tuli-fab-rest, .tuli-fab .tuli-fab-rise, .tuli-fab .tuli-fab-waveA, .tuli-fab .tuli-fab-waveB { animation: none; }
   .tuli-fab .tuli-fab-rest { opacity: 1; }
-  .tuli-fab .tuli-fab-wave { opacity: 0; }
+  .tuli-fab .tuli-fab-rise, .tuli-fab .tuli-fab-waveA, .tuli-fab .tuli-fab-waveB { opacity: 0; }
 }
 .tuli-panel {
   position: absolute; bottom: 68px; left: 0; width: 320px; max-height: 480px;
