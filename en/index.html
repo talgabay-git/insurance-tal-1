@@ -1320,13 +1320,6 @@
     function openWhatsapp(){
       window.open('https://wa.me/972528000556', '_blank', 'noopener');
     }
-    function askWhatsapp(){
-      addChip('Open WhatsApp instead', function(){
-        addMsg('Open WhatsApp instead', 'user');
-        botSay('Opening our WhatsApp now...', openWhatsapp);
-      }, 'tuli-wa');
-    }
-
     function startGreeting(){
       stage = 'greet1';
       botSay('Hi!');
@@ -1364,7 +1357,6 @@
           categories.forEach(function(cat){
             addChip(cat.label, function(){ chooseCategory(cat); });
           });
-          askWhatsapp();
           stage = 'question';
         });
       });
@@ -1389,7 +1381,6 @@
             });
           }
           addChip('Back to categories', function(){ startTopicStage(); }, 'tuli-back');
-          askWhatsapp();
         }
         renderShown();
       });
@@ -1430,7 +1421,6 @@
           botSay('No problem. You can go back to the categories anytime.', function(){
             clearChips();
             addChip('Back to categories', function(){ startTopicStage(); });
-            askWhatsapp();
           });
         });
       });

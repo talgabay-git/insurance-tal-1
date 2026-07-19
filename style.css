@@ -1986,7 +1986,6 @@ body.keyboard-nav [tabindex]:focus {
 .tuli-chips { display: flex; flex-wrap: wrap; gap: .4rem; padding: 0 .85rem .7rem; }
 .tuli-chip { background: var(--off-white); border: 1px solid var(--light-gray); color: var(--text); font-size: .72rem; padding: .32rem .65rem; border-radius: 20px; cursor: pointer; text-align: right; font-family: inherit; }
 .tuli-chip:hover { border-color: var(--gold); }
-.tuli-chip.tuli-wa { background: #e9f7ef; border-color: #25d366; color: #1a7a4a; font-weight: 700; }
 .tuli-chip.tuli-back { background: none; border-color: transparent; color: var(--mid-gray); text-decoration: underline; }
 .tuli-input-row { display: flex; border-top: 1px solid var(--light-gray); padding: .5rem; }
 .tuli-input-row input { flex: 1; border: none; background: transparent; font-family: inherit; font-size: .8rem; padding: .4rem .5rem; color: var(--text); outline: none; }
