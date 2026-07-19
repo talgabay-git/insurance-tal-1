@@ -1944,17 +1944,9 @@ body.keyboard-nav [tabindex]:focus {
 .tuli-fab:hover { transform: scale(1.06); }
 .tuli-fab:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; border-radius: 50%; }
 .tuli-fab img { width: 67px; height: 67px; object-fit: contain; animation: tuliBob 2.6s ease-in-out infinite; }
-.tuli-fab .tuli-fab-hi { position: absolute; inset: 0; }
-.tuli-fab .tuli-fab-lo { animation: tuliBob 2.6s ease-in-out infinite, tuliArmLo 3s steps(1) infinite; }
-.tuli-fab .tuli-fab-hi { animation: tuliBob 2.6s ease-in-out infinite, tuliArmHi 3s steps(1) infinite; }
 @keyframes tuliBob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
-/* יד שמאל זזה מעט למעלה ולמטה - שני פריימים קרובים בלבד, בלי מעבר הדרגתי */
-@keyframes tuliArmLo { 0%, 50% { opacity: 1; } 50.01%, 100% { opacity: 0; } }
-@keyframes tuliArmHi { 0%, 50% { opacity: 0; } 50.01%, 100% { opacity: 1; } }
 @media (prefers-reduced-motion: reduce) {
-  .tuli-fab .tuli-fab-lo, .tuli-fab .tuli-fab-hi { animation: none; }
-  .tuli-fab .tuli-fab-lo { opacity: 1; }
-  .tuli-fab .tuli-fab-hi { opacity: 0; }
+  .tuli-fab img { animation: none; }
 }
 .tuli-panel {
   position: absolute; bottom: 68px; left: 0; width: 320px; max-height: 480px;
