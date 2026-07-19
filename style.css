@@ -1944,7 +1944,6 @@ body.keyboard-nav [tabindex]:focus {
 .tuli-fab:hover { transform: scale(1.06); }
 .tuli-fab:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; border-radius: 50%; }
 .tuli-fab img { width: 58px; height: 58px; object-fit: contain; animation: tuliBob 2.8s ease-in-out infinite; }
-.tuli-fab .tuli-dot { position: absolute; top: 0; right: 0; width: 12px; height: 12px; background: #e24b4a; border-radius: 50%; border: 2px solid var(--off-white); }
 @keyframes tuliBob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
 @media (prefers-reduced-motion: reduce) {
   .tuli-fab img { animation: none; }
