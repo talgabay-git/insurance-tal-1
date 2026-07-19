@@ -1935,7 +1935,7 @@ body.keyboard-nav [tabindex]:focus {
 }
 
 /* ── Tuli - עוזר וירטואלי (FAQ + לידים) ──────────────────────── */
-.tuli-widget { position: fixed; bottom: 16rem; left: 1.5rem; z-index: 9999; direction: rtl; }
+.tuli-widget { position: fixed; bottom: 16rem; left: 1.5rem; width: 56px; display: flex; justify-content: center; z-index: 9999; direction: rtl; }
 .tuli-fab {
   width: 77px; height: 77px; border: none; background: none; cursor: pointer;
   display: flex; align-items: center; justify-content: center; padding: 0;
@@ -1943,12 +1943,13 @@ body.keyboard-nav [tabindex]:focus {
 }
 .tuli-fab:hover { transform: scale(1.06); }
 .tuli-fab:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; border-radius: 50%; }
-.tuli-fab img { width: 67px; height: 67px; object-fit: contain; animation: tuliBob 2.4s ease-in-out infinite; transform-origin: 50% 100%; }
+.tuli-fab img { width: 67px; height: 67px; object-fit: contain; animation: tuliBob 5s ease-in-out infinite; transform-origin: 50% 100%; }
 @keyframes tuliBob {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  25% { transform: translateY(-3px) rotate(-8deg); }
-  50% { transform: translateY(-5px) rotate(0deg); }
-  75% { transform: translateY(-3px) rotate(8deg); }
+  0%, 30%, 100% { transform: translateY(0) rotate(0deg); }
+  6% { transform: translateY(-3px) rotate(-12deg); }
+  12% { transform: translateY(-3px) rotate(9deg); }
+  18% { transform: translateY(-3px) rotate(-12deg); }
+  24% { transform: translateY(-2px) rotate(9deg); }
 }
 @media (prefers-reduced-motion: reduce) {
   .tuli-fab img { animation: none; }
@@ -1987,7 +1988,7 @@ body.keyboard-nav [tabindex]:focus {
 .tuli-input-row button:disabled { opacity: .5; cursor: default; }
 .tuli-foot { font-size: .62rem; color: var(--mid-gray); text-align: center; padding: .3rem 0 .5rem; }
 @media (max-width: 768px) {
-  .tuli-widget { bottom: 14.5rem; left: 1rem; }
+  .tuli-widget { bottom: 14.5rem; left: 1rem; width: 48px; }
   .tuli-panel { width: min(320px, calc(100vw - 2rem)); }
 }
 
