@@ -1142,6 +1142,336 @@
   })();
   </script>
 
+  <!-- ========== TULI - VIRTUAL ASSISTANT ========== -->
+  <style>
+    .tuli-widget{direction:ltr}
+    .tuli-chip{text-align:left}
+  </style>
+  <div class="tuli-widget" id="tuli-widget">
+    <button class="tuli-fab" id="tuli-fab" aria-label="Open Tuli - the virtual assistant" aria-expanded="false">
+      <span class="tuli-dot" aria-hidden="true"></span>
+      <img src="../tuli-bot.jpg" alt="" />
+    </button>
+    <div class="tuli-panel" id="tuli-panel">
+      <div class="tuli-panel-head">
+        <div class="tuli-who">
+          <div class="tuli-avatar"><img src="../tuli-bot.jpg" alt="" /></div>
+          <div>
+            <div class="tuli-name">Tuli</div>
+            <div class="tuli-status">Tal's virtual assistant</div>
+          </div>
+        </div>
+        <button id="tuli-close" aria-label="Close chat">&times;</button>
+      </div>
+      <div class="tuli-msgs" id="tuli-msgs"></div>
+      <div class="tuli-chips" id="tuli-chips"></div>
+      <div class="tuli-input-row">
+        <input id="tuli-input" type="text" placeholder="Type a question..." aria-label="Type a question for Tuli" />
+        <button id="tuli-send">Send</button>
+      </div>
+      <div class="tuli-foot">Based on a fixed question bank &middot; Not AI</div>
+    </div>
+  </div>
+  <script>
+  (function(){
+    var GENERIC_CTA = ' This is general information only - for a personalized review it\'s best to talk to Tal.';
+    var categories = [
+      { key:'invest', label:'📈 Wealth Management & Investments', items:[
+        { q:'What is comprehensive financial planning?', kw:['planning','comprehensive','strategy'],
+          a:'Mapping your assets, income, and expenses to build a strategy for reaching your financial goals - including optimizing returns, diversifying risk, and reducing taxes.' + GENERIC_CTA },
+        { q:'How can I reduce the cost of managing my money?', kw:['reduce','cost','management fees'],
+          a:'A thorough review of your management fees against market alternatives can lower costs and improve your return potential.' + GENERIC_CTA },
+        { q:'What investment channels do you specialize in?', kw:['investment channels','specialize'],
+          a:'Investment-track provident funds, savings policies, and study funds - each channel matched to your risk level and time horizon (short/medium/long).' + GENERIC_CTA },
+        { q:'What is risk diversification in an investment portfolio?', kw:['diversification','risk','portfolio'],
+          a:'The principle of not putting all your money in one channel - splitting between stocks, bonds, real estate, and different countries, so the portfolio isn\'t badly hurt by a decline in a single channel.' },
+        { q:'What\'s the difference between a savings policy and an investment provident fund?', kw:['savings policy','provident fund','investment'],
+          a:'Investment provident fund: annual deposit ceiling (about NIS 79,000) and tax exemption at retirement. Savings policy: no deposit ceiling, and you can switch tracks without a tax event.' + GENERIC_CTA },
+        { q:'How does inflation affect savings that aren\'t invested?', kw:['inflation','checking account','deposit'],
+          a:'Money sitting in a checking account or a low-interest deposit loses purchasing power over time. Managed investment preserves the real value of your capital.' },
+        { q:'Is it worth taking a loan against a study fund or pension?', kw:['loan','study fund','mortgage against'],
+          a:'This is usually a relatively cheap way to raise credit (lower interest than banks), and the money keeps working in its original track - but it depends on the managing body\'s terms.' + GENERIC_CTA },
+        { q:'Why is a study fund (Keren Hishtalmut) worthwhile?', kw:['study fund','why'],
+          a:'Full exemption from capital gains tax after 6 years - this is the only medium-term instrument that remains fully tax-exempt.' },
+        { q:'Equity track vs. age-dependent track?', kw:['equity track','age-dependent','track'],
+          a:'Equity track: high volatility, suited for the long term. Age-dependent track: risk automatically decreases as you approach retirement.' + GENERIC_CTA },
+        { q:'Can I transfer a study fund between companies?', kw:['transfer study fund','transfer'],
+          a:'Yes, the transfer is completely free, with no cost and no tax event - seniority and the exemption are fully preserved.' },
+        { q:'What are alternative investments?', kw:['alternative','real estate','p2p'],
+          a:'Investments not traded on the stock exchange (real estate funds, P2P loans, debt funds) - low correlation to market swings, but lower liquidity.' + GENERIC_CTA },
+        { q:'What is an "eligible investor"?', kw:['eligible investor','eligibility'],
+          a:'A legal definition for someone with high liquid capital, which opens the door to exclusive investments like hedge funds that are closed to the general public.' + GENERIC_CTA },
+        { q:'An investment property or a financial portfolio in the capital market?', kw:['investment property','real estate','financial portfolio'],
+          a:'Real estate: stable, allows leverage, but requires hands-on involvement and isn\'t liquid. Financial portfolio: fully liquid and globally diversified. The right combination depends on your capital and preferences.' + GENERIC_CTA },
+        { q:'How does the tax exemption on rental income work?', kw:['rental exemption','residential apartment'],
+          a:'There\'s a monthly exemption threshold (around NIS 5,600); above the threshold there are different tax tracks to choose from.' },
+        { q:'Is there an inheritance tax in Israel?', kw:['inheritance tax','inheritance'],
+          a:'As of today there is no inheritance tax in Israel, but selling real estate received as inheritance may trigger capital gains tax, and pension/provident funds pass to beneficiaries under specific tax rules.' + GENERIC_CTA },
+        { q:'What\'s the difference between the S&P 500 and the TA-125 index?', kw:['s&p','tel aviv 125','index'],
+          a:'The S&P 500 tracks the 500 largest companies in the US; the TA-125 tracks the 125 leading companies on the Tel Aviv Stock Exchange. Combining them correctly creates geographic and currency diversification.' },
+        { q:'What is compound interest?', kw:['compound interest'],
+          a:'A situation where you earn a return on both the principal and the returns already accumulated - the earlier you start, the more dramatic the long-term effect.' },
+        { q:'I\'m a returning resident/new immigrant - what\'s the financial significance?', kw:['returning resident','new immigrant'],
+          a:'Eligibility for significant tax benefits, including exemption on income from outside Israel for a defined period - it\'s important to plan so as not to lose these benefits.' + GENERIC_CTA },
+        { q:'Should I refinance my mortgage?', kw:['refinance mortgage','refinance'],
+          a:'It depends on current interest rates versus the rates in your existing mortgage and the exit penalties - the right refinancing can save tens to hundreds of thousands of shekels.' + GENERIC_CTA },
+        { q:'What is a mortgage mix?', kw:['mortgage mix'],
+          a:'Splitting the loan across different tracks (prime, fixed, variable) - to protect against interest rate swings and balance the monthly payment.' + GENERIC_CTA },
+        { q:'What is structure insurance for a mortgage?', kw:['structure insurance'],
+          a:'Insurance that protects the property\'s value in case of catastrophic damage (fire, earthquake) - the bank requires it to protect its collateral.' + GENERIC_CTA }
+      ]},
+      { key:'retire', label:'👵 Retirement Planning & Taxation', items:[
+        { q:'When is the right time to start retirement planning?', kw:['when','start','retirement'],
+          a:'At least 3-5 years before your retirement date - some tax-saving moves require lead time, and this can significantly increase your net monthly pension.' + GENERIC_CTA },
+        { q:'How can I reduce the tax on severance pay and pension?', kw:['reduce tax','severance','pension'],
+          a:'Through smart tax planning - using exemptions, spreading tax liability, and combining Amendment 190 - to leave the maximum net money in your pocket.' + GENERIC_CTA },
+        { q:'What is Amendment 190?', kw:['amendment 190','190'],
+          a:'A tax benefit for those aged 60+ with a pension, allowing investment in the capital market through a provident fund with a reduced capital gains tax (15% instead of 25%), and withdrawal as a lump sum or exempt annuity.' + GENERIC_CTA },
+        { q:'What is "fixation of rights"?', kw:['fixation of rights','fixation'],
+          a:'A process with the Tax Authority at retirement age to choose how to use the tax exemption (on the pension or on severance pay). This is an irreversible move - it\'s important to plan it carefully and not decide alone.' + GENERIC_CTA },
+        { q:'What\'s the difference between a "recognized" pension and an "eligible" pension?', kw:['recognized pension','eligible pension'],
+          a:'Different tax classifications: eligible - funds that received a tax benefit on deposit. Recognized - exempt funds, and therefore fully exempt from income tax.' + GENERIC_CTA },
+        { q:'Can I keep working after retirement age and still receive a pension?', kw:['keep working','after retirement'],
+          a:'Yes, this is a common combination - but it may push you into a higher income tax bracket, so coordinated tax planning and integrated retirement planning are important.' + GENERIC_CTA },
+        { q:'What happens to my pension funds if I pass away?', kw:['pass away','death','survivors'],
+          a:'The funds are protected and pass to survivors/beneficiaries - a monthly pension from a pension fund, a lump sum from a provident fund. It\'s important to update beneficiaries every few years.' + GENERIC_CTA },
+        { q:'Should I withdraw severance pay or leave it for retirement?', kw:['severance pay','withdraw'],
+          a:'It\'s usually better to leave it - withdrawing severance pay can reduce your old-age pension by about 40% and harm the tax exemption on your future pension. There are exceptional cases worth checking individually.' + GENERIC_CTA },
+        { q:'What happens to my pension if my employer goes bankrupt?', kw:['bankruptcy','employer'],
+          a:'Your money is fully protected - deposited in a separate account in your name at the managing company, not part of the employer\'s assets.' + GENERIC_CTA },
+        { q:'What is the minimum pension threshold?', kw:['minimum pension','minimal annuity'],
+          a:'A legal pension threshold (about NIS 5,000) above which alone can other lump-sum funds be withdrawn tax-exempt.' + GENERIC_CTA },
+        { q:'How do divorce or a second marriage affect my pension?', kw:['divorce','marital status'],
+          a:'A significant effect on the division of the pension and rights - in divorce, a note can be registered in favor of the ex-spouse, and at retirement the survivor pension is determined for the current spouse.' + GENERIC_CTA },
+        { q:'Is it worth transferring an old executive insurance plan to a pension fund?', kw:['transfer','old executive insurance'],
+          a:'A decision that requires review - pension funds have cheaper management fees; old executive insurance plans sometimes have a guaranteed conversion rate. An incorrect transfer can harm your rights irreversibly.' + GENERIC_CTA },
+        { q:'What is the annuity conversion rate?', kw:['conversion rate','coefficient'],
+          a:'The number by which the accumulated savings is divided to determine the monthly pension - the lower the rate, the higher the pension.' }
+      ]},
+      { key:'insure', label:'🛡️ Insurance Review & Savings', items:[
+        { q:'How do I know if I have duplicate insurance policies?', kw:['duplicate insurance','duplicate'],
+          a:'A thorough review through the national insurance database identifies duplicate, redundant, or overpriced policies - clients save an average of hundreds of shekels a month.' + GENERIC_CTA },
+        { q:'What\'s the difference between private health insurance and the public health fund?', kw:['private health insurance','health fund'],
+          a:'Private insurance covers cases not in the standard drug basket (life-saving medications, transplants, complex surgeries abroad) and allows choice of doctor and timing.' + GENERIC_CTA },
+        { q:'Why is loss-of-working-capacity insurance important?', kw:['loss of capacity','disability'],
+          a:'Protects the family\'s financial stability in the event of a crisis - financial compensation that maintains your standard of living without eating into savings.' + GENERIC_CTA },
+        { q:'What is the waiver-of-premium clause?', kw:['waiver','premiums'],
+          a:'A protective clause where, if the insured loses working capacity, the insurance company pays the premiums on their behalf - so the savings or coverage keeps growing even during a crisis.' },
+        { q:'What\'s the difference between "occupational" and "professional" loss-of-capacity coverage?', kw:['occupational','professional'],
+          a:'Occupational: compensation if you can\'t work in your specific occupation. Professional: compensation only if you can\'t work in any job suited to your education - occupational coverage is recommended for people in liberal professions.' + GENERIC_CTA },
+        { q:'Does mortgage life insurance cover my children?', kw:['mortgage life insurance','children'],
+          a:'No - it\'s intended for the bank only, it closes the debt but doesn\'t leave liquid cash for the family. It\'s worth combining it with regular term life insurance.' + GENERIC_CTA },
+        { q:'Is long-term care insurance through my health fund enough?', kw:['long-term care','nursing care'],
+          a:'This is basic coverage but limited to 5 years only, and usually doesn\'t cover the full cost of actual long-term care - there\'s room to consider supplementing it.' + GENERIC_CTA },
+        { q:'What is the qualifying period in health insurance?', kw:['qualifying period'],
+          a:'The time that must pass from signing the policy until you can file a claim (usually 30 days to 3 months) - designed to prevent buying insurance only after a condition is discovered.' },
+        { q:'When do I need to update my health declaration?', kw:['health declaration'],
+          a:'When joining a new policy or expanding an existing one - full disclosure prevents claims being denied later.' + GENERIC_CTA },
+        { q:'What\'s the difference between life insurance and personal accident insurance?', kw:['life insurance','personal accident'],
+          a:'Term life: a one-time payout to the family in case of death from any cause. Personal accident: compensation for fractures, burns, or hospitalization resulting from an accident only.' + GENERIC_CTA },
+        { q:'What is underinsurance?', kw:['underinsurance','insufficient insurance'],
+          a:'Declaring a lower asset value than the real one - in the event of damage you\'ll receive only a proportionally reduced payout, even for minor damage.' + GENERIC_CTA },
+        { q:'What\'s the difference between third-party and comprehensive car insurance?', kw:['third party','comprehensive','car'],
+          a:'Third-party: covers only damage you caused to others. Comprehensive: also covers damage to your own car (accident, theft, total loss).' },
+        { q:'What insurance is a small business required to have?', kw:['business insurance','small business'],
+          a:'At least employer liability insurance (if there are employees) and third-party liability; for liberal professions, professional liability insurance as well.' + GENERIC_CTA }
+      ]},
+      { key:'human', label:'📞 Talk to a human representative', items:[] }
+    ];
+
+    var msgsEl = document.getElementById('tuli-msgs');
+    var chipsEl = document.getElementById('tuli-chips');
+    var fab = document.getElementById('tuli-fab');
+    var panel = document.getElementById('tuli-panel');
+    var closeBtn = document.getElementById('tuli-close');
+    var input = document.getElementById('tuli-input');
+    var sendBtn = document.getElementById('tuli-send');
+
+    var stage = 'greet1';
+    var currentCat = null;
+    var greetTimer = null;
+    var started = false;
+
+    function addMsg(text, who){
+      var d = document.createElement('div');
+      d.className = 'tuli-msg ' + who;
+      d.textContent = text;
+      msgsEl.appendChild(d);
+      msgsEl.scrollTop = msgsEl.scrollHeight;
+    }
+    function showTyping(cb){
+      var d = document.createElement('div');
+      d.className = 'tuli-msg bot tuli-typing';
+      d.innerHTML = '<span></span><span></span><span></span>';
+      msgsEl.appendChild(d);
+      msgsEl.scrollTop = msgsEl.scrollHeight;
+      setTimeout(function(){ d.remove(); cb(); }, 500);
+    }
+    function botSay(text, cb){ showTyping(function(){ addMsg(text, 'bot'); if (cb) cb(); }); }
+    function clearChips(){ chipsEl.innerHTML = ''; }
+    function addChip(label, onClick, cls){
+      var c = document.createElement('button');
+      c.className = 'tuli-chip' + (cls ? ' ' + cls : '');
+      c.type = 'button';
+      c.textContent = label;
+      c.addEventListener('click', onClick);
+      chipsEl.appendChild(c);
+    }
+    function openWhatsapp(){
+      window.open('https://wa.me/972528000556', '_blank', 'noopener');
+    }
+    function askWhatsapp(){
+      addChip('Open WhatsApp instead', function(){
+        addMsg('Open WhatsApp instead', 'user');
+        botSay('Opening our WhatsApp now...', openWhatsapp);
+      }, 'tuli-wa');
+    }
+
+    function startGreeting(){
+      stage = 'greet1';
+      botSay('Hi!');
+      greetTimer = setTimeout(function(){ botSay('How are you?'); }, 5000);
+    }
+    function introSelf(cb){
+      showTyping(function(){
+        var d = document.createElement('div');
+        d.className = 'tuli-msg bot';
+        var line1 = document.createElement('div');
+        line1.textContent = 'I\'m Tuli';
+        var line2 = document.createElement('div');
+        line2.textContent = 'Tal\'s bot';
+        var img = document.createElement('img');
+        img.src = '../tuli-bot.jpg';
+        img.alt = '';
+        img.style.cssText = 'width:64px;height:64px;object-fit:contain;display:block;margin-top:.4rem';
+        d.appendChild(line1);
+        d.appendChild(line2);
+        d.appendChild(img);
+        msgsEl.appendChild(d);
+        msgsEl.scrollTop = msgsEl.scrollHeight;
+        if (cb) cb();
+      });
+    }
+    function armTopicWait(){
+      stage = 'greet3';
+      greetTimer = setTimeout(function(){ startTopicStage(); }, 5000);
+    }
+    function startTopicStage(){
+      clearChips();
+      currentCat = null;
+      botSay('How can I help you?', function(){
+        botSay('Choose a category, or type your own question:', function(){
+          categories.forEach(function(cat){
+            addChip(cat.label, function(){ chooseCategory(cat); });
+          });
+          askWhatsapp();
+          stage = 'question';
+        });
+      });
+    }
+    function chooseCategory(cat){
+      addMsg(cat.label, 'user');
+      clearChips();
+      currentCat = cat;
+      if (cat.key === 'human'){ startLeadStage(); return; }
+      botSay('Here are some common questions on this topic - click one, or type your own (there are many more beyond what\'s shown):', function(){
+        var shown = cat.items.slice(0, 5);
+        var rest = cat.items.slice(5);
+        function renderShown(){
+          clearChips();
+          shown.forEach(function(item){
+            addChip(item.q, function(){ askItem(item); });
+          });
+          if (rest.length){
+            addChip('More questions on this topic (' + rest.length + ')', function(){
+              shown = shown.concat(rest.splice(0, 5));
+              renderShown();
+            });
+          }
+          addChip('Back to categories', function(){ startTopicStage(); }, 'tuli-back');
+          askWhatsapp();
+        }
+        renderShown();
+      });
+    }
+    function askItem(item){
+      addMsg(item.q, 'user');
+      clearChips();
+      botSay(item.a, function(){
+        addChip('Want Tal to address this personally?', function(){ startLeadStage(); });
+        if (currentCat){
+          addChip('Another question from this category', function(){ chooseCategory(currentCat); });
+        }
+      });
+    }
+    function matchAll(text){
+      var lower = text.toLowerCase();
+      var best = null, bestScore = 0;
+      categories.forEach(function(cat){
+        cat.items.forEach(function(item){
+          var score = 0;
+          item.kw.forEach(function(k){ if (lower.indexOf(k) !== -1) score++; });
+          if (score > bestScore){ bestScore = score; best = item; }
+        });
+      });
+      return bestScore > 0 ? best : null;
+    }
+    function handleQuestion(text){
+      var found = matchAll(text);
+      if (found) askItem(found);
+      else botSay('I couldn\'t find an exact answer for that... should I pass this on to Tal?', function(){
+        clearChips();
+        addChip('Yes, please', function(){
+          addMsg('Yes, please', 'user');
+          startLeadStage();
+        });
+        addChip('No thanks', function(){
+          addMsg('No thanks', 'user');
+          botSay('No problem. You can go back to the categories anytime.', function(){
+            clearChips();
+            addChip('Back to categories', function(){ startTopicStage(); });
+            askWhatsapp();
+          });
+        });
+      });
+    }
+    function startLeadStage(){
+      clearChips();
+      stage = 'done';
+      input.disabled = true; sendBtn.disabled = true; input.placeholder = 'Conversation ended';
+      botSay('Sure - I\'m redirecting you to Tal\'s WhatsApp now to continue directly there.', openWhatsapp);
+    }
+
+    function handleSend(){
+      var val = input.value.trim();
+      if (!val || input.disabled) return;
+      addMsg(val, 'user');
+      input.value = '';
+      if (stage === 'greet1'){
+        clearTimeout(greetTimer);
+        stage = 'greet2';
+        botSay('Great to hear from you 👋🏼');
+        greetTimer = setTimeout(function(){ introSelf(function(){ armTopicWait(); }); }, 7000);
+      } else if (stage === 'greet2'){
+        clearTimeout(greetTimer);
+        introSelf(function(){ armTopicWait(); });
+      } else if (stage === 'greet3'){
+        clearTimeout(greetTimer);
+        startTopicStage();
+      } else if (stage === 'question') handleQuestion(val);
+    }
+
+    fab.addEventListener('click', function(){
+      var open = panel.classList.toggle('open');
+      fab.setAttribute('aria-expanded', open);
+      if (open && !started){ started = true; startGreeting(); }
+      if (open) input.focus();
+    });
+    closeBtn.addEventListener('click', function(){ panel.classList.remove('open'); fab.setAttribute('aria-expanded','false'); });
+    sendBtn.addEventListener('click', handleSend);
+    input.addEventListener('keydown', function(e){ if(e.key==='Enter'){ handleSend(); } });
+  })();
+  </script>
 
   <!-- ===== COOKIE CONSENT BANNER ===== -->
   <div id="cookie-banner" role="dialog" aria-label="Cookie consent" aria-live="polite" style="display:none;position:fixed;bottom:0;right:0;left:0;z-index:99999;background:#0d1e35;color:#fff;padding:1rem 1.5rem;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.75rem;box-shadow:0 -2px 12px rgba(0,0,0,.35);font-family:'Heebo',sans-serif;font-size:.92rem;line-height:1.5;">

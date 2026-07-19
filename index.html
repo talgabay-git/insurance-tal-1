@@ -2121,6 +2121,332 @@
   })();
   </script>
 
+  <!-- ========== TULI - עוזר וירטואלי ========== -->
+  <div class="tuli-widget" id="tuli-widget">
+    <button class="tuli-fab" id="tuli-fab" aria-label="פתח את טולי - העוזר הוירטואלי" aria-expanded="false">
+      <span class="tuli-dot" aria-hidden="true"></span>
+      <img src="tuli-bot.jpg" alt="" />
+    </button>
+    <div class="tuli-panel" id="tuli-panel">
+      <div class="tuli-panel-head">
+        <div class="tuli-who">
+          <div class="tuli-avatar"><img src="tuli-bot.jpg" alt="" /></div>
+          <div>
+            <div class="tuli-name">טולי</div>
+            <div class="tuli-status">העוזר הוירטואלי של טל</div>
+          </div>
+        </div>
+        <button id="tuli-close" aria-label="סגור צ'אט">&times;</button>
+      </div>
+      <div class="tuli-msgs" id="tuli-msgs"></div>
+      <div class="tuli-chips" id="tuli-chips"></div>
+      <div class="tuli-input-row">
+        <input id="tuli-input" type="text" placeholder="הקלד שאלה..." aria-label="הקלד שאלה לטולי" />
+        <button id="tuli-send">שלח</button>
+      </div>
+      <div class="tuli-foot">מבוסס בנק שאלות קבוע · לא בינה מלאכותית</div>
+    </div>
+  </div>
+  <script>
+  (function(){
+    var GENERIC_CTA = ' זה מידע כללי בלבד - לבדיקה מותאמת אישית כדאי לדבר עם טל.';
+    var categories = [
+      { key:'invest', label:'📈 ניהול הון והשקעות', items:[
+        { q:'מה זה תכנון פיננסי מקיף?', kw:['תכנון','מקיף','אסטרטגיה'],
+          a:'מיפוי של הנכסים, ההכנסות וההוצאות שלך, לבניית אסטרטגיה להשגת היעדים הכלכליים - כולל אופטימיזציה של תשואות, פיזור סיכונים וחיסכון במס.' + GENERIC_CTA },
+        { q:'איך מוזילים עלויות בניהול הכסף שלי?', kw:['להוזיל','עלויות','דמי ניהול'],
+          a:'בדיקה מקיפה של דמי הניהול שלך מול חלופות בשוק יכולה להוזיל עלויות ולשפר את פוטנציאל הרווח.' + GENERIC_CTA },
+        { q:'באילו אפיקי השקעה אתם מתמחים?', kw:['אפיקי השקעה','מתמחים'],
+          a:'קופות גמל להשקעה, פוליסות חיסכון וקרנות השתלמות - כל אפיק מותאם לרמת הסיכון והטווח (קצר/בינוני/ארוך) שלך.' + GENERIC_CTA },
+        { q:'מה זה פיזור סיכונים בתיק ההשקעות?', kw:['פיזור','סיכונים','תיק'],
+          a:'העיקרון שלא שמים את כל הכסף באפיק אחד - חלוקה בין מניות, אג"ח, נדל"ן ומדינות שונות, כדי שתיק לא ייפגע קשות מירידה באפיק בודד.' },
+        { q:'מה ההבדל בין פוליסת חיסכון לקופת גמל להשקעה?', kw:['פוליסת חיסכון','גמל','השקעה'],
+          a:'קופת גמל להשקעה: תקרת הפקדה שנתית (כ-79,000 ש"ח) ופטור ממס בפרישה. פוליסת חיסכון: אין תקרת הפקדה, ואפשר לעבור מסלולים בלי אירוע מס.' + GENERIC_CTA },
+        { q:'איך אינפלציה משפיעה על חיסכון שלא מושקע?', kw:['אינפלציה','עו"ש','פיקדון'],
+          a:'כסף שיושב בעו"ש או פיקדון בריבית נמוכה מאבד כוח קנייה עם הזמן. השקעה מבוקרת שומרת על הערך הריאלי של ההון.' },
+        { q:'כדאי לקחת הלוואה כנגד קרן השתלמות או פנסיה?', kw:['הלוואה','קרן השתלמות','משכנתא נגד'],
+          a:'זו לרוב דרך זולה יחסית לגייס אשראי (ריבית נמוכה מהבנקים), והכסף ממשיך לעבוד במסלול המקורי - אבל תלוי בתנאי הגוף המנהל.' + GENERIC_CTA },
+        { q:'למה כדאי קרן השתלמות?', kw:['קרן השתלמות','למה'],
+          a:'פטור מלא ממס רווח הון לאחר 6 שנים - זהו המכשיר היחיד לטווח בינוני שנשאר פטור לחלוטין ממס.' },
+        { q:'מסלול מנייתי מול מסלול תלוי גיל?', kw:['מנייתי','תלוי גיל','מסלול'],
+          a:'מנייתי: תנודתיות גבוהה, מתאים לטווח ארוך. תלוי גיל: הסיכון קטן אוטומטית ככל שמתקרבים לפרישה.' + GENERIC_CTA },
+        { q:'אפשר להעביר קרן השתלמות בין חברות?', kw:['להעביר קרן השתלמות','מעבר'],
+          a:'כן, המעבר חופשי לגמרי, ללא עלות וללא אירוע מס - הוותק והפטור נשמרים במלואם.' },
+        { q:'מה זה השקעות אלטרנטיביות?', kw:['אלטרנטיביות','נדל"ן','p2p'],
+          a:'השקעות שאינן נסחרות בבורסה (קרנות נדל"ן, הלוואות P2P, קרנות חוב) - מתאם נמוך לתנודות הבורסה, אך נזילות נמוכה יותר.' + GENERIC_CTA },
+        { q:'מה זה משקיע כשיר?', kw:['משקיע כשיר','כשירות'],
+          a:'הגדרה בחוק לבעל הון נזיל גבוה, שפותחת דלת להשקעות בלעדיות כמו קרנות גידור שסגורות לציבור הרחב.' + GENERIC_CTA },
+        { q:'דירה להשקעה או תיק פיננסי בשוק ההון?', kw:['דירה להשקעה','נדל"ן','תיק פיננסי'],
+          a:'נדל"ן: יציב, מאפשר מינוף, אך דורש התעסקות ולא נזיל. תיק פיננסי: נזיל לחלוטין ופיזור עולמי. השילוב הנכון תלוי בהון ובנכונות שלך.' + GENERIC_CTA },
+        { q:'איך פועל הפטור ממס על השכרת דירה?', kw:['פטור השכרה','דירת מגורים'],
+          a:'קיים רף פטור חודשי (סביב 5,600 ש"ח); מעל הרף יש מסלולי מס שונים לבחירה.' },
+        { q:'יש מס ירושה בישראל?', kw:['מס ירושה','ירושה'],
+          a:'נכון להיום אין מס ירושה בישראל, אך במכירת נדל"ן שהתקבל בירושה עשוי לחול מס שבח, וכספי פנסיה/גמל עוברים למוטבים לפי כללי מס ייחודיים.' + GENERIC_CTA },
+        { q:'מה ההבדל בין מדד S&P 500 לת"א 125?', kw:['s&p','תל אביב 125','מדד'],
+          a:'S&P 500 עוקב אחרי 500 החברות הגדולות בארה"ב; ת"א 125 אחרי 125 החברות המובילות בבורסת תל אביב. שילוב נכון ביניהם מייצר פיזור גיאוגרפי ומטבעי.' },
+        { q:'מה זה ריבית דריבית?', kw:['ריבית דריבית'],
+          a:'מצב שבו אתה מרוויח תשואה גם על הקרן וגם על הרווחים שנצברו - ככל שמתחילים מוקדם יותר, האפקט לטווח ארוך דרמטי.' },
+        { q:'אני תושב חוזר/עולה חדש - מה המשמעות הפיננסית?', kw:['תושב חוזר','עולה חדש'],
+          a:'זכאות להטבות מס משמעותיות, כולל פטור על הכנסות מחוץ לישראל לתקופה מוגדרת - חשוב לתכנן כדי לא לאבד את ההטבות.' + GENERIC_CTA },
+        { q:'כדאי למחזר את המשכנתא שלי?', kw:['מיחזור משכנתא','למחזר'],
+          a:'תלוי בריביות הנוכחיות מול הריביות בתיק שלך ובקנסות היציאה - מיחזור נכון יכול לחסוך עשרות עד מאות אלפי שקלים.' + GENERIC_CTA },
+        { q:'מה זה תמהיל משכנתא?', kw:['תמהיל משכנתא'],
+          a:'חלוקת ההלוואה למסלולים שונים (פריים, קבועה, משתנה) - כדי להגן מפני תנודות ריבית ולאזן את ההחזר החודשי.' + GENERIC_CTA },
+        { q:'מה זה ביטוח מבנה למשכנתא?', kw:['ביטוח מבנה'],
+          a:'ביטוח שמגן על ערך הנכס במקרה של נזק קטסטרופלי (אש, רעידת אדמה) - הבנק מחייב אותו כדי להגן על הבטוחה שלו.' + GENERIC_CTA }
+      ]},
+      { key:'retire', label:'👵 תכנון פרישה ומיסוי', items:[
+        { q:'מתי הזמן הנכון להתחיל תכנון פרישה?', kw:['מתי','להתחיל','פרישה'],
+          a:'לפחות 3-5 שנים לפני מועד הפרישה - חלק ממהלכי חיסכון המס דורשים זמן היערכות, וזה יכול להגדיל משמעותית את הקצבה החודשית נטו שלך.' + GENERIC_CTA },
+        { q:'איך מקטינים את המס על פיצויים וקצבה?', kw:['להקטין מס','פיצויים','קצבה'],
+          a:'באמצעות תכנון מס חכם - ניצול פטורים, פריסת מס ושילוב תיקון 190 - כדי להשאיר מקסימום כסף נטו בכיס שלך.' + GENERIC_CTA },
+        { q:'מה זה תיקון 190?', kw:['תיקון 190','190'],
+          a:'הטבת מס לגילאי 60 ומעלה בעלי קצבה, המאפשרת להשקיע בשוק ההון דרך קופת גמל עם מס רווח הון מופחת (15% במקום 25%), ומשיכה כסכום חד-פעמי או קצבה פטורה.' + GENERIC_CTA },
+        { q:'מה זה קיבוע זכויות?', kw:['קיבוע זכויות','קיבוע'],
+          a:'תהליך מול מס הכנסה בגיל פרישה לבחירת אופן ניצול פטור המס (על הקצבה או על הפיצויים). זהו מהלך בלתי הפיך - חשוב לתכנן אותו בקפידה ולא להחליט לבד.' + GENERIC_CTA },
+        { q:'מה ההבדל בין קצבה מוכרת לקצבה מזכה?', kw:['קצבה מוכרת','קצבה מזכה'],
+          a:'הגדרות מיסוי שונות: מזכה - כספים שקיבלו הטבת מס בהפקדה. מוכרת - כספים פטורים, ולכן פטורה ממס הכנסה לחלוטין.' + GENERIC_CTA },
+        { q:'אפשר להמשיך לעבוד אחרי גיל פרישה ולקבל קצבה?', kw:['להמשיך לעבוד','אחרי פרישה'],
+          a:'כן, זה שילוב נפוץ - אבל זה עלול להקפיץ את אחוז מס ההכנסה שלך, ולכן חשוב תיאום מס ותכנון פרישה משולב.' + GENERIC_CTA },
+        { q:'מה קורה לכספי הפנסיה שלי אם אני נפטר?', kw:['נפטר','פטירה','שאירים'],
+          a:'הכספים מוגנים ועוברים לשאירים/מוטבים - קצבה חודשית בקרן פנסיה, סכום חד-פעמי בקופת גמל. חשוב לעדכן מוטבים מדי כמה שנים.' + GENERIC_CTA },
+        { q:'כדאי למשוך פיצויים או להשאיר לפנסיה?', kw:['פיצויים','למשוך'],
+          a:'לרוב עדיף להשאיר - משיכת פיצויים עלולה להקטין את פנסיית הזקנה בכ-40% ולפגוע בפטור ממס על הקצבה העתידית. יש מקרים חריגים שכדאי לבדוק נקודתית.' + GENERIC_CTA },
+        { q:'מה קורה לפנסיה שלי אם המעסיק פושט רגל?', kw:['פשיטת רגל','מעסיק'],
+          a:'הכסף שלך מוגן לחלוטין - מופקד בחשבון נפרד על שמך בחברה המנהלת, לא חלק מנכסי המעסיק.' + GENERIC_CTA },
+        { q:'מה זה פנסיית מינימום?', kw:['פנסיית מינימום','קצבה מזערית'],
+          a:'רף קצבה חוקי (כ-5,000 ש"ח) שרק מעליו ניתן למשוך כספים הוניים אחרים בפטור.' + GENERIC_CTA },
+        { q:'איך גירושין או נישואין שניים משפיעים על הפנסיה?', kw:['גירושין','מצב משפחתי'],
+          a:'השפעה משמעותית על חלוקת הקצבה והזכויות - בגירושין ניתן לרשום הערה לטובת בן הזוג לשעבר, ובפרישה קצבת השאירים נקבעת לבן/בת הזוג הנוכחיים.' + GENERIC_CTA },
+        { q:'האם כדאי לנייד ביטוח מנהלים ישן לקרן פנסיה?', kw:['לנייד','ביטוח מנהלים ישן'],
+          a:'החלטה שדורשת בדיקה - בפנסיה דמי ניהול זולים יותר; בביטוחי מנהלים ישנים יש לפעמים מקדם המרה מובטח. ניוד לא נכון עלול לפגוע בזכויות בצורה בלתי הפיכה.' + GENERIC_CTA },
+        { q:'מה זה מקדם המרה לקצבה?', kw:['מקדם המרה','מקדם'],
+          a:'המספר שבו מחלקים את הצבירה לקביעת הקצבה החודשית - ככל שהמקדם נמוך יותר, הקצבה גבוהה יותר.' }
+      ]},
+      { key:'insure', label:'🛡️ בדיקת ביטוחים והוזלה', items:[
+        { q:'איך אדע אם יש לי כפל ביטוחים?', kw:['כפל ביטוח','כפל'],
+          a:'בדיקה מקיפה דרך "הר הביטוח" מזהה פוליסות כפולות, מיותרות או יקרות מדי - לקוחות חוסכים בממוצע מאות שקלים בחודש.' + GENERIC_CTA },
+        { q:'מה ההבדל בין ביטוח בריאות פרטי לקופת חולים?', kw:['ביטוח בריאות פרטי','קופת חולים'],
+          a:'ביטוח פרטי מכסה מקרים שאינם בסל התרופות (תרופות מצילות חיים, השתלות, ניתוחים מורכבים בחו"ל) ומאפשר בחירת רופא ועיתוי.' + GENERIC_CTA },
+        { q:'למה חשוב ביטוח אובדן כושר עבודה?', kw:['אובדן כושר','נכות'],
+          a:'הגנה על היציבות הכלכלית של המשפחה במקרה משבר - פיצוי כספי ששומר על רמת החיים בלי לפגוע בחסכונות.' + GENERIC_CTA },
+        { q:'מה זה סעיף פרנטל (שחרור מתשלום פרמיות)?', kw:['פרנטל','שחרור','פרמיות'],
+          a:'סעיף הגנה שבו אם המבוטח מאבד כושר עבודה, חברת הביטוח משלמת את הפרמיות במקומו - כך שהחיסכון או הכיסוי ממשיכים לגדול גם בעת משבר.' },
+        { q:'מה ההבדל בין אובדן כושר עיסוקי למקצועי?', kw:['עיסוקי','מקצועי'],
+          a:'עיסוקי: פיצוי אם לא ניתן לעבוד במקצוע הספציפי שלך. מקצועי: פיצוי רק אם לא ניתן לעבוד בכל עבודה המתאימה להשכלתך - לבעלי מקצועות חופשיים מומלץ עיסוקי.' + GENERIC_CTA },
+        { q:'ביטוח חיים למשכנתא מכסה את הילדים שלי?', kw:['ביטוח חיים למשכנתא','ילדים'],
+          a:'לא - זה מיועד לבנק בלבד, סוגר את החוב אך לא משאיר כסף נזיל למשפחה. כדאי לשלב גם ביטוח חיים רגיל (ריסק).' + GENERIC_CTA },
+        { q:'ביטוח סיעודי דרך קופת חולים מספיק?', kw:['סיעודי','סיעוד'],
+          a:'זה בסיסי אך מוגבל ל-5 שנים בלבד, ולרוב לא מכסה את מלוא עלות טיפול סיעודי בפועל - יש מקום לבחון השלמה.' + GENERIC_CTA },
+        { q:'מה זה תקופת אכשרה בביטוח בריאות?', kw:['תקופת אכשרה','אכשרה'],
+          a:'הזמן שצריך לעבור מחתימת הפוליסה ועד שניתן לתבוע אותה (בדרך כלל 30 יום עד 3 חודשים) - נועד למנוע רכישת ביטוח רק לאחר גילוי מחלה.' },
+        { q:'מתי צריך לעדכן הצהרת בריאות?', kw:['הצהרת בריאות'],
+          a:'כשמצטרפים לפוליסה חדשה או מרחיבים קיימת - גילוי נאות מלא מונע דחיית תביעות בעתיד.' + GENERIC_CTA },
+        { q:'מה ההבדל בין ביטוח חיים לביטוח תאונות אישיות?', kw:['ביטוח חיים','תאונות אישיות'],
+          a:'ריסק: פיצוי חד-פעמי למשפחה במקרה פטירה מכל סיבה. תאונות אישיות: פיצוי על שברים/כוויות/אשפוז כתוצאה מתאונה בלבד.' + GENERIC_CTA },
+        { q:'מה זה תת ביטוח?', kw:['תת ביטוח','ביטוח חסר'],
+          a:'הצהרה על שווי נכסים נמוך מהערך האמיתי - במקרה נזק תקבל פיצוי יחסי מופחת בלבד, גם על נזק קטן.' + GENERIC_CTA },
+        { q:'מה ההבדל בין ביטוח צד ג\' למקיף לרכב?', kw:['צד ג','מקיף','רכב'],
+          a:'צד ג\': מכסה רק נזקים שגרמת לאחרים. מקיף: כולל גם נזקים לרכב שלך (תאונה, גניבה, טוטאל לוס).' },
+        { q:'איזה ביטוח חייב עסק קטן?', kw:['ביטוח עסק','עסק קטן'],
+          a:'לפחות ביטוח חבות מעבידים (אם יש עובדים) וצד שלישי; לבעלי מקצועות חופשיים גם ביטוח אחריות מקצועית.' + GENERIC_CTA }
+      ]},
+      { key:'human', label:'📞 דיבור עם נציג אנושי', items:[] }
+    ];
+
+    var msgsEl = document.getElementById('tuli-msgs');
+    var chipsEl = document.getElementById('tuli-chips');
+    var fab = document.getElementById('tuli-fab');
+    var panel = document.getElementById('tuli-panel');
+    var closeBtn = document.getElementById('tuli-close');
+    var input = document.getElementById('tuli-input');
+    var sendBtn = document.getElementById('tuli-send');
+
+    var stage = 'greet1';
+    var currentCat = null;
+    var greetTimer = null;
+    var started = false;
+
+    function addMsg(text, who){
+      var d = document.createElement('div');
+      d.className = 'tuli-msg ' + who;
+      d.textContent = text;
+      msgsEl.appendChild(d);
+      msgsEl.scrollTop = msgsEl.scrollHeight;
+    }
+    function showTyping(cb){
+      var d = document.createElement('div');
+      d.className = 'tuli-msg bot tuli-typing';
+      d.innerHTML = '<span></span><span></span><span></span>';
+      msgsEl.appendChild(d);
+      msgsEl.scrollTop = msgsEl.scrollHeight;
+      setTimeout(function(){ d.remove(); cb(); }, 500);
+    }
+    function botSay(text, cb){ showTyping(function(){ addMsg(text, 'bot'); if (cb) cb(); }); }
+    function clearChips(){ chipsEl.innerHTML = ''; }
+    function addChip(label, onClick, cls){
+      var c = document.createElement('button');
+      c.className = 'tuli-chip' + (cls ? ' ' + cls : '');
+      c.type = 'button';
+      c.textContent = label;
+      c.addEventListener('click', onClick);
+      chipsEl.appendChild(c);
+    }
+    function openWhatsapp(){
+      window.open('https://wa.me/972528000556', '_blank', 'noopener');
+    }
+    function askWhatsapp(){
+      addChip('פתח וואטסאפ במקום', function(){
+        addMsg('פתח וואטסאפ במקום', 'user');
+        botSay('פותח את הוואטסאפ שלנו עכשיו...', openWhatsapp);
+      }, 'tuli-wa');
+    }
+
+    function startGreeting(){
+      stage = 'greet1';
+      botSay('היי!');
+      greetTimer = setTimeout(function(){ botSay('מה נשמע?'); }, 5000);
+    }
+    function introSelf(cb){
+      showTyping(function(){
+        var d = document.createElement('div');
+        d.className = 'tuli-msg bot';
+        var line1 = document.createElement('div');
+        line1.textContent = 'אני טולי';
+        var line2 = document.createElement('div');
+        line2.textContent = 'הבוט של טל';
+        var img = document.createElement('img');
+        img.src = 'tuli-bot.jpg';
+        img.alt = '';
+        img.style.cssText = 'width:64px;height:64px;object-fit:contain;display:block;margin-top:.4rem';
+        d.appendChild(line1);
+        d.appendChild(line2);
+        d.appendChild(img);
+        msgsEl.appendChild(d);
+        msgsEl.scrollTop = msgsEl.scrollHeight;
+        if (cb) cb();
+      });
+    }
+    function armTopicWait(){
+      stage = 'greet3';
+      greetTimer = setTimeout(function(){ startTopicStage(); }, 5000);
+    }
+    function startTopicStage(){
+      clearChips();
+      currentCat = null;
+      botSay('איך אפשר לעזור לך?', function(){
+        botSay('בחר קטגוריה, או הקלד שאלה חופשית:', function(){
+          categories.forEach(function(cat){
+            addChip(cat.label, function(){ chooseCategory(cat); });
+          });
+          askWhatsapp();
+          stage = 'question';
+        });
+      });
+    }
+    function chooseCategory(cat){
+      addMsg(cat.label, 'user');
+      clearChips();
+      currentCat = cat;
+      if (cat.key === 'human'){ startLeadStage(); return; }
+      botSay('הנה כמה מהשאלות הנפוצות בנושא הזה - אפשר ללחוץ, או להקליד כל שאלה משלך (יש עוד הרבה מעבר למוצג):', function(){
+        var shown = cat.items.slice(0, 5);
+        var rest = cat.items.slice(5);
+        function renderShown(){
+          clearChips();
+          shown.forEach(function(item){
+            addChip(item.q, function(){ askItem(item); });
+          });
+          if (rest.length){
+            addChip('עוד שאלות בנושא (' + rest.length + ')', function(){
+              shown = shown.concat(rest.splice(0, 5));
+              renderShown();
+            });
+          }
+          addChip('חזרה לקטגוריות', function(){ startTopicStage(); }, 'tuli-back');
+          askWhatsapp();
+        }
+        renderShown();
+      });
+    }
+    function askItem(item){
+      addMsg(item.q, 'user');
+      clearChips();
+      botSay(item.a, function(){
+        addChip('רוצה שטל יתייחס לזה אישית?', function(){ startLeadStage(); });
+        if (currentCat){
+          addChip('עוד שאלה מהקטגוריה', function(){ chooseCategory(currentCat); });
+        }
+      });
+    }
+    function matchAll(text){
+      var lower = text.toLowerCase();
+      var best = null, bestScore = 0;
+      categories.forEach(function(cat){
+        cat.items.forEach(function(item){
+          var score = 0;
+          item.kw.forEach(function(k){ if (lower.indexOf(k) !== -1) score++; });
+          if (score > bestScore){ bestScore = score; best = item; }
+        });
+      });
+      return bestScore > 0 ? best : null;
+    }
+    function handleQuestion(text){
+      var found = matchAll(text);
+      if (found) askItem(found);
+      else botSay('לא מצאתי תשובה מדויקת לזה... שנעביר את זה לטל?', function(){
+        clearChips();
+        addChip('כן, תעביר', function(){
+          addMsg('כן, תעביר', 'user');
+          startLeadStage();
+        });
+        addChip('לא תודה', function(){
+          addMsg('לא תודה', 'user');
+          botSay('בסדר גמור. אפשר גם לחזור לקטגוריות בכל רגע.', function(){
+            clearChips();
+            addChip('חזרה לקטגוריות', function(){ startTopicStage(); });
+            askWhatsapp();
+          });
+        });
+      });
+    }
+    function startLeadStage(){
+      clearChips();
+      stage = 'done';
+      input.disabled = true; sendBtn.disabled = true; input.placeholder = 'השיחה הסתיימה';
+      botSay('בשמחה - אני מעביר אותך עכשיו לוואטסאפ של טל כדי להמשיך שם ישירות.', openWhatsapp);
+    }
+
+    function handleSend(){
+      var val = input.value.trim();
+      if (!val || input.disabled) return;
+      addMsg(val, 'user');
+      input.value = '';
+      if (stage === 'greet1'){
+        clearTimeout(greetTimer);
+        stage = 'greet2';
+        botSay('איזה כיף שפנית 👋🏼');
+        greetTimer = setTimeout(function(){ introSelf(function(){ armTopicWait(); }); }, 7000);
+      } else if (stage === 'greet2'){
+        clearTimeout(greetTimer);
+        introSelf(function(){ armTopicWait(); });
+      } else if (stage === 'greet3'){
+        clearTimeout(greetTimer);
+        startTopicStage();
+      } else if (stage === 'question') handleQuestion(val);
+    }
+
+    fab.addEventListener('click', function(){
+      var open = panel.classList.toggle('open');
+      fab.setAttribute('aria-expanded', open);
+      if (open && !started){ started = true; startGreeting(); }
+      if (open) input.focus();
+    });
+    closeBtn.addEventListener('click', function(){ panel.classList.remove('open'); fab.setAttribute('aria-expanded','false'); });
+    sendBtn.addEventListener('click', handleSend);
+    input.addEventListener('keydown', function(e){ if(e.key==='Enter'){ handleSend(); } });
+  })();
+  </script>
 
   <!-- Photo Modal -->
   <div class="photo-modal" id="photo-modal" role="dialog" aria-modal="true" aria-label="פרופיל טל גבאי">
