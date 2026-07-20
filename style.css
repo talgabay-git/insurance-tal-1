@@ -1554,6 +1554,20 @@ br.mobile-br { display: none; }
   margin-top: 0.4rem;
   text-align: center;
 }
+.tagline-pulse { display: inline-block; }
+.tagline-pulse-1 { animation: taglinePulse1 4s ease-in-out infinite; }
+.tagline-pulse-2 { animation: taglinePulse2 4s ease-in-out infinite; }
+@keyframes taglinePulse1 {
+  0%, 25%, 100% { color: var(--gold); transform: scale(1); }
+  12.5% { color: #ffffff; transform: scale(1.12); }
+}
+@keyframes taglinePulse2 {
+  0%, 50%, 100% { color: var(--gold); transform: scale(1); }
+  62.5% { color: #ffffff; transform: scale(1.12); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tagline-pulse-1, .tagline-pulse-2 { animation: none; }
+}
 
 .partners-track-wrap {
   overflow: hidden;
