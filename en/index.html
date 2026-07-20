@@ -1424,10 +1424,19 @@
         });
       });
     }
+    function notifyTal(){
+      var fd = new FormData();
+      fd.append('_subject', 'Tuli: a visitor asked to talk to Tal');
+      fd.append('Topic', currentCat ? currentCat.label : 'Free-typed question, no match');
+      fd.append('Page', location.href);
+      fd.append('Time', new Date().toLocaleString('en-US'));
+      fetch('https://formspree.io/f/maqrwedd', { method: 'POST', headers: { 'Accept': 'application/json' }, body: fd }).catch(function(){});
+    }
     function startLeadStage(){
       clearChips();
       stage = 'done';
       input.disabled = true; sendBtn.disabled = true; input.placeholder = 'Conversation ended';
+      notifyTal();
       botSay('Sure - I\'m redirecting you to Tal\'s WhatsApp now to continue directly there.', openWhatsapp);
     }
 

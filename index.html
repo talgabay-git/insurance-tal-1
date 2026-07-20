@@ -2395,10 +2395,19 @@
         });
       });
     }
+    function notifyTal(){
+      var fd = new FormData();
+      fd.append('_subject', 'טולי: מבקר ביקש לדבר עם טל');
+      fd.append('נושא', currentCat ? currentCat.label : 'שאלה חופשית ללא התאמה');
+      fd.append('עמוד', location.href);
+      fd.append('שעה', new Date().toLocaleString('he-IL'));
+      fetch('https://formspree.io/f/maqrwedd', { method: 'POST', headers: { 'Accept': 'application/json' }, body: fd }).catch(function(){});
+    }
     function startLeadStage(){
       clearChips();
       stage = 'done';
       input.disabled = true; sendBtn.disabled = true; input.placeholder = 'השיחה הסתיימה';
+      notifyTal();
       botSay('בשמחה - אני מעביר אותך עכשיו לוואטסאפ של טל כדי להמשיך שם ישירות.', openWhatsapp);
     }
 
