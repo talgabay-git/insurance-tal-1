@@ -1349,6 +1349,7 @@
       greetTimer = setTimeout(function(){ startTopicStage(); }, 5000);
     }
     function startTopicStage(){
+      stage = 'question';
       clearChips();
       currentCat = null;
       botSay('How can I help you?', function(){
@@ -1356,7 +1357,6 @@
           categories.forEach(function(cat){
             addChip(cat.label, function(){ chooseCategory(cat); });
           });
-          stage = 'question';
         });
       });
     }
@@ -1426,8 +1426,7 @@
     }
     function notifyTal(){
       var fd = new FormData();
-      fd.append('_subject', 'Tuli: a visitor asked to talk to Tal');
-      fd.append('Topic', currentCat ? currentCat.label : 'Free-typed question, no match');
+      fd.append('_subject', 'Tuli: a visitor opened a chat with the bot');
       fd.append('Page', location.href);
       fd.append('Time', new Date().toLocaleString('en-US'));
       fetch('https://formspree.io/f/maqrwedd', { method: 'POST', headers: { 'Accept': 'application/json' }, body: fd }).catch(function(){});
@@ -1436,7 +1435,6 @@
       clearChips();
       stage = 'done';
       input.disabled = true; sendBtn.disabled = true; input.placeholder = 'Conversation ended';
-      notifyTal();
       botSay('Sure - I\'m redirecting you to Tal\'s WhatsApp now to continue directly there.', openWhatsapp);
     }
 
@@ -1449,9 +1447,10 @@
         clearTimeout(greetTimer);
         stage = 'greet2';
         botSay('Great to hear from you 👋🏼');
-        greetTimer = setTimeout(function(){ introSelf(function(){ armTopicWait(); }); }, 7000);
+        greetTimer = setTimeout(function(){ stage = 'greet3'; introSelf(function(){ armTopicWait(); }); }, 7000);
       } else if (stage === 'greet2'){
         clearTimeout(greetTimer);
+        stage = 'greet3';
         introSelf(function(){ armTopicWait(); });
       } else if (stage === 'greet3'){
         clearTimeout(greetTimer);
@@ -1468,7 +1467,7 @@
       var open = panel.classList.toggle('open');
       fab.setAttribute('aria-expanded', open);
       panel.setAttribute('aria-hidden', !open);
-      if (open && !started){ started = true; startGreeting(); }
+      if (open && !started){ started = true; notifyTal(); startGreeting(); }
       if (open) input.focus();
     });
     closeBtn.addEventListener('click', closePanel);

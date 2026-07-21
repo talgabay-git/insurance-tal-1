@@ -2830,6 +2830,7 @@
       greetTimer = setTimeout(function(){ startTopicStage(); }, 5000);
     }
     function startTopicStage(){
+      stage = 'question';
       clearChips();
       currentCat = null;
       botSay('איך אפשר לעזור לך?', function(){
@@ -2837,7 +2838,6 @@
           categories.forEach(function(cat){
             addChip(cat.label, function(){ chooseCategory(cat); });
           });
-          stage = 'question';
         });
       });
     }
@@ -2928,9 +2928,10 @@
         clearTimeout(greetTimer);
         stage = 'greet2';
         botSay('איזה כיף שפנית 👋🏼');
-        greetTimer = setTimeout(function(){ introSelf(function(){ armTopicWait(); }); }, 7000);
+        greetTimer = setTimeout(function(){ stage = 'greet3'; introSelf(function(){ armTopicWait(); }); }, 7000);
       } else if (stage === 'greet2'){
         clearTimeout(greetTimer);
+        stage = 'greet3';
         introSelf(function(){ armTopicWait(); });
       } else if (stage === 'greet3'){
         clearTimeout(greetTimer);
