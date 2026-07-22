@@ -3944,7 +3944,8 @@
         { q:'מהי ההצלחה הגדולה ביותר של טל בתכנון פרישה עבור לקוחותיו?', kw:['הצלחה הגדולה ביותר'],
           a:'ההצלחה הגדולה ביותר היא לראות לקוח שהגיע מודאג ומבולבל, ויוצא לפרישה עם מפת דרכים ברורה, ביטחון כלכלי, ואחרי שחסכנו לו עשרות או מאות אלפי שקלים בתשלומי מס מיותרים.' }
       ]},
-      { key:'human', label:'📞 דיבור עם נציג אנושי', items:[] }
+      { key:'human', label:'📞 דיבור עם נציג אנושי', items:[] },
+      { key:'feedback', label:'💬 עזור לנו להשתפר', items:[] }
     ];
 
     var msgsEl = document.getElementById('tuli-msgs');
@@ -4034,6 +4035,7 @@
       clearChips();
       currentCat = cat;
       if (cat.key === 'human'){ startLeadStage(); return; }
+      if (cat.key === 'feedback'){ startFeedbackStage(); return; }
       botSay('הנה כמה מהשאלות הנפוצות בנושא הזה - אפשר ללחוץ, או להקליד כל שאלה משלך (יש עוד הרבה מעבר למוצג):', function(){
         var shown = cat.items.slice(0, 5);
         var rest = cat.items.slice(5);
@@ -4107,6 +4109,84 @@
       botSay('בשמחה - אני מעביר אותך עכשיו לוואטסאפ של טל כדי להמשיך שם ישירות.', openWhatsapp);
     }
 
+    var feedbackQuestions = [
+      { key:'opinion', q:'מה דעתך על האתר?', type:'text' },
+      { key:'improve', q:'איך היית משפר אותו? מה היית מוסיף או גורע ממנו?', type:'text' },
+      { key:'rating', q:'מ-1 עד 10, איך היית מדרג את החוויה הכללית שלך באתר?', type:'scale' },
+      { key:'nps', q:'מ-1 עד 10, מה הסיכוי שתמליץ על האתר לחבר או מכר?', type:'scale' }
+    ];
+    var feedbackAnswers = {};
+    var feedbackStep = 0;
+    function startFeedbackStage(){
+      stage = 'feedback';
+      feedbackAnswers = {};
+      feedbackStep = 0;
+      clearChips();
+      botSay('איזה כיף שאתה פה! אני רוצה לעזור לטל לשפר את האתר, וממש אשמח לשמוע ממך - המשוב אנונימי לגמרי, לא נשאל שם או פרטים.', askFeedbackQuestion);
+    }
+    function askFeedbackQuestion(){
+      if (feedbackStep >= feedbackQuestions.length){ finishFeedback(); return; }
+      var q = feedbackQuestions[feedbackStep];
+      clearChips();
+      botSay(q.q, function(){
+        if (q.type === 'scale'){
+          for (var i = 1; i <= 10; i++){
+            (function(n){
+              addChip(String(n), function(){
+                addMsg(String(n), 'user');
+                feedbackAnswers[q.key] = n;
+                feedbackStep++;
+                askFeedbackQuestion();
+              });
+            })(i);
+          }
+        }
+        addChip('לדלג', function(){
+          addMsg('לדלג', 'user');
+          feedbackStep++;
+          askFeedbackQuestion();
+        }, 'tuli-back');
+      });
+    }
+    function submitFeedbackAnswer(val){
+      var q = feedbackQuestions[feedbackStep];
+      feedbackAnswers[q.key] = val;
+      feedbackStep++;
+      askFeedbackQuestion();
+    }
+    function submitFeedback(){
+      var fd = new FormData();
+      fd.append('_subject', 'טולי: משוב אנונימי על האתר');
+      fd.append('דעה כללית', feedbackAnswers.opinion || '(דילג)');
+      fd.append('הצעות שיפור', feedbackAnswers.improve || '(דילג)');
+      fd.append('דירוג חוויה (1-10)', feedbackAnswers.rating != null ? feedbackAnswers.rating : '(דילג)');
+      fd.append('סיכוי המלצה (1-10)', feedbackAnswers.nps != null ? feedbackAnswers.nps : '(דילג)');
+      fd.append('עמוד', location.href);
+      fd.append('שעה', new Date().toLocaleString('he-IL'));
+      fetch('https://formspree.io/f/maqrwedd', { method: 'POST', headers: { 'Accept': 'application/json' }, body: fd }).catch(function(){});
+    }
+    function finishFeedback(){
+      clearChips();
+      submitFeedback();
+      var nps = feedbackAnswers.nps;
+      botSay('תודה רבה על המשוב! זה ממש עוזר לטל לשפר את האתר.', function(){
+        if (typeof nps === 'number' && nps >= 8){
+          offerShare();
+        } else {
+          addChip('חזרה לקטגוריות', function(){ startTopicStage(); });
+        }
+      });
+    }
+    function offerShare(){
+      var shareText = encodeURIComponent('מצאתי אתר ממש טוב לתכנון פנסיוני, ביטוחים והשקעות - טל גבאי. שווה להעיף מבט: https://procapital.co.il');
+      botSay('שמח לשמוע! מכיר מישהו שמתכנן פרישה או מחפש ייעוץ ביטוחי? הנה הודעה מוכנה לשליחה בלחיצה אחת:', function(){
+        addChip('📤 שתף בוואטסאפ', function(){
+          window.open('https://wa.me/?text=' + shareText, '_blank', 'noopener');
+        });
+        addChip('חזרה לקטגוריות', function(){ startTopicStage(); }, 'tuli-back');
+      });
+    }
+
     function handleSend(){
       var val = input.value.trim();
       if (!val || input.disabled) return;
@@ -4125,6 +4205,7 @@
         clearTimeout(greetTimer);
         startTopicStage();
       } else if (stage === 'question') handleQuestion(val);
+      else if (stage === 'feedback') submitFeedbackAnswer(val);
     }
 
     function closePanel(){
