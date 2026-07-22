@@ -1569,20 +1569,16 @@ br.mobile-br { display: none; }
   .tagline-pulse-1, .tagline-pulse-2 { animation: none; }
 }
 
-.holistic-words { position: relative; display: inline-block; }
-.holistic-word { position: relative; display: inline-block; }
-.holistic-bar {
-  position: absolute;
-  bottom: -6px;
-  left: 0;
-  width: 0;
-  height: 3px;
-  border-radius: 2px;
-  background: var(--gold);
-  pointer-events: none;
+.holistic-word { display: inline-block; color: var(--gold); }
+.holistic-word-1 { animation: holisticColorPulse 4.5s ease-in-out infinite; animation-delay: 0s; }
+.holistic-word-2 { animation: holisticColorPulse 4.5s ease-in-out infinite; animation-delay: 1.5s; }
+.holistic-word-3 { animation: holisticColorPulse 4.5s ease-in-out infinite; animation-delay: 3s; }
+@keyframes holisticColorPulse {
+  0%, 22%, 100% { color: var(--gold); transform: scale(1); }
+  11% { color: #ffffff; transform: scale(1.12); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .holistic-bar { display: none; }
+  .holistic-word-1, .holistic-word-2, .holistic-word-3 { animation: none; }
 }
 
 .partners-track-wrap {
