@@ -316,7 +316,7 @@
   <section class="partners" id="partners" aria-label="חברות שאנו עובדים איתן">
     <div class="container">
       <div class="section-header fade-in-up">
-        <h2 class="section-title">ניהול <span class="holistic-words"><span class="holistic-word">אקטיבי</span>-<span class="holistic-word">אובייקטיבי</span>-<span class="holistic-word">הוליסטי</span><span class="holistic-highlight" aria-hidden="true"></span></span> בחברות המובילות</h2>
+        <h2 class="section-title">ניהול <span class="holistic-words">אקטיבי-אובייקטיבי-הוליסטי</span> בחברות המובילות</h2>
         <p class="partners-tagline"><strong>ליצירת השילוב המנצח</strong></p>
       </div>
       <!-- שורה עליונה: ימין לשמאל -->
@@ -2047,43 +2047,6 @@
 
   <!-- Main Script -->
   <script src="script.js"></script>
-
-  <!-- ========== HOLISTIC HEADING SLIDING HIGHLIGHT ========== -->
-  <script>
-    (function(){
-      var wrap = document.querySelector('.holistic-words');
-      var mark = wrap && wrap.querySelector('.holistic-highlight');
-      if (!wrap || !mark) return;
-      var words = Array.prototype.slice.call(wrap.querySelectorAll('.holistic-word'));
-      if (!words.length) return;
-      var currentAnim = null;
-      var PAD = 5;
-      function buildKeyframes(){
-        var wrapRect = wrap.getBoundingClientRect();
-        var frames = words.map(function(w){
-          var r = w.getBoundingClientRect();
-          return { left: (r.left - wrapRect.left - PAD) + 'px', width: (r.width + PAD * 2) + 'px' };
-        });
-        frames.push(frames[0]);
-        return frames;
-      }
-      function start(){
-        if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-        if (currentAnim) currentAnim.cancel();
-        currentAnim = mark.animate(buildKeyframes(), {
-          duration: 4500,
-          iterations: Infinity,
-          easing: 'cubic-bezier(.65,0,.35,1)'
-        });
-      }
-      start();
-      if (document.fonts && document.fonts.ready) document.fonts.ready.then(start);
-      window.addEventListener('load', start);
-      [300, 900, 1800, 3500].forEach(function(ms){ setTimeout(start, ms); });
-      if (window.ResizeObserver) new ResizeObserver(start).observe(wrap);
-      window.addEventListener('resize', start);
-    })();
-  </script>
 
   <!-- ========== ACCESSIBILITY WIDGET ========== -->
   <div class="a11y-widget" id="a11y-widget">
