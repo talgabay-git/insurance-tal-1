@@ -3984,6 +3984,7 @@
       { key:'feedback', label:'💬 עזור לנו להשתפר', items:[] }
     ];
 
+    var widget = document.getElementById('tuli-widget');
     var msgsEl = document.getElementById('tuli-msgs');
     var chipsEl = document.getElementById('tuli-chips');
     var fab = document.getElementById('tuli-fab');
@@ -4272,7 +4273,10 @@
     closeBtn.addEventListener('click', closePanel);
     sendBtn.addEventListener('click', handleSend);
     input.addEventListener('keydown', function(e){ if(e.key==='Enter'){ handleSend(); } });
-    document.addEventListener('click', function(e){ if(!document.getElementById('tuli-widget').contains(e.target)) closePanel(); });
+    document.addEventListener('click', function(e){
+      var path = e.composedPath ? e.composedPath() : [e.target];
+      if (path.indexOf(widget) === -1) closePanel();
+    });
     document.addEventListener('keydown', function(e){ if(e.key==='Escape' && panel.classList.contains('open')){ closePanel(); fab.focus(); } });
   })();
   </script>
