@@ -2132,8 +2132,10 @@
         </div>
         <button id="tuli-close" aria-label="סגור צ'אט">&times;</button>
       </div>
-      <div class="tuli-msgs" id="tuli-msgs"></div>
-      <div class="tuli-chips" id="tuli-chips"></div>
+      <div class="tuli-scroll">
+        <div class="tuli-msgs" id="tuli-msgs"></div>
+        <div class="tuli-chips" id="tuli-chips"></div>
+      </div>
       <div class="tuli-input-row">
         <input id="tuli-input" type="text" placeholder="הקלד שאלה..." aria-label="הקלד שאלה לטולי" />
         <button id="tuli-send">שלח</button>
@@ -3947,6 +3949,7 @@
     ];
 
     var widget = document.getElementById('tuli-widget');
+    var scrollEl = document.querySelector('.tuli-scroll');
     var msgsEl = document.getElementById('tuli-msgs');
     var chipsEl = document.getElementById('tuli-chips');
     var fab = document.getElementById('tuli-fab');
@@ -3965,14 +3968,14 @@
       d.className = 'tuli-msg ' + who;
       d.textContent = text;
       msgsEl.appendChild(d);
-      msgsEl.scrollTop = msgsEl.scrollHeight;
+      scrollEl.scrollTop = scrollEl.scrollHeight;
     }
     function showTyping(cb){
       var d = document.createElement('div');
       d.className = 'tuli-msg bot tuli-typing';
       d.innerHTML = '<span></span><span></span><span></span>';
       msgsEl.appendChild(d);
-      msgsEl.scrollTop = msgsEl.scrollHeight;
+      scrollEl.scrollTop = scrollEl.scrollHeight;
       setTimeout(function(){ d.remove(); cb(); }, 500);
     }
     function botSay(text, cb){ showTyping(function(){ addMsg(text, 'bot'); if (cb) cb(); }); }
@@ -4009,7 +4012,7 @@
         d.appendChild(line2);
         d.appendChild(img);
         msgsEl.appendChild(d);
-        msgsEl.scrollTop = msgsEl.scrollHeight;
+        scrollEl.scrollTop = scrollEl.scrollHeight;
         if (cb) cb();
       });
     }

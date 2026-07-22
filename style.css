@@ -2000,7 +2000,8 @@ body.keyboard-nav [tabindex]:focus {
 .tuli-panel-head .tuli-status { font-size: .66rem; color: rgba(255,255,255,.6); }
 .tuli-panel-head button { background: none; border: none; color: rgba(255,255,255,.7); font-size: 1.1rem; cursor: pointer; line-height: 1; padding: .2rem; }
 .tuli-panel-head button:hover { color: #fff; }
-.tuli-msgs { flex: 1; overflow-y: auto; padding: .85rem; display: flex; flex-direction: column; gap: .6rem; font-size: .79rem; min-height: 220px; max-height: 290px; }
+.tuli-scroll { flex: 1; min-height: 0; overflow-y: auto; display: flex; flex-direction: column; }
+.tuli-msgs { padding: .85rem; display: flex; flex-direction: column; gap: .6rem; font-size: .79rem; }
 .tuli-msg { max-width: 88%; padding: .55rem .75rem; border-radius: 10px; line-height: 1.55; }
 .tuli-msg.bot { background: var(--off-white); align-self: flex-start; border-bottom-right-radius: 3px; }
 .tuli-msg.user { background: var(--navy); color: #fff; align-self: flex-end; border-bottom-left-radius: 3px; }
