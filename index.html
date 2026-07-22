@@ -4104,10 +4104,18 @@
       fetch('https://formspree.io/f/maqrwedd', { method: 'POST', headers: { 'Accept': 'application/json' }, body: fd }).catch(function(){});
     }
     function startLeadStage(){
+      var catToResume = currentCat;
       clearChips();
-      stage = 'done';
-      input.disabled = true; sendBtn.disabled = true; input.placeholder = 'השיחה הסתיימה';
-      botSay('בשמחה - אני מעביר אותך עכשיו לוואטסאפ של טל כדי להמשיך שם ישירות.', openWhatsapp);
+      botSay('בשמחה - אני מעביר אותך עכשיו לוואטסאפ של טל כדי להמשיך שם ישירות.', function(){
+        openWhatsapp();
+        if (catToResume){
+          botSay('בינתיים, הנה כל השאלות בנושא הזה - אפשר להמשיך לעיין בהן:', function(){
+            chooseCategory(catToResume);
+          });
+        } else {
+          startTopicStage();
+        }
+      });
     }
 
     var feedbackQuestions = [
