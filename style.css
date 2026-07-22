@@ -1569,16 +1569,21 @@ br.mobile-br { display: none; }
   .tagline-pulse-1, .tagline-pulse-2 { animation: none; }
 }
 
-.holistic-word { display: inline-block; color: var(--gold); }
-.holistic-word-1 { animation: holisticColorPulse 4.5s ease-in-out infinite; animation-delay: 0s; }
-.holistic-word-2 { animation: holisticColorPulse 4.5s ease-in-out infinite; animation-delay: 1.5s; }
-.holistic-word-3 { animation: holisticColorPulse 4.5s ease-in-out infinite; animation-delay: 3s; }
-@keyframes holisticColorPulse {
-  0%, 22%, 100% { color: var(--gold); transform: scale(1); }
-  11% { color: #ffffff; transform: scale(1.12); }
+.holistic-words { position: relative; display: inline-block; }
+.holistic-word { position: relative; z-index: 1; display: inline-block; }
+.holistic-highlight {
+  position: absolute;
+  top: -3px;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  border-radius: 6px;
+  background: rgba(176, 138, 47, .22);
+  z-index: 0;
+  pointer-events: none;
 }
 @media (prefers-reduced-motion: reduce) {
-  .holistic-word-1, .holistic-word-2, .holistic-word-3 { animation: none; }
+  .holistic-highlight { display: none; }
 }
 
 .partners-track-wrap {
