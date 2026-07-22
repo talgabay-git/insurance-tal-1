@@ -4178,10 +4178,23 @@
       });
     }
     function offerShare(){
-      var shareText = encodeURIComponent('מצאתי אתר ממש טוב לתכנון פנסיוני, ביטוחים והשקעות - טל גבאי. שווה להעיף מבט: https://procapital.co.il');
-      botSay('שמח לשמוע! מכיר מישהו שמתכנן פרישה או מחפש ייעוץ ביטוחי? הנה הודעה מוכנה לשליחה בלחיצה אחת:', function(){
-        addChip('📤 שתף בוואטסאפ', function(){
-          window.open('https://wa.me/?text=' + shareText, '_blank', 'noopener');
+      var shareMsg = 'מצאתי אתר ממש טוב לתכנון פנסיוני, ביטוחים והשקעות - טל גבאי. שווה להעיף מבט: https://procapital.co.il';
+      botSay('שמח לשמוע! מישהו מהחברים שלך התלבט לאחרונה לגבי פנסיה או ביטוח? הנה הודעה מוכנה לשליחה בלחיצה אחת:', function(){
+        if (navigator.share){
+          addChip('📤 שתף', function(){
+            navigator.share({ text: shareMsg, url: 'https://procapital.co.il' }).catch(function(){});
+          });
+        } else {
+          addChip('📤 שתף בוואטסאפ', function(){
+            window.open('https://wa.me/?text=' + encodeURIComponent(shareMsg), '_blank', 'noopener');
+          });
+        }
+        addChip('📋 העתק קישור', function(){
+          if (navigator.clipboard && navigator.clipboard.writeText){
+            navigator.clipboard.writeText('https://procapital.co.il').then(function(){
+              addMsg('הקישור הועתק!', 'bot');
+            }).catch(function(){});
+          }
         });
         addChip('חזרה לקטגוריות', function(){ startTopicStage(); }, 'tuli-back');
       });
