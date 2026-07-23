@@ -1987,7 +1987,7 @@ body.keyboard-nav [tabindex]:focus {
   .tuli-fab img { animation: none; }
 }
 .tuli-panel {
-  position: absolute; bottom: 68px; left: 0; width: 320px; max-height: 480px;
+  position: absolute; bottom: 68px; left: 0; width: 320px; max-height: min(600px, calc(100vh - 344px));
   background: var(--white); border: 1px solid var(--light-gray); border-radius: var(--radius-lg);
   box-shadow: var(--shadow-lg); display: none; flex-direction: column; overflow: hidden;
 }
