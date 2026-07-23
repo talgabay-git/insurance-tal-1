@@ -378,13 +378,15 @@
 
     phoenix: {
       name: 'הפניקס פנסיה',
-      note: 'נתוני הפניקס הם אינדיקטיביים בלבד. יש לאמת שיעורים מול הפניקס ישירות - עשויים להשתנות לפי הסכם.',
-      type: 'combos',
-      combos: [
-        { label: 'מסלול א׳', accum: 0.25, deposit: 2.00 },
-        { label: 'מסלול ב׳', accum: 0.20, deposit: 1.50 },
-        { label: 'מסלול ג׳', accum: 0.15, deposit: 1.00 },
-        { label: 'מסלול ד׳', accum: 0.10, deposit: 0.50 },
+      note: 'מקור: מחירון הפניקס. דמי הניהול בהפניקס נקבעים אוטומטית לפי גובה השכר החודשי בלבד (לא לפי גובה הצבירה) - אין צורך לבחור מסלול.',
+      type: 'salary-tiered-single',
+      tiers: [
+        { maxSalary: 4999,     accum: 0.35, deposit: 3.50 },
+        { maxSalary: 7499,     accum: 0.25, deposit: 2.50 },
+        { maxSalary: 9999,     accum: 0.17, deposit: 1.90 },
+        { maxSalary: 15999,    accum: 0.15, deposit: 1.50 },
+        { maxSalary: 20999,    accum: 0.12, deposit: 1.50 },
+        { maxSalary: Infinity, accum: 0.10, deposit: 1.50 },
       ]
     }
   };
@@ -416,6 +418,11 @@
     return PF_FUNDS.clal.tiers.find(t => accum <= t.maxAccum);
   }
 
+  /* ── קביעת דמי ניהול לפי טייר שכר, טייר יחיד (הפניקס) ── */
+  function getPhoenixFees(salary) {
+    return PF_FUNDS.phoenix.tiers.find(t => salary <= t.maxSalary);
+  }
+
   /* ── הכנת רשימת קומבינציות לפי קרן ── */
   function getComboList(fund, salary, accum) {
     if (fund.type === 'combos') return fund.combos;
@@ -423,6 +430,10 @@
     if (fund.type === 'accum-tiered') {
       const t = getClalFees(accum);
       return [{ label: 'טייר אוטומטי', accum: t.accum, deposit: t.deposit }];
+    }
+    if (fund.type === 'salary-tiered-single') {
+      const t = getPhoenixFees(salary);
+      return [{ label: 'טייר אוטומטי לפי שכר', accum: t.accum, deposit: t.deposit }];
     }
     return [];
   }
