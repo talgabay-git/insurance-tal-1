@@ -43,6 +43,11 @@
     .fund-tab { padding:.5rem 1.3rem; border-radius:30px; border:2px solid #d0d8e4; background:#fff; font-size:.88rem; font-weight:700; cursor:pointer; font-family:'Heebo',sans-serif; color:var(--navy); transition:all .2s; }
     .fund-tab.active { background:var(--navy); color:var(--gold); border-color:var(--navy); }
 
+    /* ── Calculate Button ── */
+    .calc-go-wrap { text-align:center; margin:-.5rem 0 1.5rem; }
+    .calc-go-btn { display:inline-block; min-width:220px; background:var(--gold); color:var(--navy); border:none; border-radius:12px; padding:.9rem 2.4rem; font-family:'Heebo',sans-serif; font-size:1.05rem; font-weight:900; cursor:pointer; box-shadow:0 4px 16px rgba(176,138,47,.35); transition:transform .15s, box-shadow .15s; }
+    .calc-go-btn:hover { transform:translateY(-2px); box-shadow:0 6px 20px rgba(176,138,47,.45); }
+
     /* ── Comparison Table ── */
     .fee-table { width:100%; border-collapse:collapse; font-size:.88rem; }
     .fee-table th { background:var(--navy); color:var(--gold); padding:.6rem .7rem; text-align:center; font-weight:700; }
@@ -211,6 +216,10 @@
               </select>
             </div>
           </div>
+        </div>
+
+        <div class="calc-go-wrap">
+          <button type="button" class="calc-go-btn" onclick="pfCalc()">חשב</button>
         </div>
 
         <!-- ── Fund Selector ── -->
