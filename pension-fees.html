@@ -405,7 +405,7 @@
     pfCalc();
   }
 
-  /* ── קביעת דמי ניהול לפי טייר שכר (מיטב) ── */
+  /* ── קביעת דמי ניהול לפי מדרגת שכר (מיטב) ── */
   function getMeitavFees(salary) {
     return PF_FUNDS.meitav.alternatives.map(alt => {
       const tier = alt.tiers.find(t => salary <= t.maxSalary);
@@ -413,12 +413,12 @@
     });
   }
 
-  /* ── קביעת דמי ניהול לפי טייר צבירה (כלל) ── */
+  /* ── קביעת דמי ניהול לפי מדרגת צבירה (כלל) ── */
   function getClalFees(accum) {
     return PF_FUNDS.clal.tiers.find(t => accum <= t.maxAccum);
   }
 
-  /* ── קביעת דמי ניהול לפי טייר שכר, טייר יחיד (הפניקס) ── */
+  /* ── קביעת דמי ניהול לפי מדרגת שכר, מדרגה יחידה (הפניקס) ── */
   function getPhoenixFees(salary) {
     return PF_FUNDS.phoenix.tiers.find(t => salary <= t.maxSalary);
   }
@@ -429,11 +429,11 @@
     if (fund.type === 'salary-tiered') return getMeitavFees(salary);
     if (fund.type === 'accum-tiered') {
       const t = getClalFees(accum);
-      return [{ label: 'טייר אוטומטי', accum: t.accum, deposit: t.deposit }];
+      return [{ label: 'מדרגה אוטומטית', accum: t.accum, deposit: t.deposit }];
     }
     if (fund.type === 'salary-tiered-single') {
       const t = getPhoenixFees(salary);
-      return [{ label: 'טייר אוטומטי לפי שכר', accum: t.accum, deposit: t.deposit }];
+      return [{ label: 'מדרגה אוטומטית לפי שכר', accum: t.accum, deposit: t.deposit }];
     }
     return [];
   }
