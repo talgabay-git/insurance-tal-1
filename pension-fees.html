@@ -39,9 +39,15 @@
     .inp-wrap input:focus, .inp-wrap select:focus { border-color:var(--gold); outline:none; }
 
     /* ── Fund Tabs ── */
-    .fund-tabs { display:flex; gap:.5rem; flex-wrap:wrap; margin-bottom:1.4rem; }
-    .fund-tab { padding:.5rem 1.3rem; border-radius:30px; border:2px solid #d0d8e4; background:#fff; font-size:.88rem; font-weight:700; cursor:pointer; font-family:'Heebo',sans-serif; color:var(--navy); transition:all .2s; }
+    .fund-tabs { display:flex; gap:.4rem; flex-wrap:wrap; margin-bottom:1.4rem; }
+    .fund-tab { padding:.42rem .8rem; border-radius:30px; border:2px solid #d0d8e4; background:#fff; font-size:.76rem; font-weight:700; cursor:pointer; font-family:'Heebo',sans-serif; color:var(--navy); transition:all .2s; white-space:nowrap; }
     .fund-tab.active { background:var(--navy); color:var(--gold); border-color:var(--navy); }
+
+    /* ── Demographic Interest Badge ── */
+    .pf-demo-badge { display:inline-block; padding:.45rem 1rem; border-radius:8px; font-weight:800; font-size:.85rem; margin-bottom:1.2rem; }
+    .pf-demo-badge.positive { background:#e8f8ee; color:#1a7f4b; }
+    .pf-demo-badge.negative { background:#fdeaea; color:#c0392b; }
+    .pf-demo-badge.neutral  { background:#f0f0f0; color:#666; }
 
     /* ── Calculate Button ── */
     .calc-go-wrap { text-align:center; margin:-.5rem 0 1.5rem; }
@@ -230,10 +236,11 @@
             <button class="fund-tab" onclick="pfSelectFund('meitav')" role="tab">מיטב פנסיה</button>
             <button class="fund-tab" onclick="pfSelectFund('clal')" role="tab">כלל פנסיה</button>
             <button class="fund-tab" onclick="pfSelectFund('phoenix')" role="tab">הפניקס פנסיה</button>
-            <button class="fund-tab" onclick="pfSelectFund('migdal')" role="tab">מגדל פנסיה מקיפה</button>
-            <button class="fund-tab" onclick="pfSelectFund('menora')" role="tab">מנורה פנסיה מקיפה</button>
+            <button class="fund-tab" onclick="pfSelectFund('migdal')" role="tab">מגדל פנסיה</button>
+            <button class="fund-tab" onclick="pfSelectFund('menora')" role="tab">מנורה פנסיה</button>
           </div>
-          <div id="pf-fund-note" style="font-size:.8rem;color:#888;margin-bottom:.8rem;"></div>
+          <div id="pf-fund-note" style="font-size:.8rem;color:#888;margin-bottom:.6rem;"></div>
+          <div id="pf-demo-badge" class="pf-demo-badge"></div>
 
           <!-- ── KPI Banner ── -->
           <div class="kpi-banner" id="pf-kpi" aria-live="polite" aria-atomic="true">
@@ -541,12 +548,22 @@
     const fund   = PF_FUNDS[_currentFund];
     const combos = getComboList(fund, salary, accumStart);
 
-    const demoInterest    = fund.demographicInterest || 0;
-    const adjReturnPct    = returnPct + demoInterest;
-    const demoSign        = demoInterest > 0 ? '+' : '';
-    const demoNote        = ' השפעה ממוצעת של איזון אקטוארי (ריבית דמוגרפית, 4 השנים האחרונות): '
-      + demoSign + fmtPct(demoInterest) + ' לשנה - מגולמת בתחזית ובנקודת האיזון.';
-    document.getElementById('pf-fund-note').textContent = fund.note + demoNote;
+    const demoInterest = fund.demographicInterest || 0;
+    const adjReturnPct = returnPct + demoInterest;
+    document.getElementById('pf-fund-note').textContent = fund.note;
+
+    const demoBadge = document.getElementById('pf-demo-badge');
+    const demoLabel = 'ריבית דמוגרפית, ממוצע 4 שנים אחרונות';
+    if (demoInterest > 0) {
+      demoBadge.className = 'pf-demo-badge positive';
+      demoBadge.textContent = '📈 עודף אקטוארי (' + demoLabel + '): +' + fmtPct(demoInterest) + ' לשנה, מתווסף לתשואה';
+    } else if (demoInterest < 0) {
+      demoBadge.className = 'pf-demo-badge negative';
+      demoBadge.textContent = '📉 גירעון אקטוארי (' + demoLabel + '): ' + fmtPct(demoInterest) + ' לשנה, נגרע מהתשואה';
+    } else {
+      demoBadge.className = 'pf-demo-badge neutral';
+      demoBadge.textContent = '⚖️ ריבית דמוגרפית (' + demoLabel + '): 0.00% - ללא השפעה על התשואה';
+    }
 
     // ── Fee Comparison Table (Year 0 = now) ──
     const rows = combos.map(c => ({
