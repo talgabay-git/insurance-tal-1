@@ -2027,6 +2027,7 @@
       mor: {
         name: 'מור פנסיה',
         note: 'מקור: מחירון מור פנסיה, ינואר 2025. ניתן לבחור מסלול בהסכם מול הקרן.',
+        demographicInterest: 0.10,
         type: 'combos',
         combos: [
           { label: 'מסלול 1', accum: 0.20, deposit: 1.20 },
@@ -2039,6 +2040,7 @@
       meitav: {
         name: 'מיטב פנסיה',
         note: 'מקור: מחירון מיטב, ינואר 2025. דמי הניהול נקבעים לפי השכר החודשי. שתי חלופות לבחירה.',
+        demographicInterest: 0.14,
         type: 'salary-tiered',
         alternatives: [
           { label: 'חלופה א׳', tiers: [
@@ -2058,6 +2060,7 @@
       clal: {
         name: 'כלל פנסיה',
         note: 'מקור: מחירון כלל ביטוח ופיננסים. דמי הניהול יורדים אוטומטית ככל שהצבירה גדלה.',
+        demographicInterest: -0.06,
         type: 'accum-tiered',
         tiers: [
           { maxAccum:    49999, accum: 0.250, deposit: 2.500 },
@@ -2087,6 +2090,7 @@
       phoenix: {
         name: 'הפניקס פנסיה',
         note: 'מקור: מחירון הפניקס. דמי הניהול בהפניקס נקבעים אוטומטית לפי גובה השכר החודשי בלבד (לא לפי גובה הצבירה) - אין צורך לבחור מסלול.',
+        demographicInterest: 0.00,
         type: 'salary-tiered-single',
         tiers: [
           { maxSalary: 4999,     accum: 0.35, deposit: 3.50 },
@@ -2101,6 +2105,7 @@
       migdal: {
         name: 'מגדל פנסיה מקיפה',
         note: '⚠️ מחיר זמני - מוצג לפי מחירון כלל פנסיה, עד לקבלת המחירון המדויק של מגדל.',
+        demographicInterest: -0.02,
         type: 'accum-tiered',
         tiers: [
           { maxAccum:    49999, accum: 0.250, deposit: 2.500 },
@@ -2131,6 +2136,7 @@
       menora: {
         name: 'מנורה פנסיה מקיפה',
         note: '⚠️ מחיר זמני - מוצג לפי מחירון כלל פנסיה, עד לקבלת המחירון המדויק של מנורה.',
+        demographicInterest: -0.22,
         type: 'accum-tiered',
         tiers: [
           { maxAccum:    49999, accum: 0.250, deposit: 2.500 },
@@ -2240,7 +2246,13 @@
 
       const fund   = PF_FUNDS[_pfCurrentFund];
       const combos = pfGetCombos(fund, salary, accumStart);
-      document.getElementById('pf-fund-note').textContent = fund.note;
+
+      const demoInterest = fund.demographicInterest || 0;
+      const adjReturnPct = returnPct + demoInterest;
+      const demoSign     = demoInterest > 0 ? '+' : '';
+      const demoNote      = ' השפעה ממוצעת של איזון אקטוארי (ריבית דמוגרפית, 4 השנים האחרונות): '
+        + demoSign + fmtPct(demoInterest) + ' לשנה - מגולמת בתחזית ובנקודת האיזון.';
+      document.getElementById('pf-fund-note').textContent = fund.note + demoNote;
 
       const rows = combos.map(c => ({
         ...c,
@@ -2275,8 +2287,8 @@
         (${fmtPct(winner.accum)} מצבירה + ${fmtPct(winner.deposit)} מהפקדות) -
         <strong>${fmtILS(winner.total)}/שנה</strong> בסה"כ.${rows.length > 1 ? `<br>לעומת המסלול היקר ביותר (<strong>${loser.label}</strong>): חיסכון של <strong>${fmtILS(saving)}/שנה</strong>, ולאורך ${yearsLeft} שנות ההפקדה: <strong>${fmtILS(saving * yearsLeft)}</strong> בסה"כ.` : ''}</p>`;
 
-      pfBuildProjection(combos, accumStart, annualDep, returnPct, yearsLeft, ageNow);
-      pfBuildBreakeven(combos, annualDep, accumStart, returnPct, yearsLeft, ageNow);
+      pfBuildProjection(combos, accumStart, annualDep, adjReturnPct, yearsLeft, ageNow);
+      pfBuildBreakeven(combos, annualDep, accumStart, adjReturnPct, yearsLeft, ageNow);
     }
 
     function pfBuildProjection(combos, accumStart, annualDep, returnPct, yearsLeft, ageNow) {
