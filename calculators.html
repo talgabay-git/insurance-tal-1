@@ -1380,15 +1380,15 @@
               <div class="pf-card">
                 <h3>בחרו קרן פנסיה</h3>
                 <div class="pf-fund-tabs" role="tablist">
-                  <button class="pf-fund-tab active" onclick="pfSelectFund('mor',event)" role="tab">מור פנסיה</button>
-                  <button class="pf-fund-tab" onclick="pfSelectFund('meitav',event)" role="tab">מיטב פנסיה</button>
-                  <button class="pf-fund-tab" onclick="pfSelectFund('clal',event)" role="tab">כלל פנסיה</button>
-                  <button class="pf-fund-tab" onclick="pfSelectFund('phoenix',event)" role="tab">הפניקס פנסיה</button>
-                  <button class="pf-fund-tab" onclick="pfSelectFund('migdal',event)" role="tab">מגדל פנסיה</button>
-                  <button class="pf-fund-tab" onclick="pfSelectFund('menora',event)" role="tab">מנורה פנסיה</button>
+                  <button class="pf-fund-tab active" onclick="pfSelectFund('mor',event)" role="tab" aria-selected="true">מור פנסיה</button>
+                  <button class="pf-fund-tab" onclick="pfSelectFund('meitav',event)" role="tab" aria-selected="false">מיטב פנסיה</button>
+                  <button class="pf-fund-tab" onclick="pfSelectFund('clal',event)" role="tab" aria-selected="false">כלל פנסיה</button>
+                  <button class="pf-fund-tab" onclick="pfSelectFund('phoenix',event)" role="tab" aria-selected="false">הפניקס פנסיה</button>
+                  <button class="pf-fund-tab" onclick="pfSelectFund('migdal',event)" role="tab" aria-selected="false">מגדל פנסיה</button>
+                  <button class="pf-fund-tab" onclick="pfSelectFund('menora',event)" role="tab" aria-selected="false">מנורה פנסיה</button>
                 </div>
                 <div id="pf-fund-note" style="font-size:.8rem;color:#888;margin-bottom:.6rem;"></div>
-                <div id="pf-demo-badge" class="pf-demo-badge"></div>
+                <div id="pf-demo-badge" class="pf-demo-badge" aria-live="polite"></div>
 
                 <!-- KPI -->
                 <div class="pf-kpi-banner" id="pf-kpi">
@@ -2174,8 +2174,8 @@
 
     function pfSelectFund(key, ev) {
       _pfCurrentFund = key;
-      document.querySelectorAll('#panel-pension-fees .pf-fund-tab').forEach(b => b.classList.remove('active'));
-      if (ev && ev.currentTarget) ev.currentTarget.classList.add('active');
+      document.querySelectorAll('#panel-pension-fees .pf-fund-tab').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
+      if (ev && ev.currentTarget) { ev.currentTarget.classList.add('active'); ev.currentTarget.setAttribute('aria-selected', 'true'); }
       pfCalc();
     }
 
