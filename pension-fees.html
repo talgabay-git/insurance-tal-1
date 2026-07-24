@@ -418,33 +418,9 @@
 
     menora: {
       name: 'מנורה פנסיה מקיפה',
-      note: '⚠️ מחיר זמני - מוצג לפי מחירון כלל פנסיה, עד לקבלת המחירון המדויק של מנורה.',
+      note: 'מקור: מחירון מנורה מבטחים פנסיה מקיפה ומשלימה, לפי הנתונים שסיפק טל. דמי הניהול תלויים גם בגובה השכר וגם בגובה הצבירה. לצבירה מעל 1,000,000 ₪ עם שכר מתחת ל-12,500 ₪ לא סופקה מדרגה ייעודית - הוחל שיעור מדרגת 400K-1M כברירת מחדל; יש לוודא מול מנורה.',
       demographicInterest: -0.22,
-      type: 'accum-tiered',
-      tiers: [
-        { maxAccum:    49999, accum: 0.250, deposit: 2.500 },
-        { maxAccum:    99999, accum: 0.200, deposit: 2.000 },
-        { maxAccum:   199999, accum: 0.150, deposit: 1.950 },
-        { maxAccum:   299999, accum: 0.100, deposit: 1.900 },
-        { maxAccum:   399999, accum: 0.092, deposit: 1.850 },
-        { maxAccum:   499999, accum: 0.088, deposit: 1.800 },
-        { maxAccum:   599999, accum: 0.084, deposit: 1.750 },
-        { maxAccum:   699999, accum: 0.080, deposit: 1.700 },
-        { maxAccum:   799999, accum: 0.076, deposit: 1.650 },
-        { maxAccum:   899999, accum: 0.072, deposit: 1.600 },
-        { maxAccum:   999999, accum: 0.068, deposit: 1.550 },
-        { maxAccum:  1099999, accum: 0.064, deposit: 1.500 },
-        { maxAccum:  1199999, accum: 0.060, deposit: 1.450 },
-        { maxAccum:  1299999, accum: 0.053, deposit: 1.384 },
-        { maxAccum:  1399999, accum: 0.051, deposit: 1.326 },
-        { maxAccum:  1499999, accum: 0.049, deposit: 1.275 },
-        { maxAccum:  1599999, accum: 0.047, deposit: 1.230 },
-        { maxAccum:  1699999, accum: 0.046, deposit: 1.189 },
-        { maxAccum:  1799999, accum: 0.044, deposit: 1.152 },
-        { maxAccum:  1899999, accum: 0.043, deposit: 1.118 },
-        { maxAccum:  1999999, accum: 0.042, deposit: 1.087 },
-        { maxAccum: Infinity, accum: 0.041, deposit: 1.058 },
-      ]
+      type: 'salary-accum-tiered',
     },
 
     harel: {
@@ -512,6 +488,24 @@
     return PF_FUNDS.phoenix.tiers.find(t => salary <= t.maxSalary);
   }
 
+  /* ── קביעת דמי ניהול לפי מדרגת שכר + צבירה יחד (מנורה) ── */
+  function getMenoraFees(salary, accum) {
+    if (accum < 100000)  return salary >= 25000 ? { accum: 0.10, deposit: 1.20 } : { accum: 0.10, deposit: 1.70 };
+    if (accum < 400000)  return { accum: 0.10, deposit: 1.50 };
+    if (accum < 1000000) return { accum: 0.08, deposit: 1.30 };
+    if (salary >= 25000) {
+      if (accum < 2000000) return { accum: 0.06, deposit: 1.80 };
+      if (accum < 3000000) return { accum: 0.05, deposit: 1.80 };
+      return { accum: 0.05, deposit: 1.50 };
+    }
+    if (salary >= 12500) {
+      if (accum < 1500000) return { accum: 0.07, deposit: 1.80 };
+      if (accum < 2000000) return { accum: 0.07, deposit: 1.60 };
+      return { accum: 0.06, deposit: 1.60 };
+    }
+    return { accum: 0.08, deposit: 1.30 };
+  }
+
   /* ── הכנת רשימת קומבינציות לפי קרן ── */
   function getComboList(fund, salary, accum) {
     if (fund.type === 'combos') return fund.combos;
@@ -523,6 +517,10 @@
     if (fund.type === 'salary-tiered-single') {
       const t = getPhoenixFees(salary);
       return [{ label: 'מדרגה אוטומטית לפי שכר', accum: t.accum, deposit: t.deposit }];
+    }
+    if (fund.type === 'salary-accum-tiered') {
+      const t = getMenoraFees(salary, accum);
+      return [{ label: 'מדרגה אוטומטית לפי שכר וצבירה', accum: t.accum, deposit: t.deposit }];
     }
     return [];
   }
