@@ -1265,8 +1265,8 @@
             #panel-pension-fees .pf-inp input, #panel-pension-fees .pf-inp select { width:100%; background:#fff; border:2px solid #d0d8e4; border-radius:10px; padding:.55rem .9rem; font-size:.95rem; font-weight:600; font-family:'Heebo',sans-serif; box-sizing:border-box; }
             #panel-pension-fees .pf-inp input:focus, #panel-pension-fees .pf-inp select:focus { border-color:#c9a84c; outline:none; }
             #panel-pension-compare input:focus, #panel-pension-compare select:focus { border-color:#c9a84c; outline:none; box-shadow:0 0 0 3px rgba(201,168,76,.15); }
-            #panel-pension-fees .pf-fund-tabs { display:flex; gap:.4rem; flex-wrap:wrap; justify-content:space-between; margin-bottom:1.4rem; }
-            #panel-pension-fees .pf-fund-tab { flex:1; padding:.55rem .4rem; border-radius:30px; border:2px solid #d0d8e4; background:#fff; font-size:.8rem; font-weight:700; cursor:pointer; font-family:'Heebo',sans-serif; color:#0d1e35; transition:all .2s; white-space:nowrap; text-align:center; }
+            #panel-pension-fees .pf-fund-tabs { display:flex; gap:.3rem; flex-wrap:wrap; justify-content:space-between; margin-bottom:1.4rem; }
+            #panel-pension-fees .pf-fund-tab { flex:1; padding:.42rem .18rem; border-radius:30px; border:2px solid #d0d8e4; background:#fff; font-size:.65rem; font-weight:700; cursor:pointer; font-family:'Heebo',sans-serif; color:#0d1e35; transition:all .2s; white-space:nowrap; text-align:center; }
             #panel-pension-fees .pf-fund-tab.active { background:#0d1e35; color:#c9a84c; border-color:#0d1e35; }
             #panel-pension-fees .pf-demo-badge { display:inline-block; padding:.45rem 1rem; border-radius:8px; font-weight:800; font-size:.85rem; margin-bottom:1.2rem; }
             #panel-pension-fees .pf-demo-badge.positive { background:#e8f8ee; color:#1a7f4b; }
@@ -1386,6 +1386,7 @@
                   <button class="pf-fund-tab" onclick="pfSelectFund('phoenix',event)" role="tab" aria-selected="false">הפניקס פנסיה</button>
                   <button class="pf-fund-tab" onclick="pfSelectFund('migdal',event)" role="tab" aria-selected="false">מגדל פנסיה</button>
                   <button class="pf-fund-tab" onclick="pfSelectFund('menora',event)" role="tab" aria-selected="false">מנורה פנסיה</button>
+                  <button class="pf-fund-tab" onclick="pfSelectFund('harel',event)" role="tab" aria-selected="false">הראל פנסיה</button>
                 </div>
                 <div id="pf-fund-note" style="font-size:.8rem;color:#888;margin-bottom:.6rem;"></div>
                 <div id="pf-demo-badge" class="pf-demo-badge" aria-live="polite"></div>
@@ -2032,7 +2033,7 @@
       mor: {
         name: 'מור פנסיה',
         note: 'מקור: מחירון מור פנסיה, ינואר 2025. ניתן לבחור מסלול בהסכם מול הקרן.',
-        demographicInterest: 0.10,
+        demographicInterest: 0.41,
         type: 'combos',
         combos: [
           { label: 'מסלול 1', accum: 0.20, deposit: 1.20 },
@@ -2045,7 +2046,7 @@
       meitav: {
         name: 'מיטב פנסיה',
         note: 'מקור: מחירון מיטב, ינואר 2025. דמי הניהול נקבעים לפי השכר החודשי. שתי חלופות לבחירה.',
-        demographicInterest: 0.14,
+        demographicInterest: 0.97,
         type: 'salary-tiered',
         alternatives: [
           { label: 'חלופה א׳', tiers: [
@@ -2065,7 +2066,7 @@
       clal: {
         name: 'כלל פנסיה',
         note: 'מקור: מחירון כלל ביטוח ופיננסים. דמי הניהול יורדים אוטומטית ככל שהצבירה גדלה.',
-        demographicInterest: -0.06,
+        demographicInterest: -0.23,
         type: 'accum-tiered',
         tiers: [
           { maxAccum:    49999, accum: 0.250, deposit: 2.500 },
@@ -2095,7 +2096,7 @@
       phoenix: {
         name: 'הפניקס פנסיה',
         note: 'מקור: מחירון הפניקס. דמי הניהול בהפניקס נקבעים אוטומטית לפי גובה השכר החודשי בלבד (לא לפי גובה הצבירה) - אין צורך לבחור מסלול.',
-        demographicInterest: 0.00,
+        demographicInterest: 0.06,
         type: 'salary-tiered-single',
         tiers: [
           { maxSalary: 4999,     accum: 0.35, deposit: 3.50 },
@@ -2110,7 +2111,7 @@
       migdal: {
         name: 'מגדל פנסיה מקיפה',
         note: '⚠️ מחיר זמני - מוצג לפי מחירון כלל פנסיה, עד לקבלת המחירון המדויק של מגדל.',
-        demographicInterest: -0.02,
+        demographicInterest: -0.11,
         type: 'accum-tiered',
         tiers: [
           { maxAccum:    49999, accum: 0.250, deposit: 2.500 },
@@ -2142,6 +2143,37 @@
         name: 'מנורה פנסיה מקיפה',
         note: '⚠️ מחיר זמני - מוצג לפי מחירון כלל פנסיה, עד לקבלת המחירון המדויק של מנורה.',
         demographicInterest: -0.22,
+        type: 'accum-tiered',
+        tiers: [
+          { maxAccum:    49999, accum: 0.250, deposit: 2.500 },
+          { maxAccum:    99999, accum: 0.200, deposit: 2.000 },
+          { maxAccum:   199999, accum: 0.150, deposit: 1.950 },
+          { maxAccum:   299999, accum: 0.100, deposit: 1.900 },
+          { maxAccum:   399999, accum: 0.092, deposit: 1.850 },
+          { maxAccum:   499999, accum: 0.088, deposit: 1.800 },
+          { maxAccum:   599999, accum: 0.084, deposit: 1.750 },
+          { maxAccum:   699999, accum: 0.080, deposit: 1.700 },
+          { maxAccum:   799999, accum: 0.076, deposit: 1.650 },
+          { maxAccum:   899999, accum: 0.072, deposit: 1.600 },
+          { maxAccum:   999999, accum: 0.068, deposit: 1.550 },
+          { maxAccum:  1099999, accum: 0.064, deposit: 1.500 },
+          { maxAccum:  1199999, accum: 0.060, deposit: 1.450 },
+          { maxAccum:  1299999, accum: 0.053, deposit: 1.384 },
+          { maxAccum:  1399999, accum: 0.051, deposit: 1.326 },
+          { maxAccum:  1499999, accum: 0.049, deposit: 1.275 },
+          { maxAccum:  1599999, accum: 0.047, deposit: 1.230 },
+          { maxAccum:  1699999, accum: 0.046, deposit: 1.189 },
+          { maxAccum:  1799999, accum: 0.044, deposit: 1.152 },
+          { maxAccum:  1899999, accum: 0.043, deposit: 1.118 },
+          { maxAccum:  1999999, accum: 0.042, deposit: 1.087 },
+          { maxAccum: Infinity, accum: 0.041, deposit: 1.058 },
+        ]
+      },
+
+      harel: {
+        name: 'הראל פנסיה מקיפה',
+        note: '⚠️ מחיר זמני - מוצג לפי מחירון כלל פנסיה, עד לקבלת המחירון המדויק של הראל.',
+        demographicInterest: -0.35,
         type: 'accum-tiered',
         tiers: [
           { maxAccum:    49999, accum: 0.250, deposit: 2.500 },
