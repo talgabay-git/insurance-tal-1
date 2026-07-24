@@ -1265,8 +1265,8 @@
             #panel-pension-fees .pf-inp input, #panel-pension-fees .pf-inp select { width:100%; background:#fff; border:2px solid #d0d8e4; border-radius:10px; padding:.55rem .9rem; font-size:.95rem; font-weight:600; font-family:'Heebo',sans-serif; box-sizing:border-box; }
             #panel-pension-fees .pf-inp input:focus, #panel-pension-fees .pf-inp select:focus { border-color:#c9a84c; outline:none; }
             #panel-pension-compare input:focus, #panel-pension-compare select:focus { border-color:#c9a84c; outline:none; box-shadow:0 0 0 3px rgba(201,168,76,.15); }
-            #panel-pension-fees .pf-fund-tabs { display:flex; gap:.3rem; flex-wrap:wrap; margin-bottom:1.4rem; }
-            #panel-pension-fees .pf-fund-tab { padding:.38rem .6rem; border-radius:30px; border:2px solid #d0d8e4; background:#fff; font-size:.7rem; font-weight:700; cursor:pointer; font-family:'Heebo',sans-serif; color:#0d1e35; transition:all .2s; white-space:nowrap; }
+            #panel-pension-fees .pf-fund-tabs { display:flex; gap:.4rem; flex-wrap:wrap; justify-content:space-between; margin-bottom:1.4rem; }
+            #panel-pension-fees .pf-fund-tab { flex:1; padding:.55rem .4rem; border-radius:30px; border:2px solid #d0d8e4; background:#fff; font-size:.8rem; font-weight:700; cursor:pointer; font-family:'Heebo',sans-serif; color:#0d1e35; transition:all .2s; white-space:nowrap; text-align:center; }
             #panel-pension-fees .pf-fund-tab.active { background:#0d1e35; color:#c9a84c; border-color:#0d1e35; }
             #panel-pension-fees .pf-demo-badge { display:inline-block; padding:.45rem 1rem; border-radius:8px; font-weight:800; font-size:.85rem; margin-bottom:1.2rem; }
             #panel-pension-fees .pf-demo-badge.positive { background:#e8f8ee; color:#1a7f4b; }
@@ -1378,7 +1378,7 @@
 
               <!-- בחירת קרן -->
               <div class="pf-card">
-                <h3>בחרו קרן פנסיה</h3>
+                <h3>בחירת קרן הפנסיה</h3>
                 <div class="pf-fund-tabs" role="tablist">
                   <button class="pf-fund-tab active" onclick="pfSelectFund('mor',event)" role="tab" aria-selected="true">מור פנסיה</button>
                   <button class="pf-fund-tab" onclick="pfSelectFund('meitav',event)" role="tab" aria-selected="false">מיטב פנסיה</button>

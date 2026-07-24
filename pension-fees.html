@@ -39,8 +39,8 @@
     .inp-wrap input:focus, .inp-wrap select:focus { border-color:var(--gold); outline:none; }
 
     /* ── Fund Tabs ── */
-    .fund-tabs { display:flex; gap:.4rem; flex-wrap:wrap; margin-bottom:1.4rem; }
-    .fund-tab { padding:.42rem .8rem; border-radius:30px; border:2px solid #d0d8e4; background:#fff; font-size:.76rem; font-weight:700; cursor:pointer; font-family:'Heebo',sans-serif; color:var(--navy); transition:all .2s; white-space:nowrap; }
+    .fund-tabs { display:flex; gap:.5rem; flex-wrap:wrap; justify-content:space-between; margin-bottom:1.4rem; }
+    .fund-tab { flex:1; padding:.55rem .5rem; border-radius:30px; border:2px solid #d0d8e4; background:#fff; font-size:.86rem; font-weight:700; cursor:pointer; font-family:'Heebo',sans-serif; color:var(--navy); transition:all .2s; white-space:nowrap; text-align:center; }
     .fund-tab.active { background:var(--navy); color:var(--gold); border-color:var(--navy); }
 
     /* ── Demographic Interest Badge ── */
@@ -230,7 +230,7 @@
 
         <!-- ── Fund Selector ── -->
         <div class="calc-card fade-in-up">
-          <h2>בחרו קרן פנסיה</h2>
+          <h2>בחירת קרן הפנסיה</h2>
           <div class="fund-tabs" role="tablist">
             <button class="fund-tab active" onclick="pfSelectFund('mor')" role="tab" aria-selected="true">מור פנסיה</button>
             <button class="fund-tab" onclick="pfSelectFund('meitav')" role="tab" aria-selected="false">מיטב פנסיה</button>
