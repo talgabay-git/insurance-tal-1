@@ -22,6 +22,7 @@
   --navy-mid:   #162d4a;
   --gold:       #b08a2f;
   --gold-dark:  #a8882e;
+  --gold-text:  #8a6d24; /* גוון זהב מוכהה - עומד ב-WCAG AA (4.5:1+) לטקסט רגיל, בשונה מ-gold/gold-dark שמיועדים לטקסט גדול/מודגש בלבד */
   --white:      #ffffff;
   --off-white:  #f7f9fb;
   --light-gray: #eef1f5;
@@ -116,7 +117,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .section-label {
   display: inline-block;
   background: rgba(245,166,35,.15);
-  color: var(--gold-dark);
+  color: var(--gold-text);
   font-weight: 700;
   font-size: .85rem;
   letter-spacing: .06em;
@@ -394,7 +395,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   transition: color .15s, background .15s;
   white-space: nowrap;
 }
-.dropdown-item:hover { color: var(--gold); background: rgba(255,255,255,.06); }
+.dropdown-item:hover { color: var(--gold-text); background: rgba(255,255,255,.06); }
 
 /* ── Site Search ─────────────────────────────────────────── */
 .search-toggle {
@@ -500,7 +501,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   flex-shrink: 0;
   transition: color .2s;
 }
-.search-close:hover { color: var(--gold); }
+.search-close:hover { color: var(--gold-text); }
 
 .search-results {
   position: absolute;
@@ -593,11 +594,11 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .mobile-nav-link:last-child { border-bottom: none; }
 .mobile-nav-link:hover { color: var(--gold) !important; }
-.mobile-phone { color: var(--gold) !important; direction: ltr; justify-content: flex-end; }
+.mobile-phone { color: var(--gold-text) !important; direction: ltr; justify-content: flex-end; }
 /* Mobile accordion */
 .mob-acc-toggle { cursor: pointer; display: flex !important; justify-content: space-between; align-items: center; user-select: none; }
 .mob-acc-toggle .mob-acc-chev { font-size: .65rem; color: rgba(255,255,255,.45); transition: transform .25s ease; flex-shrink: 0; margin-right: auto; padding-right: .5rem; }
-.mob-acc-toggle.mob-acc-open .mob-acc-chev { transform: rotate(180deg); color: var(--gold); }
+.mob-acc-toggle.mob-acc-open .mob-acc-chev { transform: rotate(180deg); color: var(--gold-text); }
 .mob-acc-sub { display: none; }
 .mob-acc-sub.mob-acc-visible { display: list-item; animation: mobAccIn .18s ease; }
 @keyframes mobAccIn { from { opacity:0; transform:translateY(-4px); } to { opacity:1; transform:translateY(0); } }
@@ -930,7 +931,7 @@ br.mobile-br { display: none; }
   display: table;
 }
 .closing-gold {
-  color: var(--gold);
+  color: var(--gold-text);
 }
 
 
@@ -1058,7 +1059,7 @@ br.mobile-br { display: none; }
   border-radius: 24px;
 }
 .team-oval-lead .oval-name { color: var(--white); font-size: 1.15rem; }
-.team-oval-lead .oval-role { color: var(--gold); font-size: .88rem; }
+.team-oval-lead .oval-role { color: var(--gold-text); font-size: .88rem; }
 
 .oval-name { font-weight: 700; font-size: .95rem; color: var(--navy); line-height: 1.3; }
 .oval-role { font-size: .78rem; color: var(--dark-gray); }
@@ -1171,7 +1172,7 @@ br.mobile-br { display: none; }
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  color: var(--gold);
+  color: var(--gold-text);
   font-size: .95rem;
 }
 .testimonial-name {
@@ -1195,7 +1196,7 @@ br.mobile-br { display: none; }
 }
 .testimonial-readmore:hover,
 .testimonial-readmore:focus-visible { text-decoration: underline; }
-.stars { color: var(--gold); font-size: .85rem; margin-top: .1rem; }
+.stars { color: var(--gold-text); font-size: .85rem; margin-top: .1rem; }
 
 /* ============================================================
    CONTACT SECTION
@@ -1330,14 +1331,14 @@ br.mobile-br { display: none; }
   gap: .4rem;
   transition: color var(--transition);
 }
-.footer-link:hover { color: var(--gold); }
+.footer-link:hover { color: var(--gold-text); }
 .footer-link i { font-size: .65rem; }
 
 .footer-contact-list { display: flex; flex-direction: column; gap: .85rem; }
 .footer-contact-list li { display: flex; align-items: flex-start; gap: .65rem; font-size: .88rem; color: rgba(255,255,255,.6); }
-.footer-contact-icon { color: var(--gold); margin-top: .15rem; flex-shrink: 0; }
+.footer-contact-icon { color: var(--gold-text); margin-top: .15rem; flex-shrink: 0; }
 .footer-contact-link { color: rgba(255,255,255,.6); transition: color var(--transition); }
-.footer-contact-link:hover { color: var(--gold); }
+.footer-contact-link:hover { color: var(--gold-text); }
 
 .footer-bottom { padding: 1.25rem 0; }
 .footer-bottom-inner {
@@ -1568,11 +1569,11 @@ br.mobile-br { display: none; }
 .tagline-pulse-1 { animation: taglinePulse1 4s ease-in-out infinite; }
 .tagline-pulse-2 { animation: taglinePulse2 4s ease-in-out infinite; }
 @keyframes taglinePulse1 {
-  0%, 25%, 100% { color: var(--gold); transform: scale(1); }
+  0%, 25%, 100% { color: var(--gold-text); transform: scale(1); }
   12.5% { color: #ffffff; transform: scale(1.12); }
 }
 @keyframes taglinePulse2 {
-  0%, 50%, 100% { color: var(--gold); transform: scale(1); }
+  0%, 50%, 100% { color: var(--gold-text); transform: scale(1); }
   62.5% { color: #ffffff; transform: scale(1.12); }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -1837,7 +1838,7 @@ br.mobile-br { display: none; }
   font-size: .82rem;
 }
 .footer-legal-link {
-  color: var(--gold);
+  color: var(--gold-text);
   text-decoration: none;
   font-weight: 600;
 }
@@ -1859,7 +1860,7 @@ br.mobile-br { display: none; }
   color: #5a4200;
   line-height: 1.7;
 }
-.market-legal-notice i { color: var(--gold); font-size: 1.2rem; margin-top: .15rem; flex-shrink: 0; }
+.market-legal-notice i { color: var(--gold-text); font-size: 1.2rem; margin-top: .15rem; flex-shrink: 0; }
 .market-legal-notice strong { font-weight: 800; }
 
 /* ── Accessibility Widget ────────────────────────────────────── */
@@ -2139,7 +2140,7 @@ body.keyboard-nav [tabindex]:focus {
   display: block;
   text-align: center;
 }
-.member-popup a[href^="https://wa.me"] { color: var(--gold); font-weight: 600; }
+.member-popup a[href^="https://wa.me"] { color: var(--gold-text); font-weight: 600; }
 .member-popup a:hover { text-decoration: underline; }
 .tal-profile-card {
   display: flex;
@@ -2223,7 +2224,7 @@ body.keyboard-nav [tabindex]:focus {
 }
 @keyframes white-to-gold {
   0%, 100% { color: #ffffff; }
-  50%       { color: var(--gold); }
+  50%       { color: var(--gold-text); }
 }
 .blink-white-gold {
   animation: white-to-gold 3.5s ease-in-out infinite;
