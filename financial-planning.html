@@ -22,7 +22,7 @@
   <link rel="stylesheet" href="style.css" />
   <style>
     .page-hero {
-      background: var(--navy);
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
       padding: 5rem 0 4rem;
       text-align: center;
       position: relative;
@@ -39,12 +39,8 @@
       font-family: 'Heebo', sans-serif;
       font-size: clamp(2rem, 5vw, 3.2rem);
       font-weight: 900;
-      color: var(--gold);
+      color: var(--white);
       margin-bottom: 1rem;
-      border: 2px solid var(--gold);
-      display: inline-block;
-      padding: .5rem 2rem;
-      border-radius: 10px;
     }
     .page-hero .hero-tagline {
       font-size: clamp(1rem, 2.5vw, 1.25rem);
@@ -133,7 +129,7 @@
     }
     @media (max-width: 480px) {
       .benefits-grid { grid-template-columns: 1fr; }
-      .page-hero h1 { font-size: 1.6rem; padding: .4rem 1.2rem; }
+      .page-hero h1 { font-size: 1.6rem; }
     }
   </style>
   <!-- Open Graph -->
@@ -602,6 +598,7 @@
     btn.addEventListener('click', function(){ window.scrollTo({top:0, behavior:'smooth'}); });
   })();
   </script>
+  <script src="page-hero-enhance.js"></script>
   <script src="tuli-bot.js"></script>
 </body>
 </html>

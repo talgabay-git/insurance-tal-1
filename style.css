@@ -6,6 +6,16 @@
 /* ── Reset & Base ─────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* ── Internal-page hero: breadcrumb + gold accent word (via page-hero-enhance.js) ── */
+.hero-breadcrumb {
+  font-size: .8rem;
+  color: rgba(255,255,255,.55);
+  margin-bottom: 14px;
+}
+.hero-breadcrumb a { color: var(--gold); text-decoration: none; }
+.hero-breadcrumb a:hover { text-decoration: underline; }
+.hero-accent { color: var(--gold); }
+
 :root {
   --navy:       #0d1e35;
   --navy-dark:  #070f1c;
