@@ -1866,6 +1866,11 @@
               <h3>הקצאת הוצאות מול יעד מומלץ</h3>
               <div id="bud-bars"></div>
               <div id="bud-insights" class="bud-insight-box"></div>
+              <div class="bud-go-wrap" style="margin-top:1.4rem;">
+                <button class="bud-go-btn" id="bud-export-btn" onclick="budExportCSV()" style="background:#0d1e35;box-shadow:0 4px 16px rgba(13,30,53,.25);">
+                  <i class="fa-solid fa-file-export" style="margin-left:.4rem;"></i> ייצוא הנתונים לאקסל
+                </button>
+              </div>
             </div>
           </div>
 
@@ -3132,6 +3137,8 @@
       return '₪' + Math.round(n).toLocaleString('he-IL');
     }
 
+    let budLastResult = null;
+
     function budCalc() {
       const income = parseFloat(document.getElementById('bud-income').value) || 0;
       if (income <= 0) { alert('נא להזין הכנסה חודשית נטו'); return; }
@@ -3146,6 +3153,7 @@
 
       const savings = income - totalExpenses;
       const savingsRate = income > 0 ? (savings / income) * 100 : 0;
+      budLastResult = { income, values, totalExpenses, savings, savingsRate };
 
       document.getElementById('bud-kpi-expenses').textContent = budFmt(totalExpenses);
       document.getElementById('bud-kpi-savings').textContent = budFmt(savings);
@@ -3176,6 +3184,10 @@
       scoreLabelEl.style.color = scoreColor;
       document.getElementById('bud-score-ring').style.background =
         'conic-gradient(' + scoreColor + ' ' + (score * 3.6) + 'deg, #e5e9ef 0deg)';
+
+      budLastResult.score = score;
+      budLastResult.scoreLabel = scoreLabel;
+      budLastResult.flagged = flagged;
 
       let angleAcc = 0;
       const gradParts = [];
@@ -3243,6 +3255,8 @@
       const remaining = Math.max(0, target - current);
       const progress = Math.min(100, (current / target) * 100);
 
+      if (budLastResult) budLastResult.goal = { name, target, current, monthly, progress };
+
       document.getElementById('bud-goal-result-name').textContent = name;
       document.getElementById('bud-goal-progress-fill').style.width = progress + '%';
       document.getElementById('bud-goal-progress-pct').textContent = progress.toFixed(0) + '%';
@@ -3263,6 +3277,60 @@
       }
 
       document.getElementById('bud-goal-result').style.display = 'block';
+    }
+
+    function budCsvEscape(v) {
+      const s = String(v);
+      return /[",\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s;
+    }
+
+    function budExportCSV() {
+      if (!budLastResult) { alert('יש לבצע חישוב לפני הייצוא.'); return; }
+      const r = budLastResult;
+      const rows = [];
+
+      rows.push(['מחשבון תקציב ויעילות - טל גבאי תכנון פיננסי']);
+      rows.push(['תאריך הפקה', new Date().toLocaleDateString('he-IL')]);
+      rows.push([]);
+      rows.push(['סיכום']);
+      rows.push(['הכנסה חודשית נטו', budFmt(r.income)]);
+      rows.push(['סה"כ הוצאות חודשיות', budFmt(r.totalExpenses)]);
+      rows.push(['נותר לחיסכון', budFmt(r.savings)]);
+      rows.push(['שיעור חיסכון מההכנסה', r.savingsRate.toFixed(1) + '%']);
+      rows.push(['ציון יעילות תקציבית', r.score + ' (' + r.scoreLabel + ')']);
+      rows.push([]);
+      rows.push(['קטגוריה', 'סכום (₪)', 'אחוז מההכנסה', 'יעד מומלץ', 'סטטוס']);
+      BUD_CATS.forEach(c => {
+        const actualPct = r.income > 0 ? (r.values[c.key] / r.income) * 100 : 0;
+        rows.push([c.label, r.values[c.key], actualPct.toFixed(1) + '%', 'עד ' + c.pct + '%', actualPct > c.pct ? 'חורג מהיעד' : 'תקין']);
+      });
+
+      if (r.flagged && r.flagged.length) {
+        rows.push([]);
+        rows.push(['נקודות להתייעלות', 'פוטנציאל חיסכון חודשי (₪)']);
+        r.flagged.forEach(f => rows.push([f.label, Math.round(f.potentialSaving)]));
+      }
+
+      if (r.goal) {
+        rows.push([]);
+        rows.push(['יעד חיסכון']);
+        rows.push(['שם היעד', r.goal.name]);
+        rows.push(['סכום יעד', budFmt(r.goal.target)]);
+        rows.push(['כבר נחסך', budFmt(r.goal.current)]);
+        rows.push(['חיסכון חודשי ליעד', budFmt(r.goal.monthly)]);
+        rows.push(['אחוז התקדמות', r.goal.progress.toFixed(0) + '%']);
+      }
+
+      const csv = '﻿' + rows.map(row => row.map(budCsvEscape).join(',')).join('\r\n');
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'תקציב-ויעילות-' + new Date().toISOString().slice(0, 10) + '.csv';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
     }
 
   </script>
