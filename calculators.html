@@ -743,7 +743,7 @@
         </li>
         <li role="presentation">
           <button class="calc-tab-btn" role="tab" aria-selected="false" aria-controls="panel-budget" onclick="switchTab('budget',this)">
-            <i class="fa-solid fa-piggy-bank"></i> מחשבון תקציב ויעילות
+            <i class="fa-solid fa-piggy-bank"></i> מנהל תקציב משפחתי
           </button>
         </li>
       </ul>
@@ -1814,8 +1814,16 @@
             }
           </style>
 
+          <div style="background:linear-gradient(135deg,#0d1e35 0%,#1a2d47 100%);border-radius:16px;padding:1.4rem 2rem;text-align:center;margin-bottom:1.5rem;box-shadow:0 4px 24px rgba(13,30,53,.15);">
+            <div style="display:flex;align-items:center;gap:.6rem;justify-content:center;margin-bottom:.4rem;">
+              <i class="fa-solid fa-piggy-bank" style="font-size:1.3rem;color:#b08a2f;"></i>
+              <h2 style="margin:0;font-size:1.15rem;font-weight:700;color:#fff;font-family:'Heebo',sans-serif;">מנהל תקציב משפחתי</h2>
+            </div>
+            <p style="margin:0;font-size:.82rem;color:rgba(255,255,255,.55);">עקבו אחרי ההכנסות וההוצאות שלכם, קבלו ציון יעילות תקציבית, ועקבו אחרי ההתקדמות ליעדי החיסכון שלכם</p>
+          </div>
+
           <div class="bud-card">
-            <h3>נתוני הכנסה והוצאות חודשיות</h3>
+            <h3>נתוני הכנסות והוצאות חודשיות</h3>
             <div class="bud-inputs">
               <div class="bud-inp bud-income-inp">
                 <label for="bud-income">הכנסה חודשית נטו למשק הבית (₪)</label>
@@ -3289,7 +3297,7 @@
       const r = budLastResult;
       const rows = [];
 
-      rows.push(['מחשבון תקציב ויעילות - טל גבאי תכנון פיננסי']);
+      rows.push(['מנהל תקציב משפחתי - טל גבאי תכנון פיננסי']);
       rows.push(['תאריך הפקה', new Date().toLocaleDateString('he-IL')]);
       rows.push([]);
       rows.push(['סיכום']);
@@ -3326,7 +3334,7 @@
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = 'תקציב-ויעילות-' + new Date().toISOString().slice(0, 10) + '.csv';
+      a.download = 'מנהל-תקציב-משפחתי-' + new Date().toISOString().slice(0, 10) + '.csv';
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
