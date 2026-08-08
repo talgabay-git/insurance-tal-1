@@ -1755,8 +1755,8 @@
             #panel-budget .bud-card h3 { font-family:'Heebo',sans-serif; font-size:1.1rem; font-weight:900; color:#0d1e35; margin-bottom:1.2rem; border-right:4px solid #b08a2f; padding-right:.7rem; }
             #panel-budget .bud-inputs { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; }
             #panel-budget .bud-inp label { display:block; font-size:.75rem; font-weight:700; color:#0d1e35; margin-bottom:.3rem; }
-            #panel-budget .bud-inp input { width:100%; background:#fff; border:2px solid #d0d8e4; border-radius:10px; padding:.55rem .9rem; font-size:.95rem; font-weight:600; font-family:'Heebo',sans-serif; box-sizing:border-box; }
-            #panel-budget .bud-inp input:focus { border-color:#b08a2f; outline:none; }
+            #panel-budget .bud-inp input, #panel-budget .bud-inp select { width:100%; background:#fff; border:2px solid #d0d8e4; border-radius:10px; padding:.55rem .9rem; font-size:.95rem; font-weight:600; font-family:'Heebo',sans-serif; box-sizing:border-box; }
+            #panel-budget .bud-inp input:focus, #panel-budget .bud-inp select:focus { border-color:#b08a2f; outline:none; }
             #panel-budget .bud-income-inp { grid-column:1 / -1; background:#fff8e6; border-radius:12px; padding:1rem 1.2rem; margin-bottom:.3rem; }
             #panel-budget .bud-income-inp input { font-size:1.15rem; font-weight:900; }
             #panel-budget .bud-go-wrap { text-align:center; margin:1.5rem 0 .5rem; }
@@ -1885,7 +1885,19 @@
           <div class="bud-card" id="bud-goal-card" style="display:none;">
             <h3><i class="fa-solid fa-bullseye"></i> מעקב יעד חיסכון</h3>
             <div class="bud-goal-inputs">
-              <div class="bud-inp"><label for="bud-goal-name">שם היעד</label><input type="text" id="bud-goal-name" placeholder="לדוגמה: דירה שנייה" /></div>
+              <div class="bud-inp">
+                <label for="bud-goal-name">שם היעד</label>
+                <select id="bud-goal-name">
+                  <option value="" selected disabled>בחר יעד...</option>
+                  <option value='קרן "חופש כלכלי" ופרישה מוקדמת'>קרן "חופש כלכלי" ופרישה מוקדמת</option>
+                  <option value="הון עצמי לרכישת נכס">הון עצמי לרכישת נכס</option>
+                  <option value="אירוע משפחתי (בר מצווה / חתונה)">אירוע משפחתי (בר מצווה / חתונה)</option>
+                  <option value="רכישת / החלפת רכב">רכישת / החלפת רכב</option>
+                  <option value="עזרה לילדים לרכישת דירה">עזרה לילדים לרכישת דירה</option>
+                  <option value="שנת שבתון או טיול גדול">שנת שבתון או טיול גדול</option>
+                  <option value="איכות חיים (תחביב יקר)">איכות חיים (תחביב יקר)</option>
+                </select>
+              </div>
               <div class="bud-inp"><label for="bud-goal-target">סכום יעד (₪)</label><input type="number" id="bud-goal-target" min="0" step="1000" inputmode="numeric" /></div>
               <div class="bud-inp"><label for="bud-goal-current">כבר נחסך (₪)</label><input type="number" id="bud-goal-current" min="0" step="500" value="0" inputmode="numeric" /></div>
               <div class="bud-inp" style="grid-column:1 / -1;"><label for="bud-goal-monthly">חיסכון חודשי לטובת היעד (₪) - ממולא אוטומטית מהחישוב למעלה, ניתן לשנות</label><input type="number" id="bud-goal-monthly" min="0" step="50" inputmode="numeric" oninput="this.dataset.userEdited='1'" /></div>
