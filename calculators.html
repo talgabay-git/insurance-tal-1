@@ -741,6 +741,11 @@
             <i class="fa-solid fa-coins"></i> כדאיות דמי ניהול בקרן הפנסיה
           </button>
         </li>
+        <li role="presentation">
+          <button class="calc-tab-btn" role="tab" aria-selected="false" aria-controls="panel-budget" onclick="switchTab('budget',this)">
+            <i class="fa-solid fa-piggy-bank"></i> מחשבון תקציב ויעילות
+          </button>
+        </li>
       </ul>
     </nav>
 
@@ -1742,6 +1747,157 @@
         </div>
       </div>
 
+      <!-- ── Panel 7: מחשבון תקציב ויעילות ── -->
+      <div class="calc-panel" id="panel-budget" role="tabpanel">
+        <div class="calc-panel-inner" style="max-width:960px;">
+          <style>
+            #panel-budget .bud-card { background:#fff; border-radius:16px; box-shadow:0 4px 24px rgba(13,30,53,.10); padding:2rem 2.2rem; margin-bottom:1.5rem; }
+            #panel-budget .bud-card h3 { font-family:'Heebo',sans-serif; font-size:1.1rem; font-weight:900; color:#0d1e35; margin-bottom:1.2rem; border-right:4px solid #b08a2f; padding-right:.7rem; }
+            #panel-budget .bud-inputs { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; }
+            #panel-budget .bud-inp label { display:block; font-size:.75rem; font-weight:700; color:#0d1e35; margin-bottom:.3rem; }
+            #panel-budget .bud-inp input { width:100%; background:#fff; border:2px solid #d0d8e4; border-radius:10px; padding:.55rem .9rem; font-size:.95rem; font-weight:600; font-family:'Heebo',sans-serif; box-sizing:border-box; }
+            #panel-budget .bud-inp input:focus { border-color:#b08a2f; outline:none; }
+            #panel-budget .bud-income-inp { grid-column:1 / -1; background:#fff8e6; border-radius:12px; padding:1rem 1.2rem; margin-bottom:.3rem; }
+            #panel-budget .bud-income-inp input { font-size:1.15rem; font-weight:900; }
+            #panel-budget .bud-go-wrap { text-align:center; margin:1.5rem 0 .5rem; }
+            #panel-budget .bud-go-btn { display:inline-block; min-width:220px; background:#b08a2f; color:#fff; border:none; border-radius:12px; padding:.9rem 2.4rem; font-family:'Heebo',sans-serif; font-size:1.05rem; font-weight:900; cursor:pointer; box-shadow:0 4px 16px rgba(176,138,47,.35); transition:transform .15s, box-shadow .15s; }
+            #panel-budget .bud-go-btn:hover { transform:translateY(-2px); box-shadow:0 6px 20px rgba(176,138,47,.45); }
+
+            #panel-budget .bud-kpi-banner { display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; margin-bottom:1.6rem; }
+            #panel-budget .bud-kpi-box { background:#0d1e35; border-radius:12px; padding:1.1rem 1rem; text-align:center; }
+            #panel-budget .bud-kpi-box .kpi-val { font-family:'Heebo',sans-serif; font-size:1.3rem; font-weight:900; color:#b08a2f; }
+            #panel-budget .bud-kpi-box .kpi-label { font-size:.7rem; color:rgba(255,255,255,.65); margin-top:.3rem; }
+
+            #panel-budget .bud-donut-row { display:flex; gap:2rem; align-items:center; flex-wrap:wrap; justify-content:center; margin-bottom:1rem; }
+            #panel-budget .bud-donut-wrap { position:relative; width:180px; height:180px; flex-shrink:0; }
+            #panel-budget .bud-donut { width:180px; height:180px; border-radius:50%; }
+            #panel-budget .bud-donut-hole { position:absolute; inset:22px; background:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-direction:column; text-align:center; box-shadow:inset 0 0 0 1px rgba(13,30,53,.05); }
+            #panel-budget .bud-donut-hole .dh-val { font-family:'Heebo',sans-serif; font-size:1.15rem; font-weight:900; color:#0d1e35; }
+            #panel-budget .bud-donut-hole .dh-label { font-size:.65rem; color:#888; }
+            #panel-budget .bud-legend { flex:1; min-width:220px; display:flex; flex-direction:column; gap:.5rem; }
+            #panel-budget .bud-legend-item { display:flex; align-items:center; gap:.5rem; font-size:.85rem; color:#333; }
+            #panel-budget .bud-legend-dot { width:11px; height:11px; border-radius:3px; flex-shrink:0; }
+            #panel-budget .bud-legend-item b { margin-right:auto; font-family:'Heebo',sans-serif; }
+
+            #panel-budget .bud-bar-row { margin-bottom:1.1rem; }
+            #panel-budget .bud-bar-label { display:flex; align-items:center; gap:.4rem; font-size:.85rem; font-weight:700; color:#0d1e35; margin-bottom:.35rem; }
+            #panel-budget .bud-bar-dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
+            #panel-budget .bud-bar-amt { margin-right:auto; font-weight:900; color:#333; font-family:'Heebo',sans-serif; font-size:.82rem; }
+            #panel-budget .bud-bar-track { position:relative; height:14px; background:#eef1f5; border-radius:8px; overflow:hidden; }
+            #panel-budget .bud-bar-fill { height:100%; border-radius:8px; transition:width .4s ease; }
+            #panel-budget .bud-bar-benchmark { position:absolute; top:-3px; width:2px; height:20px; background:#0d1e35; }
+            #panel-budget .bud-bar-bench-label { font-size:.68rem; color:#999; margin-top:.25rem; }
+
+            #panel-budget .bud-insight-box { background:#fff8e6; border:2px solid #b08a2f; border-radius:12px; padding:1.2rem 1.4rem; margin-top:1rem; }
+            #panel-budget .bud-insight-title { font-weight:900; color:#0d1e35; margin-bottom:.6rem; font-size:.95rem; }
+            #panel-budget .bud-insight-list { margin:0 0 .8rem; padding-right:1.3rem; font-size:.85rem; color:#444; line-height:1.9; }
+            #panel-budget .bud-insight-total { font-size:.88rem; font-weight:700; color:#0d1e35; }
+
+            #panel-budget .bud-score-row { display:flex; align-items:center; gap:1.5rem; justify-content:center; flex-wrap:wrap; margin-bottom:1.6rem; }
+            #panel-budget .bud-score-ring { width:120px; height:120px; border-radius:50%; display:flex; align-items:center; justify-content:center; }
+            #panel-budget .bud-score-hole { width:96px; height:96px; background:#fff; border-radius:50%; display:flex; flex-direction:column; align-items:center; justify-content:center; }
+            #panel-budget .bud-score-hole .sc-val { font-family:'Heebo',sans-serif; font-size:1.9rem; font-weight:900; color:#0d1e35; }
+            #panel-budget .bud-score-hole .sc-max { font-size:.7rem; color:#999; }
+            #panel-budget .bud-score-text { text-align:center; }
+            #panel-budget .bud-score-text .sc-label { font-size:1.3rem; font-weight:900; font-family:'Heebo',sans-serif; }
+            #panel-budget .bud-score-text .sc-sub { font-size:.82rem; color:#666; margin-top:.2rem; }
+
+            #panel-budget .bud-goal-inputs { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin-bottom:1rem; }
+            #panel-budget .bud-goal-progress-track { height:22px; background:#eef1f5; border-radius:11px; overflow:hidden; margin:.8rem 0 .5rem; }
+            #panel-budget .bud-goal-progress-fill { height:100%; background:linear-gradient(90deg,#b08a2f,#d4af5a); border-radius:11px; transition:width .5s ease; display:flex; align-items:center; justify-content:flex-end; padding:0 .6rem; box-sizing:border-box; }
+            #panel-budget .bud-goal-progress-fill span { color:#fff; font-size:.72rem; font-weight:900; }
+            #panel-budget .bud-goal-eta { font-size:.92rem; color:#0d1e35; font-weight:700; text-align:center; margin-top:.6rem; }
+
+            @media (max-width:640px) {
+              #panel-budget .bud-inputs, #panel-budget .bud-goal-inputs { grid-template-columns:1fr 1fr; }
+              #panel-budget .bud-kpi-banner { grid-template-columns:1fr 1fr; }
+            }
+          </style>
+
+          <div class="bud-card">
+            <h3>נתוני הכנסה והוצאות חודשיות</h3>
+            <div class="bud-inputs">
+              <div class="bud-inp bud-income-inp">
+                <label for="bud-income">הכנסה חודשית נטו למשק הבית (₪)</label>
+                <input type="number" id="bud-income" placeholder="לדוגמה: 18000" min="0" step="100" inputmode="numeric" />
+              </div>
+              <div class="bud-inp"><label for="bud-housing"><i class="fa-solid fa-house"></i> דיור / משכנתא (₪)</label><input type="number" id="bud-housing" min="0" step="50" inputmode="numeric" /></div>
+              <div class="bud-inp"><label for="bud-food"><i class="fa-solid fa-cart-shopping"></i> מזון (₪)</label><input type="number" id="bud-food" min="0" step="50" inputmode="numeric" /></div>
+              <div class="bud-inp"><label for="bud-transport"><i class="fa-solid fa-car"></i> תחבורה (₪)</label><input type="number" id="bud-transport" min="0" step="50" inputmode="numeric" /></div>
+              <div class="bud-inp"><label for="bud-leisure"><i class="fa-solid fa-champagne-glasses"></i> בילויים ופנאי (₪)</label><input type="number" id="bud-leisure" min="0" step="50" inputmode="numeric" /></div>
+              <div class="bud-inp"><label for="bud-insurance"><i class="fa-solid fa-shield-halved"></i> ביטוחים וחיסכון (₪)</label><input type="number" id="bud-insurance" min="0" step="50" inputmode="numeric" /></div>
+              <div class="bud-inp"><label for="bud-other"><i class="fa-solid fa-receipt"></i> הוצאות שוטפות נוספות (₪)</label><input type="number" id="bud-other" min="0" step="50" inputmode="numeric" /></div>
+            </div>
+            <div class="bud-go-wrap">
+              <button class="bud-go-btn" onclick="budCalc()"><i class="fa-solid fa-calculator" style="margin-left:.4rem;"></i> חשב יעילות תקציבית</button>
+            </div>
+          </div>
+
+          <div id="bud-results" style="display:none;">
+            <div class="bud-card">
+              <h3>תמונת מצב</h3>
+              <div class="bud-kpi-banner">
+                <div class="bud-kpi-box"><div class="kpi-val" id="bud-kpi-expenses">-</div><div class="kpi-label">סה"כ הוצאות חודשיות</div></div>
+                <div class="bud-kpi-box"><div class="kpi-val" id="bud-kpi-savings">-</div><div class="kpi-label">נותר לחיסכון</div></div>
+                <div class="bud-kpi-box"><div class="kpi-val" id="bud-kpi-rate">-</div><div class="kpi-label">שיעור חיסכון מההכנסה</div></div>
+                <div class="bud-kpi-box"><div class="kpi-val" id="bud-kpi-flagged">-</div><div class="kpi-label">קטגוריות להתייעלות</div></div>
+              </div>
+
+              <div class="bud-score-row">
+                <div class="bud-score-ring" id="bud-score-ring">
+                  <div class="bud-score-hole"><div class="sc-val" id="bud-score">-</div><div class="sc-max">מתוך 100</div></div>
+                </div>
+                <div class="bud-score-text">
+                  <div class="sc-label" id="bud-score-label">-</div>
+                  <div class="sc-sub">ציון יעילות תקציבית, ביחס ליעדי הקצאה מומלצים</div>
+                </div>
+              </div>
+
+              <div class="bud-donut-row">
+                <div class="bud-donut-wrap">
+                  <div class="bud-donut" id="bud-donut"></div>
+                  <div class="bud-donut-hole"><div class="dh-val" id="bud-donut-total">-</div><div class="dh-label">סה"כ הוצאות</div></div>
+                </div>
+                <div class="bud-legend" id="bud-legend"></div>
+              </div>
+            </div>
+
+            <div class="bud-card">
+              <h3>הקצאת הוצאות מול יעד מומלץ</h3>
+              <div id="bud-bars"></div>
+              <div id="bud-insights" class="bud-insight-box"></div>
+            </div>
+          </div>
+
+          <div class="bud-card" id="bud-goal-card" style="display:none;">
+            <h3><i class="fa-solid fa-bullseye"></i> מעקב יעד חיסכון</h3>
+            <div class="bud-goal-inputs">
+              <div class="bud-inp"><label for="bud-goal-name">שם היעד</label><input type="text" id="bud-goal-name" placeholder="לדוגמה: דירה שנייה" /></div>
+              <div class="bud-inp"><label for="bud-goal-target">סכום יעד (₪)</label><input type="number" id="bud-goal-target" min="0" step="1000" inputmode="numeric" /></div>
+              <div class="bud-inp"><label for="bud-goal-current">כבר נחסך (₪)</label><input type="number" id="bud-goal-current" min="0" step="500" value="0" inputmode="numeric" /></div>
+              <div class="bud-inp" style="grid-column:1 / -1;"><label for="bud-goal-monthly">חיסכון חודשי לטובת היעד (₪) - ממולא אוטומטית מהחישוב למעלה, ניתן לשנות</label><input type="number" id="bud-goal-monthly" min="0" step="50" inputmode="numeric" oninput="this.dataset.userEdited='1'" /></div>
+            </div>
+            <div class="bud-go-wrap" style="margin:.5rem 0 1rem;">
+              <button class="bud-go-btn" onclick="budGoalCalc()"><i class="fa-solid fa-flag-checkered" style="margin-left:.4rem;"></i> חשב התקדמות ליעד</button>
+            </div>
+            <div id="bud-goal-result" style="display:none;">
+              <div style="text-align:center;font-weight:900;color:#0d1e35;margin-bottom:.3rem;" id="bud-goal-result-name"></div>
+              <div class="bud-goal-progress-track">
+                <div class="bud-goal-progress-fill" id="bud-goal-progress-fill" style="width:0%;"><span id="bud-goal-progress-pct">0%</span></div>
+              </div>
+              <div class="bud-goal-eta" id="bud-goal-eta"></div>
+            </div>
+          </div>
+
+          <p style="font-size:.76rem;color:#888;margin-top:.5rem;text-align:center;line-height:1.7;">
+            <strong>* החישוב לעיל הוא הערכה כללית בלבד לצורך המחשה, מבוסס על יעדי הקצאה מקובלים באופן גס ואינו מותאם אישית.</strong>
+            אינו מהווה ייעוץ פיננסי אישי ואינו מחליף בניית תוכנית תקציב מותאמת. לבניית תוכנית אישית -
+            <a href="guide-financial-optimization.html" style="color:#b08a2f;font-weight:700;">קרא את המדריך המלא</a>
+            או <a href="https://wa.me/972528000556" style="color:#b08a2f;font-weight:700;">פנה לטל גבאי בוואטסאפ</a>.
+          </p>
+        </div>
+      </div>
+
     </div>
   </main>
 
@@ -2019,6 +2175,9 @@
       } else if (hash === '#pension-fees') {
         const btn = document.querySelector('[aria-controls="panel-pension-fees"]');
         if (btn) switchTab('pension-fees', btn);
+      } else if (hash === '#budget') {
+        const btn = document.querySelector('[aria-controls="panel-budget"]');
+        if (btn) switchTab('budget', btn);
       } else if (!hash || hash === '#compound') {
         const btn = document.querySelector('[aria-controls="panel-compound"]');
         if (btn) switchTab('compound', btn);
@@ -2955,6 +3114,155 @@
       document.getElementById('pc-result').style.display = 'block';
       if (!_autoInit && scroll) document.getElementById('pc-result').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       } catch(e) { console.error('runPensionCompare error:', e); }
+    }
+
+    /* ══════════════════════════════════════════
+       מחשבון תקציב ויעילות
+    ══════════════════════════════════════════ */
+    const BUD_CATS = [
+      { key: 'housing',   label: 'דיור / משכנתא',            pct: 30, color: '#0d1e35' },
+      { key: 'food',      label: 'מזון',                      pct: 15, color: '#b08a2f' },
+      { key: 'transport', label: 'תחבורה',                    pct: 10, color: '#2f6b8a' },
+      { key: 'leisure',   label: 'בילויים ופנאי',             pct: 8,  color: '#8a4f2f' },
+      { key: 'insurance', label: 'ביטוחים וחיסכון',           pct: 15, color: '#1a7f4b' },
+      { key: 'other',     label: 'הוצאות שוטפות נוספות',      pct: 12, color: '#6b6f76' }
+    ];
+
+    function budFmt(n) {
+      return '₪' + Math.round(n).toLocaleString('he-IL');
+    }
+
+    function budCalc() {
+      const income = parseFloat(document.getElementById('bud-income').value) || 0;
+      if (income <= 0) { alert('נא להזין הכנסה חודשית נטו'); return; }
+
+      const values = {};
+      let totalExpenses = 0;
+      BUD_CATS.forEach(c => {
+        const v = parseFloat(document.getElementById('bud-' + c.key).value) || 0;
+        values[c.key] = v;
+        totalExpenses += v;
+      });
+
+      const savings = income - totalExpenses;
+      const savingsRate = income > 0 ? (savings / income) * 100 : 0;
+
+      document.getElementById('bud-kpi-expenses').textContent = budFmt(totalExpenses);
+      document.getElementById('bud-kpi-savings').textContent = budFmt(savings);
+      document.getElementById('bud-kpi-savings').style.color = savings >= 0 ? '#c9a84c' : '#e07a7a';
+      document.getElementById('bud-kpi-rate').textContent = savingsRate.toFixed(1) + '%';
+
+      let overagePoints = 0;
+      const flagged = [];
+      BUD_CATS.forEach(c => {
+        const actualPct = income > 0 ? (values[c.key] / income) * 100 : 0;
+        if (actualPct > c.pct) {
+          const benchmarkAmt = income * c.pct / 100;
+          overagePoints += (actualPct - c.pct);
+          flagged.push({ ...c, actualPct, potentialSaving: values[c.key] - benchmarkAmt });
+        }
+      });
+      document.getElementById('bud-kpi-flagged').textContent = flagged.length;
+
+      let score = Math.round(100 - overagePoints * 1.5 - Math.max(0, (10 - savingsRate)) * 1.2);
+      score = Math.max(0, Math.min(100, score));
+      let scoreLabel, scoreColor;
+      if (score >= 80) { scoreLabel = 'מצוין'; scoreColor = '#1a7f4b'; }
+      else if (score >= 60) { scoreLabel = 'טוב'; scoreColor = '#b08a2f'; }
+      else { scoreLabel = 'דורש שיפור'; scoreColor = '#c0392b'; }
+      document.getElementById('bud-score').textContent = score;
+      const scoreLabelEl = document.getElementById('bud-score-label');
+      scoreLabelEl.textContent = scoreLabel;
+      scoreLabelEl.style.color = scoreColor;
+      document.getElementById('bud-score-ring').style.background =
+        'conic-gradient(' + scoreColor + ' ' + (score * 3.6) + 'deg, #e5e9ef 0deg)';
+
+      let angleAcc = 0;
+      const gradParts = [];
+      BUD_CATS.forEach(c => {
+        if (values[c.key] <= 0 || totalExpenses <= 0) return;
+        const slice = (values[c.key] / totalExpenses) * 360;
+        gradParts.push(c.color + ' ' + angleAcc + 'deg ' + (angleAcc + slice) + 'deg');
+        angleAcc += slice;
+      });
+      document.getElementById('bud-donut').style.background =
+        gradParts.length ? 'conic-gradient(' + gradParts.join(',') + ')' : '#e5e9ef';
+      document.getElementById('bud-donut-total').textContent = budFmt(totalExpenses);
+
+      document.getElementById('bud-legend').innerHTML = BUD_CATS.map(c => {
+        const sharePct = totalExpenses > 0 ? (values[c.key] / totalExpenses) * 100 : 0;
+        return '<div class="bud-legend-item"><span class="bud-legend-dot" style="background:' + c.color + '"></span>' +
+          c.label + '<b>' + sharePct.toFixed(0) + '%</b></div>';
+      }).join('');
+
+      document.getElementById('bud-bars').innerHTML = BUD_CATS.map(c => {
+        const actualPct = income > 0 ? (values[c.key] / income) * 100 : 0;
+        const over = actualPct > c.pct;
+        const scaleMax = c.pct * 1.6;
+        const barPct = Math.min(100, (actualPct / scaleMax) * 100);
+        const benchMarkerPct = Math.min(100, (c.pct / scaleMax) * 100);
+        return '<div class="bud-bar-row">' +
+          '<div class="bud-bar-label"><span class="bud-bar-dot" style="background:' + c.color + '"></span>' + c.label +
+          '<span class="bud-bar-amt">' + budFmt(values[c.key]) + ' (' + actualPct.toFixed(1) + '%)</span></div>' +
+          '<div class="bud-bar-track"><div class="bud-bar-fill" style="width:' + barPct + '%;background:' + (over ? '#c0392b' : c.color) + '"></div>' +
+          '<div class="bud-bar-benchmark" style="right:' + benchMarkerPct + '%"></div></div>' +
+          '<div class="bud-bar-bench-label">יעד מומלץ: עד ' + c.pct + '% מההכנסה (הקו השחור בגרף)</div></div>';
+      }).join('');
+
+      const insightsEl = document.getElementById('bud-insights');
+      if (flagged.length) {
+        flagged.sort((a, b) => b.potentialSaving - a.potentialSaving);
+        const totalPotential = flagged.reduce((s, f) => s + f.potentialSaving, 0);
+        insightsEl.innerHTML = '<div class="bud-insight-title">💡 נקודות להתייעלות שזוהו</div><ul class="bud-insight-list">' +
+          flagged.slice(0, 4).map(f =>
+            '<li><strong>' + f.label + '</strong> - ' + f.actualPct.toFixed(1) + '% מההכנסה (יעד: עד ' + f.pct + '%). פוטנציאל חיסכון: כ-' + budFmt(f.potentialSaving) + '/חודש</li>'
+          ).join('') +
+          '</ul><div class="bud-insight-total">בסה"כ, איזון הקטגוריות המסומנות יכול לשחרר כ-<strong>' + budFmt(totalPotential) + '/חודש</strong> (כ-' + budFmt(totalPotential * 12) + '/שנה) לחיסכון או להשקעה.</div>';
+      } else {
+        insightsEl.innerHTML = '<div class="bud-insight-title">✅ התקציב שלך מאוזן היטב ביחס ליעדים המומלצים - כל הכבוד!</div>';
+      }
+
+      const goalMonthlyInput = document.getElementById('bud-goal-monthly');
+      if (goalMonthlyInput && !goalMonthlyInput.dataset.userEdited) {
+        goalMonthlyInput.value = Math.max(0, Math.round(savings));
+      }
+
+      document.getElementById('bud-results').style.display = 'block';
+      document.getElementById('bud-goal-card').style.display = 'block';
+      document.getElementById('bud-results').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function budGoalCalc() {
+      const target = parseFloat(document.getElementById('bud-goal-target').value) || 0;
+      const current = parseFloat(document.getElementById('bud-goal-current').value) || 0;
+      const monthly = parseFloat(document.getElementById('bud-goal-monthly').value) || 0;
+      const name = document.getElementById('bud-goal-name').value.trim() || 'היעד שלך';
+
+      if (target <= 0) { alert('נא להזין סכום יעד'); return; }
+
+      const remaining = Math.max(0, target - current);
+      const progress = Math.min(100, (current / target) * 100);
+
+      document.getElementById('bud-goal-result-name').textContent = name;
+      document.getElementById('bud-goal-progress-fill').style.width = progress + '%';
+      document.getElementById('bud-goal-progress-pct').textContent = progress.toFixed(0) + '%';
+
+      const etaEl = document.getElementById('bud-goal-eta');
+      if (remaining <= 0) {
+        etaEl.textContent = '🎉 הגעת ליעד!';
+      } else if (monthly > 0) {
+        const months = Math.ceil(remaining / monthly);
+        const years = Math.floor(months / 12);
+        const remMonths = months % 12;
+        let timeText = '';
+        if (years > 0) timeText += years + ' שנים ';
+        if (remMonths > 0 || years === 0) timeText += remMonths + ' חודשים';
+        etaEl.textContent = 'בקצב החיסכון הנוכחי, תגיע ליעד בעוד כ-' + timeText.trim() + ' (סה"כ יעד: ' + budFmt(target) + ').';
+      } else {
+        etaEl.textContent = 'הזן סכום חיסכון חודשי כדי לראות הערכת זמן להשגת היעד.';
+      }
+
+      document.getElementById('bud-goal-result').style.display = 'block';
     }
 
   </script>
