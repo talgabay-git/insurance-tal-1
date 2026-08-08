@@ -12,7 +12,7 @@
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self' https://formspree.io https://www.google-analytics.com; frame-src 'none'; object-src 'none';" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self' https://api.github.com https://formspree.io https://www.google-analytics.com; frame-src 'none'; object-src 'none';" />
   <meta name="robots" content="noindex, nofollow">
   <title>ניהול עדויות | טל גבאי</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -100,14 +100,16 @@
   <div id="screen-login">
     <p class="sub">
       הכנס את ה-GitHub Token שלך להתחברות.<br>
-      אין לך? לחץ על הקישור למטה ליצירת אחד.
+      אין לך? לחץ על הקישור למטה ליצירת Token מוגבל (בטוח יותר - גישה רק לריפו הזה).<br>
+      בעמוד היצירה: תחת "Repository access" בחר "Only select repositories" ← insurance-tal-1,
+      ותחת "Permissions" הגדר "Contents" ל-"Read and write".
     </p>
     <label>GitHub Personal Access Token</label>
-    <input type="password" id="token-input" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" autocomplete="off">
+    <input type="password" id="token-input" placeholder="github_pat_xxxxxxxxxxxxxxxxxxxx" autocomplete="off">
     <a class="help-link"
-       href="https://github.com/settings/tokens/new?scopes=repo&description=tal-gabay-admin"
+       href="https://github.com/settings/personal-access-tokens/new?name=tal-gabay-admin"
        target="_blank" rel="noopener">
-      ← לחץ כאן ליצירת Token חדש בגיטהאב
+      ← לחץ כאן ליצירת Token מוגבל בגיטהאב
     </a>
     <button class="btn" id="login-btn" onclick="doLogin()">כניסה</button>
     <div class="status" id="login-status"></div>
@@ -170,7 +172,7 @@ async function doLogin() {
       sessionStorage.setItem('gh_token', token);
       st.textContent = ''; show('screen-upload');
     } else {
-      st.textContent = 'Token שגוי - בדוק שיש הרשאת repo'; st.className = 'status err';
+      st.textContent = 'Token שגוי - בדוק שהריפו נבחר וש-Contents מוגדר ל-Read and write'; st.className = 'status err';
     }
   } catch { st.textContent = 'שגיאת רשת'; st.className = 'status err'; }
   btn.disabled = false;
