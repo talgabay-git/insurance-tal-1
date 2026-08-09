@@ -1592,6 +1592,7 @@
                       <input id="pc-pen-disability" type="number" value="0.75" min="0" max="3" step="0.01"
                         style="width:100%;background:#fff;border:2px solid #b2dfc8;border-radius:9px;padding:.5rem .8rem;font-size:.9rem;font-weight:600;box-sizing:border-box;"
                         oninput="pcFeeBadge('pc-pen-disability','pc-pen-dis-badge');runPensionCompare()" />
+                      <small style="color:#6a8a78;font-size:.66rem;line-height:1.4;display:block;margin-top:.25rem;">בקרן פנסיה הכיסוי מאוגד/משותף לכלל העמיתים - אינו תלוי במצב בריאותך האישי.</small>
                     </div>
 
                     <div>
@@ -1676,11 +1677,21 @@
                       <input id="pc-disability-fee" type="number" value="1.00" min="0" max="4" step="0.01"
                         style="width:100%;background:#fff;border:2px solid #e8d5a3;border-radius:9px;padding:.5rem .8rem;font-size:.9rem;font-weight:600;box-sizing:border-box;"
                         oninput="pcFeeBadge('pc-disability-fee','pc-dis-fee-badge');runPensionCompare()" />
+                      <small style="color:#a08850;font-size:.66rem;line-height:1.4;display:block;margin-top:.25rem;">בביטוח מנהלים הכיסוי נחתם אישית לפי מצב הבריאות שלך - יכול לכלול החרגות או תוספת מחיר.</small>
+                    </div>
+
+                    <div id="pc-guaranteed-row" style="margin-bottom:.9rem;background:#fff8e6;border:1.5px solid #c9a84c;border-radius:9px;padding:.6rem .8rem;">
+                      <label style="display:flex;align-items:center;gap:.4rem;font-size:.75rem;font-weight:700;color:#0d1e35;cursor:pointer;">
+                        <input type="checkbox" id="pc-has-guaranteed" onchange="pcToggleGuaranteed()" style="width:auto;" />
+                        יש לי מקדם קצבה מובטח בפוליסה
+                      </label>
+                      <div style="font-size:.68rem;color:#7a6a3a;margin-top:.3rem;line-height:1.5;">מקדם מובטח קיים רק בפוליסות שנרכשו <strong>לפני 2013</strong>, או שנרכשו מגיל <strong>55 ואילך</strong>. אם קיים לך - בדוק בדף הפרטים האישיים בפוליסה והזן כאן; אחרת המחשבון מניח מקדם גנרי ללא הבטחה.</div>
                     </div>
 
                     <div style="margin-bottom:.9rem;">
                       <label style="display:block;font-size:.72rem;font-weight:700;color:#0d1e35;margin-bottom:.25rem;">מקדם קצבה</label>
                       <div id="pc-ins-coef-display" style="width:100%;background:#fff;border:2px solid #e8d5a3;border-radius:9px;padding:.5rem .8rem;font-size:.9rem;font-weight:700;color:#0d1e35;text-align:right;box-sizing:border-box;">200</div>
+                      <input id="pc-ins-coef-custom" type="number" value="200" min="150" max="260" step="0.1" style="display:none;width:100%;background:#fff;border:2px solid #c9a84c;border-radius:9px;padding:.5rem .8rem;font-size:.9rem;font-weight:700;color:#0d1e35;box-sizing:border-box;" oninput="runPensionCompare()" />
                     </div>
 
                     <div>
@@ -1748,6 +1759,13 @@
 
               <!-- הפרש הון -->
               <div id="pc-capital-box" style="background:#fffbe6;border:1.5px solid #f0d060;border-radius:12px;padding:.9rem 1.1rem;margin-bottom:1.2rem;font-size:.84rem;color:#5a4a00;line-height:1.8;"></div>
+
+              <!-- הבדל בירושה - הערה קבועה, לא תלוית קלט -->
+              <div style="background:#eef4fb;border:1.5px solid #a8c8e8;border-radius:12px;padding:.9rem 1.1rem;margin-bottom:1.2rem;font-size:.84rem;color:#1a3a5c;line-height:1.8;">
+                💡 <strong>הבדל חשוב שלא בא לידי ביטוי בטבלה למעלה - ירושה:</strong>
+                בביטוח מנהלים, הכספים שנצברו משולמים למוטבים שנקבעו כ<strong>סכום חד-פעמי</strong>.
+                בקרן פנסיה, במקרה פטירה משולמת בדרך כלל <strong>קצבת שאירים חודשית מתמשכת</strong> (לבן/בת הזוג לכל החיים, ולילדים עד גיל 21) - לא סכום חד-פעמי. זו אחת הנקודות המשמעותיות ביותר לשקול מעבר לגובה הקצבה החודשית עצמה, ומומלץ לבדוק אותה לעומק מול טל גבאי בהתאם למצב המשפחתי שלך.
+              </div>
 
               <!-- אזהרת שאירים -->
               <div id="pc-spouse-warning" style="display:none;background:#fff3cd;border:1.5px solid #f0c040;border-radius:12px;padding:.9rem 1.1rem;margin-bottom:1.2rem;font-size:.84rem;color:#7a5c00;line-height:1.8;"></div>
@@ -2951,7 +2969,32 @@
         document.getElementById('pc-profit-share-row').style.display = 'none';
         document.getElementById('pc-deposit-fees-row').style.display = 'grid';
       }
+      // מקדם מובטח רלוונטי רק לפוליסות אחרי 2001 (לפני 2001 כבר יש טבלת מקדמים מובטחים ייעודית)
+      const guaranteedRow = document.getElementById('pc-guaranteed-row');
+      if (isPre) {
+        guaranteedRow.style.display = 'none';
+        document.getElementById('pc-has-guaranteed').checked = false;
+        pcToggleGuaranteed();
+      } else {
+        guaranteedRow.style.display = 'block';
+      }
       pcUpdateInsCoefDisplay();
+      runPensionCompare();
+    }
+
+    /* ── הצג/הסתר שדה מקדם מובטח ידני ── */
+    function pcToggleGuaranteed() {
+      const has = document.getElementById('pc-has-guaranteed').checked;
+      const displayEl = document.getElementById('pc-ins-coef-display');
+      const customEl  = document.getElementById('pc-ins-coef-custom');
+      if (has) {
+        customEl.value = displayEl.textContent.trim();
+        displayEl.style.display = 'none';
+        customEl.style.display = 'block';
+      } else {
+        displayEl.style.display = '';
+        customEl.style.display = 'none';
+      }
       runPensionCompare();
     }
 
@@ -3037,7 +3080,10 @@
       // ── מקדמי קצבה ──
       pcUpdateInsCoefDisplay();
       const penCoef = pfNumOr(document.getElementById('pc-pen-coef').value, 200);
-      const insCoef = policy === 'pre2001'
+      const hasGuaranteed = policy !== 'pre2001' && document.getElementById('pc-has-guaranteed').checked;
+      const insCoef = hasGuaranteed
+        ? pfNumOr(document.getElementById('pc-ins-coef-custom').value, gender === 'female' ? 220 : 200)
+        : policy === 'pre2001'
         ? getInsuranceCoef(gender, retAge, policy, track)
         : (gender === 'female' ? 220 : 200);
 
