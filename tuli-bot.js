@@ -1846,19 +1846,26 @@
     var greetTimer = null;
     var started = false;
 
+    function scrollToBottom(){
+      requestAnimationFrame(function(){
+        requestAnimationFrame(function(){
+          scrollEl.scrollTop = scrollEl.scrollHeight;
+        });
+      });
+    }
     function addMsg(text, who){
       var d = document.createElement('div');
       d.className = 'tuli-msg ' + who;
       d.textContent = text;
       msgsEl.appendChild(d);
-      scrollEl.scrollTop = scrollEl.scrollHeight;
+      scrollToBottom();
     }
     function showTyping(cb){
       var d = document.createElement('div');
       d.className = 'tuli-msg bot tuli-typing';
       d.innerHTML = '<span></span><span></span><span></span>';
       msgsEl.appendChild(d);
-      scrollEl.scrollTop = scrollEl.scrollHeight;
+      scrollToBottom();
       setTimeout(function(){ d.remove(); cb(); }, 500);
     }
     function botSay(text, cb){ showTyping(function(){ addMsg(text, 'bot'); if (cb) cb(); }); }
@@ -1870,7 +1877,7 @@
       c.textContent = label;
       c.addEventListener('click', onClick);
       chipsEl.appendChild(c);
-      scrollEl.scrollTop = scrollEl.scrollHeight;
+      scrollToBottom();
     }
     function openWhatsapp(){
       window.open('https://wa.me/972528000556', '_blank', 'noopener');
@@ -1892,11 +1899,12 @@
         img.src = 'tuli-bot.png';
         img.alt = '';
         img.style.cssText = 'width:64px;height:64px;object-fit:contain;display:block;margin-top:.4rem';
+        img.onload = scrollToBottom;
         d.appendChild(line1);
         d.appendChild(line2);
         d.appendChild(img);
         msgsEl.appendChild(d);
-        scrollEl.scrollTop = scrollEl.scrollHeight;
+        scrollToBottom();
         if (cb) cb();
       });
     }
