@@ -43,8 +43,8 @@
     bannerTextCalc: 'שמרו את החישוב לפעם הבאה - התקינו את האתר כאפליקציה',
     bannerInstall: 'התקינו',
     bannerDismiss: 'סגור',
-    footerBanner: 'התקינו את האתר כאפליקציה בנייד שלכם - גישה מהירה בלחיצה אחת',
-    footerBtn: 'התקינו עכשיו'
+    footerBanner: 'להתקנת האתר כאפליקציה בנייד שלך - גישה מהירה בלחיצה אחת מהנייד',
+    footerBtn: 'להתקנה עכשיו'
   } : {
     menu: 'Install this site as an app',
     title: 'Install this site as an app',
@@ -128,16 +128,16 @@
 
   function injectFooterInstallBanner() {
     if (isStandalone) return;
-    var list = document.querySelector('.footer-contact-list');
-    if (!list || document.getElementById('pwa-footer-banner')) return;
+    var anchor = document.querySelector('.footer-top-inner');
+    if (!anchor || document.getElementById('pwa-footer-banner')) return;
     var card = document.createElement('div');
     card.id = 'pwa-footer-banner';
-    card.style.cssText = 'margin-top:1.2rem;background:rgba(201,168,76,.08);border:1.5px solid rgba(201,168,76,.5);border-radius:12px;padding:1.1rem 1.2rem;text-align:center;';
+    card.style.cssText = 'max-width:900px;margin:0 auto 2rem;background:rgba(201,168,76,.08);border:1.5px solid rgba(201,168,76,.5);border-radius:14px;padding:1.3rem 1.6rem;text-align:center;';
     card.innerHTML =
-      '<i class="fa-solid fa-mobile-screen-button" aria-hidden="true" style="font-size:1.5rem;color:#c9a84c;margin-bottom:.55rem;display:block;"></i>' +
-      '<p style="color:#fff;font-size:.85rem;font-weight:700;margin:0 0 .8rem;line-height:1.55;">' + t.footerBanner + '</p>' +
-      '<button type="button" id="pwa-footer-banner-btn" style="background:#c9a84c;color:#0d1e35;border:none;border-radius:8px;padding:.6rem 1.5rem;font-size:.82rem;font-weight:800;cursor:pointer;">' + t.footerBtn + '</button>';
-    list.insertAdjacentElement('afterend', card);
+      '<i class="fa-solid fa-mobile-screen-button" aria-hidden="true" style="font-size:1.6rem;color:#c9a84c;margin-bottom:.5rem;display:block;"></i>' +
+      '<p style="color:#fff;font-size:.92rem;font-weight:700;margin:0 0 .85rem;line-height:1.55;">' + t.footerBanner + '</p>' +
+      '<button type="button" id="pwa-footer-banner-btn" style="background:#c9a84c;color:#0d1e35;border:none;border-radius:8px;padding:.65rem 1.8rem;font-size:.85rem;font-weight:800;cursor:pointer;">' + t.footerBtn + '</button>';
+    anchor.insertAdjacentElement('afterend', card);
     document.getElementById('pwa-footer-banner-btn').addEventListener('click', handleInstallClick);
   }
 
