@@ -1866,7 +1866,7 @@
       d.innerHTML = '<span></span><span></span><span></span>';
       msgsEl.appendChild(d);
       scrollToBottom();
-      setTimeout(function(){ d.remove(); cb(); }, 500);
+      setTimeout(function(){ d.remove(); cb(); }, 250);
     }
     function botSay(text, cb){ showTyping(function(){ addMsg(text, 'bot'); if (cb) cb(); }); }
     function clearChips(){ chipsEl.innerHTML = ''; }

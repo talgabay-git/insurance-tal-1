@@ -2071,9 +2071,9 @@ body.keyboard-nav [tabindex]:focus {
 /* ── באנר תחתון להתקנת האפליקציה - דוחף למעלה את הכפתורים הצפים כשהוא פתוח ── */
 @keyframes pwaBannerIn { from { transform: translateY(100%); } to { transform: translateY(0); } }
 @media (max-width: 768px) {
-  body.pwa-banner-open .whatsapp-float { bottom: calc(1.5rem + var(--pwa-banner-h, 0px)); }
-  body.pwa-banner-open .a11y-widget { bottom: calc(9rem + var(--pwa-banner-h, 0px)); }
-  body.pwa-banner-open .tuli-widget { bottom: calc(14.5rem + var(--pwa-banner-h, 0px)); }
+  body.pwa-banner-open .whatsapp-float { bottom: calc(1.5rem + var(--pwa-banner-h, 0px)) !important; }
+  body.pwa-banner-open .a11y-widget { bottom: calc(9rem + var(--pwa-banner-h, 0px)) !important; }
+  body.pwa-banner-open .tuli-widget { bottom: calc(14.5rem + var(--pwa-banner-h, 0px)) !important; }
 }
 
 /* ── Photo Lightbox ──────────────────────────────────────────── */
