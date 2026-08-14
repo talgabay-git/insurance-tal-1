@@ -1785,7 +1785,8 @@
       var touchDragging = false, touchLastX = 0;
 
       function pxPerSec() {
-        return halfWidth / (window.innerWidth <= 768 ? 187.1 : 177.0);
+        /* מהירות קרוסלת הוואטסאפ = 70% ממהירות קרוסלת "המלצות" שמעליה (מחלק גדול יותר = איטי יותר) */
+        return halfWidth / (window.innerWidth <= 768 ? 267.29 : 252.86);
       }
       function wrapPos(p) {
         if (!halfWidth) return p;
