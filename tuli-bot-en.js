@@ -2077,13 +2077,8 @@
     function finishFeedback(){
       clearChips();
       submitFeedback();
-      var nps = feedbackAnswers.nps;
       botSay('Thank you so much for the feedback! It really helps Tal improve the site.', function(){
-        if (typeof nps === 'number' && nps >= 8){
-          offerShare();
-        } else {
-          addChip('Back to categories', function(){ startTopicStage(); });
-        }
+        offerShare();
       });
     }
     function offerShare(){
