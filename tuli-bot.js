@@ -1799,6 +1799,7 @@
         { q:'מהי ההצלחה הגדולה ביותר של טל בתכנון פרישה עבור לקוחותיו?', kw:['הצלחה הגדולה ביותר'],
           a:'ההצלחה הגדולה ביותר היא לראות לקוח שהגיע מודאג ומבולבל, ויוצא לפרישה עם מפת דרכים ברורה, ביטחון כלכלי, ואחרי שחסכנו לו עשרות או מאות אלפי שקלים בתשלומי מס מיותרים.' }
       ]},
+      { key:'install', label:'📲 הורדת האפליקציה', items:[] },
       { key:'feedback', label:'💬 עזור לנו להשתפר', items:[] }
     ];
 
@@ -1929,6 +1930,7 @@
       clearChips();
       currentCat = cat;
       if (cat.key === 'feedback'){ startFeedbackStage(); return; }
+      if (cat.key === 'install'){ startInstallStage(); return; }
       botSay('הנה כמה מהשאלות הנפוצות בנושא הזה - אפשר ללחוץ, או להקליד כל שאלה משלך (יש עוד הרבה מעבר למוצג):', function(){
         var shown = cat.items.slice(0, 5);
         var rest = cat.items.slice(5);
@@ -2016,6 +2018,14 @@
       { key:'rating', q:'מ-1 עד 10, איך היית מדרג את החוויה הכללית שלך באתר?', type:'scale' },
       { key:'nps', q:'מ-1 עד 10, מה הסיכוי שתמליץ על האתר לחבר או מכר?', type:'scale' }
     ];
+    function startInstallStage(){
+      botSay('מעולה! התקנת האתר כאפליקציה בנייד נותנת לך גישה מהירה בלחיצה אחת, ישירות ממסך הבית שלך.', function(){
+        addChip('📲 להתקנה עכשיו', function(){
+          if (window.pwaInstall) window.pwaInstall();
+        });
+        addChip('חזרה לקטגוריות', function(){ startTopicStage(); }, 'tuli-back');
+      });
+    }
     var feedbackAnswers = {};
     var feedbackStep = 0;
     function startFeedbackStage(){

@@ -1803,6 +1803,7 @@
         { q:'What is Tal\'s greatest success in retirement planning for his clients?', kw:['greatest success story','biggest achievement'],
           a:'The greatest success is seeing a client who arrived worried and confused, and retires with a clear roadmap, financial security, after we saved them tens or hundreds of thousands of shekels in unnecessary tax payments.' }
       ]},
+      { key:'install', label:'📲 Install the App', items:[] },
       { key:'feedback', label:'💬 Help Us Improve', items:[] }
     ];
 
@@ -1937,6 +1938,7 @@
       clearChips();
       currentCat = cat;
       if (cat.key === 'feedback'){ startFeedbackStage(); return; }
+      if (cat.key === 'install'){ startInstallStage(); return; }
       botSay('Here are some common questions on this topic - you can click one, or type your own question (there are many more beyond what\'s shown):', function(){
         var shown = cat.items.slice(0, 5);
         var rest = cat.items.slice(5);
@@ -2024,6 +2026,14 @@
       { key:'rating', q:'From 1 to 10, how would you rate your overall experience on the site?', type:'scale' },
       { key:'nps', q:'From 1 to 10, how likely are you to recommend the site to a friend?', type:'scale' }
     ];
+    function startInstallStage(){
+      botSay('Great! Installing the site as an app on your phone gives you fast, one-tap access right from your home screen.', function(){
+        addChip('📲 Install now', function(){
+          if (window.pwaInstall) window.pwaInstall();
+        });
+        addChip('Back to categories', function(){ startTopicStage(); });
+      });
+    }
     var feedbackAnswers = {};
     var feedbackStep = 0;
     function startFeedbackStage(){

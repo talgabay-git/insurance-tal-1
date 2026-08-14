@@ -99,8 +99,7 @@
     modal.addEventListener('click', function (e) { if (e.target === modal) close(); });
   }
 
-  function handleInstallClick(e) {
-    e.preventDefault();
+  function doInstall() {
     if (deferredPrompt) {
       deferredPrompt.prompt();
       deferredPrompt.userChoice.finally(function () { deferredPrompt = null; });
@@ -110,6 +109,11 @@
       showInstallModal([t.generic]);
     }
   }
+  function handleInstallClick(e) {
+    e.preventDefault();
+    doInstall();
+  }
+  window.pwaInstall = doInstall;
 
   function injectInstallMenuItem() {
     if (isStandalone) return;
