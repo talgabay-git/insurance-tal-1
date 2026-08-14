@@ -1677,6 +1677,37 @@ br.mobile-br { display: none; }
   .partner-logo img { max-width: 150px; max-height: 63px; }
 }
 
+/* כשאנימציות כבויות (כפתור נגישות או prefers-reduced-motion) - הרצועה הנעה
+   הייתה מוצגת קפואה עם 2 לוגואים בלבד גלויים. במקום זאת, עוברים לתצוגת
+   רשת סטטית עם כל הלוגואים גלויים, ומסתירים את עותקי ה-aria-hidden
+   הכפולים ששימשו רק ליצירת לולאת הגלילה האינסופית. */
+body.no-animations .partners-track-wrap,
+body.no-animations .partners-track-wrap:last-child {
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+body.no-animations .partners-track,
+body.no-animations .partners-track-reverse {
+  flex-wrap: wrap;
+  justify-content: center;
+  width: auto;
+}
+body.no-animations .partner-logo[aria-hidden="true"] { display: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .partners-track-wrap {
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+  .partners-track,
+  .partners-track-reverse {
+    flex-wrap: wrap;
+    justify-content: center;
+    width: auto;
+  }
+  .partner-logo[aria-hidden="true"] { display: none; }
+}
+
 /* ── How We Work ─────────────────────────────────────────── */
 .how-we-work {
   background: var(--navy-dark);
