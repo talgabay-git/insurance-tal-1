@@ -1870,6 +1870,7 @@
       c.textContent = label;
       c.addEventListener('click', onClick);
       chipsEl.appendChild(c);
+      scrollEl.scrollTop = scrollEl.scrollHeight;
     }
     function openWhatsapp(){
       window.open('https://wa.me/972528000556', '_blank', 'noopener');
