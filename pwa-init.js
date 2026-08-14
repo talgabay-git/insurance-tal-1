@@ -38,14 +38,22 @@
     iosStep1: 'הקישו על כפתור השיתוף בסרגל הכלים של Safari',
     iosStep2: 'גללו למטה ובחרו "הוסף למסך הבית"',
     generic: 'פתחו את תפריט הדפדפן ובחרו "התקן אפליקציה" או "הוסף למסך הבית"',
-    close: 'הבנתי'
+    close: 'הבנתי',
+    bannerText: 'קבלו גישה מהירה יותר - התקינו את האתר כאפליקציה',
+    bannerTextCalc: 'שמרו את החישוב לפעם הבאה - התקינו את האתר כאפליקציה',
+    bannerInstall: 'התקינו',
+    bannerDismiss: 'סגור'
   } : {
     menu: 'Install this site as an app',
     title: 'Install this site as an app',
     iosStep1: "Tap the Share button in Safari's toolbar",
     iosStep2: 'Scroll down and choose "Add to Home Screen"',
     generic: 'Open your browser menu and choose "Install app" or "Add to Home Screen"',
-    close: 'Got it'
+    close: 'Got it',
+    bannerText: 'Get faster access - install this site as an app',
+    bannerTextCalc: 'Save this calculation for next time - install the app',
+    bannerInstall: 'Install',
+    bannerDismiss: 'Dismiss'
   };
 
   var deferredPrompt = null;
@@ -118,5 +126,68 @@
     document.addEventListener('DOMContentLoaded', injectInstallMenuItem);
   } else {
     injectInstallMenuItem();
+  }
+
+  /* ---- באנר תחתון להתקנת האפליקציה - מופיע פעם אחת בלבד לפי מעורבות, או מיד אחרי חישוב במחשבון ---- */
+  var BANNER_DISMISS_KEY = 'pwaBannerDismissed';
+  var BANNER_SHOWN_KEY = 'pwaBannerShownSession';
+  var bannerShown = false;
+
+  function showInstallBanner(reason) {
+    if (isStandalone || bannerShown) return;
+    if (!window.matchMedia('(max-width: 768px)').matches) return;
+    try { if (localStorage.getItem(BANNER_DISMISS_KEY) === '1') return; } catch (e) {}
+    try {
+      if (sessionStorage.getItem(BANNER_SHOWN_KEY) === '1') return;
+      sessionStorage.setItem(BANNER_SHOWN_KEY, '1');
+    } catch (e) {}
+    bannerShown = true;
+
+    var msg = reason === 'calc' ? t.bannerTextCalc : t.bannerText;
+    var bar = document.createElement('div');
+    bar.id = 'pwa-install-banner';
+    bar.setAttribute('role', 'region');
+    bar.setAttribute('aria-label', t.title);
+    bar.style.cssText = 'position:fixed;left:0;right:0;bottom:0;z-index:9500;background:#0d1e35;color:#fff;display:flex;align-items:center;gap:.6rem;padding:.7rem .9rem;box-shadow:0 -4px 18px rgba(0,0,0,.25);font-family:inherit;direction:' + (isHe ? 'rtl' : 'ltr') + ';animation:pwaBannerIn .35s ease-out;';
+    bar.innerHTML =
+      '<i class="fa-solid fa-mobile-screen-button" aria-hidden="true" style="font-size:1.3rem;color:#c9a84c;flex-shrink:0;"></i>' +
+      '<span style="flex:1;font-size:.82rem;line-height:1.4;">' + msg + '</span>' +
+      '<button type="button" id="pwa-banner-install" style="background:#c9a84c;color:#0d1e35;border:none;border-radius:8px;padding:.45rem 1rem;font-size:.8rem;font-weight:700;cursor:pointer;white-space:nowrap;">' + t.bannerInstall + '</button>' +
+      '<button type="button" id="pwa-banner-close" aria-label="' + t.bannerDismiss + '" style="background:none;border:none;color:rgba(255,255,255,.6);font-size:1.1rem;cursor:pointer;padding:.2rem;line-height:1;">&times;</button>';
+    document.body.appendChild(bar);
+    document.body.classList.add('pwa-banner-open');
+    document.documentElement.style.setProperty('--pwa-banner-h', bar.offsetHeight + 'px');
+
+    function removeBanner() {
+      bar.remove();
+      document.body.classList.remove('pwa-banner-open');
+      document.documentElement.style.setProperty('--pwa-banner-h', '0px');
+    }
+    document.getElementById('pwa-banner-close').addEventListener('click', function () {
+      try { localStorage.setItem(BANNER_DISMISS_KEY, '1'); } catch (e) {}
+      removeBanner();
+    });
+    document.getElementById('pwa-banner-install').addEventListener('click', function (e) {
+      handleInstallClick(e);
+      removeBanner();
+    });
+  }
+
+  window.pwaInstallBanner = { showNow: showInstallBanner };
+
+  function armEngagementBanner() {
+    if (isStandalone || !window.matchMedia('(max-width: 768px)').matches) return;
+    setTimeout(function () { showInstallBanner('engagement'); }, 30000);
+    try {
+      var views = parseInt(sessionStorage.getItem('pwaPageViews') || '0', 10) + 1;
+      sessionStorage.setItem('pwaPageViews', String(views));
+      if (views >= 2) showInstallBanner('engagement');
+    } catch (e) {}
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', armEngagementBanner);
+  } else {
+    armEngagementBanner();
   }
 })();
