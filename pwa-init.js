@@ -132,7 +132,7 @@
     if (!anchor || document.getElementById('pwa-footer-banner')) return;
     var card = document.createElement('div');
     card.id = 'pwa-footer-banner';
-    card.style.cssText = 'max-width:900px;margin:2rem auto;background:rgba(201,168,76,.08);border:1.5px solid rgba(201,168,76,.5);border-radius:14px;padding:1.3rem 1.6rem;text-align:center;';
+    card.style.cssText = 'max-width:900px;margin:4rem auto;background:rgba(201,168,76,.08);border:1.5px solid rgba(201,168,76,.5);border-radius:14px;padding:1.3rem 1.6rem;text-align:center;';
     card.innerHTML =
       '<i class="fa-solid fa-mobile-screen-button" aria-hidden="true" style="font-size:1.6rem;color:#c9a84c;margin-bottom:.5rem;display:block;"></i>' +
       '<p style="color:#fff;font-size:.92rem;font-weight:700;margin:0 0 .85rem;line-height:1.55;">' + t.footerBanner + '</p>' +
