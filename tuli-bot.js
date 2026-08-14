@@ -2080,7 +2080,7 @@
     }
     function offerShare(){
       var shareMsg = 'מצאתי אתר ממש טוב לתכנון פנסיוני, ביטוחים והשקעות - טל גבאי. שווה להעיף מבט: https://procapital.co.il';
-      botSay('שמח לשמוע! מישהו מהחברים שלך התלבט לאחרונה לגבי פנסיה או ביטוח? הנה הודעה מוכנה לשליחה בלחיצה אחת:', function(){
+      botSay('שמח לשמוע! מישהו מהחברים שלך התלבט לאחרונה לגבי פנסיה או ביטוח? הנה הלינק של האתר https://procapital.co.il/ מוכנה לשליחה בלחיצה אחת:', function(){
         if (navigator.share){
           addChip('📤 שתף', function(){
             navigator.share({ text: shareMsg, url: 'https://procapital.co.il' }).catch(function(){});
