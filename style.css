@@ -1129,6 +1129,8 @@ br.mobile-br { display: none; }
   will-change: transform;
   backface-visibility: hidden;
 }
+/* קרוסלת עדויות הוואטסאפ - 70% מהמהירות של קרוסלת "המלצות" שמעליה (משך ארוך יותר פי 1/0.7) */
+#wa-grid { animation-duration: 7.14s; }
 @keyframes scrollTestimonials {
   0%   { transform: translateX(0); }
   100% { transform: translateX(-50%); }
@@ -1502,6 +1504,7 @@ br.mobile-br { display: none; }
   .form-row-4 { grid-template-columns: 1fr; }
   .testimonials-track .testimonial-card { min-width: 290px; max-width: 290px; }
   .testimonials-track { animation-duration: 2.6s; }
+  #wa-grid { animation-duration: 3.71s; }
   .hero-title { font-size: clamp(1.6rem, 8vw, 2.2rem); }
   .hero-subtitle { font-size: 1rem; }
 }
