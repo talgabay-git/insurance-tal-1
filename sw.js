@@ -2,7 +2,7 @@
    אסטרטגיה: דפי HTML - network-first (תוכן עדכני, נופל לגרסה שמורה כשאין רשת).
    נכסים סטטיים (CSS/JS/תמונות) - cache-first (מהירות, נופל לרשת אם חסר). */
 
-const CACHE_VERSION = 'talgabay-v4';
+const CACHE_VERSION = 'talgabay-v5';
 const APP_SHELL = [
   '/',
   '/style.css',

@@ -42,7 +42,9 @@
     bannerText: 'קבלו גישה מהירה יותר - התקינו את האתר כאפליקציה',
     bannerTextCalc: 'שמרו את החישוב לפעם הבאה - התקינו את האתר כאפליקציה',
     bannerInstall: 'התקינו',
-    bannerDismiss: 'סגור'
+    bannerDismiss: 'סגור',
+    footerBanner: 'התקינו את האתר כאפליקציה בנייד שלכם - גישה מהירה בלחיצה אחת',
+    footerBtn: 'התקינו עכשיו'
   } : {
     menu: 'Install this site as an app',
     title: 'Install this site as an app',
@@ -53,7 +55,9 @@
     bannerText: 'Get faster access - install this site as an app',
     bannerTextCalc: 'Save this calculation for next time - install the app',
     bannerInstall: 'Install',
-    bannerDismiss: 'Dismiss'
+    bannerDismiss: 'Dismiss',
+    footerBanner: 'Install this site as an app on your phone - one-tap access',
+    footerBtn: 'Install now'
   };
 
   var deferredPrompt = null;
@@ -122,10 +126,27 @@
     list.appendChild(li);
   }
 
+  function injectFooterInstallBanner() {
+    if (isStandalone) return;
+    var list = document.querySelector('.footer-contact-list');
+    if (!list || document.getElementById('pwa-footer-banner')) return;
+    var card = document.createElement('div');
+    card.id = 'pwa-footer-banner';
+    card.style.cssText = 'margin-top:1.2rem;background:rgba(201,168,76,.08);border:1.5px solid rgba(201,168,76,.5);border-radius:12px;padding:1.1rem 1.2rem;text-align:center;';
+    card.innerHTML =
+      '<i class="fa-solid fa-mobile-screen-button" aria-hidden="true" style="font-size:1.5rem;color:#c9a84c;margin-bottom:.55rem;display:block;"></i>' +
+      '<p style="color:#fff;font-size:.85rem;font-weight:700;margin:0 0 .8rem;line-height:1.55;">' + t.footerBanner + '</p>' +
+      '<button type="button" id="pwa-footer-banner-btn" style="background:#c9a84c;color:#0d1e35;border:none;border-radius:8px;padding:.6rem 1.5rem;font-size:.82rem;font-weight:800;cursor:pointer;">' + t.footerBtn + '</button>';
+    list.insertAdjacentElement('afterend', card);
+    document.getElementById('pwa-footer-banner-btn').addEventListener('click', handleInstallClick);
+  }
+
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', injectInstallMenuItem);
+    document.addEventListener('DOMContentLoaded', injectFooterInstallBanner);
   } else {
     injectInstallMenuItem();
+    injectFooterInstallBanner();
   }
 
   /* ---- באנר תחתון להתקנת האפליקציה - מופיע פעם אחת בלבד לפי מעורבות, או מיד אחרי חישוב במחשבון ---- */
