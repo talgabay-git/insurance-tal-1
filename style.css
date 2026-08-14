@@ -1125,7 +1125,7 @@ br.mobile-br { display: none; }
   align-items: flex-start;
   gap: 1.5rem;
   width: max-content;
-  animation: scrollTestimonials 45s linear infinite;
+  animation: scrollTestimonials 15s linear infinite;
   will-change: transform;
   backface-visibility: hidden;
 }
@@ -1501,7 +1501,7 @@ br.mobile-br { display: none; }
   .services-grid { grid-template-columns: 1fr; }
   .form-row-4 { grid-template-columns: 1fr; }
   .testimonials-track .testimonial-card { min-width: 290px; max-width: 290px; }
-  .testimonials-track { animation-duration: 23s; }
+  .testimonials-track { animation-duration: 7.7s; }
   .hero-title { font-size: clamp(1.6rem, 8vw, 2.2rem); }
   .hero-subtitle { font-size: 1rem; }
 }
