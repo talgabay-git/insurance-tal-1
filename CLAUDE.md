@@ -17,7 +17,7 @@
 - **סוג:** HTML/CSS/JS סטטי, עברית RTL
 - **גופנים:** Heebo + Assistant (Google Fonts)
 - **צבעים:** Navy `#0d1e35` + Gold `#c9a84c`
-- **טפסים:** FormSubmit AJAX → office@pf-invest.co.il + CC tal@pf-invest.co.il
+- **טפסים:** עברית → Formspree (DPA נשלח, ממתין לחתימה נגדית — ראה "רגולציה"). אנגלית (en/) → עדיין FormSubmit (formsubmit.co), יעבור ל-Formspree אחרי אישור ה-DPA. שניהם → office@pf-invest.co.il + CC tal@pf-invest.co.il
 
 ## עמודים קיימים (עודכן 11.7.26 — 39 עמודים)
 - index.html — דף הבית
