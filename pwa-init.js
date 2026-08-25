@@ -44,7 +44,10 @@
     bannerInstall: 'התקינו',
     bannerDismiss: 'סגור',
     footerBanner: 'להתקנת האתר כאפליקציה בנייד שלך - גישה מהירה בלחיצה אחת מהנייד',
-    footerBtn: 'להתקנה עכשיו'
+    footerBtn: 'להתקנה עכשיו',
+    fabTooltip: 'הורדת אפליקציה לנייד',
+    a11yTooltip: 'נגישות',
+    tuliTooltip: 'טולי הבוט'
   } : {
     menu: 'Install this site as an app',
     title: 'Install this site as an app',
@@ -57,7 +60,10 @@
     bannerInstall: 'Install',
     bannerDismiss: 'Dismiss',
     footerBanner: 'Install this site as an app on your phone - one-tap access',
-    footerBtn: 'Install now'
+    footerBtn: 'Install now',
+    fabTooltip: 'Install app on your phone',
+    a11yTooltip: 'Accessibility',
+    tuliTooltip: 'Tuli the bot'
   };
 
   var deferredPrompt = null;
@@ -157,20 +163,41 @@
     btn.type = 'button';
     btn.className = 'pwa-fab-btn';
     btn.setAttribute('aria-label', t.menu);
-    btn.innerHTML = '<i class="fa-solid fa-mobile-screen-button" aria-hidden="true"></i>';
+    btn.innerHTML = '<i class="fa-solid fa-mobile-screen-button" aria-hidden="true"></i><span class="fab-tooltip" aria-hidden="true">' + t.fabTooltip + '</span>';
     btn.addEventListener('click', function (e) { e.preventDefault(); doInstall(); });
     wrap.appendChild(btn);
     document.body.appendChild(wrap);
+  }
+
+  function injectFabTooltips() {
+    var a11yBtn = document.getElementById('a11y-toggle');
+    if (a11yBtn && !a11yBtn.querySelector('.fab-tooltip')) {
+      var a11ySpan = document.createElement('span');
+      a11ySpan.className = 'fab-tooltip';
+      a11ySpan.setAttribute('aria-hidden', 'true');
+      a11ySpan.textContent = t.a11yTooltip;
+      a11yBtn.appendChild(a11ySpan);
+    }
+    var tuliBtn = document.getElementById('tuli-fab');
+    if (tuliBtn && !tuliBtn.querySelector('.fab-tooltip')) {
+      var tuliSpan = document.createElement('span');
+      tuliSpan.className = 'fab-tooltip';
+      tuliSpan.setAttribute('aria-hidden', 'true');
+      tuliSpan.textContent = t.tuliTooltip;
+      tuliBtn.appendChild(tuliSpan);
+    }
   }
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', injectInstallMenuItem);
     document.addEventListener('DOMContentLoaded', injectFooterInstallBanner);
     document.addEventListener('DOMContentLoaded', injectInstallFab);
+    document.addEventListener('DOMContentLoaded', injectFabTooltips);
   } else {
     injectInstallMenuItem();
     injectFooterInstallBanner();
     injectInstallFab();
+    injectFabTooltips();
   }
 
   /* ---- באנר תחתון להתקנת האפליקציה - מופיע פעם אחת בלבד לפי מעורבות, או מיד אחרי חישוב במחשבון ---- */
