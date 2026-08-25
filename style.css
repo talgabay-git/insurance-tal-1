@@ -1916,7 +1916,29 @@ body.no-animations .partner-logo[aria-hidden="true"] { display: none; }
   cursor: pointer;
   box-shadow: 0 3px 14px rgba(0,0,0,.35);
   transition: var(--transition);
+  position: relative;
 }
+.fab-tooltip {
+  position: absolute;
+  right: 100%;
+  margin-right: .7rem;
+  background: var(--navy-dark);
+  color: var(--white);
+  padding: .35rem .75rem;
+  border-radius: 6px;
+  font-size: .8rem;
+  font-weight: 600;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition);
+}
+.a11y-toggle:hover .fab-tooltip,
+.a11y-toggle:focus-visible .fab-tooltip,
+.tuli-fab:hover .fab-tooltip,
+.tuli-fab:focus-visible .fab-tooltip,
+.pwa-fab-btn:hover .fab-tooltip,
+.pwa-fab-btn:focus-visible .fab-tooltip { opacity: 1; }
 .a11y-toggle:hover { background: var(--navy-mid); transform: scale(1.08); }
 .a11y-panel {
   position: absolute;
