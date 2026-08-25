@@ -73,6 +73,8 @@
     deferredPrompt = null;
     var item = document.getElementById('pwa-install-item');
     if (item) item.remove();
+    var fab = document.getElementById('pwa-fab-widget');
+    if (fab) fab.remove();
   });
 
   function showInstallModal(steps) {
@@ -145,12 +147,30 @@
     document.getElementById('pwa-footer-banner-btn').addEventListener('click', handleInstallClick);
   }
 
+  function injectInstallFab() {
+    if (isStandalone) return;
+    if (document.getElementById('pwa-fab-widget')) return;
+    var wrap = document.createElement('div');
+    wrap.className = 'pwa-fab-widget';
+    wrap.id = 'pwa-fab-widget';
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'pwa-fab-btn';
+    btn.setAttribute('aria-label', t.menu);
+    btn.innerHTML = '<i class="fa-solid fa-mobile-screen-button" aria-hidden="true"></i>';
+    btn.addEventListener('click', function (e) { e.preventDefault(); doInstall(); });
+    wrap.appendChild(btn);
+    document.body.appendChild(wrap);
+  }
+
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', injectInstallMenuItem);
     document.addEventListener('DOMContentLoaded', injectFooterInstallBanner);
+    document.addEventListener('DOMContentLoaded', injectInstallFab);
   } else {
     injectInstallMenuItem();
     injectFooterInstallBanner();
+    injectInstallFab();
   }
 
   /* ---- באנר תחתון להתקנת האפליקציה - מופיע פעם אחת בלבד לפי מעורבות, או מיד אחרי חישוב במחשבון ---- */
