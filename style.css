@@ -2068,12 +2068,57 @@ body.keyboard-nav [tabindex]:focus {
   .tuli-panel { width: min(320px, calc(100vw - 2rem)); }
 }
 
+/* ── כפתור צף להתקנת האפליקציה - מעל טולי ── */
+.pwa-fab-widget {
+  position: fixed;
+  bottom: 21.5rem;
+  left: 1.5rem;
+  z-index: 9998;
+  direction: rtl;
+}
+.pwa-fab-btn {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--navy);
+  border: 2px solid var(--gold);
+  color: var(--gold);
+  font-size: 1.35rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 3px 14px rgba(0,0,0,.35);
+  transition: var(--transition);
+  position: relative;
+}
+.pwa-fab-btn:hover { background: var(--navy-mid); transform: scale(1.08); }
+.pwa-fab-btn::after {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 1.5px solid var(--gold);
+  opacity: 0;
+  animation: pwaFabPulse 2.2s ease-out infinite;
+}
+@keyframes pwaFabPulse {
+  0% { transform: scale(0.85); opacity: .55; }
+  70% { transform: scale(1.25); opacity: 0; }
+  100% { opacity: 0; }
+}
+@media (max-width: 768px) {
+  .pwa-fab-widget { bottom: 19.5rem; left: 1rem; }
+  .pwa-fab-btn { width: 44px; height: 44px; font-size: 1.2rem; }
+}
+
 /* ── באנר תחתון להתקנת האפליקציה - דוחף למעלה את הכפתורים הצפים כשהוא פתוח ── */
 @keyframes pwaBannerIn { from { transform: translateY(100%); } to { transform: translateY(0); } }
 @media (max-width: 768px) {
   body.pwa-banner-open .whatsapp-float { bottom: calc(1.5rem + var(--pwa-banner-h, 0px)) !important; }
   body.pwa-banner-open .a11y-widget { bottom: calc(9rem + var(--pwa-banner-h, 0px)) !important; }
   body.pwa-banner-open .tuli-widget { bottom: calc(14.5rem + var(--pwa-banner-h, 0px)) !important; }
+  body.pwa-banner-open .pwa-fab-widget { bottom: calc(19.5rem + var(--pwa-banner-h, 0px)) !important; }
 }
 
 /* ── Photo Lightbox ──────────────────────────────────────────── */
@@ -2327,6 +2372,7 @@ body.keyboard-nav [tabindex]:focus {
   .whatsapp-float,
   .back-to-top,
   .a11y-widget,
+  .pwa-fab-widget,
   .hamburger,
   .mobile-menu,
   .search-toggle,
