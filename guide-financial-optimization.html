@@ -202,6 +202,47 @@
       margin-top: .4rem;
     }
 
+    /* ── דילוג לתוכן (נגישות) ── */
+    .skip-link {
+      position: absolute;
+      right: -9999px;
+      top: 0;
+      background: #0d1e35;
+      color: #fff;
+      padding: .7rem 1.2rem;
+      z-index: 10000;
+      font-size: .9rem;
+      border-radius: 0 0 6px 0;
+    }
+    .skip-link:focus { right: 0; }
+
+    /* ── כפתור חזרה לראש הדף ── */
+    .back-to-top {
+      position: fixed;
+      bottom: 1.5rem;
+      left: 1.5rem;
+      width: 44px;
+      height: 44px;
+      background: #0d1e35;
+      border: none;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(0,0,0,.25);
+      z-index: 900;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(10px);
+      transition: opacity .25s, transform .25s, background .2s;
+    }
+    .back-to-top.visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    .back-to-top:hover { background: #c9a84c; color: #0d1e35; }
+    .back-to-top svg { width: 18px; height: 18px; }
+    @media print { .skip-link, .back-to-top { display: none !important; } }
+
     /* ── Print ── */
     @media print {
       body { background: #fff; }
@@ -213,6 +254,7 @@
   </style>
 </head>
 <body>
+<a href="#guide-content" class="skip-link">דלג לתוכן הראשי</a>
 <div class="page">
 
   <!-- Header -->
@@ -223,7 +265,7 @@
   </div>
 
   <!-- Body -->
-  <div class="body">
+  <div class="body" id="guide-content" tabindex="-1">
 
     <div class="intro">
       תכנון פיננסי אינו אירוע חד-פעמי - הוא תהליך מתמשך של התאמה, בחינה וייעול. המדריך הבא מציג 7 עקרונות מרכזיים שיסייעו לכם לקבל את המרב מהתיק הפיננסי שלכם.
@@ -362,8 +404,16 @@
 </div>
 
   <button class="back-to-top" id="back-to-top" aria-label="חזור לראש הדף">
-    <i class="fa-solid fa-chevron-up"></i>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="18 15 12 9 6 15"></polyline></svg>
   </button>
+  <script>
+  (function(){
+    var btn = document.getElementById('back-to-top');
+    if (!btn) return;
+    window.addEventListener('scroll', function(){ btn.classList.toggle('visible', window.scrollY > 400); });
+    btn.addEventListener('click', function(){ window.scrollTo({ top: 0, behavior: 'smooth' }); });
+  })();
+  </script>
   <script src="tuli-bot.js"></script>
   <script src="/pwa-init.js"></script>
 </body>
