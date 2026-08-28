@@ -243,6 +243,57 @@
     .back-to-top svg { width: 18px; height: 18px; }
     @media print { .skip-link, .back-to-top { display: none !important; } }
 
+    /* ── רכיב נגישות (עצמאי, לא תלוי ב-style.css של האתר) ── */
+    .a11y-widget { position: fixed; bottom: 5.5rem; left: 1.5rem; z-index: 9999; direction: rtl; }
+    .a11y-toggle {
+      width: 52px; height: 52px; border-radius: 50%;
+      background: #0d1e35; border: 2px solid #c9a84c; color: #c9a84c;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; box-shadow: 0 3px 14px rgba(0,0,0,.35); transition: transform .2s, background .2s;
+    }
+    .a11y-toggle svg { width: 26px; height: 26px; }
+    .a11y-toggle:hover { background: #16294a; transform: scale(1.08); }
+    .a11y-panel {
+      position: absolute; bottom: 62px; left: 0;
+      background: #0d1e35; border: 1.5px solid #c9a84c; border-radius: 10px;
+      padding: 1.2rem; min-width: 240px; display: none; flex-direction: column; gap: .4rem;
+      box-shadow: 0 12px 40px rgba(0,0,0,.4);
+    }
+    .a11y-panel.open { display: flex; }
+    .a11y-panel-title {
+      color: #c9a84c; font-weight: 800; font-size: 1.1rem; text-align: center;
+      padding-bottom: .6rem; border-bottom: 1px solid rgba(201,168,76,.3); margin-bottom: .1rem;
+    }
+    .a11y-btn {
+      background: transparent; border: 1px solid rgba(255,255,255,.15); color: #fff;
+      border-radius: 6px; padding: .55rem 1rem; font-size: .95rem; font-weight: 600;
+      text-align: right; cursor: pointer; display: flex; align-items: center; gap: .55rem;
+      transition: background .15s, border-color .15s; font-family: inherit; direction: rtl;
+    }
+    .a11y-btn svg { width: 15px; height: 15px; flex-shrink: 0; }
+    .a11y-btn:hover { background: rgba(201,168,76,.15); border-color: #c9a84c; }
+    .a11y-btn.active { background: rgba(201,168,76,.2); border-color: #c9a84c; color: #c9a84c; }
+    .a11y-reset { color: rgba(255,255,255,.55); font-size: .8rem; margin-top: .2rem; }
+
+    /* מצבי הנגישות עצמם, מותאמים לעיצוב עמוד המדריך */
+    body.a11y-contrast { filter: contrast(1.55) brightness(1.05); }
+    body.a11y-noanim *, body.a11y-noanim *::before, body.a11y-noanim *::after {
+      animation-duration: 0s !important; transition-duration: 0s !important;
+    }
+    body.a11y-links a:not(.skip-link):not(.back-to-top) {
+      outline: 2px solid #c9a84c !important; outline-offset: 2px !important;
+      text-decoration: underline !important; text-underline-offset: 3px !important;
+    }
+    body.a11y-spacing p, body.a11y-spacing li, body.a11y-spacing .intro,
+    body.a11y-spacing .step-body, body.a11y-spacing .footer-disclaimer {
+      letter-spacing: .1em !important; word-spacing: .15em !important; line-height: 1.95 !important;
+    }
+    body.a11y-kbd a:focus, body.a11y-kbd button:focus, body.a11y-kbd [tabindex]:focus {
+      outline: 3px solid #c9a84c !important; outline-offset: 3px !important;
+    }
+    @media (max-width: 768px) { .a11y-widget { bottom: 5rem; left: 1rem; } }
+    @media print { .a11y-widget { display: none !important; } }
+
     /* ── Print ── */
     @media print {
       body { background: #fff; }
@@ -402,6 +453,64 @@
 <div style="text-align:center;padding:1.5rem;font-family:'Heebo',sans-serif;font-size:.85rem;color:#888;">
   להדפסה: Ctrl+P &nbsp;|&nbsp; שמירה כ-PDF: בחר "Save as PDF" בתפריט המדפסת
 </div>
+
+  <!-- ===== רכיב נגישות ===== -->
+  <div class="a11y-widget" id="a11y-widget">
+    <button class="a11y-toggle" id="a11y-toggle" aria-label="אפשרויות נגישות" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="4" r="2"/><path d="M4 8h16M9 21l3-7 3 7M12 8v6"/></svg>
+    </button>
+    <div class="a11y-panel" id="a11y-panel" role="dialog" aria-label="תפריט נגישות" aria-hidden="true">
+      <div class="a11y-panel-title">נגישות</div>
+      <button class="a11y-btn" id="a11y-font-up" aria-label="הגדל גופן"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg> הגדל טקסט</button>
+      <button class="a11y-btn" id="a11y-font-down" aria-label="הקטן גופן"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/></svg> הקטן טקסט</button>
+      <button class="a11y-btn" id="a11y-contrast" aria-label="ניגודיות גבוהה"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg> ניגודיות גבוהה</button>
+      <button class="a11y-btn" id="a11y-animations" aria-label="עצור אנימציות"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="5" width="4" height="14"/><rect x="14" y="5" width="4" height="14"/></svg> עצור אנימציות</button>
+      <button class="a11y-btn" id="a11y-links" aria-label="הדגש קישורים"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7 0l2-2a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-2 2a5 5 0 0 0 7 7l1-1"/></svg> הדגש קישורים</button>
+      <button class="a11y-btn" id="a11y-spacing" aria-label="ריווח טקסט"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7V5h18v2M3 17v2h18v-2M8 12h8M8 9l-3 3 3 3M16 9l3 3-3 3"/></svg> ריווח טקסט</button>
+      <button class="a11y-btn" id="a11y-keyboard" aria-label="ניווט מקלדת"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M8 14h8"/></svg> ניווט מקלדת</button>
+      <button class="a11y-btn a11y-reset" id="a11y-reset" aria-label="איפוס הגדרות"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg> איפוס</button>
+    </div>
+  </div>
+  <script>
+  (function(){
+    var t=document.getElementById('a11y-toggle'),p=document.getElementById('a11y-panel');
+    var fs=parseInt(localStorage.getItem('a11y-fs')||'16');
+    var hc=localStorage.getItem('a11y-hc')==='1';
+    var na=localStorage.getItem('a11y-na')==='1';
+    var hl=localStorage.getItem('a11y-hl')==='1';
+    var ts=localStorage.getItem('a11y-ts')==='1';
+    var kn=localStorage.getItem('a11y-kn')==='1';
+    function apply(){
+      document.documentElement.style.fontSize=fs+'px';
+      document.body.classList.toggle('a11y-contrast',hc);
+      document.body.classList.toggle('a11y-noanim',na);
+      document.body.classList.toggle('a11y-links',hl);
+      document.body.classList.toggle('a11y-spacing',ts);
+      document.body.classList.toggle('a11y-kbd',kn);
+      document.getElementById('a11y-contrast').classList.toggle('active',hc);
+      document.getElementById('a11y-animations').classList.toggle('active',na);
+      document.getElementById('a11y-links').classList.toggle('active',hl);
+      document.getElementById('a11y-spacing').classList.toggle('active',ts);
+      document.getElementById('a11y-keyboard').classList.toggle('active',kn);
+    }
+    apply();
+    t.addEventListener('click',function(){
+      var o=p.classList.toggle('open');
+      t.setAttribute('aria-expanded',o);
+      p.setAttribute('aria-hidden',!o);
+    });
+    document.getElementById('a11y-font-up').addEventListener('click',function(){if(fs<22){fs+=2;localStorage.setItem('a11y-fs',fs);apply();}});
+    document.getElementById('a11y-font-down').addEventListener('click',function(){if(fs>12){fs-=2;localStorage.setItem('a11y-fs',fs);apply();}});
+    document.getElementById('a11y-contrast').addEventListener('click',function(){hc=!hc;localStorage.setItem('a11y-hc',hc?'1':'0');apply();});
+    document.getElementById('a11y-animations').addEventListener('click',function(){na=!na;localStorage.setItem('a11y-na',na?'1':'0');apply();});
+    document.getElementById('a11y-links').addEventListener('click',function(){hl=!hl;localStorage.setItem('a11y-hl',hl?'1':'0');apply();});
+    document.getElementById('a11y-spacing').addEventListener('click',function(){ts=!ts;localStorage.setItem('a11y-ts',ts?'1':'0');apply();});
+    document.getElementById('a11y-keyboard').addEventListener('click',function(){kn=!kn;localStorage.setItem('a11y-kn',kn?'1':'0');apply();});
+    document.getElementById('a11y-reset').addEventListener('click',function(){fs=16;hc=na=hl=ts=kn=false;['a11y-fs','a11y-hc','a11y-na','a11y-hl','a11y-ts','a11y-kn'].forEach(function(k){localStorage.removeItem(k);});apply();});
+    document.addEventListener('click',function(e){if(!document.getElementById('a11y-widget').contains(e.target)){p.classList.remove('open');t.setAttribute('aria-expanded','false');p.setAttribute('aria-hidden','true');}});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape'&&p.classList.contains('open')){p.classList.remove('open');t.setAttribute('aria-expanded','false');p.setAttribute('aria-hidden','true');t.focus();}});
+  })();
+  </script>
 
   <button class="back-to-top" id="back-to-top" aria-label="חזור לראש הדף">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="18 15 12 9 6 15"></polyline></svg>
