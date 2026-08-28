@@ -1376,8 +1376,8 @@ br.mobile-br { display: none; }
 .whatsapp-icon { font-size: 1.8rem; color: var(--white); }
 .whatsapp-tooltip {
   position: absolute;
-  right: 100%;
-  margin-right: .7rem;
+  left: 100%;
+  margin-left: .7rem;
   background: var(--navy-dark);
   color: var(--white);
   padding: .35rem .75rem;
@@ -1920,8 +1920,8 @@ body.no-animations .partner-logo[aria-hidden="true"] { display: none; }
 }
 .fab-tooltip {
   position: absolute;
-  right: 100%;
-  margin-right: .7rem;
+  left: 100%;
+  margin-left: .7rem;
   background: var(--navy-dark);
   color: var(--white);
   padding: .35rem .75rem;
