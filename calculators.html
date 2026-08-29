@@ -1697,12 +1697,14 @@
 
       <!-- ── Panel 7: ביטוח חיים ── -->
       <div class="calc-panel" id="panel-life-insurance" role="tabpanel">
-        <div class="calc-panel-inner" style="max-width:860px;">
+        <div class="calc-panel-inner" style="max-width:900px;">
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
           <style>
             #panel-life-insurance .li-card { background:#fff; border-radius:16px; box-shadow:0 4px 24px rgba(13,30,53,.10); padding:1.75rem 2rem; margin-bottom:1.5rem; }
             #panel-life-insurance .li-card h3 { font-family:'Heebo',sans-serif; font-size:1rem; font-weight:900; color:#0d1e35; margin:0 0 1.1rem; border-right:4px solid #c9a84c; padding-right:.65rem; display:flex; align-items:center; gap:.45rem; }
             #panel-life-insurance .li-card h3 i { color:#c9a84c; font-size:.9rem; }
             #panel-life-insurance .li-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; }
+            #panel-life-insurance .li-grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
             #panel-life-insurance .li-inp label { display:block; font-size:.79rem; font-weight:700; color:#455; margin-bottom:.32rem; }
             #panel-life-insurance .li-inp input, #panel-life-insurance .li-inp select { width:100%; border:1.5px solid #d0d8e4; border-radius:8px; padding:.52rem .75rem; font-size:.93rem; font-family:inherit; background:#f8fafc; direction:rtl; box-sizing:border-box; transition:border-color .18s; }
             #panel-life-insurance .li-inp input:focus, #panel-life-insurance .li-inp select:focus { outline:none; border-color:#c9a84c; box-shadow:0 0 0 3px rgba(201,168,76,.13); background:#fff; }
@@ -1710,8 +1712,8 @@
             #panel-life-insurance .li-toggle { display:flex; gap:.35rem; }
             #panel-life-insurance .li-toggle-btn { flex:1; border:1.5px solid #d0d8e4; background:#f8fafc; border-radius:7px; padding:.48rem .4rem; font-size:.83rem; font-family:inherit; font-weight:700; color:#556; cursor:pointer; transition:all .18s; text-align:center; }
             #panel-life-insurance .li-toggle-btn.active { background:#0d1e35; border-color:#0d1e35; color:#fff; }
-            #panel-life-insurance .li-dime { margin-top:1.2rem; display:flex; flex-direction:column; gap:.55rem; }
-            #panel-life-insurance .li-dime-row { display:flex; justify-content:space-between; align-items:center; font-size:.88rem; padding:.42rem .6rem; border-radius:7px; background:#f4f7fb; }
+            #panel-life-insurance .li-dime { margin-top:1.2rem; display:flex; flex-direction:column; gap:.5rem; }
+            #panel-life-insurance .li-dime-row { display:flex; justify-content:space-between; align-items:center; font-size:.87rem; padding:.4rem .6rem; border-radius:7px; background:#f4f7fb; }
             #panel-life-insurance .li-dime-row .dlbl { color:#445; font-weight:600; }
             #panel-life-insurance .li-dime-row .dval { font-weight:800; color:#0d1e35; direction:ltr; }
             #panel-life-insurance .li-dime-total { display:flex; justify-content:space-between; align-items:center; font-size:.95rem; padding:.55rem .6rem; border-radius:8px; background:#0d1e35; margin-top:.35rem; }
@@ -1727,10 +1729,14 @@
             #panel-life-insurance .li-gap-main { display:flex; justify-content:space-between; align-items:center; margin-top:.5rem; padding-top:.85rem; border-top:1px solid rgba(255,255,255,.15); }
             #panel-life-insurance .li-gap-main .glbl { color:rgba(255,255,255,.75); font-size:.88rem; font-weight:700; }
             #panel-life-insurance .li-gap-main .gval-big { color:#c9a84c; font-size:1.55rem; font-weight:900; font-family:'Heebo',sans-serif; direction:ltr; }
+            #panel-life-insurance .li-chart-wrap { margin-top:1.5rem; background:#fff; border-radius:16px; box-shadow:0 4px 24px rgba(13,30,53,.10); padding:1.75rem 2rem; }
+            #panel-life-insurance .li-chart-wrap h3 { font-family:'Heebo',sans-serif; font-size:1rem; font-weight:900; color:#0d1e35; margin:0 0 1.1rem; border-right:4px solid #c9a84c; padding-right:.65rem; display:flex; align-items:center; gap:.45rem; }
+            #panel-life-insurance .li-chart-wrap h3 i { color:#c9a84c; }
+            #panel-life-insurance .li-chart-subtitle { font-size:.79rem; color:#778; margin-bottom:1.2rem; }
             #panel-life-insurance .li-events { margin-top:1rem; padding:.85rem 1rem; background:#fffbf0; border-radius:10px; border:1px solid rgba(201,168,76,.35); font-size:.78rem; color:#6b5600; }
             #panel-life-insurance .li-events strong { display:block; margin-bottom:.3rem; }
             #panel-life-insurance .li-note { font-size:.74rem; color:#999; margin-top:1rem; line-height:1.65; }
-            @media(max-width:640px){ #panel-life-insurance .li-grid { grid-template-columns:1fr 1fr; } }
+            @media(max-width:640px){ #panel-life-insurance .li-grid { grid-template-columns:1fr 1fr; } #panel-life-insurance .li-grid-2 { grid-template-columns:1fr; } }
             @media(max-width:420px){ #panel-life-insurance .li-grid { grid-template-columns:1fr; } }
           </style>
 
@@ -1764,35 +1770,49 @@
                 <input id="li-children" type="number" value="2" min="0" max="10" oninput="liCalc()" />
               </div>
               <div class="li-inp">
-                <label for="li-adult-children">ילדים מעל גיל 18 (תלויים)</label>
+                <label for="li-adult-children">ילדים בוגרים תלויים</label>
                 <input id="li-adult-children" type="number" value="0" min="0" max="10" oninput="liCalc()" />
-                <small>ילדים בוגרים שאתם תומכים בהם</small>
+                <small>ילדים מעל 18 שאתם מפרנסים</small>
               </div>
               <div class="li-inp">
                 <label for="li-parents">הורים נתמכים</label>
                 <input id="li-parents" type="number" value="0" min="0" max="4" oninput="liCalc()" />
-                <small>מספר הורים שאתם מפרנסים</small>
               </div>
             </div>
           </div>
 
-          <!-- הכנסה -->
+          <!-- הכנסה ותגמול -->
           <div class="li-card">
-            <h3><i class="fa-solid fa-shekel-sign"></i> הכנסה</h3>
+            <h3><i class="fa-solid fa-shekel-sign"></i> הכנסה ותגמול כולל</h3>
             <div class="li-grid">
               <div class="li-inp">
-                <label for="li-income">הכנסה חודשית נטו שלך (₪)</label>
-                <input id="li-income" type="text" value="15,000" oninput="liFmt(this);liCalc()" />
+                <label for="li-income">משכורת נטו חודשית (₪)</label>
+                <input id="li-income" type="text" value="25,000" oninput="liFmt(this);liCalc()" />
               </div>
               <div class="li-inp">
-                <label for="li-income-replace">שיעור החלפת הכנסה (%)</label>
-                <input id="li-income-replace" type="number" value="70" min="30" max="100" oninput="liCalc()" />
-                <small>כמה % מהשכר זקוקים התלויים</small>
+                <label for="li-salary-growth">עלייה שנתית בשכר (%)</label>
+                <input id="li-salary-growth" type="number" value="3" min="0" max="15" step="0.5" oninput="liCalc()" />
+                <small>עלייה שנתית צפויה (קידום, שוק)</small>
               </div>
               <div class="li-inp">
                 <label for="li-spouse-income">הכנסת בן/בת הזוג (₪/חודש)</label>
                 <input id="li-spouse-income" type="text" value="0" oninput="liFmt(this);liCalc()" />
-                <small>הכנסת השאיר/ה לאחר האובדן</small>
+                <small>הכנסה שתישמר אחרי האובדן</small>
+              </div>
+              <div class="li-inp">
+                <label for="li-bonus">בונוס שנתי נטו (₪)</label>
+                <input id="li-bonus" type="text" value="0" oninput="liFmt(this);liCalc()" />
+                <small>ממוצע שנתי של בונוסים</small>
+              </div>
+              <div class="li-inp">
+                <label for="li-rsu">RSU / מניות שנתי נטו (₪)</label>
+                <input id="li-rsu" type="text" value="0" oninput="liFmt(this);liCalc()" />
+                <small>שווי RSU, ESPP שנתי ממוצע</small>
+              </div>
+              <div class="li-inp">
+                <label for="li-pension-rate">שיעור הפקדות פנסיה + השתלמות (%)</label>
+                <input id="li-pension-rate" type="number" value="22" min="0" max="50" step="0.5" oninput="liCalc()" />
+                <small>עובד + מעסיק לפנסיה + קרן השתלמות</small>
               </div>
             </div>
           </div>
@@ -1812,7 +1832,7 @@
                   <button class="li-toggle-btn active" id="li-mortins-btn-n" onclick="liToggle('mortins','n',this)">לא</button>
                 </div>
                 <input type="hidden" id="li-mortins" value="0" />
-                <small>אם כן, המשכנתא לא תחושב</small>
+                <small>אם כן, המשכנתא מנוכה</small>
               </div>
               <div class="li-inp">
                 <label for="li-debts">חובות נוספים (₪)</label>
@@ -1822,12 +1842,11 @@
               <div class="li-inp">
                 <label for="li-edu-cost">עלות לימודים לילד (₪)</label>
                 <input id="li-edu-cost" type="text" value="100,000" oninput="liFmt(this);liCalc()" />
-                <small>עלות לימודים אקדמיים לילד אחד</small>
+                <small>עלות לימודים אקדמיים לילד</small>
               </div>
               <div class="li-inp">
                 <label for="li-emergency">קרן חירום / הוצאות לוויה (₪)</label>
                 <input id="li-emergency" type="text" value="40,000" oninput="liFmt(this);liCalc()" />
-                <small>הוצאות חד-פעמיות בלתי צפויות</small>
               </div>
             </div>
           </div>
@@ -1837,42 +1856,45 @@
             <h3><i class="fa-solid fa-shield-halved"></i> כיסויים קיימים (לניכוי)</h3>
             <div class="li-grid">
               <div class="li-inp">
-                <label for="li-pension-survivors">קצבת שאירים מקרן פנסיה (₪/חודש)</label>
+                <label for="li-pension-survivors">קצבת שאירים מפנסיה (₪/חודש)</label>
                 <input id="li-pension-survivors" type="text" value="0" oninput="liFmt(this);liCalc()" />
-                <small>לפי חוזה הפנסיה שלך (כ-60% ממשכורת מבוטחת)</small>
+                <small>כ-60% ממשכורת מבוטחת בפנסיה</small>
               </div>
               <div class="li-inp">
                 <label for="li-group-life">ביטוח חיים קבוצתי ממעסיק (₪)</label>
                 <input id="li-group-life" type="text" value="0" oninput="liFmt(this);liCalc()" />
-                <small>סכום חד-פעמי דרך מקום העבודה</small>
+                <small>סכום חד-פעמי</small>
               </div>
               <div class="li-inp">
                 <label for="li-savings">חיסכון נזיל / נכסים (₪)</label>
                 <input id="li-savings" type="text" value="0" oninput="liFmt(this);liCalc()" />
-                <small>חיסכון / השקעות מחוץ לפנסיה</small>
+                <small>חיסכון מחוץ לפנסיה</small>
               </div>
             </div>
             <div style="margin-top:.8rem;padding:.7rem .85rem;background:#f0f4fa;border-radius:8px;font-size:.79rem;color:#556;">
               <i class="fa-solid fa-circle-info" style="color:#c9a84c;margin-left:.35rem;"></i>
-              ביטוח לאומי שארים מחושב אוטומטית לפי מספר הילדים (כ-<strong id="li-bl-auto-amount">1,838</strong> ₪/חודש).
+              ביטוח לאומי שארים מחושב אוטומטית לפי מספר ילדים (כ-<strong id="li-bl-auto-amount">1,838</strong> ₪/חודש).
             </div>
           </div>
 
           <!-- תוצאות -->
           <div class="li-card">
-            <h3><i class="fa-solid fa-chart-bar"></i> פירוט הצרכים (DIME+)</h3>
+            <h3><i class="fa-solid fa-chart-bar"></i> פירוט אובדן ההון (DIME+)</h3>
             <div class="li-dime">
-              <div class="li-dime-row"><span class="dlbl">החלפת הכנסה</span><span class="dval" id="li-r-income">-</span></div>
+              <div class="li-dime-row"><span class="dlbl">אובדן הכנסה שוטפת (PV)</span><span class="dval" id="li-r-income">-</span></div>
+              <div class="li-dime-row"><span class="dlbl">אובדן בונוסים ו-RSU (PV)</span><span class="dval" id="li-r-bonus">-</span></div>
+              <div class="li-dime-row"><span class="dlbl">אובדן הפקדות פנסיה + השתלמות (PV)</span><span class="dval" id="li-r-pension">-</span></div>
               <div class="li-dime-row"><span class="dlbl">משכנתא</span><span class="dval" id="li-r-mortgage">-</span></div>
               <div class="li-dime-row"><span class="dlbl">חובות נוספים</span><span class="dval" id="li-r-debts">-</span></div>
               <div class="li-dime-row"><span class="dlbl">חינוך ילדים</span><span class="dval" id="li-r-edu">-</span></div>
               <div class="li-dime-row"><span class="dlbl">תמיכה בהורים / ילדים בוגרים</span><span class="dval" id="li-r-dependents">-</span></div>
               <div class="li-dime-row"><span class="dlbl">קרן חירום</span><span class="dval" id="li-r-emergency">-</span></div>
-              <div class="li-dime-total"><span class="dlbl">סה"כ צרכים</span><span class="dval" id="li-r-total-need">-</span></div>
+              <div class="li-dime-total"><span class="dlbl">סה"כ הון נדרש</span><span class="dval" id="li-r-total-need">-</span></div>
             </div>
+
             <div class="li-gap-box">
               <div class="li-gap-title">מד פער הכיסוי</div>
-              <div class="li-gap-row"><span class="glbl">צריך לכסות</span><span class="gval" id="li-gap-need">-</span></div>
+              <div class="li-gap-row"><span class="glbl">הון נדרש</span><span class="gval" id="li-gap-need">-</span></div>
               <div class="li-gap-row"><span class="glbl">יש לך כבר (כיסויים + חיסכון)</span><span class="gval" id="li-gap-have">-</span></div>
               <div class="li-gap-bar"><div class="li-gap-bar-fill" id="li-gap-bar-fill" style="width:0%"></div></div>
               <div class="li-gap-main">
@@ -1880,15 +1902,25 @@
                 <span class="gval-big" id="li-gap-buy">-</span>
               </div>
             </div>
-            <div class="li-events">
-              <strong><i class="fa-solid fa-rotate" style="margin-left:.35rem;"></i> חשב מחדש לאחר כל אחד מהאירועים הבאים:</strong>
-              נישואין · לידת ילד · רכישת דירה · שינוי עבודה · ירושה משמעותית
-            </div>
-            <p class="li-note">
-              * החישוב משתמש בשיטת DIME+ ובנוסחת הערך הנוכחי של קצבה (4% שיעור היוון). ביטוח לאומי שארים מחושב אוטומטית.
-              אינו מהווה ייעוץ ביטוחי. לתכנון מדויק פנה לטל גבאי.
-            </p>
           </div>
+
+          <!-- גרף -->
+          <div class="li-chart-wrap">
+            <h3><i class="fa-solid fa-chart-line"></i> הון משפחתי לאורך זמן לאחר פטירה</h3>
+            <p class="li-chart-subtitle">הגרף מציג כיצד ההון המשפחתי יתפתח בשנים שלאחר האובדן — עם ביטוח מלא לעומת ללא ביטוח.</p>
+            <canvas id="li-wealth-chart" height="220"></canvas>
+          </div>
+
+          <div class="li-events">
+            <strong><i class="fa-solid fa-rotate" style="margin-left:.35rem;"></i> חשב מחדש לאחר כל אחד מהאירועים הבאים:</strong>
+            נישואין · לידת ילד · רכישת דירה · שינוי עבודה · RSU vesting משמעותי
+          </div>
+
+          <p class="li-note">
+            * הכנסה מחושבת בערך נוכחי (PV) עם היוון של 4% ועליית שכר לפי שיעור שהוזן. ביטוח לאומי שארים מחושב אוטומטית.
+            חוסר ההון מחושב לאחר ניכוי כל הכיסויים הקיימים. הגרף מניח תשואה שנתית של 4% על הנכסים הנותרים.
+            אינו מהווה ייעוץ ביטוחי — לתכנון מדויק פנה לטל גבאי.
+          </p>
 
         </div>
       </div><!-- /#panel-life-insurance -->
@@ -2998,6 +3030,180 @@
       btn.parentElement.querySelectorAll('.li-toggle-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       liCalc();
+    }
+
+    var _liChart = null;
+
+    function liCalc() {
+      const age          = parseInt(document.getElementById('li-age').value) || 40;
+      const retAge       = parseInt(document.getElementById('li-ret-age').value) || 67;
+      const children     = parseInt(document.getElementById('li-children').value) || 0;
+      const adultKids    = parseInt(document.getElementById('li-adult-children').value) || 0;
+      const parents      = parseInt(document.getElementById('li-parents').value) || 0;
+      const income       = liParse('li-income');
+      const salaryGrowth = (parseFloat(document.getElementById('li-salary-growth').value) || 3) / 100;
+      const spouseIncome = liParse('li-spouse-income');
+      const bonus        = liParse('li-bonus');
+      const rsu          = liParse('li-rsu');
+      const pensionRate  = (parseFloat(document.getElementById('li-pension-rate').value) || 22) / 100;
+      const mortgage     = liParse('li-mortgage');
+      const mortIns      = parseInt(document.getElementById('li-mortins').value) || 0;
+      const debts        = liParse('li-debts');
+      const eduCost      = liParse('li-edu-cost');
+      const emergency    = liParse('li-emergency');
+      const pensionSurv  = liParse('li-pension-survivors');
+      const groupLife    = liParse('li-group-life');
+      const savings      = liParse('li-savings');
+
+      const r = 0.04; // discount rate
+      const N = Math.max(1, retAge - age); // years to retirement
+
+      // Bituach Leumi auto
+      const blBase = children === 0 ? 1838 : children === 1 ? 2700 : children === 2 ? 3562 : 3562 + (children - 2) * 862;
+      const blEl = document.getElementById('li-bl-auto-amount');
+      if (blEl) blEl.textContent = Math.round(blBase).toLocaleString('he-IL');
+
+      // Growing annuity PV: PV = A * [1 - ((1+g)/(1+r))^N] / (r-g)
+      function growingAnnuityPV(annualAmt, g, r, n) {
+        if (annualAmt <= 0) return 0;
+        if (Math.abs(r - g) < 0.0001) return annualAmt * n / (1 + r);
+        return annualAmt * (1 - Math.pow((1 + g) / (1 + r), n)) / (r - g);
+      }
+
+      // Net income needed (after spouse + BL + pension survivors)
+      const annualIncome     = income * 12;
+      const annualSpouse     = spouseIncome * 12;
+      const annualBL         = blBase * 12;
+      const annualPensionSurv = pensionSurv * 12;
+      const annualNetNeed    = Math.max(0, annualIncome - annualSpouse - annualBL - annualPensionSurv);
+
+      // PV of lost income stream (net need, growing at salaryGrowth)
+      const incomeCapital = growingAnnuityPV(annualNetNeed, salaryGrowth, r, N);
+
+      // PV of lost bonuses + RSU (growing at salaryGrowth)
+      const annualBonusRSU = (bonus + rsu);
+      const bonusCapital = growingAnnuityPV(annualBonusRSU, salaryGrowth, r, N);
+
+      // PV of lost pension + hishtalmut deposits (grow with salary)
+      const annualPensionDeposit = annualIncome * pensionRate;
+      const pensionCapital = growingAnnuityPV(annualPensionDeposit, salaryGrowth, r, N);
+
+      // Mortgage (if no mortgage insurance)
+      const mortgageNeed = mortIns ? 0 : mortgage;
+
+      // Debts, education, dependents, emergency
+      const debtsNeed      = debts;
+      const eduNeed        = children * eduCost;
+      const dependentsNeed = adultKids * (income * 0.3 * 12 * 3) + parents * (3500 * 12 * 10);
+      const emergencyNeed  = emergency;
+
+      const totalNeed = incomeCapital + bonusCapital + pensionCapital +
+                        mortgageNeed + debtsNeed + eduNeed + dependentsNeed + emergencyNeed;
+
+      // Already have (BL and pension survivors already subtracted from income need above)
+      const blCapital      = blBase > 0 ? growingAnnuityPV(annualBL, 0, r, N) : 0;
+      const pensionSurvCap = growingAnnuityPV(annualPensionSurv, 0, r, N);
+      const totalHave      = Math.min(totalNeed, blCapital + pensionSurvCap + groupLife + savings);
+      const gap            = Math.max(0, totalNeed - totalHave);
+      const coverPct       = totalNeed > 0 ? Math.min(100, totalHave / totalNeed * 100) : 100;
+
+      const fmt = v => '₪' + Math.round(v).toLocaleString('he-IL');
+
+      document.getElementById('li-r-income').textContent     = fmt(incomeCapital);
+      document.getElementById('li-r-bonus').textContent      = fmt(bonusCapital);
+      document.getElementById('li-r-pension').textContent    = fmt(pensionCapital);
+      document.getElementById('li-r-mortgage').textContent   = fmt(mortgageNeed);
+      document.getElementById('li-r-debts').textContent      = fmt(debtsNeed);
+      document.getElementById('li-r-edu').textContent        = fmt(eduNeed);
+      document.getElementById('li-r-dependents').textContent = fmt(dependentsNeed);
+      document.getElementById('li-r-emergency').textContent  = fmt(emergencyNeed);
+      document.getElementById('li-r-total-need').textContent = fmt(totalNeed);
+      document.getElementById('li-gap-need').textContent     = fmt(totalNeed);
+      document.getElementById('li-gap-have').textContent     = fmt(totalHave);
+      document.getElementById('li-gap-buy').textContent      = fmt(gap);
+      document.getElementById('li-gap-bar-fill').style.width = coverPct + '%';
+
+      // Simulate wealth over time for chart
+      // Annual shortfall from savings = net annual consumption need
+      const annualShortfall = annualNetNeed + annualBonusRSU * 0.5; // consume part of bonus/RSU equivalent
+      const investReturn = 0.04;
+
+      function simulate(startWealth, shortfall, years, ret) {
+        const pts = [startWealth];
+        for (let t = 0; t < years; t++) {
+          pts.push(pts[pts.length - 1] * (1 + ret) - shortfall);
+        }
+        return pts;
+      }
+
+      const liquidBase = savings + groupLife;
+      const wealthWithout = simulate(liquidBase, annualShortfall, N, investReturn);
+      const wealthWith    = simulate(liquidBase + gap, annualShortfall, N, investReturn);
+
+      const labels = Array.from({length: N + 1}, (_, i) => 'שנה ' + i);
+      const scaleM = 1e6;
+      const round1 = v => Math.round(v / scaleM * 10) / 10;
+
+      const canvas = document.getElementById('li-wealth-chart');
+      if (!canvas) return;
+
+      const chartData = {
+        labels,
+        datasets: [
+          {
+            label: 'עם ביטוח מלא',
+            data: wealthWith.map(v => round1(v)),
+            borderColor: '#c9a84c',
+            backgroundColor: 'rgba(201,168,76,.12)',
+            fill: true,
+            tension: 0.35,
+            pointRadius: 0,
+            borderWidth: 2.5
+          },
+          {
+            label: 'ללא ביטוח',
+            data: wealthWithout.map(v => round1(v)),
+            borderColor: '#e05252',
+            backgroundColor: 'rgba(224,82,82,.08)',
+            fill: true,
+            tension: 0.35,
+            pointRadius: 0,
+            borderWidth: 2.5
+          }
+        ]
+      };
+
+      const chartOpts = {
+        responsive: true,
+        interaction: { mode: 'index', intersect: false },
+        plugins: {
+          legend: { position: 'bottom', labels: { font: { family: 'Assistant', size: 12 }, color: '#445' } },
+          tooltip: {
+            callbacks: {
+              label: ctx => ' ' + ctx.dataset.label + ': ₪' + ctx.parsed.y.toFixed(1) + 'M'
+            }
+          }
+        },
+        scales: {
+          x: { ticks: { font: { size: 11 }, color: '#889' }, grid: { display: false }, maxTicksLimit: 10 },
+          y: {
+            ticks: { callback: v => '₪' + v + 'M', font: { size: 11 }, color: '#889' },
+            grid: { color: '#eef0f4' }
+          }
+        }
+      };
+
+      if (_liChart) {
+        _liChart.data = chartData;
+        _liChart.options = chartOpts;
+        _liChart.update();
+      } else {
+        if (typeof Chart !== 'undefined') {
+          _liChart = new Chart(canvas, { type: 'line', data: chartData, options: chartOpts });
+        }
+      }
+    }
+    liCalc();
     }
 
     function liCalc() {
