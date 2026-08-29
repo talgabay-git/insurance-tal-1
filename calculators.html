@@ -1999,15 +1999,17 @@
             </div>
             <h3>נתונים אישיים</h3>
             <div class="li-inputs">
+              <div class="li-inp"><label for="li-married">מצב משפחתי</label><select id="li-married" onchange="liCalc()"><option value="1">נשוי/נשואה</option><option value="0">רווק/רווקה</option></select></div>
               <div class="li-inp"><label for="li-age">גיל נוכחי</label><input id="li-age" type="number" value="40" min="18" max="65" oninput="liCalc()" /></div>
               <div class="li-inp"><label for="li-ret-age">גיל פרישה</label><input id="li-ret-age" type="number" value="67" min="50" max="70" oninput="liCalc()" /></div>
               <div class="li-inp"><label for="li-children">ילדים מתחת לגיל 18</label><input id="li-children" type="number" value="2" min="0" max="10" oninput="liCalc()" /></div>
+              <div class="li-inp"><label for="li-adult-children">ילדים מעל גיל 18</label><input id="li-adult-children" type="number" value="0" min="0" max="10" oninput="liCalc()" /></div>
+              <div class="li-inp"><label for="li-parents">הורים נתמכים</label><input id="li-parents" type="number" value="0" min="0" max="4" oninput="liCalc()" /></div>
               <div class="li-inp"><label for="li-income">הכנסה חודשית נטו (₪)</label><input id="li-income" type="text" value="15,000" oninput="liFmt(this);liCalc()" /></div>
               <div class="li-inp"><label for="li-income-replace">שיעור החלפת הכנסה (%)</label><input id="li-income-replace" type="number" value="70" min="30" max="100" oninput="liCalc()" /><small style="color:#888;font-size:.7rem;">כמה % מהשכר צריכים התלויים</small></div>
               <div class="li-inp"><label for="li-mortgage">יתרת משכנתא (₪)</label><input id="li-mortgage" type="text" value="0" oninput="liFmt(this);liCalc()" /></div>
               <div class="li-inp"><label for="li-debts">חובות נוספים (₪)</label><input id="li-debts" type="text" value="0" oninput="liFmt(this);liCalc()" /></div>
               <div class="li-inp"><label for="li-savings">חיסכון / נכסים קיימים (₪)</label><input id="li-savings" type="text" value="0" oninput="liFmt(this);liCalc()" /></div>
-              <div class="li-inp"><label for="li-return">תשואה שנתית צפויה (%)</label><select id="li-return" onchange="liCalc()"><option value="3">3%</option><option value="4" selected>4%</option><option value="5">5%</option><option value="6">6%</option></select></div>
             </div>
           </div>
           <div class="li-card">
@@ -3573,22 +3575,33 @@
     function liFmt(el) { const r=el.value.replace(/[^\d]/g,''); if(r) el.value=parseInt(r,10).toLocaleString('en-US'); }
     function liParse(id) { return parseFloat(document.getElementById(id).value.replace(/,/g,''))||0; }
     function liCalc() {
+      const married=parseInt(document.getElementById('li-married').value)||0;
       const age=parseInt(document.getElementById('li-age').value)||40;
       const retAge=parseInt(document.getElementById('li-ret-age').value)||67;
       const children=parseInt(document.getElementById('li-children').value)||0;
+      const adultChildren=parseInt(document.getElementById('li-adult-children').value)||0;
+      const parents=parseInt(document.getElementById('li-parents').value)||0;
       const income=liParse('li-income');
       const replacePct=parseFloat(document.getElementById('li-income-replace').value)||70;
       const mortgage=liParse('li-mortgage');
       const debts=liParse('li-debts');
       const savings=liParse('li-savings');
-      const returnPct=parseFloat(document.getElementById('li-return').value)||4;
+      // horizon: years to retirement or until youngest child turns 18
       const yearsToRetire=Math.max(1,retAge-age);
       const childYears=children>0?Math.max(0,18-(age-30)):0;
       const horizonYears=Math.max(yearsToRetire,childYears);
+      // monthly need
       const monthlyNeed=income*replacePct/100;
-      const r=returnPct/100;
-      const pvFactor=r>0?(1-Math.pow(1+r,-horizonYears))/r:horizonYears;
-      const incomeCapital=monthlyNeed*12*pvFactor;
+      // income capital (simple: annual need × years, discounted at fixed 4%)
+      const r=0.04;
+      const pvFactor=(1-Math.pow(1+r,-horizonYears))/r;
+      let incomeCapital=monthlyNeed*12*pvFactor;
+      // add per adult child: 3 years of half-salary support
+      if(adultChildren>0) incomeCapital+=adultChildren*(income*0.5*12*3);
+      // add per supported parent: 10 years of 3,000/month
+      if(parents>0) incomeCapital+=parents*(3000*12*10);
+      // married adds 2 extra years of coverage
+      if(married) incomeCapital+=monthlyNeed*12*2;
       const debtTotal=mortgage+debts;
       const total=Math.max(0,incomeCapital+debtTotal-savings);
       const fmt=v=>'₪'+Math.round(v).toLocaleString('he-IL');
