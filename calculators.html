@@ -1463,7 +1463,7 @@
                     <label style="display:block;font-size:.72rem;font-weight:700;color:#0d1e35;margin-bottom:.25rem;">מצב משפחתי</label>
                     <select id="pc-status" style="width:100%;background:#fff;border:2px solid #d0d8e4;border-radius:9px;padding:.48rem .8rem;font-size:.9rem;font-weight:600;" onchange="runPensionCompare()">
                       <option value="married" selected>נשוי/ה</option>
-                      <option value="single">רווק/ה</option>
+                      <option value="single">לא</option>
                     </select>
                   </div>
                 </div>
@@ -1752,10 +1752,10 @@
                 <input id="li-ret-age" type="number" value="67" min="50" max="75" oninput="liCalc()" />
               </div>
               <div class="li-inp">
-                <label>מצב משפחתי</label>
+                <label>יש בן/בת זוג?</label>
                 <div class="li-toggle">
-                  <button class="li-toggle-btn active" id="li-married-btn-y" onclick="liToggle('married','y',this)">נשוי/אה</button>
-                  <button class="li-toggle-btn" id="li-married-btn-n" onclick="liToggle('married','n',this)">רווק/ה</button>
+                  <button class="li-toggle-btn active" id="li-married-btn-y" onclick="liToggle('married','y',this)">כן</button>
+                  <button class="li-toggle-btn" id="li-married-btn-n" onclick="liToggle('married','n',this)">לא</button>
                 </div>
                 <input type="hidden" id="li-married" value="1" />
               </div>
