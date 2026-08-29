@@ -598,6 +598,7 @@
               <li><a href="calculators.html#loan-vs-invest" class="dropdown-item">הלוואה מול השקעה</a></li>
               <li><a href="calculators.html#pension-compare" class="dropdown-item">פנסיה מול ביטוח מנהלים</a></li>
               <li><a href="calculators.html#pension-fees" class="dropdown-item">כדאיות דמי ניהול בקרן הפנסיה</a></li>
+              <li><a href="calculators.html#life-insurance" class="dropdown-item">מחשבון ביטוח חיים</a></li>
             </ul>
           </li>
         </ul>
@@ -710,6 +711,11 @@
         <li role="presentation">
           <button class="calc-tab-btn" role="tab" aria-selected="false" aria-controls="panel-pension-fees" onclick="switchTab('pension-fees',this)">
             <i class="fa-solid fa-coins"></i> כדאיות דמי ניהול בקרן הפנסיה
+          </button>
+        </li>
+        <li role="presentation">
+          <button class="calc-tab-btn" role="tab" aria-selected="false" aria-controls="panel-life-insurance" onclick="switchTab('life-insurance',this)">
+            <i class="fa-solid fa-heart-pulse"></i> מחשבון ביטוח חיים
           </button>
         </li>
       </ul>
@@ -1688,6 +1694,93 @@
           </div>
         </div>
       </div>
+
+      <!-- ── Panel 7: ביטוח חיים ── -->
+      <div class="calc-panel" id="panel-life-insurance" role="tabpanel">
+        <div class="calc-panel-inner" style="max-width:820px;">
+          <style>
+            #panel-life-insurance .li-card { background:#fff; border-radius:16px; box-shadow:0 4px 24px rgba(13,30,53,.10); padding:2rem 2.2rem; margin-bottom:1.5rem; }
+            #panel-life-insurance .li-card h3 { font-family:'Heebo',sans-serif; font-size:1.1rem; font-weight:900; color:#0d1e35; margin-bottom:1.2rem; border-right:4px solid #c9a84c; padding-right:.7rem; }
+            #panel-life-insurance .li-inputs { display:grid; grid-template-columns:repeat(3,1fr); gap:1.2rem; }
+            #panel-life-insurance .li-inp label { display:block; font-size:.8rem; font-weight:700; color:#555; margin-bottom:.35rem; }
+            #panel-life-insurance .li-inp input, #panel-life-insurance .li-inp select { width:100%; border:1.5px solid #d0d8e4; border-radius:8px; padding:.55rem .8rem; font-size:.95rem; font-family:inherit; background:#f8fafc; direction:rtl; box-sizing:border-box; }
+            #panel-life-insurance .li-inp input:focus, #panel-life-insurance .li-inp select:focus { outline:none; border-color:#c9a84c; }
+            #panel-life-insurance .li-result-banner { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin-top:1.5rem; }
+            #panel-life-insurance .li-kpi { background:var(--navy); border-radius:14px; padding:1.2rem 1rem; text-align:center; }
+            #panel-life-insurance .li-kpi .kval { font-size:1.35rem; font-weight:900; color:#c9a84c; font-family:'Heebo',sans-serif; }
+            #panel-life-insurance .li-kpi .klbl { font-size:.75rem; color:rgba(255,255,255,.7); margin-top:.3rem; }
+            #panel-life-insurance .li-note { font-size:.78rem; color:#888; margin-top:1rem; line-height:1.6; }
+            @media(max-width:640px){
+              #panel-life-insurance .li-inputs { grid-template-columns:1fr 1fr; }
+              #panel-life-insurance .li-result-banner { grid-template-columns:1fr; }
+            }
+            @media(max-width:400px){ #panel-life-insurance .li-inputs { grid-template-columns:1fr; } }
+          </style>
+
+          <div class="li-card">
+            <div style="text-align:center;margin-bottom:1.5rem;">
+              <h2 style="font-family:'Heebo',sans-serif;font-size:1.6rem;font-weight:900;color:var(--navy);margin:0;">מחשבון ביטוח חיים</h2>
+              <p style="color:#c9a84c;font-weight:700;margin:.4rem 0 0;font-size:1rem;">כמה כיסוי עלי לרכוש?</p>
+            </div>
+
+            <h3>נתונים אישיים</h3>
+            <div class="li-inputs">
+              <div class="li-inp">
+                <label for="li-age">גיל נוכחי</label>
+                <input id="li-age" type="number" value="40" min="18" max="65" oninput="liCalc()" />
+              </div>
+              <div class="li-inp">
+                <label for="li-ret-age">גיל פרישה</label>
+                <input id="li-ret-age" type="number" value="67" min="50" max="70" oninput="liCalc()" />
+              </div>
+              <div class="li-inp">
+                <label for="li-children">ילדים מתחת לגיל 18</label>
+                <input id="li-children" type="number" value="2" min="0" max="10" oninput="liCalc()" />
+              </div>
+              <div class="li-inp">
+                <label for="li-income">הכנסה חודשית נטו (₪)</label>
+                <input id="li-income" type="text" value="15,000" oninput="liFmt(this);liCalc()" />
+              </div>
+              <div class="li-inp">
+                <label for="li-income-replace">שיעור החלפת הכנסה (%)</label>
+                <input id="li-income-replace" type="number" value="70" min="30" max="100" oninput="liCalc()" />
+                <small style="color:#888;font-size:.7rem;">כמה % מהשכר צריכים התלויים</small>
+              </div>
+              <div class="li-inp">
+                <label for="li-mortgage">יתרת משכנתא (₪)</label>
+                <input id="li-mortgage" type="text" value="0" oninput="liFmt(this);liCalc()" />
+              </div>
+              <div class="li-inp">
+                <label for="li-debts">חובות נוספים (₪)</label>
+                <input id="li-debts" type="text" value="0" oninput="liFmt(this);liCalc()" />
+              </div>
+              <div class="li-inp">
+                <label for="li-savings">חיסכון / נכסים קיימים (₪)</label>
+                <input id="li-savings" type="text" value="0" oninput="liFmt(this);liCalc()" />
+              </div>
+              <div class="li-inp">
+                <label for="li-return">תשואה שנתית צפויה (%)</label>
+                <select id="li-return" onchange="liCalc()">
+                  <option value="3">3%</option>
+                  <option value="4" selected>4%</option>
+                  <option value="5">5%</option>
+                  <option value="6">6%</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="li-card">
+            <h3>תוצאת החישוב</h3>
+            <div class="li-result-banner">
+              <div class="li-kpi"><div class="kval" id="li-income-need">-</div><div class="klbl">הון לכיסוי הכנסה</div></div>
+              <div class="li-kpi"><div class="kval" id="li-debt-need">-</div><div class="klbl">חובות וחשיפות</div></div>
+              <div class="li-kpi"><div class="kval" id="li-total">-</div><div class="klbl">סכום ביטוח מומלץ</div></div>
+            </div>
+            <p class="li-note">* החישוב מבוסס על שיטת ההון הדרוש (Capital Needs Analysis). הסכום המומלץ = הון הדרוש לכיסוי הכנסה שוטפת + חובות − נכסים קיימים. אינו מהווה ייעוץ ביטוחי.</p>
+          </div>
+        </div>
+      </div><!-- /#panel-life-insurance -->
 
     </div>
   </main>
@@ -2780,5 +2873,50 @@
   <button class="back-to-top" id="back-to-top" aria-label="חזור לראש הדף">
     <i class="fa-solid fa-chevron-up"></i>
   </button>
+
+  <script>
+    function liFmt(el) {
+      const raw = el.value.replace(/[^\d]/g, '');
+      if (raw) el.value = parseInt(raw, 10).toLocaleString('en-US');
+    }
+    function liParse(id) {
+      return parseFloat(document.getElementById(id).value.replace(/,/g, '')) || 0;
+    }
+    function liCalc() {
+      const age         = parseInt(document.getElementById('li-age').value) || 40;
+      const retAge      = parseInt(document.getElementById('li-ret-age').value) || 67;
+      const children    = parseInt(document.getElementById('li-children').value) || 0;
+      const income      = liParse('li-income');
+      const replacePct  = parseFloat(document.getElementById('li-income-replace').value) || 70;
+      const mortgage    = liParse('li-mortgage');
+      const debts       = liParse('li-debts');
+      const savings     = liParse('li-savings');
+      const returnPct   = parseFloat(document.getElementById('li-return').value) || 4;
+
+      const yearsToRetire = Math.max(1, retAge - age);
+      const childYears    = children > 0 ? Math.max(0, 18 - (age - 30)) : 0;
+      const horizonYears  = Math.max(yearsToRetire, childYears);
+
+      const monthlyNeed = income * replacePct / 100;
+      const r = returnPct / 100;
+      // Present value of annuity
+      const pvFactor = r > 0 ? (1 - Math.pow(1 + r, -horizonYears)) / r : horizonYears;
+      const incomeCapital = monthlyNeed * 12 * pvFactor;
+      const debtTotal     = mortgage + debts;
+      const total         = Math.max(0, incomeCapital + debtTotal - savings);
+
+      const fmt = v => '₪' + Math.round(v).toLocaleString('he-IL');
+      document.getElementById('li-income-need').textContent = fmt(incomeCapital);
+      document.getElementById('li-debt-need').textContent   = fmt(debtTotal);
+      document.getElementById('li-total').textContent       = fmt(total);
+    }
+    liCalc();
+
+    // hash routing
+    if (window.location.hash === '#life-insurance') {
+      const btn = document.querySelector('[aria-controls="panel-life-insurance"]');
+      if (btn) btn.click();
+    }
+  </script>
 </body>
 </html>
