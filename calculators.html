@@ -2,27 +2,17 @@
 <html lang="he" dir="rtl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="theme-color" content="#0d1e35" />
-
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230d1e35'/%3E%3Ctext x='50' y='70' font-family='Georgia,serif' font-size='58' font-weight='700' fill='%23c9a84c' text-anchor='middle'%3ET%3C/text%3E%3C/svg%3E" />
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-
-
-  <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
-  <meta http-equiv="X-Content-Type-Options" content="nosniff">
-  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self' https://formspree.io https://www.google-analytics.com; frame-src 'none'; object-src 'none';" />
   <title>טל גבאי | מחשבונים פיננסיים</title>
   <meta name="description" content="מחשבונים פיננסיים - ריבית דה ריבית וכלים נוספים לתכנון פיננסי. טל גבאי תכנון פיננסי לבכירים." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700;800&family=Heebo:wght@400;700;900&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="style.css" />
   <style>
     .calc-hero {
-      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+      background: var(--navy);
       padding: 5rem 0 4rem;
       text-align: center;
       position: relative;
@@ -40,8 +30,12 @@
       font-family: 'Heebo', sans-serif;
       font-size: clamp(2rem, 5vw, 3.2rem);
       font-weight: 900;
-      color: var(--white);
+      color: var(--gold);
       margin-bottom: 1rem;
+      border: 2px solid var(--gold);
+      display: inline-block;
+      padding: .5rem 2rem;
+      border-radius: 10px;
     }
     .calc-hero .hero-tagline {
       font-size: clamp(1rem, 2.5vw, 1.2rem);
@@ -71,12 +65,9 @@
       z-index: 100;
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
-      scrollbar-width: thin;
-      scrollbar-color: #c9a84c var(--navy);
+      scrollbar-width: none;
     }
-    .calc-tab-bar::-webkit-scrollbar { height: 6px; }
-    .calc-tab-bar::-webkit-scrollbar-track { background: var(--navy); }
-    .calc-tab-bar::-webkit-scrollbar-thumb { background: #c9a84c; border-radius: 3px; }
+    .calc-tab-bar::-webkit-scrollbar { display: none; }
     .calc-tab-list {
       display: flex;
       list-style: none;
@@ -130,12 +121,12 @@
       gap: .75rem;
     }
     .calc-card-header i {
-      font-size: 2.1rem;
+      font-size: 1.4rem;
       color: var(--gold);
     }
     .calc-card-header h2 {
       font-family: 'Heebo', sans-serif;
-      font-size: 1.725rem;
+      font-size: 1.15rem;
       font-weight: 700;
       color: var(--white);
       margin: 0;
@@ -279,7 +270,6 @@
     }
     @media (max-width: 480px) {
       #panel-pension-compare .shared-row { grid-template-columns: 1fr !important; }
-      #panel-pension-compare .pc-kpi-row { grid-template-columns: 1fr !important; }
     }
 
     /* ── Retirement Simulator ── */
@@ -295,32 +285,17 @@
     .sim-header {
       text-align: center;
       margin-bottom: 2rem;
-      background: linear-gradient(135deg,#0d1e35 0%,#1a2d47 100%);
-      border-radius: 16px;
-      padding: 1.4rem 2rem;
-      box-shadow: 0 4px 24px rgba(13,30,53,.15);
-    }
-    .sim-header .sim-title-row {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: .6rem;
-      margin-bottom: .4rem;
-    }
-    .sim-header .sim-title-row i {
-      font-size: 1.95rem;
-      color: #b08a2f;
     }
     .sim-header h2 {
       font-family: 'Heebo', sans-serif;
-      font-size: 1.725rem;
-      font-weight: 700;
-      color: #fff;
-      margin: 0;
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      font-weight: 900;
+      color: var(--navy);
+      margin-bottom: .75rem;
     }
     .sim-header p {
       font-size: .88rem;
-      color: rgba(255,255,255,.65);
+      color: var(--dark-gray);
       line-height: 1.75;
       max-width: 680px;
       margin: 0 auto;
@@ -524,29 +499,6 @@
       .sim-funds { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
-  <!-- Open Graph -->
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="טל גבאי תכנון פיננסי" />
-  <meta property="og:title" content="מחשבונים פיננסיים | טל גבאי" />
-  <meta property="og:description" content="מחשבונים פיננסיים - ריבית דה ריבית וכלים נוספים לתכנון פיננסי. טל גבאי תכנון פיננסי לבכירים." />
-  <meta property="og:url" content="https://procapital.co.il/calculators.html" />
-  <link rel="canonical" href="https://procapital.co.il/calculators.html" />
-  <meta property="og:image" content="https://procapital.co.il/tal.jpg" />
-  <meta property="og:locale" content="he_IL" />
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="מחשבונים פיננסיים | טל גבאי" />
-  <meta name="twitter:description" content="מחשבונים פיננסיים - ריבית דה ריבית וכלים נוספים לתכנון פיננסי. טל גבאי תכנון פיננסי לבכירים." />
-  <meta name="twitter:image" content="https://procapital.co.il/tal.jpg" />
-  <!-- Google Analytics -->
-  <script>if(localStorage.getItem('cookie-consent')==='declined')window['ga-disable-G-5F91Q1DPZV']=true;</script>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5F91Q1DPZV"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-5F91Q1DPZV', { 'anonymize_ip': true });
-  </script>
 </head>
 <body>
 
@@ -557,8 +509,8 @@
     <div class="container header-inner">
       <a href="index.html" class="logo header-logo" aria-label="עמוד הבית">
         <span class="logo-row"><span class="logo-main">טל גבאי</span><span class="logo-sep">|</span><span class="logo-sub">תכנון פיננסי</span></span>
+        <span class="logo-tagline">ליווי אישי וממוקד לבכירים</span>
       </a>
-      <button class="search-toggle" id="search-toggle" aria-label="חיפוש באתר" aria-expanded="false"><i class="fa-solid fa-magnifying-glass"></i> חיפוש</button>
       <nav class="main-nav" aria-label="ניווט ראשי">
         <ul class="nav-list">
           <li>
@@ -576,7 +528,9 @@
           <li class="nav-dropdown">
             <a href="market-status.html" class="nav-link dropdown-toggle">תמונת מצב בשווקים <i class="fa-solid fa-chevron-down fa-xs"></i></a>
             <ul class="dropdown-menu">
-              <li><a href="https://www.sponser.co.il/Content_Nituach.aspx?ContentId=13&from=header.menu" class="dropdown-item" target="_blank" rel="noopener">ספונסר - ניתוחי שוק</a></li>
+              <li><a href="https://www.meitav.co.il/" class="dropdown-item" target="_blank" rel="noopener">בית השקעות מיטב</a></li>
+              <li><a href="https://www.fnx.co.il/" class="dropdown-item" target="_blank" rel="noopener">סקירה חודשית - הפניקס</a></li>
+              <li><a href="https://www.sponsor.co.il/" class="dropdown-item" target="_blank" rel="noopener">ספונסר - ניתוחי שוק</a></li>
               <li><a href="https://finance.yahoo.com/" class="dropdown-item" target="_blank" rel="noopener">Yahoo Finance</a></li>
               <li><a href="https://il.investing.com/" class="dropdown-item" target="_blank" rel="noopener"><span lang="en">Investing.com</span> ישראל</a></li>
               <li><a href="https://www.bloomberg.com/markets" class="dropdown-item" target="_blank" rel="noopener">Bloomberg Markets</a></li>
@@ -645,15 +599,15 @@
               <li><a href="calculators.html#pension-compare" class="dropdown-item">פנסיה מול ביטוח מנהלים</a></li>
               <li><a href="calculators.html#pension-fees" class="dropdown-item">כדאיות דמי ניהול בקרן הפנסיה</a></li>
               <li><a href="calculators.html#life-insurance" class="dropdown-item">מחשבון ביטוח חיים</a></li>
-              <li><a href="calculators.html#budget" class="dropdown-item">מנהל תקציב משפחתי</a></li>
             </ul>
           </li>
         </ul>
       </nav>
       <div class="header-left" style="display:flex;align-items:center;gap:.6rem;">
         <a href="en/index.html" title="English" aria-label="Switch to English" lang="en" class="lang-switch-btn" style="font-size:1.47rem;text-decoration:none;line-height:1;color:var(--gold);font-weight:700;letter-spacing:.03em;">EN</a>
-        <a href="https://portal.roeto.co.il/pfinvest/login" class="btn-personal-area" target="_blank" rel="noopener"><i class="fa-solid fa-key"></i> כניסה לאיזור אישי</a>
+        <a href="https://portal.roeto.co.il/pfinvest/login" class="btn-personal-area" target="_blank" rel="noopener"><i class="fa-solid fa-key"></i> איזור אישי</a>
       </div>
+      <button class="search-toggle" id="search-toggle" aria-label="חיפוש באתר" aria-expanded="false"><i class="fa-solid fa-magnifying-glass"></i> חיפוש</button>
       <button class="hamburger" id="hamburger" aria-label="פתח תפריט" aria-expanded="false" aria-controls="mobile-menu">
         <span class="hamburger-line"></span>
         <span class="hamburger-line"></span>
@@ -666,48 +620,43 @@
       <ul class="mobile-nav-list">
         <li><a href="index.html" class="mobile-nav-link">דף הבית</a></li>
         <li style="padding:.4rem 1.5rem;font-size:.75rem;color:rgba(255,255,255,.4);font-weight:700;letter-spacing:.05em;">תחומי התמחות</li>
-        <li><a href="family-office.html" class="mobile-nav-link"><i class="fa-solid fa-angle-left"  style="font-size:.75em;color:var(--gold-text);margin-left:.35rem;"></i> <span lang="en">Family Office</span></a></li>
-        <li><a href="financial-planning.html" class="mobile-nav-link"><i class="fa-solid fa-angle-left"  style="font-size:.75em;color:var(--gold-text);margin-left:.35rem;"></i> תכנון פיננסי</a></li>
-        <li><a href="retirement-planning.html" class="mobile-nav-link"><i class="fa-solid fa-angle-left"  style="font-size:.75em;color:var(--gold-text);margin-left:.35rem;"></i> תכנון פרישה</a></li>
-        <li><a href="early-retirement.html" class="mobile-nav-link"><i class="fa-solid fa-angle-left"  style="font-size:.75em;color:var(--gold-text);margin-left:.35rem;"></i> תכנון פרישה מוקדמת</a></li>
+        <li><a href="family-office.html" class="mobile-nav-link"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> <span lang="en">Family Office</span></a></li>
+        <li><a href="financial-planning.html" class="mobile-nav-link"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> תכנון פיננסי</a></li>
+        <li><a href="retirement-planning.html" class="mobile-nav-link"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> תכנון פרישה</a></li>
+        <li><a href="early-retirement.html" class="mobile-nav-link"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> תכנון פרישה מוקדמת</a></li>
         <li><a href="faq.html" class="mobile-nav-link">שאלות ותשובות</a></li>
         <li style="padding:.4rem 1.5rem;font-size:.75rem;color:rgba(255,255,255,.4);font-weight:700;letter-spacing:.05em;">פעולות נפוצות</li>
-        <li><a href="common-actions.html" class="mobile-nav-link"><i class="fa-solid fa-angle-left"  style="font-size:.75em;color:var(--gold-text);margin-left:.35rem;"></i> פעולות נפוצות</a></li>
-        <li><a href="holistic-checkup.html" class="mobile-nav-link"><i class="fa-solid fa-angle-left"  style="font-size:.75em;color:var(--gold-text);margin-left:.35rem;"></i> צ'ק אפ הוליסטי</a></li>
-        <li><a href="documents.html" class="mobile-nav-link"><i class="fa-solid fa-angle-left"  style="font-size:.75em;color:var(--gold-text);margin-left:.35rem;"></i> מסלקה פנסיונית</a></li>
+        <li><a href="common-actions.html" class="mobile-nav-link"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> פעולות נפוצות</a></li>
+        <li><a href="holistic-checkup.html" class="mobile-nav-link"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> צ'ק אפ הוליסטי</a></li>
+        <li><a href="documents.html" class="mobile-nav-link"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> מסלקה פנסיונית</a></li>
         <li style="padding:.4rem 1.5rem;font-size:.75rem;color:rgba(255,255,255,.4);font-weight:700;letter-spacing:.05em;">מכשירים פנסיוניים</li>
-        <li><a href="savings-policies.html" class="mobile-nav-link"><i class="fa-solid fa-angle-left"  style="font-size:.75em;color:var(--gold-text);margin-left:.35rem;"></i> פוליסות חיסכון</a></li>
-        <li><a href="managed-portfolios.html" class="mobile-nav-link"><i class="fa-solid fa-angle-left"  style="font-size:.75em;color:var(--gold-text);margin-left:.35rem;"></i> תיקי השקעות מנוהלים</a></li>
-        <li><a href="structured-products.html" class="mobile-nav-link"><i class="fa-solid fa-angle-left"  style="font-size:.75em;color:var(--gold-text);margin-left:.35rem;"></i> מוצרים מובנים (סטרקצ'רים)</a></li>
-        <li><a href="mutual-funds-etf.html" class="mobile-nav-link"><i class="fa-solid fa-angle-left"  style="font-size:.75em;color:var(--gold-text);margin-left:.35rem;"></i> קרנות נאמנות וקרנות סל (ETF)</a></li>
-        <li><a href="alternative-investments.html" class="mobile-nav-link"><i class="fa-solid fa-angle-left"  style="font-size:.75em;color:var(--gold-text);margin-left:.35rem;"></i> השקעות אלטרנטיביות</a></li>
-        <li><a href="hedge-funds.html" class="mobile-nav-link"><i class="fa-solid fa-angle-left"  style="font-size:.75em;color:var(--gold-text);margin-left:.35rem;"></i> קרנות גידור בנאמנות</a></li>
-        <li><a href="rsu-espp-options.html" class="mobile-nav-link"><i class="fa-solid fa-angle-left"  style="font-size:.75em;color:var(--gold-text);margin-left:.35rem;"></i> <span lang="en">RSU, ESPP</span> ואופציות</a></li>
+        <li><a href="savings-policies.html" class="mobile-nav-link"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> פוליסות חיסכון</a></li>
+        <li><a href="managed-portfolios.html" class="mobile-nav-link"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> תיקי השקעות מנוהלים</a></li>
+        <li><a href="structured-products.html" class="mobile-nav-link"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> מוצרים מובנים (סטרקצ'רים)</a></li>
+        <li><a href="mutual-funds-etf.html" class="mobile-nav-link"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> קרנות נאמנות וקרנות סל (ETF)</a></li>
+        <li><a href="alternative-investments.html" class="mobile-nav-link"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> השקעות אלטרנטיביות</a></li>
+        <li><a href="hedge-funds.html" class="mobile-nav-link"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> קרנות גידור בנאמנות</a></li>
+        <li><a href="rsu-espp-options.html" class="mobile-nav-link"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> <span lang="en">RSU, ESPP</span> ואופציות</a></li>
         <li style="padding:.4rem 1.5rem;font-size:.75rem;color:rgba(255,255,255,.4);font-weight:700;letter-spacing:.05em;">מכשירים פיננסיים</li>
-        <li><a href="pension-fund.html" class="mobile-nav-link"><i class="fa-solid fa-angle-left"  style="font-size:.75em;color:var(--gold-text);margin-left:.35rem;"></i> קרן פנסיה</a></li>
-        <li><a href="matria-bituchit.html" class="mobile-nav-link"><i class="fa-solid fa-angle-left"  style="font-size:.75em;color:var(--gold-text);margin-left:.35rem;"></i> מטריה ביטוחית</a></li>
-        <li><a href="managers-insurance.html" class="mobile-nav-link"><i class="fa-solid fa-angle-left"  style="font-size:.75em;color:var(--gold-text);margin-left:.35rem;"></i> ביטוח מנהלים</a></li>
-        <li><a href="gemel-190.html" class="mobile-nav-link"><i class="fa-solid fa-angle-left"  style="font-size:.75em;color:var(--gold-text);margin-left:.35rem;"></i> קופת גמל 190</a></li>
-        <li><a href="gemel-hashkaa.html" class="mobile-nav-link"><i class="fa-solid fa-angle-left"  style="font-size:.75em;color:var(--gold-text);margin-left:.35rem;"></i> קופת גמל להשקעה</a></li>
-        <li><a href="keren-hishtalmut.html" class="mobile-nav-link"><i class="fa-solid fa-angle-left"  style="font-size:.75em;color:var(--gold-text);margin-left:.35rem;"></i> קרן השתלמות</a></li>
-        <li><a href="section-125d.html" class="mobile-nav-link"><i class="fa-solid fa-angle-left"  style="font-size:.75em;color:var(--gold-text);margin-left:.35rem;"></i> הטבה לפי סעיף 125ד'</a></li>
+        <li><a href="pension-fund.html" class="mobile-nav-link"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> קרן פנסיה</a></li>
+        <li><a href="matria-bituchit.html" class="mobile-nav-link"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> מטריה ביטוחית</a></li>
+        <li><a href="managers-insurance.html" class="mobile-nav-link"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> ביטוח מנהלים</a></li>
+        <li><a href="gemel-190.html" class="mobile-nav-link"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> קופת גמל 190</a></li>
+        <li><a href="gemel-hashkaa.html" class="mobile-nav-link"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> קופת גמל להשקעה</a></li>
+        <li><a href="keren-hishtalmut.html" class="mobile-nav-link"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> קרן השתלמות</a></li>
+        <li><a href="section-125d.html" class="mobile-nav-link"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> הטבה לפי סעיף 125ד'</a></li>
         <li style="padding:.4rem 1.5rem;font-size:.75rem;color:rgba(255,255,255,.4);font-weight:700;letter-spacing:.05em;">מחשבונים</li>
-        <li><a href="calculators.html#compound" class="mobile-nav-link"><i class="fa-solid fa-angle-left"  style="font-size:.75em;color:var(--gold-text);margin-left:.35rem;"></i> מחשבון ריבית דה ריבית</a></li>
-        <li><a href="calculators.html#retirement" class="mobile-nav-link"><i class="fa-solid fa-angle-left"  style="font-size:.75em;color:var(--gold-text);margin-left:.35rem;"></i> סימולטור פרישה</a></li>
-        <li><a href="calculators.html#severance" class="mobile-nav-link"><i class="fa-solid fa-angle-left"  style="font-size:.75em;color:var(--gold-text);margin-left:.35rem;"></i> מחשבון פיצויי פיטורים</a></li>
-        <li><a href="calculators.html#loan-vs-invest" class="mobile-nav-link"><i class="fa-solid fa-angle-left"  style="font-size:.75em;color:var(--gold-text);margin-left:.35rem;"></i> הלוואה מול השקעה</a></li>
-        <li><a href="calculators.html#pension-compare" class="mobile-nav-link"><i class="fa-solid fa-angle-left"  style="font-size:.75em;color:var(--gold-text);margin-left:.35rem;"></i> פנסיה מול ביטוח מנהלים</a></li>
-        <li><a href="calculators.html#pension-fees" class="mobile-nav-link"><i class="fa-solid fa-angle-left"  style="font-size:.75em;color:var(--gold-text);margin-left:.35rem;"></i> כדאיות דמי ניהול בקרן הפנסיה</a></li>
-        <li><a href="calculators.html#budget" class="mobile-nav-link"><i class="fa-solid fa-angle-left"  style="font-size:.75em;color:var(--gold-text);margin-left:.35rem;"></i> מנהל תקציב משפחתי</a></li>
+        <li><a href="calculators.html" class="mobile-nav-link"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> ריבית דה ריבית</a></li>
                 <li><a href="market-status.html" class="mobile-nav-link">תמונת מצב בשווקים</a></li>
-        <li><a href="https://www.sponser.co.il/Content_Nituach.aspx?ContentId=13&from=header.menu" class="mobile-nav-link" style="padding-right:2rem;" target="_blank" rel="noopener"><i class="fa-solid fa-angle-left"  style="font-size:.75em;color:var(--gold-text);margin-left:.35rem;"></i> ספונסר - ניתוחי שוק</a></li>
-        <li><a href="https://finance.yahoo.com/" class="mobile-nav-link" style="padding-right:2rem;" target="_blank" rel="noopener"><i class="fa-solid fa-angle-left"  style="font-size:.75em;color:var(--gold-text);margin-left:.35rem;"></i> <span lang="en">Yahoo Finance</span></a></li>
-        <li><a href="https://il.investing.com/" class="mobile-nav-link" style="padding-right:2rem;" target="_blank" rel="noopener"><i class="fa-solid fa-angle-left"  style="font-size:.75em;color:var(--gold-text);margin-left:.35rem;"></i> <span lang="en">Investing.com</span> ישראל</a></li>
-        <li><a href="https://www.bloomberg.com/markets" class="mobile-nav-link" style="padding-right:2rem;" target="_blank" rel="noopener"><i class="fa-solid fa-angle-left"  style="font-size:.75em;color:var(--gold-text);margin-left:.35rem;"></i> <span lang="en">Bloomberg Markets</span></a></li>
+        <li><a href="https://www.meitav.co.il/" class="mobile-nav-link" style="padding-right:2rem;" target="_blank" rel="noopener"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> בית השקעות מיטב</a></li>
+        <li><a href="https://www.fnx.co.il/" class="mobile-nav-link" style="padding-right:2rem;" target="_blank" rel="noopener"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> סקירה חודשית - הפניקס</a></li>
+        <li><a href="https://www.sponsor.co.il/" class="mobile-nav-link" style="padding-right:2rem;" target="_blank" rel="noopener"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> ספונסר - ניתוחי שוק</a></li>
+        <li><a href="https://finance.yahoo.com/" class="mobile-nav-link" style="padding-right:2rem;" target="_blank" rel="noopener"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> <span lang="en">Yahoo Finance</span></a></li>
+        <li><a href="https://il.investing.com/" class="mobile-nav-link" style="padding-right:2rem;" target="_blank" rel="noopener"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> <span lang="en">Investing.com</span> ישראל</a></li>
+        <li><a href="https://www.bloomberg.com/markets" class="mobile-nav-link" style="padding-right:2rem;" target="_blank" rel="noopener"><i class="fa-solid fa-angle-left" style="font-size:.75em;color:var(--gold);margin-left:.35rem;"></i> <span lang="en">Bloomberg Markets</span></a></li>
         <li><a href="index.html#testimonials" class="mobile-nav-link">המלצות</a></li>
         <li><a href="tel:052-8000556" class="mobile-nav-link mobile-phone"><i class="fa-solid fa-phone"></i> 052-8000556</a></li>
-        <li><a href="https://wa.me/972528000556" class="mobile-nav-link"><i class="fa-brands fa-whatsapp"></i> <span lang="en">WhatsApp</span></a></li>
-        <li><a href="https://portal.roeto.co.il/pfinvest/login" class="mobile-nav-link" target="_blank" rel="noopener"><i class="fa-solid fa-key"></i> כניסה לאיזור אישי</a></li>
+        <li><a href="https://wa.me/9720528000556" class="mobile-nav-link"><i class="fa-brands fa-whatsapp"></i> <span lang="en">WhatsApp</span></a></li>
       </ul>
     </nav>
   </header>
@@ -769,11 +718,6 @@
             <i class="fa-solid fa-heart-pulse"></i> מחשבון ביטוח חיים
           </button>
         </li>
-        <li role="presentation">
-          <button class="calc-tab-btn" role="tab" aria-selected="false" aria-controls="panel-budget" onclick="switchTab('budget',this)">
-            <i class="fa-solid fa-piggy-bank"></i> מנהל תקציב משפחתי
-          </button>
-        </li>
       </ul>
     </nav>
 
@@ -829,7 +773,7 @@
                 <i class="fa-solid fa-calculator"></i> חשב
               </button>
 
-              <div class="calc-result" id="compound-result" aria-live="polite" aria-atomic="true">
+              <div class="calc-result" id="compound-result">
                 <div class="result-title">תוצאות החישוב</div>
                 <div class="result-rows">
                   <div class="result-row">
@@ -846,7 +790,6 @@
                     <span class="value" id="res-total">-</span>
                   </div>
                 </div>
-                <div class="sim-disclaimer">* החישוב מניח תשואה שנתית קבועה וריאלית לאורך כל התקופה, ואינו כולל מיסוי, אינפלציה בפועל או תנודתיות שוק. אינו מהווה ייעוץ השקעות. לבניית תוכנית חיסכון מותאמת אישית - פנה לטל גבאי.</div>
               </div>
 
             </div>
@@ -859,7 +802,7 @@
         <div class="sim-wrapper" style="max-width:820px;margin:0 auto;">
 
           <div class="sim-header">
-            <div class="sim-title-row"><i class="fa-solid fa-person-cane"></i><h2>סימולטור פרישה</h2></div>
+            <h2>סימולטור פרישה</h2>
             <p>מאפשר להעריך את הקצבה החודשית הצפויה על בסיס החיסכון הנוכחי, גיל הפרישה והתשואה הצפויה. הסכומים הם הערכה בלבד לצרכי המחשבה.</p>
           </div>
 
@@ -868,11 +811,11 @@
             <div class="sim-block-title"><i class="fa-solid fa-user"></i> פרטי המבוטח</div>
             <div class="sim-row">
               <div class="sim-field">
-                <label for="s-age" class="sim-label">גיל נוכחי</label>
+                <label class="sim-label">גיל נוכחי</label>
                 <input class="sim-input" type="number" id="s-age" value="" min="40" max="80" placeholder="למשל: 58" inputmode="numeric" />
               </div>
               <div class="sim-field">
-                <label for="s-retire-age" class="sim-label">גיל פרישה</label>
+                <label class="sim-label">גיל פרישה</label>
                 <input class="sim-input" type="number" id="s-retire-age" value="67" min="55" max="80" inputmode="numeric" />
               </div>
               <div class="sim-field">
@@ -898,14 +841,14 @@
 
             <div class="sim-row" style="grid-template-columns:1fr 1fr;align-items:end;">
               <div class="sim-field">
-                <label for="s-monthly" class="sim-label">הפקדה חודשית לפנסיה (₪)</label>
+                <label class="sim-label">הפקדה חודשית לפנסיה (₪)</label>
                 <div class="sim-input-wrap">
                   <input class="sim-input" type="number" id="s-monthly" value="" min="0" step="100" placeholder="למשל: 3,000" inputmode="numeric" />
                   <span class="sim-suffix">₪</span>
                 </div>
               </div>
               <div class="sim-field">
-                <label for="s-return" class="sim-label">תשואה שנתית צפויה</label>
+                <label class="sim-label">תשואה שנתית צפויה</label>
                 <div class="sim-input-wrap">
                   <input class="sim-input" type="number" id="s-return" value="4.5" min="0" max="15" step="0.1" inputmode="decimal" />
                   <span class="sim-suffix">%</span>
@@ -943,7 +886,7 @@
           </button>
 
           <!-- תוצאות -->
-          <div class="sim-result" id="sim-result" aria-live="polite" aria-atomic="true">
+          <div class="sim-result" id="sim-result">
             <div class="sim-result-title">תחזית קצבת הפרישה החודשית</div>
             <div class="sim-result-main">
               <div class="sim-result-item">
@@ -970,7 +913,7 @@
         <div class="sim-wrapper" style="max-width:680px;margin:0 auto;">
 
           <div class="sim-header">
-            <div class="sim-title-row"><i class="fa-solid fa-file-invoice-dollar"></i><h2>מחשבון פיצויי פיטורים</h2></div>
+            <h2>מחשבון פיצויי פיטורים</h2>
             <p>חשב את הפיצויים המגיעים לך - חישוב פיצויים פטורים במס, פיצויים חייבים במס, מענק פרישה חייב במס.</p>
           </div>
 
@@ -978,7 +921,7 @@
             <div class="sim-block-title"><i class="fa-solid fa-shekel-sign"></i> נתוני השכר והעבודה</div>
 
             <div class="sim-field" style="margin-bottom:1rem;">
-              <label for="sv-salary" class="sim-label">משכורת קובעת לפיצויים ברוטו, לפני מס (₪)</label>
+              <label class="sim-label">משכורת קובעת לפיצויים ברוטו, לפני מס (₪)</label>
               <div class="sim-input-wrap">
                 <input class="sim-input" type="number" id="sv-salary" placeholder="למשל: 20,000" min="0" step="100" inputmode="numeric" />
                 <span class="sim-suffix">₪</span>
@@ -987,7 +930,7 @@
 
             <div class="sim-row" style="grid-template-columns:1fr 1fr;gap:1.25rem;">
               <div class="sim-field">
-                <label for="sv-start-day" class="sim-label">תאריך תחילת עבודה</label>
+                <label class="sim-label">תאריך תחילת עבודה</label>
                 <div style="display:flex;gap:.4rem;">
                   <select class="sim-input" id="sv-start-day" style="flex:0 0 60px;padding-left:.3rem;padding-right:.3rem;"></select>
                   <select class="sim-input" id="sv-start-month" style="flex:1;padding-left:.3rem;padding-right:.3rem;"></select>
@@ -995,7 +938,7 @@
                 </div>
               </div>
               <div class="sim-field">
-                <label for="sv-end-day" class="sim-label">תאריך סיום עבודה</label>
+                <label class="sim-label">תאריך סיום עבודה</label>
                 <div style="display:flex;gap:.4rem;">
                   <select class="sim-input" id="sv-end-day" style="flex:0 0 60px;padding-left:.3rem;padding-right:.3rem;"></select>
                   <select class="sim-input" id="sv-end-month" style="flex:1;padding-left:.3rem;padding-right:.3rem;"></select>
@@ -1006,11 +949,11 @@
 
             <div class="sim-row" style="grid-template-columns:1fr 1fr;gap:1.25rem;margin-top:.25rem;">
               <div class="sim-field">
-                <label for="sv-unpaid" class="sim-label">חופשה ללא תשלום (שנים)</label>
+                <label class="sim-label">חופשה ללא תשלום (שנים)</label>
                 <input class="sim-input" type="number" id="sv-unpaid" value="0" min="0" max="30" step="0.5" inputmode="decimal" />
               </div>
               <div class="sim-field">
-                <label for="sv-rate" class="sim-label">שיעור הפיצויים</label>
+                <label class="sim-label">שיעור הפיצויים</label>
                 <div class="sim-input-wrap">
                   <input class="sim-input" type="number" id="sv-rate" value="100" min="0" max="200" step="1" inputmode="numeric" />
                   <span class="sim-suffix">%</span>
@@ -1024,14 +967,14 @@
 
             <div class="sim-row" style="grid-template-columns:1fr 1fr;gap:1.25rem;">
               <div class="sim-field">
-                <label for="sv-adjustment" class="sim-label">מענק הסתגלות (₪)</label>
+                <label class="sim-label">מענק הסתגלות (₪)</label>
                 <div class="sim-input-wrap">
                   <input class="sim-input" type="number" id="sv-adjustment" placeholder="0" min="0" inputmode="numeric" />
                   <span class="sim-suffix">₪</span>
                 </div>
               </div>
               <div class="sim-field">
-                <label for="sv-notice" class="sim-label">מענק בגין אי הודעה מוקדמת (₪)</label>
+                <label class="sim-label">מענק בגין אי הודעה מוקדמת (₪)</label>
                 <div class="sim-input-wrap">
                   <input class="sim-input" type="number" id="sv-notice" placeholder="0" min="0" inputmode="numeric" />
                   <span class="sim-suffix">₪</span>
@@ -1040,14 +983,14 @@
             </div>
             <div class="sim-row" style="grid-template-columns:1fr 1fr;gap:1.25rem;">
               <div class="sim-field">
-                <label for="sv-sick" class="sim-label">פדיון ימי מחלה (₪)</label>
+                <label class="sim-label">פדיון ימי מחלה (₪)</label>
                 <div class="sim-input-wrap">
                   <input class="sim-input" type="number" id="sv-sick" placeholder="0" min="0" inputmode="numeric" />
                   <span class="sim-suffix">₪</span>
                 </div>
               </div>
               <div class="sim-field">
-                <label for="sv-extra" class="sim-label" style="font-size:.72rem;">מענק פרישה נוסף - אין לכלול פדיון ימי חופשה, תשלום בגין אי תחרות וכל תשלום שלא אגב הפרישה (₪)</label>
+                <label class="sim-label" style="font-size:.72rem;">מענק פרישה נוסף - אין לכלול פדיון ימי חופשה, תשלום בגין אי תחרות וכל תשלום שלא אגב הפרישה (₪)</label>
                 <div class="sim-input-wrap">
                   <input class="sim-input" type="number" id="sv-extra" placeholder="0" min="0" inputmode="numeric" />
                   <span class="sim-suffix">₪</span>
@@ -1061,7 +1004,7 @@
           </button>
 
           <!-- תוצאות -->
-          <div class="sim-result" id="sv-result" style="margin-top:1.75rem;" aria-live="polite" aria-atomic="true">
+          <div class="sim-result" id="sv-result" style="margin-top:1.75rem;">
             <div class="sim-result-title">תוצאות החישוב</div>
             <div class="sim-result-main" style="flex-direction:column;gap:.8rem;">
               <div style="display:flex;justify-content:space-between;align-items:center;font-size:.92rem;">
@@ -1110,8 +1053,8 @@
             <!-- כותרת -->
             <div style="background:linear-gradient(135deg,#0d1e35 0%,#1a2d47 100%);padding:1.4rem 2rem;text-align:center;border-bottom:1px solid rgba(201,168,76,.3);">
               <div style="display:flex;align-items:center;gap:.6rem;justify-content:center;margin-bottom:.4rem;">
-                <i class="fa-solid fa-scale-balanced" style="font-size:1.95rem;color:var(--gold);"></i>
-                <h2 style="margin:0;font-size:1.725rem;font-weight:700;color:#fff;font-family:'Heebo',sans-serif;">מחשבון הלוואה מול השקעה</h2>
+                <i class="fa-solid fa-scale-balanced" style="font-size:1.3rem;color:var(--gold);"></i>
+                <h2 style="margin:0;font-size:1.15rem;font-weight:700;color:#fff;font-family:'Heebo',sans-serif;">מחשבון הלוואה מול השקעה</h2>
               </div>
               <p style="margin:0;font-size:.82rem;color:rgba(255,255,255,.55);font-weight:400;">השווה בין עלות הלוואה לתשואת השקעה - גלה מאיזה שלב משתלם להשקיע במקום לפדות</p>
             </div>
@@ -1147,13 +1090,13 @@
               <!-- שורה 1: סכום + טווח -->
               <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;">
                 <div>
-                  <label for="lvi-amount" style="display:block;font-size:.75rem;font-weight:700;color:#0d1e35;margin-bottom:.3rem;letter-spacing:.03em;">סכום התחלתי (₪)</label>
+                  <label style="display:block;font-size:.75rem;font-weight:700;color:#0d1e35;margin-bottom:.3rem;letter-spacing:.03em;">סכום התחלתי (₪)</label>
                   <input class="calc-input" id="lvi-amount" type="number" value="100000" min="0" step="1000"
                     oninput="lviUpdateDisplay()"
                     style="background:#fff;border:2px solid #d0d8e4;border-radius:10px;padding:.55rem .9rem;font-size:.95rem;font-weight:600;" />
                 </div>
                 <div>
-                  <label for="lvi-years" style="display:block;font-size:.75rem;font-weight:700;color:#0d1e35;margin-bottom:.3rem;letter-spacing:.03em;">טווח זמן (שנים)</label>
+                  <label style="display:block;font-size:.75rem;font-weight:700;color:#0d1e35;margin-bottom:.3rem;letter-spacing:.03em;">טווח זמן (שנים)</label>
                   <select class="calc-input" id="lvi-years" onchange="syncYearsCustom();lviUpdateDisplay()"
                     style="background:#fff;border:2px solid #d0d8e4;border-radius:10px;padding:.55rem .9rem;font-size:.95rem;font-weight:600;">
                     <option value="1">1 שנה</option>
@@ -1173,7 +1116,7 @@
 
               <!-- שורה 1.5: שנים מותאם -->
               <div id="lvi-years-custom-wrap" style="display:none;margin-bottom:1rem;">
-                <label for="lvi-years-custom" style="display:block;font-size:.75rem;font-weight:700;color:#0d1e35;margin-bottom:.3rem;">מספר שנים מותאם</label>
+                <label style="display:block;font-size:.75rem;font-weight:700;color:#0d1e35;margin-bottom:.3rem;">מספר שנים מותאם</label>
                 <input class="calc-input" id="lvi-years-custom" type="number" value="15" min="1" max="50" step="1"
                   oninput="lviUpdateDisplay()"
                   style="background:#fff;border:2px solid #d0d8e4;border-radius:10px;padding:.55rem .9rem;font-size:.95rem;font-weight:600;max-width:200px;" />
@@ -1183,13 +1126,13 @@
               <div style="font-size:.7rem;font-weight:800;color:#0d1e35;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.6rem;opacity:.5;">ריבית הלוואה</div>
               <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;">
                 <div>
-                  <label for="lvi-prime-rate" style="display:block;font-size:.75rem;font-weight:700;color:#0d1e35;margin-bottom:.3rem;">ריבית הפריים (%)</label>
+                  <label style="display:block;font-size:.75rem;font-weight:700;color:#0d1e35;margin-bottom:.3rem;">ריבית הפריים (%)</label>
                   <input class="calc-input" id="lvi-prime-rate" type="number" value="5.25" step="0.25"
                     oninput="lviUpdateDisplay()"
                     style="background:#fff;border:2px solid #d0d8e4;border-radius:10px;padding:.55rem .9rem;font-size:.95rem;font-weight:600;" />
                 </div>
                 <div>
-                  <label for="lvi-spread" style="display:block;font-size:.75rem;font-weight:700;color:#0d1e35;margin-bottom:.3rem;">מרווח מהפריים</label>
+                  <label style="display:block;font-size:.75rem;font-weight:700;color:#0d1e35;margin-bottom:.3rem;">מרווח מהפריים</label>
                   <select class="calc-input" id="lvi-spread" onchange="lviUpdateDisplay()"
                     style="background:#fff;border:2px solid #d0d8e4;border-radius:10px;padding:.55rem .9rem;font-size:.95rem;font-weight:600;">
                     <option value="-0.75">פריים מינוס 0.75%</option>
@@ -1204,13 +1147,13 @@
               <div style="font-size:.7rem;font-weight:800;color:#0d1e35;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.6rem;opacity:.5;">השקעה</div>
               <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.4rem;">
                 <div>
-                  <label for="lvi-return" style="display:block;font-size:.75rem;font-weight:700;color:#0d1e35;margin-bottom:.3rem;">תשואה שנתית משוערת (%)</label>
+                  <label style="display:block;font-size:.75rem;font-weight:700;color:#0d1e35;margin-bottom:.3rem;">תשואה שנתית משוערת (%)</label>
                   <input class="calc-input" id="lvi-return" type="number" value="7" step="0.1"
                     oninput="lviUpdateDisplay()"
                     style="background:#fff;border:2px solid #d0d8e4;border-radius:10px;padding:.55rem .9rem;font-size:.95rem;font-weight:600;" />
                 </div>
                 <div>
-                  <label for="lvi-mgmt" style="display:block;font-size:.75rem;font-weight:700;color:#0d1e35;margin-bottom:.3rem;">דמי ניהול שנתיים (%)</label>
+                  <label style="display:block;font-size:.75rem;font-weight:700;color:#0d1e35;margin-bottom:.3rem;">דמי ניהול שנתיים (%)</label>
                   <input class="calc-input" id="lvi-mgmt" type="number" value="0.6" step="0.1"
                     oninput="lviUpdateDisplay()"
                     style="background:#fff;border:2px solid #d0d8e4;border-radius:10px;padding:.55rem .9rem;font-size:.95rem;font-weight:600;" />
@@ -1227,7 +1170,7 @@
             </div>
 
             <!-- תוצאות -->
-            <div id="lvi-result" style="background:#f8fafc;border-top:2px solid #e0e8f0;padding:1.5rem 2rem;" aria-live="polite" aria-atomic="true">
+            <div id="lvi-result" style="background:#f8fafc;border-top:2px solid #e0e8f0;padding:1.5rem 2rem;">
 
               <!-- כרטיסי סיכום -->
               <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;margin-bottom:1.4rem;">
@@ -1260,17 +1203,17 @@
                 <table style="width:100%;border-collapse:collapse;font-size:.82rem;text-align:center;" id="lvi-table">
                   <thead>
                     <tr style="background:var(--navy);color:#fff;">
-                      <th scope="col" rowspan="2" style="padding:.5rem .4rem;text-align:center;border-left:1px solid rgba(255,255,255,.15);">שנה</th>
-                      <th scope="col" rowspan="2" style="padding:.5rem .4rem;color:#ffd875;text-align:center;border-left:1px solid rgba(255,255,255,.15);">בלון מלא<br><small style="font-weight:400;font-size:.7rem;">החזר בסוף ההלוואה</small></th>
-                      <th scope="col" rowspan="2" style="padding:.5rem .4rem;color:#ffd875;text-align:center;border-left:1px solid rgba(255,255,255,.15);">גרייס<br><small style="font-weight:400;font-size:.7rem;">החזר חודשי ריבית בלבד</small></th>
-                      <th scope="col" rowspan="2" style="padding:.5rem .4rem;color:#ffd875;text-align:center;border-left:1px solid rgba(255,255,255,.15);">שפיצר<br><small style="font-weight:400;font-size:.7rem;">החזר חודשי קרן+ריבית</small></th>
-                      <th scope="col" rowspan="2" style="padding:.5rem .4rem;color:#a8e6cf;text-align:center;border-left:1px solid rgba(255,255,255,.15);">שווי<br>השקעה</th>
-                      <th scope="colgroup" colspan="3" style="padding:.5rem .4rem;color:#a8e6cf;text-align:center;border-right:1px solid rgba(255,255,255,.15);border-left:1px solid rgba(255,255,255,.15);border-bottom:1px solid rgba(255,255,255,.25);">פער נטו (השקעה מול הלוואה)</th>
+                      <th rowspan="2" style="padding:.5rem .4rem;text-align:center;border-left:1px solid rgba(255,255,255,.15);">שנה</th>
+                      <th rowspan="2" style="padding:.5rem .4rem;color:#ffd875;text-align:center;border-left:1px solid rgba(255,255,255,.15);">בלון מלא<br><small style="font-weight:400;font-size:.7rem;">החזר בסוף ההלוואה</small></th>
+                      <th rowspan="2" style="padding:.5rem .4rem;color:#ffd875;text-align:center;border-left:1px solid rgba(255,255,255,.15);">גרייס<br><small style="font-weight:400;font-size:.7rem;">החזר חודשי ריבית בלבד</small></th>
+                      <th rowspan="2" style="padding:.5rem .4rem;color:#ffd875;text-align:center;border-left:1px solid rgba(255,255,255,.15);">שפיצר<br><small style="font-weight:400;font-size:.7rem;">החזר חודשי קרן+ריבית</small></th>
+                      <th rowspan="2" style="padding:.5rem .4rem;color:#a8e6cf;text-align:center;border-left:1px solid rgba(255,255,255,.15);">שווי<br>השקעה</th>
+                      <th colspan="3" style="padding:.5rem .4rem;color:#a8e6cf;text-align:center;border-right:1px solid rgba(255,255,255,.15);border-left:1px solid rgba(255,255,255,.15);border-bottom:1px solid rgba(255,255,255,.25);">פער נטו (השקעה מול הלוואה)</th>
                     </tr>
                     <tr style="background:#0d2340;color:#a8e6cf;font-size:.75rem;">
-                      <th scope="col" style="padding:.3rem .4rem;text-align:center;border-left:1px solid rgba(255,255,255,.15);">בלון</th>
-                      <th scope="col" style="padding:.3rem .4rem;text-align:center;border-left:1px solid rgba(255,255,255,.15);">גרייס</th>
-                      <th scope="col" style="padding:.3rem .4rem;text-align:center;">שפיצר</th>
+                      <th style="padding:.3rem .4rem;text-align:center;border-left:1px solid rgba(255,255,255,.15);">בלון</th>
+                      <th style="padding:.3rem .4rem;text-align:center;border-left:1px solid rgba(255,255,255,.15);">גרייס</th>
+                      <th style="padding:.3rem .4rem;text-align:center;">שפיצר</th>
                     </tr>
                   </thead>
                   <tbody id="lvi-tbody"></tbody>
@@ -1278,7 +1221,6 @@
                 </table>
               </div>
               <p style="font-size:.76rem;color:#888;margin-top:.8rem;text-align:center;">* ירוק = משתלם להשקיע, אדום = כדאי לפדות את ההשקעה</p>
-              <p style="font-size:.76rem;color:#888;margin-top:.4rem;text-align:center;line-height:1.6;"><strong>* ההשוואה לעיל היא הערכה כללית בלבד ואינה מהווה ייעוץ השקעות או המלצה לפדות/שלא לפדות השקעה.</strong> אינה כוללת מס רווחי הון, עמלות או שינויי ריבית עתידיים. לבדיקת הכדאיות המדויקת עבורך - פנה לטל גבאי.</p>
             </div>
 
           </div><!-- /גוף מחשבון -->
@@ -1295,17 +1237,9 @@
             #panel-pension-fees .pf-inp label { display:block; font-size:.75rem; font-weight:700; color:#0d1e35; margin-bottom:.3rem; }
             #panel-pension-fees .pf-inp input, #panel-pension-fees .pf-inp select { width:100%; background:#fff; border:2px solid #d0d8e4; border-radius:10px; padding:.55rem .9rem; font-size:.95rem; font-weight:600; font-family:'Heebo',sans-serif; box-sizing:border-box; }
             #panel-pension-fees .pf-inp input:focus, #panel-pension-fees .pf-inp select:focus { border-color:#c9a84c; outline:none; }
-            #panel-pension-compare input:focus, #panel-pension-compare select:focus { border-color:#c9a84c; outline:none; box-shadow:0 0 0 3px rgba(201,168,76,.15); }
-            #panel-pension-fees .pf-fund-tabs { display:flex; gap:.3rem; flex-wrap:wrap; justify-content:space-between; margin-bottom:1.4rem; }
-            #panel-pension-fees .pf-fund-tab { flex:1; padding:.42rem .18rem; border-radius:30px; border:2px solid #d0d8e4; background:#fff; font-size:.65rem; font-weight:700; cursor:pointer; font-family:'Heebo',sans-serif; color:#0d1e35; transition:all .2s; white-space:nowrap; text-align:center; }
+            #panel-pension-fees .pf-fund-tabs { display:flex; gap:.5rem; flex-wrap:wrap; margin-bottom:1.4rem; }
+            #panel-pension-fees .pf-fund-tab { padding:.5rem 1.3rem; border-radius:30px; border:2px solid #d0d8e4; background:#fff; font-size:.88rem; font-weight:700; cursor:pointer; font-family:'Heebo',sans-serif; color:#0d1e35; transition:all .2s; }
             #panel-pension-fees .pf-fund-tab.active { background:#0d1e35; color:#c9a84c; border-color:#0d1e35; }
-            #panel-pension-fees .pf-demo-badge { display:inline-block; padding:.45rem 1rem; border-radius:8px; font-weight:800; font-size:.85rem; margin-bottom:1.2rem; }
-            #panel-pension-fees .pf-demo-badge.positive { background:#e8f8ee; color:#1a7f4b; }
-            #panel-pension-fees .pf-demo-badge.negative { background:#fdeaea; color:#c0392b; }
-            #panel-pension-fees .pf-demo-badge.neutral  { background:#f0f0f0; color:#666; }
-            #panel-pension-fees .pf-go-wrap { text-align:center; margin:-.5rem 0 1.5rem; }
-            #panel-pension-fees .pf-go-btn { display:inline-block; min-width:220px; background:#c9a84c; color:#0d1e35; border:none; border-radius:12px; padding:.9rem 2.4rem; font-family:'Heebo',sans-serif; font-size:1.05rem; font-weight:900; cursor:pointer; box-shadow:0 4px 16px rgba(201,168,76,.35); transition:transform .15s, box-shadow .15s; }
-            #panel-pension-fees .pf-go-btn:hover { transform:translateY(-2px); box-shadow:0 6px 20px rgba(201,168,76,.45); }
             #panel-pension-fees .pf-fee-table { width:100%; border-collapse:collapse; font-size:.88rem; }
             #panel-pension-fees .pf-fee-table th { background:#0d1e35; color:#c9a84c; padding:.6rem .7rem; text-align:center; font-weight:700; }
             #panel-pension-fees .pf-fee-table td { padding:.55rem .7rem; text-align:center; border-bottom:1px solid #eef0f5; }
@@ -1346,8 +1280,8 @@
           <div style="background:#1a2d47;border-radius:24px;box-shadow:0 8px 40px rgba(13,30,53,.35);overflow:hidden;border:2px solid #2a3f5c;">
             <div style="background:linear-gradient(135deg,#0d1e35 0%,#1a2d47 100%);padding:1.4rem 2rem;text-align:center;border-bottom:1px solid rgba(201,168,76,.3);">
               <div style="display:flex;align-items:center;gap:.6rem;justify-content:center;margin-bottom:.4rem;">
-                <i class="fa-solid fa-coins" style="font-size:1.95rem;color:var(--gold);"></i>
-                <h2 style="margin:0;font-size:1.725rem;font-weight:700;color:#fff;font-family:'Heebo',sans-serif;">מחשבון כדאיות דמי ניהול בקרן הפנסיה</h2>
+                <i class="fa-solid fa-coins" style="font-size:1.3rem;color:var(--gold);"></i>
+                <h2 style="margin:0;font-size:1.15rem;font-weight:700;color:#fff;font-family:'Heebo',sans-serif;">מחשבון כדאיות דמי ניהול בקרן הפנסיה</h2>
               </div>
               <p style="margin:0;font-size:.82rem;color:rgba(255,255,255,.55);">כמה עולה כל קומבינציה של דמי ניהול - מצבירה מול מהפקדות - ואיזו זולה יותר עבורך</p>
             </div>
@@ -1403,24 +1337,16 @@
                 </div>
               </div>
 
-              <div class="pf-go-wrap">
-                <button type="button" class="pf-go-btn" onclick="pfCalc()">חשב</button>
-              </div>
-
               <!-- בחירת קרן -->
               <div class="pf-card">
-                <h3>בחירת קרן הפנסיה</h3>
+                <h3>בחרו קרן פנסיה</h3>
                 <div class="pf-fund-tabs" role="tablist">
-                  <button class="pf-fund-tab active" onclick="pfSelectFund('mor',event)" role="tab" aria-selected="true">מור פנסיה</button>
-                  <button class="pf-fund-tab" onclick="pfSelectFund('meitav',event)" role="tab" aria-selected="false">מיטב פנסיה</button>
-                  <button class="pf-fund-tab" onclick="pfSelectFund('clal',event)" role="tab" aria-selected="false">כלל פנסיה</button>
-                  <button class="pf-fund-tab" onclick="pfSelectFund('phoenix',event)" role="tab" aria-selected="false">הפניקס פנסיה</button>
-                  <button class="pf-fund-tab" onclick="pfSelectFund('migdal',event)" role="tab" aria-selected="false">מגדל פנסיה</button>
-                  <button class="pf-fund-tab" onclick="pfSelectFund('menora',event)" role="tab" aria-selected="false">מנורה פנסיה</button>
-                  <button class="pf-fund-tab" onclick="pfSelectFund('harel',event)" role="tab" aria-selected="false">הראל פנסיה</button>
+                  <button class="pf-fund-tab active" onclick="pfSelectFund('mor',event)" role="tab">מור פנסיה</button>
+                  <button class="pf-fund-tab" onclick="pfSelectFund('meitav',event)" role="tab">מיטב פנסיה</button>
+                  <button class="pf-fund-tab" onclick="pfSelectFund('clal',event)" role="tab">כלל פנסיה</button>
+                  <button class="pf-fund-tab" onclick="pfSelectFund('phoenix',event)" role="tab">הפניקס פנסיה</button>
                 </div>
-                <div id="pf-fund-note" style="font-size:.8rem;color:#888;margin-bottom:.6rem;"></div>
-                <div id="pf-demo-badge" class="pf-demo-badge" aria-live="polite"></div>
+                <div id="pf-fund-note" style="font-size:.8rem;color:#888;margin-bottom:.8rem;"></div>
 
                 <!-- KPI -->
                 <div class="pf-kpi-banner" id="pf-kpi">
@@ -1435,12 +1361,12 @@
                   <table class="pf-fee-table" id="pf-fee-table">
                     <thead>
                       <tr>
-                        <th scope="col">מסלול / חלופה</th>
-                        <th scope="col">מצבירה %</th>
-                        <th scope="col">מהפקדות %</th>
-                        <th scope="col">עלות מצבירה<br><small style="font-weight:400">(שנתית)</small></th>
-                        <th scope="col">עלות מהפקדות<br><small style="font-weight:400">(שנתית)</small></th>
-                        <th scope="col">סה"כ עלות שנתית</th>
+                        <th>מסלול / חלופה</th>
+                        <th>מצבירה %</th>
+                        <th>מהפקדות %</th>
+                        <th>עלות מצבירה<br><small style="font-weight:400">(שנתית)</small></th>
+                        <th>עלות מהפקדות<br><small style="font-weight:400">(שנתית)</small></th>
+                        <th>סה"כ עלות שנתית</th>
                       </tr>
                     </thead>
                     <tbody id="pf-fee-tbody"></tbody>
@@ -1463,7 +1389,6 @@
                 </div>
                 <div class="pf-note" style="margin-top:1.2rem;">
                   <strong>הנחות החישוב:</strong> תשואה ברוטו לפי הבחירה למעלה. עלות מצבירה = צבירה שנה קודמת × %. עלות הפקדות = הפקדה שנתית × %. הצבירה גדלה בתשואה נטו + הפקדות נטו. מחיר ב-₪ ריאלי.
-                  <br><strong>* ההצגה לעיל היא הערכה כללית בלבד לצורך המחשה ואינה מהווה ייעוץ פנסיוני אישי.</strong> שיעורי דמי הניהול עשויים להשתנות - יש לאמת אותם מול חברת הפנסיה בפועל לפני קבלת כל החלטה.
                 </div>
               </div>
 
@@ -1486,8 +1411,8 @@
             <!-- כותרת -->
             <div style="background:linear-gradient(135deg,#0d1e35 0%,#1a2d47 100%);padding:1.4rem 2rem;text-align:center;border-bottom:1px solid rgba(201,168,76,.3);">
               <div style="display:flex;align-items:center;gap:.6rem;justify-content:center;margin-bottom:.4rem;">
-                <i class="fa-solid fa-shield-halved" style="font-size:1.95rem;color:var(--gold);"></i>
-                <h2 style="margin:0;font-size:1.725rem;font-weight:700;color:#fff;font-family:'Heebo',sans-serif;">מחשבון פנסיה מול ביטוח מנהלים</h2>
+                <i class="fa-solid fa-shield-halved" style="font-size:1.3rem;color:var(--gold);"></i>
+                <h2 style="margin:0;font-size:1.15rem;font-weight:700;color:#fff;font-family:'Heebo',sans-serif;">מחשבון פנסיה מול ביטוח מנהלים</h2>
               </div>
               <p style="margin:0;font-size:.82rem;color:rgba(255,255,255,.55);">הוכחה כלכלית ומספרית - האם כדאי לעבור מביטוח מנהלים לקרן פנסיה?</p>
             </div>
@@ -1500,15 +1425,26 @@
                 <div style="font-size:.72rem;font-weight:800;color:#0d1e35;text-transform:uppercase;letter-spacing:.07em;margin-bottom:.8rem;opacity:.6;">נתוני הלקוח/ה - משותף לשני המוצרים</div>
                 <div class="shared-row" style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr 1fr;gap:.8rem;align-items:end;">
                   <div>
-                    <label for="pc-accum" style="display:block;font-size:.72rem;font-weight:700;color:#0d1e35;margin-bottom:.25rem;">צבירה נוכחית (₪)</label>
-                    <input id="pc-accum" type="text" value="1,000,000" style="width:100%;background:#fff;border:2px solid #d0d8e4;border-radius:9px;padding:.48rem .8rem;font-size:.9rem;font-weight:600;color:#0d1e35;box-sizing:border-box;" oninput="pfFmtNum(this);runPensionCompare()" />
+                    <label style="display:block;font-size:.72rem;font-weight:700;color:#0d1e35;margin-bottom:.25rem;">צבירה נוכחית (₪)</label>
+                    <select id="pc-accum" style="width:100%;background:#fff;border:2px solid #d0d8e4;border-radius:9px;padding:.48rem .8rem;font-size:.9rem;font-weight:600;color:#0d1e35;" onchange="pcAccumChange()">
+                      <option value="250000">250,000 ₪</option>
+                      <option value="500000">500,000 ₪</option>
+                      <option value="750000">750,000 ₪</option>
+                      <option value="1000000" selected>1,000,000 ₪</option>
+                      <option value="1500000">1,500,000 ₪</option>
+                      <option value="2000000">2,000,000 ₪</option>
+                      <option value="2500000">2,500,000 ₪</option>
+                      <option value="3000000">3,000,000 ₪</option>
+                      <option value="custom">סכום אחר...</option>
+                    </select>
+                    <input id="pc-accum-custom" type="number" placeholder="הכנס סכום" style="display:none;margin-top:.4rem;width:100%;background:#fff;border:2px solid #c9a84c;border-radius:9px;padding:.48rem .8rem;font-size:.9rem;font-weight:600;box-sizing:border-box;" onchange="runPensionCompare()" />
                   </div>
                   <div>
-                    <label for="pc-age-now" style="display:block;font-size:.72rem;font-weight:700;color:#0d1e35;margin-bottom:.25rem;">גיל נוכחי</label>
+                    <label style="display:block;font-size:.72rem;font-weight:700;color:#0d1e35;margin-bottom:.25rem;">גיל נוכחי</label>
                     <input id="pc-age-now" type="number" value="45" min="30" max="69" style="width:100%;background:#fff;border:2px solid #d0d8e4;border-radius:9px;padding:.48rem .8rem;font-size:.9rem;font-weight:600;text-align:center;" onchange="runPensionCompare()" />
                   </div>
                   <div>
-                    <label for="pc-ret-age" style="display:block;font-size:.72rem;font-weight:700;color:#0d1e35;margin-bottom:.25rem;">גיל פרישה</label>
+                    <label style="display:block;font-size:.72rem;font-weight:700;color:#0d1e35;margin-bottom:.25rem;">גיל פרישה</label>
                     <select id="pc-ret-age" style="width:100%;background:#fff;border:2px solid #d0d8e4;border-radius:9px;padding:.48rem .8rem;font-size:.9rem;font-weight:600;" onchange="runPensionCompare()">
                       <option value="60">60</option><option value="61">61</option><option value="62">62</option>
                       <option value="63">63</option><option value="64">64</option><option value="65">65</option>
@@ -1517,32 +1453,18 @@
                     </select>
                   </div>
                   <div>
-                    <label for="pc-gender" style="display:block;font-size:.72rem;font-weight:700;color:#0d1e35;margin-bottom:.25rem;">מין</label>
+                    <label style="display:block;font-size:.72rem;font-weight:700;color:#0d1e35;margin-bottom:.25rem;">מין</label>
                     <select id="pc-gender" style="width:100%;background:#fff;border:2px solid #d0d8e4;border-radius:9px;padding:.48rem .8rem;font-size:.9rem;font-weight:600;" onchange="pcUpdateGenderDefaults();runPensionCompare()">
                       <option value="male" selected>גבר</option>
                       <option value="female">אישה</option>
                     </select>
                   </div>
                   <div>
-                    <label for="pc-status" style="display:block;font-size:.72rem;font-weight:700;color:#0d1e35;margin-bottom:.25rem;">מצב משפחתי</label>
+                    <label style="display:block;font-size:.72rem;font-weight:700;color:#0d1e35;margin-bottom:.25rem;">מצב משפחתי</label>
                     <select id="pc-status" style="width:100%;background:#fff;border:2px solid #d0d8e4;border-radius:9px;padding:.48rem .8rem;font-size:.9rem;font-weight:600;" onchange="runPensionCompare()">
                       <option value="married" selected>נשוי/ה</option>
                       <option value="single">רווק/ה</option>
                     </select>
-                  </div>
-                </div>
-                <div class="shared-row" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:.8rem;align-items:end;margin-top:.8rem;">
-                  <div>
-                    <label for="pc-salary" style="display:block;font-size:.72rem;font-weight:700;color:#0d1e35;margin-bottom:.25rem;">שכר ברוטו חודשי (₪)</label>
-                    <input id="pc-salary" type="text" value="0" style="width:100%;background:#fff;border:2px solid #d0d8e4;border-radius:9px;padding:.48rem .8rem;font-size:.9rem;font-weight:600;box-sizing:border-box;" oninput="pfFmtNum(this);runPensionCompare()" />
-                  </div>
-                  <div>
-                    <label for="pc-deposit-pct" style="display:block;font-size:.72rem;font-weight:700;color:#0d1e35;margin-bottom:.25rem;">שיעור הפקדה מהשכר (%)</label>
-                    <input id="pc-deposit-pct" type="number" value="20.83" min="5" max="30" step="0.01" style="width:100%;background:#fff;border:2px solid #d0d8e4;border-radius:9px;padding:.48rem .8rem;font-size:.9rem;font-weight:600;box-sizing:border-box;" onchange="runPensionCompare()" />
-                  </div>
-                  <div>
-                    <label for="pc-manual-dep" style="display:block;font-size:.72rem;font-weight:700;color:#0d1e35;margin-bottom:.25rem;">או הפקדה חודשית ידנית (₪)</label>
-                    <input id="pc-manual-dep" type="text" placeholder="ריק = חישוב לפי שכר × %" style="width:100%;background:#fff;border:2px solid #d0d8e4;border-radius:9px;padding:.48rem .8rem;font-size:.9rem;font-weight:600;box-sizing:border-box;" oninput="pfFmtNum(this);runPensionCompare()" />
                   </div>
                 </div>
               </div>
@@ -1559,7 +1481,7 @@
                   <div style="padding:1rem;">
 
                     <div style="margin-bottom:.9rem;">
-                      <label for="pc-compare-to" style="display:block;font-size:.72rem;font-weight:700;color:#1a4a2e;margin-bottom:.25rem;">סוג קרן פנסיה</label>
+                      <label style="display:block;font-size:.72rem;font-weight:700;color:#1a4a2e;margin-bottom:.25rem;">סוג קרן פנסיה</label>
                       <select id="pc-compare-to" style="width:100%;background:#fff;border:2px solid #b2dfc8;border-radius:9px;padding:.5rem .8rem;font-size:.9rem;font-weight:600;" onchange="runPensionCompare()">
                         <option value="supplementary" selected>קרן פנסיה משלימה</option>
                         <option value="comprehensive">קרן פנסיה מקיפה</option>
@@ -1567,7 +1489,7 @@
                     </div>
 
                     <div style="margin-bottom:.9rem;">
-                      <label for="pc-pen-return" style="display:block;font-size:.72rem;font-weight:700;color:#1a4a2e;margin-bottom:.25rem;">תשואה שנתית (%)</label>
+                      <label style="display:block;font-size:.72rem;font-weight:700;color:#1a4a2e;margin-bottom:.25rem;">תשואה שנתית (%)</label>
                       <select id="pc-pen-return" style="width:100%;background:#fff;border:2px solid #b2dfc8;border-radius:9px;padding:.5rem .8rem;font-size:.9rem;font-weight:600;" onchange="runPensionCompare()">
                         <option value="3">3%</option><option value="4">4%</option>
                         <option value="5">5%</option><option value="6" selected>6%</option>
@@ -1576,7 +1498,7 @@
                     </div>
 
                     <div style="margin-bottom:.9rem;">
-                      <label for="pc-pen-fee" style="display:flex;justify-content:space-between;align-items:center;font-size:.72rem;font-weight:700;color:#1a4a2e;margin-bottom:.25rem;">
+                      <label style="display:flex;justify-content:space-between;align-items:center;font-size:.72rem;font-weight:700;color:#1a4a2e;margin-bottom:.25rem;">
                         <span>דמי ניהול מצבירה (%/שנה)</span>
                         <span id="pc-pen-fee-badge" style="background:#1a4a2e;color:#6ee7a8;font-size:.82rem;font-weight:900;padding:.1rem .45rem;border-radius:7px;min-width:3rem;text-align:center;">0.10%</span>
                       </label>
@@ -1587,7 +1509,7 @@
                     </div>
 
                     <div style="margin-bottom:.9rem;">
-                      <label for="pc-pen-deposit-fee" style="display:flex;justify-content:space-between;align-items:center;font-size:.72rem;font-weight:700;color:#1a4a2e;margin-bottom:.25rem;">
+                      <label style="display:flex;justify-content:space-between;align-items:center;font-size:.72rem;font-weight:700;color:#1a4a2e;margin-bottom:.25rem;">
                         <span>דמי ניהול מהפקדות (%)</span>
                         <span id="pc-pen-deposit-fee-badge" style="background:#1a4a2e;color:#6ee7a8;font-size:.82rem;font-weight:900;padding:.1rem .45rem;border-radius:7px;min-width:3rem;text-align:center;">1.50%</span>
                       </label>
@@ -1598,18 +1520,17 @@
                     </div>
 
                     <div style="margin-bottom:.9rem;">
-                      <label for="pc-pen-disability" style="display:flex;justify-content:space-between;align-items:center;font-size:.72rem;font-weight:700;color:#1a4a2e;margin-bottom:.25rem;">
+                      <label style="display:flex;justify-content:space-between;align-items:center;font-size:.72rem;font-weight:700;color:#1a4a2e;margin-bottom:.25rem;">
                         <span>עלות כיסוי נכות (%/שנה מצבירה)</span>
                         <span id="pc-pen-dis-badge" style="background:#1a4a2e;color:#6ee7a8;font-size:.82rem;font-weight:900;padding:.1rem .45rem;border-radius:7px;min-width:3rem;text-align:center;">0.75%</span>
                       </label>
                       <input id="pc-pen-disability" type="number" value="0.75" min="0" max="3" step="0.01"
                         style="width:100%;background:#fff;border:2px solid #b2dfc8;border-radius:9px;padding:.5rem .8rem;font-size:.9rem;font-weight:600;box-sizing:border-box;"
                         oninput="pcFeeBadge('pc-pen-disability','pc-pen-dis-badge');runPensionCompare()" />
-                      <small style="color:#6a8a78;font-size:.66rem;line-height:1.4;display:block;margin-top:.25rem;">בקרן פנסיה הכיסוי מאוגד/משותף לכלל העמיתים - אינו תלוי במצב בריאותך האישי.</small>
                     </div>
 
                     <div>
-                      <label for="pc-pen-coef" style="display:block;font-size:.72rem;font-weight:700;color:#1a4a2e;margin-bottom:.25rem;">מקדם קצבה</label>
+                      <label style="display:block;font-size:.72rem;font-weight:700;color:#1a4a2e;margin-bottom:.25rem;">מקדם קצבה</label>
                       <select id="pc-pen-coef" style="width:100%;background:#fff;border:2px solid #b2dfc8;border-radius:9px;padding:.5rem .8rem;font-size:.9rem;font-weight:600;" onchange="runPensionCompare()">
                         <option value="200" selected>200</option>
                         <option value="210">210</option>
@@ -1631,7 +1552,7 @@
                   <div style="padding:1rem;">
 
                     <div style="margin-bottom:.9rem;">
-                      <label for="pc-policy" style="display:block;font-size:.72rem;font-weight:700;color:#0d1e35;margin-bottom:.25rem;">סוג פוליסה</label>
+                      <label style="display:block;font-size:.72rem;font-weight:700;color:#0d1e35;margin-bottom:.25rem;">סוג פוליסה</label>
                       <select id="pc-policy" style="width:100%;background:#fff;border:2px solid #e8d5a3;border-radius:9px;padding:.5rem .8rem;font-size:.9rem;font-weight:600;" onchange="pcPolicyChange()">
                         <option value="pre2001">לפני יוני 2001</option>
                         <option value="post2001" selected>אחרי יוני 2001</option>
@@ -1639,7 +1560,7 @@
                     </div>
 
                     <div style="margin-bottom:.9rem;">
-                      <label for="pc-ins-return" style="display:block;font-size:.72rem;font-weight:700;color:#0d1e35;margin-bottom:.25rem;">תשואה שנתית (%)</label>
+                      <label style="display:block;font-size:.72rem;font-weight:700;color:#0d1e35;margin-bottom:.25rem;">תשואה שנתית (%)</label>
                       <select id="pc-ins-return" style="width:100%;background:#fff;border:2px solid #e8d5a3;border-radius:9px;padding:.5rem .8rem;font-size:.9rem;font-weight:600;" onchange="runPensionCompare()">
                         <option value="3">3%</option><option value="4">4%</option>
                         <option value="5">5%</option><option value="6" selected>6%</option>
@@ -1649,7 +1570,7 @@
 
                     <!-- דמי ניהול מצבירה ביטוח - נעלם/מופיע לפי פוליסה -->
                     <div id="pc-ins-fees-row" style="margin-bottom:.9rem;">
-                      <label for="pc-ins-fee" style="display:flex;justify-content:space-between;align-items:center;font-size:.72rem;font-weight:700;color:#0d1e35;margin-bottom:.25rem;">
+                      <label style="display:flex;justify-content:space-between;align-items:center;font-size:.72rem;font-weight:700;color:#0d1e35;margin-bottom:.25rem;">
                         <span>דמי ניהול מצבירה (%/שנה)</span>
                         <span id="pc-ins-fee-badge" style="background:#0d1e35;color:#c9a84c;font-size:.82rem;font-weight:900;padding:.1rem .45rem;border-radius:7px;min-width:3rem;text-align:center;">1.25%</span>
                       </label>
@@ -1672,7 +1593,7 @@
 
                     <!-- דמי ניהול מהפקדות ביטוח -->
                     <div id="pc-deposit-fees-row" style="margin-bottom:.9rem;">
-                      <label for="pc-ins-deposit-fee" style="display:flex;justify-content:space-between;align-items:center;font-size:.72rem;font-weight:700;color:#0d1e35;margin-bottom:.25rem;">
+                      <label style="display:flex;justify-content:space-between;align-items:center;font-size:.72rem;font-weight:700;color:#0d1e35;margin-bottom:.25rem;">
                         <span>דמי ניהול מהפקדות (%)</span>
                         <span id="pc-ins-deposit-fee-badge" style="background:#0d1e35;color:#c9a84c;font-size:.82rem;font-weight:900;padding:.1rem .45rem;border-radius:7px;min-width:3rem;text-align:center;">3.00%</span>
                       </label>
@@ -1683,32 +1604,22 @@
                     </div>
 
                     <div style="margin-bottom:.9rem;">
-                      <label for="pc-disability-fee" style="display:flex;justify-content:space-between;align-items:center;font-size:.72rem;font-weight:700;color:#0d1e35;margin-bottom:.25rem;">
+                      <label style="display:flex;justify-content:space-between;align-items:center;font-size:.72rem;font-weight:700;color:#0d1e35;margin-bottom:.25rem;">
                         <span>עלות כיסוי אכ"ע (%/שנה מצבירה)</span>
                         <span id="pc-dis-fee-badge" style="background:#0d1e35;color:#c9a84c;font-size:.82rem;font-weight:900;padding:.1rem .45rem;border-radius:7px;min-width:3rem;text-align:center;">1.00%</span>
                       </label>
                       <input id="pc-disability-fee" type="number" value="1.00" min="0" max="4" step="0.01"
                         style="width:100%;background:#fff;border:2px solid #e8d5a3;border-radius:9px;padding:.5rem .8rem;font-size:.9rem;font-weight:600;box-sizing:border-box;"
                         oninput="pcFeeBadge('pc-disability-fee','pc-dis-fee-badge');runPensionCompare()" />
-                      <small style="color:#a08850;font-size:.66rem;line-height:1.4;display:block;margin-top:.25rem;">בביטוח מנהלים הכיסוי נחתם אישית לפי מצב הבריאות שלך - יכול לכלול החרגות או תוספת מחיר.</small>
-                    </div>
-
-                    <div id="pc-guaranteed-row" style="margin-bottom:.9rem;background:#fff8e6;border:1.5px solid #c9a84c;border-radius:9px;padding:.6rem .8rem;">
-                      <label style="display:flex;align-items:center;gap:.4rem;font-size:.75rem;font-weight:700;color:#0d1e35;cursor:pointer;">
-                        <input type="checkbox" id="pc-has-guaranteed" onchange="pcToggleGuaranteed()" style="width:auto;" />
-                        יש לי מקדם קצבה מובטח בפוליסה
-                      </label>
-                      <div style="font-size:.68rem;color:#7a6a3a;margin-top:.3rem;line-height:1.5;">מקדם מובטח קיים רק בפוליסות שנרכשו <strong>לפני 2013</strong>, או שנרכשו מגיל <strong>55 ואילך</strong>. אם קיים לך - בדוק בדף הפרטים האישיים בפוליסה והזן כאן; אחרת המחשבון מניח מקדם גנרי ללא הבטחה.</div>
                     </div>
 
                     <div style="margin-bottom:.9rem;">
                       <label style="display:block;font-size:.72rem;font-weight:700;color:#0d1e35;margin-bottom:.25rem;">מקדם קצבה</label>
                       <div id="pc-ins-coef-display" style="width:100%;background:#fff;border:2px solid #e8d5a3;border-radius:9px;padding:.5rem .8rem;font-size:.9rem;font-weight:700;color:#0d1e35;text-align:right;box-sizing:border-box;">200</div>
-                      <input id="pc-ins-coef-custom" type="number" value="200" min="150" max="260" step="0.1" style="display:none;width:100%;background:#fff;border:2px solid #c9a84c;border-radius:9px;padding:.5rem .8rem;font-size:.9rem;font-weight:700;color:#0d1e35;box-sizing:border-box;" oninput="runPensionCompare()" />
                     </div>
 
                     <div>
-                      <label for="pc-track" style="display:block;font-size:.72rem;font-weight:700;color:#0d1e35;margin-bottom:.25rem;">חודשים מובטחים</label>
+                      <label style="display:block;font-size:.72rem;font-weight:700;color:#0d1e35;margin-bottom:.25rem;">חודשים מובטחים</label>
                       <select id="pc-track" style="width:100%;background:#fff;border:2px solid #e8d5a3;border-radius:9px;padding:.5rem .8rem;font-size:.9rem;font-weight:600;" onchange="runPensionCompare()">
                         <option value="0">ללא הבטחה</option>
                         <option value="60">60 חודשים</option>
@@ -1732,10 +1643,10 @@
             </div>
 
             <!-- תוצאות -->
-            <div id="pc-result" style="background:#f8fafc;border-top:2px solid #e0e8f0;padding:1.5rem 2rem;" aria-live="polite" aria-atomic="true">
+            <div id="pc-result" style="background:#f8fafc;border-top:2px solid #e0e8f0;padding:1.5rem 2rem;">
 
               <!-- KPI cards -->
-              <div class="pc-kpi-row" style="display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;margin-bottom:1.4rem;">
+              <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;margin-bottom:1.4rem;">
                 <div style="background:var(--navy);border-radius:12px;padding:1rem;text-align:center;">
                   <div style="font-size:.7rem;color:rgba(255,255,255,.6);margin-bottom:.3rem;">קצבת נטו - ביטוח מנהלים</div>
                   <div id="pc-kpi-ins" style="font-size:1.4rem;font-weight:900;color:var(--gold);"></div>
@@ -1758,12 +1669,12 @@
                 <table style="width:100%;border-collapse:collapse;font-size:.83rem;text-align:center;">
                   <thead>
                     <tr style="background:var(--navy);color:#fff;">
-                      <th scope="col" style="padding:.6rem .5rem;text-align:right;">מוצר</th>
-                      <th scope="col" style="padding:.6rem .5rem;">מקדם המרה</th>
-                      <th scope="col" style="padding:.6rem .5rem;">צבירה בפרישה</th>
-                      <th scope="col" style="padding:.6rem .5rem;">קצבה ברוטו</th>
-                      <th scope="col" style="padding:.6rem .5rem;color:#fca5a5;">מס מנוכה</th>
-                      <th scope="col" style="padding:.6rem .5rem;color:#6ee7a8;font-weight:800;">קצבת נטו ✦</th>
+                      <th style="padding:.6rem .5rem;text-align:right;">מוצר</th>
+                      <th style="padding:.6rem .5rem;">מקדם המרה</th>
+                      <th style="padding:.6rem .5rem;">צבירה בפרישה</th>
+                      <th style="padding:.6rem .5rem;">קצבה ברוטו</th>
+                      <th style="padding:.6rem .5rem;color:#fca5a5;">מס מנוכה</th>
+                      <th style="padding:.6rem .5rem;color:#6ee7a8;font-weight:800;">קצבת נטו ✦</th>
                     </tr>
                   </thead>
                   <tbody id="pc-tbody"></tbody>
@@ -1773,256 +1684,216 @@
               <!-- הפרש הון -->
               <div id="pc-capital-box" style="background:#fffbe6;border:1.5px solid #f0d060;border-radius:12px;padding:.9rem 1.1rem;margin-bottom:1.2rem;font-size:.84rem;color:#5a4a00;line-height:1.8;"></div>
 
-              <!-- הבדל בירושה - הערה קבועה, לא תלוית קלט -->
-              <div style="background:#eef4fb;border:1.5px solid #a8c8e8;border-radius:12px;padding:.9rem 1.1rem;margin-bottom:1.2rem;font-size:.84rem;color:#1a3a5c;line-height:1.8;">
-                💡 <strong>הבדל חשוב שלא בא לידי ביטוי בטבלה למעלה - ירושה:</strong>
-                בביטוח מנהלים, הכספים שנצברו משולמים למוטבים שנקבעו כ<strong>סכום חד-פעמי</strong>.
-                בקרן פנסיה, במקרה פטירה משולמת בדרך כלל <strong>קצבת שאירים חודשית מתמשכת</strong> (לבן/בת הזוג לכל החיים, ולילדים עד גיל 21) - לא סכום חד-פעמי. זו אחת הנקודות המשמעותיות ביותר לשקול מעבר לגובה הקצבה החודשית עצמה, ומומלץ לבדוק אותה לעומק מול טל גבאי בהתאם למצב המשפחתי שלך.
-              </div>
-
               <!-- אזהרת שאירים -->
               <div id="pc-spouse-warning" style="display:none;background:#fff3cd;border:1.5px solid #f0c040;border-radius:12px;padding:.9rem 1.1rem;margin-bottom:1.2rem;font-size:.84rem;color:#7a5c00;line-height:1.8;"></div>
 
               <!-- המלצה סופית -->
               <div id="pc-recommendation" style="background:linear-gradient(135deg,#0d1e35,#1a2d47);border-radius:14px;padding:1.2rem 1.5rem;color:#fff;font-size:.88rem;line-height:1.9;"></div>
-
-              <p style="font-size:.76rem;color:#888;margin-top:1rem;text-align:center;line-height:1.6;"><strong>* ההשוואה לעיל מבוססת על הנחות כלליות (מקדם המרה, תשואה, דמי ניהול) שעשויות להיות שונות מהמוצר האישי שלך בפועל, ואינה מהווה ייעוץ פנסיוני אישי או תחליף לבדיקה פרטנית.</strong> לפני החלטה על פדיון, ניוד או שינוי מסלול - פנה לטל גבאי.</p>
             </div>
 
           </div>
         </div>
       </div>
 
-      <!-- ── Panel 7: מחשבון תקציב ויעילות ── -->
-      <div class="calc-panel" id="panel-budget" role="tabpanel">
-        <div class="calc-panel-inner" style="max-width:960px;">
-          <style>
-            #panel-budget .bud-card { background:#fff; border-radius:16px; box-shadow:0 4px 24px rgba(13,30,53,.10); padding:2rem 2.2rem; margin-bottom:1.5rem; }
-            #panel-budget .bud-card h3 { font-family:'Heebo',sans-serif; font-size:1.1rem; font-weight:900; color:#0d1e35; margin-bottom:1.2rem; border-right:4px solid #b08a2f; padding-right:.7rem; }
-            #panel-budget .bud-inputs { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; }
-            #panel-budget .bud-inp label { display:block; font-size:.75rem; font-weight:700; color:#0d1e35; margin-bottom:.3rem; }
-            #panel-budget .bud-inp input, #panel-budget .bud-inp select { width:100%; background:#fff; border:2px solid #d0d8e4; border-radius:10px; padding:.55rem .9rem; font-size:.95rem; font-weight:600; font-family:'Heebo',sans-serif; box-sizing:border-box; }
-            #panel-budget .bud-inp input:focus, #panel-budget .bud-inp select:focus { border-color:#b08a2f; outline:none; }
-            #panel-budget .bud-income-inp { grid-column:1 / -1; background:#fff8e6; border-radius:12px; padding:1rem 1.2rem; margin-bottom:.3rem; }
-            #panel-budget .bud-income-inp input { font-size:1.15rem; font-weight:900; }
-            #panel-budget .bud-go-wrap { text-align:center; margin:1.5rem 0 .5rem; }
-            #panel-budget .bud-go-btn { display:inline-block; min-width:220px; background:#b08a2f; color:#fff; border:none; border-radius:12px; padding:.9rem 2.4rem; font-family:'Heebo',sans-serif; font-size:1.05rem; font-weight:900; cursor:pointer; box-shadow:0 4px 16px rgba(176,138,47,.35); transition:transform .15s, box-shadow .15s; }
-            #panel-budget .bud-go-btn:hover { transform:translateY(-2px); box-shadow:0 6px 20px rgba(176,138,47,.45); }
-
-            #panel-budget .bud-kpi-banner { display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; margin-bottom:1.6rem; }
-            #panel-budget .bud-kpi-box { background:#0d1e35; border-radius:12px; padding:1.1rem 1rem; text-align:center; }
-            #panel-budget .bud-kpi-box .kpi-val { font-family:'Heebo',sans-serif; font-size:1.3rem; font-weight:900; color:#b08a2f; }
-            #panel-budget .bud-kpi-box .kpi-label { font-size:.7rem; color:rgba(255,255,255,.65); margin-top:.3rem; }
-
-            #panel-budget .bud-donut-row { display:flex; gap:2rem; align-items:center; flex-wrap:wrap; justify-content:center; margin-bottom:1rem; }
-            #panel-budget .bud-donut-wrap { position:relative; width:180px; height:180px; flex-shrink:0; }
-            #panel-budget .bud-donut { width:180px; height:180px; border-radius:50%; }
-            #panel-budget .bud-donut-hole { position:absolute; inset:22px; background:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-direction:column; text-align:center; box-shadow:inset 0 0 0 1px rgba(13,30,53,.05); }
-            #panel-budget .bud-donut-hole .dh-val { font-family:'Heebo',sans-serif; font-size:1.15rem; font-weight:900; color:#0d1e35; }
-            #panel-budget .bud-donut-hole .dh-label { font-size:.65rem; color:#888; }
-            #panel-budget .bud-legend { flex:1; min-width:220px; display:flex; flex-direction:column; gap:.5rem; }
-            #panel-budget .bud-legend-item { display:flex; align-items:center; gap:.5rem; font-size:.85rem; color:#333; }
-            #panel-budget .bud-legend-dot { width:11px; height:11px; border-radius:3px; flex-shrink:0; }
-            #panel-budget .bud-legend-item b { margin-right:auto; font-family:'Heebo',sans-serif; }
-
-            #panel-budget .bud-bar-row { margin-bottom:1.1rem; }
-            #panel-budget .bud-bar-label { display:flex; align-items:center; gap:.4rem; font-size:.85rem; font-weight:700; color:#0d1e35; margin-bottom:.35rem; }
-            #panel-budget .bud-bar-dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
-            #panel-budget .bud-bar-amt { margin-right:auto; font-weight:900; color:#333; font-family:'Heebo',sans-serif; font-size:.82rem; }
-            #panel-budget .bud-bar-track { position:relative; height:14px; background:#eef1f5; border-radius:8px; overflow:hidden; }
-            #panel-budget .bud-bar-fill { height:100%; border-radius:8px; transition:width .4s ease; }
-            #panel-budget .bud-bar-benchmark { position:absolute; top:-3px; width:2px; height:20px; background:#0d1e35; }
-            #panel-budget .bud-bar-bench-label { font-size:.68rem; color:#999; margin-top:.25rem; }
-
-            #panel-budget .bud-insight-box { background:#fff8e6; border:2px solid #b08a2f; border-radius:12px; padding:1.2rem 1.4rem; margin-top:1rem; }
-            #panel-budget .bud-insight-title { font-weight:900; color:#0d1e35; margin-bottom:.6rem; font-size:.95rem; }
-            #panel-budget .bud-insight-list { margin:0 0 .8rem; padding-right:1.3rem; font-size:.85rem; color:#444; line-height:1.9; }
-            #panel-budget .bud-insight-total { font-size:.88rem; font-weight:700; color:#0d1e35; }
-
-            #panel-budget .bud-score-row { display:flex; align-items:center; gap:1.5rem; justify-content:center; flex-wrap:wrap; margin-bottom:1.6rem; }
-            #panel-budget .bud-score-ring { width:120px; height:120px; border-radius:50%; display:flex; align-items:center; justify-content:center; }
-            #panel-budget .bud-score-hole { width:96px; height:96px; background:#fff; border-radius:50%; display:flex; flex-direction:column; align-items:center; justify-content:center; }
-            #panel-budget .bud-score-hole .sc-val { font-family:'Heebo',sans-serif; font-size:1.9rem; font-weight:900; color:#0d1e35; }
-            #panel-budget .bud-score-hole .sc-max { font-size:.7rem; color:#999; }
-            #panel-budget .bud-score-text { text-align:center; }
-            #panel-budget .bud-score-text .sc-label { font-size:1.3rem; font-weight:900; font-family:'Heebo',sans-serif; }
-            #panel-budget .bud-score-text .sc-sub { font-size:.82rem; color:#666; margin-top:.2rem; }
-
-            #panel-budget .bud-goal-inputs { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin-bottom:1rem; }
-            #panel-budget .bud-goal-progress-track { height:22px; background:#eef1f5; border-radius:11px; overflow:hidden; margin:.8rem 0 .5rem; }
-            #panel-budget .bud-goal-progress-fill { height:100%; background:linear-gradient(90deg,#b08a2f,#d4af5a); border-radius:11px; transition:width .5s ease; display:flex; align-items:center; justify-content:flex-end; padding:0 .6rem; box-sizing:border-box; }
-            #panel-budget .bud-goal-progress-fill span { color:#fff; font-size:.72rem; font-weight:900; }
-            #panel-budget .bud-goal-eta { font-size:.92rem; color:#0d1e35; font-weight:700; text-align:center; margin-top:.6rem; }
-
-            @media (max-width:640px) {
-              #panel-budget .bud-inputs, #panel-budget .bud-goal-inputs { grid-template-columns:1fr 1fr; }
-              #panel-budget .bud-kpi-banner { grid-template-columns:1fr 1fr; }
-            }
-          </style>
-
-          <div style="background:linear-gradient(135deg,#0d1e35 0%,#1a2d47 100%);border-radius:16px;padding:1.4rem 2rem;text-align:center;margin-bottom:1.5rem;box-shadow:0 4px 24px rgba(13,30,53,.15);">
-            <div style="display:flex;align-items:center;gap:.6rem;justify-content:center;margin-bottom:.4rem;">
-              <i class="fa-solid fa-piggy-bank" style="font-size:1.95rem;color:#b08a2f;"></i>
-              <h2 style="margin:0;font-size:1.725rem;font-weight:700;color:#fff;font-family:'Heebo',sans-serif;">מנהל תקציב משפחתי</h2>
-            </div>
-            <p style="margin:0;font-size:.82rem;color:rgba(255,255,255,.55);">עקבו אחרי ההכנסות וההוצאות שלכם, קבלו ציון יעילות תקציבית, ועקבו אחרי ההתקדמות ליעדי החיסכון שלכם</p>
-          </div>
-
-          <div class="bud-card">
-            <h3>נתוני הכנסות והוצאות חודשיות</h3>
-            <div class="bud-inputs">
-              <div class="bud-inp bud-income-inp">
-                <label for="bud-income">הכנסה חודשית נטו למשק הבית (₪)</label>
-                <input type="number" id="bud-income" placeholder="לדוגמה: 18000" min="0" step="100" inputmode="numeric" />
-              </div>
-              <div class="bud-inp"><label for="bud-housing"><i class="fa-solid fa-house"></i> דיור / משכנתא (₪)</label><input type="number" id="bud-housing" min="0" step="50" inputmode="numeric" /></div>
-              <div class="bud-inp"><label for="bud-food"><i class="fa-solid fa-cart-shopping"></i> מזון (₪)</label><input type="number" id="bud-food" min="0" step="50" inputmode="numeric" /></div>
-              <div class="bud-inp"><label for="bud-transport"><i class="fa-solid fa-car"></i> תחבורה (₪)</label><input type="number" id="bud-transport" min="0" step="50" inputmode="numeric" /></div>
-              <div class="bud-inp"><label for="bud-leisure"><i class="fa-solid fa-champagne-glasses"></i> בילויים ופנאי (₪)</label><input type="number" id="bud-leisure" min="0" step="50" inputmode="numeric" /></div>
-              <div class="bud-inp"><label for="bud-insurance"><i class="fa-solid fa-shield-halved"></i> ביטוחים וחיסכון (₪)</label><input type="number" id="bud-insurance" min="0" step="50" inputmode="numeric" /></div>
-              <div class="bud-inp"><label for="bud-other"><i class="fa-solid fa-receipt"></i> הוצאות שוטפות נוספות (₪)</label><input type="number" id="bud-other" min="0" step="50" inputmode="numeric" /></div>
-            </div>
-            <div class="bud-go-wrap">
-              <button class="bud-go-btn" onclick="budCalc()"><i class="fa-solid fa-calculator" style="margin-left:.4rem;"></i> חשב יעילות תקציבית</button>
-            </div>
-          </div>
-
-          <div id="bud-results" style="display:none;">
-            <div class="bud-card">
-              <h3>תמונת מצב</h3>
-              <div class="bud-kpi-banner">
-                <div class="bud-kpi-box"><div class="kpi-val" id="bud-kpi-expenses">-</div><div class="kpi-label">סה"כ הוצאות חודשיות</div></div>
-                <div class="bud-kpi-box"><div class="kpi-val" id="bud-kpi-savings">-</div><div class="kpi-label">נותר לחיסכון</div></div>
-                <div class="bud-kpi-box"><div class="kpi-val" id="bud-kpi-rate">-</div><div class="kpi-label">שיעור חיסכון מההכנסה</div></div>
-                <div class="bud-kpi-box"><div class="kpi-val" id="bud-kpi-flagged">-</div><div class="kpi-label">קטגוריות להתייעלות</div></div>
-              </div>
-
-              <div class="bud-score-row">
-                <div class="bud-score-ring" id="bud-score-ring">
-                  <div class="bud-score-hole"><div class="sc-val" id="bud-score">-</div><div class="sc-max">מתוך 100</div></div>
-                </div>
-                <div class="bud-score-text">
-                  <div class="sc-label" id="bud-score-label">-</div>
-                  <div class="sc-sub">ציון יעילות תקציבית, ביחס ליעדי הקצאה מומלצים</div>
-                </div>
-              </div>
-
-              <div class="bud-donut-row">
-                <div class="bud-donut-wrap">
-                  <div class="bud-donut" id="bud-donut"></div>
-                  <div class="bud-donut-hole"><div class="dh-val" id="bud-donut-total">-</div><div class="dh-label">סה"כ הוצאות</div></div>
-                </div>
-                <div class="bud-legend" id="bud-legend"></div>
-              </div>
-            </div>
-
-            <div class="bud-card">
-              <h3>הקצאת הוצאות מול יעד מומלץ</h3>
-              <div id="bud-bars"></div>
-              <div id="bud-insights" class="bud-insight-box"></div>
-              <div class="bud-go-wrap" style="margin-top:1.4rem;">
-                <button class="bud-go-btn" id="bud-export-btn" onclick="budExportCSV()" style="background:#0d1e35;box-shadow:0 4px 16px rgba(13,30,53,.25);">
-                  <i class="fa-solid fa-file-export" style="margin-left:.4rem;"></i> ייצוא הנתונים לאקסל
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <div class="bud-card" id="bud-goal-card" style="display:none;">
-            <h3><i class="fa-solid fa-bullseye"></i> מעקב יעד חיסכון</h3>
-            <div class="bud-goal-inputs">
-              <div class="bud-inp">
-                <label for="bud-goal-name">שם היעד</label>
-                <select id="bud-goal-name">
-                  <option value="" selected disabled>בחר יעד...</option>
-                  <option value='קרן "חופש כלכלי" ופרישה מוקדמת'>קרן "חופש כלכלי" ופרישה מוקדמת</option>
-                  <option value="הון עצמי לרכישת נכס">הון עצמי לרכישת נכס</option>
-                  <option value="אירוע משפחתי (בר מצווה / חתונה)">אירוע משפחתי (בר מצווה / חתונה)</option>
-                  <option value="רכישת / החלפת רכב">רכישת / החלפת רכב</option>
-                  <option value="עזרה לילדים לרכישת דירה">עזרה לילדים לרכישת דירה</option>
-                  <option value="שנת שבתון או טיול גדול">שנת שבתון או טיול גדול</option>
-                  <option value="איכות חיים (תחביב יקר)">איכות חיים (תחביב יקר)</option>
-                </select>
-              </div>
-              <div class="bud-inp"><label for="bud-goal-target">סכום יעד (₪)</label><input type="number" id="bud-goal-target" min="0" step="1000" inputmode="numeric" /></div>
-              <div class="bud-inp"><label for="bud-goal-current">כבר נחסך (₪)</label><input type="number" id="bud-goal-current" min="0" step="500" value="0" inputmode="numeric" /></div>
-              <div class="bud-inp" style="grid-column:1 / -1;"><label for="bud-goal-monthly">חיסכון חודשי לטובת היעד (₪) - ממולא אוטומטית מהחישוב למעלה, ניתן לשנות</label><input type="number" id="bud-goal-monthly" min="0" step="50" inputmode="numeric" oninput="this.dataset.userEdited='1'" /></div>
-            </div>
-            <div class="bud-go-wrap" style="margin:.5rem 0 1rem;">
-              <button class="bud-go-btn" onclick="budGoalCalc()"><i class="fa-solid fa-flag-checkered" style="margin-left:.4rem;"></i> חשב התקדמות ליעד</button>
-            </div>
-            <div id="bud-goal-result" style="display:none;">
-              <div style="text-align:center;font-weight:900;color:#0d1e35;margin-bottom:.3rem;" id="bud-goal-result-name"></div>
-              <div class="bud-goal-progress-track">
-                <div class="bud-goal-progress-fill" id="bud-goal-progress-fill" style="width:0%;"><span id="bud-goal-progress-pct">0%</span></div>
-              </div>
-              <div class="bud-goal-eta" id="bud-goal-eta"></div>
-            </div>
-          </div>
-
-          <p style="font-size:.76rem;color:#888;margin-top:.5rem;text-align:center;line-height:1.7;">
-            <strong>* החישוב לעיל הוא הערכה כללית בלבד לצורך המחשה, מבוסס על יעדי הקצאה מקובלים באופן גס ואינו מותאם אישית.</strong>
-            אינו מהווה ייעוץ פיננסי אישי ואינו מחליף בניית תוכנית תקציב מותאמת. לבניית תוכנית אישית -
-            <a href="guide-financial-optimization.html" style="color:#b08a2f;font-weight:700;">קרא את המדריך המלא</a>
-            או <a href="https://wa.me/972528000556" style="color:#b08a2f;font-weight:700;">פנה לטל גבאי בוואטסאפ</a>.
-          </p>
-        </div>
-      </div>
-
-    </div>
-
-      <!-- ── Panel: ביטוח חיים ── -->
+      <!-- ── Panel 7: ביטוח חיים ── -->
       <div class="calc-panel" id="panel-life-insurance" role="tabpanel">
-        <div class="calc-panel-inner" style="max-width:820px;">
+        <div class="calc-panel-inner" style="max-width:860px;">
           <style>
-            #panel-life-insurance .li-card { background:#fff; border-radius:16px; box-shadow:0 4px 24px rgba(13,30,53,.10); padding:2rem 2.2rem; margin-bottom:1.5rem; }
-            #panel-life-insurance .li-card h3 { font-family:'Heebo',sans-serif; font-size:1.1rem; font-weight:900; color:#0d1e35; margin-bottom:1.2rem; border-right:4px solid #c9a84c; padding-right:.7rem; }
-            #panel-life-insurance .li-inputs { display:grid; grid-template-columns:repeat(3,1fr); gap:1.2rem; }
-            #panel-life-insurance .li-inp label { display:block; font-size:.8rem; font-weight:700; color:#555; margin-bottom:.35rem; }
-            #panel-life-insurance .li-inp input, #panel-life-insurance .li-inp select { width:100%; border:1.5px solid #d0d8e4; border-radius:8px; padding:.55rem .8rem; font-size:.95rem; font-family:inherit; background:#f8fafc; direction:rtl; box-sizing:border-box; }
-            #panel-life-insurance .li-inp input:focus, #panel-life-insurance .li-inp select:focus { outline:none; border-color:#c9a84c; }
-            #panel-life-insurance .li-result-banner { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin-top:1.5rem; }
-            #panel-life-insurance .li-kpi { background:var(--navy); border-radius:14px; padding:1.2rem 1rem; text-align:center; }
-            #panel-life-insurance .li-kpi .kval { font-size:1.35rem; font-weight:900; color:#c9a84c; font-family:'Heebo',sans-serif; }
-            #panel-life-insurance .li-kpi .klbl { font-size:.75rem; color:rgba(255,255,255,.7); margin-top:.3rem; }
-            #panel-life-insurance .li-note { font-size:.78rem; color:#888; margin-top:1rem; line-height:1.6; }
-            @media(max-width:640px){
-              #panel-life-insurance .li-inputs { grid-template-columns:1fr 1fr; }
-              #panel-life-insurance .li-result-banner { grid-template-columns:1fr; }
-            }
-            @media(max-width:400px){ #panel-life-insurance .li-inputs { grid-template-columns:1fr; } }
+            #panel-life-insurance .li-card { background:#fff; border-radius:16px; box-shadow:0 4px 24px rgba(13,30,53,.10); padding:1.75rem 2rem; margin-bottom:1.5rem; }
+            #panel-life-insurance .li-card h3 { font-family:'Heebo',sans-serif; font-size:1rem; font-weight:900; color:#0d1e35; margin:0 0 1.1rem; border-right:4px solid #c9a84c; padding-right:.65rem; display:flex; align-items:center; gap:.45rem; }
+            #panel-life-insurance .li-card h3 i { color:#c9a84c; font-size:.9rem; }
+            #panel-life-insurance .li-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; }
+            #panel-life-insurance .li-inp label { display:block; font-size:.79rem; font-weight:700; color:#455; margin-bottom:.32rem; }
+            #panel-life-insurance .li-inp input, #panel-life-insurance .li-inp select { width:100%; border:1.5px solid #d0d8e4; border-radius:8px; padding:.52rem .75rem; font-size:.93rem; font-family:inherit; background:#f8fafc; direction:rtl; box-sizing:border-box; transition:border-color .18s; }
+            #panel-life-insurance .li-inp input:focus, #panel-life-insurance .li-inp select:focus { outline:none; border-color:#c9a84c; box-shadow:0 0 0 3px rgba(201,168,76,.13); background:#fff; }
+            #panel-life-insurance .li-inp small { font-size:.69rem; color:#999; margin-top:.2rem; display:block; }
+            #panel-life-insurance .li-toggle { display:flex; gap:.35rem; }
+            #panel-life-insurance .li-toggle-btn { flex:1; border:1.5px solid #d0d8e4; background:#f8fafc; border-radius:7px; padding:.48rem .4rem; font-size:.83rem; font-family:inherit; font-weight:700; color:#556; cursor:pointer; transition:all .18s; text-align:center; }
+            #panel-life-insurance .li-toggle-btn.active { background:#0d1e35; border-color:#0d1e35; color:#fff; }
+            #panel-life-insurance .li-dime { margin-top:1.2rem; display:flex; flex-direction:column; gap:.55rem; }
+            #panel-life-insurance .li-dime-row { display:flex; justify-content:space-between; align-items:center; font-size:.88rem; padding:.42rem .6rem; border-radius:7px; background:#f4f7fb; }
+            #panel-life-insurance .li-dime-row .dlbl { color:#445; font-weight:600; }
+            #panel-life-insurance .li-dime-row .dval { font-weight:800; color:#0d1e35; direction:ltr; }
+            #panel-life-insurance .li-dime-total { display:flex; justify-content:space-between; align-items:center; font-size:.95rem; padding:.55rem .6rem; border-radius:8px; background:#0d1e35; margin-top:.35rem; }
+            #panel-life-insurance .li-dime-total .dlbl { color:rgba(255,255,255,.75); font-weight:700; }
+            #panel-life-insurance .li-dime-total .dval { font-weight:900; color:#c9a84c; font-size:1.1rem; direction:ltr; }
+            #panel-life-insurance .li-gap-box { background:linear-gradient(135deg,#0d1e35 0%,#1a3a60 100%); border-radius:14px; padding:1.4rem 1.6rem; margin-top:1.2rem; }
+            #panel-life-insurance .li-gap-title { font-size:.72rem; font-weight:700; color:rgba(255,255,255,.5); text-transform:uppercase; letter-spacing:.07em; margin-bottom:1rem; }
+            #panel-life-insurance .li-gap-row { display:flex; justify-content:space-between; align-items:center; margin-bottom:.6rem; font-size:.9rem; }
+            #panel-life-insurance .li-gap-row .glbl { color:rgba(255,255,255,.7); }
+            #panel-life-insurance .li-gap-row .gval { font-weight:800; color:#fff; direction:ltr; }
+            #panel-life-insurance .li-gap-bar { height:8px; border-radius:99px; background:rgba(255,255,255,.15); margin:.4rem 0 1rem; overflow:hidden; }
+            #panel-life-insurance .li-gap-bar-fill { height:100%; border-radius:99px; background:#c9a84c; transition:width .4s ease; }
+            #panel-life-insurance .li-gap-main { display:flex; justify-content:space-between; align-items:center; margin-top:.5rem; padding-top:.85rem; border-top:1px solid rgba(255,255,255,.15); }
+            #panel-life-insurance .li-gap-main .glbl { color:rgba(255,255,255,.75); font-size:.88rem; font-weight:700; }
+            #panel-life-insurance .li-gap-main .gval-big { color:#c9a84c; font-size:1.55rem; font-weight:900; font-family:'Heebo',sans-serif; direction:ltr; }
+            #panel-life-insurance .li-events { margin-top:1rem; padding:.85rem 1rem; background:#fffbf0; border-radius:10px; border:1px solid rgba(201,168,76,.35); font-size:.78rem; color:#6b5600; }
+            #panel-life-insurance .li-events strong { display:block; margin-bottom:.3rem; }
+            #panel-life-insurance .li-note { font-size:.74rem; color:#999; margin-top:1rem; line-height:1.65; }
+            @media(max-width:640px){ #panel-life-insurance .li-grid { grid-template-columns:1fr 1fr; } }
+            @media(max-width:420px){ #panel-life-insurance .li-grid { grid-template-columns:1fr; } }
           </style>
+
+          <div style="text-align:center;margin-bottom:1.5rem;">
+            <h2 style="font-family:'Heebo',sans-serif;font-size:1.6rem;font-weight:900;color:var(--navy);margin:0;">מחשבון ביטוח חיים</h2>
+            <p style="color:#c9a84c;font-weight:700;margin:.4rem 0 0;font-size:1rem;">כמה כיסוי עלי לרכוש?</p>
+          </div>
+
+          <!-- נתונים אישיים -->
           <div class="li-card">
-            <div style="text-align:center;margin-bottom:1.5rem;">
-              <h2 style="font-family:'Heebo',sans-serif;font-size:1.6rem;font-weight:900;color:var(--navy);margin:0;">מחשבון ביטוח חיים</h2>
-              <p style="color:#c9a84c;font-weight:700;margin:.4rem 0 0;font-size:1rem;">כמה כיסוי עלי לרכוש?</p>
-            </div>
-            <h3>נתונים אישיים</h3>
-            <div class="li-inputs">
-              <div class="li-inp"><label for="li-married">מצב משפחתי</label><select id="li-married" onchange="liCalc()"><option value="1">נשוי/נשואה</option><option value="0">רווק/רווקה</option></select></div>
-              <div class="li-inp"><label for="li-age">גיל נוכחי</label><input id="li-age" type="number" value="40" min="18" max="65" oninput="liCalc()" /></div>
-              <div class="li-inp"><label for="li-ret-age">גיל פרישה</label><input id="li-ret-age" type="number" value="67" min="50" max="70" oninput="liCalc()" /></div>
-              <div class="li-inp"><label for="li-children">ילדים מתחת לגיל 18</label><input id="li-children" type="number" value="2" min="0" max="10" oninput="liCalc()" /></div>
-              <div class="li-inp"><label for="li-adult-children">ילדים מעל גיל 18</label><input id="li-adult-children" type="number" value="0" min="0" max="10" oninput="liCalc()" /></div>
-              <div class="li-inp"><label for="li-parents">הורים נתמכים</label><input id="li-parents" type="number" value="0" min="0" max="4" oninput="liCalc()" /></div>
-              <div class="li-inp"><label for="li-income">הכנסה חודשית נטו (₪)</label><input id="li-income" type="text" value="15,000" oninput="liFmt(this);liCalc()" /></div>
-              <div class="li-inp"><label for="li-income-replace">שיעור החלפת הכנסה (%)</label><input id="li-income-replace" type="number" value="70" min="30" max="100" oninput="liCalc()" /><small style="color:#888;font-size:.7rem;">כמה % מהשכר צריכים התלויים</small></div>
-              <div class="li-inp"><label for="li-mortgage">יתרת משכנתא (₪)</label><input id="li-mortgage" type="text" value="0" oninput="liFmt(this);liCalc()" /></div>
-              <div class="li-inp"><label for="li-debts">חובות נוספים (₪)</label><input id="li-debts" type="text" value="0" oninput="liFmt(this);liCalc()" /></div>
-              <div class="li-inp"><label for="li-savings">חיסכון / נכסים קיימים (₪)</label><input id="li-savings" type="text" value="0" oninput="liFmt(this);liCalc()" /></div>
+            <h3><i class="fa-solid fa-user"></i> נתונים אישיים</h3>
+            <div class="li-grid">
+              <div class="li-inp">
+                <label for="li-age">גיל נוכחי</label>
+                <input id="li-age" type="number" value="40" min="18" max="65" oninput="liCalc()" />
+              </div>
+              <div class="li-inp">
+                <label for="li-ret-age">גיל פרישה</label>
+                <input id="li-ret-age" type="number" value="67" min="50" max="75" oninput="liCalc()" />
+              </div>
+              <div class="li-inp">
+                <label>מצב משפחתי</label>
+                <div class="li-toggle">
+                  <button class="li-toggle-btn active" id="li-married-btn-y" onclick="liToggle('married','y',this)">נשוי/אה</button>
+                  <button class="li-toggle-btn" id="li-married-btn-n" onclick="liToggle('married','n',this)">רווק/ה</button>
+                </div>
+                <input type="hidden" id="li-married" value="1" />
+              </div>
+              <div class="li-inp">
+                <label for="li-children">ילדים מתחת לגיל 18</label>
+                <input id="li-children" type="number" value="2" min="0" max="10" oninput="liCalc()" />
+              </div>
+              <div class="li-inp">
+                <label for="li-adult-children">ילדים מעל גיל 18 (תלויים)</label>
+                <input id="li-adult-children" type="number" value="0" min="0" max="10" oninput="liCalc()" />
+                <small>ילדים בוגרים שאתם תומכים בהם</small>
+              </div>
+              <div class="li-inp">
+                <label for="li-parents">הורים נתמכים</label>
+                <input id="li-parents" type="number" value="0" min="0" max="4" oninput="liCalc()" />
+                <small>מספר הורים שאתם מפרנסים</small>
+              </div>
             </div>
           </div>
+
+          <!-- הכנסה -->
           <div class="li-card">
-            <h3>תוצאת החישוב</h3>
-            <div class="li-result-banner">
-              <div class="li-kpi"><div class="kval" id="li-income-need">-</div><div class="klbl">הון לכיסוי הכנסה</div></div>
-              <div class="li-kpi"><div class="kval" id="li-debt-need">-</div><div class="klbl">חובות וחשיפות</div></div>
-              <div class="li-kpi"><div class="kval" id="li-total">-</div><div class="klbl">סכום ביטוח מומלץ</div></div>
+            <h3><i class="fa-solid fa-shekel-sign"></i> הכנסה</h3>
+            <div class="li-grid">
+              <div class="li-inp">
+                <label for="li-income">הכנסה חודשית נטו שלך (₪)</label>
+                <input id="li-income" type="text" value="15,000" oninput="liFmt(this);liCalc()" />
+              </div>
+              <div class="li-inp">
+                <label for="li-income-replace">שיעור החלפת הכנסה (%)</label>
+                <input id="li-income-replace" type="number" value="70" min="30" max="100" oninput="liCalc()" />
+                <small>כמה % מהשכר זקוקים התלויים</small>
+              </div>
+              <div class="li-inp">
+                <label for="li-spouse-income">הכנסת בן/בת הזוג (₪/חודש)</label>
+                <input id="li-spouse-income" type="text" value="0" oninput="liFmt(this);liCalc()" />
+                <small>הכנסת השאיר/ה לאחר האובדן</small>
+              </div>
             </div>
-            <p class="li-note">* החישוב מבוסס על שיטת ההון הדרוש (Capital Needs Analysis). הסכום המומלץ = הון הדרוש לכיסוי הכנסה השוטפת + חובות − נכסים קיימים. אינו מהווה ייעוץ ביטוחי.</p>
           </div>
+
+          <!-- חובות -->
+          <div class="li-card">
+            <h3><i class="fa-solid fa-house"></i> חובות והוצאות חד-פעמיות</h3>
+            <div class="li-grid">
+              <div class="li-inp">
+                <label for="li-mortgage">יתרת משכנתא (₪)</label>
+                <input id="li-mortgage" type="text" value="0" oninput="liFmt(this);liCalc()" />
+              </div>
+              <div class="li-inp">
+                <label>יש ביטוח חיים למשכנתא?</label>
+                <div class="li-toggle">
+                  <button class="li-toggle-btn" id="li-mortins-btn-y" onclick="liToggle('mortins','y',this)">כן</button>
+                  <button class="li-toggle-btn active" id="li-mortins-btn-n" onclick="liToggle('mortins','n',this)">לא</button>
+                </div>
+                <input type="hidden" id="li-mortins" value="0" />
+                <small>אם כן, המשכנתא לא תחושב</small>
+              </div>
+              <div class="li-inp">
+                <label for="li-debts">חובות נוספים (₪)</label>
+                <input id="li-debts" type="text" value="0" oninput="liFmt(this);liCalc()" />
+                <small>הלוואות, כרטיסי אשראי</small>
+              </div>
+              <div class="li-inp">
+                <label for="li-edu-cost">עלות לימודים לילד (₪)</label>
+                <input id="li-edu-cost" type="text" value="100,000" oninput="liFmt(this);liCalc()" />
+                <small>עלות לימודים אקדמיים לילד אחד</small>
+              </div>
+              <div class="li-inp">
+                <label for="li-emergency">קרן חירום / הוצאות לוויה (₪)</label>
+                <input id="li-emergency" type="text" value="40,000" oninput="liFmt(this);liCalc()" />
+                <small>הוצאות חד-פעמיות בלתי צפויות</small>
+              </div>
+            </div>
+          </div>
+
+          <!-- כיסויים קיימים -->
+          <div class="li-card">
+            <h3><i class="fa-solid fa-shield-halved"></i> כיסויים קיימים (לניכוי)</h3>
+            <div class="li-grid">
+              <div class="li-inp">
+                <label for="li-pension-survivors">קצבת שאירים מקרן פנסיה (₪/חודש)</label>
+                <input id="li-pension-survivors" type="text" value="0" oninput="liFmt(this);liCalc()" />
+                <small>לפי חוזה הפנסיה שלך (כ-60% ממשכורת מבוטחת)</small>
+              </div>
+              <div class="li-inp">
+                <label for="li-group-life">ביטוח חיים קבוצתי ממעסיק (₪)</label>
+                <input id="li-group-life" type="text" value="0" oninput="liFmt(this);liCalc()" />
+                <small>סכום חד-פעמי דרך מקום העבודה</small>
+              </div>
+              <div class="li-inp">
+                <label for="li-savings">חיסכון נזיל / נכסים (₪)</label>
+                <input id="li-savings" type="text" value="0" oninput="liFmt(this);liCalc()" />
+                <small>חיסכון / השקעות מחוץ לפנסיה</small>
+              </div>
+            </div>
+            <div style="margin-top:.8rem;padding:.7rem .85rem;background:#f0f4fa;border-radius:8px;font-size:.79rem;color:#556;">
+              <i class="fa-solid fa-circle-info" style="color:#c9a84c;margin-left:.35rem;"></i>
+              ביטוח לאומי שארים מחושב אוטומטית לפי מספר הילדים (כ-<strong id="li-bl-auto-amount">1,838</strong> ₪/חודש).
+            </div>
+          </div>
+
+          <!-- תוצאות -->
+          <div class="li-card">
+            <h3><i class="fa-solid fa-chart-bar"></i> פירוט הצרכים (DIME+)</h3>
+            <div class="li-dime">
+              <div class="li-dime-row"><span class="dlbl">החלפת הכנסה</span><span class="dval" id="li-r-income">-</span></div>
+              <div class="li-dime-row"><span class="dlbl">משכנתא</span><span class="dval" id="li-r-mortgage">-</span></div>
+              <div class="li-dime-row"><span class="dlbl">חובות נוספים</span><span class="dval" id="li-r-debts">-</span></div>
+              <div class="li-dime-row"><span class="dlbl">חינוך ילדים</span><span class="dval" id="li-r-edu">-</span></div>
+              <div class="li-dime-row"><span class="dlbl">תמיכה בהורים / ילדים בוגרים</span><span class="dval" id="li-r-dependents">-</span></div>
+              <div class="li-dime-row"><span class="dlbl">קרן חירום</span><span class="dval" id="li-r-emergency">-</span></div>
+              <div class="li-dime-total"><span class="dlbl">סה"כ צרכים</span><span class="dval" id="li-r-total-need">-</span></div>
+            </div>
+            <div class="li-gap-box">
+              <div class="li-gap-title">מד פער הכיסוי</div>
+              <div class="li-gap-row"><span class="glbl">צריך לכסות</span><span class="gval" id="li-gap-need">-</span></div>
+              <div class="li-gap-row"><span class="glbl">יש לך כבר (כיסויים + חיסכון)</span><span class="gval" id="li-gap-have">-</span></div>
+              <div class="li-gap-bar"><div class="li-gap-bar-fill" id="li-gap-bar-fill" style="width:0%"></div></div>
+              <div class="li-gap-main">
+                <span class="glbl">לרכוש עוד</span>
+                <span class="gval-big" id="li-gap-buy">-</span>
+              </div>
+            </div>
+            <div class="li-events">
+              <strong><i class="fa-solid fa-rotate" style="margin-left:.35rem;"></i> חשב מחדש לאחר כל אחד מהאירועים הבאים:</strong>
+              נישואין · לידת ילד · רכישת דירה · שינוי עבודה · ירושה משמעותית
+            </div>
+            <p class="li-note">
+              * החישוב משתמש בשיטת DIME+ ובנוסחת הערך הנוכחי של קצבה (4% שיעור היוון). ביטוח לאומי שארים מחושב אוטומטית.
+              אינו מהווה ייעוץ ביטוחי. לתכנון מדויק פנה לטל גבאי.
+            </p>
+          </div>
+
         </div>
       </div><!-- /#panel-life-insurance -->
+
+    </div>
   </main>
 
   <!-- ========== FOOTER ========== -->
@@ -2038,7 +1909,7 @@
           <p class="footer-tagline">ליווי אישי וממוקד לבכירים</p>
         </div>
         <div class="footer-col">
-          <h3 class="footer-col-title">קישורים מהירים</h3>
+          <h4 class="footer-col-title">קישורים מהירים</h4>
           <ul class="footer-links">
             <li><a href="index.html" class="footer-link"><i class="fa-solid fa-chevron-left"></i> דף הבית</a></li>
             <li><a href="index.html#about" class="footer-link"><i class="fa-solid fa-chevron-left"></i> אודותנו</a></li>
@@ -2048,7 +1919,7 @@
           </ul>
         </div>
         <div class="footer-col">
-          <h3 class="footer-col-title">פרטי התקשרות</h3>
+          <h4 class="footer-col-title">פרטי התקשרות</h4>
           <ul class="footer-contact-list">
             <li><i class="fa-solid fa-location-dot footer-contact-icon"></i><span>היצירה 19, רחובות</span></li>
             <li><i class="fa-solid fa-phone footer-contact-icon"></i><span><a href="tel:074-7019277" class="footer-contact-link">074-7019277</a><br><a href="tel:052-8000556" class="footer-contact-link">052-8000556</a></span></li>
@@ -2061,7 +1932,7 @@
       <div class="container footer-bottom-inner">
         <p class="footer-copy">&copy; 2026 טל גבאי - תכנון פיננסי מתקדם לבכירים. כל הזכויות שמורות.</p>
         <p class="footer-legal">מורשה על ידי רשות שוק ההון, ביטוח וחיסכון</p>
-        <p class="footer-disclaimer">המידע, התכנים והמאמרים המופיעים באתר זה נועדו למטרות לימודיות, העשרה ומידע כללי בלבד, ואינם מהווים ייעוץ פיננסי, ייעוץ השקעות, או המלצה לביצוע פעולות בניירות ערך, מוצרים פנסיוניים או כל אפיק השקעה אחר. אין לראות במידע זה תחליף לייעוץ או שיווק פיננסי/פנסיוני אישי המתחשב בנתונים ובצרכים המיוחדים של כל אדם. כל המסתמך על המידע באתר עושה זאת על דעתו ואחריותו הבלעדית, והנהלת האתר או המתכנן הפיננסי לא יהיו אחראים לכל נזק או הפסד שייגרם כתוצאה מכך.</p>
+        <p class="footer-disclaimer">המידע באתר זה הינו למטרות הכרות כללית בלבד ואינו מהווה ייעוץ השקעות, ייעוץ פנסיוני, ייעוץ מס או המלצה כלשהי. אין להסתמך עליו ללא קבלת ייעוץ מקצועי המותאם לנסיבות האישיות.</p>
         <p class="footer-links-legal"><a href="accessibility.html" class="footer-legal-link">הצהרת נגישות</a><span class="footer-sep"> | </span><a href="privacy-policy.html" class="footer-legal-link">מדיניות פרטיות</a></p>
       </div>
     </div>
@@ -2074,12 +1945,10 @@
   <script src="script.js"></script>
   <script>
     function calcCompound() {
-      // הצמדה לטווחים שמוצהרים ב-min/max/step של השדות עצמם - מונע תוצאה חסרת משמעות
-      // (למשל שנים שליליות) אם מישהו מזין ערך מחוץ לטווח
-      const PV      = Math.max(0, parseFloat(document.getElementById('lump-sum').value)    || 0);
-      const PMT     = Math.max(0, parseFloat(document.getElementById('monthly-dep').value)  || 0);
-      const annRate = Math.min(30, Math.max(0, parseFloat(document.getElementById('annual-return').value)|| 0));
-      const years   = Math.min(60, Math.max(1, parseFloat(document.getElementById('years').value)        || 1));
+      const PV      = parseFloat(document.getElementById('lump-sum').value)    || 0;
+      const PMT     = parseFloat(document.getElementById('monthly-dep').value)  || 0;
+      const annRate = parseFloat(document.getElementById('annual-return').value)|| 0;
+      const years   = parseFloat(document.getElementById('years').value)        || 0;
       const netAnnual  = annRate;
       const monthlyR   = Math.pow(1 + netAnnual / 100, 1 / 12) - 1;
       const n          = years * 12;
@@ -2116,57 +1985,6 @@
       btn.setAttribute('aria-selected','true');
       history.replaceState(null, '', '#' + id);
       localStorage.setItem('activeCalcTab', id);
-    }
-
-    /* ניווט מקלדת בין לשוניות המחשבון בחיצי שמאל/ימין (תבנית ARIA tablist) */
-    document.querySelector('.calc-tab-list').addEventListener('keydown', function(e) {
-      if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight' && e.key !== 'Home' && e.key !== 'End') return;
-      var tabs = Array.from(document.querySelectorAll('.calc-tab-btn'));
-      var idx = tabs.indexOf(document.activeElement);
-      if (idx === -1) return;
-      e.preventDefault();
-      var next;
-      if (e.key === 'Home') next = 0;
-      else if (e.key === 'End') next = tabs.length - 1;
-      else next = e.key === 'ArrowLeft' ? (idx + 1) % tabs.length : (idx - 1 + tabs.length) % tabs.length;
-      tabs[next].focus();
-      tabs[next].click();
-    });
-
-    /* ── מנוע מס 2026 ── */
-    const TAX2026 = {
-      KITZBA_MEZAKA: 9430,
-      // שיעור הפטור מקצבה מזכה - לוח מדורג לפי חוק: 2026=57.5%, 2027=62.5%, 2028=67% (סופי).
-      // יש לעדכן ל-0.625 בינואר 2027 ול-0.67 בינואר 2028.
-      EXEMPTION_PCT: 0.575,
-      CREDIT_POINT: 242,
-      CREDIT_POINTS: { male: 2.25, female: 2.75 },
-      BRACKETS: [
-        { upTo: 7010,     rate: 0.10 },
-        { upTo: 10060,    rate: 0.14 },
-        { upTo: 16150,    rate: 0.20 },
-        { upTo: 22440,    rate: 0.31 },
-        { upTo: Infinity, rate: 0.47 }
-      ]
-    };
-
-    function calcTax2026(grossMonthly, gender) {
-      // קצבה מזכה עד תקרה
-      const mezaka = Math.min(grossMonthly, TAX2026.KITZBA_MEZAKA);
-      const exempt = mezaka * TAX2026.EXEMPTION_PCT;
-      const taxable = grossMonthly - exempt;
-      if (taxable <= 0) return 0;
-
-      let tax = 0, prev = 0;
-      for (const b of TAX2026.BRACKETS) {
-        const slice = Math.min(taxable, b.upTo) - prev;
-        if (slice <= 0) break;
-        tax += slice * b.rate;
-        prev = b.upTo;
-      }
-      // ניכוי נקודות זיכוי
-      const credits = TAX2026.CREDIT_POINTS[gender] * TAX2026.CREDIT_POINT;
-      return Math.max(0, tax - credits);
     }
 
     // הצגת תוצאות ברירת מחדל בטעינת הדף (ללא גלילה)
@@ -2241,7 +2059,7 @@
         parseInt(document.getElementById('sv-end-day').value)
       );
       const unpaid    = parseFloat(document.getElementById('sv-unpaid').value)     || 0;
-      const rate      = pfNumOr(document.getElementById('sv-rate').value, 100);
+      const rate      = parseFloat(document.getElementById('sv-rate').value)       || 100;
       const adj       = parseFloat(document.getElementById('sv-adjustment').value) || 0;
       const notice    = parseFloat(document.getElementById('sv-notice').value)     || 0;
       const sick      = parseFloat(document.getElementById('sv-sick').value)       || 0;
@@ -2301,9 +2119,6 @@
       } else if (hash === '#pension-fees') {
         const btn = document.querySelector('[aria-controls="panel-pension-fees"]');
         if (btn) switchTab('pension-fees', btn);
-      } else if (hash === '#budget') {
-        const btn = document.querySelector('[aria-controls="panel-budget"]');
-        if (btn) switchTab('budget', btn);
       } else if (!hash || hash === '#compound') {
         const btn = document.querySelector('[aria-controls="panel-compound"]');
         if (btn) switchTab('compound', btn);
@@ -2319,7 +2134,6 @@
       mor: {
         name: 'מור פנסיה',
         note: 'מקור: מחירון מור פנסיה, ינואר 2025. ניתן לבחור מסלול בהסכם מול הקרן.',
-        demographicInterest: 0.41,
         type: 'combos',
         combos: [
           { label: 'מסלול 1', accum: 0.20, deposit: 1.20 },
@@ -2332,7 +2146,6 @@
       meitav: {
         name: 'מיטב פנסיה',
         note: 'מקור: מחירון מיטב, ינואר 2025. דמי הניהול נקבעים לפי השכר החודשי. שתי חלופות לבחירה.',
-        demographicInterest: 0.97,
         type: 'salary-tiered',
         alternatives: [
           { label: 'חלופה א׳', tiers: [
@@ -2352,7 +2165,6 @@
       clal: {
         name: 'כלל פנסיה',
         note: 'מקור: מחירון כלל ביטוח ופיננסים. דמי הניהול יורדים אוטומטית ככל שהצבירה גדלה.',
-        demographicInterest: -0.23,
         type: 'accum-tiered',
         tiers: [
           { maxAccum:    49999, accum: 0.250, deposit: 2.500 },
@@ -2381,53 +2193,13 @@
       },
       phoenix: {
         name: 'הפניקס פנסיה',
-        note: 'מקור: מחירון הפניקס. דמי הניהול בהפניקס נקבעים אוטומטית לפי גובה השכר החודשי בלבד (לא לפי גובה הצבירה) - אין צורך לבחור מסלול.',
-        demographicInterest: 0.06,
-        type: 'salary-tiered-single',
-        tiers: [
-          { maxSalary: 4999,     accum: 0.35, deposit: 3.50 },
-          { maxSalary: 7499,     accum: 0.25, deposit: 2.50 },
-          { maxSalary: 9999,     accum: 0.17, deposit: 1.90 },
-          { maxSalary: 15999,    accum: 0.15, deposit: 1.50 },
-          { maxSalary: 20999,    accum: 0.12, deposit: 1.50 },
-          { maxSalary: Infinity, accum: 0.10, deposit: 1.50 },
-        ]
-      },
-
-      migdal: {
-        name: 'מגדל פנסיה מקיפה',
-        note: 'מקור: מחירון מגדל מקפת אישית (קרן פנסיה מקיפה ומשלימה). דמי הניהול יורדים אוטומטית ככל שהצבירה/הניוד גדלים - אין צורך לבחור מסלול. השיעורים המוטבים (מ-500,000 ₪ ומעלה) מותנים בשכר חודשי של 10,000 ₪ ומעלה - יש לוודא מול מגדל.',
-        demographicInterest: -0.11,
-        type: 'accum-tiered',
-        tiers: [
-          { maxAccum:   499999, accum: 0.10, deposit: 1.50 },
-          { maxAccum:   799999, accum: 0.09, deposit: 1.40 },
-          { maxAccum: Infinity, accum: 0.08, deposit: 1.30 },
-        ]
-      },
-
-      menora: {
-        name: 'מנורה פנסיה מקיפה',
-        note: 'מקור: מחירון מנורה מבטחים פנסיה מקיפה ומשלימה, לפי הנתונים שסיפק טל. דמי הניהול תלויים גם בגובה השכר וגם בגובה הצבירה. לצבירה מעל 1,000,000 ₪ עם שכר מתחת ל-12,500 ₪ לא סופקה מדרגה ייעודית - הוחל שיעור מדרגת 400K-1M כברירת מחדל; יש לוודא מול מנורה.',
-        demographicInterest: -0.22,
-        type: 'salary-accum-tiered',
-      },
-
-      harel: {
-        name: 'הראל פנסיה מקיפה',
-        note: 'מקור: מחירון הראל פנסיה מקיפה ומשלימה, לפי מדרגת שכר בלבד (לא לפי גובה הצבירה) - אין צורך לבחור מסלול, מלבד בשכר 15,000 ₪ ומעלה שם קיימות שתי חלופות דמי ניהול להשוואה.',
-        demographicInterest: -0.35,
-        type: 'salary-tiered-combos',
-        tiers: [
-          { maxSalary:  2999, combos: [{ label: 'מדרגה אוטומטית לפי שכר', accum: 0.48, deposit: 5.80 }] },
-          { maxSalary:  5999, combos: [{ label: 'מדרגה אוטומטית לפי שכר', accum: 0.30, deposit: 4.00 }] },
-          { maxSalary:  7999, combos: [{ label: 'מדרגה אוטומטית לפי שכר', accum: 0.19, deposit: 1.90 }] },
-          { maxSalary:  9999, combos: [{ label: 'מדרגה אוטומטית לפי שכר', accum: 0.17, deposit: 1.70 }] },
-          { maxSalary: 14999, combos: [{ label: 'מדרגה אוטומטית לפי שכר', accum: 0.15, deposit: 1.50 }] },
-          { maxSalary: Infinity, combos: [
-              { label: 'חלופה א׳', accum: 0.08, deposit: 1.80 },
-              { label: 'חלופה ב׳', accum: 0.10, deposit: 1.50 },
-            ] },
+        note: 'נתוני הפניקס הם אינדיקטיביים בלבד. יש לאמת שיעורים מול הפניקס ישירות.',
+        type: 'combos',
+        combos: [
+          { label: 'מסלול א׳', accum: 0.25, deposit: 2.00 },
+          { label: 'מסלול ב׳', accum: 0.20, deposit: 1.50 },
+          { label: 'מסלול ג׳', accum: 0.15, deposit: 1.00 },
+          { label: 'מסלול ד׳', accum: 0.10, deposit: 0.50 },
         ]
       }
     };
@@ -2436,8 +2208,8 @@
 
     function pfSelectFund(key, ev) {
       _pfCurrentFund = key;
-      document.querySelectorAll('#panel-pension-fees .pf-fund-tab').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
-      if (ev && ev.currentTarget) { ev.currentTarget.classList.add('active'); ev.currentTarget.setAttribute('aria-selected', 'true'); }
+      document.querySelectorAll('#panel-pension-fees .pf-fund-tab').forEach(b => b.classList.remove('active'));
+      if (ev && ev.currentTarget) ev.currentTarget.classList.add('active');
       pfCalc();
     }
 
@@ -2448,51 +2220,17 @@
       });
     }
 
-    function pfGetAccumTieredFees(fund, accum) {
-      return fund.tiers.find(t => accum <= t.maxAccum);
-    }
-
-    function pfGetPhoenixFees(salary) {
-      return PF_FUNDS.phoenix.tiers.find(t => salary <= t.maxSalary);
-    }
-
-    function pfGetMenoraFees(salary, accum) {
-      if (accum < 100000)  return salary >= 25000 ? { accum: 0.10, deposit: 1.20 } : { accum: 0.10, deposit: 1.70 };
-      if (accum < 400000)  return { accum: 0.10, deposit: 1.50 };
-      if (accum < 1000000) return { accum: 0.08, deposit: 1.30 };
-      if (salary >= 25000) {
-        if (accum < 2000000) return { accum: 0.06, deposit: 1.80 };
-        if (accum < 3000000) return { accum: 0.05, deposit: 1.80 };
-        return { accum: 0.05, deposit: 1.50 };
-      }
-      if (salary >= 12500) {
-        if (accum < 1500000) return { accum: 0.07, deposit: 1.80 };
-        if (accum < 2000000) return { accum: 0.07, deposit: 1.60 };
-        return { accum: 0.06, deposit: 1.60 };
-      }
-      return { accum: 0.08, deposit: 1.30 };
-    }
-
-    function pfGetHarelFees(fund, salary) {
-      return fund.tiers.find(t => salary <= t.maxSalary).combos;
+    function pfGetClalFees(accum) {
+      return PF_FUNDS.clal.tiers.find(t => accum <= t.maxAccum);
     }
 
     function pfGetCombos(fund, salary, accum) {
       if (fund.type === 'combos') return fund.combos;
       if (fund.type === 'salary-tiered') return pfGetMeitavFees(salary);
       if (fund.type === 'accum-tiered') {
-        const t = pfGetAccumTieredFees(fund, accum);
+        const t = pfGetClalFees(accum);
         return [{ label: 'דמי ניהול לפי גובה הצבירה', accum: t.accum, deposit: t.deposit }];
       }
-      if (fund.type === 'salary-tiered-single') {
-        const t = pfGetPhoenixFees(salary);
-        return [{ label: 'מדרגה אוטומטית לפי שכר', accum: t.accum, deposit: t.deposit }];
-      }
-      if (fund.type === 'salary-accum-tiered') {
-        const t = pfGetMenoraFees(salary, accum);
-        return [{ label: 'מדרגה אוטומטית לפי שכר וצבירה', accum: t.accum, deposit: t.deposit }];
-      }
-      if (fund.type === 'salary-tiered-combos') return pfGetHarelFees(fund, salary);
       return [];
     }
 
@@ -2509,21 +2247,17 @@
       if (raw) el.value = parseInt(raw, 10).toLocaleString('en-US');
     }
 
-    function pfParseNum(id, def = 0) {
-      const n = parseFloat(document.getElementById(id).value.replace(/,/g, ''));
-      return isNaN(n) ? def : n;
+    function pfParseNum(id) {
+      return parseFloat(document.getElementById(id).value.replace(/,/g, '')) || 0;
     }
-    function pfNumOr(v, def) { const n = parseFloat(v); return isNaN(n) ? def : n; }
-    // הצמדה לטווחים שמוצהרים ב-min/max של השדות עצמם - min/max ב-type="number" לא חוסמים הקלדה ידנית
-    function pfClamp(v, min, max) { return Math.min(max, Math.max(min, v)); }
 
     function pfCalc() {
-      const salary     = pfParseNum('pf-salary', 27101);
-      const depositPct = pfClamp(pfNumOr(document.getElementById('pf-deposit-pct').value, 20.83), 5, 30);
+      const salary     = pfParseNum('pf-salary')                                      || 27101;
+      const depositPct = parseFloat(document.getElementById('pf-deposit-pct').value) || 20.83;
       const accumStart = pfParseNum('pf-accum');
-      const ageNow     = pfClamp(pfNumOr(document.getElementById('pf-age').value, 40), 20, 65);
-      const retAge     = pfClamp(pfNumOr(document.getElementById('pf-ret-age').value, 67), 55, 70);
-      const returnPct  = pfNumOr(document.getElementById('pf-return').value, 6);
+      const ageNow     = parseInt(document.getElementById('pf-age').value)            || 40;
+      const retAge     = parseInt(document.getElementById('pf-ret-age').value)        || 67;
+      const returnPct  = parseFloat(document.getElementById('pf-return').value)       || 6;
 
       const manualDep  = pfParseNum('pf-manual-dep');
       const monthlyDep = manualDep > 0 ? manualDep : salary * depositPct / 100;
@@ -2539,23 +2273,7 @@
 
       const fund   = PF_FUNDS[_pfCurrentFund];
       const combos = pfGetCombos(fund, salary, accumStart);
-
-      const demoInterest = fund.demographicInterest || 0;
-      const adjReturnPct = returnPct + demoInterest;
       document.getElementById('pf-fund-note').textContent = fund.note;
-
-      const demoBadge = document.getElementById('pf-demo-badge');
-      const demoLabel = 'ריבית דמוגרפית, ממוצע 4 שנים אחרונות';
-      if (demoInterest > 0) {
-        demoBadge.className = 'pf-demo-badge positive';
-        demoBadge.textContent = '📈 עודף אקטוארי (' + demoLabel + '): +' + fmtPct(demoInterest) + ' לשנה, מתווסף לתשואה';
-      } else if (demoInterest < 0) {
-        demoBadge.className = 'pf-demo-badge negative';
-        demoBadge.textContent = '📉 גירעון אקטוארי (' + demoLabel + '): ' + fmtPct(demoInterest) + ' לשנה, נגרע מהתשואה';
-      } else {
-        demoBadge.className = 'pf-demo-badge neutral';
-        demoBadge.textContent = '⚖️ ריבית דמוגרפית (' + demoLabel + '): 0.00% - ללא השפעה על התשואה';
-      }
 
       const rows = combos.map(c => ({
         ...c,
@@ -2590,17 +2308,17 @@
         (${fmtPct(winner.accum)} מצבירה + ${fmtPct(winner.deposit)} מהפקדות) -
         <strong>${fmtILS(winner.total)}/שנה</strong> בסה"כ.${rows.length > 1 ? `<br>לעומת המסלול היקר ביותר (<strong>${loser.label}</strong>): חיסכון של <strong>${fmtILS(saving)}/שנה</strong>, ולאורך ${yearsLeft} שנות ההפקדה: <strong>${fmtILS(saving * yearsLeft)}</strong> בסה"כ.` : ''}</p>`;
 
-      pfBuildProjection(combos, accumStart, annualDep, adjReturnPct, yearsLeft, ageNow);
-      pfBuildBreakeven(combos, annualDep, accumStart, adjReturnPct, yearsLeft, ageNow);
+      pfBuildProjection(combos, accumStart, annualDep, returnPct, yearsLeft, ageNow);
+      pfBuildBreakeven(combos, annualDep, accumStart, returnPct, yearsLeft, ageNow);
     }
 
     function pfBuildProjection(combos, accumStart, annualDep, returnPct, yearsLeft, ageNow) {
       const fmtILS = v => '₪' + Math.round(v).toLocaleString('he-IL');
       const fmtPct = (v, d=2) => v.toFixed(d) + '%';
       document.getElementById('pf-proj-head').innerHTML = `<tr>
-        <th scope="col">שנה</th><th scope="col">גיל</th><th scope="col">צבירה משוערת</th>
-        ${combos.map(c => `<th scope="col">${c.label}<br><small style="font-weight:400">${fmtPct(c.accum)} מצ׳ + ${fmtPct(c.deposit)} מהפ׳</small></th>`).join('')}
-        <th scope="col">הזול ביותר</th>
+        <th>שנה</th><th>גיל</th><th>צבירה משוערת</th>
+        ${combos.map(c => `<th>${c.label}<br><small style="font-weight:400">${fmtPct(c.accum)} מצ׳ + ${fmtPct(c.deposit)} מהפ׳</small></th>`).join('')}
+        <th>הזול ביותר</th>
       </tr>`;
 
       const accums = combos.map(() => accumStart);
@@ -2638,7 +2356,7 @@
       if (combos.length < 2) { card.style.display = 'none'; return; }
 
       let html = '<p style="font-size:.85rem;color:#555;margin-bottom:1rem;">נקודת האיזון היא הצבירה שבה שתי קומבינציות שוות בעלות שנתית. מעל לנקודה זו - המסלול עם % מצבירה נמוך יותר נהיה זול יותר.</p>';
-      html += '<div style="overflow-x:auto;"><table class="pf-fee-table"><thead><tr><th scope="col">השוואה</th><th scope="col">צבירת איזון</th><th scope="col">מסלול עדיף לצבירה נמוכה</th><th scope="col">מסלול עדיף לצבירה גבוהה</th></tr></thead><tbody>';
+      html += '<div style="overflow-x:auto;"><table class="pf-fee-table"><thead><tr><th>השוואה</th><th>צבירת איזון</th><th>מסלול עדיף לצבירה נמוכה</th><th>מסלול עדיף לצבירה גבוהה</th></tr></thead><tbody>';
 
       for (let i = 0; i < combos.length - 1; i++) {
         const a = combos[i], b = combos[i + 1];
@@ -2701,10 +2419,10 @@
     }
 
     function calcRetirement() {
-      const age       = pfClamp(parseFloat(document.getElementById('s-age').value) || 40, 40, 80);
-      const retireAge = pfClamp(pfNumOr(document.getElementById('s-retire-age').value, 67), 55, 80);
-      const monthly   = Math.max(0, parseFloat(document.getElementById('s-monthly').value) || 0);
-      const annReturn = pfClamp(pfNumOr(document.getElementById('s-return').value, 4.5), 0, 15);
+      const age       = parseFloat(document.getElementById('s-age').value) || 0;
+      const retireAge = parseFloat(document.getElementById('s-retire-age').value) || 67;
+      const monthly   = parseFloat(document.getElementById('s-monthly').value) || 0;
+      const annReturn = parseFloat(document.getElementById('s-return').value) || 4.5;
       const gender    = simGetVal('gender') || 'm';
       const partner   = simGetVal('partner') || 'n';
 
@@ -2761,15 +2479,15 @@
     }
 
     function calcLVI() {
-      const amount   = Math.max(0, pfNumOr(document.getElementById('lvi-amount').value, 100000));
-      const prime    = pfNumOr(document.getElementById('lvi-prime-rate').value, 5.25);
-      const spread   = pfNumOr(document.getElementById('lvi-spread').value, -0.5);
-      const retPct   = pfNumOr(document.getElementById('lvi-return').value, 7);
+      const amount   = parseFloat(document.getElementById('lvi-amount').value)      || 100000;
+      const prime    = parseFloat(document.getElementById('lvi-prime-rate').value)  || 5.25;
+      const spread   = parseFloat(document.getElementById('lvi-spread').value)      || -0.5;
+      const retPct   = parseFloat(document.getElementById('lvi-return').value)      || 7;
 
-      const mgmtPct  = pfNumOr(document.getElementById('lvi-mgmt').value, 0.6);
+      const mgmtPct  = parseFloat(document.getElementById('lvi-mgmt').value)        || 0.6;
       const selYears = document.getElementById('lvi-years').value;
       const years    = selYears === 'custom'
-        ? Math.min(50, Math.max(1, pfNumOr(document.getElementById('lvi-years-custom').value, 5)))
+        ? (parseFloat(document.getElementById('lvi-years-custom').value) || 5)
         : parseInt(selYears, 10);
 
       const loanRate  = (prime + spread) / 100;   // ריבית הלוואה שנתית
@@ -2936,6 +2654,40 @@
       marriedFemale:{60:[265.70,265.90,266.70,268.30],61:[260.40,260.70,261.50,263.20],62:[255.10,255.40,256.20,258.00],63:[249.70,250.00,250.80,252.60],64:[244.30,244.60,245.50,247.30],65:[238.80,239.10,240.00,241.90],66:[233.20,233.50,234.40,236.40],67:[227.60,227.90,228.90,230.90],68:[222.00,222.30,223.40,225.50],69:[216.30,216.70,217.80,220.00],70:[210.60,211.00,212.20,214.50]}
     };
 
+    /* ── מנוע מס 2026 ── */
+    const TAX2026 = {
+      KITZBA_MEZAKA: 9430,
+      EXEMPTION_PCT: 0.67,
+      CREDIT_POINT: 242,
+      CREDIT_POINTS: { male: 2.25, female: 2.75 },
+      BRACKETS: [
+        { upTo: 7010,     rate: 0.10 },
+        { upTo: 10060,    rate: 0.14 },
+        { upTo: 16150,    rate: 0.20 },
+        { upTo: 22440,    rate: 0.31 },
+        { upTo: Infinity, rate: 0.47 }
+      ]
+    };
+
+    function calcTax2026(grossMonthly, gender) {
+      // קצבה מזכה עד תקרה
+      const mezaka = Math.min(grossMonthly, TAX2026.KITZBA_MEZAKA);
+      const exempt = mezaka * TAX2026.EXEMPTION_PCT;
+      const taxable = grossMonthly - exempt;
+      if (taxable <= 0) return 0;
+
+      let tax = 0, prev = 0;
+      for (const b of TAX2026.BRACKETS) {
+        const slice = Math.min(taxable, b.upTo) - prev;
+        if (slice <= 0) break;
+        tax += slice * b.rate;
+        prev = b.upTo;
+      }
+      // ניכוי נקודות זיכוי
+      const credits = TAX2026.CREDIT_POINTS[gender] * TAX2026.CREDIT_POINT;
+      return Math.max(0, tax - credits);
+    }
+
     /* ── מחשב מקדם ביטוח מנהלים ── */
     function getInsuranceCoef(gender, retAge, policy, track) {
       const yearNow = 2026;
@@ -2959,7 +2711,7 @@
     function getPensionCoef(gender, status, compareTo, track) {
       const tables = compareTo === 'comprehensive' ? PENSION_COMP : PENSION_SUPP;
       const key = (status === 'married' ? 'married' : 'single') + (gender === 'male' ? 'Male' : 'Female');
-      const retAge = pfNumOr(document.getElementById('pc-ret-age').value, 67);
+      const retAge = parseInt(document.getElementById('pc-ret-age').value) || 67;
       const row = tables[key][retAge] || tables[key][67];
       // track: 0→idx0, 60→idx1, 120→idx2, 180→idx3
       const trackIdx = {0:0, 60:1, 120:2, 180:3};
@@ -2978,25 +2730,6 @@
       // כל שנה: צבירה × (1 + תשואה×(1-השתתפות/100)) × (1 - (0.6+אכ"ע)/100)
       const netReturnFactor = (1 + returnPct * (1 - profitSharePct / 100) / 100) * (1 - (0.6 + disFee) / 100);
       return accumulation * Math.pow(netReturnFactor, yearsToRetire);
-    }
-
-    /* ── שחיקה + הפקדות שוטפות: כל שנה מוסיפים הפקדה נטו (אחרי דמי ניהול מהפקדות) וגדלים לפי תשואה פחות דמי ניהול מצבירה ── */
-    function pcProjectAccum(startAccum, annualDep, yearsToRetire, returnPct, accumFeePct, depositFeePct) {
-      let accum = startAccum;
-      const netDeposit = annualDep * (1 - depositFeePct / 100);
-      const netFactor  = (1 + returnPct / 100) * (1 - accumFeePct / 100);
-      for (let y = 0; y < yearsToRetire; y++) {
-        accum = accum * netFactor + netDeposit;
-      }
-      return accum;
-    }
-    function pcProjectAccumPre2001(startAccum, annualDep, yearsToRetire, profitSharePct, returnPct, disFee = 0) {
-      let accum = startAccum;
-      const netReturnFactor = (1 + returnPct * (1 - profitSharePct / 100) / 100) * (1 - (0.6 + disFee) / 100);
-      for (let y = 0; y < yearsToRetire; y++) {
-        accum = accum * netReturnFactor + annualDep;
-      }
-      return accum;
     }
 
     /* ── עדכון badge דמי ניהול ── */
@@ -3035,32 +2768,7 @@
         document.getElementById('pc-profit-share-row').style.display = 'none';
         document.getElementById('pc-deposit-fees-row').style.display = 'grid';
       }
-      // מקדם מובטח רלוונטי רק לפוליסות אחרי 2001 (לפני 2001 כבר יש טבלת מקדמים מובטחים ייעודית)
-      const guaranteedRow = document.getElementById('pc-guaranteed-row');
-      if (isPre) {
-        guaranteedRow.style.display = 'none';
-        document.getElementById('pc-has-guaranteed').checked = false;
-        pcToggleGuaranteed();
-      } else {
-        guaranteedRow.style.display = 'block';
-      }
       pcUpdateInsCoefDisplay();
-      runPensionCompare();
-    }
-
-    /* ── הצג/הסתר שדה מקדם מובטח ידני ── */
-    function pcToggleGuaranteed() {
-      const has = document.getElementById('pc-has-guaranteed').checked;
-      const displayEl = document.getElementById('pc-ins-coef-display');
-      const customEl  = document.getElementById('pc-ins-coef-custom');
-      if (has) {
-        customEl.value = displayEl.textContent.trim();
-        displayEl.style.display = 'none';
-        customEl.style.display = 'block';
-      } else {
-        displayEl.style.display = '';
-        customEl.style.display = 'none';
-      }
       runPensionCompare();
     }
 
@@ -3092,35 +2800,40 @@
       document.getElementById('pc-ins-coef-display').textContent = coef;
     }
 
+    /* ── הצגת שדה סכום מותאם ── */
+    function pcAccumChange() {
+      const sel = document.getElementById('pc-accum').value;
+      const customEl = document.getElementById('pc-accum-custom');
+      customEl.style.display = sel === 'custom' ? 'block' : 'none';
+      if (sel !== 'custom') runPensionCompare();
+    }
+
     /* ── פונקציה ראשית ── */
     function runPensionCompare(scroll) {
       try {
       // ── קריאת קלטים ──
-      const accum = parseFloat((document.getElementById('pc-accum').value || '').replace(/,/g, '')) || 0;
+      const accumSel = document.getElementById('pc-accum').value;
+      const accum = accumSel === 'custom'
+        ? (parseFloat(document.getElementById('pc-accum-custom').value) || 0)
+        : parseFloat(accumSel);
 
-      const ageNow  = pfClamp(pfNumOr(document.getElementById('pc-age-now').value, 45), 30, 69);
-      const retAge  = pfNumOr(document.getElementById('pc-ret-age').value, 67);
+      const ageNow  = parseInt(document.getElementById('pc-age-now').value)   || 45;
+      const retAge  = parseInt(document.getElementById('pc-ret-age').value)    || 67;
       const gender  = document.getElementById('pc-gender').value;
       const status  = document.getElementById('pc-status').value;
       const policy  = document.getElementById('pc-policy').value;
       const trackEl = document.getElementById('pc-track').value;
       const track   = trackEl !== '' ? parseInt(trackEl) : 120;
       const compareTo = document.getElementById('pc-compare-to').value;
-      const penReturnPct = pfNumOr(document.getElementById('pc-pen-return').value, 6);
-      const insReturnPct = pfNumOr(document.getElementById('pc-ins-return').value, 6);
-      const insFee        = pfClamp(pfNumOr(document.getElementById('pc-ins-fee').value, policy === 'pre2001' ? 0.6 : 1.25), 0, 3);
-      const penFee        = pfClamp(pfNumOr(document.getElementById('pc-pen-fee').value, 0.2), 0, 1);
-      const disFee    = pfClamp(parseFloat(document.getElementById('pc-disability-fee').value)   || 0, 0, 4);
-      const penDisFee = pfClamp(parseFloat(document.getElementById('pc-pen-disability').value)   || 0, 0, 3);
-      const insDepositFee = policy === 'pre2001' ? 0 : pfClamp(pfNumOr(document.getElementById('pc-ins-deposit-fee').value, 3), 0, 6);
-      const penDepositFee = pfClamp(pfNumOr(document.getElementById('pc-pen-deposit-fee').value, 6), 0, 6);
+      const penReturnPct = parseFloat(document.getElementById('pc-pen-return').value) || 6;
+      const insReturnPct = parseFloat(document.getElementById('pc-ins-return').value) || 6;
+      const insFee        = parseFloat(document.getElementById('pc-ins-fee').value)          || (policy === 'pre2001' ? 0.6 : 1.25);
+      const penFee        = parseFloat(document.getElementById('pc-pen-fee').value)          || 0.2;
+      const disFee    = parseFloat(document.getElementById('pc-disability-fee').value)   || 0;
+      const penDisFee = parseFloat(document.getElementById('pc-pen-disability').value)   || 0;
+      const insDepositFee = policy === 'pre2001' ? 0 : (parseFloat(document.getElementById('pc-ins-deposit-fee').value) || 3);
+      const penDepositFee = parseFloat(document.getElementById('pc-pen-deposit-fee').value)  || 6;
       const profitShare   = 15; // קבוע - השתתפות ברווח בפוליסות לפני 2001
-
-      const salary    = pfClamp(pfNumOr(document.getElementById('pc-salary').value.replace(/,/g, ''), 0), 0, 200000);
-      const depositPctSal = pfClamp(pfNumOr(document.getElementById('pc-deposit-pct').value, 20.83), 5, 30);
-      const manualDep = parseFloat((document.getElementById('pc-manual-dep').value || '').replace(/,/g, '')) || 0;
-      const monthlyDep = manualDep > 0 ? manualDep : salary * depositPctSal / 100;
-      const annualDep  = monthlyDep * 12;
 
       const yearsToRetire = Math.max(1, retAge - ageNow);
 
@@ -3129,27 +2842,23 @@
         return;
       }
 
-      // ── שחיקת צבירה + הפקדות שוטפות עד גיל פרישה ──
+      // ── שחיקת צבירה עד גיל פרישה ──
       const penFeeTotalPct = penFee + penDisFee;    // פנסיה: דמי ניהול + נכות
 
       let accumIns;
-      let insFeeTotalPct = profitShare + 0.6; // קירוב לתצוגה - פוליסת טרום-2001
       if (policy === 'pre2001') {
         // 0.6% קבוע + השתתפות ברווח (X% מהתשואה השנתית)
-        accumIns = pcProjectAccumPre2001(accum, annualDep, yearsToRetire, profitShare, insReturnPct, disFee);
+        accumIns = applyFeesPre2001(accum, yearsToRetire, profitShare, insReturnPct, disFee);
       } else {
-        insFeeTotalPct = insFee + disFee;  // ביטוח: דמי ניהול + אכ"ע
-        accumIns = pcProjectAccum(accum, annualDep, yearsToRetire, insReturnPct, insFeeTotalPct, insDepositFee);
+        const insFeeTotalPct = insFee + disFee;  // ביטוח: דמי ניהול + אכ"ע
+        accumIns = applyFees(accum, yearsToRetire, insFeeTotalPct, insReturnPct);
       }
-      const accumPen = pcProjectAccum(accum, annualDep, yearsToRetire, penReturnPct, penFeeTotalPct, penDepositFee);
+      const accumPen = applyFees(accum, yearsToRetire, penFeeTotalPct, penReturnPct);
 
       // ── מקדמי קצבה ──
       pcUpdateInsCoefDisplay();
-      const penCoef = pfNumOr(document.getElementById('pc-pen-coef').value, 200);
-      const hasGuaranteed = policy !== 'pre2001' && document.getElementById('pc-has-guaranteed').checked;
-      const insCoef = hasGuaranteed
-        ? pfNumOr(document.getElementById('pc-ins-coef-custom').value, gender === 'female' ? 220 : 200)
-        : policy === 'pre2001'
+      const penCoef = parseFloat(document.getElementById('pc-pen-coef').value) || 200;
+      const insCoef = policy === 'pre2001'
         ? getInsuranceCoef(gender, retAge, policy, track)
         : (gender === 'female' ? 220 : 200);
 
@@ -3270,347 +2979,91 @@
       } catch(e) { console.error('runPensionCompare error:', e); }
     }
 
-    /* ══════════════════════════════════════════
-       מחשבון תקציב ויעילות
-    ══════════════════════════════════════════ */
-    const BUD_CATS = [
-      { key: 'housing',   label: 'דיור / משכנתא',            pct: 30, color: '#0d1e35' },
-      { key: 'food',      label: 'מזון',                      pct: 15, color: '#b08a2f' },
-      { key: 'transport', label: 'תחבורה',                    pct: 10, color: '#2f6b8a' },
-      { key: 'leisure',   label: 'בילויים ופנאי',             pct: 8,  color: '#8a4f2f' },
-      { key: 'insurance', label: 'ביטוחים וחיסכון',           pct: 15, color: '#1a7f4b' },
-      { key: 'other',     label: 'הוצאות שוטפות נוספות',      pct: 12, color: '#6b6f76' }
-    ];
-
-    function budFmt(n) {
-      return '₪' + Math.round(n).toLocaleString('he-IL');
-    }
-
-    let budLastResult = null;
-
-    function budCalc() {
-      const income = parseFloat(document.getElementById('bud-income').value) || 0;
-      if (income <= 0) { alert('נא להזין הכנסה חודשית נטו'); return; }
-
-      const values = {};
-      let totalExpenses = 0;
-      BUD_CATS.forEach(c => {
-        const v = parseFloat(document.getElementById('bud-' + c.key).value) || 0;
-        values[c.key] = v;
-        totalExpenses += v;
-      });
-
-      const savings = income - totalExpenses;
-      const savingsRate = income > 0 ? (savings / income) * 100 : 0;
-      budLastResult = { income, values, totalExpenses, savings, savingsRate };
-
-      document.getElementById('bud-kpi-expenses').textContent = budFmt(totalExpenses);
-      document.getElementById('bud-kpi-savings').textContent = budFmt(savings);
-      document.getElementById('bud-kpi-savings').style.color = savings >= 0 ? '#c9a84c' : '#e07a7a';
-      document.getElementById('bud-kpi-rate').textContent = savingsRate.toFixed(1) + '%';
-
-      let overagePoints = 0;
-      const flagged = [];
-      BUD_CATS.forEach(c => {
-        const actualPct = income > 0 ? (values[c.key] / income) * 100 : 0;
-        if (actualPct > c.pct) {
-          const benchmarkAmt = income * c.pct / 100;
-          overagePoints += (actualPct - c.pct);
-          flagged.push({ ...c, actualPct, potentialSaving: values[c.key] - benchmarkAmt });
-        }
-      });
-      document.getElementById('bud-kpi-flagged').textContent = flagged.length;
-
-      let score = Math.round(100 - overagePoints * 1.5 - Math.max(0, (10 - savingsRate)) * 1.2);
-      score = Math.max(0, Math.min(100, score));
-      let scoreLabel, scoreColor;
-      if (score >= 80) { scoreLabel = 'מצוין'; scoreColor = '#1a7f4b'; }
-      else if (score >= 60) { scoreLabel = 'טוב'; scoreColor = '#b08a2f'; }
-      else { scoreLabel = 'דורש שיפור'; scoreColor = '#c0392b'; }
-      document.getElementById('bud-score').textContent = score;
-      const scoreLabelEl = document.getElementById('bud-score-label');
-      scoreLabelEl.textContent = scoreLabel;
-      scoreLabelEl.style.color = scoreColor;
-      document.getElementById('bud-score-ring').style.background =
-        'conic-gradient(' + scoreColor + ' ' + (score * 3.6) + 'deg, #e5e9ef 0deg)';
-
-      budLastResult.score = score;
-      budLastResult.scoreLabel = scoreLabel;
-      budLastResult.flagged = flagged;
-
-      let angleAcc = 0;
-      const gradParts = [];
-      BUD_CATS.forEach(c => {
-        if (values[c.key] <= 0 || totalExpenses <= 0) return;
-        const slice = (values[c.key] / totalExpenses) * 360;
-        gradParts.push(c.color + ' ' + angleAcc + 'deg ' + (angleAcc + slice) + 'deg');
-        angleAcc += slice;
-      });
-      document.getElementById('bud-donut').style.background =
-        gradParts.length ? 'conic-gradient(' + gradParts.join(',') + ')' : '#e5e9ef';
-      document.getElementById('bud-donut-total').textContent = budFmt(totalExpenses);
-
-      document.getElementById('bud-legend').innerHTML = BUD_CATS.map(c => {
-        const sharePct = totalExpenses > 0 ? (values[c.key] / totalExpenses) * 100 : 0;
-        return '<div class="bud-legend-item"><span class="bud-legend-dot" style="background:' + c.color + '"></span>' +
-          c.label + '<b>' + sharePct.toFixed(0) + '%</b></div>';
-      }).join('');
-
-      document.getElementById('bud-bars').innerHTML = BUD_CATS.map(c => {
-        const actualPct = income > 0 ? (values[c.key] / income) * 100 : 0;
-        const over = actualPct > c.pct;
-        const scaleMax = c.pct * 1.6;
-        const barPct = Math.min(100, (actualPct / scaleMax) * 100);
-        const benchMarkerPct = Math.min(100, (c.pct / scaleMax) * 100);
-        return '<div class="bud-bar-row">' +
-          '<div class="bud-bar-label"><span class="bud-bar-dot" style="background:' + c.color + '"></span>' + c.label +
-          '<span class="bud-bar-amt">' + budFmt(values[c.key]) + ' (' + actualPct.toFixed(1) + '%)</span></div>' +
-          '<div class="bud-bar-track"><div class="bud-bar-fill" style="width:' + barPct + '%;background:' + (over ? '#c0392b' : c.color) + '"></div>' +
-          '<div class="bud-bar-benchmark" style="right:' + benchMarkerPct + '%"></div></div>' +
-          '<div class="bud-bar-bench-label">יעד מומלץ: עד ' + c.pct + '% מההכנסה (הקו השחור בגרף)</div></div>';
-      }).join('');
-
-      const insightsEl = document.getElementById('bud-insights');
-      if (flagged.length) {
-        flagged.sort((a, b) => b.potentialSaving - a.potentialSaving);
-        const totalPotential = flagged.reduce((s, f) => s + f.potentialSaving, 0);
-        insightsEl.innerHTML = '<div class="bud-insight-title">💡 נקודות להתייעלות שזוהו</div><ul class="bud-insight-list">' +
-          flagged.slice(0, 4).map(f =>
-            '<li><strong>' + f.label + '</strong> - ' + f.actualPct.toFixed(1) + '% מההכנסה (יעד: עד ' + f.pct + '%). פוטנציאל חיסכון: כ-' + budFmt(f.potentialSaving) + '/חודש</li>'
-          ).join('') +
-          '</ul><div class="bud-insight-total">בסה"כ, איזון הקטגוריות המסומנות יכול לשחרר כ-<strong>' + budFmt(totalPotential) + '/חודש</strong> (כ-' + budFmt(totalPotential * 12) + '/שנה) לחיסכון או להשקעה.</div>';
-      } else {
-        insightsEl.innerHTML = '<div class="bud-insight-title">✅ התקציב שלך מאוזן היטב ביחס ליעדים המומלצים - כל הכבוד!</div>';
-      }
-
-      const goalMonthlyInput = document.getElementById('bud-goal-monthly');
-      if (goalMonthlyInput && !goalMonthlyInput.dataset.userEdited) {
-        goalMonthlyInput.value = Math.max(0, Math.round(savings));
-      }
-
-      document.getElementById('bud-results').style.display = 'block';
-      document.getElementById('bud-goal-card').style.display = 'block';
-      document.getElementById('bud-results').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    }
-
-    function budGoalCalc() {
-      const target = parseFloat(document.getElementById('bud-goal-target').value) || 0;
-      const current = parseFloat(document.getElementById('bud-goal-current').value) || 0;
-      const monthly = parseFloat(document.getElementById('bud-goal-monthly').value) || 0;
-      const name = document.getElementById('bud-goal-name').value.trim() || 'היעד שלך';
-
-      if (target <= 0) { alert('נא להזין סכום יעד'); return; }
-
-      const remaining = Math.max(0, target - current);
-      const progress = Math.min(100, (current / target) * 100);
-
-      if (budLastResult) budLastResult.goal = { name, target, current, monthly, progress };
-
-      document.getElementById('bud-goal-result-name').textContent = name;
-      document.getElementById('bud-goal-progress-fill').style.width = progress + '%';
-      document.getElementById('bud-goal-progress-pct').textContent = progress.toFixed(0) + '%';
-
-      const etaEl = document.getElementById('bud-goal-eta');
-      if (remaining <= 0) {
-        etaEl.textContent = '🎉 הגעת ליעד!';
-      } else if (monthly > 0) {
-        const months = Math.ceil(remaining / monthly);
-        const years = Math.floor(months / 12);
-        const remMonths = months % 12;
-        let timeText = '';
-        if (years > 0) timeText += years + ' שנים ';
-        if (remMonths > 0 || years === 0) timeText += remMonths + ' חודשים';
-        etaEl.textContent = 'בקצב החיסכון הנוכחי, תגיע ליעד בעוד כ-' + timeText.trim() + ' (סה"כ יעד: ' + budFmt(target) + ').';
-      } else {
-        etaEl.textContent = 'הזן סכום חיסכון חודשי כדי לראות הערכת זמן להשגת היעד.';
-      }
-
-      document.getElementById('bud-goal-result').style.display = 'block';
-    }
-
-    function budCsvEscape(v) {
-      const s = String(v);
-      return /[",\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s;
-    }
-
-    function budExportCSV() {
-      if (!budLastResult) { alert('יש לבצע חישוב לפני הייצוא.'); return; }
-      const r = budLastResult;
-      const rows = [];
-
-      rows.push(['מנהל תקציב משפחתי - טל גבאי תכנון פיננסי']);
-      rows.push(['תאריך הפקה', new Date().toLocaleDateString('he-IL')]);
-      rows.push([]);
-      rows.push(['סיכום']);
-      rows.push(['הכנסה חודשית נטו', budFmt(r.income)]);
-      rows.push(['סה"כ הוצאות חודשיות', budFmt(r.totalExpenses)]);
-      rows.push(['נותר לחיסכון', budFmt(r.savings)]);
-      rows.push(['שיעור חיסכון מההכנסה', r.savingsRate.toFixed(1) + '%']);
-      rows.push(['ציון יעילות תקציבית', r.score + ' (' + r.scoreLabel + ')']);
-      rows.push([]);
-      rows.push(['קטגוריה', 'סכום (₪)', 'אחוז מההכנסה', 'יעד מומלץ', 'סטטוס']);
-      BUD_CATS.forEach(c => {
-        const actualPct = r.income > 0 ? (r.values[c.key] / r.income) * 100 : 0;
-        rows.push([c.label, r.values[c.key], actualPct.toFixed(1) + '%', 'עד ' + c.pct + '%', actualPct > c.pct ? 'חורג מהיעד' : 'תקין']);
-      });
-
-      if (r.flagged && r.flagged.length) {
-        rows.push([]);
-        rows.push(['נקודות להתייעלות', 'פוטנציאל חיסכון חודשי (₪)']);
-        r.flagged.forEach(f => rows.push([f.label, Math.round(f.potentialSaving)]));
-      }
-
-      if (r.goal) {
-        rows.push([]);
-        rows.push(['יעד חיסכון']);
-        rows.push(['שם היעד', r.goal.name]);
-        rows.push(['סכום יעד', budFmt(r.goal.target)]);
-        rows.push(['כבר נחסך', budFmt(r.goal.current)]);
-        rows.push(['חיסכון חודשי ליעד', budFmt(r.goal.monthly)]);
-        rows.push(['אחוז התקדמות', r.goal.progress.toFixed(0) + '%']);
-      }
-
-      const csv = '﻿' + rows.map(row => row.map(budCsvEscape).join(',')).join('\r\n');
-      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'מנהל-תקציב-משפחתי-' + new Date().toISOString().slice(0, 10) + '.csv';
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-    }
-
   </script>
   <script src="search.js"></script>
   <button class="back-to-top" id="back-to-top" aria-label="חזור לראש הדף">
     <i class="fa-solid fa-chevron-up"></i>
   </button>
 
-  <!-- ========== ACCESSIBILITY WIDGET ========== -->
-  <div class="a11y-widget" id="a11y-widget">
-    <button class="a11y-toggle" id="a11y-toggle" aria-label="אפשרויות נגישות" aria-expanded="false">
-      <i class="fa-solid fa-universal-access"></i>
-    </button>
-    <div class="a11y-panel" id="a11y-panel" role="dialog" aria-label="תפריט נגישות" aria-hidden="true">
-      <div class="a11y-panel-title">נגישות</div>
-      <button class="a11y-btn" id="a11y-font-up" aria-label="הגדל גופן"><i class="fa-solid fa-plus"></i> הגדל טקסט</button>
-      <button class="a11y-btn" id="a11y-font-down" aria-label="הקטן גופן"><i class="fa-solid fa-minus"></i> הקטן טקסט</button>
-      <button class="a11y-btn" id="a11y-contrast" aria-label="ניגודיות גבוהה"><i class="fa-solid fa-circle-half-stroke"></i> ניגודיות גבוהה</button>
-      <button class="a11y-btn" id="a11y-animations" aria-label="עצור אנימציות"><i class="fa-solid fa-pause"></i> עצור אנימציות</button>
-      <button class="a11y-btn" id="a11y-links" aria-label="הדגש קישורים"><i class="fa-solid fa-link"></i> הדגש קישורים</button>
-      <button class="a11y-btn" id="a11y-spacing" aria-label="ריווח טקסט"><i class="fa-solid fa-text-width"></i> ריווח טקסט</button>
-      <button class="a11y-btn" id="a11y-keyboard" aria-label="ניווט מקלדת"><i class="fa-solid fa-keyboard"></i> ניווט מקלדת</button>
-      <button class="a11y-btn a11y-reset" id="a11y-reset" aria-label="איפוס הגדרות"><i class="fa-solid fa-rotate-left"></i> איפוס</button>
-    </div>
-  </div>
   <script>
-  (function(){
-    var t=document.getElementById('a11y-toggle'),p=document.getElementById('a11y-panel');
-    var fs=parseInt(localStorage.getItem('a11y-fs')||'16');
-    var hc=localStorage.getItem('a11y-hc')==='1';
-    var na=localStorage.getItem('a11y-na')==='1';
-    var hl=localStorage.getItem('a11y-hl')==='1';
-    var ts=localStorage.getItem('a11y-ts')==='1';
-    function apply(){
-      document.documentElement.style.fontSize=fs+'px';
-      document.body.classList.toggle('high-contrast',hc);
-      document.body.classList.toggle('no-animations',na);
-      document.body.classList.toggle('highlight-links',hl);
-      document.body.classList.toggle('text-spacing',ts);
-      document.getElementById('a11y-contrast').classList.toggle('active',hc);
-      document.getElementById('a11y-animations').classList.toggle('active',na);
-      document.getElementById('a11y-links').classList.toggle('active',hl);
-      document.getElementById('a11y-spacing').classList.toggle('active',ts);
+    function liFmt(el) {
+      const raw = el.value.replace(/[^\d]/g, '');
+      if (raw) el.value = parseInt(raw, 10).toLocaleString('en-US');
     }
-    apply();
-    t.addEventListener('click',function(){
-      var o=p.classList.toggle('open');
-      t.setAttribute('aria-expanded',o);
-      p.setAttribute('aria-hidden',!o);
-    });
-    document.getElementById('a11y-font-up').addEventListener('click',function(){if(fs<22){fs+=2;localStorage.setItem('a11y-fs',fs);apply();}});
-    document.getElementById('a11y-font-down').addEventListener('click',function(){if(fs>12){fs-=2;localStorage.setItem('a11y-fs',fs);apply();}});
-    document.getElementById('a11y-contrast').addEventListener('click',function(){hc=!hc;localStorage.setItem('a11y-hc',hc?'1':'0');apply();});
-    document.getElementById('a11y-animations').addEventListener('click',function(){na=!na;localStorage.setItem('a11y-na',na?'1':'0');apply();});
-    document.getElementById('a11y-links').addEventListener('click',function(){hl=!hl;localStorage.setItem('a11y-hl',hl?'1':'0');apply();});
-    document.getElementById('a11y-spacing').addEventListener('click',function(){ts=!ts;localStorage.setItem('a11y-ts',ts?'1':'0');apply();});
-    document.getElementById('a11y-reset').addEventListener('click',function(){fs=16;hc=false;na=false;hl=false;ts=false;localStorage.removeItem('a11y-fs');localStorage.removeItem('a11y-hc');localStorage.removeItem('a11y-na');localStorage.removeItem('a11y-hl');localStorage.removeItem('a11y-ts');apply();});
-    document.addEventListener('click',function(e){if(!document.getElementById('a11y-widget').contains(e.target)){p.classList.remove('open');t.setAttribute('aria-expanded','false');p.setAttribute('aria-hidden','true');}});
-    document.addEventListener('keydown',function(e){if(e.key==='Escape'&&p.classList.contains('open')){p.classList.remove('open');t.setAttribute('aria-expanded','false');p.setAttribute('aria-hidden','true');t.focus();}});
-  })();
-  </script>
-  <script>
-  (function(){
-    var kn=localStorage.getItem('a11y-kn')==='1';
-    var kb=document.getElementById('a11y-keyboard');
-    function applyKn(){
-      document.body.classList.toggle('keyboard-nav',kn);
-      if(kb)kb.classList.toggle('active',kn);
+    function liParse(id) {
+      return parseFloat(document.getElementById(id).value.replace(/,/g, '')) || 0;
     }
-    applyKn();
-    if(kb)kb.addEventListener('click',function(){kn=!kn;localStorage.setItem('a11y-kn',kn?'1':'0');applyKn();});
-    var rb=document.getElementById('a11y-reset');
-    if(rb)rb.addEventListener('click',function(){kn=false;localStorage.removeItem('a11y-kn');applyKn();});
-  })();
-  </script>
-  <script src="page-hero-enhance.js"></script>
-  <script src="tuli-bot.js"></script>
-  <script src="/pwa-init.js"></script>
-  <script>
-  (function () {
-    ['calcCompound', 'calcLVI', 'calcSeverance', 'calcRetirement', 'pfCalc', 'runPensionCompare', 'budCalc', 'budGoalCalc'].forEach(function (name) {
-      var orig = window[name];
-      if (typeof orig !== 'function') return;
-      window[name] = function () {
-        var r = orig.apply(this, arguments);
-        if (window.pwaInstallBanner) window.pwaInstallBanner.showNow('calc');
-        return r;
-      };
-    });
-  })();
-  </script>
-  <script>
-    function liFmt(el) { const r=el.value.replace(/[^\d]/g,''); if(r) el.value=parseInt(r,10).toLocaleString('en-US'); }
-    function liParse(id) { return parseFloat(document.getElementById(id).value.replace(/,/g,''))||0; }
+    function liToggle(name, val, btn) {
+      document.getElementById('li-' + name).value = val === 'y' ? '1' : '0';
+      btn.parentElement.querySelectorAll('.li-toggle-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      liCalc();
+    }
+
     function liCalc() {
-      const married=parseInt(document.getElementById('li-married').value)||0;
-      const age=parseInt(document.getElementById('li-age').value)||40;
-      const retAge=parseInt(document.getElementById('li-ret-age').value)||67;
-      const children=parseInt(document.getElementById('li-children').value)||0;
-      const adultChildren=parseInt(document.getElementById('li-adult-children').value)||0;
-      const parents=parseInt(document.getElementById('li-parents').value)||0;
-      const income=liParse('li-income');
-      const replacePct=parseFloat(document.getElementById('li-income-replace').value)||70;
-      const mortgage=liParse('li-mortgage');
-      const debts=liParse('li-debts');
-      const savings=liParse('li-savings');
-      // horizon: years to retirement or until youngest child turns 18
-      const yearsToRetire=Math.max(1,retAge-age);
-      const childYears=children>0?Math.max(0,18-(age-30)):0;
-      const horizonYears=Math.max(yearsToRetire,childYears);
-      // monthly need
-      const monthlyNeed=income*replacePct/100;
-      // income capital (simple: annual need × years, discounted at fixed 4%)
-      const r=0.04;
-      const pvFactor=(1-Math.pow(1+r,-horizonYears))/r;
-      let incomeCapital=monthlyNeed*12*pvFactor;
-      // add per adult child: 3 years of half-salary support
-      if(adultChildren>0) incomeCapital+=adultChildren*(income*0.5*12*3);
-      // add per supported parent: 10 years of 3,000/month
-      if(parents>0) incomeCapital+=parents*(3000*12*10);
-      // married adds 2 extra years of coverage
-      if(married) incomeCapital+=monthlyNeed*12*2;
-      const debtTotal=mortgage+debts;
-      const total=Math.max(0,incomeCapital+debtTotal-savings);
-      const fmt=v=>'₪'+Math.round(v).toLocaleString('he-IL');
-      document.getElementById('li-income-need').textContent=fmt(incomeCapital);
-      document.getElementById('li-debt-need').textContent=fmt(debtTotal);
-      document.getElementById('li-total').textContent=fmt(total);
+      const age          = parseInt(document.getElementById('li-age').value) || 40;
+      const retAge       = parseInt(document.getElementById('li-ret-age').value) || 67;
+      const married      = parseInt(document.getElementById('li-married').value) || 0;
+      const children     = parseInt(document.getElementById('li-children').value) || 0;
+      const adultKids    = parseInt(document.getElementById('li-adult-children').value) || 0;
+      const parents      = parseInt(document.getElementById('li-parents').value) || 0;
+      const income       = liParse('li-income');
+      const replacePct   = parseFloat(document.getElementById('li-income-replace').value) || 70;
+      const spouseIncome = liParse('li-spouse-income');
+      const mortgage     = liParse('li-mortgage');
+      const mortIns      = parseInt(document.getElementById('li-mortins').value) || 0;
+      const debts        = liParse('li-debts');
+      const eduCost      = liParse('li-edu-cost');
+      const emergency    = liParse('li-emergency');
+      const pensionSurv  = liParse('li-pension-survivors');
+      const groupLife    = liParse('li-group-life');
+      const savings      = liParse('li-savings');
+
+      const r = 0.04;
+      const yearsToRetire = Math.max(1, retAge - age);
+      const pvFactor = (1 - Math.pow(1 + r, -yearsToRetire)) / r;
+
+      // Bituach Leumi auto
+      const blBase = children === 0 ? 1838 : children === 1 ? 2700 : children === 2 ? 3562 : 3562 + (children - 2) * 862;
+      const blEl = document.getElementById('li-bl-auto-amount');
+      if (blEl) blEl.textContent = Math.round(blBase).toLocaleString('he-IL');
+
+      const monthlyNeed = income * replacePct / 100;
+      const netMonthlyNeed = Math.max(0, monthlyNeed - spouseIncome);
+      const incomeCapital = netMonthlyNeed * 12 * pvFactor;
+      const mortgageNeed = mortIns ? 0 : mortgage;
+      const debtsNeed = debts;
+      const eduNeed = children * eduCost;
+      const dependentsNeed = adultKids * (income * 0.3 * 12 * 3) + parents * (3500 * 12 * 10);
+      const emergencyNeed = emergency;
+      const totalNeed = incomeCapital + mortgageNeed + debtsNeed + eduNeed + dependentsNeed + emergencyNeed;
+
+      const blCapital = blBase * 12 * pvFactor;
+      const pensionCapital = pensionSurv * 12 * pvFactor;
+      const totalHave = Math.min(totalNeed, blCapital + pensionCapital + groupLife + savings);
+      const gap = Math.max(0, totalNeed - totalHave);
+      const coverPct = totalNeed > 0 ? Math.min(100, (totalHave / totalNeed) * 100) : 100;
+
+      const fmt = v => '₪' + Math.round(v).toLocaleString('he-IL');
+      document.getElementById('li-r-income').textContent     = fmt(incomeCapital);
+      document.getElementById('li-r-mortgage').textContent   = fmt(mortgageNeed);
+      document.getElementById('li-r-debts').textContent      = fmt(debtsNeed);
+      document.getElementById('li-r-edu').textContent        = fmt(eduNeed);
+      document.getElementById('li-r-dependents').textContent = fmt(dependentsNeed);
+      document.getElementById('li-r-emergency').textContent  = fmt(emergencyNeed);
+      document.getElementById('li-r-total-need').textContent = fmt(totalNeed);
+      document.getElementById('li-gap-need').textContent     = fmt(totalNeed);
+      document.getElementById('li-gap-have').textContent     = fmt(totalHave);
+      document.getElementById('li-gap-buy').textContent      = fmt(gap);
+      document.getElementById('li-gap-bar-fill').style.width = coverPct + '%';
     }
     liCalc();
-    if(window.location.hash==='#life-insurance'){const b=document.querySelector('[aria-controls="panel-life-insurance"]');if(b)b.click();}
+
+    // hash routing
+    if (window.location.hash === '#life-insurance') {
+      const btn = document.querySelector('[aria-controls="panel-life-insurance"]');
+      if (btn) btn.click();
+    }
   </script>
 </body>
 </html>
