@@ -1751,7 +1751,7 @@
             <div class="li-grid">
               <div class="li-inp">
                 <label for="li-age">גיל נוכחי</label>
-                <input id="li-age" type="number" value="40" min="18" max="65" oninput="liCalc()" />
+                <input id="li-age" type="number" value="45" min="18" max="65" oninput="liCalc()" />
               </div>
               <div class="li-inp">
                 <label for="li-ret-age">גיל פרישה</label>
@@ -1760,8 +1760,8 @@
               <div class="li-inp">
                 <label>יש בן/בת זוג?</label>
                 <div class="li-toggle">
-                  <button class="li-toggle-btn active" id="li-married-btn-y" onclick="liToggle('married','y',this)">כן</button>
-                  <button class="li-toggle-btn" id="li-married-btn-n" onclick="liToggle('married','n',this)">לא</button>
+                  <button type="button" class="li-toggle-btn active" id="li-married-btn-y" onclick="liToggle('married','y',this)">כן</button>
+                  <button type="button" class="li-toggle-btn" id="li-married-btn-n" onclick="liToggle('married','n',this)">לא</button>
                 </div>
                 <input type="hidden" id="li-married" value="1" />
               </div>
@@ -1770,9 +1770,9 @@
                 <input id="li-children" type="number" value="2" min="0" max="10" oninput="liCalc()" />
               </div>
               <div class="li-inp">
-                <label for="li-adult-children">ילדים בוגרים תלויים</label>
+                <label for="li-adult-children">ילדים בוגרים מעל 18</label>
                 <input id="li-adult-children" type="number" value="0" min="0" max="10" oninput="liCalc()" />
-                <small>ילדים מעל 18 שאתם מפרנסים</small>
+                <small>ילדים מעל גיל 18 שאתם תומכים בהם</small>
               </div>
               <div class="li-inp">
                 <label for="li-parents">הורים נתמכים</label>
@@ -1786,7 +1786,7 @@
             <h3><i class="fa-solid fa-shekel-sign"></i> הכנסה ותגמול כולל</h3>
             <div class="li-grid">
               <div class="li-inp">
-                <label for="li-income">משכורת נטו חודשית (₪)</label>
+                <label for="li-income">משכורת ברוטו חודשית (₪)</label>
                 <input id="li-income" type="text" value="25,000" oninput="liFmt(this);liCalc()" />
               </div>
               <div class="li-inp">
@@ -1795,17 +1795,17 @@
                 <small>עלייה שנתית צפויה (קידום, שוק)</small>
               </div>
               <div class="li-inp">
-                <label for="li-spouse-income">הכנסת בן/בת הזוג (₪/חודש)</label>
+                <label for="li-spouse-income">הכנסת בן/בת הזוג ברוטו (₪/חודש)</label>
                 <input id="li-spouse-income" type="text" value="0" oninput="liFmt(this);liCalc()" />
-                <small>הכנסה שתישמר אחרי האובדן</small>
+                <small>הכנסה ברוטו שתישמר אחרי האובדן</small>
               </div>
               <div class="li-inp">
-                <label for="li-bonus">בונוס שנתי נטו (₪)</label>
+                <label for="li-bonus">בונוס שנתי ברוטו (₪)</label>
                 <input id="li-bonus" type="text" value="0" oninput="liFmt(this);liCalc()" />
                 <small>ממוצע שנתי של בונוסים</small>
               </div>
               <div class="li-inp">
-                <label for="li-rsu">RSU / מניות שנתי נטו (₪)</label>
+                <label for="li-rsu">RSU / מניות שנתי ברוטו (₪)</label>
                 <input id="li-rsu" type="text" value="0" oninput="liFmt(this);liCalc()" />
                 <small>שווי RSU, ESPP שנתי ממוצע</small>
               </div>
@@ -1828,8 +1828,8 @@
               <div class="li-inp">
                 <label>יש ביטוח חיים למשכנתא?</label>
                 <div class="li-toggle">
-                  <button class="li-toggle-btn" id="li-mortins-btn-y" onclick="liToggle('mortins','y',this)">כן</button>
-                  <button class="li-toggle-btn active" id="li-mortins-btn-n" onclick="liToggle('mortins','n',this)">לא</button>
+                  <button type="button" class="li-toggle-btn" id="li-mortins-btn-y" onclick="liToggle('mortins','y',this)">כן</button>
+                  <button type="button" class="li-toggle-btn active" id="li-mortins-btn-n" onclick="liToggle('mortins','n',this)">לא</button>
                 </div>
                 <input type="hidden" id="li-mortins" value="0" />
                 <small>אם כן, המשכנתא מנוכה</small>
@@ -2287,7 +2287,7 @@
       const salary     = pfParseNum('pf-salary')                                      || 27101;
       const depositPct = parseFloat(document.getElementById('pf-deposit-pct').value) || 20.83;
       const accumStart = pfParseNum('pf-accum');
-      const ageNow     = parseInt(document.getElementById('pf-age').value)            || 40;
+      const ageNow     = parseInt(document.getElementById('pf-age').value)            || 45;
       const retAge     = parseInt(document.getElementById('pf-ret-age').value)        || 67;
       const returnPct  = parseFloat(document.getElementById('pf-return').value)       || 6;
 
@@ -3035,7 +3035,7 @@
     var _liChart = null;
 
     function liCalc() {
-      const age          = parseInt(document.getElementById('li-age').value) || 40;
+      const age          = parseInt(document.getElementById('li-age').value) || 45;
       const retAge       = parseInt(document.getElementById('li-ret-age').value) || 67;
       const children     = parseInt(document.getElementById('li-children').value) || 0;
       const adultKids    = parseInt(document.getElementById('li-adult-children').value) || 0;
@@ -3205,66 +3205,6 @@
     }
     liCalc();
     }
-
-    function liCalc() {
-      const age          = parseInt(document.getElementById('li-age').value) || 40;
-      const retAge       = parseInt(document.getElementById('li-ret-age').value) || 67;
-      const married      = parseInt(document.getElementById('li-married').value) || 0;
-      const children     = parseInt(document.getElementById('li-children').value) || 0;
-      const adultKids    = parseInt(document.getElementById('li-adult-children').value) || 0;
-      const parents      = parseInt(document.getElementById('li-parents').value) || 0;
-      const income       = liParse('li-income');
-      const replacePct   = parseFloat(document.getElementById('li-income-replace').value) || 70;
-      const spouseIncome = liParse('li-spouse-income');
-      const mortgage     = liParse('li-mortgage');
-      const mortIns      = parseInt(document.getElementById('li-mortins').value) || 0;
-      const debts        = liParse('li-debts');
-      const eduCost      = liParse('li-edu-cost');
-      const emergency    = liParse('li-emergency');
-      const pensionSurv  = liParse('li-pension-survivors');
-      const groupLife    = liParse('li-group-life');
-      const savings      = liParse('li-savings');
-
-      const r = 0.04;
-      const yearsToRetire = Math.max(1, retAge - age);
-      const pvFactor = (1 - Math.pow(1 + r, -yearsToRetire)) / r;
-
-      // Bituach Leumi auto
-      const blBase = children === 0 ? 1838 : children === 1 ? 2700 : children === 2 ? 3562 : 3562 + (children - 2) * 862;
-      const blEl = document.getElementById('li-bl-auto-amount');
-      if (blEl) blEl.textContent = Math.round(blBase).toLocaleString('he-IL');
-
-      const monthlyNeed = income * replacePct / 100;
-      const netMonthlyNeed = Math.max(0, monthlyNeed - spouseIncome);
-      const incomeCapital = netMonthlyNeed * 12 * pvFactor;
-      const mortgageNeed = mortIns ? 0 : mortgage;
-      const debtsNeed = debts;
-      const eduNeed = children * eduCost;
-      const dependentsNeed = adultKids * (income * 0.3 * 12 * 3) + parents * (3500 * 12 * 10);
-      const emergencyNeed = emergency;
-      const totalNeed = incomeCapital + mortgageNeed + debtsNeed + eduNeed + dependentsNeed + emergencyNeed;
-
-      const blCapital = blBase * 12 * pvFactor;
-      const pensionCapital = pensionSurv * 12 * pvFactor;
-      const totalHave = Math.min(totalNeed, blCapital + pensionCapital + groupLife + savings);
-      const gap = Math.max(0, totalNeed - totalHave);
-      const coverPct = totalNeed > 0 ? Math.min(100, (totalHave / totalNeed) * 100) : 100;
-
-      const fmt = v => '₪' + Math.round(v).toLocaleString('he-IL');
-      document.getElementById('li-r-income').textContent     = fmt(incomeCapital);
-      document.getElementById('li-r-mortgage').textContent   = fmt(mortgageNeed);
-      document.getElementById('li-r-debts').textContent      = fmt(debtsNeed);
-      document.getElementById('li-r-edu').textContent        = fmt(eduNeed);
-      document.getElementById('li-r-dependents').textContent = fmt(dependentsNeed);
-      document.getElementById('li-r-emergency').textContent  = fmt(emergencyNeed);
-      document.getElementById('li-r-total-need').textContent = fmt(totalNeed);
-      document.getElementById('li-gap-need').textContent     = fmt(totalNeed);
-      document.getElementById('li-gap-have').textContent     = fmt(totalHave);
-      document.getElementById('li-gap-buy').textContent      = fmt(gap);
-      document.getElementById('li-gap-bar-fill').style.width = coverPct + '%';
-    }
-    liCalc();
-
     // hash routing
     if (window.location.hash === '#life-insurance') {
       const btn = document.querySelector('[aria-controls="panel-life-insurance"]');
